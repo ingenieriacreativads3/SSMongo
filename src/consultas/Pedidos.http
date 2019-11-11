@@ -1,0 +1,83 @@
+
+
+####
+
+
+GET http://localhost:3000/verduleria/api/0/pedidos
+
+
+####
+
+POST http://localhost:3000/verduleria/api/0/pedidos
+content-type: application/json
+
+{
+    "pedido" : {
+        "usuario" : {
+            "direccion" : {
+            }
+        },
+        "productos" : {
+            "agregados" : [
+                {
+                    "_id" : "asd",
+                    "cantidad" : "asdasd"
+                }
+            ]
+        }
+    }
+}
+
+####
+
+####
+
+PUT http://localhost:3000/verduleria/api/0/pedidos/5c30d3cff5a6b813b057063a
+content-type: application/json
+
+{
+    "pedido" : {
+        "usuario" : {
+            "_id" : "5c2d6034a2b78111d4dd96d6",
+            "nombre" : "asd",
+            "telefono" : "123123",
+            "direccion" : {
+                "calle" : "Av. Savio",
+                "numero" : "602"
+            }
+        },
+        "importe" : "123",
+        "fecha" : "asd",
+        "estado" : "asd",
+        "productos" : {
+            "combo" : "5c2e9065096f822c2486b158",
+            "agregados" : [
+                {
+                    "_id" : "5c2e9065096f822c2486b158"
+                },
+                {
+                    "_id" : "5c2f4307353350374c907a42"
+                },
+                {
+                    "_id" : "5c2fa2a4c7ef4837847d0a73"
+                },
+                {
+                    "_id" : "5c2fb56cc7ef4837847d0a74"
+                }
+            ]
+        }
+    }
+}
+
+####
+
+DELETE http://localhost:3000/verduleria/api/0/pedidos/5c37c233659ff8274c119c1e
+
+
+####
+
+
+GET http://localhost:3000/verduleria/api/0/pedidos
+
+
+####

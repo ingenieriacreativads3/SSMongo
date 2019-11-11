@@ -1,0 +1,49 @@
+
+
+####
+
+
+GET http://localhost:3010/empresa
+
+
+####
+
+
+GET http://localhost:3010/empresa/JBCn7gGvZy9K2fYGD
+
+####
+
+
+POST http://localhost:3010/empresa
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "Empresa": {
+        "email": "yuyu@yuyu.com"
+      }
+    }
+  }
+}
+
+####
+
+
+PUT http://localhost:3010/Empresa/5dc169c1aa3c270b0744beb3
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "Empresa": {
+          "estado" : "otro estado",
+          "rubros" : ["agricultura", "metalurgica"]
+      }
+    }
+  }
+}
+
+####
+
+DELETE http://localhost:3010/empresa/5dc166a087af540513ed273c

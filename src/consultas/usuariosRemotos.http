@@ -1,0 +1,65 @@
+
+
+####
+
+
+GET https://react.verduleriagenesis.com/verduleria/api/0/usuarios
+
+
+####
+
+POST https://react.verduleriagenesis.com/verduleria/api/0/usuarios
+content-type: application/json
+
+{
+    "usuario" : {
+        "nombre" : "tomas",
+        "apellido" : "contreras",
+        "email" : "ingenieriacrasdivads3@gmail.com",
+        "password" : "445689tC;",
+        "telefono" : 3564592136,
+        "direccion" : {
+            "calle" : "Av. Savio",
+            "numero" : "602"
+        },
+        "esCliente" : "Activo",
+        "esAdmin" : "Activo",
+        "esRoot" : "Activo"
+    }
+}
+
+####
+
+####
+
+PUT https://react.verduleriagenesis.com/verduleria/api/0/usuarios/5c2d607315c9f137e4d26b7f
+content-type: application/json
+
+{
+    "usuario" : {
+        "nombre" : "asd",
+        "apellido" : "asd",
+        "email" : "asasdasdd",
+        "password" : "asasdasdasdd",
+        "telefono" : 3564592136,
+        "direccion" : {
+            "calle" : "Av. Savio",
+            "numero" : "602"
+        },
+        "esCliente" : "Activo",
+        "esAdmin" : "Activo",
+        "esRoot" : "Activo"
+    }
+}
+
+####
+
+DELETE https://react.verduleriagenesis.com/verduleria/api/0/usuarios/5c41e97b6fd6bf793ccbb577
+
+####
+
+
+GET https://react.verduleriagenesis.com/verduleria/api/0/usuarios
+
+
+####

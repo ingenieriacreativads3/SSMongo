@@ -1,0 +1,25 @@
+
+
+####
+
+
+GET http://localhost:3000/verduleria/api/0/auth
+
+
+####
+
+POST http://localhost:3000/verduleria/api/0/auth
+content-type: application/json
+
+{
+    "nombre" : "Tomas",
+    "apellido" : "Contreras",
+    "email": "ingenieriacreaasdtivads3@gmail.com",
+    "password": "445689tC;",
+    "telefono" : 3564592136,
+    "esCliente" : true,
+    "esAdmin" : true,
+    "esRoot" : true
+}
+
+####

@@ -1,0 +1,51 @@
+
+
+####
+
+
+GET http://localhost:3010/verduleria/api/0/productos
+
+
+####
+
+POST http://localhost:3000/verduleria/api/0/productos
+content-type: application/json
+
+{
+    "producto" : {
+        "nombre" : "asdasdasd"
+    }
+}
+
+####
+
+####
+
+PUT http://localhost:3000/verduleria/api/0/productos/5c2f4307353350374c907a42
+content-type: application/json
+
+{
+    "producto" : {
+        "nombre": "anana",
+        "precio": "123.23",
+        "path": "images/verduleria/Fotos/Anana.jpg",
+        "mostrar": "true",
+        "enVenta": "true",
+        "categoria": "verdura",
+        "esCombo" : "true",
+        "descripcion" : "Manzana + Banana + Pera"
+    }
+}
+
+####
+
+DELETE http://localhost:3000/verduleria/api/0/productos/5c30b63415022d3decce6395
+
+
+####
+
+
+GET http://localhost:3000/verduleria/api/0/productos
+
+
+####

@@ -1,0 +1,34 @@
+
+
+####
+
+
+GET http://localhost:3000/verduleria/api/0/direcciones
+
+####
+
+POST http://localhost:3000/verduleria/api/0/direcciones
+content-type: application/json
+
+{
+    "usuario" : "5c1a7a5883aae75db8d88d0d",
+    "calle" : "Av.Savio",
+    "numero" : "602"
+}
+
+####
+
+####
+
+PUT http://localhost:3000/verduleria/api/0/direcciones/5c1aab95b060d3627caf41c5
+content-type: application/json
+
+{
+    "usuario" : "5c1a7a5883aae75db8d88d0d",
+    "calle" : "Poeta lugones",
+    "numero" : "602"
+}
+
+####
+
+DELETE http://localhost:3000/verduleria/api/0/direcciones/5c1aab95b060d3627caf41c5

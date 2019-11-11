@@ -1,0 +1,47 @@
+
+
+####
+
+
+GET http://localhost:3010/SolicitudDeValidacion
+
+
+####
+
+
+GET http://localhost:3010/solicituddevalidacion/5dbf6a41c9c8942f373cab15
+
+####
+
+  
+POST http://localhost:3010/SolicitudDeValidacion
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "address": "admin@localhost",
+      "SolicitudDeValidacion": {}
+    }
+  }
+}
+
+####
+
+
+PUT http://localhost:3010/SolicitudDeValidacion/5dc1624be89a4d010a4465a7
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "SolicitudDeValidacion": {
+          "estado" : "otro estado"
+      }
+    }
+  }
+}
+
+####
+
+DELETE http://localhost:3010/SolicitudDeValidacion/5dc0995c6d0ec105079486c4

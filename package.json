@@ -1,0 +1,42 @@
+{
+  "name": "db-layer",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "1": "sudo docker build -t ds3tomas/db-layer .",
+    "2": "sudo docker run -d --name db -p 3010:3000 ds3tomas/db-layer",
+    "client": "cd front && yarn start",
+    "server": "nodemon --exec babel-node ./src/index.js",
+    "servidornode": "babel-node ./src/index.js",
+    "servidor": "babel-node ./src/index.js",
+    "start": "npm run server",
+    "start-a": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "pre:build": "rm -rf server-bundle-verduleria.js && cd front && rm -rf build/",
+    "build": "yarn pre:build && babel ./src/index.js -o server-bundle-verduleria.js && cd front && yarn build",
+    "serve": "cross-env NODE_ENV=production node server-bundle-verduleria.js",
+    "babel": "babel src -o server-bundle-verduleria.js",
+    "docker:reload": "nodemon --exec 'docker cp --follow-link . reaction_mongo_1:/usr/src' "
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-formidable": "^1.2.0",
+    "ioredis": "^4.6.2",
+    "mongodb": "^3.3.3",
+    "mongojs": "^2.6.0",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.19.4",
+    "pm2": "^4.1.2",
+    "axios": "^0.19.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0"
+  }
+}

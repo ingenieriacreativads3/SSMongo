@@ -1,0 +1,65 @@
+
+
+####
+
+
+GET http://localhost:3010/verduleria/api/0/usuarios
+
+
+####
+
+POST http://localhost:3010/verduleria/api/0/usuarios
+content-type: application/json
+
+{
+    "usuario" : {
+        "nombre" : "asd",
+        "apellido" : "asd",
+        "email" : "asd",
+        "password" : "asd",
+        "telefono" : 3564592136,
+        "direccion" : {
+            "calle" : "Av. Savio",
+            "numero" : "602"
+        },
+        "esCliente" : "Activo",
+        "esAdmin" : "Activo",
+        "esRoot" : "Activo"
+    }
+}
+
+####
+
+####
+
+PUT http://localhost:3000/verduleria/api/0/usuarios/5c2d607315c9f137e4d26b7f
+content-type: application/json
+
+{
+    "usuario" : {
+        "nombre" : "asd",
+        "apellido" : "asd",
+        "email" : "asasdasdd",
+        "password" : "asasdasdasdd",
+        "telefono" : 3564592136,
+        "direccion" : {
+            "calle" : "Av. Savio",
+            "numero" : "602"
+        },
+        "esCliente" : "Activo",
+        "esAdmin" : "Activo",
+        "esRoot" : "Activo"
+    }
+}
+
+####
+
+DELETE http://localhost:3000/verduleria/api/0/usuarios/5c2e79683fcb9a2368959725
+
+####
+
+
+GET http://localhost:3000/verduleria/api/0/usuarios
+
+
+####

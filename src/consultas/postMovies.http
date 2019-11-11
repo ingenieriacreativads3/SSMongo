@@ -1,0 +1,46 @@
+
+
+
+POST http://localhost:3000/verduleria/api/0/movies
+content-type: application/json
+
+{
+    "pelicula" : "cristian gallo, el puto"
+}
+
+####
+
+
+GET http://localhost:3000/verduleria/api/0/movies
+
+
+
+####
+
+PUT http://localhost:3000/verduleria/api/0/movies/5c0c2ad53155a95890bdfce1
+content-type: application/json
+
+{
+    "nombre" : "The asd",
+    "autor" : "la ",
+    "genero" : "drama",
+    "anio" : 2018
+}
+
+####
+
+DELETE http://localhost:3000/movies/5c0041525bed980afcb0f0ef
+
+
+####
+
+######################################################
+GET http://localhost:5000/api
+
+####
+###############################################################
+
+
+
+
+
