@@ -13,10 +13,19 @@ import './bower_components/Ionicons/css/ionicons.min.css';
 import './dist/css/AdminLTE.min.css';
 import './dist/css/skins/skin-blue.min.css';
 import './dist/css/skins/_all-skins.min.css';
+import { connect } from 'react-redux'
+
+import * as apiWork from '../store/actions/apiWork'
+
+function mapStateToProps(store) {
+  return {
+      request: store.request
+  };
+}
 
 class ValidateAccounts extends React.Component {
 
-  constructor(props) {
+  constructor(props, context) {
     super(props);
     this.state = {
       SolicitudDeValidacion: {},
@@ -27,6 +36,16 @@ class ValidateAccounts extends React.Component {
     this.getRubro = this.getRubro.bind(this);
     this.getEstado = this.getEstado.bind(this);
     this.resolver = this.resolver.bind(this);
+    this.asd = this.asd.bind(this);
+  }
+
+  componentDidMount(){
+    console.log('estoy en componentDidMount y sus props son:' + this.props.request);
+    this.asd();
+  }
+
+  asd(){
+    this.props.dispatch(apiWork.apiWork())
   }
 
   async resolver() {
@@ -965,4 +984,4 @@ class ValidateAccounts extends React.Component {
   }
 }
 
-export default ValidateAccounts
+export default connect(mapStateToProps)(ValidateAccounts)
