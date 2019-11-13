@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Accounts from './containers/Accounts';
-import ValidateAccounts from './containers/ValidateAccount';
+import SolicitudDeValidacion from './containers/SolicitudDeValidacion';
+import ValidarSolicitudDeValidacion from './containers/ValidarSolicitudDeValidacion';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -24,50 +24,6 @@ class App extends React.Component {
   async componentDidMount() {
 
     var SolicitudDeValidacion = [];
-
-    axios.get(
-      'http://172.22.0.4/validar/razon/arcor'
-    ).then(function (response) {
-        console.log(response.body);
-        console.log('API Work en 172.22.0.4!');
-    }).catch(function (error) {
-      console.log(error);
-    }).finally(function () {
-      console.log('hizo el fetch en 172.22.0.4');
-    });
-
-    axios.get(
-      'http://172.22.0.5/validar/razon/arcor'
-    ).then(function (response) {
-        console.log(response.body);
-        console.log('API Work en 172.22.0.5!');
-    }).catch(function (error) {
-      console.log(error);
-    }).finally(function () {
-      console.log('hizo el fetch en 172.22.0.5');
-    });
-
-    axios.get(
-      'http://172.22.0.6/validar/razon/arcor'
-    ).then(function (response) {
-        console.log(response.body);
-        console.log('API Work en 172.22.0.6!');
-    }).catch(function (error) {
-      console.log(error);
-    }).finally(function () {
-      console.log('hizo el fetch en 172.22.0.6');
-    });
-
-    axios.get(
-      'http://172.22.0.7/validar/razon/arcor'
-    ).then(function (response) {
-        console.log(response.body);
-        console.log('API Work en 172.22.0.7!');
-    }).catch(function (error) {
-      console.log(error);
-    }).finally(function () {
-      console.log('hizo el fetch en 172.22.0.7');
-    });
 
     await axios.get('http://172.22.0.2:3000/solicitudDevalidacion')
     .then(function (response) {
@@ -93,9 +49,9 @@ class App extends React.Component {
       <Router>
         <div>
           <Switch>
-            <Route path="/solicituddevalidacion/:id" component={ ValidateAccounts } />
+            <Route path="/solicituddevalidacion/:id" component={ ValidarSolicitudDeValidacion } />
             <Route path="/solicituddevalidacion">
-              <Accounts SolicitudDeValidacion={ this.state.SolicitudDeValidacion } />
+              <SolicitudDeValidacion SolicitudDeValidacion={ this.state.SolicitudDeValidacion } />
             </Route>
           </Switch>
         </div>
