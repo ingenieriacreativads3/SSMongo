@@ -3,11 +3,12 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 
 import './bower_components/bootstrap/dist/css/bootstrap.min.css';
-import './bower_components/font-awesome/css/font-awesome.min.css';
+//import './bower_components/font-awesome/css/font-awesome.min.css';
 import './bower_components/Ionicons/css/ionicons.min.css';
 import './dist/css/AdminLTE.min.css';
 import './dist/css/skins/skin-blue.min.css';
 import './dist/css/skins/_all-skins.min.css';
+
 
 class Header extends React.Component {
 

@@ -169,7 +169,7 @@ class SolicitudDeValidacion extends React.Component {
                     <div class="col-xs-12">
 
 
-                    <TablaSolicitudValidacion></TablaSolicitudValidacion>
+                    <TablaSolicitudValidacion solicitudValidacion={ SolicitudDeValidacion }></TablaSolicitudValidacion>
                     {/* <!-- /.box --> */}
 
 

@@ -44,7 +44,7 @@ class TablaSolicitudValidacion extends React.Component {
                             </thead>
                             <tbody>
 
-                              { SolicitudDeValidacion }
+                              { this.props.solicitudValidacion }
 
                             </tbody>
                             <tfoot>
