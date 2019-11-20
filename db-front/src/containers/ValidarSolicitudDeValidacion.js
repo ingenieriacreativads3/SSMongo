@@ -371,7 +371,7 @@ class ValidateAccounts extends React.Component {
                     </ul>
                   </li>
                   <li class="footer">
-                    <a href="#">View all tasks { this.props.login. }/a>
+                    <a href="#">View all tasks </a>
                   </li>
                 </ul>
               </li>
@@ -989,4 +989,4 @@ class ValidateAccounts extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(ValidateAccounts)
+export default connect(mapStateToProps)(ValidateAccounts);
