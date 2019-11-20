@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-
-class Accounts extends React.Component {
+class SolicitudDeValidacion extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
@@ -45,7 +44,6 @@ class Accounts extends React.Component {
   render(){
 
     var SolicitudDeValidacion = [];
-    var url = 'http://localhost:3011/solicituddevalidacion'
 
     if (this.getSolicitudDeValidacion() === undefined) {
 
@@ -53,18 +51,25 @@ class Accounts extends React.Component {
       
     } else {
 
+      var url = 'http://localhost:3011';
+      var path = '/solicituddevalidacion';
+
       SolicitudDeValidacion = this.getSolicitudDeValidacion().map(solicitud => {
 
-        var url = "http://localhost:3011/solicituddevalidacion/" + solicitud._id;
+        var id = '/' + solicitud._id;
+
+        var direccion = url + path + id;
+
+        //var url = "http://localhost:3011/solicituddevalidacion/" + solicitud._id;
 
         return(
           <tr>
-            <td>{ (solicitud._id === undefined) ? '_idSolicitud' : solicitud._id }</td>
+            <td>{ (solicitud._id === undefined) ? '_idSolicitud' : solicitud._id } </td>
             <td>{ (solicitud.estado === undefined) ? 'No Resuelta' : solicitud.estado }</td>
             <td>{ (solicitud.fechaCreacionSolicitud === undefined) ? 'Fecha creacion Default' : solicitud.fechaCreacionSolicitud }</td>
             <td>{ (solicitud.idUser === undefined) ? '_idUser' : solicitud.idUser }</td>
             <td>{ (solicitud.fechaActualizacionSolicitud === undefined) ? 'Fecha actualizacion Default' : solicitud.fechaActualizacionSolicitud }</td>
-            <td><a href={ url } >Validar</a></td>
+            <td><a href={ direccion } >Validar</a></td>
           </tr>
         )
       });
@@ -76,7 +81,6 @@ class Accounts extends React.Component {
 
         {/* <!-- Main Header --> */}
         <header class="main-header">
-
           {/* <!-- Logo --> */}
           <a href="index2.html" class="logo">
             {/* <!-- mini logo for sidebar mini 50x50 pixels --> */}
@@ -488,4 +492,4 @@ class Accounts extends React.Component {
   }
 }
 
-export default Accounts
+export default SolicitudDeValidacion
