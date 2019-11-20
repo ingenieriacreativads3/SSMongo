@@ -7,7 +7,7 @@ module.exports = app => {
     console.log('API Work!');
     
     res.json({
-      response: 'API Work!'
+      request: 'API Work!'
     });
 
   });

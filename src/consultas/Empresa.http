@@ -22,7 +22,6 @@ content-type: application/json
     "data": {
       "Empresa": {
         "email": "yuyu@yuyu.com"
-        
       }
     }
   }
