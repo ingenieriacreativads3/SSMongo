@@ -45,19 +45,31 @@ class App extends React.Component {
   }
 
   render() {
+
+    var baseURL = 'http://localhost:3011';
+    var solicitudDevalidacionPath = '/solicituddevalidacion';
+
     return (
       <Router>
         <div>
           <Switch>
             <Route path="/solicituddevalidacion/:id" component={ ValidarSolicitudDeValidacion } />
             <Route path="/solicituddevalidacion">
-              <SolicitudDeValidacion SolicitudDeValidacion={ this.state.SolicitudDeValidacion } />
+              <SolicitudDeValidacion
+                path={ solicitudDevalidacionPath }
+                url={ baseURL }
+                SolicitudDeValidacion={ this.state.SolicitudDeValidacion } />
             </Route>
           </Switch>
         </div>
       </Router>
     );
+
+
+
   }
+
+  
 }
 
 export default App;
