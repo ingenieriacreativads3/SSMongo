@@ -5,12 +5,8 @@ import SolicitudDeValidacion from './containers/SolicitudDeValidacion';
 import ValidarSolicitudDeValidacion from './containers/ValidarSolicitudDeValidacion';
 import axios from 'axios';
 import RegisterForm from './containers/RegisterForm';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import Login from './containers/Login';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
 
@@ -56,6 +52,9 @@ class App extends React.Component {
             </Route>
             <Route path="/registrar">
               <RegisterForm></RegisterForm>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
             </Route>
           </Switch>
         </div>

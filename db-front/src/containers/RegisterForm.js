@@ -60,7 +60,7 @@ class RegisterForm extends React.Component{
                     Google+</a>
                 </div>
 
-                <a href="login.html" class="text-center">I already have a membership</a>
+                <Link to="/login" class="text-center">I already have a membership</Link>
               </div>
               { /*<!-- /.form-box -->*/ }</div>
            

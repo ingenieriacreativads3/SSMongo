@@ -16,15 +16,13 @@ module.exports = app => {
 
   app.get('/' + collection, (req, res) => {
 
-  console.log(collection);
+    db.SolicitudDeValidacion.find((err, SolicitudDeValidacion) => {
 
-      db.SolicitudDeValidacion.find((err, SolicitudDeValidacion) => {
-
-          res.json({
-              SolicitudDeValidacion
-          });
-
+      res.json({
+        SolicitudDeValidacion
       });
+
+    });
 
   });
 
