@@ -18,10 +18,23 @@ import UserPanel from "../components/user-panel";
 import SearchForm from "../components/search-form";
 import DatosEmpresa from '../components/datos-empresa';
 
+import { connect } from 'react-redux'
+
+import * as apiWork from '../store/actions/apiWork';
+import * as loginActions from '../store/actions/LoginAction';
+import * as update from '../store/actions/LoginAction';
+
+function mapStateToProps(store) {
+  return {
+    login: store.login,
+    apiWork: store.apiWork,
+    update: store.updateToken
+  };
+}
 
 class ValidateAccounts extends React.Component {
 
-  constructor(props) {
+  constructor(props, context) {
     super(props);
     this.state = {
       SolicitudDeValidacion: {},
@@ -32,6 +45,17 @@ class ValidateAccounts extends React.Component {
     this.getRubro = this.getRubro.bind(this);
     this.getEstado = this.getEstado.bind(this);
     this.resolver = this.resolver.bind(this);
+    this.asd = this.asd.bind(this);
+  }
+
+  componentDidMount(){
+    console.log('estoy en componentDidMount y sus props son:' + this.props.request);
+  }
+
+  asd() {
+
+    this.props.dispatch(update.updateToken('asd'));
+
   }
 
   async resolver() {
@@ -416,7 +440,7 @@ class ValidateAccounts extends React.Component {
                   {/* <!-- /.box-body --> */}
 
                   <div class="box-footer">
-                    <button type="button" class="btn btn-warning btn-lg btn-block">Validar</button>
+                    <button  onClick={this.asd} type="button" class="btn btn-warning btn-lg btn-block">Validar</button>
                   </div>
 
                   <div class="box-footer">
@@ -652,4 +676,4 @@ class ValidateAccounts extends React.Component {
   }
 }
 
-export default ValidateAccounts
+export default connect(mapStateToProps)(ValidateAccounts);
