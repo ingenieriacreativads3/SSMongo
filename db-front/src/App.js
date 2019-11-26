@@ -4,9 +4,11 @@ import './App.css';
 import SolicitudDeValidacion from './containers/SolicitudDeValidacion';
 import ValidarSolicitudDeValidacion from './containers/ValidarSolicitudDeValidacion';
 import axios from 'axios';
-import RegisterForm from './containers/RegisterForm';
-import Login from './containers/Login';
+import Login from './components/Login';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import SignUp from './containers/SignUp';
+import SignIn from './containers/SignIn';
+
 
 class App extends React.Component {
 
@@ -58,10 +60,10 @@ class App extends React.Component {
                 SolicitudDeValidacion={ this.state.SolicitudDeValidacion } />
             </Route>
             <Route path="/registrar">
-              <RegisterForm></RegisterForm>
+              <SignUp></SignUp>
             </Route>
-            <Route path="/login">
-              <Login></Login>
+            <Route path="/ingresar">
+              <SignIn></SignIn>
             </Route>
           </Switch>
         </div>
