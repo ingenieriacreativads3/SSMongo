@@ -8,6 +8,8 @@ class SolicitudDeValidacion extends React.Component {
     super(props);
     this.getSolicitudDeValidacion = this.getSolicitudDeValidacion.bind(this);
     this.state = {
+      path: this.props.path,
+      url: this.props.url,  
       SolicitudDeValidacion: []
     };
     this.setState({
@@ -51,16 +53,11 @@ class SolicitudDeValidacion extends React.Component {
       
     } else {
 
-      var url = 'http://localhost:3011';
-      var path = '/solicituddevalidacion';
-
       SolicitudDeValidacion = this.getSolicitudDeValidacion().map(solicitud => {
 
         var id = '/' + solicitud._id;
 
-        var direccion = url + path + id;
-
-        //var url = "http://localhost:3011/solicituddevalidacion/" + solicitud._id;
+        var direccion = this.state.url + this.state.path + id;
 
         return(
           <tr>

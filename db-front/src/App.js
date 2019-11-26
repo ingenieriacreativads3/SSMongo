@@ -4,12 +4,9 @@ import './App.css';
 import SolicitudDeValidacion from './containers/SolicitudDeValidacion';
 import ValidarSolicitudDeValidacion from './containers/ValidarSolicitudDeValidacion';
 import axios from 'axios';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import RegisterForm from './containers/RegisterForm';
+import Login from './containers/Login';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
 
@@ -45,19 +42,37 @@ class App extends React.Component {
   }
 
   render() {
+
+    var baseURL = 'http://localhost:3011';
+    var solicitudDevalidacionPath = '/solicituddevalidacion';
+
     return (
       <Router>
         <div>
           <Switch>
             <Route path="/solicituddevalidacion/:id" component={ ValidarSolicitudDeValidacion } />
             <Route path="/solicituddevalidacion">
-              <SolicitudDeValidacion SolicitudDeValidacion={ this.state.SolicitudDeValidacion } />
+              <SolicitudDeValidacion
+                path={ solicitudDevalidacionPath }
+                url={ baseURL }
+                SolicitudDeValidacion={ this.state.SolicitudDeValidacion } />
+            </Route>
+            <Route path="/registrar">
+              <RegisterForm></RegisterForm>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
             </Route>
           </Switch>
         </div>
       </Router>
     );
+
+
+
   }
+
+  
 }
 
 export default App;
