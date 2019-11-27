@@ -8,7 +8,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
-class RegisterForm extends React.Component{
+class Register extends React.Component{
     render(){
         return(
             <div class="register-box">
@@ -60,7 +60,7 @@ class RegisterForm extends React.Component{
                     Google+</a>
                 </div>
 
-                <Link to="/login" class="text-center">I already have a membership</Link>
+                <Link to="/ingresar" class="text-center">I already have a membership</Link>
               </div>
               { /*<!-- /.form-box -->*/ }</div>
            
@@ -68,4 +68,4 @@ class RegisterForm extends React.Component{
     }
 }
 
-export default RegisterForm;
+export default Register;
