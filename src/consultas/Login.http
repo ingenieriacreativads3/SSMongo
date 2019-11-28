@@ -60,3 +60,8 @@ content-type: application/json
 ####
 
 DELETE http://localhost:3010/login/5dc166a087af540513ed273c
+
+####
+
+
+GET http://localhost:3010/login
