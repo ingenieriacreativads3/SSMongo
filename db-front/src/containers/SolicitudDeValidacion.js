@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import UserPanel from '../UserPanel';
+import UserPanel from '../components/UserPanel';
 
 
 class SolicitudDeValidacion extends React.Component {

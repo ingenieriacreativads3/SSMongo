@@ -12,12 +12,10 @@ class UserPanel extends Component {
                   <div class="pull-left image">
                     <img src={panel.imgUserSolVal} class="img-circle" alt="User Image" />
                   </div>
-                  <React.Fragment>
                     <div class="pull-left info">
                       <p>{panel.nameUser}</p>
                       <a href="#"><i class={panel.icono}></i> Online</a>
                     </div>
-                  </React.Fragment>
                 </div>
               );
             })
