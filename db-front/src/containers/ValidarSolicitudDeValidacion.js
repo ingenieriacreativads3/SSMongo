@@ -14,7 +14,7 @@ import './dist/css/AdminLTE.min.css';
 import './dist/css/skins/skin-blue.min.css';
 import './dist/css/skins/_all-skins.min.css';
 import Header from "../components/header";
-import UserPanel from "../components/user-panel";
+import UserPanel from "../components/UserPanel";
 import SearchForm from "../components/search-form";
 import DatosEmpresa from '../components/datos-empresa';
 
