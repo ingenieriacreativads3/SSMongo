@@ -64,4 +64,32 @@ DELETE http://localhost:3010/login/5dc166a087af540513ed273c
 ####
 
 
-GET http://localhost:3010/login
+POST http://localhost/login
+content-type: application/json
+
+{
+	"empresa":	{
+    "nombre": "rooftop",
+    "cuit": "30716221659",
+    "usuario": "rooftop",
+    "clave": "admin",
+    "email": "rooftop@test.com"
+  }
+}
+
+####
+
+POST http://localhost:3010/empresa
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "Empresa": {
+        "email": "yuyu@yuyu.com"
+      }
+    }
+  }
+}
+
+####

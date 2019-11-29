@@ -48,10 +48,6 @@ class ValidateAccounts extends React.Component {
     this.asd = this.asd.bind(this);
   }
 
-  componentDidMount(){
-    console.log('estoy en componentDidMount y sus props son:' + this.props.request);
-  }
-
   asd() {
 
     this.props.dispatch(update.updateToken('asd'));
