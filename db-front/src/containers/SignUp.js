@@ -3,6 +3,7 @@ import Register from '../components/Register';
 import { connect } from 'react-redux'
 
 import * as RegisterAction from '../store/actions/RegisterAction'
+import * as SolicitudAction from '../store/actions/SolicitudDeValidacion'
 
 function mapStateToProps(store) {
   return {
@@ -19,10 +20,8 @@ class SignUp extends React.Component {
 
   onSubmit(empresa) {
 
-    console.log('empresa: ', empresa);
-    
-
     this.props.dispatch(RegisterAction.register(empresa));
+    this.props.dispatch(SolicitudAction.getAllSolicitudDeValidacion());
 
   }
 
@@ -30,8 +29,8 @@ class SignUp extends React.Component {
     return (
 
       <Register 
-        onSubmit={this.onSubmit }
-        redirect="/solicituddevalidacion">
+        onSubmit={ this.onSubmit }
+        redirect="/ingresar">
       </Register>
     )
   }
