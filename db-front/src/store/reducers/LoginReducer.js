@@ -1,16 +1,17 @@
 export default function LoginReducer (state = {
 
-  request: {
+  status: 0,
+  message: '',
+  data: {
     exist: false,
-    passValid: false,
-    empresaValida: false
+    empresa: {}
   }
 
 }, action) {
 
   switch (action.type) {
 
-    case 'LOGIN_PENDING' : {
+    case 'LOGIN_PENDING': {
 
       return { 
         ...state, 
@@ -19,7 +20,7 @@ export default function LoginReducer (state = {
 
     }
   
-    case 'LOGIN_REJECTED' : {
+    case 'LOGIN_REJECTED': {
 
       return { 
         ...state, 
@@ -29,35 +30,28 @@ export default function LoginReducer (state = {
 
     }
   
-    case 'LOGIN_FULFILLED' : {
+    case 'LOGIN_FULFILLED':{
       
-      return { 
-        ...state, 
-        fetching: false, 
-        fetched: true, 
-        request: {
-          exist: action.payload.data.request.exist,
-          passValid: action.payload.data.request.passValid,
-          empresaValida: action.payload.data.request.empresaValida
+      return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: {
+          existe: 'existe',
+          empresa: action.payload.data.data.empresa
         }
       };
 
     }
   
-    case 'E' : {
-
+    case 'E': {
       throw new Error('Este error se manejo asi!' + ' login' + 'Reducer.js');
-
     }
-        
-    default : {
 
-      break;
-
-    }
-    
+    default: { break; }
   }
-  
-  return state;
 
+  return state;
 }

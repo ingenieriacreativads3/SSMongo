@@ -1,9 +1,8 @@
 import React from 'react';
 import Register from '../components/Register';
-import { connect } from 'react-redux'
 
+import { connect } from 'react-redux'
 import * as RegisterAction from '../store/actions/RegisterAction'
-import * as SolicitudAction from '../store/actions/SolicitudDeValidacion'
 
 function mapStateToProps(store) {
   return {
@@ -19,10 +18,7 @@ class SignUp extends React.Component {
   }
 
   onSubmit(empresa) {
-
     this.props.dispatch(RegisterAction.register(empresa));
-    this.props.dispatch(SolicitudAction.getAllSolicitudDeValidacion());
-
   }
 
   render(){
