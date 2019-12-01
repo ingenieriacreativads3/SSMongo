@@ -1,10 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
+import docker from './config'
 
 export function login(user, pass) {
 
   return {
     type: 'LOGIN',
-    payload: axios.post('http://localhost:8000/login', {
+    payload: axios.post('http://' + docker.securityIP + ':8000/login', {
       user,
       pass
     })
