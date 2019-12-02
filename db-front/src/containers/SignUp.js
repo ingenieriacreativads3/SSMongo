@@ -1,13 +1,35 @@
 import React from 'react';
 import Register from '../components/Register';
 
-class SignUp extends React.Component {
+import { connect } from 'react-redux'
+import * as RegisterAction from '../store/actions/RegisterAction'
 
-    render(){
-        return (
-            <Register></Register>
-        )
-    }
+function mapStateToProps(store) {
+  return {
+    Register: store.Register
+  };
 }
 
-export default SignUp; 
+class SignUp extends React.Component {
+
+  constructor(props, context) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(empresa) {
+    this.props.dispatch(RegisterAction.register(empresa));
+  }
+
+  render(){
+    return (
+
+      <Register 
+        onSubmit={ this.onSubmit }
+        redirect="/ingresar">
+      </Register>
+    )
+  }
+}
+
+export default connect(mapStateToProps)(SignUp);

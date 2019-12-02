@@ -377,7 +377,7 @@ class ValidateAccounts extends React.Component {
 
                   <h3 class="box-title">Description Horizontal</h3>
                 </div>
-                <DatosEmpresa></DatosEmpresa>
+                <DatosEmpresa Empresa={this.state.Empresa}></DatosEmpresa>
               </div>
 
 

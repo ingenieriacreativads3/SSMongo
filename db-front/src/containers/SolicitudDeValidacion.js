@@ -5,6 +5,14 @@ import UserPanel from "../components/user-panel";
 import SearchForm from "../components/search-form";
 import TablaSolicitudValidacion from '../components/tabla-solicitudValidacion';
 
+import { connect } from 'react-redux'
+
+function mapStateToProps(store) {
+  return {
+    Register: store.Register
+  };
+}
+
 class SolicitudDeValidacion extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
@@ -82,7 +90,9 @@ class SolicitudDeValidacion extends React.Component {
         <Header></Header>
         <aside class="main-sidebar">
             <section class="sidebar">
+
                 <UserPanel></UserPanel>
+
                 <SearchForm></SearchForm>
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">HEADER</li>
@@ -203,4 +213,4 @@ class SolicitudDeValidacion extends React.Component {
   }
 }
 
-export default SolicitudDeValidacion
+export default connect(mapStateToProps)(SolicitudDeValidacion);
