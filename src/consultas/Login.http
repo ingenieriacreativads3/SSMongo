@@ -82,5 +82,10 @@ content-type: application/json
 }
 ####
 
+POST http://localhost:8000/login
+content-type: application/json
 
-GET http://localhost:3010/login
+{
+  "user": "asd",
+  "password": "asd"
+}
