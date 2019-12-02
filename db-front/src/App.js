@@ -12,6 +12,7 @@ import ItemNuevo from './containers/Item/Nuevo';
 import PresupuestoNuevo from './containers/Presupuesto/Nuevo'
 
 import * as SolicitudDeValidacionAction from './store/actions/SolicitudDeValidacionAction'
+import ShopIndex from './components/Shop-index';
 
 import { connect } from 'react-redux'
 
@@ -76,6 +77,9 @@ class App extends React.Component {
             <Route path="/ingresar" component={ SignIn } />
             <Route path="/item/nuevo" component={ ItemNuevo } />
             <Route path="/presupuesto/nuevo" component={ PresupuestoNuevo } />
+            <Route path="/shop">
+              <ShopIndex></ShopIndex>
+            </Route>
           </Switch>
         </div>
       </Router>
