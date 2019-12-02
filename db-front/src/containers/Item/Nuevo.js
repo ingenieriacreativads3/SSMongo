@@ -10,7 +10,7 @@ import '../bower_components/Ionicons/css/ionicons.min.css'
 import '../dist/css/AdminLTE.min.css'
 import '../dist/css/skins/_all-skins.min.css'
 
-class New extends React.Component {
+class Nuevo extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
@@ -188,4 +188,4 @@ class New extends React.Component {
   }
 }
 
-export default New
+export default Nuevo

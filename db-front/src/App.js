@@ -8,7 +8,8 @@ import Login from './components/Login';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
-import ItemNuevo from './containers/Item/New';
+import ItemNuevo from './containers/Item/Nuevo';
+import PresupuestoNuevo from './containers/Presupuesto/Nuevo'
 
 
 class App extends React.Component {
@@ -63,6 +64,7 @@ class App extends React.Component {
             <Route path="/registrar" component={ SignUp } />
             <Route path="/ingresar" component={ SignIn } />
             <Route path="/item/nuevo" component={ ItemNuevo } />
+            <Route path="/presupuesto/nuevo" component={ PresupuestoNuevo } />
           </Switch>
         </div>
       </Router>

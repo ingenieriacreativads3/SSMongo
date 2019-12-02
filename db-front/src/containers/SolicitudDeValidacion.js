@@ -88,6 +88,7 @@ class SolicitudDeValidacion extends React.Component {
                 <li class="header">HEADER</li>
 
                 <li class="active"><Link to="/item/nuevo"><i class="fa fa-link"></i> <span>Nuevo Item</span></Link></li>
+                <li class="active"><Link to="/presupuesto/nuevo"><i class="fa fa-link"></i> <span>Nuevo Presupuesto</span></Link></li>
                 <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
                 <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
