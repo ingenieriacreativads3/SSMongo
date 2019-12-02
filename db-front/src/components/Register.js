@@ -68,7 +68,8 @@ class Register extends React.Component{
 
     this.setState({
       Empresa: {
-        nombre: e.targe.value
+        ...this.state.Empresa,
+        nombre: e.target.value
       }
     });
 
@@ -78,7 +79,8 @@ class Register extends React.Component{
 
     this.setState({
       Empresa: {
-        cuit: e.targe.value
+        ...this.state.Empresa,
+        cuit: e.target.value
       }
     });
     
@@ -88,7 +90,8 @@ class Register extends React.Component{
 
     this.setState({
       Empresa: {
-        usuario: e.targe.value
+        ...this.state.Empresa,
+        usuario: e.target.value
       }
     });
     
@@ -98,7 +101,8 @@ class Register extends React.Component{
 
     this.setState({
       Empresa: {
-        clave: e.targe.value
+        ...this.state.Empresa,
+        clave: e.target.value
       }
     });
     
@@ -108,7 +112,8 @@ class Register extends React.Component{
 
     this.setState({
       Empresa: {
-        email: e.targe.value
+        ...this.state.Empresa,
+        email: e.target.value
       }
     });
     
@@ -137,27 +142,27 @@ class Register extends React.Component{
           <form>
 
             <div class="form-group has-feedback">
-              <input required type="text" class="form-control" placeholder="Nombre" onChange={() => this.getNombre}></input>
+              <input required type="text" class="form-control" placeholder="Nombre" onChange={ this.getNombre }></input>
               <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
 
             <div class="form-group has-feedback">
-              <input required type="number" class="form-control" placeholder="CUIT" onChange={() => this.getCuit}></input>
+              <input required type="number" class="form-control" placeholder="CUIT" onChange={ this.getCuit }></input>
               <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
 
             <div class="form-group has-feedback">
-              <input required type="text" class="form-control" placeholder="Usuario" onChange={() => this.getUsuario}></input>
+              <input required type="text" class="form-control" placeholder="Usuario" onChange={ this.getUsuario}></input>
               <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
 
             <div class="form-group has-feedback">
-                <input required type="email" class="form-control" placeholder="Email" onChange={() => this.getEmail}></input>
+                <input required type="email" class="form-control" placeholder="Email" onChange={ this.getEmail}></input>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
 
             <div class="form-group has-feedback">
-              <input required type="password" class="form-control" placeholder="Contraseña" onChange={() => this.getClave}></input>
+              <input required type="password" class="form-control" placeholder="Contraseña" onChange={ this.getClave}></input>
               <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
 
@@ -175,7 +180,16 @@ class Register extends React.Component{
                 </div>
               </div>
               <div class="col-xs-4">
-                <Link to={ this.props.redirect }><button onClick={ this.onSubmit } type="submit" class="btn btn-primary btn-block btn-flat">Register</button></Link>
+
+                <Link to={ this.props.redirect }>
+                  <button 
+                    onClick={ this.onSubmit }
+                    type="submit"
+                    class="btn btn-primary btn-block btn-flat">
+                      Register
+                  </button>
+                </Link>
+
               </div>
             </div>
           </form>

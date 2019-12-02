@@ -39,8 +39,8 @@ export default function RegisterReducer ( state = {
         status: action.payload.data.status,
         message: action.payload.data.message,
         data: {
-          empresa: action.payload.data,
-          solicitudDeValidacion: action.payload.data
+          empresa: action.payload.data.data.empresa,
+          solicitudDeValidacion: action.payload.data.data.solicitudDeValidacion
         }
       };
 
