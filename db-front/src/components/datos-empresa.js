@@ -14,7 +14,7 @@ class DatosEmpresa extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        
+        Empresa: this.props.Empresa
       };
     }
 
