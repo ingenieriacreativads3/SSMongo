@@ -100,7 +100,9 @@ class SolicitudDeValidacion extends React.Component {
                 <UserPanel></UserPanel>
 
             {/* <!-- Sidebar user panel (optional) --> */}
+
                 <UserPanel></UserPanel>
+      
             {/* <!-- search form (Optional) --> */}
                 <SearchForm></SearchForm>
             {/* <!-- /.search form --> */}
