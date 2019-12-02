@@ -87,31 +87,18 @@ class SolicitudDeValidacion extends React.Component {
     return(
             
       <div class="wrapper">
-
-        {/* <!-- Main Header --> */}
-        
         <Header></Header>
-
-        {/* <!-- Left side column. contains the logo and sidebar --> */}
         <aside class="main-sidebar">
-
-            {/* <!-- sidebar: style can be found in sidebar.less --> */}
             <section class="sidebar">
-                <UserPanel></UserPanel>
-
-            {/* <!-- Sidebar user panel (optional) --> */}
 
                 <UserPanel></UserPanel>
-      
-            {/* <!-- search form (Optional) --> */}
+
                 <SearchForm></SearchForm>
-            {/* <!-- /.search form --> */}
-
-            {/* <!-- Sidebar Menu --> */}
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">HEADER</li>
-                {/* <!-- Optionally, you can add icons to the links --> */}
-                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+
+                <li class="active"><Link to="/item/nuevo"><i class="fa fa-link"></i> <span>Nuevo Item</span></Link></li>
+                <li class="active"><Link to="/presupuesto/nuevo"><i class="fa fa-link"></i> <span>Nuevo Presupuesto</span></Link></li>
                 <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
                 <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -125,96 +112,46 @@ class SolicitudDeValidacion extends React.Component {
                 </ul>
                 </li>
             </ul>
-            {/* <!-- /.sidebar-menu --> */}
             </section>
-            {/* <!-- /.sidebar --> */}
         </aside>
-
-        {/* <!-- Content Wrapper. Contains page content --> */}
         <div class="content-wrapper">
-
-
-
-
-            {/* <!-- Content Header (Page header) --> */}
+            
             <section class="content-header">
             <h1>
-                Page Header
-                <small>Optional description</small>
+                Solicitud de Validación
+                <small>Lista</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+                <li><a href="#">SolicitudesDeValidacion</a></li>
+                <li class="active">Lista</li>
             </ol>
             </section>
-
-            {/* <!-- Content Header (Page header) --> */}
-            <section class="content-header">
-            <h1>
-                Data Tables
-                <small>advanced tables</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
-            </ol>
-            </section>
-
-            {/* <!-- Main content --> */}
             <section class="content container-fluid">
-
-            {/* <!--------------------------
-                | Your Page Content Here |
-                --------------------------> */}
-
-
-
-
-            {/* <!-- Main content --> */}
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
 
 
                     <TablaSolicitudValidacion solicitudValidacion={ SolicitudDeValidacion }></TablaSolicitudValidacion>
-                    {/* <!-- /.box --> */}
-
-
                     </div>
-                    {/* <!-- /.col --> */}
                 </div>
-                {/* <!-- /.row --> */}
             </section>
-            {/* <!-- /.content --> */}
-
-
-
             </section>
-            {/* <!-- /.content --> */}
         </div>
-        {/* <!-- /.content-wrapper --> */}
-
-        {/* <!-- Main Footer --> */}
         <footer class="main-footer">
-            {/* <!-- To the right --> */}
             <div class="pull-right hidden-xs">
             Anything you want
             </div>
-            {/* <!-- Default to the left --> */}
             <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
         </footer>
 
-        {/* <!-- Control Sidebar --> */}
         <aside class="control-sidebar control-sidebar-dark">
-            {/* <!-- Create the tabs --> */}
             <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
             <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
             <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
             </ul>
-            {/* <!-- Tab panes --> */}
             <div class="tab-content">
-            {/* <!-- Home tab content --> */}
             <div class="tab-pane active" id="control-sidebar-home-tab">
                 <h3 class="control-sidebar-heading">Recent Activity</h3>
                 <ul class="control-sidebar-menu">
@@ -230,7 +167,6 @@ class SolicitudDeValidacion extends React.Component {
                     </a>
                 </li>
                 </ul>
-                {/* <!-- /.control-sidebar-menu --> */}
 
                 <h3 class="control-sidebar-heading">Tasks Progress</h3>
                 <ul class="control-sidebar-menu">
@@ -249,14 +185,9 @@ class SolicitudDeValidacion extends React.Component {
                     </a>
                 </li>
                 </ul>
-                {/* <!-- /.control-sidebar-menu --> */}
 
             </div>
-            {/* <!-- /.tab-pane --> */}
-            {/* <!-- Stats tab content --> */}
             <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-            {/* <!-- /.tab-pane --> */}
-            {/* <!-- Settings tab content --> */}
             <div class="tab-pane" id="control-sidebar-settings-tab">
                 <form method="post">
                 <h3 class="control-sidebar-heading">General Settings</h3>
@@ -271,15 +202,10 @@ class SolicitudDeValidacion extends React.Component {
                     Some information about this general settings option
                     </p>
                 </div>
-                {/* <!-- /.form-group --> */}
                 </form>
             </div>
-            {/* <!-- /.tab-pane --> */}
             </div>
         </aside>
-        {/* <!-- /.control-sidebar --> */}
-        {/* <!-- Add the sidebar's background. This div must be placed
-        immediately after the control sidebar --> */}
         <div class="control-sidebar-bg"></div>
       </div>
 

@@ -85,7 +85,38 @@ content-type: application/json
 POST http://localhost:8000/login
 content-type: application/json
 
+POST http://localhost/login
+content-type: application/json
+
+{
+	"empresa":	{
+    "nombre": "rooftop",
+    "cuit": "30716221659",
+    "usuario": "rooftop",
+    "clave": "admin",
+    "email": "rooftop@test.com"
+  }
+}
+
+####
+
+POST http://localhost:3010/empresa
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "Empresa": {
+        "email": "yuyu@yuyu.com"
+      }
+    }
+  }
+}
+
+####
+
 {
   "user": "asd",
   "password": "asd"
 }
+

@@ -9,7 +9,6 @@ import './dist/css/AdminLTE.min.css';
 import './dist/css/skins/skin-blue.min.css';
 import './dist/css/skins/_all-skins.min.css';
 
-
 class TablaSolicitudValidacion extends React.Component {
 
   constructor(props) {
