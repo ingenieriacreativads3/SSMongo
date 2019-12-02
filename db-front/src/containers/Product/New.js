@@ -1,58 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Header from "../components/header";
-import UserPanel from "../components/user-panel";
-import SearchForm from "../components/search-form";
-import TablaSolicitudValidacion from '../components/tabla-solicitudValidacion';
+import Header from "../../components/Header";
+import UserPanel from "../../components/UserPanel";
+import SearchForm from "../../components/SearchForm";
+import TablaSolicitudValidacion from '../../components/TablaSolicitudValidacion';
 
-import { connect } from 'react-redux'
-
-function mapStateToProps(store) {
-  return {
-    Register: store.Register
-  };
-}
-
-class SolicitudDeValidacion extends React.Component {
+class New extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
-    this.getSolicitudDeValidacion = this.getSolicitudDeValidacion.bind(this);
     this.state = {
-      path: this.props.path,
-      url: this.props.url,  
-      SolicitudDeValidacion: []
+      
     };
-    this.setState({
-      SolicitudDeValidacion: this.props.SolicitudDeValidacion
-    });
-  }
-
-  getSolicitudDeValidacion() {
-
-    /*
-
-    var usersShow = this.props.users.filter(user => {
-
-      var isVerify = false;
-
-      var roles = user.roles.J8Bhq3uTtdgwZx3rz.map(rol => {
-        if (rol == "account/verify"){
-          isVerify = true;
-        }
-      })
-
-      return isVerify;
-
-    })
-
-    */
-
-    var SolicitudDeValidacion = [];
-    SolicitudDeValidacion = this.props.SolicitudDeValidacion
-    
-    return SolicitudDeValidacion;
   }
 
   render(){
@@ -65,79 +25,44 @@ class SolicitudDeValidacion extends React.Component {
       
     } else {
 
-      SolicitudDeValidacion = this.getSolicitudDeValidacion().map(solicitud => {
-
-        var id = '/' + solicitud._id;
-
-        var direccion = this.state.url + this.state.path + id;
-
-        return(
-          <tr>
-            <td>{ (solicitud._id === undefined) ? '_idSolicitud' : solicitud._id } </td>
-            <td>{ (solicitud.estado === undefined) ? 'No Resuelta' : solicitud.estado }</td>
-            <td>{ (solicitud.fechaCreacionSolicitud === undefined) ? 'Fecha creacion Default' : solicitud.fechaCreacionSolicitud }</td>
-            <td>{ (solicitud.idUser === undefined) ? '_idUser' : solicitud.idUser }</td>
-            <td>{ (solicitud.fechaActualizacionSolicitud === undefined) ? 'Fecha actualizacion Default' : solicitud.fechaActualizacionSolicitud }</td>
-            <td><a href={ direccion } >Validar</a></td>
-          </tr>
-        )
-      });
-    }
-
     return(
             
       <div class="wrapper">
 
-        {/* <!-- Main Header --> */}
-        
         <Header></Header>
 
-        {/* <!-- Left side column. contains the logo and sidebar --> */}
         <aside class="main-sidebar">
 
-            {/* <!-- sidebar: style can be found in sidebar.less --> */}
             <section class="sidebar">
-                <UserPanel></UserPanel>
 
-            {/* <!-- Sidebar user panel (optional) --> */}
                 <UserPanel></UserPanel>
-            {/* <!-- search form (Optional) --> */}
                 <SearchForm></SearchForm>
-            {/* <!-- /.search form --> */}
 
-            {/* <!-- Sidebar Menu --> */}
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
-                {/* <!-- Optionally, you can add icons to the links --> */}
-                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">HEADER</li>
+
+                    <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+                    <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+                    <li class="treeview">
+                    <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#">Link in level 2</a></li>
+                        <li><a href="#">Link in level 2</a></li>
+                    </ul>
+                    </li>
                 </ul>
-                </li>
-            </ul>
-            {/* <!-- /.sidebar-menu --> */}
             </section>
-            {/* <!-- /.sidebar --> */}
         </aside>
 
-        {/* <!-- Content Wrapper. Contains page content --> */}
         <div class="content-wrapper">
 
-
-
-
-            {/* <!-- Content Header (Page header) --> */}
             <section class="content-header">
             <h1>
-                Page Header
+                Productos
                 <small>Optional description</small>
             </h1>
             <ol class="breadcrumb">
@@ -285,4 +210,4 @@ class SolicitudDeValidacion extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(SolicitudDeValidacion);
+export default New
