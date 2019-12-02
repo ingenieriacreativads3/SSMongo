@@ -9,13 +9,22 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 
+import * as SolicitudDeValidacionAction from './store/actions/SolicitudDeValidacionAction'
+
+import { connect } from 'react-redux'
+
+function mapStateToProps(store) {
+  return {
+    SolicitudDeValidacion: store.SolicitudDeValidacion.data.solicitudesDeValidacion
+  };
+}
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      SolicitudDeValidacion: []
+      SolicitudDeValidacion: this.props.SolicitudDeValidacion
     };
     
   }
@@ -24,21 +33,23 @@ class App extends React.Component {
 
     var SolicitudDeValidacion = [];
 
-    await axios.get('http://172.22.0.2:3000/solicitudDevalidacion')
-    .then(function (response) {
-      SolicitudDeValidacion = response.data.SolicitudDeValidacion;
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .finally(function () {
-      // always executed
-    });
+    // await axios.get('http://172.22.0.2:3000/solicitudDevalidacion')
+    // .then(function (response) {
+    //   SolicitudDeValidacion = response.data.SolicitudDeValidacion;
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   // handle error
+    //   console.log(error);
+    // })
+    // .finally(function () {
+    //   // always executed
+    // });
+
+    await this.props.dispatch(SolicitudDeValidacionAction.getAllSolicitudDeValidacion())
 
     this.setState({
-      SolicitudDeValidacion: SolicitudDeValidacion
+      SolicitudDeValidacion: this.props.SolicitudDeValidacion
     });
     
   }
@@ -57,7 +68,7 @@ class App extends React.Component {
               <SolicitudDeValidacion
                 path={ solicitudDevalidacionPath }
                 url={ baseURL }
-                SolicitudDeValidacion={ this.state.SolicitudDeValidacion } />
+                SolicitudDeValidacion={ this.state.SolicitudDeValidacion }/>
             </Route>
             <Route path="/registrar">
               <SignUp></SignUp>
@@ -69,12 +80,7 @@ class App extends React.Component {
         </div>
       </Router>
     );
-
-
-
   }
-
-  
 }
 
-export default App;
+export default connect(mapStateToProps)(App);

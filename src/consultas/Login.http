@@ -61,6 +61,25 @@ content-type: application/json
 
 DELETE http://localhost:3010/login/5dc166a087af540513ed273c
 
+
+####
+
+
+POST http://localhost:8000/registro
+content-type: application/json
+
+{
+	"empresa" :	{
+    "nombre": "123123",
+    "cuit": "30716212312321659",
+    "usuario": "23123",
+    "clave": "123123",
+    "email": "123123@test.com",
+    "rubros": [
+        null
+    ]
+  }
+}
 ####
 
 
