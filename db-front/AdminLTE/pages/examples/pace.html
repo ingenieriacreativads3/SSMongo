@@ -672,18 +672,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-<script type="text/javascript">
-  // To make Pace works on Ajax calls
-  $(document).ajaxStart(function () {
-    Pace.restart()
-  })
-  $('.ajax').click(function () {
-    $.ajax({
-      url: '#', success: function (result) {
-        $('.ajax-content').html('<hr>Ajax Request Completed !')
-      }
-    })
-  })
-</script>
+<script type="text/javascript" src="../../../public/custom/custom.js"></script>
 </body>
 </html>

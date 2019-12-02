@@ -1,0 +1,86 @@
+
+
+####
+
+
+GET http://localhost:3010/login
+
+
+####
+
+
+GET http://localhost:3010/login/JBCn7gGvZy9K2fYGD
+
+####
+
+
+POST http://localhost:3010/login
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "email": "asd",
+      "pass": "asd"
+    }
+  }
+}
+
+####
+
+
+POST http://localhost:3010/updatetoken
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "token": "token"
+    }
+  }
+}
+
+####
+
+
+PUT http://localhost:3010/login/5dc169c1aa3c270b0744beb3
+content-type: application/json
+
+{
+  "request": {
+    "data": {
+      "login": {
+          "estado" : "otro estado",
+          "rubros" : ["agricultura", "metalurgica"]
+      }
+    }
+  }
+}
+
+####
+
+DELETE http://localhost:3010/login/5dc166a087af540513ed273c
+
+
+####
+
+
+POST http://localhost:8000/registro
+content-type: application/json
+
+{
+	"empresa" :	{
+    "nombre": "123123",
+    "cuit": "30716212312321659",
+    "usuario": "23123",
+    "clave": "123123",
+    "email": "123123@test.com",
+    "rubros": [
+        null
+    ]
+  }
+}
+####
+
+
+GET http://localhost:3010/login

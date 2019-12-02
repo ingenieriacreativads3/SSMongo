@@ -1,4 +1,3 @@
-
 import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
@@ -10,7 +9,7 @@ import './dist/css/AdminLTE.min.css';
 import './dist/css/skins/skin-blue.min.css';
 import './dist/css/skins/_all-skins.min.css';
 
-class UserPanel extends React.Component {
+class SearchForm extends React.Component {
 
     constructor(props) {
       super(props);
@@ -22,19 +21,20 @@ class UserPanel extends React.Component {
     render(){
 
         return(
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+          
+            <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search..." />
+                  <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                  </span>
             </div>
-            <div class="pull-left info">
-              <p>Alexander Pierce</p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
+          </form>
         
         );
 
     }
 }
 
-export default UserPanel
+export default SearchForm
