@@ -192,7 +192,7 @@ class Nuevo extends React.Component {
                             </div>
                             <div className="form-group">
                               <div className="col-sm-offset-2 col-sm-10">
-                                <button type="submit" className="btn btn-danger">Nuevo Presupuesto</button>
+                                <button type="submit" class="btn btn-primary">Nuevo Presupuesto</button>
                               </div>
                             </div>
                           </form>

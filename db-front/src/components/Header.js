@@ -29,7 +29,7 @@ class Header extends React.Component {
         {/* <!-- Logo --> */}
         <a href="../../index2.html" class="logo">
           {/* <!-- mini logo for sidebar mini 50x50 pixels --> */}
-          <span class="logo-mini"><b>Suppliers Store</b></span>
+          <span class="logo-mini"><b>SS</b></span>
           {/* <!-- logo for regular state and mobile devices --> */}
           <span class="logo-lg"><b>Suppliers Store</b></span>
         </a>
