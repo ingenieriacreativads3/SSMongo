@@ -62,7 +62,7 @@ class Login extends React.Component{
           
           <div class="login-box-body">
           
-            <p class="login-box-msg">Iniciar Sesion</p>
+            <h3 class="login-box-msg">Iniciar Sesion</h3>
 
             <form>
                 

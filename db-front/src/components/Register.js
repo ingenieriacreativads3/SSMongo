@@ -137,7 +137,7 @@ class Register extends React.Component{
         </div>
 
         <div class="register-box-body">
-          <p class="login-box-msg">Crea tu cuenta</p>
+          <h3 class="login-box-msg">Crea tu cuenta</h3>
 
           <form>
 
