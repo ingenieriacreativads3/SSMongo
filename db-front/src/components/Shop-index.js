@@ -1,4 +1,9 @@
 import React from 'react';
+import './shop_template/styles/bootstrap-4.1.2/bootstrap.min.css';
+import './shop_template/styles/main_styles.css';
+import './shop_template/styles/responsive.css';
+import './shop_template/styles/bootstrap-4.1.2/popper.js';
+import './shop_template/styles/bootstrap-4.1.2/bootstrap.min.js';
 
 class ShopIndex extends React.Component{
     render(){
