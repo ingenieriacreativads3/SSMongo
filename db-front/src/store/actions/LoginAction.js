@@ -1,13 +1,13 @@
 import axios from 'axios';
 import docker from './config'
 
-export function login(user, pass) {
+export function login(user, password) {
 
   return {
     type: 'LOGIN',
-    payload: axios.post('http://' + docker.securityIP + ':8000/login', {
+    payload: axios.post('http://127.0.0.1:8000/login', {
       user,
-      pass
+      password
     })
   };
 

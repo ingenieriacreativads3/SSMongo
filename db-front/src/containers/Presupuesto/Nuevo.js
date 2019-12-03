@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import UserPanel from "../../components/UserPanel";
 import SearchForm from "../../components/SearchForm";
+import SideBarMenu from '../../components/SideBarMenu';
 
 import '../bower_components/bootstrap/dist/css/bootstrap.min.css'
 import '../bower_components/font-awesome/css/font-awesome.min.css'
@@ -33,24 +34,8 @@ class Nuevo extends React.Component {
 
             <UserPanel></UserPanel>
             <SearchForm></SearchForm>
+            <SideBarMenu></SideBarMenu>
 
-            <ul className="sidebar-menu" data-widget="tree">
-              <li className="header">HEADER</li>
-
-              <li className="active"><a href="#"><i className="fa fa-link"></i> <span>asd</span></a></li>
-              <li><a href="#"><i className="fa fa-link"></i> <span>Another Link</span></a></li>
-              <li className="treeview">
-              <a href="#"><i className="fa fa-link"></i> <span>Multilevel</span>
-                <span className="pull-right-container">
-                  <i className="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul className="treeview-menu">
-                <li><a href="#">Link in level 2</a></li>
-                <li><a href="#">Link in level 2</a></li>
-              </ul>
-              </li>
-            </ul>
           </section>
         </aside>
 
@@ -106,96 +91,98 @@ class Nuevo extends React.Component {
                         <li className="active"><a href="#activity" data-toggle="tab">Nuevo</a></li>
                       </ul>
 
-                        <div className="tab-pane" id="settings">
-                          <form className="form-horizontal">
+                        <div className="box-body box-profile">
+                          <div className="tab-pane" id="settings">
+                            <form className="form-horizontal">
 
-                            <div className="form-group">
-                              <label for="nombreItem" className="col-sm-2 control-label">Producto</label>
-                              <div className="col-sm-10">
-                                <input type="text" className="form-control" id="nombreItem" placeholder="Nombre Item" disabled></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="solicitante" className="col-sm-2 control-label">Solicitante</label>
-                              <div className="col-sm-10">
-                                <input type="text" className="form-control" id="solicitante" placeholder="Municipalidad de Devoto" disabled></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="emailSolicitante" className="col-sm-2 control-label">Email Solicitante</label>
-                              <div className="col-sm-10">
-                                <input type="email" className="form-control" id="emailSolicitante" placeholder="sistemas@devoto.gob.ar" disabled></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="telefonoSolicitante" className="col-sm-2 control-label">Teléfono Solicitante</label>
-                              <div className="col-sm-10">
-                                <input type="number" className="form-control" id="telefonoSolicitante" placeholder="3564592136"></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="provinciaSolicitante" className="col-sm-2 control-label">Provincia Solicitante</label>
-                              <div className="col-sm-10">
-                                <input type="text" className="form-control" id="provinciaSolicitante" placeholder="Córdoba"></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="localidadSolicitante" className="col-sm-2 control-label">Localidad Solicitante</label>
-                              <div className="col-sm-10">
-                                <input type="text" className="form-control" id="localidadSolicitante" placeholder="San Francisco"></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="codigoPostalSolicitante" className="col-sm-2 control-label">Código Postal Solicitante</label>
-                              <div className="col-sm-10">
-                                <input type="number" className="form-control" id="codigoPostalSolicitante" placeholder="2400"></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="mensajeSolicitante" className="col-sm-2 control-label">Mensaje</label>
-                              <div className="col-sm-10">
-                                <textarea className="form-control" id="mensajeSolicitante" placeholder="Mensaje"></textarea>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="cantidad" className="col-sm-2 control-label">Cantidad</label>
-                              <div className="col-sm-5">
-                                <input type="number" className="form-control" id="cantidad" placeholder="100"></input>
-                              </div>
-                              <div className="col-sm-5">
-                                <select className="form-control">
-                                  <option>Kilogramos</option>
-                                  <option>Metros</option>
-                                  <option>Litros</option>
-                                  <option>Horas</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            
-                            <div className="form-group">
-                              <div className="col-sm-offset-2 col-sm-10">
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox"></input> Acepto <a href="#">términos y condiciones</a>
-                                  </label>
+                              <div className="form-group">
+                                <label for="nombreItem" className="col-sm-2 control-label">Producto</label>
+                                <div className="col-sm-10">
+                                  <input type="text" className="form-control" id="nombreItem" placeholder="Nombre Item" disabled></input>
                                 </div>
                               </div>
-                            </div>
-                            <div className="form-group">
-                              <div className="col-sm-offset-2 col-sm-10">
-                                <button type="submit" className="btn btn-danger">Nuevo Presupuesto</button>
+
+                              <div className="form-group">
+                                <label for="solicitante" className="col-sm-2 control-label">Solicitante</label>
+                                <div className="col-sm-10">
+                                  <input type="text" className="form-control" id="solicitante" placeholder="Municipalidad de Devoto" disabled></input>
+                                </div>
                               </div>
-                            </div>
-                          </form>
+
+                              <div className="form-group">
+                                <label for="emailSolicitante" className="col-sm-2 control-label">Email Solicitante</label>
+                                <div className="col-sm-10">
+                                  <input type="email" className="form-control" id="emailSolicitante" placeholder="sistemas@devoto.gob.ar" disabled></input>
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <label for="telefonoSolicitante" className="col-sm-2 control-label">Teléfono Solicitante</label>
+                                <div className="col-sm-10">
+                                  <input type="number" className="form-control" id="telefonoSolicitante" placeholder="3564592136"></input>
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <label for="provinciaSolicitante" className="col-sm-2 control-label">Provincia Solicitante</label>
+                                <div className="col-sm-10">
+                                  <input type="text" className="form-control" id="provinciaSolicitante" placeholder="Córdoba"></input>
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <label for="localidadSolicitante" className="col-sm-2 control-label">Localidad Solicitante</label>
+                                <div className="col-sm-10">
+                                  <input type="text" className="form-control" id="localidadSolicitante" placeholder="San Francisco"></input>
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <label for="codigoPostalSolicitante" className="col-sm-2 control-label">Código Postal Solicitante</label>
+                                <div className="col-sm-10">
+                                  <input type="number" className="form-control" id="codigoPostalSolicitante" placeholder="2400"></input>
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <label for="mensajeSolicitante" className="col-sm-2 control-label">Mensaje</label>
+                                <div className="col-sm-10">
+                                  <textarea className="form-control" id="mensajeSolicitante" placeholder="Mensaje"></textarea>
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <label for="cantidad" className="col-sm-2 control-label">Cantidad</label>
+                                <div className="col-sm-5">
+                                  <input type="number" className="form-control" id="cantidad" placeholder="100"></input>
+                                </div>
+                                <div className="col-sm-5">
+                                  <select className="form-control">
+                                    <option>Kilogramos</option>
+                                    <option>Metros</option>
+                                    <option>Litros</option>
+                                    <option>Horas</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              
+                              <div className="form-group">
+                                <div className="col-sm-offset-2 col-sm-10">
+                                  <div className="checkbox">
+                                    <label>
+                                      <input type="checkbox"></input> Acepto <a href="#">términos y condiciones</a>
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="form-group">
+                                <div className="col-sm-offset-2 col-sm-10">
+                                  <button type="submit" className="btn btn-danger">Enviar Solicitud de Presupuesto</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
                         </div>
 
                     </div>

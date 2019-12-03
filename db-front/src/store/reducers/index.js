@@ -6,6 +6,7 @@ import Login from './LoginReducer';
 import updateToken from './UpdateTokenReducer';
 import Register from './RegisterReducer';
 import SolicitudDeValidacion from './SolicitudDeValidacion'
+import Item from "./ItemReducer";
 
 export default combineReducers({
     apiWork,
@@ -13,5 +14,6 @@ export default combineReducers({
     Login,
     updateToken,
     Register,
-    SolicitudDeValidacion
+    SolicitudDeValidacion,
+    Item
 })

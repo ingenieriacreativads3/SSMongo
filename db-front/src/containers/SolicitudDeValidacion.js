@@ -4,6 +4,7 @@ import Header from "../components/header";
 import UserPanel from "../components/user-panel";
 import SearchForm from "../components/search-form";
 import TablaSolicitudValidacion from '../components/tabla-solicitudValidacion';
+import SideBarMenu from '../components/SideBarMenu';
 
 import { connect } from 'react-redux'
 
@@ -91,27 +92,10 @@ class SolicitudDeValidacion extends React.Component {
         <aside class="main-sidebar">
             <section class="sidebar">
 
-                <UserPanel></UserPanel>
+              <UserPanel></UserPanel>
+              <SearchForm></SearchForm>
+              <SideBarMenu></SideBarMenu>
 
-                <SearchForm></SearchForm>
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
-
-                <li class="active"><Link to="/item/nuevo"><i class="fa fa-link"></i> <span>Nuevo Item</span></Link></li>
-                <li class="active"><Link to="/presupuesto/nuevo"><i class="fa fa-link"></i> <span>Nuevo Presupuesto</span></Link></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
-                </li>
-            </ul>
             </section>
         </aside>
         <div class="content-wrapper">

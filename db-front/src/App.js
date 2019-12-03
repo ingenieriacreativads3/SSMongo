@@ -10,6 +10,7 @@ import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 import ItemNuevo from './containers/Item/Nuevo';
 import PresupuestoNuevo from './containers/Presupuesto/Nuevo'
+import HomeAdmin from './containers/Home/Admin'
 
 import * as SolicitudDeValidacionAction from './store/actions/SolicitudDeValidacionAction'
 
@@ -76,6 +77,7 @@ class App extends React.Component {
             <Route path="/ingresar" component={ SignIn } />
             <Route path="/item/nuevo" component={ ItemNuevo } />
             <Route path="/presupuesto/nuevo" component={ PresupuestoNuevo } />
+            <Route path="/home/admin" component={ HomeAdmin } />
           </Switch>
         </div>
       </Router>

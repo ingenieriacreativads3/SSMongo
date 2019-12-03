@@ -49,3 +49,15 @@ GET http://localhost:3000/verduleria/api/0/productos
 
 
 ####
+
+POST http://localhost:8000/empresa/agregaritem
+content-type: application/json
+
+{
+    "_id": "asd",
+    "item" : {
+        "nombre": "anana",
+        "precio": "123.23",
+        "foto": "images/verduleria/Fotos/Anana.jpg"
+    }
+}
