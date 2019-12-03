@@ -127,7 +127,7 @@ class Register extends React.Component{
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+      $imagePreview = (<div className="previewText">Por favor selecciona una imagen </div>);
     }
 
     return(
@@ -175,7 +175,7 @@ class Register extends React.Component{
               <div class="col-xs-8">
                 <div class="checkbox icheck">
                   <label>
-                    <input type="checkbox"></input> Acepto los<a href="#">terminos y condiciones </a>
+                    <input type="checkbox"></input> Acepto<a href="#">terminos y condiciones </a>
                   </label>
                 </div>
               </div>
@@ -185,7 +185,7 @@ class Register extends React.Component{
                   <button 
                     onClick={ this.onSubmit }
                     type="submit"
-                    class="btn btn-primary btn-block btn-flat">
+                    class="btn btn-primary">
                       Registrarme
                   </button>
                 </Link>

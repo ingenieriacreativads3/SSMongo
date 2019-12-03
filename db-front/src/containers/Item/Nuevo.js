@@ -87,7 +87,7 @@ class Nuevo extends React.Component {
                         </div>
 
                         <div className="form-group">
-                          <label for="precioItem">Nombre</label>
+                          <label for="precioItem">Precio</label>
                           <input type="number" className="form-control" id="precioItem" placeholder="Precio"></input>
                         </div>
 

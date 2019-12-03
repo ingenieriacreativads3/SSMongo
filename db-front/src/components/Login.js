@@ -53,12 +53,15 @@ class Login extends React.Component{
 
   render(){
     return(
-        
+         
       <div class="login-box">
+   
           <div class="login-logo">
               <a href="../../index2.html"><b>Suppliers Store</b></a>
           </div>
+          
           <div class="login-box-body">
+          
             <p class="login-box-msg">Iniciar Sesion</p>
 
             <form>
@@ -86,7 +89,7 @@ class Login extends React.Component{
                       <button 
                         onClick={ this.onSubmit }
                         type="submit"
-                        class="btn btn-primary btn-block btn-flat">
+                        class="btn btn-primary">
                           Iniciar sesion
                       </button>
                     </Link>
