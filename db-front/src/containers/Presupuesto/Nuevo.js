@@ -11,14 +11,136 @@ import '../bower_components/Ionicons/css/ionicons.min.css'
 import '../dist/css/AdminLTE.min.css'
 import '../dist/css/skins/_all-skins.min.css'
 
+import * as PresupuestoAction from "../../store/actions/PresupuestoAction";
+import { connect } from 'react-redux'
+
+function mapStateToProps(store) {
+  return {
+    Item: store.Item,
+    idEmpresa: store.Login.data.empresa._id
+  };
+}
+
 class Nuevo extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.getTelefono = this.getTelefono.bind(this);
+    this.getProvincia = this.getProvincia.bind(this);
+    this.getLocalidad = this.getLocalidad.bind(this);
+    this.getCodigo = this.getCodigo.bind(this);
+    this.getMensaje = this.getMensaje.bind(this);
+    this.getCantidad = this.getCantidad.bind(this);
+    this.getUnidad = this.getUnidad.bind(this);
     this.state = {
-      
+      Presupuesto: {
+        items: [
+          {
+            _id: '5de5976473e8542058470864'
+          }
+        ],
+        idEmpresaDemandante: '5de181d5c062d16c024321e4',
+        telefonoDemandante: '',
+        provinciaDemandante: '',
+        localidadDemandante: '',
+        codigoPostalDemandante: '',
+        mensaje: '',
+        cantidad: 0,
+        unidadDeMedida: '',
+        idEmpresaDemandada: '5de181d5c062d16c024321e4'
+      }
     };
+  }
+
+  onSubmit() {
+
+    this.props.dispatch(PresupuestoAction.nuevo(
+
+      this.state.Presupuesto.idEmpresaDemandada,
+      this.state.Presupuesto.idEmpresaDemandante,
+      this.state.Presupuesto.items
+
+    ));
+
+  }
+
+  getTelefono(e) {
+
+    this.setState({
+      Presupuesto: {
+        ...this.state.Presupuesto,
+        telefonoDemandante: e.target.value
+      }
+    });
+
+  }
+
+  getProvincia(e) {
+
+    this.setState({
+      Presupuesto: {
+        ...this.state.Presupuesto,
+        provinciaDemandante: e.target.value
+      }
+    });
+
+  }
+
+  getLocalidad(e) {
+
+    this.setState({
+      Presupuesto: {
+        ...this.state.Presupuesto,
+        localidadDemandante: e.target.value
+      }
+    });
+
+  }
+
+  getCodigo(e) {
+
+    this.setState({
+      Presupuesto: {
+        ...this.state.Presupuesto,
+        codigoPostalDemandante: e.target.value
+      }
+    });
+
+  }
+
+  getMensaje(e) {
+
+    this.setState({
+      Presupuesto: {
+        ...this.state.Presupuesto,
+        mensaje: e.target.value
+      }
+    });
+
+  }
+
+  getCantidad(e) {
+
+    this.setState({
+      Presupuesto: {
+        ...this.state.Presupuesto,
+        cantidad: e.target.value
+      }
+    });
+
+  }
+
+  getUnidad(e) {
+
+    this.setState({
+      Presupuesto: {
+        ...this.state.Presupuesto,
+        unidadDeMedida: e.target.value
+      }
+    });
+
   }
 
   render(){
@@ -119,45 +241,45 @@ class Nuevo extends React.Component {
                               <div className="form-group">
                                 <label for="telefonoSolicitante" className="col-sm-2 control-label">Teléfono Solicitante</label>
                                 <div className="col-sm-10">
-                                  <input type="number" className="form-control" id="telefonoSolicitante" placeholder="3564592136"></input>
+                                  <input type="number" className="form-control" id="telefonoSolicitante" placeholder="3564592136" onChange={ this.getTelefono }></input>
                                 </div>
                               </div>
 
                               <div className="form-group">
                                 <label for="provinciaSolicitante" className="col-sm-2 control-label">Provincia Solicitante</label>
                                 <div className="col-sm-10">
-                                  <input type="text" className="form-control" id="provinciaSolicitante" placeholder="Córdoba"></input>
+                                  <input type="text" className="form-control" id="provinciaSolicitante" placeholder="Córdoba" onChange={ this.getProvincia }></input>
                                 </div>
                               </div>
 
                               <div className="form-group">
                                 <label for="localidadSolicitante" className="col-sm-2 control-label">Localidad Solicitante</label>
                                 <div className="col-sm-10">
-                                  <input type="text" className="form-control" id="localidadSolicitante" placeholder="San Francisco"></input>
+                                  <input type="text" className="form-control" id="localidadSolicitante" placeholder="San Francisco" onChange={ this.getLocalidad }></input>
                                 </div>
                               </div>
 
                               <div className="form-group">
                                 <label for="codigoPostalSolicitante" className="col-sm-2 control-label">Código Postal Solicitante</label>
                                 <div className="col-sm-10">
-                                  <input type="number" className="form-control" id="codigoPostalSolicitante" placeholder="2400"></input>
+                                  <input type="number" className="form-control" id="codigoPostalSolicitante" placeholder="2400" onChange={ this.getCodigo }></input>
                                 </div>
                               </div>
 
                               <div className="form-group">
                                 <label for="mensajeSolicitante" className="col-sm-2 control-label">Mensaje</label>
                                 <div className="col-sm-10">
-                                  <textarea className="form-control" id="mensajeSolicitante" placeholder="Mensaje"></textarea>
+                                  <textarea className="form-control" id="mensajeSolicitante" placeholder="Mensaje" onChange={ this.getMensaje }></textarea>
                                 </div>
                               </div>
 
                               <div className="form-group">
                                 <label for="cantidad" className="col-sm-2 control-label">Cantidad</label>
                                 <div className="col-sm-5">
-                                  <input type="number" className="form-control" id="cantidad" placeholder="100"></input>
+                                  <input type="number" className="form-control" id="cantidad" placeholder="100" onChange={ this.getCantidad }></input>
                                 </div>
                                 <div className="col-sm-5">
-                                  <select className="form-control">
+                                  <select className="form-control" onChange={ this.getUnidad }>
                                     <option>Kilogramos</option>
                                     <option>Metros</option>
                                     <option>Litros</option>
@@ -176,12 +298,13 @@ class Nuevo extends React.Component {
                                   </div>
                                 </div>
                               </div>
-                              <div className="form-group">
-                                <div className="col-sm-offset-2 col-sm-10">
-                                  <button type="submit" className="btn btn-danger">Enviar Solicitud de Presupuesto</button>
-                                </div>
-                              </div>
+                              
                             </form>
+                            <div className="form-group">
+                              <div className="col-sm-offset-2 col-sm-10">
+                                <button type="submit" className="btn btn-danger" onClick={ this.onSubmit }>Enviar Solicitud de Presupuesto</button>
+                              </div>
+                            </div>
                           </div>
                         </div>
 
@@ -270,4 +393,4 @@ class Nuevo extends React.Component {
   }
 }
 
-export default Nuevo
+export default connect(mapStateToProps)(Nuevo)

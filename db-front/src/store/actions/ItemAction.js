@@ -1,10 +1,10 @@
 import axios from 'axios';
 import docker from './config'
 
-export function agregar(idEmpresa, item) {
+export function nuevo(idEmpresa, item) {
 
   return {
-    type: 'AGREGAR',
+    type: 'NUEVO_ITEM',
     payload: axios.post('http://127.0.0.1:8000/empresa/agregaritem', {
       _id: idEmpresa,
       item

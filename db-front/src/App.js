@@ -11,14 +11,16 @@ import SignIn from './containers/SignIn';
 import ItemNuevo from './containers/Item/Nuevo';
 import PresupuestoNuevo from './containers/Presupuesto/Nuevo'
 import HomeAdmin from './containers/Home/Admin'
+import PresupuestoLista from './containers/Presupuesto/Lista'
 
+import * as PresupuestoAction from './store/actions/PresupuestoAction'
 import * as SolicitudDeValidacionAction from './store/actions/SolicitudDeValidacionAction'
 
 import { connect } from 'react-redux'
 
 function mapStateToProps(store) {
   return {
-    SolicitudDeValidacion: store.SolicitudDeValidacion.data.solicitudesDeValidacion
+    SolicitudDeValidacion: store.SolicitudesDeValidacion.data.solicitudesDeValidacion,
   };
 }
 
@@ -26,34 +28,11 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      SolicitudDeValidacion: this.props.SolicitudDeValidacion
-    };
-    
   }
 
   async componentDidMount() {
 
-    var SolicitudDeValidacion = [];
-
-    // await axios.get('http://172.22.0.2:3000/solicitudDevalidacion')
-    // .then(function (response) {
-    //   SolicitudDeValidacion = response.data.SolicitudDeValidacion;
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   // handle error
-    //   console.log(error);
-    // })
-    // .finally(function () {
-    //   // always executed
-    // });
-
-    await this.props.dispatch(SolicitudDeValidacionAction.getAllSolicitudDeValidacion())
-
-    this.setState({
-      SolicitudDeValidacion: this.props.SolicitudDeValidacion
-    });
+    await this.props.dispatch(SolicitudDeValidacionAction.getAll())
     
   }
 
@@ -71,12 +50,17 @@ class App extends React.Component {
               <SolicitudDeValidacion
                 path={ solicitudDevalidacionPath }
                 url={ baseURL }
-                SolicitudDeValidacion={ this.state.SolicitudDeValidacion }/>
+                SolicitudDeValidacion={ this.props.SolicitudDeValidacion }/>
             </Route>
             <Route path="/registrar" component={ SignUp } />
             <Route path="/ingresar" component={ SignIn } />
             <Route path="/item/nuevo" component={ ItemNuevo } />
             <Route path="/presupuesto/nuevo" component={ PresupuestoNuevo } />
+            <Route path="/presupuestos">
+              <PresupuestoLista
+                path={ solicitudDevalidacionPath }
+                url={ baseURL } />
+            </Route>
             <Route path="/home/admin" component={ HomeAdmin } />
           </Switch>
         </div>

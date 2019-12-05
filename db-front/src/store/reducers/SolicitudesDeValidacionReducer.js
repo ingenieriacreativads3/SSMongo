@@ -1,18 +1,16 @@
-export default function ItemReducer (state = {
+export default function SolicitudesDeValidacionReducer ( state = {
 
     status: 0,
     message: '',
     data: {
-      empresa: {},
-      catalogo: {},
-      items: []
+      solicitudesDeValidacion: []
     }
-  
+    
   }, action) {
   
     switch (action.type) {
   
-      case 'NUEVO_ITEM_PENDING': {
+      case 'SOLICITUDES_DE_VALIDACION_PENDING': {
   
         return { 
           ...state, 
@@ -21,7 +19,7 @@ export default function ItemReducer (state = {
   
       }
     
-      case 'NUEVO_ITEM_REJECTED': {
+      case 'SOLICITUDES_DE_VALIDACION_REJECTED': {
   
         return { 
           ...state, 
@@ -31,29 +29,25 @@ export default function ItemReducer (state = {
   
       }
     
-      case 'NUEVO_ITEM_FULFILLED':{
+      case 'SOLICITUDES_DE_VALIDACION_FULFILLED': {
         
-        return {
-          ...state,
-          fetching: false,
+        return { 
+          ...state, 
+          fetching: false, 
           fetched: true,
           status: action.payload.data.status,
           message: action.payload.data.message,
           data: {
-            empresa: action.payload.data.data.empresa,
-            catalogo: action.payload.data.data.catalogo,
-            items: action.payload.data.data.items
+            solicitudesDeValidacion: action.payload.data.data.solicitudesDeValidaciones
           }
         };
   
       }
     
       case 'E': {
-        throw new Error('Este error se manejo asi!' + ' Item' + 'Reducer.js');
+        throw new Error('Este error se manejo asi!' + ' SolicitudesDeValidacion' + 'Reducer.js');
       }
-  
-      default: { break; }
+      default: {break;}
     }
-  
     return state;
   }

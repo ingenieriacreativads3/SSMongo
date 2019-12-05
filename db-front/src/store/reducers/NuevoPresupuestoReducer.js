@@ -1,10 +1,11 @@
-export default function ItemReducer (state = {
+export default function NuevoPresupuestoReducer (state = {
 
     status: 0,
     message: '',
     data: {
-      empresa: {},
-      catalogo: {},
+      empresaDemandada: {},
+      empresaDemandante: {},
+      presupuesto: {},
       items: []
     }
   
@@ -12,7 +13,7 @@ export default function ItemReducer (state = {
   
     switch (action.type) {
   
-      case 'NUEVO_ITEM_PENDING': {
+      case 'NUEVO_PRESUPUESTO_PENDING': {
   
         return { 
           ...state, 
@@ -21,7 +22,7 @@ export default function ItemReducer (state = {
   
       }
     
-      case 'NUEVO_ITEM_REJECTED': {
+      case 'NUEVO_PRESUPUESTO_REJECTED': {
   
         return { 
           ...state, 
@@ -31,7 +32,7 @@ export default function ItemReducer (state = {
   
       }
     
-      case 'NUEVO_ITEM_FULFILLED':{
+      case 'NUEVO_PRESUPUESTO_FULFILLED':{
         
         return {
           ...state,
@@ -40,16 +41,17 @@ export default function ItemReducer (state = {
           status: action.payload.data.status,
           message: action.payload.data.message,
           data: {
-            empresa: action.payload.data.data.empresa,
-            catalogo: action.payload.data.data.catalogo,
-            items: action.payload.data.data.items
+            empresaDemandada: action.payload.data.data.empresaPerteneciente,
+            empresaDemandante: action.payload.data.data.empresaDemandante,
+            presupuesto: action.payload.data.data.presupuesto,
+            items: action.payload.data.data.items,
           }
         };
   
       }
     
       case 'E': {
-        throw new Error('Este error se manejo asi!' + ' Item' + 'Reducer.js');
+        throw new Error('Este error se manejo asi!' + ' NuevoPresupuesto' + 'Reducer.js');
       }
   
       default: { break; }

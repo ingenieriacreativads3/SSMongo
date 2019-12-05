@@ -5,6 +5,14 @@ import UserPanel from "../../components/UserPanel";
 import SearchForm from "../../components/SearchForm";
 import SideBarMenu from "../../components/SideBarMenu";
 
+import { connect } from 'react-redux'
+
+function mapStateToProps(store) {
+  return {
+    idEmpresa: store.Login.data.empresa._id,
+  };
+}
+
 class Admin extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
@@ -136,4 +144,4 @@ class Admin extends React.Component {
   }
 }
 
-export default Admin
+export default connect(mapStateToProps)(Admin)

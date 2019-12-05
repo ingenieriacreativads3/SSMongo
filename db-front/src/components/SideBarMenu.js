@@ -34,7 +34,8 @@ class SideBarMenu extends React.Component {
         <li><Link to="/presupuesto/nuevo"><i className="fa fa-link"></i> <span>Nuevo Presupuesto</span></Link></li>
         <li><a href="#"><i className="fa fa-link"></i> <span>Ventas</span></a></li>
         <li><a href="#"><i className="fa fa-link"></i> <span>Pedidos</span></a></li>
-        <li><a href="#"><i className="fa fa-link"></i> <span>Presupuestos</span></a></li>
+        <li><Link to="/presupuestos"><i className="fa fa-link"></i> <span>Presupuestos</span></Link></li>
+        <li><Link to="/solicituddevalidacion"><i className="fa fa-link"></i> <span>Solicitudes De Validación</span></Link></li>
         <li className="treeview">
           <a href="#"><i className="fa fa-link"></i> <span>Multilevel</span>
               <span className="pull-right-container">

@@ -48,7 +48,7 @@ class Nuevo extends React.Component {
   }
 
   onSubmit() {
-    this.props.dispatch(ItemAction.agregar(this.props.idEmpresa, this.state.Item));
+    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
   }
 
   getNombre(e) {

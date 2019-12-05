@@ -16,7 +16,7 @@ import './dist/css/skins/_all-skins.min.css';
 import Header from "../components/header";
 import UserPanel from "../components/UserPanel";
 import SearchForm from "../components/search-form";
-import DatosEmpresa from '../components/datos-empresa';
+import DatosEmpresa from '../components/DatosEmpresa';
 import SideBarMenu from '../components/SideBarMenu';
 
 import { connect } from 'react-redux'
@@ -24,12 +24,15 @@ import { connect } from 'react-redux'
 import * as apiWork from '../store/actions/apiWork';
 import * as loginActions from '../store/actions/LoginAction';
 import * as update from '../store/actions/LoginAction';
+import * as SolicitudDeValidacionAction from '../store/actions/SolicitudDeValidacionAction'
 
 function mapStateToProps(store) {
   return {
     login: store.login,
     apiWork: store.apiWork,
-    update: store.updateToken
+    update: store.updateToken,
+    SolicitudDeValidacion: store.SolicitudDeValidacion.data.solicitudDeValidacion,
+    Empresa: store.SolicitudDeValidacion.data.empresa
   };
 }
 
@@ -46,11 +49,6 @@ class ValidateAccounts extends React.Component {
     this.getRubro = this.getRubro.bind(this);
     this.getEstado = this.getEstado.bind(this);
     this.resolver = this.resolver.bind(this);
-    this.asd = this.asd.bind(this);
-  }
-
-  asd() {
-    this.props.dispatch(update.updateToken('asd'));
   }
 
   async resolver() {
@@ -110,41 +108,8 @@ class ValidateAccounts extends React.Component {
 
   async componentDidMount() {
 
-    var SolicitudDeValidacion = {};
-    var Empresa = {};
+    await this.props.dispatch(SolicitudDeValidacionAction.get(this.props.match.params.id))
 
-    await axios.get('http://172.22.0.2:3000/solicituddevalidacion/' + this.props.match.params.id)
-      .then(function (response) {
-        SolicitudDeValidacion = response.data.SolicitudDeValidacion;
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
-
-    this.setState({
-      SolicitudDeValidacion: SolicitudDeValidacion
-    });
-
-    await axios.get('http://172.22.0.2:3000/empresa/' + this.state.SolicitudDeValidacion.idUser)
-      .then(function (response) {
-        Empresa = response.data.Empresa;
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
-
-    this.setState({
-      Empresa: Empresa
-    });
-    
   }
 
   render(){
@@ -200,7 +165,7 @@ class ValidateAccounts extends React.Component {
 
                   <h3 class="box-title">Description Horizontal</h3>
                 </div>
-                <DatosEmpresa Empresa={this.state.Empresa}></DatosEmpresa>
+                <DatosEmpresa Empresa={this.props.Empresa}></DatosEmpresa>
               </div>
 
 

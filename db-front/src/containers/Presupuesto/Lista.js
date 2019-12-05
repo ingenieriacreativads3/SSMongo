@@ -1,92 +1,63 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Header from "../components/header";
-import UserPanel from "../components/user-panel";
-import SearchForm from "../components/search-form";
-import TablaSolicitudValidacion from '../components/tabla-solicitudValidacion';
-import SideBarMenu from '../components/SideBarMenu';
+import Header from "../../components/header";
+import UserPanel from "../../components/user-panel";
+import SearchForm from "../../components/search-form";
+import Tabla from '../../components/TablaPresupuestos';
+import SideBarMenu from '../../components/SideBarMenu';
+
+import * as PresupuestoAction from '../../store/actions/PresupuestoAction'
 
 import { connect } from 'react-redux'
-import * as SolicitudesDeValidacionAction from '../store/actions/SolicitudDeValidacionAction'
 
 function mapStateToProps(store) {
   return {
     Register: store.Register,
-    SolicitudesDeValidacion: store.SolicitudesDeValidacion
+    idEmpresa: store.Login.data.empresa._id,
+    Presupuestos: store.Presupuestos.data.presupuestos
   };
 }
 
-class SolicitudDeValidacion extends React.Component {
+class Lista extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
-    this.getSolicitudDeValidacion = this.getSolicitudDeValidacion.bind(this);
-    this.setSolicitud = this.setSolicitud.bind(this);
     this.state = {
       path: this.props.path,
-      url: this.props.url
+      url: this.props.url,  
     };
   }
 
   componentDidMount() {
-    this.props.dispatch(SolicitudesDeValidacionAction.getAll());
-  }
-
-  getSolicitudDeValidacion() {
-
-    /*
-
-    var usersShow = this.props.users.filter(user => {
-
-      var isVerify = false;
-
-      var roles = user.roles.J8Bhq3uTtdgwZx3rz.map(rol => {
-        if (rol == "account/verify"){
-          isVerify = true;
-        }
-      })
-
-      return isVerify;
-
-    })
-
-    */
-
-    var SolicitudDeValidacion = [];
-    SolicitudDeValidacion = this.props.SolicitudDeValidacion
-    
-    return SolicitudDeValidacion;
-  }
-
-  setSolicitud() {
-    
+    this.props.dispatch(PresupuestoAction.getAll(this.props.idEmpresa))
   }
 
   render(){
 
-    var SolicitudDeValidacion = [];
+    var lista = [];
 
-    if (this.getSolicitudDeValidacion() === undefined) {
+    if (this.props.Presupuestos === undefined) {
 
-      SolicitudDeValidacion = [];
+      lista = [];
       
     } else {
 
-      SolicitudDeValidacion = this.getSolicitudDeValidacion().map(solicitud => {
+      lista = this.props.Presupuestos.map(presupuesto => {
 
-        var id = '/' + solicitud._id;
+        var id = '/' + presupuesto._id;
 
         var direccion = this.state.url + this.state.path + id;
 
         return(
           <tr>
-            <td>{ (solicitud._id === undefined) ? '_idSolicitud' : solicitud._id } </td>
-            <td>{ (solicitud.estado === undefined) ? 'No Resuelta' : solicitud.estado }</td>
-            <td>{ (solicitud.fechaCreacionSolicitud === undefined) ? 'Fecha creacion Default' : solicitud.fechaCreacionSolicitud }</td>
-            <td>{ (solicitud.idUser === undefined) ? '_idUser' : solicitud.idUser }</td>
-            <td>{ (solicitud.fechaActualizacionSolicitud === undefined) ? 'Fecha actualizacion Default' : solicitud.fechaActualizacionSolicitud }</td>
-            <td><a href={ direccion } onClick={ this.setSolicitud }>Validar</a></td>
+            <td>{ (presupuesto._id === undefined) ? '_idSolicitud' : presupuesto._id } </td>
+            <td>{ (presupuesto.estado === undefined) ? 'NombreCliente' : presupuesto.idEmpresaDemandante }</td>
+            <td>{ (presupuesto.fechaCreacionSolicitud === undefined) ? 'Cantidad' : presupuesto.cantidad }</td>
+            <td>{ (presupuesto.idUser === undefined) ? 'Unidad' : presupuesto.unidad }</td>
+            <td>{ (presupuesto.fechaActualizacionSolicitud === undefined) ? 'Sin cotizar' : presupuesto.precio }</td>
+            <td>{ (presupuesto.fechaActualizacionSolicitud === undefined) ? 'En espera' : presupuesto.estado }</td>
+            <td><a href={ direccion } >Presupuestar</a></td>
           </tr>
         )
       });
@@ -106,32 +77,29 @@ class SolicitudDeValidacion extends React.Component {
             </section>
         </aside>
         <div class="content-wrapper">
-            
-            <section class="content-header">
+          <section class="content-header">
             <h1>
-                Solicitud de Validación
+                Presupuestos
                 <small>Lista</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-                <li><a href="#">SolicitudesDeValidacion</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Empresa</a></li>
+                <li><a href="#">Presupuestos</a></li>
                 <li class="active">Lista</li>
             </ol>
-            </section>
-            <section class="content container-fluid">
+          </section>
+          <section class="content container-fluid">
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
-
-                      <TablaSolicitudValidacion 
-                        solicitudValidacion={ SolicitudDeValidacion }
-                        tituloTabla="Solicitudes de Validación">
-                      </TablaSolicitudValidacion>
-
+                      <Tabla
+                        lista={ lista }
+                        tituloTabla="Lista">
+                      </Tabla>
                     </div>
                 </div>
             </section>
-            </section>
+          </section>
         </div>
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
@@ -207,4 +175,4 @@ class SolicitudDeValidacion extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(SolicitudDeValidacion);
+export default connect(mapStateToProps)(Lista);
