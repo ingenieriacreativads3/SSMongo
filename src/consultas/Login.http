@@ -82,8 +82,7 @@ content-type: application/json
 }
 ####
 
-POST http://localhost:8000/login
-content-type: application/json
+
 
 POST http://localhost/login
 content-type: application/json
@@ -115,8 +114,23 @@ content-type: application/json
 
 ####
 
+POST http://localhost:8000/login
+content-type: application/json
+
 {
-  "user": "asd",
-  "password": "asd"
+  "user": "sd",
+  "password": "admin"
 }
+
+####
+
+GET http://localhost:8000/empresas
+
+####
+
+GET http://localhost:8000/empresa/5de181d5c062d16c024321e4/items
+
+####
+
+GET http://localhost:8000/empresa/5de181d5c062d16c024321e4/presupuestos
 

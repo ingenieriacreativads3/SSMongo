@@ -3,14 +3,15 @@ export default function SolicitudDeValidacionReducer ( state = {
     status: 0,
     message: '',
     data: {
-      solicitudesDeValidacion: []
+      solicitudDeValidacion: {},
+      empresa: {}
     }
     
   }, action) {
   
     switch (action.type) {
   
-      case 'SOLICITUDES_DE_VALIDACION_PENDING' : {
+      case 'SOLICITUD_DE_VALIDACION_PENDING': {
   
         return { 
           ...state, 
@@ -19,7 +20,7 @@ export default function SolicitudDeValidacionReducer ( state = {
   
       }
     
-      case 'SOLICITUDES_DE_VALIDACION_REJECTED' : {
+      case 'SOLICITUD_DE_VALIDACION_REJECTED': {
   
         return { 
           ...state, 
@@ -29,25 +30,26 @@ export default function SolicitudDeValidacionReducer ( state = {
   
       }
     
-      case 'SOLICITUDES_DE_VALIDACION_FULFILLED' : {
+      case 'SOLICITUD_DE_VALIDACION_FULFILLED': {
         
         return { 
           ...state, 
           fetching: false, 
           fetched: true,
-          status: 'status',
-          message: 'message',
+          status: action.payload.data.status,
+          message: action.payload.data.message,
           data: {
-            solicitudesDeValidacion: action.payload.data
+            solicitudDeValidacion: action.payload.data.data.solicitudDeValidacionEncontrada,
+            empresa: action.payload.data.data.empresa
           }
         };
   
       }
     
-      case 'E' : {
+      case 'E': {
         throw new Error('Este error se manejo asi!' + ' SolicitudDeValidacion' + 'Reducer.js');
       }
-      default : {break;}
+      default: {break;}
     }
     return state;
   }

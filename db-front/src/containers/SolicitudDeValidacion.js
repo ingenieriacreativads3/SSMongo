@@ -4,12 +4,15 @@ import Header from "../components/header";
 import UserPanel from "../components/user-panel";
 import SearchForm from "../components/search-form";
 import TablaSolicitudValidacion from '../components/tabla-solicitudValidacion';
+import SideBarMenu from '../components/SideBarMenu';
 
 import { connect } from 'react-redux'
+import * as SolicitudesDeValidacionAction from '../store/actions/SolicitudDeValidacionAction'
 
 function mapStateToProps(store) {
   return {
-    Register: store.Register
+    Register: store.Register,
+    SolicitudesDeValidacion: store.SolicitudesDeValidacion
   };
 }
 
@@ -19,14 +22,15 @@ class SolicitudDeValidacion extends React.Component {
   constructor(props) {
     super(props);
     this.getSolicitudDeValidacion = this.getSolicitudDeValidacion.bind(this);
+    this.setSolicitud = this.setSolicitud.bind(this);
     this.state = {
       path: this.props.path,
-      url: this.props.url,  
-      SolicitudDeValidacion: []
+      url: this.props.url
     };
-    this.setState({
-      SolicitudDeValidacion: this.props.SolicitudDeValidacion
-    });
+  }
+
+  componentDidMount() {
+    this.props.dispatch(SolicitudesDeValidacionAction.getAll());
   }
 
   getSolicitudDeValidacion() {
@@ -55,6 +59,10 @@ class SolicitudDeValidacion extends React.Component {
     return SolicitudDeValidacion;
   }
 
+  setSolicitud() {
+    
+  }
+
   render(){
 
     var SolicitudDeValidacion = [];
@@ -78,7 +86,7 @@ class SolicitudDeValidacion extends React.Component {
             <td>{ (solicitud.fechaCreacionSolicitud === undefined) ? 'Fecha creacion Default' : solicitud.fechaCreacionSolicitud }</td>
             <td>{ (solicitud.idUser === undefined) ? '_idUser' : solicitud.idUser }</td>
             <td>{ (solicitud.fechaActualizacionSolicitud === undefined) ? 'Fecha actualizacion Default' : solicitud.fechaActualizacionSolicitud }</td>
-            <td><a href={ direccion } >Validar</a></td>
+            <td><a href={ direccion } onClick={ this.setSolicitud }>Validar</a></td>
           </tr>
         )
       });
@@ -91,27 +99,10 @@ class SolicitudDeValidacion extends React.Component {
         <aside class="main-sidebar">
             <section class="sidebar">
 
-                <UserPanel></UserPanel>
+              <UserPanel></UserPanel>
+              <SearchForm></SearchForm>
+              <SideBarMenu></SideBarMenu>
 
-                <SearchForm></SearchForm>
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
-
-                <li class="active"><Link to="/item/nuevo"><i class="fa fa-link"></i> <span>Nuevo Item</span></Link></li>
-                <li class="active"><Link to="/presupuesto/nuevo"><i class="fa fa-link"></i> <span>Nuevo Presupuesto</span></Link></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
-                </li>
-            </ul>
             </section>
         </aside>
         <div class="content-wrapper">
@@ -132,8 +123,11 @@ class SolicitudDeValidacion extends React.Component {
                 <div class="row">
                     <div class="col-xs-12">
 
+                      <TablaSolicitudValidacion 
+                        solicitudValidacion={ SolicitudDeValidacion }
+                        tituloTabla="Solicitudes de Validación">
+                      </TablaSolicitudValidacion>
 
-                    <TablaSolicitudValidacion solicitudValidacion={ SolicitudDeValidacion }></TablaSolicitudValidacion>
                     </div>
                 </div>
             </section>
