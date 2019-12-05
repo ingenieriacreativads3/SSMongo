@@ -127,17 +127,17 @@ class Register extends React.Component{
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+      $imagePreview = (<div className="previewText">Por favor selecciona una imagen </div>);
     }
 
     return(
       <div class="register-box">
         <div class="register-logo">
-          <a href="../../index2.html"><b>Admin</b>LTE</a>
+          <a href="../../index2.html"><b>Suppliers Store</b></a>
         </div>
 
         <div class="register-box-body">
-          <p class="login-box-msg">Register a new membership</p>
+          <h3 class="login-box-msg">Crea tu cuenta</h3>
 
           <form>
 
@@ -175,7 +175,7 @@ class Register extends React.Component{
               <div class="col-xs-8">
                 <div class="checkbox icheck">
                   <label>
-                    <input type="checkbox"></input> I agree to the <a href="#">terms</a>
+                    <input type="checkbox"></input> Acepto<a href="#">terminos y condiciones </a>
                   </label>
                 </div>
               </div>
@@ -185,8 +185,8 @@ class Register extends React.Component{
                   <button 
                     onClick={ this.onSubmit }
                     type="submit"
-                    class="btn btn-primary btn-block btn-flat">
-                      Register
+                    class="btn btn-primary">
+                      Registrarme
                   </button>
                 </Link>
 
@@ -194,7 +194,7 @@ class Register extends React.Component{
             </div>
           </form>
 
-          <Link to="/ingresar" class="text-center">I already have a membership</Link>
+          <Link to="/ingresar" class="text-center">Ya soy un miembro</Link>
         </div>
       </div>
         

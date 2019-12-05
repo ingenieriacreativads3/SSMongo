@@ -53,13 +53,16 @@ class Login extends React.Component{
 
   render(){
     return(
-        
+         
       <div class="login-box">
+   
           <div class="login-logo">
-              <a href="../../index2.html"><b>Admin</b>LTE</a>
+              <a href="../../index2.html"><b>Suppliers Store</b></a>
           </div>
+          
           <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+          
+            <h3 class="login-box-msg">Iniciar Sesion</h3>
 
             <form>
                 
@@ -76,7 +79,7 @@ class Login extends React.Component{
                   <div class="col-xs-8">
                   <div class="checkbox icheck">
                       <label>
-                          <input type="checkbox"></input> Remember Me
+                          <input type="checkbox"></input> Recordar mis datos
                       </label>
                   </div>
                   </div>
@@ -86,8 +89,8 @@ class Login extends React.Component{
                       <button 
                         onClick={ this.onSubmit }
                         type="submit"
-                        class="btn btn-primary btn-block btn-flat">
-                          Sign In
+                        class="btn btn-primary">
+                          Iniciar sesion
                       </button>
                     </Link>
 
@@ -95,16 +98,10 @@ class Login extends React.Component{
               </div>
             </form>
 
-            <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-                Facebook</a>
-            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-                Google+</a>
-            </div>
+            
 
-            <a href="#">I forgot my password</a><br></br>
-            <Link to="/registrar" class="text-center">Register a new membership</Link>
+            <a href="#">Olvide mi contraseña</a><br></br>
+            <Link to="/registrar" class="text-center">¿No tienes cuenta? Registrate ahora</Link>
           </div>
       </div>
 
