@@ -4,6 +4,15 @@ import './bower_components/Ionicons/css/ionicons.min.css';
 import './dist/css/AdminLTE.min.css';
 import './plugins/iCheck/square/blue.css';
 
+import './dist/fonts/font-awesome-4.7.0/css/font-awesome.min.css';
+import './dist/fonts/iconic/css/material-design-iconic-font.min.css';
+import './dist/vendor/animate/animate.css';
+import './dist/vendor/css-hamburgers/hamburgers.min.css';
+import './dist/vendor/select2/select2.min.css';
+import './dist/vendor/daterangepicker/daterangepicker.css';
+import './dist/css/main.css';
+import './dist/css/util.css';
+
 import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
@@ -131,72 +140,73 @@ class Register extends React.Component{
     }
 
     return(
-      <div class="register-box">
-        <div class="register-logo">
-          <a href="../../index2.html"><b>Suppliers Store</b></a>
-        </div>
-
-        <div class="register-box-body">
-          <h3 class="login-box-msg">Crea tu cuenta</h3>
-
-          <form>
-
-            <div class="form-group has-feedback">
-              <input required type="text" class="form-control" placeholder="Nombre" onChange={ this.getNombre }></input>
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      <body>
+      <div class="limiter">
+      <div class="container-login100">
+        <div class="wrap-login100 p-t-85 p-b-20">
+          <form class="login100-form validate-form">
+            <span class="login100-form-title p-b-70">
+              Registro
+            </span>
+            <span class="login100-form-avatar">
+              <img src="img/logo.png"></img>
+            </span>
+  
+            <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "El nombre es requerido">
+              <input class="input100" type="text" name="nombre" onChange={ this.getNombre }></input>
+              <span class="focus-input100" data-placeholder="Nombre de la empresa"></span>
             </div>
 
-            <div class="form-group has-feedback">
-              <input required type="number" class="form-control" placeholder="CUIT" onChange={ this.getCuit }></input>
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "El CUIT es requerido">
+              <input class="input100" type="text" name="CUIT" onChange={ this.getCuit }></input>
+              <span class="focus-input100" data-placeholder="CUIT"></span>
+            </div>
+  
+            <div class="wrap-input100 validate-input m-b-50" data-validate="El usuario es requerido">
+              <input class="input100" type="text" name="usuario" onChange={ this.getUsuario}></input>
+              <span class="focus-input100" data-placeholder="Usuario"></span>
             </div>
 
-            <div class="form-group has-feedback">
-              <input required type="text" class="form-control" placeholder="Usuario" onChange={ this.getUsuario}></input>
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <div class="wrap-input100 validate-input m-b-50" data-validate="El email es requerido">
+              <input class="input100" type="text" name="email" onChange={ this.getEmail}></input>
+              <span class="focus-input100" data-placeholder="Email"></span>
             </div>
 
-            <div class="form-group has-feedback">
-                <input required type="email" class="form-control" placeholder="Email" onChange={ this.getEmail}></input>
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <div class="wrap-input100 validate-input m-b-50" data-validate="La contraseña es requerida">
+              <input class="input100" type="password" name="contraseña" onChange={ this.getClave}></input>
+              <span class="focus-input100" data-placeholder="Contraseña"></span>
             </div>
 
-            <div class="form-group has-feedback">
-              <input required type="password" class="form-control" placeholder="Contraseña" onChange={ this.getClave}></input>
-              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <div class="wrap-input100 validate-input m-b-50" data-validate="La contraseña es requerida">
+              <input class="input100" type="password" name="contraseña2"></input>
+              <span class="focus-input100" data-placeholder="Repita su contraseña"></span>
             </div>
-
-            <div class="form-group has-feedback">
-              <input required type="password" class="form-control" placeholder="Reescribir contraseña"></input>
-              <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+  
+            <div class="container-login100-form-btn">
+            <Link to={ this.props.redirect }>
+              <button class="login100-form-btn" onClick={ this.onSubmit }
+              type="submit">
+                Registrarme
+              </button>
+              </Link>
             </div>
-
-            <div class="row">
-              <div class="col-xs-8">
-                <div class="checkbox icheck">
-                  <label>
-                    <input type="checkbox"></input> Acepto<a href="#">terminos y condiciones </a>
-                  </label>
-                </div>
-              </div>
-              <div class="col-xs-4">
-
-                <Link to={ this.props.redirect }>
-                  <button 
-                    onClick={ this.onSubmit }
-                    type="submit"
-                    class="btn btn-primary">
-                      Registrarme
-                  </button>
-                </Link>
-
-              </div>
-            </div>
+  
+            <ul class="login-more p-t-190">
+              
+  
+              <li>
+                
+  
+                <Link to="/ingresar" class="txt2">Iniciar sesión</Link>
+                
+                
+              </li>
+            </ul>
           </form>
-
-          <Link to="/ingresar" class="text-center">Ya soy un miembro</Link>
         </div>
       </div>
+    </div>
+</body>
         
     )
   }
