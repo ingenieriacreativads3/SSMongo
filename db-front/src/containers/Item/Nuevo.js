@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import UserPanel from "../../components/UserPanel";
-import SearchForm from "../../components/SearchForm";
 import SideBarMenu from '../../components/SideBarMenu'
 
-import '../bower_components/bootstrap/dist/css/bootstrap.min.css'
-import '../bower_components/font-awesome/css/font-awesome.min.css'
-import '../bower_components/Ionicons/css/ionicons.min.css'
-import '../dist/css/AdminLTE.min.css'
-import '../dist/css/skins/_all-skins.min.css'
+
+
+
+import '../Home/shop/css/linearicons.css'
+import '../Home/shop/css/owl.carousel.css';
+import '../Home/shop/css/font-awesome.min.css';
+import '../Home/shop/css/themify-icons.css';
+import '../Home/shop/css/nice-select.css';
+import '../Home/shop/css/nouislider.min.css';
+import '../Home/shop/css/bootstrap.css';
+import '../Home/shop/css/main.css'; 
 
 import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -132,209 +135,96 @@ class Nuevo extends React.Component {
 
     return(
             
-      <div className="wrapper">
-
-        <Header></Header>
-
-        <aside className="main-sidebar">
-          <section className="sidebar">
-
-            <UserPanel></UserPanel>
-            <SearchForm></SearchForm>
+      <body>
+        <div>
+          <aside>
             <SideBarMenu></SideBarMenu>
-            
-          </section>
-        </aside>
-
-        <div className="content-wrapper">
-
-            <section className="content-header">
-              <h1>
-                  Item
-                  <small>Nuevo</small>
-              </h1>
-              <ol className="breadcrumb">
-                  <li><a href="#"><i className="fa fa-dashboard"></i>Empresa</a></li>
-                  <li><a href="#">Item</a></li>
-                  <li className="active">Nuevo</li>
-              </ol>
-            </section>
-
-            <section className="content container-fluid">
-
-              <section className="content">
-                <div className="row">
-                  
-                  <div className="col-md-3">
-
-                    <div className="box box-primary">
-                      <div className="box-body box-profile">
-                        <img className="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture"></img>
-
-                        <h3 className="profile-username text-center">Elegir una Imagen</h3>
-
-                        <div className="form-group">
-                          <label for="exampleInputFile">Imagen</label>
-                          <input type="file" id="exampleInputFile"></input>
-                          <p className="help-block">Elegir una imagen</p>
-                        </div>
-
-                        <a href="#" className="btn btn-primary btn-block"><b>Añadir</b></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-9">
-                    <div className="nav-tabs-custom">
-
-                      <ul className="nav nav-tabs">
-                        <li className="active"><a href="#activity" data-toggle="tab">Nuevo</a></li>
-                      </ul>
-
-                      <div className="box-body box-profile">
-
-                        <div className="tab-pane" id="settings">
-                          <form className="form-horizontal">
-
-                            <div className="form-group">
-                              <label for="nombreItem" className="col-sm-2 control-label">Nombre</label>
-                              <div className="col-sm-10">
-                                <input type="text" className="form-control" id="nombreItem" placeholder="Nombre" onChange={ this.getNombre }></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="precioItem" className="col-sm-2 control-label">Precio</label>
-                              <div className="col-sm-10">
-                                <input type="number" className="form-control" id="nombreItem" placeholder="Precio" onChange={ this.getPrecio }></input>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="mostrarPrecio" className="col-sm-2 control-label">Mostrar Precio</label>
-                              <div className="checkbox col-sm-10">
-                                <label>
-                                  <input type="checkbox" id="mostrarPrecio"></input>
-                                </label>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="unidadeDeMedida" className="col-sm-2 control-label">Unidad de Medida</label>
-                              <div className="col-sm-5">
-                                <select className="form-control" id="unidadeDeMedida">
-                                  <option>Kilogramos</option>
-                                  <option>Metros</option>
-                                  <option>Litros</option>
-                                  <option>Horas</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="caracteristicas" className="col-sm-2 control-label">Características</label>
-                              <div className="col-sm-10">
-                                <textarea className="form-control" id="caracteristicas" placeholder="Características" onChange={ this.getCaracteristicas }></textarea>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label for="descripcion" className="col-sm-2 control-label">Descripción</label>
-                              <div className="col-sm-10">
-                                <textarea className="form-control" id="descripcion" placeholder="Descripción" onChange={ this.getDescripcion }></textarea>
-                              </div>
-                            </div>
-
+          </aside>
+       </div>
+      <section class="contact_area section_gap_bottom">
+        <div class="container">
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget search_widget">
+                           
                             
-                          </form>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget author_widget">
+                            <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
+                            <h4>Imagen</h4>
+                            <p>Selecciona la foto del item</p>
+                            {/* <div class="social_icon">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-github"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                            </div> */}
+                            
+                            <div class="br"></div>
+                            <input type="file" id="exampleInputFile"></input>
+                        </aside>
+                        <aside class="single_sidebar_widget popular_post_widget">
+                          
+                          <div>
+                        <a class="primary-btn submit_btn" href="#">Añadir Imagen</a>
+                            </div>
+                        </aside>
+                       
+                    </div>
+                </div>
 
-                          <div className="form-group">
-                              <div className="col-sm-offset-2 col-sm-10">
-                                <button type="submit" className="btn btn-danger" onClick={ this.onSubmit }>Nuevo Producto</button>
+                <div class="col-lg-8">
+                <div class="comment-form">
+                        <h4>Nuevo Item</h4>
+                        <form>
+                            <div class="form-group form-inline">
+                                <div class="form-group col-lg-6 col-md-6 name">
+                                    <input type="text" class="form-control" id="nombreItem" placeholder="Nombre item" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Nombre item'"onChange={ this.getNombre }></input>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 name">
+                                    <input type="number" class="form-control" id="precioItem" placeholder="Precio" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Precio'" onChange={ this.getPrecio }></input>
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                              <div class="col-md-6 form-group p_star">
+                                  <select class="country_select" id="unidadeDeMedida" onChange={ this.getUnidadDeMedida }>
+                                      <option value="1">Kilogramos</option>
+                                      <option value="2">Metros</option>
+                                      <option value="4">Litros</option>
+                                      <option value="4">Horas</option>
+                                  </select>
+                              </div>
+                             
+                              <div class="col-md-6 form-group p_star">
+                                <div class="primary-switch">
+                                  
+                                  <input type="checkbox" id="mostrarPrecio" id="primary-switch" checked onChange={this.getMostrarPrecio}><span>Mostrat precio</span></input>
+                                  
+                                </div>
                               </div>
                             </div>
-                        </div>
-
-                      </div>
+                            <div class="form-group">
+                                <textarea class="form-control mb-10" rows="5" name="caracteristicas" placeholder="Caracteristicas"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Caracteristicas'" required=""onChange={ this.getCaracteristicas }></textarea>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control mb-10" rows="5" name="descripcion" placeholder="Descripción"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripción'" required=""onChange={ this.getDescripcion }></textarea>
+                            </div>
+                            
+                            <a href="#" class="primary-btn submit_btn">Añadir Item</a>
+                        </form>
                     </div>
-                  </div>
                 </div>
-              </section>
+            
 
-            </section>
         </div>
+      </section>
 
-        <footer className="main-footer">
-          <div className="pull-right hidden-xs">
-            Anything you want
-          </div>
-          {/* <!-- Default to the left --> */}
-          <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-        </footer>
-
-        <aside className="control-sidebar control-sidebar-dark">
-          <ul className="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li className="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i className="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i className="fa fa-gears"></i></a></li>
-          </ul>
-          <div className="tab-content">
-            <div className="tab-pane active" id="control-sidebar-home-tab">
-              <h3 className="control-sidebar-heading">Recent Activity</h3>
-              <ul className="control-sidebar-menu">
-                <li>
-                  <a href="javascript:;">
-                    <i className="menu-icon fa fa-birthday-cake bg-red"></i>
-                    <div className="menu-info">
-                        <h4 className="control-sidebar-subheading">Langdon's Birthday</h4>
-                        <p>Will be 23 on April 24th</p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-
-              <h3 className="control-sidebar-heading">Tasks Progress</h3>
-              <ul className="control-sidebar-menu">
-                <li>
-                    <a href="javascript:;">
-                      <h4 className="control-sidebar-subheading">
-                          Custom Template Design
-                          <span className="pull-right-container">
-                            <span className="label label-danger pull-right">70%</span>
-                          </span>
-                      </h4>
-
-                      <div className="progress progress-xxs">
-                        <div className="progress-bar progress-bar-danger" style={{ "width": "70%" }}></div>
-                    </div>
-                    </a>
-                </li>
-              </ul>
-
-            </div>
-          
-            <div className="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-            <div className="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                  <h3 className="control-sidebar-heading">General Settings</h3>
-
-                  <div className="form-group">
-                      <label className="control-sidebar-subheading">
-                        Report panel usage
-                        <input type="checkbox" className="pull-right" checked />
-                      </label>
-
-                      <p>
-                        Some information about this general settings option
-                      </p>
-                  </div>
-                </form>
-            </div>
-          </div>
-        </aside>
-        {/* <!-- /.control-sidebar --> */}
-        {/* <!-- Add the sidebar's background. This div must be placed
-        immediately after the control sidebar --> */}
-        <div className="control-sidebar-bg"></div>
-      </div>
+      </body>
 
     );
   }

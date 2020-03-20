@@ -1,15 +1,23 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import UserPanel from "../../components/UserPanel";
-import SearchForm from "../../components/SearchForm";
-import SideBarMenu from '../../components/SideBarMenu';
+
 
 import '../bower_components/bootstrap/dist/css/bootstrap.min.css'
 import '../bower_components/font-awesome/css/font-awesome.min.css'
 import '../bower_components/Ionicons/css/ionicons.min.css'
 import '../dist/css/AdminLTE.min.css'
 import '../dist/css/skins/_all-skins.min.css'
+
+
+import '../Home/shop/css/linearicons.css';
+import '../Home/shop/css/linearicons.css';
+import '../Home/shop/css/owl.carousel.css';
+import '../Home/shop/css/font-awesome.min.css';
+import '../Home/shop/css/themify-icons.css';
+import '../Home/shop/css/nice-select.css';
+import '../Home/shop/css/nouislider.min.css';
+import '../Home/shop/css/bootstrap.css';
+import '../Home/shop/css/main.css'; 
 
 import * as PresupuestoAction from "../../store/actions/PresupuestoAction";
 import { connect } from 'react-redux'
@@ -21,7 +29,7 @@ function mapStateToProps(store) {
   };
 }
 
-class Nuevo extends React.Component {
+class NuevoPresupuesto extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
@@ -146,251 +154,145 @@ class Nuevo extends React.Component {
   render(){
 
     return(
-            
-      <div className="wrapper">
+            <body id="NuevoPresupuesto">
+              {/* <!-- Start Header Area -->  */}
+	<header class="header_area sticky-header">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light main_box">
+				<div class="container">
+				{/* 	<!-- Brand and toggle get grouped for better mobile display --> */}
+					<a class="navbar-brand logo_h" href="index.html"><img src="shop/img/logo.png" alt=""></img></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				{/* 	<!-- Collect the nav links, forms, and other content for toggling --> */}
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav ml-auto">
+							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+							
+							<li class="nav-item"><a class="nav-link" href="contact.html">Mi perfil</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item">
+								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="search_input" id="search_input_box">
+			<div class="container">
+				<form class="d-flex justify-content-between">
+					<input type="text" class="form-control" id="search_input" placeholder="Buscar"></input>
+					<button type="submit" class="btn"></button>
+					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+				</form>
+			</div>
+		</div>
+	</header>
 
-        <Header></Header>
+{/* <!-- End Header Area -->  */}
 
-        <aside className="main-sidebar">
-          <section className="sidebar">
 
-            <UserPanel></UserPanel>
-            <SearchForm></SearchForm>
-            <SideBarMenu></SideBarMenu>
+{/* <!-- Start Banner Area --> */}
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Suppliers Store</h1>
+					{/* <nav class="d-flex align-items-center">
+						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+						<a href="category.html">Fashon Category</a>
+					</nav> */}
+				</div>
+			</div>
+		</div>
+	</section>
+	{/* <!-- End Banner Area --> */}
 
-          </section>
-        </aside>
-
-        <div className="content-wrapper">
-
-          <section className="content-header">
-            <h1>
-              Presupuesto
-              <small>Nuevo</small>
-            </h1>
-            <ol className="breadcrumb">
-              <li><a href="#"><i className="fa fa-dashboard"></i>Empresa</a></li>
-              <li><a href="#">Presupuesto</a></li>
-              <li className="active">Nuevo</li>
-            </ol>
-          </section>
-
-            <section className="content container-fluid">
-
-              <section className="content">
-                <div className="row">
-                  
-                  <div className="col-md-3">
-
-                    <div className="box box-primary">
-                      <div className="box-body box-profile">
-                        <img className="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture"></img>
-
-                        <h3 className="profile-username text-center">Nombre Producto</h3>
-
-                        <p className="text-muted text-center">Rubro Producto</p>
-
-                        <ul className="list-group list-group-unbordered">
-                          <li className="list-group-item">
-                            <b>Productos vendidos</b> <a className="pull-right">1,322</a>
-                          </li>
-                          <li className="list-group-item">
-                            <b>Presupuestos</b> <a className="pull-right">543</a>
-                          </li>
-                          <li className="list-group-item">
-                            <b>Stock</b> <a className="pull-right">Si</a>
-                          </li>
-                        </ul>
-
-                        <a href="#" className="btn btn-primary btn-block"><b>Añadir a favoritos</b></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-9">
-                    <div className="nav-tabs-custom">
-
-                      <ul className="nav nav-tabs">
-                        <li className="active"><a href="#activity" data-toggle="tab">Nuevo</a></li>
-                      </ul>
-
-                        <div className="box-body box-profile">
-                          <div className="tab-pane" id="settings">
-                            <form className="form-horizontal">
-
-                              <div className="form-group">
-                                <label for="nombreItem" className="col-sm-2 control-label">Producto</label>
-                                <div className="col-sm-10">
-                                  <input type="text" className="form-control" id="nombreItem" placeholder="Nombre Item" disabled></input>
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label for="solicitante" className="col-sm-2 control-label">Solicitante</label>
-                                <div className="col-sm-10">
-                                  <input type="text" className="form-control" id="solicitante" placeholder="Municipalidad de Devoto" disabled></input>
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label for="emailSolicitante" className="col-sm-2 control-label">Email Solicitante</label>
-                                <div className="col-sm-10">
-                                  <input type="email" className="form-control" id="emailSolicitante" placeholder="sistemas@devoto.gob.ar" disabled></input>
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label for="telefonoSolicitante" className="col-sm-2 control-label">Teléfono Solicitante</label>
-                                <div className="col-sm-10">
-                                  <input type="number" className="form-control" id="telefonoSolicitante" placeholder="3564592136" onChange={ this.getTelefono }></input>
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label for="provinciaSolicitante" className="col-sm-2 control-label">Provincia Solicitante</label>
-                                <div className="col-sm-10">
-                                  <input type="text" className="form-control" id="provinciaSolicitante" placeholder="Córdoba" onChange={ this.getProvincia }></input>
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label for="localidadSolicitante" className="col-sm-2 control-label">Localidad Solicitante</label>
-                                <div className="col-sm-10">
-                                  <input type="text" className="form-control" id="localidadSolicitante" placeholder="San Francisco" onChange={ this.getLocalidad }></input>
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label for="codigoPostalSolicitante" className="col-sm-2 control-label">Código Postal Solicitante</label>
-                                <div className="col-sm-10">
-                                  <input type="number" className="form-control" id="codigoPostalSolicitante" placeholder="2400" onChange={ this.getCodigo }></input>
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label for="mensajeSolicitante" className="col-sm-2 control-label">Mensaje</label>
-                                <div className="col-sm-10">
-                                  <textarea className="form-control" id="mensajeSolicitante" placeholder="Mensaje" onChange={ this.getMensaje }></textarea>
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <label for="cantidad" className="col-sm-2 control-label">Cantidad</label>
-                                <div className="col-sm-5">
-                                  <input type="number" className="form-control" id="cantidad" placeholder="100" onChange={ this.getCantidad }></input>
-                                </div>
-                                <div className="col-sm-5">
-                                  <select className="form-control" onChange={ this.getUnidad }>
-                                    <option>Kilogramos</option>
-                                    <option>Metros</option>
-                                    <option>Litros</option>
-                                    <option>Horas</option>
-                                  </select>
-                                </div>
-                              </div>
-
-                              
-                              <div className="form-group">
-                                <div className="col-sm-offset-2 col-sm-10">
-                                  <div className="checkbox">
-                                    <label>
-                                      <input type="checkbox"></input> Acepto <a href="#">términos y condiciones</a>
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                            </form>
-                            <div className="form-group">
-                              <div className="col-sm-offset-2 col-sm-10">
-                                <button type="submit" className="btn btn-danger" onClick={ this.onSubmit }>Enviar Solicitud de Presupuesto</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-            </section>
-        </div>
-
-        <footer className="main-footer">
-          <div className="pull-right hidden-xs">
-            Anything you want
-          </div>
-          {/* <!-- Default to the left --> */}
-          <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-        </footer>
-
-        <aside className="control-sidebar control-sidebar-dark">
-          <ul className="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li className="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i className="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i className="fa fa-gears"></i></a></li>
-          </ul>
-          <div className="tab-content">
-            <div className="tab-pane active" id="control-sidebar-home-tab">
-              <h3 className="control-sidebar-heading">Recent Activity</h3>
-              <ul className="control-sidebar-menu">
-                <li>
-                  <a href="javascript:;">
-                    <i className="menu-icon fa fa-birthday-cake bg-red"></i>
-                    <div className="menu-info">
-                        <h4 className="control-sidebar-subheading">Langdon's Birthday</h4>
-                        <p>Will be 23 on April 24th</p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-
-              <h3 className="control-sidebar-heading">Tasks Progress</h3>
-              <ul className="control-sidebar-menu">
-                <li>
-                    <a href="javascript:;">
-                      <h4 className="control-sidebar-subheading">
-                          Custom Template Design
-                          <span className="pull-right-container">
-                            <span className="label label-danger pull-right">70%</span>
-                          </span>
-                      </h4>
-
-                      <div className="progress progress-xxs">
-                        <div className="progress-bar progress-bar-danger" style={{ "width": "70%" }}></div>
-                    </div>
-                    </a>
-                </li>
-              </ul>
-
-            </div>
+  {/* <!--================Presupuesto Area =================--> */}
+	<section class="contact_area section_gap_bottom">
+		<div class="container">
+        <div class="col-lg-9">
+        <div class="comment-form">
           
-            <div className="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-            <div className="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                  <h3 className="control-sidebar-heading">General Settings</h3>
-
-                  <div className="form-group">
-                      <label className="control-sidebar-subheading">
-                        Report panel usage
-                        <input type="checkbox" className="pull-right" checked />
-                      </label>
-
-                      <p>
-                        Some information about this general settings option
-                      </p>
-                  </div>
-                </form>
+        <h1>Nuevo Presupuesto</h1>
+        
+					<form class=""  method="post" id="presupuestoForm" >
+            <div class="form-group form-inline">
+                <div class="col-md-6 form-group p_star">
+                  <input type="text" class="form-control" id="nombreItem" name="nombreItem" placeholder="Nombre item precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre item precargado'" disabled="disabled"></input>
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <input type="text" class="form-control" id="solicitante" name="solicitante" placeholder="Usuario solicitante precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre empresa solicitante precargado'" disabled="disabled"></input>
+                </div>
             </div>
-          </div>
-        </aside>
-        {/* <!-- /.control-sidebar --> */}
-        {/* <!-- Add the sidebar's background. This div must be placed
-        immediately after the control sidebar --> */}
-        <div className="control-sidebar-bg"></div>
-      </div>
 
+            <div class="form-group form-inline">
+
+                <div class="col-md-6 form-group p_star">
+                  <input type="email" class="form-control" id="emailSolicitante" name="emailSolicitante" placeholder="Email solicitante precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email solicitante precargado'" disabled="disabled"></input>
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <input type="text" class="form-control" id="telefonoSolicitante" name="telefonoSolicitante" placeholder="Ingrese su telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese su telefono'" onChange={ this.getTelefono }></input>
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+
+                <div class="col-md-6 form-group p_star">
+                  <input type="text" class="form-control" id="provinciaSolicitante" name="provinciaSolicitante" placeholder="Ingrese provincia" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese provincia'" onChange={ this.getProvincia }></input>
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <input type="text" class="form-control" id="localidadSolicitante" name="localidadSolicitante" placeholder="Ingrese ciudad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese ciudad'" onChange={ this.getLocalidad }></input>
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <div class="col-md-6 form-group p_star">
+                  <input type="number" class="form-control" id="codigoPostalSolicitante" name="codigoPostalSolicitante" placeholder="Ingrese código postal" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese código postal'" onChange={ this.getCodigo }></input>
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad'" onChange={ this.getCantidad }></input>
+                </div>
+            </div>
+
+            <div class="form-group form-inline">
+                <div class="col-md-6 form-group p_star">
+                  <select class="country_select" onChange={ this.getUnidad }>
+                    <option>Kilogramos</option>
+                    <option>Metros</option>
+                    <option>Litros</option>
+                    <option>Horas</option>
+                  </select>
+                </div>
+            </div>
+
+						<div>
+							<div class="form-group">
+								<textarea class="form-control" name="mensajeSolicitante" id="mensajeSolicitante" rows="1" placeholder="Escriba su mensaje" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Escriba su mensaje'" onChange={ this.getMensaje }></textarea>
+							</div>
+						</div>
+						<div class="col-md-12 text-right">
+							<button type="submit" value="submit" class="primary-btn submit_btn" onClick={ this.onSubmit }>Enviar solicitud</button>
+						</div>
+					</form>
+				</div>
+			</div>
+      </div>
+	
+	</section>
+	 {/* { <!--================Presupuesto Area =================--></div> }  */}
+  </body>
+    
     );
   }
 }
 
-export default connect(mapStateToProps)(Nuevo)
+export default connect(mapStateToProps)(NuevoPresupuesto)

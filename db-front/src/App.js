@@ -9,14 +9,19 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 import ItemNuevo from './containers/Item/Nuevo';
-import PresupuestoNuevo from './containers/Presupuesto/Nuevo'
-import HomeAdmin from './containers/Home/Admin'
-import PresupuestoLista from './containers/Presupuesto/Lista'
+import PresupuestoNuevo from './containers/Presupuesto/Nuevo';
+import HomeAdmin from './containers/Home/Admin';
+import PresupuestoLista from './containers/Presupuesto/Lista';
+import HomeInicio from './containers/Home/Inicio';
+import HomeDetalles from './containers/Home/Detalles';
+import PedidoNuevo from './containers/Pedido/Nuevo';
+
 
 import * as PresupuestoAction from './store/actions/PresupuestoAction'
 import * as SolicitudDeValidacionAction from './store/actions/SolicitudDeValidacionAction'
 
 import { connect } from 'react-redux'
+import DetallesProducto from './containers/DetallesProducto';
 
 function mapStateToProps(store) {
   return {
@@ -61,7 +66,10 @@ class App extends React.Component {
                 path={ solicitudDevalidacionPath }
                 url={ baseURL } />
             </Route>
+            <Route path="/pedido/nuevo" component={ PedidoNuevo } />
             <Route path="/home/admin" component={ HomeAdmin } />
+            <Route path="/home/inicio" component={ HomeInicio } />
+            <Route path="/home/detalles" component={ HomeDetalles } />
           </Switch>
         </div>
       </Router>

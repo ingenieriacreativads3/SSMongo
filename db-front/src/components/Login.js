@@ -15,14 +15,6 @@ import './dist/css/main.css';
 import './dist/css/util.css';
 
 
-/* import './dist/vendor/jquery/jquery-3.2.1.min.js'; */
-/* import './dist/vendor/animsition/js/animsition.min.js'; */
-/* import './dist/vendor/bootstrap/js/popper.js'; */
-/* import './dist/vendor/bootstrap/js/bootstrap.js'; */
-/* import './dist/vendor/select2/select2.js'; */
-/* import './dist/vendor/daterangepicker/daterangepicker.js'; */
-/* import './dist/vendor/countdowntime/countdowntime.js'; */
-/* import './dist/js/main.js'; */
 
 
 

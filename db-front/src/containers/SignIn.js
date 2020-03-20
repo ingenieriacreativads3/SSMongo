@@ -25,7 +25,7 @@ class SignIn extends React.Component {
       return (
       <Login
         onSubmit={ this.onSubmit }
-        redirect="/home/admin">
+        redirect="/home/inicio">
       </Login>
     )
   }
