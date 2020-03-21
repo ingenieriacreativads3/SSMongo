@@ -135,96 +135,112 @@ class Nuevo extends React.Component {
 
     return(
             
-      <body>
-        <div>
-          <aside>
-            <SideBarMenu></SideBarMenu>
-          </aside>
-       </div>
-      <section class="contact_area section_gap_bottom">
-        <div class="container">
-                <div class="col-lg-4">
-                    <div class="blog_right_sidebar">
-                        <aside class="single_sidebar_widget search_widget">
-                           
-                            
-                            <div class="br"></div>
-                        </aside>
-                        <aside class="single_sidebar_widget author_widget">
-                            <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
-                            <h4>Imagen</h4>
-                            <p>Selecciona la foto del item</p>
-                            {/* <div class="social_icon">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-github"></i></a>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                            </div> */}
-                            
-                            <div class="br"></div>
-                            <input type="file" id="exampleInputFile"></input>
-                        </aside>
-                        <aside class="single_sidebar_widget popular_post_widget">
-                          
-                          <div>
-                        <a class="primary-btn submit_btn" href="#">Añadir Imagen</a>
-                            </div>
-                        </aside>
-                       
-                    </div>
-                </div>
+      <div class="wrapper">
+      <aside class="main-sidebar">
+        <section class="sidebar">
 
-                <div class="col-lg-8">
-                <div class="comment-form">
-                        <h4>Nuevo Item</h4>
-                        <form>
-                            <div class="form-group form-inline">
-                                <div class="form-group col-lg-6 col-md-6 name">
-                                    <input type="text" class="form-control" id="nombreItem" placeholder="Nombre item" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Nombre item'"onChange={ this.getNombre }></input>
-                                </div>
-                                <div class="form-group col-lg-6 col-md-6 name">
-                                    <input type="number" class="form-control" id="precioItem" placeholder="Precio" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Precio'" onChange={ this.getPrecio }></input>
-                                </div>
-                            </div>
-                            <div class="form-group form-inline">
-                              <div class="col-md-6 form-group p_star">
-                                  <select class="country_select" id="unidadeDeMedida" onChange={ this.getUnidadDeMedida }>
-                                      <option value="1">Kilogramos</option>
-                                      <option value="2">Metros</option>
-                                      <option value="4">Litros</option>
-                                      <option value="4">Horas</option>
-                                  </select>
-                              </div>
-                             
-                              <div class="col-md-6 form-group p_star">
-                                <div class="primary-switch">
-                                  
-                                  <input type="checkbox" id="mostrarPrecio" id="primary-switch" checked onChange={this.getMostrarPrecio}><span>Mostrat precio</span></input>
-                                  
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control mb-10" rows="5" name="caracteristicas" placeholder="Caracteristicas"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Caracteristicas'" required=""onChange={ this.getCaracteristicas }></textarea>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control mb-10" rows="5" name="descripcion" placeholder="Descripción"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripción'" required=""onChange={ this.getDescripcion }></textarea>
-                            </div>
-                            
-                            <a href="#" class="primary-btn submit_btn">Añadir Item</a>
-                        </form>
-                    </div>
+         
+          <SideBarMenu></SideBarMenu>
+
+        </section>
+      </aside>
+
+
+      <div class="content-wrapper">
+
+
+      
+            <div class="col-lg-5">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget search_widget">
+                       
+                        
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget author_widget">
+                        <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
+                        <h4>Imagen</h4>
+                        <p>Selecciona la foto del item</p>
+                        {/* <div class="social_icon">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-github"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </div> */}
+                        
+                        <div class="br"></div>
+                        <input type="file" id="exampleInputFile"></input>
+                    </aside>
+                    <aside class="single_sidebar_widget popular_post_widget">
+                      
+                      <div>
+                    <a class="primary-btn submit_btn" href="#">Añadir Imagen</a>
+                        </div>
+                    </aside>
+                   
                 </div>
-            
+            </div>
+
+
+            <div class="col-lg-7">
+              <div class="comment-form">
+                    <h4>Nuevo Item</h4>
+                    <form>
+                    <div class="form-group form-inline">
+                            <div class="form-group col-lg-6 col-md-6 name">
+                              <input type="text" class="form-control" id="nombreItem" placeholder="Nombre item" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Nombre item'"onChange={ this.getNombre }></input>
+                                
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 name">
+                               <input type="number" class="form-control" id="precioItem" placeholder="Precio" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Precio'" onChange={ this.getPrecio }></input>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <div class="col-md-6 form-group p_star">
+                            <select class="country_select" id="unidadeDeMedida" onChange={ this.getUnidadDeMedida }>
+                                  <option value="1">Kilogramos</option>
+                                  <option value="2">Metros</option>
+                                  <option value="4">Litros</option>
+                                  <option value="4">Horas</option>
+                              </select>
+                                
+                            </div>
+                            <div class="col-md-6 form-group">
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option2" name="selector" checked></input>
+                                <span>Mostrar precio</span>
+                                
+                            </div>
+                           
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control mb-10" rows="5" name="caracteristicas" placeholder="Caracteristicas"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Caracteristicas'" required=""onChange={ this.getCaracteristicas }></textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control mb-10" rows="5" name="descripcion" placeholder="Descripción"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripción'" required=""onChange={ this.getDescripcion }></textarea>
+                        </div>
+                        
+                        <a href="#" class="primary-btn submit_btn">Guardar Item</a>
+                    </form>
+                </div>
+            </div>
+
+
 
         </div>
-      </section>
+   
+    </div>
 
-      </body>
+
 
     );
   }

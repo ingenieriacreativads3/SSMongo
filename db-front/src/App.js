@@ -9,12 +9,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 import ItemNuevo from './containers/Item/Nuevo';
+import EditarItem from './containers/Item/Editar';
 import PresupuestoNuevo from './containers/Presupuesto/Nuevo';
 import HomeAdmin from './containers/Home/Admin';
 import PresupuestoLista from './containers/Presupuesto/Lista';
 import HomeInicio from './containers/Home/Inicio';
 import HomeDetalles from './containers/Home/Detalles';
 import PedidoNuevo from './containers/Pedido/Nuevo';
+
 
 
 import * as PresupuestoAction from './store/actions/PresupuestoAction'
@@ -60,6 +62,7 @@ class App extends React.Component {
             <Route path="/registrar" component={ SignUp } />
             <Route path="/ingresar" component={ SignIn } />
             <Route path="/item/nuevo" component={ ItemNuevo } />
+            <Route path="/item/editar" component={ EditarItem } />
             <Route path="/presupuesto/nuevo" component={ PresupuestoNuevo } />
             <Route path="/presupuestos">
               <PresupuestoLista
