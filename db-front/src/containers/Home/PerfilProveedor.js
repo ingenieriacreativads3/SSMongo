@@ -302,9 +302,7 @@ class PerfilProveedor extends React.Component {
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
 							<h1>Nuestros productos</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-								dolore
-								magna aliqua.</p>
+							
 						</div>
 					</div>
 				</div>
