@@ -15,6 +15,7 @@ import HomeAdmin from './containers/Home/Admin';
 import PresupuestoLista from './containers/Presupuesto/Lista';
 import HomeInicio from './containers/Home/Inicio';
 import HomeDetalles from './containers/Home/Detalles';
+import PerfilProveedor from './containers/Home/PerfilProveedor';
 import PedidoNuevo from './containers/Pedido/Nuevo';
 
 
@@ -73,6 +74,7 @@ class App extends React.Component {
             <Route path="/home/admin" component={ HomeAdmin } />
             <Route path="/home/inicio" component={ HomeInicio } />
             <Route path="/home/detalles" component={ HomeDetalles } />
+            <Route path="/home/perfil" component={ PerfilProveedor } />
           </Switch>
         </div>
       </Router>

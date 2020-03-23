@@ -20,7 +20,13 @@ class SideBarMenu extends React.Component {
         
         <nav id="sidebar">
             <div class="sidebar-header">
+                <Link to="/home/inicio" >
+                    
                 <h3 style={{color:"#ffba00"}}>Suppliers Store</h3>
+                    
+                </Link>
+
+
             </div>
 
             <ul class="list-unstyled components">
