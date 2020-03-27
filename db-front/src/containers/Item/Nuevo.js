@@ -152,11 +152,7 @@ class Nuevo extends React.Component {
       
             <div class="col-lg-5">
                 <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
-                       
-                        
-                        <div class="br"></div>
-                    </aside>
+                   
                     <aside class="single_sidebar_widget author_widget">
                         <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
                         <h4>Imagen</h4>
@@ -186,16 +182,24 @@ class Nuevo extends React.Component {
               <div class="comment-form">
                     <h4>Nuevo Item</h4>
                     <form>
-                    <div class="form-group form-inline">
+                        <div class="form-group form-inline">
                             <div class="form-group col-lg-6 col-md-6 name">
                               <input type="text" class="form-control" id="nombreItem" placeholder="Nombre item" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Nombre item'"onChange={ this.getNombre }></input>
                                 
                             </div>
-                            <div class="form-group col-lg-6 col-md-6 name">
+                            <div class="form-group col-lg-3 col-md-3 name">
                                <input type="number" class="form-control" id="precioItem" placeholder="Precio" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Precio'" onChange={ this.getPrecio }></input>
+                                    onblur="this.placeholder = 'Precio'" onChange={ this.getPyrecio }></input>
                             </div>
+                            <div class="col-md-3 form-group">
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option2" name="selector" checked></input>
+                                <span>Mostrar precio</span>
+                                
+                            </div>
+                           
+                          </div>
                         </div>
 
                         <div class="form-group form-inline">
@@ -208,17 +212,14 @@ class Nuevo extends React.Component {
                               </select>
                                 
                             </div>
-                            <div class="col-md-6 form-group">
-                            <div class="creat_account">
-                                <input type="checkbox" id="f-option2" name="selector" checked></input>
-                                <span>Mostrar precio</span>
-                                
+
+                            <div class="col-md-6 text-right">
+                              <Link to="/unidadMedida/nuevo"><button type="submit" value="submit" class="primary-btn">Nueva Unidad</button></Link>
                             </div>
-                           
+                            
                             </div>
 
-                            
-                        </div>
+                        
 
                         <div class="form-group">
                             <textarea class="form-control mb-10" rows="5" name="caracteristicas" placeholder="Caracteristicas"

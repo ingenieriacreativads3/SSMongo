@@ -17,6 +17,12 @@ import HomeInicio from './containers/Home/Inicio';
 import HomeDetalles from './containers/Home/Detalles';
 import PerfilProveedor from './containers/Home/PerfilProveedor';
 import PedidoNuevo from './containers/Pedido/Nuevo';
+import UnidadMedida from './containers/Unidad de Medida/NuevaUnidad';
+import ListaComprasPedidos from './containers/Pedido/ListaCompras';
+import ListaVentasPedidos from './containers/Pedido/ListaVentas';
+import ListaComprasPresupuestos from './containers/Presupuesto/ListaCompras';
+import ListaVentasPresupuestos from './containers/Presupuesto/ListaVentas';
+import NoTocar from './containers/NoTocar/NoTocar';
 
 
 
@@ -70,11 +76,18 @@ class App extends React.Component {
                 path={ solicitudDevalidacionPath }
                 url={ baseURL } />
             </Route>
+            
             <Route path="/pedido/nuevo" component={ PedidoNuevo } />
             <Route path="/home/admin" component={ HomeAdmin } />
             <Route path="/home/inicio" component={ HomeInicio } />
             <Route path="/home/detalles" component={ HomeDetalles } />
             <Route path="/home/perfil" component={ PerfilProveedor } />
+            <Route path="/unidadMedida/nuevo" component={ UnidadMedida } />
+            <Route path="/compras/pedidos" component={ ListaComprasPedidos } />
+            <Route path="/ventas/pedidos" component={ ListaVentasPedidos } />
+            <Route path="/compras/presupuestos" component={ ListaComprasPresupuestos } />
+            <Route path="/ventas/presupuestos" component={ ListaVentasPresupuestos } />
+            <Route path="/home/probando" component={ NoTocar } />
           </Switch>
         </div>
       </Router>

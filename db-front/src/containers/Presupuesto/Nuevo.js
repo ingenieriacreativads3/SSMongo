@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-
+import Footer from '../../components/Footer';
 
 import '../bower_components/bootstrap/dist/css/bootstrap.min.css'
 import '../bower_components/font-awesome/css/font-awesome.min.css'
@@ -289,6 +289,12 @@ class NuevoPresupuesto extends React.Component {
 	
 	</section>
 	 {/* { <!--================Presupuesto Area =================--></div> }  */}
+
+
+   {/* <!-- start footer Area --> */}
+	<Footer></Footer>
+	{/* <!-- End footer Area --></li> */}
+
   </body>
     
     );

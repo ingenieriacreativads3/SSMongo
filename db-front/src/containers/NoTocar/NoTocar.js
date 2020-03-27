@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import UserPanel from "../../components/UserPanel";
 import SearchForm from "../../components/SearchForm";
 import SideBarMenu from '../../components/SideBarMenu';
+import SideBar from '../../components/SideBar';
 
 import '../bower_components/bootstrap/dist/css/bootstrap.min.css'
 import '../bower_components/font-awesome/css/font-awesome.min.css'
@@ -32,15 +33,16 @@ class Nuevo extends React.Component {
         <aside className="main-sidebar">
           <section className="sidebar">
 
+            
             <UserPanel></UserPanel>
-            <SearchForm></SearchForm>
-            <SideBarMenu></SideBarMenu>
+           
+            <SideBar></SideBar>
           </section>
         </aside>
 
         <div className="content-wrapper">
 
-          <section className="content-header">
+         {/*  <section className="content-header">
             <h1>
               Presupuesto
               <small>Nuevo</small>
@@ -50,9 +52,9 @@ class Nuevo extends React.Component {
               <li><a href="#">Presupuesto</a></li>
               <li className="active">Nuevo</li>
             </ol>
-          </section>
+          </section> */}
 
-            <section className="content container-fluid">
+            {/* <section className="content container-fluid">
 
               <section className="content">
                 <div className="row">
@@ -189,18 +191,18 @@ class Nuevo extends React.Component {
                 </div>
               </section>
 
-            </section>
+            </section> */}
         </div>
 
-        <footer className="main-footer">
+       {/*  <footer className="main-footer">
           <div className="pull-right hidden-xs">
             Anything you want
           </div>
-          {/* <!-- Default to the left --> */}
+          <!-- Default to the left --> 
           <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-        </footer>
+        </footer> */}
 
-        <aside className="control-sidebar control-sidebar-dark">
+        {/* <aside className="control-sidebar control-sidebar-dark">
           <ul className="nav nav-tabs nav-justified control-sidebar-tabs">
             <li className="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i className="fa fa-home"></i></a></li>
             <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i className="fa fa-gears"></i></a></li>
@@ -258,10 +260,10 @@ class Nuevo extends React.Component {
                 </form>
             </div>
           </div>
-        </aside>
-        {/* <!-- /.control-sidebar --> */}
-        {/* <!-- Add the sidebar's background. This div must be placed
-        immediately after the control sidebar --> */}
+        </aside> */}
+        {/*  <!-- /.control-sidebar --> 
+        <!-- Add the sidebar's background. This div must be placed
+        immediately after the control sidebar -->  */}
         <div className="control-sidebar-bg"></div>
       </div>
 

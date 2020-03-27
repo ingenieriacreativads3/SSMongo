@@ -59,16 +59,16 @@ class SideBarMenu extends React.Component {
                     <a href="#">Estadísticas opiniones de usuarios</a>
                 </li>
                 <li>
-                <Link to="/presupuestos"><a href="#">Mis compras - Presupuestos</a></Link>
+                <Link to="/compras/presupuestos"><a href="#">Mis compras - Presupuestos</a></Link>
                 </li>
                 <li>
-                    <a href="#">Mis compras - Pedidos</a>
+                <Link to="/compras/pedidos"><a href="#">Mis compras - Pedidos</a></Link>
                 </li>
                 <li>
-                    <a href="#">Mis ventas - Presupuestos</a>
+                <Link to="/ventas/presupuestos"><a href="#">Mis ventas - Presupuestos</a></Link> 
                 </li>
                 <li>
-                    <a href="#">Mis ventas - Pedidos</a>
+                <Link to="/ventas/pedidos"><a href="#">Mis ventas - Pedidos</a></Link>
                 </li>
                 <li>
                 <Link to="/solicituddevalidacion"><a href="#">Solicitudes de validacion</a></Link>

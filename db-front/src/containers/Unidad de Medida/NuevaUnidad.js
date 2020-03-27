@@ -29,7 +29,7 @@ function mapStateToProps(store) {
   };
 }
 
-class NuevoPedido extends React.Component {
+class NuevaUnidad extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
   /* constructor(props) {
@@ -154,7 +154,7 @@ class NuevoPedido extends React.Component {
   render(){
 
     return(
-            <body id="NuevoPedido">
+            <body id="NuevoUnidad">
               {/* <!-- Start Header Area -->  */}
 	<header class="header_area sticky-header">
 		<div class="main_menu">
@@ -216,84 +216,51 @@ class NuevoPedido extends React.Component {
 	</section>
 	{/* <!-- End Banner Area --> */}
 
-  {/* <!--================Pedido Area =================--> */}
+  {/* <!--================Unidad medidda Area =================--> */}
 	<section class="contact_area section_gap_bottom">
 		<div class="container">
         <div class="col-lg-9">
           <div class="comment-form">
           
-          <h1>Nuevo Pedido</h1>
+          <h1>Solicitud Unidad de Medida</h1>
         
-					<form class=""  method="post" id="pedidoForm" >
+					<form class=""  method="post" id="unidadMedidaForm" >
 						
-              <div class="form-group form-inline">
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="text" class="form-control" id="nombreItemPedido" name="nombreItemPedido" placeholder="Nombre item precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre item precargado'" disabled="disabled"></input>
-                </div>
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="text" class="form-control" id="solicitantePedido" name="solicitantePedido" placeholder="Usuario solicitante precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre empresa solicitante precargado'" disabled="disabled"></input>
-                </div>
-              </div>
+                        <div class="form-group form-inline">
+                            <div class="form-group col-lg-6 col-md-6 name">
+                            <input type="text" class="form-control" id="solicitanteUnidad" name="solicitanteUnidad" placeholder="Usuario solicitante precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre empresa solicitante precargado'" disabled="disabled"></input>
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 name">
+                            <input type="text" class="form-control" id="nombreUnidad" name="nombreUnidad" placeholder="Nombre unidad de medida" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre unidad de medida'" ></input>
+                            </div>
+                        </div>
 
-              <div class="form-group form-inline">
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="email" class="form-control" id="emailSolicitantePedido" name="emailSolicitantePedido" placeholder="Email solicitante precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email solicitante precargado'" disabled="disabled"></input>
-                </div>
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="text" class="form-control" id="telefonoSolicitantePedido" name="telefonoSolicitantePedido" placeholder="Ingrese su telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese su telefono'" ></input>
-                </div>
-              </div>
+                        <div class="form-group form-inline">
+                            <div class="form-group col-lg-6 col-md-6 name">
+                            <input type="text" class="form-control" id="simboloUnidad" name="simboloUnidad" placeholder="Simbolo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Simbolo'"></input>
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 name">
+                            <input type="text" class="form-control" id="magnitudUnidad" name="magnitudUnidad" placeholder="Magnitud" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Magnitud'" ></input>
+                            </div>
+                        </div>
 
-              <div class="form-group form-inline">
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="text" class="form-control" id="provinciaSolicitantePedido" name="provinciaSolicitantePedido" placeholder="Ingrese provincia" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese provincia'" ></input>
-                </div>
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="text" class="form-control" id="localidadSolicitantePedido" name="localidadSolicitantePedido" placeholder="Ingrese ciudad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese ciudad'" ></input>
-                </div>
-              </div>
-
-              <div class="form-group form-inline">
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="number" class="form-control" id="codigoPostalSolicitantePedido" name="codigoPostalSolicitantePedido" placeholder="Ingrese código postal" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese código postal'" ></input>
-                </div>
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="text" class="form-control" id="domicilioSolicitantePedido" name="domicilioSolicitantePedido" placeholder="Ingrese su domicilio" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese su domicilio'" ></input>
-                </div>
-              </div>
-
-              <div class="form-group form-inline">
-                <div class="form-group col-lg-6 col-md-6 name">
-                  <input type="number" class="form-control" id="cantidadPedido" name="cantidadPedido" placeholder="Cantidad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad'" ></input>
-                </div>
-                <div class="col-md-6 form-group p_star">
-                  <select class="country_select" id="unidadMedidaPedido" name="unidadMedidaPedido" onChange={ this.getUnidad }>
-                    <option>Kilogramos</option>
-                    <option>Metros</option>
-                    <option>Litros</option>
-                    <option>Horas</option>
-                  </select>
-                </div>
-						  </div>
-						<div>
-							<div class="form-group">
-								<textarea class="form-control" name="mensajeSolicitantePedido" id="mensajeSolicitantePedido" rows="1" placeholder="Escriba su mensaje" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Escriba su mensaje'" ></textarea>
-							</div>
-						</div>
 						<div class="col-md-12 text-right">
 							<button type="submit" value="submit" class="primary-btn submit_btn" onClick={ this.onSubmit }>Enviar solicitud</button>
 						</div>
 					</form>
           </div>
-				</div>
-			</div>
+        </div>
+        </div>
 	
 	</section>
-	 {/* { <!--================Pedido Area =================--></div> }  */}
+	 {/* { <!--================Unidad medida Area =================--></div> }  */}
 
-   {/* <!-- start footer Area --> */}
-	<Footer></Footer>
+
+  
+     {/* <!-- start footer Area --> */}
+     <Footer></Footer>
 	{/* <!-- End footer Area --></li> */}
+
 
   </body>
     
@@ -301,4 +268,4 @@ class NuevoPedido extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(NuevoPedido)
+export default connect(mapStateToProps)(NuevaUnidad)
