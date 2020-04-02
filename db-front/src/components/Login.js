@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import './bower_components/bootstrap/dist/css/bootstrap.min.css';
+/* import './bower_components/bootstrap/dist/css/bootstrap.min.css';
 import './bower_components/font-awesome/css/font-awesome.min.css';
 import './bower_components/Ionicons/css/ionicons.min.css';
 import './dist/css/AdminLTE.min.css';
-import './plugins/iCheck/square/blue.css';
+import './plugins/iCheck/square/blue.css'; */
 
 import './dist/fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 import './dist/fonts/iconic/css/material-design-iconic-font.min.css';
@@ -83,14 +83,18 @@ class Login extends React.Component{
                 <img src="img/logo.png"></img>
               </span>
     
+            <div class="form-group col-md-8">
               <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "El usuario es requerido">
                 <input class="input100" type="text" name="username"></input>
                 <span class="focus-input100" data-placeholder="Usuario"></span>
               </div>
-    
+              </div>
+
+              <div class="form-group col-md-8">
               <div class="wrap-input100 validate-input m-b-50" data-validate="La contraseña es requerida">
                 <input class="input100" type="password" name="pass"></input>
                 <span class="focus-input100" data-placeholder="Contraseña"></span>
+              </div>
               </div>
     
               <div class="container-login100-form-btn">

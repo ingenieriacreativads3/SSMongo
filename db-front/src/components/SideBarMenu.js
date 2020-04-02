@@ -1,10 +1,30 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from "react-router-dom";
+
+
+
+
+// import '../plugins/jquery/jquery'
+// import '../plugins/bootstrap/js/bootstrap.bundle'
+// import '../plugins/overlayScrollbars/js/jquery.overlayScrollbars'
+// import '../dist/js/adminlte'
+// import '../plugins/jquery-mousewheel/jquery.mousewheel'
+// import '../dist/js/demo'
+// import '../plugins/raphael/raphael'
+// import '../plugins/jquery-mapael/jquery.mapael'
+
+// import '../dist/js/pages/dashboard2'
+import '../containers/plugins/fontawesome-free/css/all.min.css'
+import '../containers/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'
+import '../containers/dist/css/adminlte.min.css'
+
+
+
 
 
 class SideBarMenu extends React.Component {
 
+  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -15,133 +35,144 @@ class SideBarMenu extends React.Component {
   render(){
 
     return(
-        
-    <div class="wrapper">
-        
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <Link to="/home/inicio" >
-                    
-                <h3 style={{color:"#ffba00"}}>Suppliers Store</h3>
-                    
-                </Link>
 
-
+      
+      <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+      <div class="wrapper">
+        {/* <!-- Navbar --> */}
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+          {/* <!-- Left navbar links --> */}
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+              <a href="/home/inicio" class="nav-link">INICIO</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+              <a href="/home/admin" class="nav-link">MI PERFIL</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+              <a href="/ingresar" class="nav-link">CERRAR SESION</a>
+            </li>
+          </ul>
+      
+         {/*  <!-- SEARCH FORM -->
+          <form class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
             </div>
-
-            <ul class="list-unstyled components">
-               
-                {/* <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
-                </li> */}
-
-                <li>
-                <Link to="/home/admin"><a href="#">Mi catálogo</a></Link>
-                </li>
-                <li>
-                <Link to="/item/nuevo"><a href="#">Nuevo Item</a></Link>
-                </li>
-                <li>
-                    <a href="#">Estadísticas actividades comerciales</a>
-                </li>
-                <li>
-                    <a href="#">Estadísticas opiniones de usuarios</a>
-                </li>
-                <li>
-                <Link to="/compras/presupuestos"><a href="#">Mis compras - Presupuestos</a></Link>
-                </li>
-                <li>
-                <Link to="/compras/pedidos"><a href="#">Mis compras - Pedidos</a></Link>
-                </li>
-                <li>
-                <Link to="/ventas/presupuestos"><a href="#">Mis ventas - Presupuestos</a></Link> 
-                </li>
-                <li>
-                <Link to="/ventas/pedidos"><a href="#">Mis ventas - Pedidos</a></Link>
-                </li>
-                <li>
-                <Link to="/solicituddevalidacion"><a href="#">Solicitudes de validacion</a></Link>
-                </li>
-                {/* <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li> */}
-                
-            </ul>
-
-            
+          </form> */}
+      
+          {/* <!-- Right navbar links --> */}
+          
         </nav>
-
-        {/* <!-- Page Content  --> */}
-        {/* <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="btn text-sidebar bg-turbo-yellow">
-                        <i class="fas fa-align-left"></i>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="item">HOME</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="item">MI PERFIL</a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </div>
-            </nav> */}
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        {/* <!-- /.navbar --> */}
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    
+        {/* <!-- Main Sidebar Container --> */}
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+          {/* <!-- Brand Logo --> */}
+          <a href="index3.html" class="brand-link">
+             <img src="../dist/img/logo.png"  class="brand-image img-circle elevation-3"></img> 
+            <span class="brand-text font-weight-light">SUPPLIERS STORE</span>
+          </a>
+      
+          {/* <!-- Sidebar --> */}
+          <div class="sidebar">
+            {/* <!-- Sidebar user panel (optional) --> */}
+            {/* <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image"></div>
+              <div class="info">
+                <a href="#" class="d-block">Nombre Usuario</a>
+              </div>
+            </div> */}
+      
+            {/* <!-- Sidebar Menu --> */}
+            <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                {/* <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library --> */}
+                <li class="nav-item">
+                  <a href="pages/widgets.html" class="nav-link">
+                    <i class="nav-icon  fas fa-barcode"></i>
+                    <p>
+                      Catálogo
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/widgets.html" class="nav-link">
+                    <i class="nav-icon fas  fa-plus"></i>
+                    <p>
+                      Nuevo Item
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/widgets.html" class="nav-link">
+                    <i class="nav-icon fas fa-dollar "></i>
+                    <p>
+                      Mis compras - Presupuestos
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/widgets.html" class="nav-link">
+                    <i class="nav-icon fas fa-shopping-cart"></i>
+                    <p>
+                      Mis compras - Pedidos
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/widgets.html" class="nav-link">
+                    <i class="nav-icon fas fa-dollar "></i>
+                    <p>
+                      Mis ventas - Presupuestos
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/widgets.html" class="nav-link">
+                    <i class="nav-icon fas fa-shopping-cart"></i>
+                    <p>
+                      Mis ventas - Pedidos
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/widgets.html" class="nav-link">
+                    <i class="nav-icon  fas fa-user-plus"></i>
+                    <p>
+                      Solicitudes de validación
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            {/* <!-- /.sidebar-menu --> */}
+          </div>
+          {/* <!-- /.sidebar --> */}
+        </aside>
 
-            
-        </div>
        
-    /* 
-     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            })
-        });
-    </script>  */
-
+      
+      
+        
+      </div>
+     
+      
+     
+      </body>
+      
     );
-
   }
 }
+
 
 export default SideBarMenu

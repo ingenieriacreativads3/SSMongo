@@ -71,7 +71,7 @@ class Lista extends React.Component {
             <section class="sidebar">
 
              
-              <SideBarMenu></SideBarMenu>
+              {/* <SideBarMenu></SideBarMenu> */}
 
             </section>
         </aside>

@@ -133,14 +133,14 @@ class EditarItem extends React.Component {
     return( 
 
         <div class="wrapper">
-          <aside class="main-sidebar">
+          {/* <aside class="main-sidebar">
             <section class="sidebar">
 
              
-              <SideBarMenu></SideBarMenu>
+             
 
             </section>
-          </aside>
+          </aside> */}
 
 
           <div class="content-wrapper">

@@ -13,11 +13,9 @@ import './bower_components/Ionicons/css/ionicons.min.css';
 import './dist/css/AdminLTE.min.css';
 import './dist/css/skins/skin-blue.min.css';
 import './dist/css/skins/_all-skins.min.css';
-import Header from "../components/header";
-import UserPanel from "../components/UserPanel";
-import SearchForm from "../components/search-form";
+
 import DatosEmpresa from '../components/DatosEmpresa';
-import SideBarMenu from '../components/SideBarMenu';
+
 
 import { connect } from 'react-redux'
 
@@ -125,21 +123,18 @@ class ValidateAccounts extends React.Component {
     return(
 
       <div class="wrapper">
-        <Header></Header>
-      <aside class="main-sidebar">
+        
+      {/* <aside class="main-sidebar">
         <section class="sidebar">
 
-          <UserPanel></UserPanel>
-          <SearchForm></SearchForm>
-          <SideBarMenu></SideBarMenu>
           
         </section>
-      </aside>
+      </aside> */}
 
       {/* <!-- Content Wrapper. Contains page content --> */}
       <div class="content-wrapper">
         {/* <!-- Content Header (Page header) --> */}
-        <section class="content-header">
+        {/* <section class="content-header">
           <h1>
             General Form Elements
             <small>Preview</small>
@@ -149,7 +144,7 @@ class ValidateAccounts extends React.Component {
             <li><a href="#">Forms</a></li>
             <li class="active">General Elements</li>
           </ol>
-        </section>
+        </section> */}
 
         {/* <!-- Main content --> */}
         <section class="content">
@@ -157,13 +152,11 @@ class ValidateAccounts extends React.Component {
             {/* <!-- left column --> */}
             <div class="col-md-6">
 
-
-
               <div class="box box-solid">
                 <div class="box-header with-border">
                   <i class="fa fa-text-width"></i>
 
-                  <h3 class="box-title">Description Horizontal</h3>
+                  <h3 class="box-title">Empresa</h3>
                 </div>
                 <DatosEmpresa Empresa={this.props.Empresa}></DatosEmpresa>
               </div>
@@ -174,13 +167,6 @@ class ValidateAccounts extends React.Component {
             {/* <!--/.col (left) --> */}
             {/* <!-- right column --> */}
             <div class="col-md-6">
-
-
-
-
-
-
-
 
               {/* <!-- general form elements --> */}
               <div class="box box-primary">
@@ -194,7 +180,7 @@ class ValidateAccounts extends React.Component {
                   <div class="box-body">
 
                     <div class="form-group">
-                      <label>Estado Empresa</label>
+                      <label>Estado </label>
                       <select onChange={this.getEstado} data-placeholder="En Espera" style={{"width": "100%;"}}>
                         <option>No Validada</option>
                         <option>Validada</option>
@@ -204,9 +190,9 @@ class ValidateAccounts extends React.Component {
                     </div>
 
                     <div class="form-group">
-                      <label>Seleccionar</label>
-                      <select onChange={this.getRubro} style={{"width": "100%;"}}>
-                        <option selected="selected">Fab. Plasticos</option>
+                      <label>Rubro</label>
+                      <select multiple class="custom-select" onChange={this.getRubro} style={{"width": "100%;"}}>
+                        <option>Fab. Plasticos</option>
                         <option>Fab. Indumentaria</option>
                         <option>Serv. Información</option>
                         <option>Serv. Telefonía</option>
@@ -214,22 +200,22 @@ class ValidateAccounts extends React.Component {
                       </select>
                     </div>
 
-                    <div class="form-group">
+                    {/* <div class="form-group">
                       <label>Rubros</label>
                       {listaRubro}
-                    </div>
+                    </div> */}
 
 
                   </div>
                   {/* <!-- /.box-body --> */}
 
-                  <div class="box-footer">
+                  {/* <div class="box-footer">
                     <button  onClick={this.asd} type="button" class="btn btn-warning btn-lg btn-block">Validar</button>
-                  </div>
+                  </div> */}
 
-                  <div class="box-footer">
+                  {/* <div class="box-footer">
                     <button type="button" class="btn btn-warning btn-lg btn-block">Rubros</button>
-                  </div>
+                  </div> */}
 
                   <div class="box-footer">
                     <Link to="/solicituddevalidacion">
@@ -253,24 +239,24 @@ class ValidateAccounts extends React.Component {
         {/* <!-- /.content --> */}
       </div>
       {/* <!-- /.content-wrapper --> */}
-      <footer class="main-footer">
+     {/*  <footer class="main-footer">
         <div class="pull-right hidden-xs">
           <b>Version</b> 2.4.18
         </div>
         <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
         reserved.
-      </footer>
+      </footer> */}
 
-      {/* <!-- Control Sidebar --> */}
+     {/*   <!-- Control Sidebar --> 
       <aside class="control-sidebar control-sidebar-dark">
-        {/* <!-- Create the tabs --> */}
+         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
           <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
           <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
         </ul>
-        {/* <!-- Tab panes --> */}
+         <!-- Tab panes -->
         <div class="tab-content">
-          {/* <!-- Home tab content --> */}
+           <!-- Home tab content --> 
           <div class="tab-pane" id="control-sidebar-home-tab">
             <h3 class="control-sidebar-heading">Recent Activity</h3>
             <ul class="control-sidebar-menu">
@@ -319,7 +305,7 @@ class ValidateAccounts extends React.Component {
                 </a>
               </li>
             </ul>
-            {/* <!-- /.control-sidebar-menu --> */}
+             <!-- /.control-sidebar-menu --> 
 
             <h3 class="control-sidebar-heading">Tasks Progress</h3>
             <ul class="control-sidebar-menu">
@@ -372,14 +358,14 @@ class ValidateAccounts extends React.Component {
                 </a>
               </li>
             </ul>
-            {/* <!-- /.control-sidebar-menu --> */}
+             <!-- /.control-sidebar-menu --> 
 
           </div>
-          {/* <!-- /.tab-pane --> */}
-          {/* <!-- Stats tab content --> */}
+           <!-- /.tab-pane --> 
+           <!-- Stats tab content --> 
           <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-          {/* <!-- /.tab-pane --> */}
-          {/* <!-- Settings tab content --> */}
+           <!-- /.tab-pane --> 
+           <!-- Settings tab content -->
           <div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">
               <h3 class="control-sidebar-heading">General Settings</h3>
@@ -394,7 +380,7 @@ class ValidateAccounts extends React.Component {
                   Some information about this general settings option
                 </p>
               </div>
-              {/* <!-- /.form-group --> */}
+               <!-- /.form-group --> 
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
@@ -406,7 +392,7 @@ class ValidateAccounts extends React.Component {
                   Other sets of options are available
                 </p>
               </div>
-              {/* <!-- /.form-group --> */}
+              <!-- /.form-group --> 
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
@@ -418,7 +404,7 @@ class ValidateAccounts extends React.Component {
                   Allow the user to show his name in blog posts
                 </p>
               </div>
-              {/* <!-- /.form-group --> */}
+               <!-- /.form-group --> 
 
               <h3 class="control-sidebar-heading">Chat Settings</h3>
 
@@ -428,7 +414,7 @@ class ValidateAccounts extends React.Component {
                   <input type="checkbox" class="pull-right" checked />
                 </label>
               </div>
-              {/* <!-- /.form-group --> */}
+               <!-- /.form-group --> 
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
@@ -436,7 +422,7 @@ class ValidateAccounts extends React.Component {
                   <input type="checkbox" class="pull-right" />
                 </label>
               </div>
-              {/* <!-- /.form-group --> */}
+               <!-- /.form-group --> 
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
@@ -444,12 +430,12 @@ class ValidateAccounts extends React.Component {
                   <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
                 </label>
               </div>
-              {/* <!-- /.form-group --> */}
+              <!-- /.form-group --> 
             </form>
           </div>
-          {/* <!-- /.tab-pane --> */}
+           <!-- /.tab-pane --> 
         </div>
-      </aside>
+      </aside> */}
       {/* <!-- /.control-sidebar --> */}
       {/* <!-- Add the sidebar's background. This div must be placed
           immediately after the control sidebar --> */}

@@ -9,6 +9,8 @@ import './dist/css/AdminLTE.min.css';
 import './dist/css/skins/skin-blue.min.css';
 import './dist/css/skins/_all-skins.min.css';
 
+
+
 class TablaSolicitudValidacion extends React.Component {
 
   constructor(props) {
@@ -26,19 +28,19 @@ class TablaSolicitudValidacion extends React.Component {
     
         <div class="box">
                         <div class="box-header">
-                        <h3 class="box-title">Solicitudes</h3>
+                        <h3 class="box-title">Solicitudes de Validacion</h3>
                         </div>
                         {/* <!-- /.box-header --> */}
                         <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped">
                             <thead>
                               <tr>
                                 <th>ID</th>
-                                <th>Estado</th>
                                 <th>Fecha Solicitud</th>
                                 <th>Empresa</th>
                                 <th>Fecha de Actualización</th>
-                                <th>Validar</th>
+                                <th>Estado</th>
+                                
                               </tr>
                             </thead>
                             <tbody>
@@ -46,16 +48,16 @@ class TablaSolicitudValidacion extends React.Component {
                               { this.props.solicitudValidacion }
 
                             </tbody>
-                            <tfoot>
+                           {/*  <tfoot>
                               <tr>
                                 <th>ID</th>
                                 <th>Estado</th>
                                 <th>Fecha Solicitud</th>
                                 <th>Empresa</th>
                                 <th>Fecha de Actualización</th>
-                                <th>Validar</th>
+                                
                               </tr>
-                            </tfoot>
+                            </tfoot> */}
                         </table>
                         </div>
                         {/* <!-- /.box-body --> */}

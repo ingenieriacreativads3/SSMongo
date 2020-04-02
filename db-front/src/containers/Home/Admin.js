@@ -39,14 +39,14 @@ class Admin extends React.Component {
    
       <div class="wrapper">
 
-        <aside class="main-sidebar">
+   {/*      <aside class="main-sidebar">
             <section class="sidebar">
 
              
               <SideBarMenu></SideBarMenu>
 
             </section>
-        </aside>
+        </aside> */}
 
         <div class="content-wrapper">
 

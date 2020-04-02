@@ -2,13 +2,6 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Footer from '../../components/Footer';
 
-import '../bower_components/bootstrap/dist/css/bootstrap.min.css'
-import '../bower_components/font-awesome/css/font-awesome.min.css'
-import '../bower_components/Ionicons/css/ionicons.min.css'
-import '../dist/css/AdminLTE.min.css'
-import '../dist/css/skins/_all-skins.min.css'
-
-
 import '../Home/shop/css/linearicons.css';
 import '../Home/shop/css/linearicons.css';
 import '../Home/shop/css/owl.carousel.css';
@@ -155,71 +148,16 @@ class NuevaUnidad extends React.Component {
 
     return(
             <body id="NuevoUnidad">
-              {/* <!-- Start Header Area -->  */}
-	<header class="header_area sticky-header">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light main_box">
-				<div class="container">
-				{/* 	<!-- Brand and toggle get grouped for better mobile display --> */}
-					<a class="navbar-brand logo_h" href="index.html"><img src="shop/img/logo.png" alt=""></img></a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				{/* 	<!-- Collect the nav links, forms, and other content for toggling --> */}
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-							
-							<li class="nav-item"><a class="nav-link" href="contact.html">Mi perfil</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-		<div class="search_input" id="search_input_box">
-			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="Buscar"></input>
-					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-				</form>
-			</div>
-		</div>
-	</header>
+  
+  <div class="wrapper">
 
-{/* <!-- End Header Area -->  */}
+    <div class="content-wrapper">
 
-
-{/* <!-- Start Banner Area --> */}
-	<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>Suppliers Store</h1>
-					{/* <nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Fashon Category</a>
-					</nav> */}
-				</div>
-			</div>
-		</div>
-	</section>
-	{/* <!-- End Banner Area --> */}
 
   {/* <!--================Unidad medidda Area =================--> */}
 	<section class="contact_area section_gap_bottom">
 		<div class="container">
-        <div class="col-lg-9">
+        <div class="col-lg-12">
           <div class="comment-form">
           
           <h1>Solicitud Unidad de Medida</h1>
@@ -255,11 +193,11 @@ class NuevaUnidad extends React.Component {
 	</section>
 	 {/* { <!--================Unidad medida Area =================--></div> }  */}
 
+      </div>
 
+      </div>
   
-     {/* <!-- start footer Area --> */}
-     <Footer></Footer>
-	{/* <!-- End footer Area --></li> */}
+    
 
 
   </body>

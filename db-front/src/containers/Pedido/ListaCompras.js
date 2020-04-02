@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import SideBarMenu from '../../components/SideBarMenu';
 
 
+import '../bower_components/bootstrap/dist/css/bootstrap.min.css';
+import '../bower_components/font-awesome/css/font-awesome.min.css';
+import '../bower_components/Ionicons/css/ionicons.min.css';
+import '../dist/css/AdminLTE.min.css';
+import '../dist/css/skins/skin-blue.min.css';
+import '../dist/css/skins/_all-skins.min.css';
+
+
 import '../Home/shop/css/linearicons.css'
 import '../Home/shop/css/owl.carousel.css';
 import '../Home/shop/css/font-awesome.min.css';
@@ -73,21 +81,21 @@ class ListaPedidosCompra extends React.Component {
             
       <div class="wrapper">
         
-        <aside class="main-sidebar">
+        {/* <aside class="main-sidebar">
             <section class="sidebar">
 
              
-              <SideBarMenu></SideBarMenu>
+               <SideBarMenu></SideBarMenu> 
 
             </section>
-        </aside>
+        </aside> */}
         
         <div class="content-wrapper">
          
          
 
-          <section class="features-area section_gap">
-            <div class="container">
+        <section class="content container-fluid">
+            <section class="content">
                 <div class="row features-inner">
       
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -131,7 +139,7 @@ class ListaPedidosCompra extends React.Component {
               </div>
                 
                 </div>
-            </div>
+            </section>
           </section>
 
           <section class="content container-fluid">

@@ -16,6 +16,8 @@ import './shop/css/ion.rangeSlider.skinFlat.css';
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
 import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import Banner from '../../components/Banner';
 
 function mapStateToProps(store) {
   return {
@@ -39,64 +41,12 @@ class Detalles extends React.Component {
         return(
             <body id="DetallesProducto">
                 {/* <!-- Start Header Area -->  */}
-	<header class="header_area sticky-header">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light main_box">
-				<div class="container">
-				{/* 	<!-- Brand and toggle get grouped for better mobile display --> */}
-					<a class="navbar-brand logo_h" href="index.html"><img src="shop/img/logo.png" alt=""></img></a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				{/* 	<!-- Collect the nav links, forms, and other content for toggling --> */}
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-							
-							<li class="nav-item"><a class="nav-link" href="contact.html">Mi perfil</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-		<div class="search_input" id="search_input_box">
-			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="Buscar"></input>
-					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-				</form>
-			</div>
-		</div>
-	</header>
-
-{/* <!-- End Header Area -->  */}
+					<Header></Header>
+                {/* <!-- End Header Area -->  */}
 
 
 {/* <!-- Start Banner Area --> */}
-<section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>Suppliers Store</h1>
-					{/* <nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Fashon Category</a>
-					</nav> */}
-				</div>
-			</div>
-		</div>
-	</section>
+			<Banner></Banner>
 	{/* <!-- End Banner Area --> */}
 
 

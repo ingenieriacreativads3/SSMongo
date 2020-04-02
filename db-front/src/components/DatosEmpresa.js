@@ -23,9 +23,9 @@ class DatosEmpresa extends React.Component {
             <dl class="dl-horizontal">
               <dt>ID:</dt>
               <dd>{ this.props.Empresa._id }</dd>
-              <dt>Empresa</dt>
+              <dt>Nombre</dt>
               <dd>{ this.props.Empresa.nombre }</dd>
-              <dt>Empresa</dt>
+              <dt>Razon Social</dt>
               <dd>{ this.props.Empresa.razon }</dd>
               <dt>CUIT</dt>
               <dd>{ this.props.Empresa.cuit }</dd>
