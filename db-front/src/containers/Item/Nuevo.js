@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import SideBarMenu from '../../components/SideBarMenu'
 
 
+import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
+import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
+import '../../components/bower_components/Ionicons/css/ionicons.min.css';
+import '../../components/dist/css/AdminLTE.min.css';
+import '../../components/dist/css/skins/skin-blue.min.css';
+import '../../components/dist/css/skins/_all-skins.min.css';
+
 
 
 import '../Home/shop/css/linearicons.css'
@@ -150,37 +157,47 @@ class Nuevo extends React.Component {
 
 
       
-            <div class="col-lg-5">
+            <div class="col-md-5">
+            <div class="box box-warning">
+                
                 <div class="blog_right_sidebar">
                    
                     <aside class="single_sidebar_widget author_widget">
+                       
+                        <div class="box-header with-border">
                         <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
-                        <h4>Imagen</h4>
-                        <p>Selecciona la foto del item</p>
-                        {/* <div class="social_icon">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
-                        </div> */}
+
+                      <h3 class="box-title">Imagen</h3>
+                      <p>Selecciona la foto del item</p>
+
+                    </div>
+                       
                         
                         <div class="br"></div>
                         <input type="file" id="exampleInputFile"></input>
                     </aside>
                     <aside class="single_sidebar_widget popular_post_widget">
                       
-                      <div>
+                    <div class="box-footer"> 
+                    <div class="col-md-12 text-right">
                     <a class="primary-btn submit_btn" href="#">Añadir Imagen</a>
                         </div>
+                    </div>
                     </aside>
                    
+                </div>
                 </div>
             </div>
 
 
-            <div class="col-lg-7">
-              <div class="comment-form">
-                    <h4>Nuevo Item</h4>
+            <div class="col-md-7">
+            <div class="box box-warning">
+            <div class="box-header with-border">
+
+                      <h3 class="box-title">Nuevo Item</h3>
+
+                    </div>
+                       
                     <form>
                         <div class="form-group form-inline">
                             <div class="form-group col-lg-6 col-md-6 name">
@@ -188,18 +205,11 @@ class Nuevo extends React.Component {
                                     onblur="this.placeholder = 'Nombre item'"onChange={ this.getNombre }></input>
                                 
                             </div>
-                            <div class="form-group col-lg-3 col-md-3 name">
+                            <div class="form-group col-lg-6 col-md-6 name">
                                <input type="number" class="form-control" id="precioItem" placeholder="Precio" onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Precio'" onChange={ this.getPyrecio }></input>
                             </div>
-                            <div class="col-md-3 form-group">
-                            <div class="creat_account">
-                                <input type="checkbox" id="f-option2" name="selector" checked></input>
-                                <span>Mostrar precio</span>
-                                
-                            </div>
-                           
-                          </div>
+                            
                         </div>
 
                         <div class="form-group form-inline">
@@ -213,9 +223,14 @@ class Nuevo extends React.Component {
                                 
                             </div>
 
-                            <div class="col-md-6 text-right">
-                              <Link to="/unidadMedida/nuevo"><button type="submit" value="submit" class="primary-btn">Nueva Unidad</button></Link>
-                            </div>
+                            <div class="col-md-6 form-group">
+                          
+                                <input type="checkbox" checked></input>
+                                <span>Mostrar precio</span>
+                                
+                        
+                           
+                          </div>
                             
                             </div>
 
@@ -229,8 +244,15 @@ class Nuevo extends React.Component {
                             <textarea class="form-control mb-10" rows="5" name="descripcion" placeholder="Descripción"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripción'" required=""onChange={ this.getDescripcion }></textarea>
                         </div>
-                        
+
+                        <div class="box-footer">
+                        <div class="col-md-6 text-left">
+                              <Link to="/unidadMedida/nuevo"><button type="submit" value="submit" class="btn btn-warning btn-lg btn-block">Nueva Unidad</button></Link>
+                            </div>
+                        <div class="col-md-6 text-right">
                         <a href="#" class="primary-btn submit_btn">Guardar Item</a>
+                        </div>
+                        </div>
                     </form>
                 </div>
             </div>

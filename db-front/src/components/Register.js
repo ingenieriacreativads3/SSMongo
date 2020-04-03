@@ -227,7 +227,7 @@ class Register extends React.Component{
               Registro
             </span>
             <span class="login100-form-avatar">
-              <img src="img/logo.png"></img>
+              <img src="../dist/img/logo.png"></img>
             </span>
   
             <div class="form-group col-md-6">

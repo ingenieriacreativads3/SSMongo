@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import SolicitudDeValidacion from './containers/SolicitudDeValidacion';
 import ValidarSolicitudDeValidacion from './containers/ValidarSolicitudDeValidacion';
+import SolicitudUnidadMedida from './containers/Unidad de Medida/Solicitudes';
+import ValidarSolicitudUnidadMedida from './containers/Unidad de Medida/ValidarSolicitud';
 import axios from 'axios';
 import Login from './components/Login';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -54,6 +56,7 @@ class App extends React.Component {
 
     var baseURL = 'http://localhost:3011';
     var solicitudDevalidacionPath = '/solicituddevalidacion';
+    var solicitudUnidadMedidaPath = '/solicitud/unidadMedida';
 
     return (
       <Router>
@@ -65,6 +68,13 @@ class App extends React.Component {
                 path={ solicitudDevalidacionPath }
                 url={ baseURL }
                 SolicitudDeValidacion={ this.props.SolicitudDeValidacion }/>
+            </Route>
+            <Route path="/solicitud/unidadMedida/:id" component={ ValidarSolicitudUnidadMedida } />
+            <Route path="/solicitud/unidadMedida">
+              <SolicitudUnidadMedida
+                path={ solicitudUnidadMedidaPath }
+                url={ baseURL }
+                SolicitudUnidadMedida={ this.props.SolicitudUnidadMedida }/>
             </Route>
             <Route path="/registrar" component={ SignUp } />
             <Route path="/ingresar" component={ SignIn } />
