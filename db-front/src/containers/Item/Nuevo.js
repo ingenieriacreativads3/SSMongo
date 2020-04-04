@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import SideBarMenu from '../../components/SideBarMenu'
 
+import SideBarMenu from '../../components/SideBarMenu';
 
 import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
 import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
@@ -9,7 +9,6 @@ import '../../components/bower_components/Ionicons/css/ionicons.min.css';
 import '../../components/dist/css/AdminLTE.min.css';
 import '../../components/dist/css/skins/skin-blue.min.css';
 import '../../components/dist/css/skins/_all-skins.min.css';
-
 
 
 import '../Home/shop/css/linearicons.css'
@@ -143,19 +142,15 @@ class Nuevo extends React.Component {
     return(
             
       <div class="wrapper">
-      {/* <aside class="main-sidebar">
-        <section class="sidebar">
 
-         
-           <SideBarMenu></SideBarMenu> 
 
-        </section>
-      </aside> */}
+
+      <SideBarMenu></SideBarMenu>
 
 
       <div class="content-wrapper">
-
-
+      
+        
       
             <div class="col-md-5">
             <div class="box box-warning">
@@ -180,7 +175,7 @@ class Nuevo extends React.Component {
                       
                     <div class="box-footer"> 
                     <div class="col-md-12 text-right">
-                    <a class="primary-btn submit_btn" href="#">Añadir Imagen</a>
+                    <a class="primary-btn submit_btn" href="#">Añadir</a>
                         </div>
                     </div>
                     </aside>
@@ -250,7 +245,7 @@ class Nuevo extends React.Component {
                               <Link to="/unidadMedida/nuevo"><button type="submit" value="submit" class="btn btn-warning btn-lg btn-block">Nueva Unidad</button></Link>
                             </div>
                         <div class="col-md-6 text-right">
-                        <a href="#" class="primary-btn submit_btn">Guardar Item</a>
+                        <a href="#" class="primary-btn submit_btn">Guardar</a>
                         </div>
                         </div>
                     </form>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Tabla from '../../components/TablaSolicitudUnidadMedida';
+import SideBarMenu from '../../components/SideBarMenu';
 
 import { connect } from 'react-redux'
 // import * as SolicitudesDeValidacionAction from '../store/actions/SolicitudDeValidacionAction'
@@ -23,6 +24,7 @@ import '../Home/shop/css/nice-select.css';
 import '../Home/shop/css/nouislider.min.css';
 import '../Home/shop/css/bootstrap.css';
 import '../Home/shop/css/main.css'; 
+
 
 function mapStateToProps(store) {
   return {
@@ -109,14 +111,7 @@ class SolicitudUnidadMedida extends React.Component {
     return(
             
       <div class="wrapper">
-       {/* 
-        <aside class="main-sidebar">
-            <section class="sidebar">
-
-           
-
-            </section>
-        </aside> */}
+       <SideBarMenu></SideBarMenu>
         <div class="content-wrapper">
             
             {/* <section class="content-header">

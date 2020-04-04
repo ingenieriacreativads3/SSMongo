@@ -37,44 +37,10 @@ class SideBarMenu extends React.Component {
     return(
 
       
-      <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-      <div class="wrapper">
-        {/* <!-- Navbar --> */}
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-          {/* <!-- Left navbar links --> */}
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-              <a href="/home/inicio" class="nav-link">INICIO</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-              <a href="/home/admin" class="nav-link">MI PERFIL</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-              <a href="/ingresar" class="nav-link">CERRAR SESION</a>
-            </li>
-          </ul>
       
-         {/*  <!-- SEARCH FORM -->
-          <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form> */}
-      
-          {/* <!-- Right navbar links --> */}
-          
-        </nav>
-        {/* <!-- /.navbar --> */}
+        
     
-        {/* <!-- Main Sidebar Container --> */}
+        //  <!-- Main Sidebar Container --> 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
           {/* <!-- Brand Logo --> */}
           <a href="index3.html" class="brand-link">
@@ -98,7 +64,7 @@ class SideBarMenu extends React.Component {
                 {/* <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library --> */}
                 <li class="nav-item">
-                  <a href="pages/widgets.html" class="nav-link">
+                  <a href="/home/admin" class="nav-link">
                     <i class="nav-icon  fas fa-barcode"></i>
                     <p>
                       Catálogo
@@ -106,7 +72,7 @@ class SideBarMenu extends React.Component {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/widgets.html" class="nav-link">
+                  <a href="/item/nuevo" class="nav-link">
                     <i class="nav-icon fas  fa-plus"></i>
                     <p>
                       Nuevo Item
@@ -114,7 +80,7 @@ class SideBarMenu extends React.Component {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/widgets.html" class="nav-link">
+                  <a href="/compras/presupuestos" class="nav-link">
                     <i class="nav-icon fas fa-dollar "></i>
                     <p>
                       Mis compras - Presupuestos
@@ -122,7 +88,7 @@ class SideBarMenu extends React.Component {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/widgets.html" class="nav-link">
+                  <a href="/compras/pedidos" class="nav-link">
                     <i class="nav-icon fas fa-shopping-cart"></i>
                     <p>
                       Mis compras - Pedidos
@@ -130,7 +96,7 @@ class SideBarMenu extends React.Component {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/widgets.html" class="nav-link">
+                  <a href="/ventas/presupuestos" class="nav-link">
                     <i class="nav-icon fas fa-dollar "></i>
                     <p>
                       Mis ventas - Presupuestos
@@ -138,7 +104,7 @@ class SideBarMenu extends React.Component {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/widgets.html" class="nav-link">
+                  <a href="/ventas/pedidos" class="nav-link">
                     <i class="nav-icon fas fa-shopping-cart"></i>
                     <p>
                       Mis ventas - Pedidos
@@ -146,7 +112,7 @@ class SideBarMenu extends React.Component {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/widgets.html" class="nav-link">
+                  <a href="/solicituddevalidacion" class="nav-link">
                     <i class="nav-icon  fas fa-user-plus"></i>
                     <p>
                       Solicitudes de validación
@@ -161,15 +127,6 @@ class SideBarMenu extends React.Component {
         </aside>
 
        
-      
-      
-        
-      </div>
-     
-      
-     
-      </body>
-      
     );
   }
 }

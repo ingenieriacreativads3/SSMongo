@@ -81,14 +81,7 @@ class ListaPedidosCompra extends React.Component {
             
       <div class="wrapper">
         
-        {/* <aside class="main-sidebar">
-            <section class="sidebar">
-
-             
-               <SideBarMenu></SideBarMenu> 
-
-            </section>
-        </aside> */}
+       <SideBarMenu></SideBarMenu>
         
         <div class="content-wrapper">
          

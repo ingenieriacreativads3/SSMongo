@@ -6,6 +6,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import SideBarMenu from '../components/SideBarMenu';
 
 import './bower_components/bootstrap/dist/css/bootstrap.min.css';
 import './bower_components/font-awesome/css/font-awesome.min.css';
@@ -134,12 +135,7 @@ class ValidateAccounts extends React.Component {
 
       <div class="wrapper">
         
-      {/* <aside class="main-sidebar">
-        <section class="sidebar">
-
-          
-        </section>
-      </aside> */}
+      <SideBarMenu></SideBarMenu>
 
       {/* <!-- Content Wrapper. Contains page content --> */}
       <div class="content-wrapper">

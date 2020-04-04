@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Footer from '../../components/Footer';
+import SideBarMenu from '../../components/SideBarMenu';
+
+import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
+import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
+import '../../components/bower_components/Ionicons/css/ionicons.min.css';
+import '../../components/dist/css/AdminLTE.min.css';
+import '../../components/dist/css/skins/skin-blue.min.css';
+import '../../components/dist/css/skins/_all-skins.min.css';
+
 
 import '../Home/shop/css/linearicons.css';
 import '../Home/shop/css/linearicons.css';
@@ -14,6 +23,7 @@ import '../Home/shop/css/main.css';
 
 // import * as PresupuestoAction from "../../store/actions/PresupuestoAction";
 import { connect } from 'react-redux'
+
 
 function mapStateToProps(store) {
   return {
@@ -151,17 +161,20 @@ class NuevaUnidad extends React.Component {
   
   <div class="wrapper">
 
+    <SideBarMenu></SideBarMenu>
+
     <div class="content-wrapper">
 
 
   {/* <!--================Unidad medidda Area =================--> */}
 	<section class="contact_area section_gap_bottom">
 		<div class="container">
-        <div class="col-lg-12">
-          <div class="comment-form">
+        <div class="col-md-12">
+         <div class="box box-warning">
+         <div class="box-header with-border">
+             <h3 class="box-title">Solicitud Unidad de Medida</h3>
+           </div>
           
-          <h1>Solicitud Unidad de Medida</h1>
-        
 					<form class=""  method="post" id="unidadMedidaForm" >
 						
                         <div class="form-group form-inline">
@@ -182,9 +195,11 @@ class NuevaUnidad extends React.Component {
                             </div>
                         </div>
 
+            <div class="box-footer">
 						<div class="col-md-12 text-right">
 							<button type="submit" value="submit" class="primary-btn submit_btn" onClick={ this.onSubmit }>Enviar solicitud</button>
 						</div>
+            </div>
 					</form>
           </div>
         </div>

@@ -1,6 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import SideBarMenu from '../../components/SideBarMenu'
+import SideBarMenu from '../../components/SideBarMenu';
+
+
+import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
+import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
+import '../../components/bower_components/Ionicons/css/ionicons.min.css';
+import '../../components/dist/css/AdminLTE.min.css';
+import '../../components/dist/css/skins/skin-blue.min.css';
+import '../../components/dist/css/skins/_all-skins.min.css';
 
 import '../Home/shop/css/linearicons.css'
 import '../Home/shop/css/owl.carousel.css';
@@ -133,21 +141,15 @@ class EditarItem extends React.Component {
     return( 
 
         <div class="wrapper">
-          {/* <aside class="main-sidebar">
-            <section class="sidebar">
-
-             
-             
-
-            </section>
-          </aside> */}
-
+          
+          <SideBarMenu></SideBarMenu>
 
           <div class="content-wrapper">
 
 
           
-                <div class="col-lg-5">
+                <div class="col-md-5">
+                  <div class="box box-warning">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget search_widget">
                            
@@ -155,33 +157,40 @@ class EditarItem extends React.Component {
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget author_widget">
-                            <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
-                            <h4>Imagen</h4>
-                            <p>Selecciona la foto del item</p>
-                            {/* <div class="social_icon">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-github"></i></a>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                            </div> */}
+
+                        <div class="box-header with-border">
+                        <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
+
+                      <h3 class="box-title">Imagen</h3>
+                      <p>Selecciona la foto del item</p>
+                        </div>
+                           
+                         
                             
                             <div class="br"></div>
                             <input type="file" id="exampleInputFile"></input>
                         </aside>
                         <aside class="single_sidebar_widget popular_post_widget">
                           
-                          <div>
-                        <a class="primary-btn submit_btn" href="#">Actualizar Imagen</a>
+                        <div class="box-footer"> 
+                          <div class="col-md-12 text-right">
+                              <a class="primary-btn submit_btn" href="#">Actualizar</a>
+                            </div>
                             </div>
                         </aside>
-                       
+                       </div>
                     </div>
                 </div>
 
 
-                <div class="col-lg-7">
-                  <div class="comment-form">
-                        <h4>Editar Item</h4>
+                <div class="col-md-7">
+                <div class="box box-warning">
+                <div class="box-header with-border">
+
+                <h3 class="box-title">Editar Item</h3>
+
+                </div>
+                     
                         <form>
                         <div class="form-group form-inline">
                                 <div class="form-group col-lg-6 col-md-6 name">
@@ -206,13 +215,13 @@ class EditarItem extends React.Component {
                                     
                                 </div>
                                 <div class="col-md-6 form-group">
-                                <div class="creat_account">
-                                    <input type="checkbox" id="f-option2" name="selector" checked></input>
-                                    <span>Mostrar precio</span>
-                                    
-                                </div>
-                               
-                                </div>
+                          
+                                <input type="checkbox" checked></input>
+                                <span>Mostrar precio</span>
+                                
+                        
+                           
+                                 </div>
 
                                 
                             </div>
@@ -225,8 +234,11 @@ class EditarItem extends React.Component {
                                 <textarea class="form-control mb-10" rows="5" name="descripcion" placeholder="Descripción"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripción'" required=""onChange={ this.getDescripcion }>Descripcion del producto</textarea>
                             </div>
-                            
+                            <div class="box-footer">
+                            <div class="col-md-12 text-right">
                             <a href="#" class="primary-btn submit_btn">Actualizar Item</a>
+                            </div>
+                            </div>
                         </form>
                     </div>
                 </div>

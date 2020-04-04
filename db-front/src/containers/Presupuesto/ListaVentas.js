@@ -73,14 +73,7 @@ class ListaPresupuestosVentas extends React.Component {
             
       <div class="wrapper">
         
-        {/* <aside class="main-sidebar">
-            <section class="sidebar">
-
-             
-             
-
-            </section>
-        </aside> */}
+        <SideBarMenu></SideBarMenu>
         
         <div class="content-wrapper">
          

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import TablaSolicitudValidacion from '../components/tabla-solicitudValidacion';
 import Tabla from '../components/TablaSolicitudValidacion';
+import SideBarMenu from '../components/SideBarMenu';
 
 import { connect } from 'react-redux'
 import * as SolicitudesDeValidacionAction from '../store/actions/SolicitudDeValidacionAction'
@@ -110,14 +111,7 @@ class SolicitudDeValidacion extends React.Component {
     return(
             
       <div class="wrapper">
-       {/* 
-        <aside class="main-sidebar">
-            <section class="sidebar">
-
-           
-
-            </section>
-        </aside> */}
+       <SideBarMenu></SideBarMenu>
         <div class="content-wrapper">
             
             {/* <section class="content-header">

@@ -39,18 +39,11 @@ class Admin extends React.Component {
    
       <div class="wrapper">
 
-   {/*      <aside class="main-sidebar">
-            <section class="sidebar">
-
-             
-              <SideBarMenu></SideBarMenu>
-
-            </section>
-        </aside> */}
+		<SideBarMenu></SideBarMenu>
 
         <div class="content-wrapper">
 
-        <div class="col-xl-9 col-lg-8 col-md-7">
+        <div class="col-xl-9 col-lg-8 col-md-12">
 				{/* <!-- Start Filter Bar --> */}
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
