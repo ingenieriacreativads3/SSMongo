@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Header from "../../components/header";
-import UserPanel from "../../components/user-panel";
-import SearchForm from "../../components/search-form";
+import Header from "../../components/Header";
+//import UserPanel from "../../components/user-panel";
+//import SearchForm from "../../components/search-form";
 import Tabla from '../../components/TablaPresupuestos';
 import SideBarMenu from '../../components/SideBarMenu';
 

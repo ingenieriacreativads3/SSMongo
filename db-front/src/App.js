@@ -32,7 +32,7 @@ import * as PresupuestoAction from './store/actions/PresupuestoAction'
 import * as SolicitudDeValidacionAction from './store/actions/SolicitudDeValidacionAction'
 
 import { connect } from 'react-redux'
-import DetallesProducto from './containers/DetallesProducto';
+//import DetallesProducto from './containers/DetallesProducto';
 
 function mapStateToProps(store) {
   return {
