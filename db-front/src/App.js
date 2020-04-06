@@ -25,6 +25,7 @@ import ListaVentasPedidos from './containers/Pedido/ListaVentas';
 import ListaComprasPresupuestos from './containers/Presupuesto/ListaCompras';
 import ListaVentasPresupuestos from './containers/Presupuesto/ListaVentas';
 import NoTocar from './containers/NoTocar/NoTocar';
+import AppBar from './components/AppBar'
 
 
 
@@ -35,74 +36,75 @@ import { connect } from 'react-redux'
 //import DetallesProducto from './containers/DetallesProducto';
 
 function mapStateToProps(store) {
-  return {
-    SolicitudDeValidacion: store.SolicitudesDeValidacion.data.solicitudesDeValidacion,
-  };
+	return {
+		SolicitudDeValidacion: store.SolicitudesDeValidacion.data.solicitudesDeValidacion,
+	};
 }
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
+	constructor(props) {
+		super(props);
+	}
 
-  async componentDidMount() {
+	async componentDidMount() {
 
-    await this.props.dispatch(SolicitudDeValidacionAction.getAll())
-    
-  }
+		await this.props.dispatch(SolicitudDeValidacionAction.getAll())
+		
+	}
 
-  render() {
+	render() {
 
-    var baseURL = 'http://localhost:3011';
-    var solicitudDevalidacionPath = '/solicituddevalidacion';
-    var solicitudUnidadMedidaPath = '/solicitud/unidadMedida';
+		var baseURL = 'http://localhost:3011';
+		var solicitudDevalidacionPath = '/solicituddevalidacion';
+		var solicitudUnidadMedidaPath = '/solicitud/unidadMedida';
 
-    return (
-      <Router>
-        <div>
-          <Switch>
-            <Route path="/solicituddevalidacion/:id" component={ ValidarSolicitudDeValidacion } />
-            <Route path="/solicituddevalidacion">
-              <SolicitudDeValidacion
-                path={ solicitudDevalidacionPath }
-                url={ baseURL }
-                SolicitudDeValidacion={ this.props.SolicitudDeValidacion }/>
-            </Route>
-            <Route path="/solicitud/unidadMedida/:id" component={ ValidarSolicitudUnidadMedida } />
-            <Route path="/solicitud/unidadMedida">
-              <SolicitudUnidadMedida
-                path={ solicitudUnidadMedidaPath }
-                url={ baseURL }
-                SolicitudUnidadMedida={ this.props.SolicitudUnidadMedida }/>
-            </Route>
-            <Route path="/registrar" component={ SignUp } />
-            <Route path="/ingresar" component={ SignIn } />
-            <Route path="/item/nuevo" component={ ItemNuevo } />
-            <Route path="/item/editar" component={ EditarItem } />
-            <Route path="/presupuesto/nuevo" component={ PresupuestoNuevo } />
-            <Route path="/presupuestos">
-              <PresupuestoLista
-                path={ solicitudDevalidacionPath }
-                url={ baseURL } />
-            </Route>
-            
-            <Route path="/pedido/nuevo" component={ PedidoNuevo } />
-            <Route path="/home/admin" component={ HomeAdmin } />
-            <Route path="/home/inicio" component={ HomeInicio } />
-            <Route path="/home/detalles" component={ HomeDetalles } />
-            <Route path="/home/perfil" component={ PerfilProveedor } />
-            <Route path="/unidadMedida/nuevo" component={ UnidadMedida } />
-            <Route path="/compras/pedidos" component={ ListaComprasPedidos } />
-            <Route path="/ventas/pedidos" component={ ListaVentasPedidos } />
-            <Route path="/compras/presupuestos" component={ ListaComprasPresupuestos } />
-            <Route path="/ventas/presupuestos" component={ ListaVentasPresupuestos } />
-            <Route path="/home/probando" component={ NoTocar } />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+		return (
+			<Router>
+				<div>
+					<Switch>
+						<Route path="/solicituddevalidacion/:id" component={ ValidarSolicitudDeValidacion } />
+						<Route path="/solicituddevalidacion">
+							<SolicitudDeValidacion
+								path={ solicitudDevalidacionPath }
+								url={ baseURL }
+								SolicitudDeValidacion={ this.props.SolicitudDeValidacion }/>
+						</Route>
+						<Route path="/solicitud/unidadMedida/:id" component={ ValidarSolicitudUnidadMedida } />
+						<Route path="/solicitud/unidadMedida">
+							<SolicitudUnidadMedida
+								path={ solicitudUnidadMedidaPath }
+								url={ baseURL }
+								SolicitudUnidadMedida={ this.props.SolicitudUnidadMedida }/>
+						</Route>
+						<Route path="/registrar" component={ SignUp } />
+						<Route path="/ingresar" component={ SignIn } />
+						<Route path="/item/nuevo" component={ ItemNuevo } />
+						<Route path="/item/editar" component={ EditarItem } />
+						<Route path="/presupuesto/nuevo" component={ PresupuestoNuevo } />
+						<Route path="/presupuestos">
+							<PresupuestoLista
+								path={ solicitudDevalidacionPath }
+								url={ baseURL } />
+						</Route>
+						
+						<Route path="/pedido/nuevo" component={ PedidoNuevo } />
+						<Route path="/home/admin" component={ HomeAdmin } />
+						<Route path="/home/inicio" component={ HomeInicio } />
+						<Route path="/home/detalles" component={ HomeDetalles } />
+						<Route path="/home/perfil" component={ PerfilProveedor } />
+						<Route path="/unidadMedida/nuevo" component={ UnidadMedida } />
+						<Route path="/compras/pedidos" component={ ListaComprasPedidos } />
+						<Route path="/ventas/pedidos" component={ ListaVentasPedidos } />
+						<Route path="/compras/presupuestos" component={ ListaComprasPresupuestos } />
+						<Route path="/ventas/presupuestos" component={ ListaVentasPresupuestos } />
+						<Route path="/home/probando" component={ NoTocar } />
+						<Route path="/home/side" component={ AppBar } />
+					</Switch>
+				</div>
+			</Router>
+		);
+	}
 }
 
 export default connect(mapStateToProps)(App);
