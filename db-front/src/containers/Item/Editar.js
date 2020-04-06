@@ -216,8 +216,8 @@ class EditarItem extends React.Component {
                                 </div>
                                 <div class="col-md-6 form-group">
                           
-                                <input type="checkbox" checked></input>
-                                <span>Mostrar precio</span>
+                                <label>Mostrar Precio</label>
+                                <input type="checkbox" onChange={this.getMostrarPrecio}></input>
                                 
                         
                            

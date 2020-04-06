@@ -12,6 +12,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import AddIcon from '@material-ui/icons/Add'
+import ListSubheader from '@material-ui/core/ListSubheader';
+import AttachMoney from '@material-ui/icons/AttachMoney';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import PersonAdd from '@material-ui/icons/PersonAdd';
+import PostAdd from '@material-ui/icons/PostAdd';
+import Link from '@material-ui/core/Link';
 
 class AppBare extends React.Component {
 
@@ -35,9 +43,20 @@ class AppBare extends React.Component {
 				<CssBaseline />
 				<AppBar position="fixed" className={classes.appBar}>
 					<Toolbar>
-						<Typography variant="h3" noWrap>
-							Permanent drawer
-						</Typography>
+						{/* <Typography variant="h3" noWrap>
+						
+						</Typography> */}
+						<nav>
+						<Link variant="button" color="textPrimary" href="#"  className={classes.link}>
+							INICIO
+						</Link>
+						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
+						MI PERFIL 
+						</Link>
+						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
+						CERRAR SESIÓN
+						</Link>
+					</nav>
 					</Toolbar>
 				</AppBar>
 				<Drawer
@@ -50,11 +69,65 @@ class AppBare extends React.Component {
 				>
 					<div className={classes.toolbar} >Aca va el logo</div>
 					<Divider />
-					<List>
+					<ListItem button>
+						<ListItemIcon>
+							<DashboardIcon />
+						</ListItemIcon>
+						<ListItemText primary="Mi catálogo" />
+					</ListItem>
+					<ListItem button>
+						<ListItemIcon>
+							<AddIcon />
+						</ListItemIcon>
+						<ListItemText primary="Nuevo Item" />
+					</ListItem>
+					<Divider/>
+					<ListSubheader inset>Mis compras</ListSubheader>
+					<ListItem button>
+						<ListItemIcon>
+							<AttachMoney />
+						</ListItemIcon>
+						<ListItemText primary="Presupuestos" />
+					</ListItem>
+					<ListItem button>
+						<ListItemIcon>
+							<ShoppingCart />
+						</ListItemIcon>
+						<ListItemText primary="Pedidos" />
+					</ListItem>
+					<Divider/>
+					<ListSubheader inset>Mis ventas</ListSubheader>
+					<ListItem button>
+						<ListItemIcon>
+							<AttachMoney />
+						</ListItemIcon>
+						<ListItemText primary="Presupuestos" />
+					</ListItem>
+					<ListItem button>
+						<ListItemIcon>
+							<ShoppingCart />
+						</ListItemIcon>
+						<ListItemText primary="Pedidos" />
+					</ListItem>
+					<Divider/>
+					<ListSubheader inset>Solicitudes</ListSubheader>
+					<ListItem button>
+						<ListItemIcon>
+							<PersonAdd />
+						</ListItemIcon>
+						<ListItemText primary="Validación" />
+					</ListItem>
+					<ListItem button>
+						<ListItemIcon>
+							<PostAdd />
+						</ListItemIcon>
+						<ListItemText primary="Unidad de Medida" />
+					</ListItem>
+					{/* <List>
 						{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
 							<ListItem button key={text}>
-								<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-								<ListItemText primary={text} />
+								 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+								<ListItemText primary={text} /> 
 							</ListItem>
 						))}
 					</List>
@@ -62,11 +135,11 @@ class AppBare extends React.Component {
 					<List>
 						{['All mail', 'Trash', 'Spam'].map((text, index) => (
 							<ListItem button key={text}>
-								<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-								<ListItemText primary={text} />
+								 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+								<ListItemText primary={text} /> 
 							</ListItem>
 						))}
-					</List>
+					</List> */}
 				</Drawer>
 				<main className={classes.content}>
 					<div className={classes.toolbar} />

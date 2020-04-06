@@ -208,6 +208,8 @@ class Nuevo extends React.Component {
                         </div>
 
                         <div class="form-group form-inline">
+
+                          
                             <div class="col-md-6 form-group p_star">
                             <select class="country_select" id="unidadeDeMedida" onChange={ this.getUnidadDeMedida }>
                                   <option value="1">Kilogramos</option>
@@ -219,9 +221,10 @@ class Nuevo extends React.Component {
                             </div>
 
                             <div class="col-md-6 form-group">
-                          
-                                <input type="checkbox" checked></input>
-                                <span>Mostrar precio</span>
+
+                            <label>Mostrar Precio</label>
+                            <input type="checkbox" onChange={this.getMostrarPrecio}></input>
+                               
                                 
                         
                            

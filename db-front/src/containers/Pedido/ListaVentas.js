@@ -2,6 +2,14 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import SideBarMenu from '../../components/SideBarMenu';
 
+import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
+import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
+import '../../components/bower_components/Ionicons/css/ionicons.min.css';
+import '../../components/dist/css/AdminLTE.min.css';
+import '../../components/dist/css/skins/skin-blue.min.css';
+import '../../components/dist/css/skins/_all-skins.min.css';
+
+
 
 import '../Home/shop/css/linearicons.css'
 import '../Home/shop/css/owl.carousel.css';
@@ -129,7 +137,7 @@ class ListaPedidosVentas extends React.Component {
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
-                      <div class="box">
+                      <div class="box box-warning">
                         <div class="box-header">
                           <h3 class="box-title">Mis ventas - Pedidos</h3>
                         </div>

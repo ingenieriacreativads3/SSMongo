@@ -4,6 +4,12 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Banner from '../../components/Banner';
 
+import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
+import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
+import '../../components/bower_components/Ionicons/css/ionicons.min.css';
+import '../../components/dist/css/AdminLTE.min.css';
+import '../../components/dist/css/skins/skin-blue.min.css';
+import '../../components/dist/css/skins/_all-skins.min.css';
 
 
 import '../Home/shop/css/linearicons.css';
@@ -152,6 +158,7 @@ class NuevoPedido extends React.Component {
 
     return(
             <body id="NuevoPedido">
+              
               {/* <!-- Start Header Area -->  */}
 	<Header></Header>
 
@@ -163,12 +170,16 @@ class NuevoPedido extends React.Component {
 	{/* <!-- End Banner Area --> */}
 
   {/* <!--================Pedido Area =================--> */}
-	<section class="contact_area section_gap_bottom">
+ 
+  <section class="contact_area section_gap_bottom">
 		<div class="container">
         <div class="col-lg-9">
-          <div class="comment-form">
+          <div class="box">
+          <div class="box-header text-center">
           
-          <h1>Nuevo Pedido</h1>
+          <h1 class="box-title">Nuevo Pedido</h1>
+
+          </div>
         
 					<form class=""  method="post" id="pedidoForm" >
 						
@@ -222,26 +233,30 @@ class NuevoPedido extends React.Component {
                 </div>
 						  </div>
 						<div>
-							<div class="form-group">
-								<textarea class="form-control" name="mensajeSolicitantePedido" id="mensajeSolicitantePedido" rows="1" placeholder="Escriba su mensaje" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Escriba su mensaje'" ></textarea>
-							</div>
+							
+            <div class="form-group col-lg-6 col-md-6 name">
+                            <textarea class="form-control mb-10" rows="5" name="mensajeSolicitante" placeholder="Escriba su mensaje"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Escriba su mensaje'" required=""onChange={ this.getMensaje }></textarea>
+                        </div>
 						</div>
+            <div class="box-footer">
 						<div class="col-md-12 text-right">
 							<button type="submit" value="submit" class="primary-btn submit_btn" onClick={ this.onSubmit }>Enviar solicitud</button>
 						</div>
+            </div>
 					</form>
           </div>
 				</div>
 			</div>
-	
 	</section>
+	
 	 {/* { <!--================Pedido Area =================--></div> }  */}
 
    {/* <!-- start footer Area --> */}
 	<Footer></Footer>
 	{/* <!-- End footer Area --></li> */}
 
-  </body>
+</body>
     
     );
   }

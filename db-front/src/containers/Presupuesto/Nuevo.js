@@ -5,6 +5,14 @@ import Header from '../../components/Header';
 import Banner from '../../components/Banner';
 
 
+import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
+import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
+import '../../components/bower_components/Ionicons/css/ionicons.min.css';
+import '../../components/dist/css/AdminLTE.min.css';
+import '../../components/dist/css/skins/skin-blue.min.css';
+import '../../components/dist/css/skins/_all-skins.min.css';
+
+
 import '../Home/shop/css/linearicons.css';
 import '../Home/shop/css/linearicons.css';
 import '../Home/shop/css/owl.carousel.css';
@@ -165,9 +173,15 @@ class NuevoPresupuesto extends React.Component {
 	<section class="contact_area section_gap_bottom">
 		<div class="container">
         <div class="col-lg-9">
-        <div class="comment-form">
+        <div class="box">
+          <div class="box-header text-center">
           
-        <h1>Nuevo Presupuesto</h1>
+          <h1 class="box-title">Nuevo Presupuesto</h1>
+
+          </div>
+       
+          
+        
         
 					<form class=""  method="post" id="presupuestoForm" >
             <div class="form-group form-inline">
@@ -220,13 +234,16 @@ class NuevoPresupuesto extends React.Component {
             </div>
 
 						<div>
-							<div class="form-group">
-								<textarea class="form-control" name="mensajeSolicitante" id="mensajeSolicitante" rows="1" placeholder="Escriba su mensaje" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Escriba su mensaje'" onChange={ this.getMensaje }></textarea>
-							</div>
+            <div class="form-group col-lg-6 col-md-6 name">
+                            <textarea class="form-control mb-10" rows="5" name="mensajeSolicitante" placeholder="Escriba su mensaje"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Escriba su mensaje'" required=""onChange={ this.getMensaje }></textarea>
+                        </div>
 						</div>
+            <div class="box-footer">
 						<div class="col-md-12 text-right">
 							<button type="submit" value="submit" class="primary-btn submit_btn" onClick={ this.onSubmit }>Enviar solicitud</button>
 						</div>
+            </div>
 					</form>
 				</div>
 			</div>

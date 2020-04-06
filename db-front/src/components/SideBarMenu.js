@@ -119,6 +119,14 @@ class SideBarMenu extends React.Component {
                     </p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="/solicitud/unidadMedida" class="nav-link">
+                    <i class="nav-icon  fas fa-thumb-tack"></i>
+                    <p>
+                      Solicitudes Unidad de Medida
+                    </p>
+                  </a>
+                </li>
               </ul>
             </nav>
             {/* <!-- /.sidebar-menu --> */}
