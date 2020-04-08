@@ -26,6 +26,7 @@ import ListaComprasPresupuestos from './containers/Presupuesto/ListaCompras';
 import ListaVentasPresupuestos from './containers/Presupuesto/ListaVentas';
 import NoTocar from './containers/NoTocar/NoTocar';
 import AppBar from './components/AppBar'
+import EvaluacionEmpresa from './containers/Evaluacion/Empresa';
 
 
 
@@ -100,6 +101,7 @@ class App extends React.Component {
 						<Route path="/ventas/presupuestos" component={ ListaVentasPresupuestos } />
 						<Route path="/home/probando" component={ NoTocar } />
 						<Route path="/home/side" component={ AppBar } />
+						<Route path="/evaluacion/empresa" component={ EvaluacionEmpresa } />
 					</Switch>
 				</div>
 			</Router>

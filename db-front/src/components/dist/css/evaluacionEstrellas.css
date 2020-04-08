@@ -1,0 +1,13 @@
+
+.star-rating a {
+  display: inline-block;
+  color: #95a5a6; /* gris (normal) */
+}
+.star-rating:hover a {
+  color: #f39c12; /* amarillo (seleccionado) */
+ 
+}
+  .star-rating:hover a:hover ~ a {
+    color: #95a5a6; /* gris (normal) */
+  }
+
