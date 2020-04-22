@@ -9,6 +9,8 @@ import AppBar from './AppBar'
  const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+
+
 	root: {
 		display: 'flex',
 	},
@@ -32,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: theme.palette.background.default,
 		padding: theme.spacing(3),
 	},
+
+	
 })); 
 
 export default function PermanentDrawerLeft() {

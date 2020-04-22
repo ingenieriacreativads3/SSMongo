@@ -31,7 +31,7 @@ function mapStateToProps(store) {
   };
 }
 
-class EvaluacionEmpresa extends React.Component {
+class EvaluacionSuppliers extends React.Component {
 
  
 
@@ -49,27 +49,67 @@ class EvaluacionEmpresa extends React.Component {
 	<Banner></Banner>
 	{/* <!-- End Banner Area --> */}
 
- 
+  
 	<section class="contact_area section_gap_bottom">
 		<div class="container">
         <div class="col-lg-12">
         <div class="box">
           <div class="box-header text-center">
           
-          <h1 class="box-title">Evaluación</h1>
-          <p>¡Gracias por tu compra! Tu opinión es importante para nosotros</p>
+          <h1 class="box-title">Evaluanos</h1>
+          <p>Tu opinión es importante para mejorar nuestra plataforma web</p>
 
           </div>
         	<form class=""  method="post" id="presupuestoForm" >
           
-          <div class="form-group form-inline">
+          
+            <div class="form-group form-inline">
                 <div class="col-md-6 form-group p_star">
-                <span><p>Empresa</p> </span>
-                  <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa" placeholder="Nombre empresa precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre empresa precargado'" disabled="disabled"></input>
-                  
+                  <p>Navegabilidad del sitio web</p>          
+                </div>
+                <div class="col-md-6 form-group p_star">
+                <div class="star-rating">
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+              </div>
+             
                 </div>
             </div>
-            
+
+            <div class="form-group form-inline">
+                <div class="col-md-6 form-group p_star">
+                  <p>Actualización de la plataforma</p>          
+                </div>
+                <div class="col-md-6 form-group p_star">
+                <div class="star-rating">
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+              </div>
+             
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <div class="col-md-6 form-group p_star">
+                  <p>Presentación del contenido</p>          
+                </div>
+                <div class="col-md-6 form-group p_star">
+                <div class="star-rating">
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+                  <a href="#">★</a>
+              </div>
+             
+                </div>
+            </div>
+
             <div class="form-group form-inline">
                 <div class="col-md-6 form-group p_star">
                   <p>Tiempo de respuesta a los mensajes/consultas</p>          
@@ -86,51 +126,10 @@ class EvaluacionEmpresa extends React.Component {
                 </div>
             </div>
 
-            <div class="form-group form-inline">
-                <div class="col-md-6 form-group p_star">
-                  <p>Relación precio - calidad</p>          
-                </div>
-                <div class="col-md-6 form-group p_star">
-                <div class="star-rating">
-                  <a href="#">★</a>
-                  <a href="#">★</a>
-                  <a href="#">★</a>
-                  <a href="#">★</a>
-                  <a href="#">★</a>
-              </div>
-             
-                </div>
-            </div>
-            <div class="form-group form-inline">
-                <div class="col-md-6 form-group p_star">
-                  <p>Disponibilidad de productos y/o servicios</p>          
-                </div>
-                <div class="col-md-6 form-group p_star">
-                <div class="star-rating">
-                  <a href="#">★</a>
-                  <a href="#">★</a>
-                  <a href="#">★</a>
-                  <a href="#">★</a>
-                  <a href="#">★</a>
-              </div>
-             
-                </div>
-            </div>
-
-            <div class="form-group form-inline">
-            <div class="col-md-6 form-group p_star">
-                  <p>¿Volvería a operar con esta empresa?</p>          
-                </div>
-                <div class="col-md-3 form-group p_star">
-                <label><input type="radio" ></input>SI</label>
-                </div>
-                <div class="col-md-3 form-group p_star">
-                <label><input type="radio" ></input>NO</label>
-                </div>
-            </div>
+           
             <div class="form-group col-lg-6 col-md-6 name">
                     <textarea class="form-control mb-10" rows="5" name="mensajeSolicitante" placeholder="Observaciones"
-                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Observaciones'" required="" ></textarea>
+                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Observaciones'" required=""></textarea>
                 </div> 
               
              
@@ -146,7 +145,7 @@ class EvaluacionEmpresa extends React.Component {
       </div>
 	
 	</section>
-	
+
 
 
    {/* <!-- start footer Area --> */}
@@ -159,4 +158,4 @@ class EvaluacionEmpresa extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(EvaluacionEmpresa)
+export default connect(mapStateToProps)(EvaluacionSuppliers)
