@@ -28,7 +28,7 @@ import '../../containers/Home/shop/css/nouislider.min.css';
 import '../../containers/Home/shop/css/bootstrap.css';
 import '../../containers/Home/shop/css/main.css'; 
 
-
+import ItemNUevo from './../../containers/Item/Nuevo'
 
 
 class AppBare extends React.Component {
@@ -138,9 +138,6 @@ class AppBare extends React.Component {
 				
 					 <div className={classes.toolbar} />
 				
-					
-					
-				 
 				</main>
 			</div>
 

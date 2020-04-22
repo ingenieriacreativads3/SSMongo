@@ -7,8 +7,6 @@ import './shop/css/nouislider.min.css';
 import './shop/css/bootstrap.css';
 import './shop/css/main.css'; 
 
-
-
 import React from 'react';
 import { Link } from "react-router-dom";
 
@@ -34,12 +32,13 @@ class Admin extends React.Component {
 
   render(){
 
+
     return(
             
    
       <div class="wrapper">
 
-		<SideBarMenu></SideBarMenu>
+			<SideBarMenu></SideBarMenu>
 
         <div class="content-wrapper">
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Input } from '@material-ui/core';
+import AppBar from './../../components/AppBar'
 
 import SideBarMenu from '../../components/SideBarMenu';
 
@@ -140,128 +142,122 @@ class Nuevo extends React.Component {
   render(){
 
     return(
+      <div>
+        <AppBar></AppBar>
+          <div class="content-wrapper">
+
+      
             
-      <div class="wrapper">
-
-
-
-      <SideBarMenu></SideBarMenu>
-
-
-      <div class="content-wrapper">
       
-        
-      
-            <div class="col-md-5">
-            <div class="box box-warning">
-                
-                <div class="blog_right_sidebar">
-                   
-                    <aside class="single_sidebar_widget author_widget">
-                       
-                        <div class="box-header with-border">
-                        <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
-
-                      <h3 class="box-title">Imagen</h3>
-                      <p>Selecciona la foto del item</p>
-
-                    </div>
-                       
-                        
-                        <div class="br"></div>
-                        <input type="file" id="exampleInputFile"></input>
-                    </aside>
-                    <aside class="single_sidebar_widget popular_post_widget">
+          <div class="col-md-5">
+          <div class="box box-warning">
+              
+              <div class="blog_right_sidebar">
+                  
+                  <aside class="single_sidebar_widget author_widget">
                       
-                    <div class="box-footer"> 
-                    <div class="col-md-12 text-right">
-                    <a class="primary-btn submit_btn" href="#">Añadir</a>
-                        </div>
-                    </div>
-                    </aside>
-                   
-                </div>
-                </div>
-            </div>
+                      <div class="box-header with-border">
+                      <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
+
+                    <h3 class="box-title">Imagen</h3>
+                    <p>Selecciona la foto del item</p>
+
+                  </div>
+                      
+                      
+                      <div class="br"></div>
+                      <input type="file" id="exampleInputFile"></input>
+                  </aside>
+                  <aside class="single_sidebar_widget popular_post_widget">
+                    
+                  <div class="box-footer"> 
+                  <div class="col-md-12 text-right">
+                  <a class="primary-btn submit_btn" href="#">Añadir</a>
+                      </div>
+                  </div>
+                  </aside>
+                  
+              </div>
+              </div>
+          </div>
 
 
-            <div class="col-md-7">
-            <div class="box box-warning">
-            <div class="box-header with-border">
 
-                      <h3 class="box-title">Nuevo Item</h3>
+          <div class="col-md-7">
+          <div class="box box-warning">
+          <div class="box-header with-border">
 
-                    </div>
-                       
-                    <form>
-                        <div class="form-group form-inline">
-                            <div class="form-group col-lg-6 col-md-6 name">
-                              <input type="text" class="form-control" id="nombreItem" placeholder="Nombre item" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Nombre item'"onChange={ this.getNombre }></input>
-                                
-                            </div>
-                            <div class="form-group col-lg-6 col-md-6 name">
-                               <input type="number" class="form-control" id="precioItem" placeholder="Precio" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Precio'" onChange={ this.getPyrecio }></input>
-                            </div>
-                            
-                        </div>
 
-                        <div class="form-group form-inline">
 
-                          
-                            <div class="col-md-6 form-group p_star">
-                            <select class="country_select" id="unidadeDeMedida" onChange={ this.getUnidadDeMedida }>
-                                  <option value="1">Kilogramos</option>
-                                  <option value="2">Metros</option>
-                                  <option value="4">Litros</option>
-                                  <option value="4">Horas</option>
-                              </select>
-                                
-                            </div>
+                    <h3 class="box-title">Nuevo Item</h3>
 
-                            <div class="col-md-6 form-group">
 
-                            <label>Mostrar Precio</label>
-                            <input type="checkbox" onChange={this.getMostrarPrecio}></input>
-                               
-                                
-                        
-                           
+                  </div>
+                      
+                  <form>
+                      <div class="form-group form-inline">
+                          <div class="form-group col-lg-6 col-md-6 name">
+                            <Input type="text" class="form-control" id="nombreItem" placeholder="Nombre item" onfocus="this.placeholder = ''"
+                                  onblur="this.placeholder = 'Nombre item'" onChange={ this.getNombre }></Input>
+                              
                           </div>
-                            
-                            </div>
+                          <div class="form-group col-lg-6 col-md-6 name">
+                              <Input type="number" class="form-control" id="precioItem" placeholder="Precio" onfocus="this.placeholder = ''"
+                                  onblur="this.placeholder = 'Precio'" onChange={ this.getPyrecio }></Input>
+                          </div>
+                          
+                      </div>
+
+                      <div class="form-group form-inline">
 
                         
+                          <div class="col-md-6 form-group p_star">
+                          <select class="country_select" id="unidadeDeMedida" onChange={ this.getUnidadDeMedida }>
+                                <option value="1">Kilogramos</option>
+                                <option value="2">Metros</option>
+                                <option value="4">Litros</option>
+                                <option value="4">Horas</option>
+                            </select>
+                              
+                          </div>
 
-                        <div class="form-group">
-                            <textarea class="form-control mb-10" rows="5" name="caracteristicas" placeholder="Caracteristicas"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Caracteristicas'" required=""onChange={ this.getCaracteristicas }></textarea>
+                          <div class="col-md-6 form-group">
+
+                          <label>Mostrar Precio</label>
+                          <input type="checkbox" onChange={this.getMostrarPrecio}></input>
+                              
+                              
+                      
+                          
                         </div>
-                        <div class="form-group">
-                            <textarea class="form-control mb-10" rows="5" name="descripcion" placeholder="Descripción"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripción'" required=""onChange={ this.getDescripcion }></textarea>
-                        </div>
+                          
+                          </div>
 
-                        <div class="box-footer">
-                        <div class="col-md-6 text-left">
-                              <Link to="/unidadMedida/nuevo"><button type="submit" value="submit" class="btn btn-warning btn-lg btn-block">Nueva Unidad</button></Link>
-                            </div>
-                        <div class="col-md-6 text-right">
-                        <a href="#" class="primary-btn submit_btn">Guardar</a>
-                        </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                      
 
+                      <div class="form-group">
+                          <textarea class="form-control mb-10" rows="5" name="caracteristicas" placeholder="Caracteristicas"
+                              onfocus="this.placeholder = ''" onblur="this.placeholder = 'Caracteristicas'" required=""onChange={ this.getCaracteristicas }></textarea>
+                      </div>
+                      <div class="form-group">
+                          <textarea class="form-control mb-10" rows="5" name="descripcion" placeholder="Descripción"
+                              onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripción'" required=""onChange={ this.getDescripcion }></textarea>
+                      </div>
 
+                      <div class="box-footer">
+                      <div class="col-md-6 text-left">
+                            <Link to="/unidadMedida/nuevo"><button type="submit" value="submit" class="btn btn-warning btn-lg btn-block">Nueva Unidad</button></Link>
+                          </div>
+                      <div class="col-md-6 text-right">
+                      <a href="#" class="primary-btn submit_btn">Guardar</a>
+                      </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
 
-        </div>
-   
-    </div>
-
-
+      </div>
+      </div>
 
     );
   }
