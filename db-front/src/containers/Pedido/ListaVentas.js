@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import SideBarMenu from '../../components/SideBarMenu';
+import AppBar from './../../components/AppBar'
 
 import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
 import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
@@ -79,9 +79,9 @@ class ListaPedidosVentas extends React.Component {
 
     return(
             
-      <div class="wrapper">
+      <div>
         
-        <SideBarMenu></SideBarMenu>
+        <AppBar></AppBar>
         
         <div class="content-wrapper">
          

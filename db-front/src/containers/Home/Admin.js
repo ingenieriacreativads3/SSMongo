@@ -10,7 +10,8 @@ import './shop/css/main.css';
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import SideBarMenu from "../../components/SideBarMenu";
+import AppBar from './../../components/AppBar'
+
 
 import { connect } from 'react-redux'
 
@@ -36,9 +37,9 @@ class Admin extends React.Component {
     return(
             
    
-      <div class="wrapper">
+      <div>
 
-			<SideBarMenu></SideBarMenu>
+		<AppBar></AppBar>
 
         <div class="content-wrapper">
 
@@ -93,12 +94,12 @@ class Admin extends React.Component {
 										</a>
 										</Link>
 									
-										<Link to="/home/detalles">
+										
 										<a href="" class="social-info">
 											<span class="lnr lnr-trash"></span>
 											<p class="hover-text">Eliminar</p>
 										</a>
-										</Link>
+										
 									</div>
 								</div>
 							</div>
@@ -123,12 +124,12 @@ class Admin extends React.Component {
 											<p class="hover-text">Editar</p>
 										</a>
 										</Link>
-										<Link to="/home/detalles">
+										
 										<a href="" class="social-info">
 											<span class="lnr lnr-trash"></span>
 											<p class="hover-text">Eliminar</p>
 										</a>
-										</Link>
+										
 									</div>
 								</div>
 							</div>
@@ -153,12 +154,12 @@ class Admin extends React.Component {
 											<p class="hover-text">Editar</p>
 										</a>
 										</Link>
-										<Link to="/home/detalles">
+										
 										<a href="" class="social-info">
 											<span class="lnr lnr-trash"></span>
 											<p class="hover-text">Eliminar</p>
 										</a>
-										</Link>
+										
 									</div>
 								</div>
 							</div>

@@ -84,11 +84,11 @@ class AppBare extends React.Component {
 						</ListItemIcon>
 						<ListItemText primary="Mi catálogo" />
 					</ListItem>
-					<ListItem button>
+					<ListItem component={Link} to="../../containers/Item/Nuevo" button>
 						<ListItemIcon>
 							<AddIcon />
 						</ListItemIcon>
-						<ListItemText primary="Nuevo Item" />
+						<ListItemText primary="Nuevo Item"/>
 					</ListItem>
 					<Divider/>
 					<ListSubheader inset>Mis compras</ListSubheader>

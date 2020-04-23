@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import SideBarMenu from '../../components/SideBarMenu';
+import AppBar from './../../components/AppBar'
+
 
 import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
 import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
@@ -23,6 +24,9 @@ import '../Home/shop/css/main.css';
 import * as PresupuestoAction from '../../store/actions/PresupuestoAction'
 
 import { connect } from 'react-redux'
+
+
+
 
 function mapStateToProps(store) {
   return {
@@ -78,15 +82,13 @@ class ListaPedidosCompra extends React.Component {
     }
 
     return(
-            
-      <div class="wrapper">
+     
+      <div>
         
-       <SideBarMenu></SideBarMenu>
+       <AppBar></AppBar>
         
         <div class="content-wrapper">
          
-         
-
         <section class="content container-fluid">
             <section class="content">
                 <div class="row features-inner">
@@ -145,7 +147,10 @@ class ListaPedidosCompra extends React.Component {
                         </div>
                       
                         <div class="box-body">
-                          <table  class="table table-bordered table-striped">
+                       
+
+                       
+                           <table  class="table table-bordered table-striped">
                             <thead>
                               <tr>
                                 <th>Fecha </th>
@@ -163,7 +168,7 @@ class ListaPedidosCompra extends React.Component {
 
                             </tbody>
                             
-                          </table>
+                          </table> 
                         </div>
                       </div>
                     </div>

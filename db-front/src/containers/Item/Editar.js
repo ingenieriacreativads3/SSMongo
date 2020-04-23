@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import SideBarMenu from '../../components/SideBarMenu';
+import { Input } from '@material-ui/core';
+import AppBar from './../../components/AppBar'
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { makeStyles } from '@material-ui/core/styles';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 
 import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
@@ -21,6 +30,31 @@ import '../Home/shop/css/main.css';
 
 import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
+
+
+import { createMuiTheme } from '@material-ui/core/styles';
+
+
+import orange from '@material-ui/core/colors/orange';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: orange,
+    secondary: {
+      main: '#ffba00',
+    },
+  },
+});
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 function mapStateToProps(store) {
   return {
@@ -140,9 +174,9 @@ class EditarItem extends React.Component {
 
     return( 
 
-        <div class="wrapper">
+        <div>
           
-          <SideBarMenu></SideBarMenu>
+          <AppBar></AppBar>
 
           <div class="content-wrapper">
 
@@ -194,46 +228,58 @@ class EditarItem extends React.Component {
                         <form>
                         <div class="form-group form-inline">
                                 <div class="form-group col-lg-6 col-md-6 name">
-                                  <input type="text" class="form-control" id="nombreItem" placeholder="Nombre item" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Nombre item'"onChange={ this.getNombre }></input>
+                                <Input placeholder="Nombre item" inputProps={{ 'aria-label': 'description' }} color='primary' onChange={ this.getNombre }/>
                                     
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6 name">
-                                   <input type="number" class="form-control" id="precioItem" placeholder="Precio" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Precio'" onChange={ this.getPrecio }></input>
+                                <Input type="number" placeholder="Precio" inputProps={{ 'aria-label': 'description' }} color='primary' onChange={ this.getPrecio }/>
                                 </div>
                             </div>
 
                             <div class="form-group form-inline">
                                 <div class="col-md-6 form-group p_star">
-                                <select class="country_select" id="unidadeDeMedida" onChange={ this.getUnidadDeMedida }>
-                                      <option value="1">Kilogramos</option>
-                                      <option value="2">Metros</option>
-                                      <option value="4">Litros</option>
-                                      <option value="4">Horas</option>
-                                  </select>
-                                    
+                                <FormControl>
+                                  <InputLabel id="demo-simple-select-label">Unidad</InputLabel>
+                                  <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    // value={unidadDeMedida}
+                                    onChange={this.getUnidadDeMedida}
+                                  >
+                                    <MenuItem value={1}>Kilogramos</MenuItem>
+                                    <MenuItem value={2}>Metros</MenuItem>
+                                    <MenuItem value={3}>Litros</MenuItem>
+                                    <MenuItem value={4}>Horas</MenuItem>
+                                  </Select>
+                                </FormControl>
+                                          
                                 </div>
                                 <div class="col-md-6 form-group">
                           
-                                <label>Mostrar Precio</label>
-                                <input type="checkbox" onChange={this.getMostrarPrecio}></input>
+                                <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked = "false"
+                                    onChange={this.getMostrarPrecio}
+                                    color="primary"
+                                  />
+                                }
+                                label="Mostrar Precio"
+                              />
                                 
-                        
-                           
                                  </div>
 
                                 
                             </div>
 
                             <div class="form-group">
-                                <textarea class="form-control mb-10" rows="5" name="caracteristicas" placeholder="Caracteristicas"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Caracteristicas'" required=""onChange={ this.getCaracteristicas }>Las caracteriticas del producto</textarea>
+                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Caracteristicas" onChange={ this.getCaracteristicas} />
                             </div>
+
                             <div class="form-group">
-                                <textarea class="form-control mb-10" rows="5" name="descripcion" placeholder="Descripción"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripción'" required=""onChange={ this.getDescripcion }>Descripcion del producto</textarea>
+                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Descripcion" onChange={ this.getDescripcion} />
                             </div>
+
                             <div class="box-footer">
                             <div class="col-md-12 text-right">
                             <a href="#" class="primary-btn submit_btn">Actualizar Item</a>
