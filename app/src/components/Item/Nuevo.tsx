@@ -1,8 +1,11 @@
 import React from 'react';
 import AppBar from './../AppBar'
 import clsx from 'clsx'
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Grid, Card, Box, Typography, Link, CssBaseline, CardHeader, Avatar, IconButton, Button } from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, Link, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
@@ -169,29 +172,109 @@ class Nuevo extends React.Component {
                     <CardHeader 
                       avatar={
                         <Avatar aria-label="recipe" className={classes.avatar}>
-                          N
+                          I
                         </Avatar>
                       }
-                      title="Nuevo Item"
+                      title="Imagen"
+                      subheader="Selecciona la foto del Item"
                     />
-                    <Button
+                    <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+                    <label htmlFor="icon-button-file">
+                      <IconButton color="primary" aria-label="upload picture" component="span">
+                        <PhotoCamera />
+                      </IconButton>
+                    </label>
+
+                    <CardActions>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        className={classes.button}
+                        startIcon={<CloudUploadIcon />}
+                      >
+                        Añadir
+                      </Button>
+                    </CardActions>
+
+                    {/* <Button
                       variant="contained"
                       component="label"
                     >
-                      Upload File
+                      Añadir imagen
                       <input
                         type="file"
                         style={{ display: "none" }}
                       />
                     </Button>
-
+ */}
 										
 									</Card>
 								</Grid>
 
                 <Grid item lg={6}>
 									<Card className={fixedHeightCard}>
-										
+                  <CardHeader 
+                      avatar={
+                        <Avatar aria-label="recipe" className={classes.avatar}>
+                          N
+                        </Avatar>
+                      }
+                      title="Nuevo Item"
+                      
+                    />
+
+                    <CardContent>
+                    <form className={classes.root}>
+                      <div>
+                        <Input placeholder="Nombre item" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                        <Input type="number" placeholder="Precio" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                      </div>
+
+                      <div>
+                      <FormControl>
+                            <InputLabel id="demo-simple-select-label">Unidad</InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              // value={unidadDeMedida}
+                              // onChange={this.getUnidadDeMedida}
+                            >
+                              <MenuItem value={1}>Kilogramos</MenuItem>
+                              <MenuItem value={2}>Metros</MenuItem>
+                              <MenuItem value={3}>Litros</MenuItem>
+                              <MenuItem value={4}>Horas</MenuItem>
+                            </Select>
+                          </FormControl>
+                          
+                          <FormControlLabel
+                          control={
+                            <Checkbox
+                              // checked = "false"
+                              // onChange={this.getMostrarPrecio}
+                              color="primary"
+                            />
+                          }
+                          label="Mostrar Precio"
+                        />
+                      </div>
+                    </form>
+                    </CardContent>
+                    <CardActions>
+                      <Button variant="contained" color="primary">
+                        Nueva Unidad
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        className={classes.button}
+                        startIcon={<SaveIcon />}
+                      >
+                        Guardar
+                      </Button>
+                    </CardActions>
+                    
 									</Card>
 								</Grid>
 

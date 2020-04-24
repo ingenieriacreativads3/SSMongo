@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 import AppBar from './components/AppBar'
 import ItemNuevo from './components/Item'
 
