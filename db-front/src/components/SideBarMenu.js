@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-
-
-
 // import '../plugins/jquery/jquery'
 // import '../plugins/bootstrap/js/bootstrap.bundle'
 // import '../plugins/overlayScrollbars/js/jquery.overlayScrollbars'
@@ -14,13 +11,6 @@ import { Link } from "react-router-dom";
 // import '../plugins/jquery-mapael/jquery.mapael'
 
 // import '../dist/js/pages/dashboard2'
-import '../containers/plugins/fontawesome-free/css/all.min.css'
-import '../containers/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'
-import '../containers/dist/css/adminlte.min.css'
-
-
-
-
 
 class SideBarMenu extends React.Component {
 
