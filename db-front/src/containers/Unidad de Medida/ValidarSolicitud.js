@@ -1,7 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import SideBarMenu from '../../components/SideBarMenu';
+import AppBar from '../../components/AppBar';
+import { Input } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
 import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
@@ -112,10 +117,10 @@ class AgregarUnidadMedida extends React.Component {
 
     return(
 
-      <div class="wrapper">
-        
-      <SideBarMenu></SideBarMenu>
+      <div>
 
+      <AppBar></AppBar>  
+      
       {/* <!-- Content Wrapper. Contains page content --> */}
       <div class="content-wrapper">
        
@@ -135,13 +140,13 @@ class AgregarUnidadMedida extends React.Component {
                     <div class="box-body">
                         <div class="form-group form-inline">
                             <div class="form-group col-lg-6 col-md-6 name">
-                              <input type="text" class="form-control" id="IDsolicitud" placeholder="20" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = '20'" disabled="disabled"></input>
+                            <Input defaultValue="20" disabled inputProps={{ 'aria-label': 'description' }} color='primary' />
+                           
                                 
                             </div>
                             <div class="form-group col-lg-3 col-md-3 name">
-                               <input type="text" class="form-control" id="fechaSolicitud" placeholder="03/04/2020" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = '03/04/2020'" disabled="disabled"></input>
+                            <Input defaultValue="'03/04/2020'" disabled inputProps={{ 'aria-label': 'description' }} color='primary' />
+                               
                             </div>
                             
                         </div>
@@ -149,47 +154,50 @@ class AgregarUnidadMedida extends React.Component {
                         <div class="form-group form-inline">
 
                         <div class="form-group col-lg-3 col-md-3 name">
-                               <input type="text" class="form-control" id="EmpresaSolicitante" placeholder="Empresa" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Empresa'" disabled="disabled"></input>
+                        <Input defaultValue="'Empresa'" disabled inputProps={{ 'aria-label': 'description' }} color='primary' />
+                              
                             </div>
 
                         <div class="form-group col-lg-3 col-md-3 name">
-                            <input type="text" class="form-control" id="nombreUnidad" placeholder="Nombre Unidad" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Nombre Unidad'"></input>
+                        <Input placeholder="Metro cuadrado" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                           
                         </div>
-                            
-
                             
                             </div>
 
                             <div class="form-group form-inline">
 
                             <div class="form-group col-lg-3 col-md-3 name">
-                                  <input type="text" class="form-control" id="simboloUnidad" placeholder="Simbolo" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Simbolo'"></input>
+                            <Input placeholder="M2" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                                  
                                 </div>
 
                             <div class="form-group col-lg-3 col-md-3 name">
-                                <input type="text" class="form-control" id="magnitudUnidad" placeholder="Magnitud" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Magnitud'"></input>
+                            <Input placeholder="Superficie" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                           
                             </div>
-                                
-
                                 
                                 </div>
 
                             <div class="form-group form-inline">
                             <div class="col-md-6 form-group p_star">
-                            <select class="country_select" id="estado" >
-                                  <option value="1">No resuelta</option>
-                                  <option value="2">Resuelta</option>
-                                 
-                              </select>
+
+                            <FormControl>
+                            <InputLabel id="demo-simple-select-label">Estado</InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              // onChange={}
+                            >
+                              <MenuItem value={1}>No Resuelta</MenuItem>
+                              <MenuItem value={2}>Resuelta</MenuItem>
+                             
+                            </Select>
+                          </FormControl>
                                 
                             </div>
                             </div>
 
-                        
                         <div class="col-md-12 text-right">
                         <a href="#" class="primary-btn submit_btn ">Aceptar</a>
                         </div>

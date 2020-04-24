@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Footer from '../../components/Footer';
-import SideBarMenu from '../../components/SideBarMenu';
+import AppBar from './../../components/AppBar'
+import { Input } from '@material-ui/core';
 
 import '../../components/bower_components/bootstrap/dist/css/bootstrap.min.css';
 import '../../components/bower_components/font-awesome/css/font-awesome.min.css';
@@ -159,14 +160,14 @@ class NuevaUnidad extends React.Component {
     return(
             <body id="NuevoUnidad">
   
-  <div class="wrapper">
+  <div>
 
-    <SideBarMenu></SideBarMenu>
+    <AppBar></AppBar>
 
     <div class="content-wrapper">
 
 
-  {/* <!--================Unidad medidda Area =================--> */}
+  {/* <!--================Unidad medida Area =================--> */}
 	<section class="contact_area section_gap_bottom">
 		<div class="container">
         <div class="col-md-12">
@@ -179,19 +180,24 @@ class NuevaUnidad extends React.Component {
 						
                         <div class="form-group form-inline">
                             <div class="form-group col-lg-6 col-md-6 name">
-                            <input type="text" class="form-control" id="solicitanteUnidad" name="solicitanteUnidad" placeholder="Usuario solicitante precargado" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre empresa solicitante precargado'" disabled="disabled"></input>
+ 
+                            <Input defaultValue="Usuario solicitante" disabled inputProps={{ 'aria-label': 'description' }} color='primary' />
                             </div>
                             <div class="form-group col-lg-6 col-md-6 name">
-                            <input type="text" class="form-control" id="nombreUnidad" name="nombreUnidad" placeholder="Nombre unidad de medida" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre unidad de medida'" ></input>
+                            <Input placeholder="Nombre" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            
                             </div>
                         </div>
 
                         <div class="form-group form-inline">
                             <div class="form-group col-lg-6 col-md-6 name">
-                            <input type="text" class="form-control" id="simboloUnidad" name="simboloUnidad" placeholder="Simbolo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Simbolo'"></input>
+                            <Input placeholder="Simbolo" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            
                             </div>
+                            
                             <div class="form-group col-lg-6 col-md-6 name">
-                            <input type="text" class="form-control" id="magnitudUnidad" name="magnitudUnidad" placeholder="Magnitud" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Magnitud'" ></input>
+                            <Input placeholder="Magnitud" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                          
                             </div>
                         </div>
 
