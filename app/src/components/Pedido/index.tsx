@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
-import ItemNuevo from './Nuevo'
+import Lista from './Lista'
 
 const drawerWidth = 240;
 
@@ -110,6 +110,6 @@ const useStyles = makeStyles((theme) => ({
 export default function PermanentDrawerLeft() {
 
 	const classes = useStyles(theme);
-	return <ItemNuevo classes={ classes } />;
+	return <Lista classes={classes} />;
 
 }

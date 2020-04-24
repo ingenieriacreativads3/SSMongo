@@ -5,8 +5,10 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Grid, Card, Box, Typography, Link, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import MaterialLink from '@material-ui/core/Link';
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import { Link} from "react-router-dom";
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -15,9 +17,9 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <MaterialLink color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </MaterialLink>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -167,103 +169,87 @@ class Nuevo extends React.Component {
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
-								<Grid item lg={6}>
-									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                          I
-                        </Avatar>
-                      }
-                      title="Imagen"
-                      subheader="Selecciona la foto del Item"
-                    />
-                    <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
-                    <label htmlFor="icon-button-file">
-                      <IconButton color="primary" aria-label="upload picture" component="span">
-                        <PhotoCamera />
-                      </IconButton>
-                    </label>
-
-                    <CardActions>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        className={classes.button}
-                        startIcon={<CloudUploadIcon />}
-                      >
-                        Añadir
-                      </Button>
-                    </CardActions>
-
-                    {/* <Button
-                      variant="contained"
-                      component="label"
-                    >
-                      Añadir imagen
-                      <input
-                        type="file"
-                        style={{ display: "none" }}
-                      />
-                    </Button>
- */}
-										
-									</Card>
-								</Grid>
-
                 <Grid item lg={6}>
 									<Card className={fixedHeightCard}>
-                  <CardHeader 
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                          N
-                        </Avatar>
-                      }
-                      title="Nuevo Item"
-                      
-                    />
+                    <CardHeader 
+                        avatar={
+                          <Avatar aria-label="recipe" className={classes.avatar}>
+                            N
+                          </Avatar>
+                        }
+                        title="Nuevo Item"
+                        
+                      />
 
                     <CardContent>
-                    <form className={classes.root}>
-                      <div>
-                        <Input placeholder="Nombre item" inputProps={{ 'aria-label': 'description' }} color='primary' />
-                        <Input type="number" placeholder="Precio" inputProps={{ 'aria-label': 'description' }} color='primary' />
-                      </div>
-
-                      <div>
-                      <FormControl>
-                            <InputLabel id="demo-simple-select-label">Unidad</InputLabel>
-                            <Select
-                              labelId="demo-simple-select-label"
-                              id="demo-simple-select"
-                              // value={unidadDeMedida}
-                              // onChange={this.getUnidadDeMedida}
+                      <form className={classes.root}>
+                        <Grid container spacing={3}>
+                          <Grid container spacing={3}>
+                            <Grid item lg={6}>
+                              <Input placeholder="Nombre item" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            </Grid>
+                            <Grid item lg={6}>
+                              <Input type="number" placeholder="Precio" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            </Grid>
+                          </Grid>
+                          <Grid container spacing={3}>
+                            <Grid item lg={6}>
+                              <FormControl className={classes.formControl}>
+                              <InputLabel id="demo-simple-select-label">Unidad</InputLabel>
+                                <Select
+                                  labelId="demo-simple-select-label"
+                                  id="demo-simple-select"
+                                  // value={unidadDeMedida}
+                                  // onChange={this.getUnidadDeMedida}
+                                >
+                                  <MenuItem value={1}>Kilogramos</MenuItem>
+                                  <MenuItem value={2}>Metros</MenuItem>
+                                  <MenuItem value={3}>Litros</MenuItem>
+                                  <MenuItem value={4}>Horas</MenuItem>
+                                </Select>
+                              </FormControl>
+                            </Grid>
+                            <Grid item lg={6}>
+                              <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      // checked = "false"
+                                      // onChange={this.getMostrarPrecio}
+                                      color="primary"
+                                    />
+                                  }
+                                  label="Mostrar Precio"
+                                />
+                            </Grid>
+                          </Grid>
+                          <Grid container spacing={3}>
+                          <Grid item lg={12}>
+                            <Button
+                              variant="contained"
+                              component="label"
                             >
-                              <MenuItem value={1}>Kilogramos</MenuItem>
-                              <MenuItem value={2}>Metros</MenuItem>
-                              <MenuItem value={3}>Litros</MenuItem>
-                              <MenuItem value={4}>Horas</MenuItem>
-                            </Select>
-                          </FormControl>
-                          
-                          <FormControlLabel
-                          control={
-                            <Checkbox
-                              // checked = "false"
-                              // onChange={this.getMostrarPrecio}
-                              color="primary"
-                            />
-                          }
-                          label="Mostrar Precio"
-                        />
-                      </div>
-                    </form>
+                              <InputLabel htmlFor="icon-button-file">
+                                <IconButton color="primary" aria-label="upload picture" component="span">
+                                  <PhotoCamera />
+                                </IconButton>
+                              </InputLabel>
+                              <Input
+                                type="file"
+                                style={{ display: "none" }}
+                              />
+                            </Button>
+                          </Grid>
+                        </Grid>
+                        </Grid>
+                      </form>
                     </CardContent>
                     <CardActions>
+                    <Link to="/home/side">
                       <Button variant="contained" color="primary">
                         Nueva Unidad
                       </Button>
+                    </Link>
+                      
                       <Button
                         variant="contained"
                         color="primary"
