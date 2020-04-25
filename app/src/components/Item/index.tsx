@@ -4,6 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import ItemNuevo from './Nuevo'
+import ItemEditar from './Editar'
 
 const drawerWidth = 240;
 
@@ -107,9 +108,18 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function PermanentDrawerLeft() {
+export  function NuevoItem() {
 
 	const classes = useStyles(theme);
-	return <ItemNuevo classes={ classes } />;
+  return <ItemNuevo classes={ classes } />;
+
+
+}
+
+export  function EditarItem() {
+
+	const classes = useStyles(theme);
+ 
+  return <ItemEditar classes={classes} />;
 
 }

@@ -70,6 +70,7 @@ class AppBare extends React.Component {
 				>
 					<div className={classes.toolbar} >Aca va el logo</div>
 					<Divider />
+					
 					<ListItem button>
 						<ListItemIcon>
 							<DashboardIcon />

@@ -1,11 +1,11 @@
 import React from 'react';
-import AppBar from './../AppBar'
+import AppBar from '../AppBar'
 import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { Link} from "react-router-dom";
@@ -42,7 +42,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Nuevo extends React.Component {
+class Editar extends React.Component {
 
 	props: any
 	static propTypes: any
@@ -174,10 +174,10 @@ class Nuevo extends React.Component {
                     <CardHeader 
                         avatar={
                           <Avatar aria-label="recipe" className={classes.avatar}>
-                            N
+                            E
                           </Avatar>
                         }
-                        title="Nuevo Item"
+                        title="Editar Item"
                         
                       />
 
@@ -186,10 +186,10 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
-                              <Input placeholder="Nombre item" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                              <Input  value="Samsung A20" inputProps={{ 'aria-label': 'description' }} color='primary' />
                             </Grid>
                             <Grid item lg={6}>
-                              <Input type="number" placeholder="Precio" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                              <Input type="number" value="16000" inputProps={{ 'aria-label': 'description' }} color='primary' />
                             </Grid>
                           </Grid>
                           <Grid container spacing={3}>
@@ -202,6 +202,7 @@ class Nuevo extends React.Component {
                                   // value={unidadDeMedida}
                                   // onChange={this.getUnidadDeMedida}
                                 >
+                                  <MenuItem value={1} selected={true}>Unidad</MenuItem>
                                   <MenuItem value={1}>Kilogramos</MenuItem>
                                   <MenuItem value={2}>Metros</MenuItem>
                                   <MenuItem value={3}>Litros</MenuItem>
@@ -222,14 +223,14 @@ class Nuevo extends React.Component {
                                 />
                             </Grid>
                           </Grid>
-                           <Grid container spacing={3}> 
+                          <Grid container spacing={3}> 
                             <Grid item lg={6}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Caracteristicas"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Android (9.0). Pantalla 16.4' Nano SIM"  />
                             </Grid>
                             <Grid item lg={6}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Descripcion"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
                             </Grid>
-                          </Grid> 
+                          </Grid>
                           <Grid container spacing={3}>
                           <Grid item lg={12}>
                             <Button
@@ -265,7 +266,7 @@ class Nuevo extends React.Component {
                         className={classes.button}
                         startIcon={<SaveIcon />}
                       >
-                        Guardar
+                        Actualizar
                       </Button>
                     </CardActions>
                     
@@ -415,10 +416,10 @@ class Nuevo extends React.Component {
   }
 }
 
-Nuevo.defaultProps = {
+Editar.defaultProps = {
 	classes: {
 		color: 'color'
 	}
 }
 
-export default connect(mapStateToProps)(Nuevo)
+export default connect(mapStateToProps)(Editar)
