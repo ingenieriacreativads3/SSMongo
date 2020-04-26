@@ -1,24 +1,21 @@
 import React from 'react';
-import AppBar from './../AppBar'
+import AppBar from '../AppBar'
 import clsx from 'clsx'
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import SaveIcon from '@material-ui/icons/Save';
+import Icon from '@material-ui/core/Icon';
+import SendIcon from '@material-ui/icons/Send';
 
 import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { Link} from "react-router-dom";
 
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
-import * as Login from './../../store/actions/Login'
+
+import * as Login from '../../store/actions/Login'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-const primary = red[500]; // #F44336
-const accent = purple['A200']; // #E040FB
+
 
 function Copyright() {
   return (
@@ -49,7 +46,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Nuevo extends React.Component {
+class ValidarSolicitud extends React.Component {
 
 	props: any
 	static propTypes: any
@@ -67,7 +64,7 @@ class Nuevo extends React.Component {
     this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
     this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
     this.state = {
-      Item: {
+      /* Item: {
         nombre: '',
         precio: '',
         foto: '',
@@ -75,7 +72,7 @@ class Nuevo extends React.Component {
         caracteristicas: '',
         unidadDeMedida: '',
         mostrarPrecio: false
-      }
+      } */
     };
   }
 /* 
@@ -160,28 +157,6 @@ class Nuevo extends React.Component {
 
   } */
 
-  async register(): Promise<void> {
-    return new Promise<void>( async (resolve, reject) => {
-      await this.props.dispatch(Login.register({
-        empresa :	{
-          nombre: "macoser",
-          cuit: "30716221659",
-          usuario: "macoser",
-          clave: "admin",
-          email: "macoser@test.com",
-          rubros: [
-              null
-          ]
-        }
-      })).then((res: any)=> {
-        console.log(res)
-        resolve(res)
-      }).catch((err: any)=> {
-        console.log(err)
-        reject(err)
-      })
-		})
-  }
 
   render(){
 
@@ -199,15 +174,15 @@ class Nuevo extends React.Component {
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
-                <Grid item lg={12}>
+                <Grid item lg={9}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
                           <Avatar aria-label="recipe" className={classes.avatar} >
-                            N
+                            S
                           </Avatar>
                         }
-                        title="Nuevo Item"
+                        title="Solicitud Unidad de Medida"
                         
                       />
 
@@ -216,81 +191,47 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                              <Input placeholder="Nombre item" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <Input defaultValue="20" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                              <Input type="number" placeholder="Precio" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <Input defaultValue="'03/04/2020'" disabled inputProps={{ 'aria-label': 'description' }} color='primary' />
                             </Grid>
                             <Grid item lg={4}>
-                              <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      // checked = "false"
-                                      // onChange={this.getMostrarPrecio}
-                                      style ={{
-                                        color: "#ff6c00",
-                                      }}
-                                    />
-                                  }
-                                  label="Mostrar Precio"
-                                />
+                            <Input defaultValue="'Empresa'" disabled inputProps={{ 'aria-label': 'description' }} color='primary' />
                             </Grid>
+                            
                           </Grid>
                           <Grid container spacing={3}>
-                            <Grid item lg={6}>
-                              <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label">Unidad</InputLabel>
+                            
+                            <Grid item lg={4}>
+                            <Input value="Metro cuadrado" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            </Grid>
+                            <Grid item lg={4}>
+                            <Input value="M2" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            </Grid>
+                            <Grid item lg={4}>
+                            <Input value="Superficie" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            </Grid>
+                            
+                          </Grid>
+                          <Grid container spacing={3}>
+                            
+                            <Grid item lg={12}>
+                            <FormControl className={classes.formControl}>
+                              <InputLabel id="demo-simple-select-label">Estado</InputLabel>
                                 <Select
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"
-                                  // value={unidadDeMedida}
-                                  // onChange={this.getUnidadDeMedida}
+                                  defaultValue={1}
                                 >
-                                  <MenuItem value={1}>Kilogramos</MenuItem>
-                                  <MenuItem value={2}>Metros</MenuItem>
-                                  <MenuItem value={3}>Litros</MenuItem>
-                                  <MenuItem value={4}>Horas</MenuItem>
+                                  <MenuItem value={1}>No resuelta</MenuItem>
+                                  <MenuItem value={2}>Resuelta</MenuItem>
+                                  
                                 </Select>
                               </FormControl>
                             </Grid>
-                            <Grid item lg={6}>
-                            <Link to="/unidadMedida/nuevo" className={classes.button} >
-                              <Button variant="contained" className={classes.button}>
-                                Nueva Unidad
-                              </Button>
-                            </Link>
-                            </Grid>
-                            
                           </Grid>
-                           <Grid container spacing={3}> 
-                            <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Caracteristicas"  />
-                            </Grid>
-                            <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Descripcion"  />
-                            </Grid>
-                            <Grid item lg={4}>
-                            <Button
-                              variant="contained"
-                              component="label"
-                            >
-                              <InputLabel htmlFor="icon-button-file">
-                                <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-                                  <PhotoCamera />
-                                </IconButton>
-                              </InputLabel>
-                              <Input
-                                type="file"
-                                style={{ display: "none" }}
-                              />
-                            </Button>
-                            </Grid>
-                          </Grid> 
-                          {/* <Grid container spacing={3}>
-                          <Grid item lg={12}>
-                            
-                          </Grid>
-                        </Grid> */}
+                          
                         </Grid>
                       </form>
                     </CardContent>
@@ -305,10 +246,10 @@ class Nuevo extends React.Component {
                               color='primary'
                               size="small"
                               className={classes.button}
-                              startIcon={<SaveIcon />}
-                              onClick={() => this.register()}
+                              endIcon={<SendIcon></SendIcon>}
+                              
                             >
-                              Guardar
+                             Aceptar
                             </Button>
                             
                           </Grid>
@@ -335,10 +276,10 @@ class Nuevo extends React.Component {
   }
 }
 
-Nuevo.defaultProps = {
+ValidarSolicitud.defaultProps = {
 	classes: {
 		color: 'color'
 	}
 }
 
-export default connect(mapStateToProps)(Nuevo)
+export default connect(mapStateToProps)(ValidarSolicitud)

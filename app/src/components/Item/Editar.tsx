@@ -169,7 +169,7 @@ class Editar extends React.Component {
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
-                <Grid item lg={6}>
+                <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
@@ -185,11 +185,25 @@ class Editar extends React.Component {
                       <form className={classes.root}>
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
-                            <Grid item lg={6}>
-                              <Input  value="Samsung A20" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            <Grid item lg={4}>
+                              <Input  value="Samsung A20" inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
                             </Grid>
-                            <Grid item lg={6}>
-                              <Input type="number" value="16000" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            <Grid item lg={4}>
+                              <Input type="number" value="16000" inputProps={{ 'aria-label': 'description' }} className={classes.input}/>
+                            </Grid>
+                            <Grid item lg={4}>
+                              <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      // checked = "false"
+                                      // onChange={this.getMostrarPrecio}
+                                      style ={{
+                                        color: "#ff6c00",
+                                      }}
+                                    />
+                                  }
+                                  label="Mostrar Precio"
+                                />
                             </Grid>
                           </Grid>
                           <Grid container spacing={3}>
@@ -199,46 +213,41 @@ class Editar extends React.Component {
                                 <Select
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"
+                                  defaultValue={1}
                                   // value={unidadDeMedida}
                                   // onChange={this.getUnidadDeMedida}
+                                  
                                 >
-                                  <MenuItem value={1} selected={true}>Unidad</MenuItem>
-                                  <MenuItem value={1}>Kilogramos</MenuItem>
-                                  <MenuItem value={2}>Metros</MenuItem>
-                                  <MenuItem value={3}>Litros</MenuItem>
-                                  <MenuItem value={4}>Horas</MenuItem>
+                                  <MenuItem value={1}>Unidad</MenuItem>
+                                  <MenuItem value={2}>Kilogramos</MenuItem>
+                                  <MenuItem value={3}>Metros</MenuItem>
+                                  <MenuItem value={4}>Litros</MenuItem>
+                                  <MenuItem value={5}>Horas</MenuItem>
                                 </Select>
                               </FormControl>
                             </Grid>
                             <Grid item lg={6}>
-                              <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      // checked = "false"
-                                      // onChange={this.getMostrarPrecio}
-                                      color="primary"
-                                    />
-                                  }
-                                  label="Mostrar Precio"
-                                />
-                            </Grid>
+                              <Link to="/unidadMedida/nuevo"  className={classes.button} >
+                                <Button variant="contained" className={classes.button}>
+                                  Nueva Unidad
+                                </Button>
+                              </Link>
+                          </Grid>
                           </Grid>
                           <Grid container spacing={3}> 
-                            <Grid item lg={6}>
+                            <Grid item lg={4}>
                             <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Android (9.0). Pantalla 16.4' Nano SIM"  />
                             </Grid>
-                            <Grid item lg={6}>
+                            <Grid item lg={4}>
                             <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
                             </Grid>
-                          </Grid>
-                          <Grid container spacing={3}>
-                          <Grid item lg={12}>
+                            <Grid item lg={4}>
                             <Button
                               variant="contained"
                               component="label"
                             >
                               <InputLabel htmlFor="icon-button-file">
-                                <IconButton color="primary" aria-label="upload picture" component="span">
+                                <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
                                   <PhotoCamera />
                                 </IconButton>
                               </InputLabel>
@@ -248,26 +257,24 @@ class Editar extends React.Component {
                               />
                             </Button>
                           </Grid>
-                        </Grid>
+                          </Grid>
                         </Grid>
                       </form>
                     </CardContent>
                     <CardActions>
-                    <Link to="/home/side">
-                      <Button variant="contained" color="primary">
-                        Nueva Unidad
-                      </Button>
-                    </Link>
-                      
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        className={classes.button}
-                        startIcon={<SaveIcon />}
-                      >
-                        Actualizar
-                      </Button>
+                      <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                        <Grid item lg={12} >
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            className={classes.button}
+                            startIcon={<SaveIcon />}
+                          >
+                            Actualizar
+                          </Button>
+                          </Grid>  
+                        </Grid>
                     </CardActions>
                     
 									</Card>

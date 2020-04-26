@@ -4,7 +4,10 @@ import {connect} from 'react-redux';
 import AppBar from './components/AppBar'
 import {NuevoItem} from './components/Item'
 import {EditarItem} from './components/Item'
-import PedidoLista from './components/Pedido'
+import ComprasPedidos from './components/Pedido'
+import {NuevaUnidadMedida} from './components/UnidadMedida'
+import {ValidarSolicitud} from './components/UnidadMedida'
+import {SolicitudesUnidadMedida} from './components/UnidadMedida'
 
 function mapStateToProps(store: {
 	solicitudDeValidacion: {
@@ -33,7 +36,10 @@ class App extends React.Component {
 						<Route path="/home/side" component={ AppBar } />
 						<Route path="/item/nuevo" component={ NuevoItem } />
 						<Route path="/item/editar" component={ EditarItem } />
-						<Route path="/pedido/lista" component={ PedidoLista } />
+						<Route path="/compras/pedidos/lista" component={ ComprasPedidos } />
+						<Route path="/unidadMedida/nuevo" component={ NuevaUnidadMedida } />
+						<Route path="/solicitud/unidadMedida/:id" component={ValidarSolicitud}></Route>
+						<Route path="/solicitud/unidadMedida" component={SolicitudesUnidadMedida}></Route>
 					</Switch>
 				</div>
 			</Router>

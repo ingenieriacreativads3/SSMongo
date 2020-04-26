@@ -52,29 +52,25 @@ function mapStateToProps(store) {
   };
 }
 
-class Nuevo extends React.Component {
+class Lista extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
 			columns: [
-				{ title: 'Name', field: 'name' },
-				{ title: 'Surname', field: 'surname' },
-				{ title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+				{ title: 'Nº', field: 'nro' , type: 'numeric'},
+				{ title: 'Fecha', field: 'fecha', type: 'date' },
+				{ title: 'Empresa', field: 'empresa' },
+				{ title: 'Unidad', field: 'unidad' },
 				{
-					title: 'Birth Place',
-					field: 'birthCity',
-					lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+					title: 'Estado',
+					field: 'estado',
+					lookup: { 1: 'No resuelta', 2: 'Resuelta' },
 				},
 			],
 			data: [
-				{ name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-				{
-					name: 'Zerya Betül',
-					surname: 'Baran',
-					birthYear: 2017,
-					birthCity: 34,
-				},
+				{ nro: '1', fecha: '02/03/2020', empresa: 'Symsa',  unidad:'Metro cuadrado', estado: 1 },
+				{ nro: '2', fecha: '07/04/2020', empresa: 'CorpuSoft',unidad:'Metro cubico', estado: 2},
 			],
     };
   }
@@ -90,7 +86,7 @@ class Nuevo extends React.Component {
         <AppBar></AppBar>
 				<MaterialTable
 					icons={tableIcons}
-					title="Editable Example"
+					title="Solicitudes Unidad de Medida"
 					columns={this.state.columns}
 					data={this.state.data}
 					editable={{
@@ -103,7 +99,7 @@ class Nuevo extends React.Component {
 										data.push(newData);
 										return { ...prevState, data };
 									});
-								}, 600);
+								}, 800);
 							}),
 						onRowUpdate: (newData, oldData) =>
 							new Promise((resolve) => {
@@ -136,10 +132,6 @@ class Nuevo extends React.Component {
   }
 }
 
-Nuevo.defaultProps = {
-	classes: {
-		color: 'color'
-	}
-}
 
-export default connect(mapStateToProps)(Nuevo)
+
+export default connect(mapStateToProps)(Lista)

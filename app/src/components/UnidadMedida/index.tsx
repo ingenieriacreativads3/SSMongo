@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
-import ItemNuevo from './Nuevo'
-import ItemEditar from './Editar'
-import { Checkbox } from '@material-ui/core';
+import UnidadMedidaNueva from './Nuevo'
+import SolicitudAValidar from './ValidarSolicitud'
+import Lista from './Lista'
 
 const drawerWidth = 240;
 
@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 500,
+    height: 400,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -128,18 +128,28 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export  function NuevoItem() {
+export  function NuevaUnidadMedida() {
 
 	const classes = useStyles(theme);
-  return <ItemNuevo classes={ classes } />;
-
+  return <UnidadMedidaNueva classes={ classes } />;
 
 }
 
-export  function EditarItem() {
+export  function ValidarSolicitud() {
 
 	const classes = useStyles(theme);
- 
-  return <ItemEditar classes={classes} />;
+  return <SolicitudAValidar classes={ classes } />;
 
 }
+
+
+export  function SolicitudesUnidadMedida() {
+
+	const classes = useStyles(theme);
+  return <Lista classes={ classes } />;
+
+}
+
+
+
+
