@@ -104,7 +104,13 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     minHeight: 300
-  }
+  },
+  button: {
+    backgroundColor: '#ff6c00',
+    '&:hover': {
+      background: "#ffba00",
+   },
+  },
 
 }));
 

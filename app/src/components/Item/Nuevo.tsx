@@ -10,8 +10,15 @@ import MaterialLink from '@material-ui/core/Link';
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { Link} from "react-router-dom";
 
+import purple from '@material-ui/core/colors/purple';
+import red from '@material-ui/core/colors/red';
+import * as Login from './../../store/actions/Login'
+
+
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
+const primary = red[500]; // #F44336
+const accent = purple['A200']; // #E040FB
 
 function Copyright() {
   return (
@@ -153,6 +160,29 @@ class Nuevo extends React.Component {
 
   } */
 
+  async register(): Promise<void> {
+    return new Promise<void>( async (resolve, reject) => {
+      await this.props.dispatch(Login.register({
+        empresa :	{
+          nombre: "macoser",
+          cuit: "30716221659",
+          usuario: "macoser",
+          clave: "admin",
+          email: "macoser@test.com",
+          rubros: [
+              null
+          ]
+        }
+      })).then((res: any)=> {
+        console.log(res)
+        resolve(res)
+      }).catch((err: any)=> {
+        console.log(err)
+        reject(err)
+      })
+		})
+  }
+
   render(){
 
 		const classes = this.props.classes
@@ -169,7 +199,7 @@ class Nuevo extends React.Component {
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
-                <Grid item lg={6}>
+                <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
@@ -252,21 +282,32 @@ class Nuevo extends React.Component {
                       </form>
                     </CardContent>
                     <CardActions>
-                    <Link to="/home/side">
-                      <Button variant="contained" color="primary">
-                        Nueva Unidad
-                      </Button>
-                    </Link>
+
+                        <Grid container spacing={3} >
+
+                          <Grid item lg={12}>
+
+                            <Link to="/home/side">
+                              <Button variant="contained" color="primary">
+                                Nueva Unidad
+                              </Button>
+                            </Link>
+                            
+                            <Button
+                              variant="contained"
+                              color='primary'
+                              size="small"
+                              className={classes.button}
+                              startIcon={<SaveIcon />}
+                              onClick={() => this.register()}
+                            >
+                              Guardar
+                            </Button>
+                            
+                          </Grid>
+                        </Grid>
                       
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        className={classes.button}
-                        startIcon={<SaveIcon />}
-                      >
-                        Guardar
-                      </Button>
+
                     </CardActions>
                     
 									</Card>
