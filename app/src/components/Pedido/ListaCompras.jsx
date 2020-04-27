@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import { Link} from "react-router-dom";
+import React from 'react'
 import AppBar from '../AppBar'
 import { connect } from 'react-redux'
 
-import ReactDOM from 'react-dom'
+
 import MaterialTable from 'material-table'
 import { CssBaseline } from '@material-ui/core';
 

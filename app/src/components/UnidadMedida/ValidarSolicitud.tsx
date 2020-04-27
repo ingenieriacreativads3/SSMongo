@@ -1,16 +1,11 @@
 import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
-import Icon from '@material-ui/core/Icon';
 import SendIcon from '@material-ui/icons/Send';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import { Link} from "react-router-dom";
 
-
-import * as Login from '../../store/actions/Login'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";

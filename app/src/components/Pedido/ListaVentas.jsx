@@ -51,25 +51,28 @@ function mapStateToProps(store) {
   };
 }
 
-class Lista extends React.Component {
+class ListaVentas extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
 			columns: [
-				{ title: 'Nº', field: 'nro' , type: 'numeric'},
 				{ title: 'Fecha', field: 'fecha', type: 'date' },
-				{ title: 'Empresa', field: 'empresa' },
+				{ title: 'Cliente', field: 'cliente' },
+				{ title: 'Cantidad', field: 'cantidad', type: 'numeric' },
 				{ title: 'Unidad', field: 'unidad' },
+				{ title: 'Precio', field: 'precio', type:'numeric' },
 				{
 					title: 'Estado',
 					field: 'estado',
-					lookup: { 1: 'No resuelta', 2: 'Resuelta' },
+					lookup: { 1: 'En espera', 2: 'Cancelado', 3:'Enviado', 4:'Finalizado' },
 				},
+				
 			],
 			data: [
-				{ nro: '1', fecha: '02/03/2020', empresa: 'Symsa',  unidad:'Metro cuadrado', estado: 1 },
-				{ nro: '2', fecha: '07/04/2020', empresa: 'CorpuSoft',unidad:'Metro cubico', estado: 2},
+				{ fecha: '20/04/2020', cliente:'Symsa', cantidad: 3, unidad: 'Unidad', precio:1000 , estado: 1},
+				{ fecha: '10/02/2020', cliente:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
+				
 			],
     };
   }
@@ -85,7 +88,7 @@ class Lista extends React.Component {
         <AppBar></AppBar>
 				<MaterialTable
 					icons={tableIcons}
-					title="Solicitudes Unidad de Medida"
+					title="Mis ventas - Pedidos"
 					columns={this.state.columns}
 					data={this.state.data}
 					editable={{
@@ -98,7 +101,7 @@ class Lista extends React.Component {
 										data.push(newData);
 										return { ...prevState, data };
 									});
-								}, 800);
+								}, 600);
 							}),
 						onRowUpdate: (newData, oldData) =>
 							new Promise((resolve) => {
@@ -133,4 +136,4 @@ class Lista extends React.Component {
 
 
 
-export default connect(mapStateToProps)(Lista)
+export default connect(mapStateToProps)(ListaVentas)

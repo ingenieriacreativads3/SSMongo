@@ -16,7 +16,7 @@ import AttachMoney from '@material-ui/icons/AttachMoney';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import PostAdd from '@material-ui/icons/PostAdd';
-import Link from '@material-ui/core/Link';
+import { Link} from "react-router-dom";
 import { IconButton, Typography, Badge } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -71,19 +71,24 @@ class AppBare extends React.Component {
 					<div className={classes.toolbar} >Aca va el logo</div>
 					<Divider />
 					
+					<Link to="/home/catalogo">
 					<ListItem button>
 						<ListItemIcon>
 							<DashboardIcon />
 						</ListItemIcon>
 						<ListItemText primary="Mi catálogo" />
 					</ListItem>
+					</Link>
+					
+					<Link to="/item/nuevo">
 					<ListItem button>
 						<ListItemIcon>
 							<AddIcon />
 						</ListItemIcon>
 						<ListItemText primary="Nuevo Item" />
 					</ListItem>
-					
+					</Link>
+
 					<Divider/>
 					<ListSubheader inset>Mis compras</ListSubheader>
 					<ListItem button>
@@ -92,12 +97,15 @@ class AppBare extends React.Component {
 						</ListItemIcon>
 						<ListItemText primary="Presupuestos" />
 					</ListItem>
+					
+					<Link to="/compras/pedidos/lista">
 					<ListItem button>
 						<ListItemIcon>
 							<ShoppingCart />
 						</ListItemIcon>
 						<ListItemText primary="Pedidos" />
 					</ListItem>
+					</Link>
 					<Divider/>
 					<ListSubheader inset>Mis ventas</ListSubheader>
 					<ListItem button>
@@ -106,12 +114,14 @@ class AppBare extends React.Component {
 						</ListItemIcon>
 						<ListItemText primary="Presupuestos" />
 					</ListItem>
+					<Link to="/ventas/pedidos/lista">
 					<ListItem button>
 						<ListItemIcon>
 							<ShoppingCart />
 						</ListItemIcon>
 						<ListItemText primary="Pedidos" />
 					</ListItem>
+					</Link>
 					<Divider/>
 					<ListSubheader inset>Solicitudes</ListSubheader>
 					<ListItem button>
@@ -120,12 +130,14 @@ class AppBare extends React.Component {
 						</ListItemIcon>
 						<ListItemText primary="Validación" />
 					</ListItem>
+					<Link to="/solicitud/unidadMedida">
 					<ListItem button>
 						<ListItemIcon>
 							<PostAdd />
 						</ListItemIcon>
 						<ListItemText primary="Unidad de Medida" />
 					</ListItem>
+					</Link>
 					
 				</Drawer>
 				<main className={classes.content}>

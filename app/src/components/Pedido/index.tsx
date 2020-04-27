@@ -4,6 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import ListaCompras from './ListaCompras'
+import ListaVentas from './ListaVentas'
 
 const drawerWidth = 240;
 
@@ -107,9 +108,16 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function ComprasPedidos() {
+export  function ComprasPedidos() {
 
 	const classes = useStyles(theme);
 	return <ListaCompras classes={classes} />;
+
+}
+
+export function VentasPedidos() {
+
+	const classes = useStyles(theme);
+	return <ListaVentas classes={classes} />;
 
 }

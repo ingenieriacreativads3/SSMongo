@@ -5,7 +5,8 @@ import orange from '@material-ui/core/colors/orange';
 
 import ItemNuevo from './Nuevo'
 import ItemEditar from './Editar'
-import { Checkbox } from '@material-ui/core';
+import Catalogo from './Catalogo'
+
 
 const drawerWidth = 240;
 
@@ -96,6 +97,9 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 500,
   },
+  fixedHeightCAtalog:{
+    height: 345,
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -125,6 +129,7 @@ const useStyles = makeStyles((theme) => ({
   },
   
   
+  
 
 }));
 
@@ -141,5 +146,13 @@ export  function EditarItem() {
 	const classes = useStyles(theme);
  
   return <ItemEditar classes={classes} />;
+
+}
+
+export  function MostrarCatalogo() {
+
+	const classes = useStyles(theme);
+ 
+  return <Catalogo classes={classes} />;
 
 }

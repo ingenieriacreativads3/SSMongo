@@ -2,12 +2,10 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import SaveIcon from '@material-ui/icons/Save';
 
 import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { Link} from "react-router-dom";
 
 //import * as ItemAction from "../../store/actions/ItemAction";
