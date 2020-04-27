@@ -9,11 +9,10 @@ import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Link} from "react-router-dom";
 
-
+import * as dialogAction from './../../store/actions/dialog'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-
 
 function Copyright() {
   return (
@@ -29,18 +28,14 @@ function Copyright() {
 }
 
 function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
+  dialogReducer: {
+    openDialogEliminarItem: boolean
+  }
 }) {
   return {
-    Item: store.Item,
-    idEmpresa: store.login.data.empresa._id
+    dialogReducer: {
+      openDialogEliminarItem: store.dialogReducer.openDialogEliminarItem
+    }
   };
 }
 
@@ -53,6 +48,7 @@ class Catalogo extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.eliminarItem = this.eliminarItem.bind(this);
 /*     this.onSubmit = this.onSubmit.bind(this);
     this.getNombre = this.getNombre.bind(this);
     this.getPrecio = this.getPrecio.bind(this);
@@ -155,7 +151,10 @@ class Catalogo extends React.Component {
 
   } */
 
-  
+  eliminarItem() {
+    console.log('this.eliminarItem()')
+    this.props.dispatch(dialogAction.eliminarItemOpen())
+  }
 
   render(){
 
@@ -173,7 +172,6 @@ class Catalogo extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -191,7 +189,7 @@ class Catalogo extends React.Component {
                       />
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                          Samsung A20
+                          asdasd
                         </Typography>
                         <Typography variant="subtitle1" component="h2">
                           $16000
@@ -207,7 +205,7 @@ class Catalogo extends React.Component {
                         <EditIcon />
                       </IconButton>
                       </Link>
-                      <IconButton aria-label="eliminar"className={classes.iconButton} >
+                      <IconButton aria-label="eliminar"className={classes.iconButton} onClick={this.eliminarItem}>
                         <DeleteIcon />
                       </IconButton>
                       

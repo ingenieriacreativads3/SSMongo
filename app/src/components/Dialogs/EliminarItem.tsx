@@ -1,18 +1,38 @@
 import React from 'react';
 import {Dialog, DialogActions, DialogContent, DialogContentText,DialogTitle,Button} from '@material-ui/core'
 
-const [open, setOpen] = React.useState(false);
+import { connect } from 'react-redux'
 
-  const handleClose = () => {
-    setOpen(false);
+function mapStateToProps(store: {
+  dialogReducer: {
+    openDialogEliminarItem: boolean
+  }
+}) {
+  return {
+    dialogReducer: {
+      openDialogEliminarItem: store.dialogReducer.openDialogEliminarItem
+    }
   };
+}
 
 class DialogEliminarItem extends React.Component{
+
+	props: any
+	static propTypes: any
+	static defaultProps: any
+
+	constructor(props: any) {
+		super(props);
+		this.state = {
+      openDialogEliminarItem: false
+    };
+	}
+
     render(){
         return(
         <Dialog
-            open={open}
-            onClose={handleClose}
+            open={this.props.dialogReducer.openDialogEliminarItem}
+            /* onClose={handleClose} */
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
@@ -23,16 +43,16 @@ class DialogEliminarItem extends React.Component{
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose} color="primary">
+              {/* <Button onClick={handleClose} color="primary">
                 Cancelar
               </Button>
               <Button onClick={handleClose} color="primary" autoFocus>
                 Eliminar
-              </Button>
+              </Button> */}
             </DialogActions>
           </Dialog>
           )
     }
 }
 
-export default (DialogEliminarItem)
+export default connect(mapStateToProps)(DialogEliminarItem)
