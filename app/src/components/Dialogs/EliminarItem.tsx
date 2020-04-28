@@ -1,6 +1,5 @@
 import React from 'react';
 import {Dialog, DialogActions, DialogContent, DialogContentText,DialogTitle,Button} from '@material-ui/core'
-
 import { connect } from 'react-redux'
 
 function mapStateToProps(store: {
@@ -29,6 +28,7 @@ class DialogEliminarItem extends React.Component{
 	}
 
     render(){
+      const classes = this.props.classes
         return(
         <Dialog
             open={this.props.dialogReducer.openDialogEliminarItem}
@@ -43,12 +43,12 @@ class DialogEliminarItem extends React.Component{
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              {/* <Button onClick={handleClose} color="primary">
+               <Button className={classes.buttonDialog} >
                 Cancelar
               </Button>
-              <Button onClick={handleClose} color="primary" autoFocus>
+              <Button autoFocus className={classes.buttonDialog}>
                 Eliminar
-              </Button> */}
+              </Button> 
             </DialogActions>
           </Dialog>
           )

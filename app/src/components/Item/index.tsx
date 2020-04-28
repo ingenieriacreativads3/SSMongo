@@ -117,6 +117,9 @@ const useStyles = makeStyles((theme) => ({
       background: "#ffba00",
    },
   },
+  buttonDialog:{
+    color:'#ff6c00',
+  },
   avatar:{
     color:"#ffffff",
     backgroundColor:'#ff6c00',
@@ -155,7 +158,7 @@ export  function MostrarCatalogo() {
  
   return <div>
     <Catalogo classes={classes} />
-    <DialogoEliminar />
+    <DialogoEliminar classes={classes}/>
   </div>;
 
 }
