@@ -11,6 +11,7 @@ import {ValidarSolicitud} from './components/UnidadMedida'
 import {SolicitudesUnidadMedida} from './components/UnidadMedida'
 import {MostrarCatalogo} from './components/Item'
 import {IniciarSesion} from './components/Login'
+import {Registrar} from './components/Register'
 
 function mapStateToProps(store: {
 	solicitudDeValidacion: {
@@ -46,6 +47,7 @@ class App extends React.Component {
 						<Route path="/solicitud/unidadMedida" component={SolicitudesUnidadMedida}></Route>
 						<Route path="/home/catalogo" component={MostrarCatalogo}></Route>
 						<Route path="/ingresar" component={IniciarSesion}></Route>
+						<Route path="/registrar" component={Registrar}></Route>
 					</Switch>
 				</div>
 			</Router>

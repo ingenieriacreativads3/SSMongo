@@ -172,6 +172,20 @@ class Login extends React.Component {
             name="email"
             autoComplete="email"
             autoFocus
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              },
+            }}
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                focused: classes.cssFocused,
+                notchedOutline: classes.notchedOutline,
+              },
+             
+            }}
           />
           <TextField
             variant="outlined"
@@ -183,10 +197,24 @@ class Login extends React.Component {
             type="password"
             id="password"
             autoComplete="current-password"
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              },
+            }}
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                focused: classes.cssFocused,
+                notchedOutline: classes.notchedOutline,
+              },
+             
+            }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" style ={{
-                color: "#ff6c00",
+                color: "#d93211",
               }} />}
             label="Recordarme"
           />
@@ -205,7 +233,7 @@ class Login extends React.Component {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2" className={classes.Link}>
+              <Link href="/registrar" variant="body2" className={classes.Link}>
                 {"No soy miembro. Registrarme"}
               </Link>
             </Grid>
