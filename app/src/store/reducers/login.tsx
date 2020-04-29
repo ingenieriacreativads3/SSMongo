@@ -2,15 +2,12 @@ export default function LoginReducer (state:{
 	status: number,
 	message: string,
 	data: {
-		exist: boolean,
 		empresa: {}
 	}
 } = {
-
   status: 0,
   message: '',
   data: {
-    exist: false,
     empresa: {}
   }
 }, action: {
@@ -20,7 +17,7 @@ export default function LoginReducer (state:{
 
   switch (action.type) {
 
-    case 'LOGIN_PENDING': {
+    case 'INGRESAR_PENDING': {
 
       return { 
         ...state, 
@@ -29,7 +26,7 @@ export default function LoginReducer (state:{
 
     }
   
-    case 'LOGIN_REJECTED': {
+    case 'INGRESAR_REJECTED': {
 
       return { 
         ...state, 
@@ -39,17 +36,16 @@ export default function LoginReducer (state:{
 
     }
   
-    case 'LOGIN_FULFILLED':{
+    case 'INGRESAR_FULFILLED':{
       
       return {
         ...state,
         fetching: false,
         fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
+        status: action.payload.status,
+        message: action.payload.message,
         data: {
-          existe: 'existe',
-          empresa: action.payload.data.data.empresa
+          empresa: action.payload.data.empresa
         }
       };
 

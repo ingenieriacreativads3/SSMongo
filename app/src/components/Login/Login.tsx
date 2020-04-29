@@ -12,30 +12,21 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import logo from "./img/logo.png";
+import * as loginAction from './../../store/actions/login'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
-
-
-
-function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
-}) {
+function mapStateToProps(store: {}) {
   return {
-    Item: store.Item,
-    idEmpresa: store.login.data.empresa._id
+    store: store
   };
 }
 
-class Login extends React.Component {
+class Login extends React.Component<{}, {
+  user: string,
+  pass: string
+}> {
 
 	props: any
 	static propTypes: any
@@ -44,109 +35,35 @@ class Login extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-/*     this.onSubmit = this.onSubmit.bind(this);
-    this.getNombre = this.getNombre.bind(this);
-    this.getPrecio = this.getPrecio.bind(this);
-    this.getFoto = this.getFoto.bind(this);
-    this.getDescripcion = this.getDescripcion.bind(this);
-    this.getCaracteristicas = this.getCaracteristicas.bind(this);
-    this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
-    this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
+    this.ingresar = this.ingresar.bind(this);
+    this.getUser = this.getUser.bind(this);
+    this.getPass = this.getPass.bind(this);
     this.state = {
-      Item: {
-        nombre: '',
-        precio: '',
-        foto: '',
-        descripcion: '',
-        caracteristicas: '',
-        unidadDeMedida: '',
-        mostrarPrecio: false
-      }
+      user: '',
+      pass: ''
     };
   }
-/* 
-  onSubmit() {
-    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
-  }
 
-  getNombre(e) {
+  getUser(e: any) {
 
     this.setState({
-      Item: {
-        ...this.state.Item,
-        nombre: e.target.value
-      }
-    });
+      user: e.target.value
+    })
 
   }
 
-  getPrecio(e) {
+  getPass(e: any) {
 
     this.setState({
-      Item: {
-        ...this.state.Item,
-        precio: e.target.value
-      }
-    });
+      pass: e.target.value
+    })
 
   }
 
-  getFoto(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        foto: e.target.value
-      }
-    });
-
+  ingresar() {
+    this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
+    console.log(this.props.store)
   }
-
-  getDescripcion(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        descripcion: e.target.value
-      }
-    });
-
-  }
-
-  getCaracteristicas(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        caracteristicas: e.target.value
-      }
-    });
-
-  }
-
-  getUnidadDeMedida(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  }
-
-  getMostrarPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        mostrarPrecio: e.target.value
-      }
-    });
-
-  } */
-
-  
 
   render(){
 
@@ -154,66 +71,69 @@ class Login extends React.Component {
 		
 
     return(
-        <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar   src={logo} className={classes.avatar}  >
-          
-        </Avatar>
-      
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Contraseña"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" style ={{
-                color: "#ff6c00",
-              }} />}
-            label="Recordarme"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={classes.submit}
-          >
-            Ingresar
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2"className={classes.Link}>
-                Olvidé mi contraseña
-              </Link>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar   src={logo} className={classes.avatar}  >
+            
+          </Avatar>
+        
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={this.getUser}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Contraseña"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={this.getPass}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" style ={{
+                  color: "#ff6c00",
+                }} />}
+              label="Recordarme"
+            />
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              className={classes.submit}
+              onClick={this.ingresar}
+            >
+              Ingresar
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2"className={classes.Link}>
+                  Olvidé mi contraseña
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2" className={classes.Link}>
+                  {"No soy miembro. Registrarme"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link href="#" variant="body2" className={classes.Link}>
-                {"No soy miembro. Registrarme"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
+          </form>
+        </div>
       
-    </Container>
+      </Container>
      
     );
   }
