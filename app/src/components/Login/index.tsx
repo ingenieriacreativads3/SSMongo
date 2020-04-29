@@ -36,15 +36,29 @@ const useStyles = makeStyles((theme) => ({
       },
       submit: {
         margin: theme.spacing(3, 0, 2),
-        backgroundColor:'#ff6c00' ,
+        backgroundColor:'#f48c13' ,
         color:'#ffffff',
         '&:hover': {
-          background: "#ffba00",
+          background: "#d93211 ",
        },
       },
       Link:{
-        color:'#ff6c00',
-      }
+        color:'#d93211',
+      },
+      cssLabel: {
+        color : '#d93211',
+      },
+      cssOutlinedInput: {
+        '&$cssFocused $notchedOutline': {
+          borderColor: `#d93211 !important`,
+        }
+      },
+
+  cssFocused: {color:`#d93211 !important`},
+  notchedOutline: {
+    borderWidth: '2px',
+    borderColor: '#d93211 !important'
+  },
   
 }));
 

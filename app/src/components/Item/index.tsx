@@ -111,10 +111,10 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
-    backgroundColor: '#ff6c00',
+    backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
-      background: "#ffba00",
+      background: "#d93211",
    },
   },
   buttonDialog:{
@@ -122,14 +122,15 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar:{
     color:"#ffffff",
-    backgroundColor:'#ff6c00',
+    backgroundColor:'#d93211',
   },
   iconButton:{
-    color:'#ff6c00',
+    color:'#d93211',
     '&:hover': {
-      color: "#ffba00",
+      color: "#d93211",
    },
   },
+  
   
   
   

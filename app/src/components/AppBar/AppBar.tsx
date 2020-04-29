@@ -16,10 +16,12 @@ import AttachMoney from '@material-ui/icons/AttachMoney';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import PostAdd from '@material-ui/icons/PostAdd';
-import { Link} from "react-router-dom";
+import Link from '@material-ui/core/Link';
 import { IconButton, Typography, Badge } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
+import logo from './../Login/img/logo.png'
+import Avatar from '@material-ui/core/Avatar';
 
 class AppBare extends React.Component {
 
@@ -50,14 +52,14 @@ class AppBare extends React.Component {
 						>
 							<MenuIcon />
 						</IconButton>
-						<Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+						{/* <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
 							Dashboard
 						</Typography>
-						<IconButton color="inherit">
+						<IconButton color="inherit" >
 							<Badge badgeContent={4} color="secondary">
 								<NotificationsIcon />
 							</Badge>
-						</IconButton>
+						</IconButton> */}
 					</Toolbar>
 				</AppBar>
 				<Drawer
@@ -68,72 +70,82 @@ class AppBare extends React.Component {
 					}}
 					anchor="left"
 				>
-					<div className={classes.toolbar} >Aca va el logo</div>
+					<div className={classes.toolbar} >
+					<Avatar   src={logo} className={classes.avatar}  >
+          
+		  			</Avatar>
+					</div>
 					<Divider />
 					
-					<Link to="/home/catalogo">
+					<Link href="/home/catalogo" className={classes.link}>
 					<ListItem button>
-						<ListItemIcon>
-							<DashboardIcon />
+						<ListItemIcon >
+							<DashboardIcon className={classes.icon}/>
 						</ListItemIcon>
 						<ListItemText primary="Mi catálogo" />
 					</ListItem>
 					</Link>
 					
-					<Link to="/item/nuevo">
+					<Link href="/item/nuevo"className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<AddIcon />
+							<AddIcon className={classes.icon}/>
 						</ListItemIcon>
 						<ListItemText primary="Nuevo Item" />
 					</ListItem>
 					</Link>
 
 					<Divider/>
-					<ListSubheader inset>Mis compras</ListSubheader>
+					<ListSubheader inset className={classes.subtitle}>Mis compras</ListSubheader>
+					<Link href="#"className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<AttachMoney />
+							<AttachMoney className={classes.icon}/>
 						</ListItemIcon>
 						<ListItemText primary="Presupuestos" />
 					</ListItem>
+					</Link>
 					
-					<Link to="/compras/pedidos/lista">
+					<Link href="/compras/pedidos/lista" className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<ShoppingCart />
+							<ShoppingCart className={classes.icon} />
 						</ListItemIcon>
 						<ListItemText primary="Pedidos" />
 					</ListItem>
 					</Link>
 					<Divider/>
-					<ListSubheader inset>Mis ventas</ListSubheader>
+					<ListSubheader inset className={classes.subtitle}>Mis ventas</ListSubheader>
+					<Link href="#"className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<AttachMoney />
+							<AttachMoney className={classes.icon} />
 						</ListItemIcon>
 						<ListItemText primary="Presupuestos" />
 					</ListItem>
-					<Link to="/ventas/pedidos/lista">
+					</Link>
+					<Link href="/ventas/pedidos/lista"className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<ShoppingCart />
+							<ShoppingCart className={classes.icon}/>
 						</ListItemIcon>
 						<ListItemText primary="Pedidos" />
 					</ListItem>
 					</Link>
 					<Divider/>
-					<ListSubheader inset>Solicitudes</ListSubheader>
+					<ListSubheader inset className={classes.subtitle}>Solicitudes</ListSubheader>
+					<Link href="/item/nuevo"className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<PersonAdd />
+							<PersonAdd className={classes.icon} />
 						</ListItemIcon>
 						<ListItemText primary="Validación" />
 					</ListItem>
-					<Link to="/solicitud/unidadMedida">
+					</Link>
+					<Link href="/solicitud/unidadMedida"className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<PostAdd />
+							<PostAdd className={classes.icon}/>
 						</ListItemIcon>
 						<ListItemText primary="Unidad de Medida" />
 					</ListItem>

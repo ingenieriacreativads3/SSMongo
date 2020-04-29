@@ -14,6 +14,22 @@ const useStyles = makeStyles((theme) => ({
 		
 		width: `calc(100% - ${drawerWidth}px)`,
 		marginLeft: drawerWidth,
+		backgroundColor:'#f48c13',
+	},
+	avatar: {
+        // margin: theme.spacing(1),
+        fontSize: '1px',
+        width: 'auto',
+        height: 'auto',
+	  },
+	  subtitle:{
+		color:'#d93211',
+	  },
+	  menuButton:{
+		 color:'#ffffff',
+	},
+	icon:{
+		color:'#d93211',
 	},
 	drawer: {
 		width: drawerWidth,
@@ -22,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	drawerPaper: {
 		width: drawerWidth,
+	},
+	link:{
+		color:'#f48c13',
 	},
 	// necessary for content to be below app bar
 	toolbar: theme.mixins.toolbar,

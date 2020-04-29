@@ -6,7 +6,7 @@ import SaveIcon from '@material-ui/icons/Save';
 
 import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import { Link} from "react-router-dom";
+import Link from '@material-ui/core/Link';
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -225,7 +225,7 @@ class Editar extends React.Component {
                               </FormControl>
                             </Grid>
                             <Grid item lg={6}>
-                              <Link to="/unidadMedida/nuevo"  className={classes.button} >
+                              <Link href="/unidadMedida/nuevo"  className={classes.button} >
                                 <Button variant="contained" className={classes.button}>
                                   Nueva Unidad
                                 </Button>
