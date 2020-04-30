@@ -130,11 +130,6 @@ const useStyles = makeStyles((theme) => ({
       color: "#d93211",
    },
   },
-  
-  
-  
-  
-
 }));
 
 export  function NuevoItem() {
@@ -159,7 +154,7 @@ export  function MostrarCatalogo() {
  
   return <div>
     <Catalogo classes={classes} />
-    <DialogoEliminar classes={classes}/>
+    <DialogoEliminar classes={classes} open={true}/>
   </div>;
 
 }

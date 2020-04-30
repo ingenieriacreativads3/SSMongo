@@ -13,19 +13,24 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import logo from "./img/logo.png";
 import * as loginAction from './../../store/actions/login'
+import * as dialogAction from './../../store/actions/dialog'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
-function mapStateToProps(store: {}) {
+import Dialogo from './../Dialogs/EliminarItem'
+
+function mapStateToProps(store: {
+  login: any
+}) {
   return {
-    store: store
+    login: store.login
   };
 }
 
 class Login extends React.Component<{}, {
   user: string,
-  pass: string
+  pass: string,
 }> {
 
 	props: any
@@ -38,9 +43,10 @@ class Login extends React.Component<{}, {
     this.ingresar = this.ingresar.bind(this);
     this.getUser = this.getUser.bind(this);
     this.getPass = this.getPass.bind(this);
+    this.cancelar = this.cancelar.bind(this);
     this.state = {
       user: '',
-      pass: ''
+      pass: '',
     };
   }
 
@@ -62,14 +68,19 @@ class Login extends React.Component<{}, {
 
   ingresar() {
     this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
-    console.log(this.props.store)
+    if(this.props.login.status !== 200) {
+      this.props.dispatch(dialogAction.open())
+    }
+  }
+
+  cancelar(){
+    this.props.dispatch(dialogAction.close())
   }
 
   render(){
 
-		const classes = this.props.classes
+    const classes = this.props.classes
 		
-
     return(
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -89,6 +100,19 @@ class Login extends React.Component<{}, {
               name="email"
               autoComplete="email"
               autoFocus
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                },
+              }}
+              InputProps={{
+                classes: {
+                  root: classes.cssOutlinedInput,
+                  focused: classes.cssFocused,
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
               onChange={this.getUser}
             />
             <TextField
@@ -101,6 +125,19 @@ class Login extends React.Component<{}, {
               type="password"
               id="password"
               autoComplete="current-password"
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                },
+              }}
+              InputProps={{
+                classes: {
+                  root: classes.cssOutlinedInput,
+                  focused: classes.cssFocused,
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
               onChange={this.getPass}
             />
             <FormControlLabel
@@ -132,6 +169,7 @@ class Login extends React.Component<{}, {
             </Grid>
           </form>
         </div>
+        <Dialogo classes={classes} cancelar={this.cancelar} />
       
       </Container>
      

@@ -1,6 +1,7 @@
 export default function dialogReducer (state = {
 
 	openDialogEliminarItem: false,
+	openDialog: false,
 	fetching: false,
 	fetched: false,
 	error: null,
@@ -30,6 +31,28 @@ export default function dialogReducer (state = {
 				fetching: false, 
 				fetched: true, 
 				openDialogEliminarItem: false
+			};
+
+		}
+
+		case 'OPEN' : {
+
+			return { 
+				...state, 
+				fetching: false, 
+				fetched: true, 
+				openDialog: true
+			};
+
+		}
+
+		case 'CLOSE' : {
+
+			return { 
+				...state, 
+				fetching: false, 
+				fetched: true, 
+				openDialog: false
 			};
 
 		}

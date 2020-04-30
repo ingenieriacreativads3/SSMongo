@@ -1,15 +1,11 @@
 export default function LoginReducer (state:{
 	status: number,
 	message: string,
-	data: {
-		empresa: {}
-	}
+	data: {}
 } = {
   status: 0,
   message: '',
-  data: {
-    empresa: {}
-  }
+  data: {}
 }, action: {
 	type: string,
 	payload: any
@@ -42,11 +38,9 @@ export default function LoginReducer (state:{
         ...state,
         fetching: false,
         fetched: true,
-        status: action.payload.status,
-        message: action.payload.message,
-        data: {
-          empresa: action.payload.data.empresa
-        }
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
       };
 
     }

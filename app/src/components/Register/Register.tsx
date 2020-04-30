@@ -138,16 +138,13 @@ class Register extends React.Component {
 
   } */
 
-  
-
   render(){
 
 		const classes = this.props.classes
-		
 
     return(
       <Container component="main" maxWidth="xs">
-      <CssBaseline />
+        <CssBaseline />
       <div className={classes.paper}>
         <Avatar  src={logo} className={classes.avatar}>
       
@@ -177,7 +174,6 @@ class Register extends React.Component {
                     focused: classes.cssFocused,
                     notchedOutline: classes.notchedOutline,
                   },
-                 
                 }}
               />
             </Grid>
@@ -335,14 +331,14 @@ class Register extends React.Component {
             </Grid>
            
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className={classes.submit}
-          >
-            REGISTRARME
-          </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={classes.submit}
+            >
+              REGISTRARME
+            </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="/ingresar" variant="body2"className={classes.Link}>
