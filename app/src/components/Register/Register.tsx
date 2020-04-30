@@ -22,8 +22,8 @@ function mapStateToProps(store: {
 	}
 }) {
   return {
-    Item: store.Item,
-    idEmpresa: store.login.data.empresa._id
+    /* Item: store.Item,
+    idEmpresa: store.login.data.empresa._id */
   };
 }
 
@@ -152,7 +152,7 @@ class Register extends React.Component {
       
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} >
+            <Grid item xs={12}sm={6} >
               <TextField
                 autoComplete="empresa"
                 name="Empresa"
@@ -303,33 +303,7 @@ class Register extends React.Component {
                 }}
               />
             </Grid>
-            <Grid item xs={12}sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="contraseña2"
-                type="password"
-                label="Repita Contraseña"
-                id="contraseña2"
-          
-                InputLabelProps={{
-                  classes: {
-                    root: classes.cssLabel,
-                    focused: classes.cssFocused,
-                  },
-                }}
-                InputProps={{
-                  classes: {
-                    root: classes.cssOutlinedInput,
-                    focused: classes.cssFocused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                 
-                }}
-              />
-            </Grid>
-           
+            
           </Grid>
             <Button
               type="submit"

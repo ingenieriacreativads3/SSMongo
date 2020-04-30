@@ -142,7 +142,7 @@ class Login extends React.Component<{}, {
             />
             <FormControlLabel
               control={<Checkbox value="remember" style ={{
-                  color: "#ff6c00",
+                  color: "#d93211",
                 }} />}
               label="Recordarme"
             />
@@ -162,7 +162,7 @@ class Login extends React.Component<{}, {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2" className={classes.Link}>
+                <Link href="/registrar" variant="body2" className={classes.Link}>
                   {"No soy miembro. Registrarme"}
                 </Link>
               </Grid>

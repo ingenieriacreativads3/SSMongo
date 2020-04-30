@@ -42,9 +42,7 @@ const useStyles = makeStyles((theme) => ({
   Link:{
     color:'#d93211',
   },
-  cssLabel: {
-    color : '#d93211',
-  },
+ 
   cssOutlinedInput: {
     '&$cssFocused $notchedOutline': {
       borderColor: `#d93211 !important`,
@@ -54,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   cssFocused: {color:`#d93211 !important`},
   notchedOutline: {
     borderWidth: '2px',
-    borderColor: '#d93211 !important'
+   
   },
 
   buttonDialog:{
