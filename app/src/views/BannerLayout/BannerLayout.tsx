@@ -4,8 +4,6 @@ import Container from '@material-ui/core/Container';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
-import PropTypes from 'prop-types';
-
 
 function mapStateToProps(store: {
     login: any
@@ -30,14 +28,12 @@ class BannerLayout extends React.Component<{
     }
   }
 
-  
-
   render(){
 
 		const { classes } = this.props;
-        const { backgroundClassName, children } = this.props;
+    const { backgroundClassName, children } = this.props;
     return(
-        <section className={classes.root}>
+      <section className={classes.root}>
         <Container className={classes.container}>
           <img
             src="/static/themes/onepirate/productHeroWonder.png"
@@ -61,4 +57,47 @@ class BannerLayout extends React.Component<{
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(BannerLayout))
+export default connect(mapStateToProps)(withStyles((theme: any) => ({
+  root: {
+    color: theme.palette.common.white,
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    [theme.breakpoints.up('sm')]: {
+      height: '80vh',
+      minHeight: 500,
+      maxHeight: 1300,
+    },
+  },
+  container: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(14),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  backdrop: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: theme.palette.common.black,
+    opacity: 0.5,
+    zIndex: -1,
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    zIndex: -2,
+  },
+  arrowDown: {
+    position: 'absolute',
+    bottom: theme.spacing(4),
+  },
+}))(BannerLayout))

@@ -1,7 +1,7 @@
 import React from 'react';
-import BannerHome from './BannerLayout'
+import BannerHome from './Banner'
 
-export function BannerLayout(props: any) {
+export function Banner(props: any) {
   const { classes } = props;
 
   return <BannerHome classes={classes}/>

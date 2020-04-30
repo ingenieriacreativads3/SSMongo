@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Index from '@material-ui/core/Button';
 
 export default withStyles((theme) => ({
   root: {
@@ -21,4 +21,4 @@ export default withStyles((theme) => ({
     padding: theme.spacing(2, 5),
     fontSize: theme.typography.pxToRem(16),
   },
-}))(Button);
+}))(Index);

@@ -1,12 +1,10 @@
 import React from 'react';
-import Typography from '../../components/Typography';
-import BannerLayout from './../BannerLayout'
+import { Typography } from '../../components/Typography';
+import { BannerLayout } from './../BannerLayout'
 import styles from './styles'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '../../components/Button'
-
-
 
 function mapStateToProps(store: {
   login: any
@@ -31,13 +29,10 @@ class Banner extends React.Component<{
     }
   }
 
-  
-
   render(){
 
 		const { classes } = this.props;
-		const backgroundImage =
-  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400&q=80';
+		const backgroundImage = 'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400&q=80';
 
     return(
         <BannerLayout backgroundClassName={classes.background}>
@@ -54,7 +49,7 @@ class Banner extends React.Component<{
           variant="contained"
           size="large"
           className={classes.button}
-          component="a"
+          // component="a"
           href="/premium-themes/onepirate/sign-up/"
         >
           Register

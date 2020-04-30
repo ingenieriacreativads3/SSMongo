@@ -32,17 +32,20 @@ class TextField extends React.Component<{
 
   render(){
     const {
-        classes,
-        InputProps = {},
-        InputLabelProps,
-        noBorder = false,
-        size = 'medium',
-        SelectProps,
-        ...other
-      } = this.props;
+      classes,
+      InputProps = {},
+      InputLabelProps,
+      noBorder = false,
+      size = 'medium',
+      SelectProps,
+      ...other
+    } = this.props;
 
       const {
-      classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
+        classes: { 
+          // input: InputPropsClassesInput, 
+          ...InputPropsClassesOther 
+        } = {},
       ...InputPropsOther
     } = InputProps;
   
@@ -58,7 +61,7 @@ class TextField extends React.Component<{
           {
             [classes.inputBorder]: !noBorder,
           },
-          InputPropsClassesInput,
+          //InputPropsClassesInput,
         ),
         disabled: classes.disabled,
         ...InputPropsClassesOther,

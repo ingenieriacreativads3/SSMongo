@@ -42,13 +42,13 @@ class Typography extends React.Component<{
     const { children, classes, marked = false, variant, ...other } = this.props;
 
     return <div>
-                <MuiTypography variantMapping={variantMapping} variant={variant} {...other}>
-                {children}
-                {marked ? (
-                    <span className={classes[`marked${capitalize(variant) + capitalize(marked)}`]} />
-                ) : null}
-                </MuiTypography>
-		    </div>
+        <MuiTypography variantMapping={variantMapping} variant={variant} {...other}>
+        {children}
+        {marked ? (
+            <span className={classes[`marked${capitalize(variant) + capitalize(marked)}`]} />
+        ) : null}
+        </MuiTypography>
+      </div>
   }
 }
 

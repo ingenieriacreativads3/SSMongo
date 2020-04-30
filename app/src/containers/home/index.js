@@ -1,4 +1,4 @@
-import withRoot from './../withRoot'
+import withRoot from '../withRoot'
 import React from 'react'
 
 // import ProductCategories from './modules/views/ProductCategories'
@@ -9,25 +9,28 @@ import React from 'react'
 // import ProductCTA from './modules/views/ProductCTA'
 import { AppAppBar } from '../../views/AppAppBar'
 import { Banner } from '../../views/Banner'
+import Footer from '../../views/Footer'
+import * as AutoRotatingCarousel from 'material-auto-rotating-carousel';
+import Asd from './asd'
 
-class Index extends React.Component<{}, {}> {
-
-	props: any
-	static propTypes: any
-	static defaultProps: any
+class Index extends React.Component {
 
   // eslint-disable-next-line no-useless-constructor
-  constructor(props: any) {
+  constructor(props) {
     super(props)
     this.state = {
+			open: false
     }
 	}
 
 	render(){
+
 		return (
 			<React.Fragment>
 				<AppAppBar />
-				 <Banner />
+				{/* <Banner />
+				<Footer /> */}
+				<Asd />
 				{/*<ProductValues />
 				<ProductCategories />
 				<ProductHowItWorks />
