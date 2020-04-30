@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export  function ComprasPedidos() {
+export function ComprasPedidos() {
 
 	const classes = useStyles(theme);
 	return <ListaCompras classes={classes} />;

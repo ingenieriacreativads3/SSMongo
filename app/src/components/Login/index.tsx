@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
   cssFocused: {color:`#d93211 !important`},
   notchedOutline: {
     borderWidth: '2px',
-   
   },
 
   buttonDialog:{

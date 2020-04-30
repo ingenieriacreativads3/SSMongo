@@ -1,17 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import AppBar from './components/AppBar'
-import {NuevoItem} from './components/Item'
-import {EditarItem} from './components/Item'
-import {ComprasPedidos} from './components/Pedido'
-import {VentasPedidos} from './components/Pedido'
-import {NuevaUnidadMedida} from './components/UnidadMedida'
-import {ValidarSolicitud} from './components/UnidadMedida'
-import {SolicitudesUnidadMedida} from './components/UnidadMedida'
-import {MostrarCatalogo} from './components/Item'
-import {IniciarSesion} from './components/Login'
-import {Registrar} from './components/Register'
+import { NuevoItem } from './components/Item'
+import { EditarItem } from './components/Item'
+import { ComprasPedidos } from './components/Pedido'
+import { VentasPedidos } from './components/Pedido'
+import { NuevaUnidadMedida } from './components/UnidadMedida'
+import { ValidarSolicitud } from './components/UnidadMedida'
+import { SolicitudesUnidadMedida } from './components/UnidadMedida'
+import { MostrarCatalogo } from './components/Item'
+import { IniciarSesion } from './components/Login'
+import { Registrar } from './components/Register'
+import asd from './containers/home/'
 
 function mapStateToProps(store: {
 	solicitudDeValidacion: {
@@ -48,6 +49,7 @@ class App extends React.Component {
 						<Route path="/home/catalogo" component={MostrarCatalogo}></Route>
 						<Route path="/ingresar" component={IniciarSesion}></Route>
 						<Route path="/registrar" component={Registrar}></Route>
+						<Route path="/asd" component={asd}></Route>
 					</Switch>
 				</div>
 			</Router>
