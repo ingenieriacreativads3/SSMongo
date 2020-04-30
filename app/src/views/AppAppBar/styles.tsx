@@ -1,4 +1,4 @@
-import { styles as toolbarStyles } from './../Toolbar';
+import { styles as toolbarStyles } from '../../components/Toolbar'
 
 const styles = (theme: any) => ({
   title: {
@@ -25,7 +25,7 @@ const styles = (theme: any) => ({
     marginLeft: theme.spacing(3),
   },
   linkSecondary: {
-    color: theme.palette.secondary.main,
+    color: '#d93211',
   },
 });
 

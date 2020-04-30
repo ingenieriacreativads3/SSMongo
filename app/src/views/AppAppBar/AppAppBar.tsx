@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import clsx from 'clsx'
 import { withStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link'
-import AppBar from './../AppBarHome'
-import Toolbar  from './../Toolbar'
+import AppBar from '../../components/AppBarHome'
+import Toolbar  from '../../components/Toolbar'
 import styles from './styles'
 
 function mapStateToProps(store: {
@@ -48,7 +48,7 @@ class AppAppBar extends React.Component<{
 							className={classes.title}
 							href="/premium-themes/onepirate/"
 						>
-							{'SupliersStore ahre'}
+							{/* {'SupliersStore ahre'} */}
 						</Link>
 						<div className={classes.right}>
 							<Link
@@ -56,17 +56,17 @@ class AppAppBar extends React.Component<{
 								variant="h6"
 								underline="none"
 								className={classes.rightLink}
-								href="/premium-themes/onepirate/sign-in/"
+								href="/registrar"
 							>
-								{'Sign In'}
+								{'Ingresar'}
 							</Link>
 							<Link
 								variant="h6"
 								underline="none"
 								className={clsx(classes.rightLink, classes.linkSecondary)}
-								href="/premium-themes/onepirate/sign-up/"
+								href="/ingresar"
 							>
-								{'Sign Up'}
+								{'Registrarme'}
 							</Link>
 						</div>
 					</Toolbar>
