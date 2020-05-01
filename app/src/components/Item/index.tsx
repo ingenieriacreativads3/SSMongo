@@ -7,6 +7,8 @@ import ItemNuevo from './Nuevo'
 import ItemEditar from './Editar'
 import Catalogo from './Catalogo'
 import DialogoEliminar from './../Dialogs/EliminarItem'
+import DetalleItem from './Detalle'
+
 
 const drawerWidth = 240;
 
@@ -130,6 +132,12 @@ const useStyles = makeStyles((theme) => ({
       color: "#d93211",
    },
   },
+  Link:{
+    color:'#d93211',
+  },
+  img:{
+    width:300,
+  },
 }));
 
 export  function NuevoItem() {
@@ -156,5 +164,16 @@ export  function MostrarCatalogo() {
     <Catalogo classes={classes} />
     <DialogoEliminar classes={classes} open={true}/>
   </div>;
+
+}
+
+export  function VerDetalleItem() {
+
+	const classes = useStyles(theme);
+ 
+  return <div>
+    <DetalleItem classes={classes} />;
+   
+  </div>
 
 }
