@@ -1,10 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
 import foto from './../Login/img/photo2.png';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize, Divider} from '@material-ui/core';
+
+import { Container, Grid, Card, Box, Typography, CssBaseline,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -15,8 +14,7 @@ import * as Login from './../../store/actions/login'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-const primary = red[500]; // #F44336
-const accent = purple['A200']; // #E040FB
+
 
 function Copyright() {
   return (
@@ -225,6 +223,7 @@ class Detalle extends React.Component {
                     <CardActions>
 
                     <div>
+                              <Link href="/pedido/nuevo" className={classes.button}>
                                 <Button
                                 type="button"
                                 
@@ -234,6 +233,7 @@ class Detalle extends React.Component {
                                 >
                                 Solicitar pedido
                                 </Button>
+                                </Link>
                                 </div>
                                 <div>
                                 <Button

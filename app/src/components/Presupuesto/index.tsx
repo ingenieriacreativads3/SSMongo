@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
-import ListaCompras from './ListaCompras'
-import ListaVentas from './ListaVentas'
-import PedidoNuevo from './Nuevo'
+
+import PresupuestoNuevo from './Nuevo'
 
 const drawerWidth = 240;
 
@@ -120,23 +119,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export function ComprasPedidos() {
+
+
+export function NuevoPresupuesto() {
 
 	const classes = useStyles(theme);
-	return <ListaCompras classes={classes} />;
-
-}
-
-export function VentasPedidos() {
-
-	const classes = useStyles(theme);
-	return <ListaVentas classes={classes} />;
-
-}
-
-export function NuevoPedido() {
-
-	const classes = useStyles(theme);
-	return <PedidoNuevo classes={classes} />;
+	return <PresupuestoNuevo classes={classes} />;
 
 }
