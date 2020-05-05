@@ -113,12 +113,14 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
+    margin: theme.spacing(3),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
       background: "#d93211",
    },
   },
+ 
   buttonDialog:{
     color:'#ff6c00',
   },

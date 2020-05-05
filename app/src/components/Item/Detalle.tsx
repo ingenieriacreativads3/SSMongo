@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import foto from './../Login/img/photo2.png';
 
 
-import { Container, Grid, Card, Box, Typography, CssBaseline,  Button, CardContent,  CardActions} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography,Divider, CssBaseline,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -194,35 +194,33 @@ class Detalle extends React.Component {
                                 <Link href="#" variant="body2" className={classes.Link}>
                                 {"Vendedor: Symsa"}
                                 </Link>
+                                
                                 </Typography>
+                                <Typography gutterBottom variant="h5" component="h2" >
+                              Descripción
+                            </Typography>
+                            <Typography variant="subtitle2" component="h4">
+                          El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
+                                </Typography>
+                                <Typography gutterBottom variant="h5" component="h2" >
+                              Características
+                            </Typography>
+                            <Typography variant="subtitle2" component="h4">
+                          El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
+                                </Typography>
+                                
                               
                                 
                             </Grid>
-                            <Grid item lg={6} >
+                            <Grid item lg={6} 
+                              spacing={0}
+                              direction="column"
+                              alignItems="center"
+                              justify="center">
                                 <div>
                                     <img src={foto} className = {classes.img}></img>
                                 </div>
-
-                            </Grid>
-                            
-                          </Grid>
-                          <Grid container spacing={3} >
-                          <Grid item lg={6} >
-                            <Typography gutterBottom variant="h5" component="h2" className={classes.Link}>
-                              Descripción
-                            </Typography>
-                          <Typography variant="subtitle1" component="h2">
-                          El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
-                                </Typography>
-                          </Grid>
-                          </Grid>
-                        </Grid>
-                     
-                    </CardContent>
-
-                    <CardActions>
-
-                    <div>
+                                
                               <Link href="/pedido/nuevo" className={classes.button}>
                                 <Button
                                 type="button"
@@ -234,8 +232,8 @@ class Detalle extends React.Component {
                                 Solicitar pedido
                                 </Button>
                                 </Link>
-                                </div>
-                                <div>
+                                
+                                <Link href="/presupuesto/nuevo" className={classes.button}>
                                 <Button
                                 type="button"
                                 
@@ -245,7 +243,19 @@ class Detalle extends React.Component {
                                 >
                                 Solicitar presupuesto
                                 </Button>
-                                </div>
+                                </Link>
+                                
+                            </Grid>
+                            
+                          </Grid>
+                          
+                        </Grid>
+                     
+                    </CardContent>
+
+                    <CardActions>
+
+                    
                       
 
                     </CardActions>
