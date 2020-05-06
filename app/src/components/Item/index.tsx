@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
-    margin: theme.spacing(3),
+    margin: theme.spacing(0.5),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
@@ -139,6 +139,7 @@ const useStyles = makeStyles((theme) => ({
   },
   img:{
     width:300,
+    display:'flex'
   },
 }));
 

@@ -171,13 +171,13 @@ class Detalle extends React.Component {
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
 
-              <Grid item lg={12}>
+              <Grid item xs={12}  >
                 <Card className={fixedHeightCard}>
                   
                   <CardContent>
                     
                         <Grid container spacing={3} >
-                          <Grid item lg={6}>
+                          <Grid item xs={6}  >
                             <Typography gutterBottom variant="h5" component="h2">
                                 SAMSUNG GALAXY A20 
                             </Typography>
@@ -205,20 +205,15 @@ class Detalle extends React.Component {
                             
                               
                           </Grid>
-                          <Grid item lg={6} spacing={3}>
-                            <Grid
-                              container
+                          <Grid item  xs={6} spacing={3} container
                               direction="column"
-                              justify="flex-end"
-                              alignItems="center"
-                            >
-                              {/* <Grid item xs={12} spacing={3}> */}
-                                <div style={{textAlign: 'center'}}>
+                              justify="space-around"
+                              alignItems="center">
+                      
+                                
                                   <img src={foto} className = {classes.img}></img>
-                                </div>
-                              {/* </Grid> */}
-                              <Grid item xs={12} spacing={3}>
-                                <Link href="/pedido/nuevo" className={classes.button}>
+                                <div>
+                                  <Link href="/pedido/nuevo" className={classes.button}>
                                   <Button
                                   type="button"
                                   
@@ -229,7 +224,6 @@ class Detalle extends React.Component {
                                   Solicitar pedido
                                   </Button>
                                 </Link>
-                                  
                                 <Link href="/presupuesto/nuevo" className={classes.button}>
                                   <Button
                                   type="button"
@@ -241,10 +235,7 @@ class Detalle extends React.Component {
                                   Solicitar presupuesto
                                   </Button>
                                 </Link>
-                              </Grid>
-
-                              
-                            </Grid>
+                                </div>
                               
                               
                           </Grid>
@@ -254,12 +245,7 @@ class Detalle extends React.Component {
                     
                   </CardContent>
 
-                  <CardActions>
-
-                  
-                    
-
-                  </CardActions>
+                
                   
                 </Card>
               </Grid>
