@@ -167,109 +167,110 @@ class Detalle extends React.Component {
 
       <div className={classes.root}>
         <CssBaseline />
-        
+        <main className={classes.content}>
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
 
-					<main className={classes.content}>
-						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" className={classes.container}>
-							<Grid container spacing={3}>
-
-                <Grid item lg={12}>
-									<Card className={fixedHeightCard}>
-                   
-                    <CardContent>
-                      
-                        <Grid container spacing={3}>
-                          <Grid container spacing={3} >
-                            <Grid item lg={6}>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    SAMSUNG GALAXY A20 
-                                </Typography>
-                                <Typography variant="subtitle1" component="h2">
-                                $16000
-                                </Typography>
-                               
-                                
-                                <Typography>
-                                <Link href="#" variant="body2" className={classes.Link}>
-                                {"Vendedor: Symsa"}
-                                </Link>
-                                
-                                </Typography>
-                                <Typography gutterBottom variant="h5" component="h2" >
+              <Grid item lg={12}>
+                <Card className={fixedHeightCard}>
+                  
+                  <CardContent>
+                    
+                        <Grid container spacing={3} >
+                          <Grid item lg={6}>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                SAMSUNG GALAXY A20 
+                            </Typography>
+                            <Typography variant="subtitle1" component="h2">
+                              $16000
+                            </Typography>
+                            <Typography>
+                              <Link href="#" variant="body2" className={classes.Link}>
+                              {"Vendedor: Symsa"}
+                              </Link>
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="h2" >
                               Descripción
                             </Typography>
                             <Typography variant="subtitle2" component="h4">
-                          El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
-                                </Typography>
-                                <Typography gutterBottom variant="h5" component="h2" >
+                              El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="h2" >
                               Características
                             </Typography>
                             <Typography variant="subtitle2" component="h4">
-                          El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
-                                </Typography>
-                                
+                              El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
+                            </Typography>
                               
-                                
-                            </Grid>
-                            <Grid item lg={6} 
-                              spacing={0}
-                              direction="column"
-                              alignItems="center"
-                              justify="center">
-                                <div>
-                                    <img src={foto} className = {classes.img}></img>
-                                </div>
-                                
-                              <Link href="/pedido/nuevo" className={classes.button}>
-                                <Button
-                                type="button"
-                                
-                                variant="contained"
-                                className={classes.button}
-                                // onClick={this.ingresar}
-                                >
-                                Solicitar pedido
-                                </Button>
-                                </Link>
-                                
-                                <Link href="/presupuesto/nuevo" className={classes.button}>
-                                <Button
-                                type="button"
-                                
-                                variant="contained"
-                                className={classes.button}
-                                // onClick={this.ingresar}
-                                >
-                                Solicitar presupuesto
-                                </Button>
-                                </Link>
-                                
-                            </Grid>
                             
+                              
+                          </Grid>
+                          <Grid item lg={6} spacing={3}>
+                            <Grid
+                              container
+                              direction="column"
+                              justify="flex-end"
+                              alignItems="center"
+                            >
+                              {/* <Grid item xs={12} spacing={3}> */}
+                                <div style={{textAlign: 'center'}}>
+                                  <img src={foto} className = {classes.img}></img>
+                                </div>
+                              {/* </Grid> */}
+                              <Grid item xs={12} spacing={3}>
+                                <Link href="/pedido/nuevo" className={classes.button}>
+                                  <Button
+                                  type="button"
+                                  
+                                  variant="contained"
+                                  className={classes.button}
+                                  // onClick={this.ingresar}
+                                  >
+                                  Solicitar pedido
+                                  </Button>
+                                </Link>
+                                  
+                                <Link href="/presupuesto/nuevo" className={classes.button}>
+                                  <Button
+                                  type="button"
+                                  
+                                  variant="contained"
+                                  className={classes.button}
+                                  // onClick={this.ingresar}
+                                  >
+                                  Solicitar presupuesto
+                                  </Button>
+                                </Link>
+                              </Grid>
+
+                              
+                            </Grid>
+                              
+                              
                           </Grid>
                           
                         </Grid>
-                     
-                    </CardContent>
-
-                    <CardActions>
-
+                        
                     
-                      
+                  </CardContent>
 
-                    </CardActions>
+                  <CardActions>
+
+                  
                     
-									</Card>
-								</Grid>
+
+                  </CardActions>
+                  
+                </Card>
+              </Grid>
 
 
-							</Grid>
-							<Box pt={4}>
-								<Copyright />
-							</Box>
-						</Container>
-					</main>
+            </Grid>
+            <Box pt={4}>
+              <Copyright />
+            </Box>
+          </Container>
+        </main>
 
          
 		 </div>
