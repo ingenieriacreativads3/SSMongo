@@ -40,7 +40,7 @@ export default function dialogReducer (state = {
 			return { 
 				...state, 
 				fetching: false, 
-				fetched: true, 
+				fetched: false, 
 				openDialog: true
 			};
 
@@ -51,7 +51,7 @@ export default function dialogReducer (state = {
 			return { 
 				...state, 
 				fetching: false, 
-				fetched: true, 
+				fetched: false, 
 				openDialog: false
 			};
 

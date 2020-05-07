@@ -47,7 +47,7 @@ const tableIcons = {
 function mapStateToProps(store) {
   return {
     Item: store.Item,
-    idEmpresa: store.login.data.empresa._id
+    //idEmpresa: store.login.data.empresa._id
   };
 }
 
@@ -82,7 +82,7 @@ class ListaCompras extends React.Component {
 		const classes = this.props.classes
 
     return(
-			<div className={classes.root}>
+			<div className={classes.root} style={{marginTop: '10%'}}>
 
         <CssBaseline />
         <AppBar></AppBar>

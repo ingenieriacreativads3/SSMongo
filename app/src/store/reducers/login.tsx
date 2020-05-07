@@ -44,6 +44,19 @@ export default function LoginReducer (state:{
       };
 
     }
+
+    case 'REINTENTAR':{
+      
+      return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: 0,
+        message: '',
+        data: {}
+      };
+
+    }
   
     case 'E': {
       throw new Error('Este error se manejo asi!' + ' login' + 'Reducer.js');

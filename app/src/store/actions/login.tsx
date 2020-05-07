@@ -1,5 +1,14 @@
 import axios from 'axios';
 
+export function reintentar() {
+
+	return {
+		type: 'REINTENTAR',
+		payload: ''
+	}
+
+}
+
 export function ingresar(user: string, pass: string) {
 
 	let url: string = 'http://127.0.0.1:8000';

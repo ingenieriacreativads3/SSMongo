@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 500,
+    height: 'auto',
   },
   fixedHeightCAtalog:{
     height: 345,

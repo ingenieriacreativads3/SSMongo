@@ -177,7 +177,7 @@ class Detalle extends React.Component {
                   <CardContent>
                     
                         <Grid container spacing={3} >
-                          <Grid item xs={6}  >
+                          <Grid item sm={6} xs={12}  >
                             <Typography gutterBottom variant="h5" component="h2">
                                 SAMSUNG GALAXY A20 
                             </Typography>
@@ -205,39 +205,42 @@ class Detalle extends React.Component {
                             
                               
                           </Grid>
-                          <Grid item  xs={6} spacing={3} container
-                              direction="column"
-                              justify="space-around"
-                              alignItems="center">
+                            
+                            <Grid item sm={6} xs={12} spacing={3} container
+                                direction="column"
+                                justify="space-around"
+                                alignItems="center">
                       
+                                    <img src={foto} className = {classes.img}></img>
+                            
+
+                                  <div>
+                                    <Link href="/pedido/nuevo" className={classes.button}>
+                                      <Button
+                                      type="button"
+                                      
+                                      variant="contained"
+                                      className={classes.button}
+                                      // onClick={this.ingresar}
+                                      >
+                                      Solicitar pedido
+                                      </Button>
+                                    </Link>
+                                  <Link href="/presupuesto/nuevo" className={classes.button}>
+                                    <Button
+                                    type="button"
+                                    
+                                    variant="contained"
+                                    className={classes.button}
+                                    // onClick={this.ingresar}
+                                    >
+                                    Solicitar presupuesto
+                                    </Button>
+                                  </Link>
+                                  </div>
+                                  
                                 
-                                  <img src={foto} className = {classes.img}></img>
-                                <div>
-                                  <Link href="/pedido/nuevo" className={classes.button}>
-                                  <Button
-                                  type="button"
-                                  
-                                  variant="contained"
-                                  className={classes.button}
-                                  // onClick={this.ingresar}
-                                  >
-                                  Solicitar pedido
-                                  </Button>
-                                </Link>
-                                <Link href="/presupuesto/nuevo" className={classes.button}>
-                                  <Button
-                                  type="button"
-                                  
-                                  variant="contained"
-                                  className={classes.button}
-                                  // onClick={this.ingresar}
-                                  >
-                                  Solicitar presupuesto
-                                  </Button>
-                                </Link>
-                                </div>
-                              
-                              
+                                
                           </Grid>
                           
                         </Grid>

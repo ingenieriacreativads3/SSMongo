@@ -4,19 +4,18 @@ import { connect } from 'react-redux'
 
 function mapStateToProps(store: {
   dialogReducer: {
-    openDialogEliminarItem: boolean,
     openDialog: boolean
   }
 }) {
   return {
-    dialogReducer: {
-      openDialogEliminarItem: store.dialogReducer.openDialogEliminarItem
-    },
     openDialog: store.dialogReducer.openDialog
   };
 }
 
-class DialogEliminarItem extends React.Component<{}, {}> {
+class DialogOneButton extends React.Component<{
+	title: string,
+	text: string,
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -24,22 +23,13 @@ class DialogEliminarItem extends React.Component<{}, {}> {
 
 	constructor(props: any) {
     super(props);
-    this.cancelar = this.cancelar.bind(this);
-    this.show = this.show.bind(this);
+    this.aceptar = this.aceptar.bind(this);
 		this.state = {
     };
   }
 
-  cancelar() {
-    this.props.cancelar()
-  }
-
-  show(isShow: boolean) {
-    if(!isShow){
-      return {
-        display: 'none'
-      }
-    }
+  aceptar() {
+    this.props.aceptar()
   }
 
   render(){
@@ -47,21 +37,17 @@ class DialogEliminarItem extends React.Component<{}, {}> {
     return(
       <Dialog
         open={this.props.openDialog}
-        /* onClose={handleClose} */
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Alerta"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{this.props.title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            desea eliminar el item
+            {this.props.text}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button className={classes.buttonDialog} onClick={this.cancelar} >
-            Cancelar
-          </Button> 
-          <Button autoFocus className={classes.buttonDialog} >
+          <Button autoFocus className={classes.buttonDialog} onClick={this.aceptar} >
             Aceptar
           </Button> 
         </DialogActions>
@@ -70,4 +56,4 @@ class DialogEliminarItem extends React.Component<{}, {}> {
   }
 }
 
-export default connect(mapStateToProps)(DialogEliminarItem)
+export default connect(mapStateToProps)(DialogOneButton)

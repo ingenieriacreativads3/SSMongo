@@ -19,6 +19,7 @@ import * as dialogAction from './../../store/actions/dialog'
 import { connect } from 'react-redux'
 
 import Dialogo from './../Dialogs/EliminarItem'
+import DialogoOneButton from './../Dialogs/OneButton'
 
 function mapStateToProps(store: {
   login: any
@@ -43,11 +44,19 @@ class Login extends React.Component<{}, {
     this.ingresar = this.ingresar.bind(this);
     this.getUser = this.getUser.bind(this);
     this.getPass = this.getPass.bind(this);
-    this.cancelar = this.cancelar.bind(this);
+    this.aceptar = this.aceptar.bind(this);
     this.state = {
       user: '',
       pass: '',
     };
+  }
+
+  componentDidUpdate() {
+    if(this.props.login.status !== 200 && this.props.login.fetched) {
+      this.props.dispatch(dialogAction.open())
+    } else {
+      this.props.dispatch(dialogAction.close())
+    }
   }
 
   getUser(e: any) {
@@ -68,13 +77,12 @@ class Login extends React.Component<{}, {
 
   ingresar() {
     this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
-    if(this.props.login.status !== 200) {
-      this.props.dispatch(dialogAction.open())
-    }
+
   }
 
-  cancelar(){
+  aceptar() {
     this.props.dispatch(dialogAction.close())
+    this.props.dispatch(loginAction.reintentar())
   }
 
   render(){
@@ -169,7 +177,8 @@ class Login extends React.Component<{}, {
             </Grid>
           </form>
         </div>
-        <Dialogo classes={classes} cancelar={this.cancelar} />
+        {/* <Dialogo classes={classes} cancelar={this.cancelar} /> */}
+        <DialogoOneButton title={'Error de ingreso'} text={this.props.login.message} classes={classes} aceptar={this.aceptar} />
       
       </Container>
      

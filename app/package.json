@@ -38,6 +38,7 @@
     "redux-devtools": "^3.4.2",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.2",
+    "redux-promise-middleware-actions": "^3.0.1",
     "redux-thunk": "^2.3.0",
     "typescript": "^3.8.3"
   },
