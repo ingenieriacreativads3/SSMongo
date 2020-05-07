@@ -17,11 +17,15 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import PostAdd from '@material-ui/icons/PostAdd';
 import Link from '@material-ui/core/Link';
-import { IconButton, Typography, Badge } from '@material-ui/core';
+import { IconButton, Typography, Badge, Button } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
 import logo from './../Login/img/logo.png'
 import Avatar from '@material-ui/core/Avatar';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 class AppBare extends React.Component {
 
@@ -37,6 +41,7 @@ class AppBare extends React.Component {
 	render(){
 
 		const classes = this.props.classes
+		
 
 		return(
 			
@@ -52,6 +57,36 @@ class AppBare extends React.Component {
 						>
 							<MenuIcon />
 						</IconButton>
+						<Button color="inherit">INICIO</Button>
+						<div>
+						<IconButton
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							// onClick={handleMenu}
+							color="inherit"
+						>
+							<AccountCircle />
+						</IconButton>
+						{/* <Menu
+							// id="menu-appbar"
+							// anchorEl={anchorEl}
+							// anchorOrigin={{
+							// vertical: 'top',
+							// horizontal: 'right',
+							// }}
+							// keepMounted
+							// transformOrigin={{
+							// vertical: 'top',
+							// horizontal: 'right',
+							// }}
+							// open={open}
+							// onClose={handleClose}
+						>
+							<MenuItem>Mi Perfil</MenuItem>
+							<MenuItem>Cerrar Sesion</MenuItem>
+						</Menu> */}
+						</div>
 						{/* <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
 							Dashboard
 						</Typography>
