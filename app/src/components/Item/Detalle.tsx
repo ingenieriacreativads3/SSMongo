@@ -10,6 +10,7 @@ import Link from '@material-ui/core/Link';
 import purple from '@material-ui/core/colors/purple';
 import red from '@material-ui/core/colors/red';
 import * as Login from './../../store/actions/login'
+import AppBar from '../AppBar'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
@@ -167,6 +168,7 @@ class Detalle extends React.Component {
 
       <div className={classes.root}>
         <CssBaseline />
+        <AppBar></AppBar>
         <main className={classes.content}>
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>

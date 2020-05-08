@@ -7,9 +7,11 @@ import SaveIcon from '@material-ui/icons/Save';
 import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
+import menuLateral from '../Drawer'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
+import MenuLateral from '../Drawer';
 
 function Copyright() {
   return (
@@ -161,7 +163,7 @@ class Editar extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-
+        <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>

@@ -10,7 +10,8 @@ import DialogoEliminar from './../Dialogs/EliminarItem'
 import DetalleItem from './Detalle'
 
 
-const drawerWidth = 240;
+
+const drawerWidth = 200;
 
 
 const theme = createMuiTheme({
@@ -150,6 +151,16 @@ export  function NuevoItem() {
 
 
 }
+export  function VerDetalleItem() {
+
+	const classes = useStyles(theme);
+
+  return <div>
+    <DetalleItem classes={classes} />;
+   
+  </div>
+
+}
 
 export  function EditarItem() {
 
@@ -170,13 +181,4 @@ export  function MostrarCatalogo() {
 
 }
 
-export  function VerDetalleItem() {
 
-	const classes = useStyles(theme);
- 
-  return <div>
-    <DetalleItem classes={classes} />;
-   
-  </div>
-
-}

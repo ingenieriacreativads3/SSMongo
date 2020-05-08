@@ -18,6 +18,7 @@ import {NuevoPedido} from './components/Pedido'
 import {NuevoPresupuesto} from './components/Presupuesto'
 import {ComprasPresupuestos} from './components/Presupuesto'
 import {VentasPresupuestos} from './components/Presupuesto'
+import {EvaluarEmpresa} from './components/Evaluacion'
 
 function mapStateToProps(store: {
 	solicitudDeValidacion: {
@@ -60,6 +61,7 @@ class App extends React.Component {
 						<Route path="/presupuesto/nuevo" component={ NuevoPresupuesto } />
 						<Route path="/compras/presupuestos/lista" component={ ComprasPresupuestos } />
 						<Route path="/ventas/presupuestos/lista" component={ VentasPresupuestos } />
+						<Route path="/evaluacion/empresa" component={ EvaluarEmpresa } />
 					</Switch>
 				</div>
 			</Router>

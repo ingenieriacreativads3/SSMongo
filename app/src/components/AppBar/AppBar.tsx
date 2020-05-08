@@ -30,6 +30,7 @@ import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import MenuLateral from '../Drawer/MenuLateral'
 
 class AppBare extends React.Component<{}, {
 	anchorEl: null | HTMLElement,
@@ -103,7 +104,7 @@ class AppBare extends React.Component<{}, {
 								<SearchIcon />
 							</div>
 							<InputBase
-								placeholder="Search…"
+								placeholder="Buscar"
 								classes={{
 									root: classes.inputRoot,
 									input: classes.inputInput,
@@ -113,14 +114,14 @@ class AppBare extends React.Component<{}, {
 						</div>
 						<div className={classes.grow} />
 						<div className={classes.sectionDesktop}>
-							<IconButton aria-label="show 4 new mails" color="inherit">
-								<Badge badgeContent={4} color="secondary">
-									<MailIcon />
+							<IconButton aria-label="show 4 new mails" color="inherit" >
+								<Badge badgeContent={4}  color="secondary">
+									<MailIcon className={classes.menuButton}/>
 								</Badge>
 							</IconButton>
 							<IconButton aria-label="show 17 new notifications" color="inherit">
 								<Badge badgeContent={17} color="secondary">
-									<NotificationsIcon />
+									<NotificationsIcon className={classes.menuButton}/>
 								</Badge>
 							</IconButton>
 							<IconButton
@@ -131,7 +132,7 @@ class AppBare extends React.Component<{}, {
 								onClick={handleProfileMenuOpen}
 								color="inherit"
 							>
-								<AccountCircle />
+								<AccountCircle className={classes.menuButton} />
 							</IconButton>
 						</div>
 						<div className={classes.sectionMobile}>
@@ -140,9 +141,9 @@ class AppBare extends React.Component<{}, {
 								aria-controls={mobileMenuId}
 								aria-haspopup="true"
 								onClick={handleMobileMenuOpen}
-								color="inherit"
+							
 							>
-								<MoreIcon />
+								<MoreIcon className={classes.menuButton}/>
 							</IconButton>
 						</div>
 						
@@ -171,7 +172,7 @@ class AppBare extends React.Component<{}, {
 								<MailIcon />
 							</Badge>
 						</IconButton>
-						<p>Messages</p>
+						<p className={classes.subtitle} >Mensajes </p>
 					</MenuItem>
 					<MenuItem>
 						<IconButton aria-label="show 11 new notifications" color="inherit">
@@ -179,7 +180,7 @@ class AppBare extends React.Component<{}, {
 								<NotificationsIcon />
 							</Badge>
 						</IconButton>
-						<p>Notifications</p>
+						<p className={classes.subtitle} >Notificaciones</p>
 					</MenuItem>
 					<MenuItem onClick={handleProfileMenuOpen}>
 						<IconButton
@@ -190,7 +191,7 @@ class AppBare extends React.Component<{}, {
 						>
 							<AccountCircle />
 						</IconButton>
-						<p>Profile</p>
+						<p className={classes.subtitle} >Mi Perfil</p>
 					</MenuItem>
 				</Menu>
       	<Menu
@@ -202,99 +203,10 @@ class AppBare extends React.Component<{}, {
 					open={isMenuOpen}
 					onClose={handleMenuClose}
 				>
-					<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-					<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+					<MenuItem onClick={handleMenuClose} className={classes.subtitle}>Mi perfil</MenuItem>
+					<MenuItem onClick={handleMenuClose} className={classes.subtitle}>Cerrar Sesión</MenuItem>
 				</Menu>
-				<Drawer
-					className={classes.drawer}
-					variant="permanent"
-					classes={{
-						paper: classes.drawerPaper,
-					}}
-					anchor="left"
-				>
-					<div className={classes.toolbar} >
-					<Avatar   src={logo} className={classes.avatar}  >
-          
-		  			</Avatar>
-					</div>
-					<Divider />
-					
-					<Link href="/home/catalogo" className={classes.link}>
-					<ListItem button>
-						<ListItemIcon >
-							<DashboardIcon className={classes.icon}/>
-						</ListItemIcon>
-						<ListItemText primary="Mi catálogo" />
-					</ListItem>
-					</Link>
-					
-					<Link href="/item/nuevo"className={classes.link}>
-					<ListItem button>
-						<ListItemIcon>
-							<AddIcon className={classes.icon}/>
-						</ListItemIcon>
-						<ListItemText primary="Nuevo Item" />
-					</ListItem>
-					</Link>
-
-					<Divider/>
-					<ListSubheader inset className={classes.subtitle}>Mis compras</ListSubheader>
-					<Link href="#"className={classes.link}>
-					<ListItem button>
-						<ListItemIcon>
-							<AttachMoney className={classes.icon}/>
-						</ListItemIcon>
-						<ListItemText primary="Presupuestos" />
-					</ListItem>
-					</Link>
-					
-					<Link href="/compras/pedidos/lista" className={classes.link}>
-					<ListItem button>
-						<ListItemIcon>
-							<ShoppingCart className={classes.icon} />
-						</ListItemIcon>
-						<ListItemText primary="Pedidos" />
-					</ListItem>
-					</Link>
-					<Divider/>
-					<ListSubheader inset className={classes.subtitle}>Mis ventas</ListSubheader>
-					<Link href="#"className={classes.link}>
-					<ListItem button>
-						<ListItemIcon>
-							<AttachMoney className={classes.icon} />
-						</ListItemIcon>
-						<ListItemText primary="Presupuestos" />
-					</ListItem>
-					</Link>
-					<Link href="/ventas/pedidos/lista"className={classes.link}>
-					<ListItem button>
-						<ListItemIcon>
-							<ShoppingCart className={classes.icon}/>
-						</ListItemIcon>
-						<ListItemText primary="Pedidos" />
-					</ListItem>
-					</Link>
-					<Divider/>
-					<ListSubheader inset className={classes.subtitle}>Solicitudes</ListSubheader>
-					<Link href="/item/nuevo"className={classes.link}>
-					<ListItem button>
-						<ListItemIcon>
-							<PersonAdd className={classes.icon} />
-						</ListItemIcon>
-						<ListItemText primary="Validación" />
-					</ListItem>
-					</Link>
-					<Link href="/solicitud/unidadMedida"className={classes.link}>
-					<ListItem button>
-						<ListItemIcon>
-							<PostAdd className={classes.icon}/>
-						</ListItemIcon>
-						<ListItemText primary="Unidad de Medida" />
-					</ListItem>
-					</Link>
-					
-				</Drawer>
+				
 				<main className={classes.content}>
 				
 					 <div className={classes.toolbar} />

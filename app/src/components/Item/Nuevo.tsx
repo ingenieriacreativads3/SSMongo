@@ -11,10 +11,11 @@ import Link from '@material-ui/core/Link';
 import purple from '@material-ui/core/colors/purple';
 import red from '@material-ui/core/colors/red';
 import * as Login from './../../store/actions/login'
-
+import menuLateral from '../Drawer'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
+import MenuLateral from '../Drawer';
 const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
 
@@ -191,7 +192,7 @@ class Nuevo extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-
+        <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>

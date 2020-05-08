@@ -8,6 +8,7 @@ import MaterialLink from '@material-ui/core/Link';
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Link} from "react-router-dom";
+import MenuLateral from '../Drawer'
 
 import * as dialogAction from './../../store/actions/dialog'
 
@@ -172,6 +173,7 @@ class Catalogo extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
+        <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>

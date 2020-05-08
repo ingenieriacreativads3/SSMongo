@@ -1,5 +1,6 @@
 import React from 'react'
 import AppBar from '../AppBar'
+import MenuLateral from '../Drawer'
 import { connect } from 'react-redux'
 
 
@@ -86,6 +87,7 @@ class ListaCompras extends React.Component {
 
         <CssBaseline />
         <AppBar></AppBar>
+		<MenuLateral></MenuLateral>
 				<MaterialTable
 					icons={tableIcons}
 					title="Mis compras - Presupuestos"

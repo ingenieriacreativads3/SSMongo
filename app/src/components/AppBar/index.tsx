@@ -3,7 +3,7 @@ import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import AppBar from './AppBar'
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
 
@@ -15,22 +15,15 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: drawerWidth,
 		backgroundColor:'#f48c13',
 	},
-	avatar: {
-		// margin: theme.spacing(1),
-		fontSize: '1px',
-		width: 'auto',
-		height: 'auto',
-	},
+	
 	subtitle:{
 	color:'#d93211',
 	},
 	menuButton:{
 		color:'#ffffff',
-		marginRight: theme.spacing(2),
+		marginRight: theme.spacing(1),
 	},
-	icon:{
-		color:'#d93211',
-	},
+	
 	drawer: {
 		width: drawerWidth,
 		flexShrink: 0,
@@ -81,9 +74,10 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
+		color:'#d93211',
 	},
 	inputRoot: {
-		color: 'inherit',
+		color: '#ffffff',
 	},
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
