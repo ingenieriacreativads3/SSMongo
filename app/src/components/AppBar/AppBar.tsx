@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import clsx from 'clsx'
 import Drawer from '@material-ui/core/Drawer';
@@ -32,9 +33,21 @@ import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import MenuLateral from '../Drawer/MenuLateral'
 
+import * as drawerAction from './../../store/actions/drawer'
+
+function mapStateToProps(store: {
+  drawerReducer: {
+    open: boolean
+  }
+}) {
+  return {
+    open: store.drawerReducer.open
+  };
+}
+
 class AppBare extends React.Component<{}, {
 	anchorEl: null | HTMLElement,
-	mobileMoreAnchorEl: null | HTMLElement
+	mobileMoreAnchorEl: null | HTMLElement,
 }> {
 
 	props: any
@@ -45,7 +58,7 @@ class AppBare extends React.Component<{}, {
 		super(props);
 		this.state = {
 			anchorEl: null,
-			mobileMoreAnchorEl: null
+			mobileMoreAnchorEl: null,
 		};
 	}
 
@@ -81,138 +94,127 @@ class AppBare extends React.Component<{}, {
 			})
 		};
 
+		const handleDrawerOpen = () => {
+			this.props.dispatch(drawerAction.open())
+		};
+
 		const menuId = 'primary-search-account-menu';
 	
 		const mobileMenuId = 'primary-search-account-menu-mobile';
 
 		return(
 			
-			<div className={classes.root}>
-				<CssBaseline />
-				<AppBar  position="fixed" color="default" className={classes.appBar}>
-					<Toolbar className={classes.toolbar}>
-						<IconButton
-							edge="start"
-							color="inherit"
-							aria-label="open drawer"
-							className={clsx(classes.menuButton, classes.menuButtonHidden)}
-						>
-							<MenuIcon />
-						</IconButton>
-						<div className={classes.search}>
-							<div className={classes.searchIcon}>
-								<SearchIcon />
-							</div>
-							<InputBase
-								placeholder="Buscar"
-								classes={{
-									root: classes.inputRoot,
-									input: classes.inputInput,
-								}}
-								inputProps={{ 'aria-label': 'search' }}
-							/>
+			<AppBar position="absolute" className={clsx(classes.appBar, this.props.open && classes.appBarShift)}>
+				<Toolbar className={classes.toolbar}>
+					<IconButton
+						edge="start"
+						color="inherit"
+						aria-label="open drawer"
+						onClick={handleDrawerOpen}
+						className={clsx(classes.menuButton, this.props.open && classes.menuButtonHidden)}
+					>
+						<MenuIcon />
+					</IconButton>
+					<div className={classes.search}>
+						<div className={classes.searchIcon}>
+							<SearchIcon />
 						</div>
-						<div className={classes.grow} />
-						<div className={classes.sectionDesktop}>
-							<IconButton aria-label="show 4 new mails" color="inherit" >
-								<Badge badgeContent={4}  color="secondary">
-									<MailIcon className={classes.menuButton}/>
+						<InputBase
+							placeholder="Buscar"
+							classes={{
+								root: classes.inputRoot,
+								input: classes.inputInput,
+							}}
+							inputProps={{ 'aria-label': 'search' }}
+						/>
+					</div>
+					<div className={classes.grow} />
+					<div className={classes.sectionDesktop}>
+						<IconButton aria-label="show 4 new mails" color="inherit" >
+							<Badge badgeContent={4}  color="secondary">
+								<MailIcon className={classes.menuButton}/>
+							</Badge>
+						</IconButton>
+						<IconButton aria-label="show 17 new notifications" color="inherit">
+							<Badge badgeContent={17} color="secondary">
+								<NotificationsIcon className={classes.menuButton}/>
+							</Badge>
+						</IconButton>
+						<IconButton
+							edge="end"
+							aria-label="account of current user"
+							aria-controls={menuId}
+							aria-haspopup="true"
+							onClick={handleProfileMenuOpen}
+							color="inherit"
+						>
+							<AccountCircle className={classes.menuButton} />
+						</IconButton>
+					</div>
+					<div className={classes.sectionMobile}>
+						<IconButton
+							aria-label="show more"
+							aria-controls={mobileMenuId}
+							aria-haspopup="true"
+							onClick={handleMobileMenuOpen}
+						
+						>
+							<MoreIcon className={classes.menuButton}/>
+						</IconButton>
+					</div>
+					
+					<Menu
+						anchorEl={this.state.mobileMoreAnchorEl}
+						anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+						id={mobileMenuId}
+						keepMounted
+						transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+						open={isMobileMenuOpen}
+						onClose={handleMobileMenuClose}
+					>
+						<MenuItem>
+							<IconButton aria-label="show 4 new mails" color="inherit">
+								<Badge badgeContent={4} color="secondary">
+									<MailIcon />
 								</Badge>
 							</IconButton>
-							<IconButton aria-label="show 17 new notifications" color="inherit">
-								<Badge badgeContent={17} color="secondary">
-									<NotificationsIcon className={classes.menuButton}/>
+							<p className={classes.subtitle} >Mensajes </p>
+						</MenuItem>
+						<MenuItem>
+							<IconButton aria-label="show 11 new notifications" color="inherit">
+								<Badge badgeContent={11} color="secondary">
+									<NotificationsIcon />
 								</Badge>
 							</IconButton>
+							<p className={classes.subtitle} >Notificaciones</p>
+						</MenuItem>
+						<MenuItem onClick={handleProfileMenuOpen}>
 							<IconButton
-								edge="end"
 								aria-label="account of current user"
-								aria-controls={menuId}
+								aria-controls="primary-search-account-menu"
 								aria-haspopup="true"
-								onClick={handleProfileMenuOpen}
 								color="inherit"
 							>
-								<AccountCircle className={classes.menuButton} />
+								<AccountCircle />
 							</IconButton>
-						</div>
-						<div className={classes.sectionMobile}>
-							<IconButton
-								aria-label="show more"
-								aria-controls={mobileMenuId}
-								aria-haspopup="true"
-								onClick={handleMobileMenuOpen}
-							
-							>
-								<MoreIcon className={classes.menuButton}/>
-							</IconButton>
-						</div>
-						
-						{/* <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-							Dashboard
-						</Typography>
-						<IconButton color="inherit" >
-							<Badge badgeContent={4} color="secondary">
-								<NotificationsIcon />
-							</Badge>
-						</IconButton> */}
-					</Toolbar>
-				</AppBar>
-				<Menu
-					anchorEl={this.state.mobileMoreAnchorEl}
-					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-					id={mobileMenuId}
-					keepMounted
-					transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-					open={isMobileMenuOpen}
-					onClose={handleMobileMenuClose}
-				>
-					<MenuItem>
-						<IconButton aria-label="show 4 new mails" color="inherit">
-							<Badge badgeContent={4} color="secondary">
-								<MailIcon />
-							</Badge>
-						</IconButton>
-						<p className={classes.subtitle} >Mensajes </p>
-					</MenuItem>
-					<MenuItem>
-						<IconButton aria-label="show 11 new notifications" color="inherit">
-							<Badge badgeContent={11} color="secondary">
-								<NotificationsIcon />
-							</Badge>
-						</IconButton>
-						<p className={classes.subtitle} >Notificaciones</p>
-					</MenuItem>
-					<MenuItem onClick={handleProfileMenuOpen}>
-						<IconButton
-							aria-label="account of current user"
-							aria-controls="primary-search-account-menu"
-							aria-haspopup="true"
-							color="inherit"
-						>
-							<AccountCircle />
-						</IconButton>
-						<p className={classes.subtitle} >Mi Perfil</p>
-					</MenuItem>
-				</Menu>
-      	<Menu
-					anchorEl={this.state.anchorEl}
-					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-					id={menuId}
-					keepMounted
-					transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-					open={isMenuOpen}
-					onClose={handleMenuClose}
-				>
-					<MenuItem onClick={handleMenuClose} className={classes.subtitle}>Mi perfil</MenuItem>
-					<MenuItem onClick={handleMenuClose} className={classes.subtitle}>Cerrar Sesión</MenuItem>
-				</Menu>
-				
-				<main className={classes.content}>
-				
-					 <div className={classes.toolbar} />
-				
-				</main>
-			</div>
+							<p className={classes.subtitle} >Mi Perfil</p>
+						</MenuItem>
+					</Menu>
+					<Menu
+						anchorEl={this.state.anchorEl}
+						anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+						id={menuId}
+						keepMounted
+						transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+						open={isMenuOpen}
+						onClose={handleMenuClose}
+					>
+						<MenuItem onClick={handleMenuClose} className={classes.subtitle}>Mi perfil</MenuItem>
+						<MenuItem onClick={handleMenuClose} className={classes.subtitle}>Cerrar Sesión</MenuItem>
+					</Menu>
+					
+				</Toolbar>
+			</AppBar>
 			
 		);
 	}
@@ -230,5 +232,4 @@ AppBare.defaultProps = {
 	}
 }
 
-
-export default AppBare
+export default connect(mapStateToProps)(AppBare)
