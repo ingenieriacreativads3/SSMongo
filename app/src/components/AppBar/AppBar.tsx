@@ -26,8 +26,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
+import MailIcon from '@material-ui/icons/Mail';
+import MoreIcon from '@material-ui/icons/MoreVert';
 
-class AppBare extends React.Component {
+class AppBare extends React.Component<{}, {
+	anchorEl: null | HTMLElement,
+	mobileMoreAnchorEl: null | HTMLElement
+}> {
 
 	props: any
 	static propTypes: any
@@ -35,13 +42,47 @@ class AppBare extends React.Component {
 
 	constructor(props: any) {
 		super(props);
-		this.state = {};
+		this.state = {
+			anchorEl: null,
+			mobileMoreAnchorEl: null
+		};
 	}
 
 	render(){
 
 		const classes = this.props.classes
 		
+		const isMenuOpen = Boolean(this.state.anchorEl);
+		const isMobileMenuOpen = Boolean(this.state.mobileMoreAnchorEl);
+
+		const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+			this.setState({
+				anchorEl: event.currentTarget
+			})
+		};
+		
+		const handleMobileMenuClose = () => {
+			this.setState({
+				mobileMoreAnchorEl: null
+			})
+		};
+
+		const handleMenuClose = () => {
+			this.setState({
+				anchorEl: null
+			})
+			handleMobileMenuClose();
+		};
+
+		const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+			this.setState({
+				mobileMoreAnchorEl: event.currentTarget
+			})
+		};
+
+		const menuId = 'primary-search-account-menu';
+	
+		const mobileMenuId = 'primary-search-account-menu-mobile';
 
 		return(
 			
@@ -57,36 +98,54 @@ class AppBare extends React.Component {
 						>
 							<MenuIcon />
 						</IconButton>
-						<Button color="inherit">INICIO</Button>
-						<div>
-						<IconButton
-							aria-label="account of current user"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							// onClick={handleMenu}
-							color="inherit"
-						>
-							<AccountCircle />
-						</IconButton>
-						{/* <Menu
-							// id="menu-appbar"
-							// anchorEl={anchorEl}
-							// anchorOrigin={{
-							// vertical: 'top',
-							// horizontal: 'right',
-							// }}
-							// keepMounted
-							// transformOrigin={{
-							// vertical: 'top',
-							// horizontal: 'right',
-							// }}
-							// open={open}
-							// onClose={handleClose}
-						>
-							<MenuItem>Mi Perfil</MenuItem>
-							<MenuItem>Cerrar Sesion</MenuItem>
-						</Menu> */}
+						<div className={classes.search}>
+							<div className={classes.searchIcon}>
+								<SearchIcon />
+							</div>
+							<InputBase
+								placeholder="Search…"
+								classes={{
+									root: classes.inputRoot,
+									input: classes.inputInput,
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/>
 						</div>
+						<div className={classes.grow} />
+						<div className={classes.sectionDesktop}>
+							<IconButton aria-label="show 4 new mails" color="inherit">
+								<Badge badgeContent={4} color="secondary">
+									<MailIcon />
+								</Badge>
+							</IconButton>
+							<IconButton aria-label="show 17 new notifications" color="inherit">
+								<Badge badgeContent={17} color="secondary">
+									<NotificationsIcon />
+								</Badge>
+							</IconButton>
+							<IconButton
+								edge="end"
+								aria-label="account of current user"
+								aria-controls={menuId}
+								aria-haspopup="true"
+								onClick={handleProfileMenuOpen}
+								color="inherit"
+							>
+								<AccountCircle />
+							</IconButton>
+						</div>
+						<div className={classes.sectionMobile}>
+							<IconButton
+								aria-label="show more"
+								aria-controls={mobileMenuId}
+								aria-haspopup="true"
+								onClick={handleMobileMenuOpen}
+								color="inherit"
+							>
+								<MoreIcon />
+							</IconButton>
+						</div>
+						
 						{/* <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
 							Dashboard
 						</Typography>
@@ -97,6 +156,55 @@ class AppBare extends React.Component {
 						</IconButton> */}
 					</Toolbar>
 				</AppBar>
+				<Menu
+					anchorEl={this.state.mobileMoreAnchorEl}
+					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+					id={mobileMenuId}
+					keepMounted
+					transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+					open={isMobileMenuOpen}
+					onClose={handleMobileMenuClose}
+				>
+					<MenuItem>
+						<IconButton aria-label="show 4 new mails" color="inherit">
+							<Badge badgeContent={4} color="secondary">
+								<MailIcon />
+							</Badge>
+						</IconButton>
+						<p>Messages</p>
+					</MenuItem>
+					<MenuItem>
+						<IconButton aria-label="show 11 new notifications" color="inherit">
+							<Badge badgeContent={11} color="secondary">
+								<NotificationsIcon />
+							</Badge>
+						</IconButton>
+						<p>Notifications</p>
+					</MenuItem>
+					<MenuItem onClick={handleProfileMenuOpen}>
+						<IconButton
+							aria-label="account of current user"
+							aria-controls="primary-search-account-menu"
+							aria-haspopup="true"
+							color="inherit"
+						>
+							<AccountCircle />
+						</IconButton>
+						<p>Profile</p>
+					</MenuItem>
+				</Menu>
+      	<Menu
+					anchorEl={this.state.anchorEl}
+					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+					id={menuId}
+					keepMounted
+					transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+					open={isMenuOpen}
+					onClose={handleMenuClose}
+				>
+					<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+					<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+				</Menu>
 				<Drawer
 					className={classes.drawer}
 					variant="permanent"

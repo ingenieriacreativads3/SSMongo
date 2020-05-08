@@ -23,6 +23,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import TableContainer from '@material-ui/core/TableContainer';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -72,7 +73,13 @@ class ListaCompras extends React.Component {
 			data: [
 				{ fecha: '20/04/2020', vendedor:'Symsa', cantidad: 3, unidad: 'Unidad', precio:1000 , estado: 1},
 				{ fecha: '10/02/2020', vendedor:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
-				
+				{ fecha: '10/02/2020', vendedor:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
+				{ fecha: '10/02/2020', vendedor:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
+				{ fecha: '10/02/2020', vendedor:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
+				{ fecha: '10/02/2020', vendedor:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
+				{ fecha: '10/02/2020', vendedor:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
+				{ fecha: '10/02/2020', vendedor:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
+				{ fecha: '10/02/2020', vendedor:'CorpuSoft', cantidad: 10, unidad: 'Unidad', precio:2500 , estado: 4},
 			],
     };
   }
@@ -86,49 +93,52 @@ class ListaCompras extends React.Component {
 
         <CssBaseline />
         <AppBar></AppBar>
-				<MaterialTable
-					icons={tableIcons}
-					title="Mis compras - Pedidos"
-					columns={this.state.columns}
-					data={this.state.data}
-					editable={{
-						onRowAdd: (newData) =>
-							new Promise((resolve) => {
-								setTimeout(() => {
-									resolve();
-									this.setState((prevState) => {
-										const data = [...prevState.data];
-										data.push(newData);
-										return { ...prevState, data };
-									});
-								}, 600);
-							}),
-						onRowUpdate: (newData, oldData) =>
-							new Promise((resolve) => {
-								setTimeout(() => {
-									resolve();
-									if (oldData) {
+				<TableContainer className={classes.container}>
+
+					<MaterialTable
+						icons={tableIcons}
+						title="Mis compras - Pedidos"
+						columns={this.state.columns}
+						data={this.state.data}
+						editable={{
+							onRowAdd: (newData) =>
+								new Promise((resolve) => {
+									setTimeout(() => {
+										resolve();
 										this.setState((prevState) => {
 											const data = [...prevState.data];
-											data[data.indexOf(oldData)] = newData;
+											data.push(newData);
 											return { ...prevState, data };
 										});
-									}
-								}, 600);
-							}),
-						onRowDelete: (oldData) =>
-							new Promise((resolve) => {
-								setTimeout(() => {
-									resolve();
-									this.setState((prevState) => {
-										const data = [...prevState.data];
-										data.splice(data.indexOf(oldData), 1);
-										return { ...prevState, data };
-									});
-								}, 600);
-							}),
-					}}
-				/>
+									}, 600);
+								}),
+							onRowUpdate: (newData, oldData) =>
+								new Promise((resolve) => {
+									setTimeout(() => {
+										resolve();
+										if (oldData) {
+											this.setState((prevState) => {
+												const data = [...prevState.data];
+												data[data.indexOf(oldData)] = newData;
+												return { ...prevState, data };
+											});
+										}
+									}, 600);
+								}),
+							onRowDelete: (oldData) =>
+								new Promise((resolve) => {
+									setTimeout(() => {
+										resolve();
+										this.setState((prevState) => {
+											const data = [...prevState.data];
+											data.splice(data.indexOf(oldData), 1);
+											return { ...prevState, data };
+										});
+									}, 600);
+								}),
+						}}
+					/>
+				</TableContainer>
 			</div>
     );
   }
