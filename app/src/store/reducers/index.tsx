@@ -4,10 +4,12 @@ import apiWork from './apiWorkReducer';
 import solicitudDeValidacion from './solicitudDeValidacion'
 import login from './login'
 import dialogReducer from './dialogReducer'
+import drawerReducer from './drawerReducer'
 
 export default combineReducers({
     apiWork,
     solicitudDeValidacion,
     login,
-    dialogReducer
+    dialogReducer,
+    drawerReducer
 })

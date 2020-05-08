@@ -3,14 +3,13 @@ import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import Menu from './MenuLateral'
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
 
 	root: {
 		display: 'flex',
 	},
-	
 	avatar: {
 		// margin: theme.spacing(1),
 		fontSize: '5px',
@@ -20,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 	subtitle:{
 	color:'#d93211',
 	},
-	
 	icon:{
 		color:'#d93211',
 	},
@@ -31,8 +29,25 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor:theme.palette.background.default,
 	},
 	drawerPaper: {
-		width: drawerWidth,
+    position: 'relative',
+    whiteSpace: 'nowrap',
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
 	},
+	drawerPaperClose: {
+    overflowX: 'hidden',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    width: theme.spacing(7),
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9),
+    },
+  },
 	link:{
 		color:'#f48c13',
 	},
@@ -52,6 +67,13 @@ const useStyles = makeStyles((theme) => ({
 			display: 'block',
 		},
 	},
+	toolbarIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
 	
 	
 })); 

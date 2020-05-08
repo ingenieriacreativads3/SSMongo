@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dialog, DialogActions, DialogContent, DialogContentText,DialogTitle,Button} from '@material-ui/core'
+import { Dialog, DialogActions, DialogContent, DialogContentText,DialogTitle,Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 
 function mapStateToProps(store: {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import clsx from 'clsx'
 import Drawer from '@material-ui/core/Drawer';
@@ -22,7 +23,19 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
 import logo from './../Login/img/logo.png'
 import Avatar from '@material-ui/core/Avatar';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
+import * as drawerAction from './../../store/actions/drawer'
+
+function mapStateToProps(store: {
+  drawerReducer: {
+    open: boolean
+  }
+}) {
+  return {
+    open: store.drawerReducer.open
+  };
+}
 
 class MenuLateral extends React.Component<{}, {
 	anchorEl: null | HTMLElement,
@@ -44,26 +57,28 @@ class MenuLateral extends React.Component<{}, {
 	render(){
 
 		const classes = this.props.classes
-		
-		
+
+		const handleDrawerClose = () => {
+			this.props.dispatch(drawerAction.close())
+		};
 
 		return(
 			
-			<div className={classes.root}>
-			
 				
 				<Drawer
-					className={classes.drawer}
 					variant="permanent"
 					classes={{
-						paper: classes.drawerPaper,
+						paper: clsx(classes.drawerPaper, !this.props.open && classes.drawerPaperClose),
 					}}
-					anchor="left"
+					open={this.props.open}
 				>
-					<div className={classes.toolbar} >
-					<Avatar   src={logo} className={classes.avatar}  >
-          
-		  			</Avatar>
+					{/* <div className={classes.toolbar} >
+						<Avatar src={logo} className={classes.avatar} ></Avatar>
+					</div> */}
+					<div className={classes.toolbarIcon}>
+						<IconButton onClick={handleDrawerClose}>
+							<ChevronLeftIcon />
+						</IconButton>
 					</div>
 					<Divider />
 					
@@ -142,24 +157,9 @@ class MenuLateral extends React.Component<{}, {
 					</Link>
 					
 				</Drawer>
-				
-			</div>
-			
+						
 		);
 	}
 }
 
-MenuLateral.defaultProps = {
-	classes: {
-		root: 'root',
-		apprBar: 'appBar',
-		link: 'link',
-		drawer: 'drawer',
-		drawerPaper: 'drawerPaper',
-		toolbar: 'toolbar',
-		content: 'content'
-	}
-}
-
-
-export default MenuLateral
+export default connect(mapStateToProps)(MenuLateral)

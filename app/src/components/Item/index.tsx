@@ -9,10 +9,7 @@ import Catalogo from './Catalogo'
 import DialogoEliminar from './../Dialogs/EliminarItem'
 import DetalleItem from './Detalle'
 
-
-
 const drawerWidth = 200;
-
 
 const theme = createMuiTheme({
 	palette: {

@@ -193,7 +193,7 @@ class Nuevo extends React.Component {
         <CssBaseline />
         <AppBar></AppBar>
         <MenuLateral></MenuLateral>
-					<main className={classes.content}>
+        <main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
