@@ -86,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+    maxHeight: 440,
   },
   paper: {
     padding: theme.spacing(2),
@@ -94,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 400,
+    height: 500,
   },
   formControl: {
     margin: theme.spacing(1),

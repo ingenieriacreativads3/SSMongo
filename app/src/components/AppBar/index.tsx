@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+ 
 	
 	subtitle:{
 	color:'#d93211',
@@ -46,10 +47,13 @@ const useStyles = makeStyles((theme) => ({
 		color:'#f48c13',
 	},
 	// necessary for content to be below app bar
-	toolbar: theme.mixins.toolbar,
+	toolbar:{
+		
+	backgroundColor:'#f48c13',
+	},
 	content: {
 		flexGrow: 1,
-		backgroundColor: theme.palette.background.default,
+		backgroundColor: '#f48c13',
 		padding: theme.spacing(3),
 	},
 	grow: {

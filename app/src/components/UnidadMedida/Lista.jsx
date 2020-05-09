@@ -23,6 +23,8 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import TableContainer from '@material-ui/core/TableContainer';
+
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -46,8 +48,8 @@ const tableIcons = {
 
 function mapStateToProps(store) {
   return {
-    Item: store.Item,
-    idEmpresa: store.login.data.empresa._id
+    // Item: store.Item,
+    // idEmpresa: store.login.data.empresa._id
   };
 }
 
@@ -83,6 +85,7 @@ class Lista extends React.Component {
 
         <CssBaseline />
         <AppBar></AppBar>
+		<TableContainer className={classes.container}>
 				<MaterialTable
 					icons={tableIcons}
 					title="Solicitudes Unidad de Medida"
@@ -126,6 +129,7 @@ class Lista extends React.Component {
 							}),
 					}}
 				/>
+				</TableContainer>
 			</div>
     );
   }

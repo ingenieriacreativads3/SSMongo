@@ -39,8 +39,8 @@ function mapStateToProps(store: {
 	}
 }) {
   return {
-    Item: store.Item,
-    idEmpresa: store.login.data.empresa._id
+    // Item: store.Item,
+    // idEmpresa: store.login.data.empresa._id
   };
 }
 

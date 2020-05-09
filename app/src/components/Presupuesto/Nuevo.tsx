@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
-
+import AppBar from '../../components/AppBar'
 import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input,  CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
@@ -175,7 +175,7 @@ class Nuevo extends React.Component {
 
       <div className={classes.root}>
         <CssBaseline />
-  
+        <AppBar></AppBar>
 
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />

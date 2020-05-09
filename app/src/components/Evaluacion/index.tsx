@@ -3,7 +3,7 @@ import { makeStyles} from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 import EvaluacionEmpresa from './Empresa'
-
+import EvaluacionSuppliersStore from './SuppliersStore'
 
 
 const drawerWidth = 200;
@@ -149,4 +149,9 @@ const useStyles = makeStyles((theme) => ({
 export  function EvaluarEmpresa() {
 	const classes = useStyles();
 	return <EvaluacionEmpresa classes={ classes } />;
+}
+
+export  function EvaluarPlataforma() {
+	const classes = useStyles();
+	return <EvaluacionSuppliersStore classes={ classes } />;
 }
