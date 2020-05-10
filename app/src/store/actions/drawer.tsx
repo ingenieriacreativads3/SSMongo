@@ -9,3 +9,15 @@ export function close() {
 		type: 'CLOSE'
 	}
 }
+
+export function visibleDrawer() {
+	return {
+		type: 'VISIBLE'
+	}
+}
+
+export function invisibleDrawer() {
+	return {
+		type: 'INVISIBLE'
+	}
+}

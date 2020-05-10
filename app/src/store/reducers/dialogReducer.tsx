@@ -1,6 +1,5 @@
 export default function dialogReducer (state = {
 
-	openDialogEliminarItem: false,
 	openDialog: false,
 	fetching: false,
 	fetched: false,
@@ -12,47 +11,47 @@ export default function dialogReducer (state = {
 }) {
 
 	switch (action.type) {
-	
-		case 'ELIMINAR_ITEM_OPEN' : {
 
-			return { 
-				...state, 
-				fetching: false, 
-				fetched: true, 
-				openDialogEliminarItem: true
-			};
-
-		}
-
-		case 'ELIMINAR_ITEM_CLOSE' : {
-
-			return { 
-				...state, 
-				fetching: false, 
-				fetched: true, 
-				openDialogEliminarItem: false
-			};
-
-		}
-
-		case 'OPEN' : {
+		case 'OPEN_ONE_BUTTON' : {
 
 			return { 
 				...state, 
 				fetching: false, 
 				fetched: false, 
-				openDialog: true
+				openDialogOneButton: true
 			};
 
 		}
 
-		case 'CLOSE' : {
+		case 'CLOSE_ONE_BUTTON' : {
 
 			return { 
 				...state, 
 				fetching: false, 
 				fetched: false, 
-				openDialog: false
+				openDialogOneButton: false
+			};
+
+		}
+
+		case 'OPEN_TWO_BUTTON' : {
+
+			return { 
+				...state, 
+				fetching: false, 
+				fetched: false, 
+				openDialogTwoButton: true
+			};
+
+		}
+
+		case 'CLOSE_TWO_BUTTON' : {
+
+			return { 
+				...state, 
+				fetching: false, 
+				fetched: false, 
+				openDialogTwoButton: false
 			};
 
 		}

@@ -14,7 +14,9 @@ function mapStateToProps(store: {
 
 class DialogOneButton extends React.Component<{
 	title: string,
-	text: string,
+  text: string,
+  labelButtonRight: string,
+  functionRight: any
 }, {}> {
 
 	props: any
@@ -23,13 +25,13 @@ class DialogOneButton extends React.Component<{
 
 	constructor(props: any) {
     super(props);
-    this.aceptar = this.aceptar.bind(this);
+    this.functionRight = this.functionRight.bind(this);
 		this.state = {
     };
   }
 
-  aceptar() {
-    this.props.aceptar()
+  functionRight() {
+    this.props.functionRight()
   }
 
   render(){
@@ -47,8 +49,8 @@ class DialogOneButton extends React.Component<{
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus className={classes.buttonDialog} onClick={this.aceptar} >
-            Aceptar
+          <Button autoFocus className={classes.buttonDialog} onClick={this.functionRight} >
+            {this.props.labelButtonRight}
           </Button> 
         </DialogActions>
       </Dialog>

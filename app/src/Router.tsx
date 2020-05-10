@@ -57,7 +57,7 @@ class App extends React.Component {
 						<Route path="/home/catalogo" component={MostrarCatalogo}></Route>
 						<Route path="/ingresar" component={IniciarSesion}></Route>
 						<Route path="/registrar" component={Registrar}></Route>
-						<Route path="/asd" component={asd}></Route>
+						<Route path="/asd" component={ asd }></Route>
 						<Route path="/item/detalle/:id" component={VerDetalleItem}></Route>
 						<Route path="/pedido/nuevo" component={ NuevoPedido } />
 						<Route path="/presupuesto/nuevo" component={ NuevoPresupuesto } />

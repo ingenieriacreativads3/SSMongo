@@ -13,7 +13,6 @@ export function ingresar(user: string, pass: string) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	
 	let payload: any = axios.post(url + '/login', {
 		user: user,
 		password: pass

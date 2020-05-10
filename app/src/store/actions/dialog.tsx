@@ -1,47 +1,23 @@
-import axios from 'axios';
-
-export function eliminarItemOpen() {
+export function openOneButton() {
 	return {
-		type: 'ELIMINAR_ITEM_OPEN'
+		type: 'OPEN_ONE_BUTTON'
 	}
 }
 
-export function eliminarItemClose() {
+export function closeOneButton() {
 	return {
-		type: 'ELIMINAR_ITEM_CLOSE'
+		type: 'CLOSE_ONE_BUTTON'
 	}
 }
 
-export function open() {
+export function openTwoButton() {
 	return {
-		type: 'OPEN'
+		type: 'OPEN_TWO_BUTTON'
 	}
 }
 
-export function close() {
+export function closeTwoButton() {
 	return {
-		type: 'CLOSE'
+		type: 'CLOSE_TWO_BUTTON'
 	}
-}
-
-export function ingresar(user: string, pass: string) {
-
-	let url: string = 'http://127.0.0.1:8000';
-
-	axios.post(url + '/login', {
-		user: user,
-		password: pass
-	}).then((payload: any) => {
-		return {
-			type: 'INGRESAR',
-			payload: payload
-		}
-	}).catch((payload: any) => {
-		return {
-			type: 'INGRESAR',
-			payload: payload
-		}
-	})
-
-
 }

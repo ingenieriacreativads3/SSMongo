@@ -178,7 +178,13 @@ class Login extends React.Component<{}, {
           </form>
         </div>
         {/* <Dialogo classes={classes} cancelar={this.cancelar} /> */}
-        <DialogoOneButton title={'Error de ingreso'} text={this.props.login.message} classes={classes} aceptar={this.aceptar} />
+        <DialogoOneButton 
+          classes={classes}
+          title={'Error de ingreso'}
+          text={this.props.login.message}
+          functionRight={this.aceptar}
+          labelButtonRight={'Aceptar'}
+        />
       
       </Container>
      

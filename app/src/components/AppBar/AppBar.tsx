@@ -37,17 +37,19 @@ import * as drawerAction from './../../store/actions/drawer'
 
 function mapStateToProps(store: {
   drawerReducer: {
-    open: boolean
+		open: boolean,
+		visibleDrawer: boolean
   }
 }) {
   return {
-    open: store.drawerReducer.open
+		open: store.drawerReducer.open,
+		visibleDrawer: store.drawerReducer.visibleDrawer
   };
 }
 
 class AppBare extends React.Component<{}, {
 	anchorEl: null | HTMLElement,
-	mobileMoreAnchorEl: null | HTMLElement,
+	mobileMoreAnchorEl: null | HTMLElement
 }> {
 
 	props: any
@@ -58,7 +60,7 @@ class AppBare extends React.Component<{}, {
 		super(props);
 		this.state = {
 			anchorEl: null,
-			mobileMoreAnchorEl: null,
+			mobileMoreAnchorEl: null
 		};
 	}
 
@@ -102,19 +104,33 @@ class AppBare extends React.Component<{}, {
 	
 		const mobileMenuId = 'primary-search-account-menu-mobile';
 
+		const visibleDrawer = () => {
+			let visible: {} = {
+				display: 'none'
+			}
+	
+			if(this.props.visibleDrawer) {
+				visible = {}
+			}
+	
+			return visible
+		}
+
 		return(
 			
 			<AppBar position="absolute" className={clsx(classes.appBar, this.props.open && classes.appBarShift)}>
 				<Toolbar className={classes.toolbar}>
-					<IconButton
-						edge="start"
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						className={clsx(classes.menuButton, this.props.open && classes.menuButtonHidden)}
-					>
-						<MenuIcon />
-					</IconButton>
+					<div style={visibleDrawer()}>
+						<IconButton
+							edge="start"
+							color="inherit"
+							aria-label="open drawer"
+							onClick={handleDrawerOpen}
+							className={clsx(classes.menuButton, this.props.open && classes.menuButtonHidden)}
+						>
+							<MenuIcon />
+						</IconButton>
+					</div>
 					<div className={classes.search}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
@@ -217,18 +233,6 @@ class AppBare extends React.Component<{}, {
 			</AppBar>
 			
 		);
-	}
-}
-
-AppBare.defaultProps = {
-	classes: {
-		root: 'root',
-		apprBar: 'appBar',
-		link: 'link',
-		drawer: 'drawer',
-		drawerPaper: 'drawerPaper',
-		toolbar: 'toolbar',
-		content: 'content'
 	}
 }
 

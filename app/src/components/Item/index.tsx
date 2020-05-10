@@ -6,7 +6,6 @@ import orange from '@material-ui/core/colors/orange';
 import ItemNuevo from './Nuevo'
 import ItemEditar from './Editar'
 import Catalogo from './Catalogo'
-import DialogoEliminar from './../Dialogs/EliminarItem'
 import DetalleItem from './Detalle'
 
 const drawerWidth = 200;
@@ -173,7 +172,6 @@ export  function MostrarCatalogo() {
  
   return <div>
     <Catalogo classes={classes} />
-    <DialogoEliminar classes={classes} open={true}/>
   </div>;
 
 }

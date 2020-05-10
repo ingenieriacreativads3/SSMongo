@@ -2,7 +2,6 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-
 import { Container, Grid, Card, Box, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import EditIcon from '@material-ui/icons/Edit'
@@ -12,7 +11,6 @@ import MenuLateral from '../Drawer'
 
 import * as dialogAction from './../../store/actions/dialog'
 
-//import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
 function Copyright() {
@@ -30,13 +28,11 @@ function Copyright() {
 
 function mapStateToProps(store: {
   dialogReducer: {
-    openDialogEliminarItem: boolean
+    openDialog: boolean
   }
 }) {
   return {
-    dialogReducer: {
-      openDialogEliminarItem: store.dialogReducer.openDialogEliminarItem
-    }
+    openDialog: store.dialogReducer.openDialog
   };
 }
 
@@ -50,14 +46,6 @@ class Catalogo extends React.Component {
   constructor(props: any) {
     super(props);
     this.eliminarItem = this.eliminarItem.bind(this);
-/*     this.onSubmit = this.onSubmit.bind(this);
-    this.getNombre = this.getNombre.bind(this);
-    this.getPrecio = this.getPrecio.bind(this);
-    this.getFoto = this.getFoto.bind(this);
-    this.getDescripcion = this.getDescripcion.bind(this);
-    this.getCaracteristicas = this.getCaracteristicas.bind(this);
-    this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
-    this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
     this.state = {
       Item: {
         nombre: '',
@@ -70,90 +58,8 @@ class Catalogo extends React.Component {
       }
     };
   }
-/* 
-  onSubmit() {
-    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
-  }
-
-  getNombre(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        nombre: e.target.value
-      }
-    });
-
-  }
-
-  getPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        precio: e.target.value
-      }
-    });
-
-  }
-
-  getFoto(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        foto: e.target.value
-      }
-    });
-
-  }
-
-  getDescripcion(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        descripcion: e.target.value
-      }
-    });
-
-  }
-
-  getCaracteristicas(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        caracteristicas: e.target.value
-      }
-    });
-
-  }
-
-  getUnidadDeMedida(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  }
-
-  getMostrarPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        mostrarPrecio: e.target.value
-      }
-    });
-
-  } */
 
   eliminarItem() {
-    console.log('this.eliminarItem()')
     this.props.dispatch(dialogAction.eliminarItemOpen())
   }
 
@@ -161,12 +67,6 @@ class Catalogo extends React.Component {
 
 		const classes = this.props.classes
 		const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
-   /*  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  }; */
-
  
     return(
 
@@ -295,12 +195,6 @@ class Catalogo extends React.Component {
 
     );
   }
-}
-
-Catalogo.defaultProps = {
-	classes: {
-		color: 'color'
-	}
 }
 
 export default connect(mapStateToProps)(Catalogo)

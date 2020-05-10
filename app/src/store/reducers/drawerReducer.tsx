@@ -1,6 +1,7 @@
 export default function drawerReducer (state = {
 
 	open: false,
+	visibleDrawer: true,
 	fetching: false,
 	fetched: false,
 	error: null,
@@ -18,7 +19,8 @@ export default function drawerReducer (state = {
 				...state, 
 				fetching: false, 
 				fetched: true, 
-				open: true
+				open: true,
+				visibleDrawer: true
 			};
 
 		}
@@ -29,7 +31,32 @@ export default function drawerReducer (state = {
 				...state, 
 				fetching: false, 
 				fetched: true, 
-				open: false
+				open: false,
+				visibleDrawer: true
+			};
+
+		}
+
+		case 'VISIBLE' : {
+
+			return { 
+				...state, 
+				fetching: false, 
+				fetched: true, 
+				open: false,
+				visibleDrawer: true,
+			};
+
+		}
+
+		case 'INVISIBLE' : {
+
+			return { 
+				...state, 
+				fetching: false, 
+				fetched: true, 
+				open: false,
+				visibleDrawer: false,
 			};
 
 		}

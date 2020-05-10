@@ -26,19 +26,9 @@ function Copyright() {
   );
 }
 
-function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
-}) {
+function mapStateToProps(store: {}) {
   return {
-    Item: store.Item,
-    idEmpresa: store.login.data.empresa._id
+    Item: store
   };
 }
 
