@@ -60,7 +60,7 @@ class Catalogo extends React.Component {
   }
 
   eliminarItem() {
-    this.props.dispatch(dialogAction.eliminarItemOpen())
+    // this.props.dispatch(dialogAction.eliminarItemOpen())
   }
 
   render(){

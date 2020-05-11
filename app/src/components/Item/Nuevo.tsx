@@ -11,13 +11,12 @@ import Link from '@material-ui/core/Link';
 import purple from '@material-ui/core/colors/purple';
 import red from '@material-ui/core/colors/red';
 import * as Login from './../../store/actions/login'
-import menuLateral from '../Drawer'
+
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 import MenuLateral from '../Drawer';
-const primary = red[500]; // #F44336
-const accent = purple['A200']; // #E040FB
+
 
 function Copyright() {
   return (

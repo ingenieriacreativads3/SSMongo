@@ -138,6 +138,15 @@ const useStyles = makeStyles((theme) => ({
     width:300,
     display:'flex'
   },
+  input:{
+    '&:focused': {
+      borderBottomColor: '#d93211',
+      },
+      notchedOutline: {
+        borderBottomColor: '#d93211',
+      },
+  },
+  
 }));
 
 export  function NuevoItem() {

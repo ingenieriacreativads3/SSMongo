@@ -7,9 +7,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import logo from "./img/logo.png";
 import * as loginAction from './../../store/actions/login'
@@ -18,7 +15,7 @@ import * as dialogAction from './../../store/actions/dialog'
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
-import Dialogo from './../Dialogs/EliminarItem'
+
 import DialogoOneButton from './../Dialogs/OneButton'
 
 function mapStateToProps(store: {
@@ -53,9 +50,9 @@ class Login extends React.Component<{}, {
 
   componentDidUpdate() {
     if(this.props.login.status !== 200 && this.props.login.fetched) {
-      this.props.dispatch(dialogAction.open())
+      this.props.dispatch(dialogAction.openOneButton())
     } else {
-      this.props.dispatch(dialogAction.close())
+      this.props.dispatch(dialogAction.closeOneButton())
     }
   }
 
@@ -81,7 +78,7 @@ class Login extends React.Component<{}, {
   }
 
   aceptar() {
-    this.props.dispatch(dialogAction.close())
+    this.props.dispatch(dialogAction.closeOneButton())
     this.props.dispatch(loginAction.reintentar())
   }
 

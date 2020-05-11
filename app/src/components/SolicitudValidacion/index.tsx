@@ -4,6 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
  
 import Lista from './Lista'
+import Validacion from './Validacion'
 
 const drawerWidth = 240;
 
@@ -98,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    maxWidth: 300,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -116,6 +118,17 @@ const useStyles = makeStyles((theme) => ({
     color:"#ffffff",
     backgroundColor:'#d93211',
   },
+  
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  },
+  noLabel: {
+    marginTop: theme.spacing(3),
+  },
 
 }));
 
@@ -123,6 +136,13 @@ export function SolicitudesValidacion() {
 
 	const classes = useStyles(theme);
 	return <Lista classes={classes} />;
+
+}
+
+export function ValidarNuevoUsuario() {
+
+	const classes = useStyles(theme);
+	return <Validacion classes={classes} />;
 
 }
 

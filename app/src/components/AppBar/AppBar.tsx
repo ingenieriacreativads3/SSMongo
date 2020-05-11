@@ -2,27 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import clsx from 'clsx'
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import AddIcon from '@material-ui/icons/Add'
-import ListSubheader from '@material-ui/core/ListSubheader';
-import AttachMoney from '@material-ui/icons/AttachMoney';
-import ShoppingCart from '@material-ui/icons/ShoppingCart';
-import PersonAdd from '@material-ui/icons/PersonAdd';
-import PostAdd from '@material-ui/icons/PostAdd';
 import Link from '@material-ui/core/Link';
 import { IconButton, Typography, Badge, Button } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
-import logo from './../Login/img/logo.png'
-import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -31,7 +16,7 @@ import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import MenuLateral from '../Drawer/MenuLateral'
+
 
 import * as drawerAction from './../../store/actions/drawer'
 
