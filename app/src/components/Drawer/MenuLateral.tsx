@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component }  from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import clsx from 'clsx'
+import { IconButton, Typography, Badge, Button } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';;
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,10 +16,10 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import PostAdd from '@material-ui/icons/PostAdd';
 import Link from '@material-ui/core/Link';
-import { IconButton, Typography, Badge, Button } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-import * as drawerAction from './../../store/actions/drawer'
+
+import * as drawerAction from './../../store/actions/drawer';
 
 function mapStateToProps(store: {
   drawerReducer: {
