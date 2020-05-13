@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, TextField, CardMedia, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -15,7 +15,7 @@ import * as Login from './../../store/actions/login'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
+// import MenuLateral from '../Drawer';
 
 
 function Copyright() {
@@ -191,76 +191,257 @@ class DatosCuenta extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        <MenuLateral></MenuLateral>
+        {/* <MenuLateral></MenuLateral> */}
         <main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
                 <Grid item lg={12}>
+                  
 									<Card className={fixedHeightCard}>
                     <CardHeader 
+                    
                         avatar={
                           <Avatar aria-label="recipe" className={classes.avatar} >
                             D
                           </Avatar>
                         }
+
+                        action={
+                          <FormControlLabel
+                                
+                          control={
+                            <Checkbox
+                              style ={{
+                                color: "#d93211",
+                              }}
+                            />
+                          }
+                          label="Mostrar Perfil"
+                        /> 
+                        }
+                        
                         title="Mis datos"
+                      
                          
                       />
-                        <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      style ={{
-                                        color: "#d93211",
-                                      }}
-                                    />
-                                  }
-                                  label="Mostrar Perfil"
-                                />
+
+                      
+
+                    <CardContent>
+                        <Typography variant="h5" component="h2">
+                          Datos de cuenta
+                        </Typography>
+                    </CardContent>
+
+                       
 
 
                     <CardContent>
                       <form className={classes.root}>
                         <Grid container spacing={3}>
+                        
                         <Grid container spacing={3}>
-                            <Typography gutterBottom variant="h5" component="h2" >
-                              Datos de cuenta
-                            </Typography>
+                            
                             <Grid item lg={4}>
-                              <Input value="CorpuSA" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField
+                              defaultValue= "CorpuSA"
+                              label="Usuario"
+                              type="text"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
+                              
                             </Grid>
                             <Grid item lg={4}>
-                              <Input  value="corpu@sa.com.ar" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField
+                              defaultValue= "corpu@sa.com.ar"
+                              label="Email"
+                              type="email"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
+                              
                             </Grid>
                             <Grid item lg={4}>
-                            <Input  value="micontraseña" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField
+                              defaultValue= "micontraseña"
+                              label="Contraseña"
+                              type="text"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
+                           
                           </Grid>
                           </Grid>
+                        
+                          <CardContent>
+                        <Typography variant="h5" component="h2">
+                          Datos de empresa
+                        </Typography>
+                    </CardContent>
                           <Grid container spacing={3}>
-                          <Typography gutterBottom variant="h5" component="h2" >
-                              Datos de empresa
-                            </Typography>
+                          
                             <Grid item lg={4}>
-                            <Input  value="CorpuSoft" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField
+                              defaultValue= "CorpuSoft"
+                              label="Nombre"
+                              type="text"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
                             </Grid>
                             <Grid item lg={4}>
-                            <Input  value="CorpuSoft SA" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField
+                              defaultValue= "CorpuSoft SA"
+                              label="Razón social"
+                              type="text"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
                             </Grid>
                             <Grid item lg={4}>
-                            <Input  value="Bv. Roca 1200" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField
+                              defaultValue= "Bv. Roca 1200"
+                              label="Domicilio"
+                              type="text"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
                             </Grid>
                             
                           </Grid>
+                          
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <Input  value="San Francisco" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <FormControl className={classes.formControl}>
+                              <InputLabel shrink 
+                              id="demo-simple-select-placeholder-label-label">
+                                Provincia
+                              </InputLabel>
+                              <Select
+                                labelId="demo-simple-select-placeholder-label-label"
+                                id="demo-simple-select-placeholder-label"
+                                defaultValue={10}
+                                displayEmpty
+                                className={classes.selectEmpty}
+                              >
+                                
+                                <MenuItem value={10}>Cordoba</MenuItem>
+                                <MenuItem value={20}>Buenos Aires</MenuItem>
+                                <MenuItem value={30}>Tucuman</MenuItem>
+                              </Select>
+                              
+                            </FormControl>
+                            
                             </Grid>
                             <Grid item lg={4}>
-                            <Input  value="Cordoba" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <FormControl className={classes.formControl}>
+                            <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+                                Ciudad
+                              </InputLabel>
+                              <Select
+                                labelId="demo-simple-select-placeholder-label-label"
+                                id="demo-simple-select-placeholder-label"
+                                defaultValue={10}
+                                displayEmpty
+                                className={classes.selectEmpty}
+                              >
+                                
+                                <MenuItem value={10}>Arroyito</MenuItem>
+                                <MenuItem value={20}>San Francisco</MenuItem>
+                                <MenuItem value={30}>Devoto</MenuItem>
+                              </Select>
+                              
+                            </FormControl>
+                           
                             </Grid>
                             <Grid item lg={4}>
-                            <Input  value="03564421589" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField
+                              defaultValue= "03564421589"
+                              label="Teléfono"
+                              type="number"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
                             </Grid>
                             
                           </Grid>

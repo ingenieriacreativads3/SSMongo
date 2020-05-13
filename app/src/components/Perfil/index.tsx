@@ -135,14 +135,18 @@ const useStyles = makeStyles((theme) => ({
     width:300,
     display:'flex'
   },
-  input:{
-    '&:focused': {
-      borderBottomColor: '#d93211',
-      },
-      notchedOutline: {
-        borderBottomColor: '#d93211',
-      },
+  
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `#d93211 !important`,
+    }
   },
+
+  cssFocused: {color:`#d93211 !important`},
+  notchedOutline: {
+    borderWidth: '2px',
+  },
+
   
 }));
 
