@@ -1,4 +1,6 @@
 import React, { Component }  from 'react';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
 import clsx from 'clsx'
 import { IconButton, Typography, Badge, Button } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
