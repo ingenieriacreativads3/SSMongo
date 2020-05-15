@@ -1,9 +1,7 @@
 import React, { Component }  from 'react';
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
 import clsx from 'clsx'
 import { IconButton, Typography, Badge, Button } from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer';;
+import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -19,6 +17,7 @@ import Link from '@material-ui/core/Link';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
+import { connect } from 'react-redux'
 import * as drawerAction from './../../store/actions/drawer';
 
 function mapStateToProps(store: {

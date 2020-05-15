@@ -32,51 +32,48 @@ function mapStateToProps(store: {}) {
 }
 
 class Validacion extends React.Component <{}, {
-
-    personName: []
+  personName: []
 }> {
 
-    props: any
+  props: any
 	static propTypes: any
-    static defaultProps: any
+  static defaultProps: any
   
   constructor(props: any) {
     super(props);
     this.state = {
       personName: [],
-      };
-    }
+    };
+  }
   
-
-
   render(){
 
 		const classes = this.props.classes
-        const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-        const names = [
-            'Oliver Hansen',
-            'Van Henry',
-            'April Tucker',
-            'Ralph Hubbard',
-            'Omar Alexander',
-            'Carlos Abbott',
-            'Miriam Wagner',
-            'Bradley Wilkerson',
-            'Virginia Andrews',
-            'Kelly Snyder',
-          ];
+    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    const names = [
+      'Oliver Hansen',
+      'Van Henry',
+      'April Tucker',
+      'Ralph Hubbard',
+      'Omar Alexander',
+      'Carlos Abbott',
+      'Miriam Wagner',
+      'Bradley Wilkerson',
+      'Virginia Andrews',
+      'Kelly Snyder',
+    ];
 
-          const ITEM_HEIGHT = 48;
-          const ITEM_PADDING_TOP = 8;
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
 
-          const MenuProps = {
-            PaperProps: {
-              style: {
-                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                width: 250,
-              },
-            },
-          };
+    const MenuProps = {
+      PaperProps: {
+        style: {
+          maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+          width: 250,
+        },
+      },
+    };
 
     return(
 
@@ -92,14 +89,14 @@ class Validacion extends React.Component <{}, {
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar}>
-                            S
-                          </Avatar>
-                        }
-                        title="Solicitud de Validación"
-                        
-                      />
+                      avatar={
+                        <Avatar aria-label="recipe" className={classes.avatar}>
+                          S
+                        </Avatar>
+                      }
+                      title="Solicitud de Validación"
+                      
+                    />
 
                     <CardContent>
                       <form className={classes.root}>
