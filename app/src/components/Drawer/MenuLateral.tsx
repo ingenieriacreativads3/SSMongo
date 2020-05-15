@@ -18,8 +18,6 @@ import PostAdd from '@material-ui/icons/PostAdd';
 import Link from '@material-ui/core/Link';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-
-import { connect } from 'react-redux'
 import * as drawerAction from './../../store/actions/drawer';
 
 function mapStateToProps(store: {
