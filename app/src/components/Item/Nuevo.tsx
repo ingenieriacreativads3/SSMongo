@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -214,10 +214,11 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                              <Input placeholder="Nombre item" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField id="standard-required" label="Nombre"  className={classes.input}  />
+                              
                             </Grid>
                             <Grid item lg={4}>
-                              <Input type="number" placeholder="Precio" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField id="standard-required" label="Precio"  type="number"   />
                             </Grid>
                             <Grid item lg={4}>
                               <FormControlLabel

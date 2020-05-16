@@ -139,12 +139,9 @@ const useStyles = makeStyles((theme) => ({
     display:'flex'
   },
   input:{
-    '&:focused': {
-      borderBottomColor: '#d93211',
-      },
-      notchedOutline: {
-        borderBottomColor: '#d93211',
-      },
+    "&.Mui-focused": {
+      color: '#d93211'
+    }
   },
   
 }));

@@ -98,7 +98,8 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 200,
+    
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -141,11 +142,33 @@ const useStyles = makeStyles((theme) => ({
       borderColor: `#d93211 !important`,
     }
   },
+  inputLabel:{
+    
+    "&.Mui-focused": {
+      color: '#d93211'
+    }
+  },
+
+  select:{
+    color: "black",
+ 
+    "&:before": {
+      // changes the bottom textbox border when not focused
+      borderColor: "red"
+    },
+    "&:after": {
+      // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
+      borderColor: '#d93211 !important',
+    }
+  },
 
   cssFocused: {color:`#d93211 !important`},
   notchedOutline: {
-    borderWidth: '2px',
+    borderWidth: '1px',
   },
+
+
+  
 
   
 }));

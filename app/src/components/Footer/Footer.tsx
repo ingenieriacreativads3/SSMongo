@@ -1,13 +1,13 @@
 import React from 'react'
 import clsx from 'clsx'
-import foto from './../Login/img/photo2.png';
+import logo from './../Login/img/logo.png';
 
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 
-import { Container, Grid,  Typography,CssBaseline, } from '@material-ui/core';
+import { Container, Grid,  Typography,CssBaseline, Avatar} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 
@@ -78,7 +78,7 @@ class Footer extends React.Component {
         <Container maxWidth="sm">
         <Grid container spacing={3}>
           <Grid container spacing={3}>
-            <Grid item lg={6}>
+             <Grid item lg={4}>
             <Typography variant="h3" gutterBottom>
        Sobre Nosotros
       </Typography>
@@ -86,17 +86,30 @@ class Footer extends React.Component {
       En esta plataforma podras encontrar de manera rápida y sencilla a tus proveedores. 
       Registrate, Ingresá y comenzá a hacer tus pedidos. 
       </Typography>
-            </Grid>
-            <Grid item lg={6}>
+            </Grid> 
+            <Grid item lg={4}>
             <Typography variant="h3" gutterBottom>
             ¿Por qué elegirnos?
       </Typography>
       <Typography variant="h6" gutterBottom>
-      <VerifiedUserIcon fontSize="large" style={{ color: orange[500] }} />
-      Todas las empresas de esta plataforma, estan legalmente verificadas
+      <VerifiedUserIcon fontSize="large" style={{ color: '#d93211' }} />
+      Todas las empresas de esta plataforma, son legalmente verificadas
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+      <ShoppingCartIcon fontSize="large" style={{ color: '#d93211' }} />
+      Amplia oferta de productos y servicios
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+      <EqualizerIcon fontSize="large" style={{ color: '#d93211' }} />
+      Perfil personalizado, con estadísticas acerca de tus negocios en la plataforma
       </Typography>
             </Grid>
-          </Grid>>
+            <Grid item lg={4}>
+             
+						<Avatar src={logo} className={classes.avatar} ></Avatar>
+				
+          </Grid>
+          </Grid>
         </Grid>
         </Container>
       </footer>

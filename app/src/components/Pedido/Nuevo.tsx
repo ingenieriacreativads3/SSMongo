@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import AppBar from '../../components/AppBar'
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input,  CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, Button, CardContent, Input,  CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -200,42 +200,52 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <Input defaultValue="Samsung Galaxy A20" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Nombre" defaultValue="Samsung A20" className={classes.input}  />
+                          
                             </Grid>
                             <Grid item lg={4}>
-                            <Input defaultValue="CorpuSoft" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Empresa" defaultValue="CorpuSoft" className={classes.input}  />
+                            
                             </Grid>
                             <Grid item lg={4}>
-                            <Input defaultValue="corpusoft@cs.com.ar" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
-                            </Grid>
-                          </Grid>
-                          <Grid container spacing={3}>
-                            <Grid item lg={4}>
-                            <Input defaultValue="3512469439" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
-                            <Input defaultValue="Cordoba" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
-                            <Input defaultValue="San Francisco" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Email" defaultValue="corpusoft@cs.com.ar" className={classes.input}  />
+                          
                             </Grid>
                           </Grid>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <Input defaultValue="2400" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Telefono" defaultValue="3512469439" className={classes.input}  />
+                           
                             </Grid>
                             <Grid item lg={4}>
-                            <Input defaultValue="Bv.Roca 1500" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Provincia" defaultValue="Cordoba" className={classes.input}  />
+                            
+                            </Grid>
+                            <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Ciudad" defaultValue="San Francisco" className={classes.input}  />
+                            
+                            </Grid>
+                          </Grid>
+                          <Grid container spacing={3}>
+                            <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="CP" defaultValue="2400" className={classes.input}  />
+                           
+                            </Grid>
+                            <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Domicilio" defaultValue="Bv.Roca 1500" className={classes.input}  />
+                          
                             </Grid>
                             
                           </Grid>
                           <Grid container spacing={3}>
                           <Grid item lg={4}>
-                            <Input type="number" placeholder="Cantidad" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                          <TextField  id="standard-required" type="number" label="Cantidad"  className={classes.input}  />
+                            
                             </Grid>
 
                             <Grid item lg={4}>
-                            <Input defaultValue="Unidad" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Unidad" defaultValue="Unidad" className={classes.input}  />
+
                             </Grid>
                             <Grid item lg={4}>
                             <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Mensaje"  />

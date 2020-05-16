@@ -15,7 +15,7 @@ import * as Login from './../../store/actions/login'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-// import MenuLateral from '../Drawer';
+import MenuLateral from '../Drawer';
 
 
 function Copyright() {
@@ -191,7 +191,7 @@ class DatosCuenta extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        {/* <MenuLateral></MenuLateral> */}
+         <MenuLateral></MenuLateral> 
         <main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -246,9 +246,11 @@ class DatosCuenta extends React.Component {
                             
                             <Grid item lg={4}>
                             <TextField
+                            variant="outlined"
                               defaultValue= "CorpuSA"
                               label="Usuario"
                               type="text"
+                              autoFocus
                               InputLabelProps={{
                                 classes: {
                                   root: classes.cssLabel,
@@ -267,6 +269,7 @@ class DatosCuenta extends React.Component {
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                            variant="outlined"
                               defaultValue= "corpu@sa.com.ar"
                               label="Email"
                               type="email"
@@ -288,6 +291,7 @@ class DatosCuenta extends React.Component {
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                            variant="outlined"
                               defaultValue= "micontraseña"
                               label="Contraseña"
                               type="text"
@@ -318,6 +322,7 @@ class DatosCuenta extends React.Component {
                           
                             <Grid item lg={4}>
                             <TextField
+                            variant="outlined"
                               defaultValue= "CorpuSoft"
                               label="Nombre"
                               type="text"
@@ -338,6 +343,7 @@ class DatosCuenta extends React.Component {
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                            variant="outlined"
                               defaultValue= "CorpuSoft SA"
                               label="Razón social"
                               type="text"
@@ -358,6 +364,7 @@ class DatosCuenta extends React.Component {
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                            variant="outlined"
                               defaultValue= "Bv. Roca 1200"
                               label="Domicilio"
                               type="text"
@@ -381,50 +388,50 @@ class DatosCuenta extends React.Component {
                           
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <FormControl className={classes.formControl}>
-                              <InputLabel shrink 
-                              id="demo-simple-select-placeholder-label-label">
-                                Provincia
-                              </InputLabel>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                              <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
                               <Select
-                                labelId="demo-simple-select-placeholder-label-label"
-                                id="demo-simple-select-placeholder-label"
+                                labelId="demo-simple-select-outlined-label"
+                                id="demo-simple-select-outlined"
+                                className={classes.select}
+                                // value={age}
+                                // onChange={handleChange}
+                                label="Provincia"
                                 defaultValue={10}
-                                displayEmpty
-                                className={classes.selectEmpty}
+                                
                               >
                                 
                                 <MenuItem value={10}>Cordoba</MenuItem>
                                 <MenuItem value={20}>Buenos Aires</MenuItem>
-                                <MenuItem value={30}>Tucuman</MenuItem>
+                                <MenuItem value={30}>Santa Fe</MenuItem>
                               </Select>
-                              
                             </FormControl>
                             
                             </Grid>
                             <Grid item lg={4}>
-                            <FormControl className={classes.formControl}>
-                            <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-                                Ciudad
-                              </InputLabel>
+                            <FormControl variant="outlined"  className={classes.formControl}>
+                          
+                              <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
                               <Select
-                                labelId="demo-simple-select-placeholder-label-label"
-                                id="demo-simple-select-placeholder-label"
+                                labelId="demo-simple-select-outlined-label"
+                                id="demo-simple-select-outlined"
+                                className={classes.select}
+                                // value={age}
+                                // onChange={handleChange}
+                                label="Ciudad"
                                 defaultValue={10}
-                                displayEmpty
-                                className={classes.selectEmpty}
                               >
                                 
                                 <MenuItem value={10}>Arroyito</MenuItem>
                                 <MenuItem value={20}>San Francisco</MenuItem>
                                 <MenuItem value={30}>Devoto</MenuItem>
                               </Select>
-                              
                             </FormControl>
                            
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                            variant="outlined"
                               defaultValue= "03564421589"
                               label="Teléfono"
                               type="number"
