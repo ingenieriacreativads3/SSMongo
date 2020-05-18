@@ -319,10 +319,32 @@ class DatosCuenta extends React.Component {
                         </Typography>
                     </CardContent>
                           <Grid container spacing={3}>
-                          
+                          <Grid item lg={4}>
+                            <TextField
+                            variant="outlined"
+                            disabled
+                              defaultValue= "30236547815"
+                              label="CUIT"
+                              type="text"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
+                            </Grid>
                             <Grid item lg={4}>
                             <TextField
                             variant="outlined"
+                            disabled
                               defaultValue= "CorpuSoft"
                               label="Nombre"
                               type="text"
@@ -344,6 +366,7 @@ class DatosCuenta extends React.Component {
                             <Grid item lg={4}>
                             <TextField
                             variant="outlined"
+                            disabled
                               defaultValue= "CorpuSoft SA"
                               label="Razón social"
                               type="text"
@@ -362,7 +385,12 @@ class DatosCuenta extends React.Component {
                               }}
                             />
                             </Grid>
-                            <Grid item lg={4}>
+                            
+                            
+                          </Grid>
+                          
+                          <Grid container spacing={3}>
+                          <Grid item lg={4}>
                             <TextField
                             variant="outlined"
                               defaultValue= "Bv. Roca 1200"
@@ -383,10 +411,6 @@ class DatosCuenta extends React.Component {
                               }}
                             />
                             </Grid>
-                            
-                          </Grid>
-                          
-                          <Grid container spacing={3}>
                             <Grid item lg={4}>
                             <FormControl variant="outlined" className={classes.formControl}>
                               <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
@@ -429,7 +453,12 @@ class DatosCuenta extends React.Component {
                             </FormControl>
                            
                             </Grid>
-                            <Grid item lg={4}>
+                            
+                            
+                          </Grid>
+
+                          <Grid container spacing={3}>
+                          <Grid item lg={4}>
                             <TextField
                             variant="outlined"
                               defaultValue= "03564421589"
@@ -450,7 +479,20 @@ class DatosCuenta extends React.Component {
                               }}
                             />
                             </Grid>
-                            
+                            <Button
+                              variant="contained"
+                              component="label"
+                            >
+                              <InputLabel htmlFor="icon-button-file">
+                                <IconButton color="primary"  aria-label="upload picture" component="span" className={classes.iconButton}>
+                                  <PhotoCamera fontSize="small"/>
+                                </IconButton>
+                              </InputLabel>
+                              <Input
+                                type="file"
+                                style={{ display: "none" }}
+                              />
+                            </Button>
                           </Grid>
                          
                         </Grid>

@@ -152,7 +152,7 @@ class Register extends React.Component {
       
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12}sm={6} >
+            <Grid item xs={12}sm={12} >
               <TextField
                 autoComplete="empresa"
                 name="Empresa"
@@ -177,31 +177,7 @@ class Register extends React.Component {
                 }}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="razonSocial"
-                label="Razon social"
-                name="razonSocial"
-                autoComplete="razonSocial"
-                InputLabelProps={{
-                  classes: {
-                    root: classes.cssLabel,
-                    focused: classes.cssFocused,
-                  },
-                }}
-                InputProps={{
-                  classes: {
-                    root: classes.cssOutlinedInput,
-                    focused: classes.cssFocused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                 
-                }}
-              />
-            </Grid>
+           
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
