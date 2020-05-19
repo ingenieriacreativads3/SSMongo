@@ -226,7 +226,7 @@ class Editar extends React.Component {
                           </Grid>
                           <Grid container spacing={3}> 
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Android (9.0). Pantalla 16.4' Nano SIM"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Android (9.0). Pantalla 16.4' Nano SIM"   />
                             </Grid>
                             <Grid item lg={4}>
                             <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />

@@ -3,7 +3,7 @@ import AppBar from './../AppBar'
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, Button, CardContent, Input,  CardActions} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, Button, CardContent, Input,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 
@@ -189,19 +189,19 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
-                            <Input defaultValue="Usuario solicitante" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField disabled id="standard-required" label="Usuario" defaultValue="CorpuSoft" className={classes.input}  />
                             </Grid>
                             <Grid item lg={6}>
-                            <Input placeholder="Unidad" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField id="standard-required" label="Unidad"  className={classes.input}  />
                             </Grid>
                             
                           </Grid>
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
-                            <Input placeholder="Simbolo" inputProps={{ 'aria-label': 'description' }}className={classes.input} />
+                            <TextField id="standard-required" label="Simbolo"  className={classes.input}  />
                             </Grid>
                             <Grid item lg={6}>
-                            <Input placeholder="Magnitud" inputProps={{ 'aria-label': 'description' }} className={classes.input} />
+                            <TextField id="standard-required" label="Magnitud"  className={classes.input}  />
                             </Grid>
                             
                           </Grid>

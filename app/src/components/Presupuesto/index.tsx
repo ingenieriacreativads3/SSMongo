@@ -7,6 +7,7 @@ import orange from '@material-ui/core/colors/orange';
 import PresupuestoNuevo from './Nuevo'
 import ListaCompras from './ListaCompras'
 import ListaVentas from './ListaVentas'
+import Presupuesto from './Presupuestar'
 
 const drawerWidth = 240;
 
@@ -95,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 500,
+    height: 550,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -141,5 +142,12 @@ export function VentasPresupuestos() {
 
 	const classes = useStyles(theme);
 	return <ListaVentas classes={classes} />;
+
+}
+
+export function Presupuestar() {
+
+	const classes = useStyles(theme);
+	return <Presupuesto classes={classes} />;
 
 }

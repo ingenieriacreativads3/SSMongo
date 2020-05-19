@@ -108,22 +108,40 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
-    backgroundColor: '#ff6c00',
+    backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
-      background: "#ffba00",
+      background: "#d93211",
    },
   },
   avatar:{
     color:"#ffffff",
-    backgroundColor:'#ff6c00',
+    backgroundColor:'#d93211',
   },
+
+
   iconButton:{
     color:'#ff6c00',
     '&:hover': {
       color: "#ffba00",
    },
   },
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `#d93211 !important`,
+    }
+  },
+  inputLabel:{
+    
+    "&.Mui-focused": {
+      color: '#d93211'
+    }
+  },
+  cssFocused: {color:`#d93211 !important`},
+  notchedOutline: {
+    borderWidth: '1px',
+  },
+
   
   
 

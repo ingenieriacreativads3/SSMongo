@@ -139,8 +139,15 @@ const useStyles = makeStyles((theme) => ({
     display:'flex'
   },
   input:{
+    
     "&.Mui-focused": {
       color: '#d93211'
+    },
+    
+    
+    "&:after": {
+      // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
+      borderColor: '#d93211'
     }
   },
   
