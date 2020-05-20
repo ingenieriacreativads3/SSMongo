@@ -129,6 +129,18 @@ const useStyles = makeStyles((theme) => ({
   noLabel: {
     marginTop: theme.spacing(3),
   },
+  input:{
+    
+    "&.Mui-focused": {
+      color: '#d93211'
+    },
+    
+    
+    "&:after": {
+      // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
+      borderColor: '#d93211'
+    }
+  },
 
 }));
 

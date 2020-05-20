@@ -3,7 +3,7 @@ import AppBar from '../AppBar'
 import clsx from 'clsx'
 
 
-import { Container, Grid, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize, List} from '@material-ui/core';
+import { Container, Grid,TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize, List} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 import menuLateral from '../Drawer'
@@ -103,10 +103,10 @@ class Validacion extends React.Component <{}, {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <Input defaultValue="101" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="ID Solicitud" defaultValue="1"  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <Input defaultValue="Symsa" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Empresa" defaultValue="Symsa"  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
                             <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" target="_blank" className={classes.button}>
@@ -125,11 +125,9 @@ class Validacion extends React.Component <{}, {
                           </Grid>
                           
                           <Grid container spacing={3}>
-                          <Grid item lg={4}>
-                            <Input defaultValue="Symsa SA" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
-                            </Grid>
+                         
                             <Grid item lg={4}>
-                            <Input defaultValue="30-12345678-4" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <TextField disabled id="standard-required" label="CUIT" defaultValue="30255698474"  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
                             
@@ -153,7 +151,7 @@ class Validacion extends React.Component <{}, {
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
                               <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label">Estado</InputLabel>
+                              <InputLabel id="demo-simple-select-label"className={classes.input}>Estado</InputLabel>
                                 <Select
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"
