@@ -60,14 +60,22 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-export  function IniciarSesion() {
+export function IniciarSesion(props: {
+  getPass: any,
+  getUser: any,
+  login: any,
+}) {
 
   const classes = useStyles(theme);
   
   return <div>
-    <Login classes={ classes } />
+    <Login 
+      classes={ classes }
+      getPass={ props.getPass }
+      getUser={ props.getUser }
+      login={ props.login }
+    />
   </div>;
-
 
 }
 

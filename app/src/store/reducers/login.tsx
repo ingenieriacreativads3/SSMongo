@@ -1,11 +1,12 @@
-export default function LoginReducer (state:{
-	status: number,
-	message: string,
-	data: {}
-} = {
+export default function LoginReducer (state = {
+
   status: 0,
   message: '',
-  data: {}
+  data: {},
+  fetching: false,
+	fetched: false,
+	error: null,
+
 }, action: {
 	type: string,
 	payload: any

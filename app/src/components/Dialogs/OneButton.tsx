@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 
 function mapStateToProps(store: {
   dialogReducer: {
-    openDialog: boolean
+    openDialogOneButton: boolean
   }
 }) {
   return {
-    openDialog: store.dialogReducer.openDialog
+    openDialog: store.dialogReducer.openDialogOneButton
   };
 }
 
@@ -16,7 +16,8 @@ class DialogOneButton extends React.Component<{
 	title: string,
   text: string,
   labelButtonRight: string,
-  functionRight: any
+  functionRight: any,
+  classes: any
 }, {}> {
 
 	props: any
@@ -36,9 +37,10 @@ class DialogOneButton extends React.Component<{
 
   render(){
     const classes = this.props.classes
+    const open: boolean = this.props.openDialog
     return(
       <Dialog
-        open={this.props.openDialog}
+        open={open}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >

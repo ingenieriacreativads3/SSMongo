@@ -1,6 +1,7 @@
 export default function dialogReducer (state = {
 
-	openDialog: false,
+	openDialogOneButton: false,
+	openDialogTwoButton: false,
 	fetching: false,
 	fetched: false,
 	error: null,

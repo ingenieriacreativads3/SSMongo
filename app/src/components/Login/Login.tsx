@@ -9,27 +9,13 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import logo from "./img/logo.png";
-import * as loginAction from './../../store/actions/login'
-import * as dialogAction from './../../store/actions/dialog'
 
-//import * as ItemAction from "../../store/actions/ItemAction";
-import { connect } from 'react-redux'
-
-
-import DialogoOneButton from './../Dialogs/OneButton'
-
-function mapStateToProps(store: {
-  login: any
-}) {
-  return {
-    login: store.login
-  };
-}
-
-class Login extends React.Component<{}, {
-  user: string,
-  pass: string,
-}> {
+class Login extends React.Component<{
+  classes: any,
+  getPass: any,
+  getUser: any,
+  login: any,
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -38,62 +24,19 @@ class Login extends React.Component<{}, {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.ingresar = this.ingresar.bind(this);
-    this.getUser = this.getUser.bind(this);
-    this.getPass = this.getPass.bind(this);
-    this.aceptar = this.aceptar.bind(this);
     this.state = {
-      user: '',
-      pass: '',
     };
-  }
-
-  componentDidUpdate() {
-    if(this.props.login.status !== 200 && this.props.login.fetched) {
-      this.props.dispatch(dialogAction.openOneButton())
-    } else {
-      this.props.dispatch(dialogAction.closeOneButton())
-    }
-  }
-
-  getUser(e: any) {
-
-    this.setState({
-      user: e.target.value
-    })
-
-  }
-
-  getPass(e: any) {
-
-    this.setState({
-      pass: e.target.value
-    })
-
-  }
-
-  ingresar() {
-    this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
-
-  }
-
-  aceptar() {
-    this.props.dispatch(dialogAction.closeOneButton())
-    this.props.dispatch(loginAction.reintentar())
   }
 
   render(){
 
     const classes = this.props.classes
-		
+
     return(
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar   src={logo} className={classes.avatar}  >
-            
-          </Avatar>
-        
+          <Avatar   src={logo} className={classes.avatar}  />
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -118,7 +61,7 @@ class Login extends React.Component<{}, {
                   notchedOutline: classes.notchedOutline,
                 },
               }}
-              onChange={this.getUser}
+              onChange={ this.props.getUser }
             />
             <TextField
               variant="outlined"
@@ -143,7 +86,7 @@ class Login extends React.Component<{}, {
                   notchedOutline: classes.notchedOutline,
                 },
               }}
-              onChange={this.getPass}
+              onChange={ this.props.getPass }
             />
             <FormControlLabel
               control={<Checkbox value="remember" style ={{
@@ -156,7 +99,7 @@ class Login extends React.Component<{}, {
               fullWidth
               variant="contained"
               className={classes.submit}
-              onClick={this.ingresar}
+              onClick={ this.props.login }
             >
               Ingresar
             </Button>
@@ -173,22 +116,10 @@ class Login extends React.Component<{}, {
               </Grid>
             </Grid>
           </form>
-        </div>
-        {/* <Dialogo classes={classes} cancelar={this.cancelar} /> */}
-        <DialogoOneButton 
-          classes={classes}
-          title={'Error de ingreso'}
-          text={this.props.login.message}
-          functionRight={this.aceptar}
-          labelButtonRight={'Aceptar'}
-        />
-      
+        </div>    
       </Container>
-     
     );
   }
 }
 
-
-
-export default connect(mapStateToProps)(Login)
+export default Login
