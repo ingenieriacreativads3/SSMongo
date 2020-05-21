@@ -85,12 +85,16 @@ class Login extends React.Component<{}, {
 
     return(
       <div>
-        <LoginComponent getPass={ this.getPass } getUser={ this.getUser } login={ this.login }/>
+        <LoginComponent 
+          getPass={ this.getPass }
+          getUser={ this.getUser }
+          login={ this.login }
+        />
         <OneButton 
-          title={'Error de ingreso'}
-          text={this.props.login.message}
-          functionRight={this.aceptar}
-          labelButtonRight={'Aceptar'}
+          title={ 'Error de ingreso' }
+          text={ this.props.login.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
         />
       </div>
     );

@@ -5,9 +5,6 @@ import orange from '@material-ui/core/colors/orange';
 
 import Register from './Register'
 
-
-
-
 const theme = createMuiTheme({
 	palette: {
 		primary: orange,
@@ -18,29 +15,33 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
+
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
+
   avatar: {
     margin: theme.spacing(1),
     fontSize: '45px',
     width: 'auto',
     height: 'auto',
   },
+
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
+
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor:'#f48c13' ,
-        color:'#ffffff',
-        '&:hover': {
-          background: "#d93211 ",
-       },
+    color:'#ffffff',
+      '&:hover': {
+        background: "#d93211 ",
+      },
   },
 
   Link:{
@@ -53,20 +54,37 @@ const useStyles = makeStyles((theme) => ({
     }
   },
 
-    cssFocused: {color:`#d93211 !important`},
-    notchedOutline: {
+  cssFocused: {
+    color:`#d93211 !important`
+  },
+
+  notchedOutline: {
     borderWidth: '2px',
-    
-    },
-    }));
+  },
+
+}));
      
+export  function Registrar(props: {
+  getFantasyName: any,
+  getCUIT: any,
+  getUser: any,
+  getEmail: any,
+  getPass: any,
+  register: any
+}) {
 
-export  function Registrar() {
-
-	const classes = useStyles(theme);
-  return <Register classes={ classes } />;
-
-
+  const classes = useStyles(theme);
+  
+  return <div>
+    <Register 
+      classes={ classes }
+      getFantasyName={ props.getFantasyName }
+      getCUIT={ props.getCUIT }
+      getUser={ props.getUser }
+      getEmail={ props.getEmail }
+      getPass={ props.getPass }
+      register={ props.register }
+    />
+  </div>;
+  
 }
-
-

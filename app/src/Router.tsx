@@ -10,7 +10,6 @@ import { NuevaUnidadMedida } from './components/UnidadMedida'
 import { ValidarSolicitud } from './components/UnidadMedida'
 import { SolicitudesUnidadMedida } from './components/UnidadMedida'
 import { MostrarCatalogo } from './components/Item'
-import { Registrar } from './components/Register'
 import asd from './containers/home/'
 import { VerDetalleItem } from './components/Item'
 import { NuevoPedido } from './components/Pedido'
@@ -26,6 +25,7 @@ import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
 
 import Login from './containers/Login'
+import Register from './containers/Register'
 
 function mapStateToProps(store: {
 	solicitudDeValidacion: {
@@ -61,7 +61,7 @@ class App extends React.Component {
 						<Route path="/solicitud/unidadMedida" 				component={ SolicitudesUnidadMedida }></Route>
 						<Route path="/home/catalogo" 									component={ MostrarCatalogo }></Route>
 						<Route path="/ingresar" 											component={ Login }></Route>
-						<Route path="/registrar" 											component={ Registrar }></Route>
+						<Route path="/registrar" 											component={ Register }></Route>
 						<Route path="/asd" 														component={ asd }></Route>
 						<Route path="/item/detalle/:id" 							component={ VerDetalleItem }></Route>
 						<Route path="/pedido/nuevo" 									component={ NuevoPedido } />

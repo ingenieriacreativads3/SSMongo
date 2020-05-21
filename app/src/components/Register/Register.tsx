@@ -9,25 +9,15 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import logo from './../Login/img/logo.png'
 
-
-
-function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
-}) {
-  return {
-    /* Item: store.Item,
-    idEmpresa: store.login.data.empresa._id */
-  };
-}
-
-class Register extends React.Component {
+class Register extends React.Component<{
+  classes: any,
+  getFantasyName: any,
+  getCUIT: any,
+  getUser: any,
+  getEmail: any,
+  getPass: any,
+  register: any
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -36,107 +26,8 @@ class Register extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-/*     this.onSubmit = this.onSubmit.bind(this);
-    this.getNombre = this.getNombre.bind(this);
-    this.getPrecio = this.getPrecio.bind(this);
-    this.getFoto = this.getFoto.bind(this);
-    this.getDescripcion = this.getDescripcion.bind(this);
-    this.getCaracteristicas = this.getCaracteristicas.bind(this);
-    this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
-    this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
-    this.state = {
-      Item: {
-        nombre: '',
-        precio: '',
-        foto: '',
-        descripcion: '',
-        caracteristicas: '',
-        unidadDeMedida: '',
-        mostrarPrecio: false
-      }
-    };
+    this.state = {};
   }
-/* 
-  onSubmit() {
-    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
-  }
-
-  getNombre(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        nombre: e.target.value
-      }
-    });
-
-  }
-
-  getPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        precio: e.target.value
-      }
-    });
-
-  }
-
-  getFoto(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        foto: e.target.value
-      }
-    });
-
-  }
-
-  getDescripcion(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        descripcion: e.target.value
-      }
-    });
-
-  }
-
-  getCaracteristicas(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        caracteristicas: e.target.value
-      }
-    });
-
-  }
-
-  getUnidadDeMedida(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  }
-
-  getMostrarPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        mostrarPrecio: e.target.value
-      }
-    });
-
-  } */
 
   render(){
 
@@ -145,10 +36,8 @@ class Register extends React.Component {
     return(
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar  src={logo} className={classes.avatar}>
-      
-        </Avatar>
+        <div className={classes.paper}>
+        <Avatar  src={logo} className={classes.avatar} />
       
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -175,6 +64,7 @@ class Register extends React.Component {
                     notchedOutline: classes.notchedOutline,
                   },
                 }}
+                onChange={ this.props.getFantasyName }
               />
             </Grid>
            
@@ -201,6 +91,7 @@ class Register extends React.Component {
                   },
                  
                 }}
+                onChange={ this.props.getCUIT }
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -226,6 +117,7 @@ class Register extends React.Component {
                   },
                  
                 }}
+                onChange={ this.props.getUser }
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -251,6 +143,7 @@ class Register extends React.Component {
                   },
                  
                 }}
+                onChange={ this.props.getEmail }
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -277,33 +170,33 @@ class Register extends React.Component {
                   },
                  
                 }}
+                onChange={ this.props.getPass }
               />
             </Grid>
             
           </Grid>
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               className={classes.submit}
+              onClick={ this.props.register }
             >
               REGISTRARME
             </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="/ingresar" variant="body2"className={classes.Link}>
-                Ya soy miembro. Iniciar sesion
-              </Link>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link href="/ingresar" variant="body2"className={classes.Link}>
+                  Ya soy miembro. Iniciar sesion
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
+          </form>
+        </div>
      
-    </Container>
+      </Container>
     );
   }
 }
 
-
-
-export default connect(mapStateToProps)(Register)
+export default Register
