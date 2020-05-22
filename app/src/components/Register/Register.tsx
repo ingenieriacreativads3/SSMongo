@@ -189,22 +189,30 @@ class Register extends React.Component<{
             >
               REGISTRARME
             </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
+            <Grid container >
+              <Grid item xs>
                 <Link href="/ingresar" variant="body2"className={classes.Link}>
                   Ya soy miembro. Iniciar sesion
                 </Link>
               </Grid>
               <Grid item>
-              <InputLabel htmlFor="icon-button-file">
-              <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-                <PhotoCamera />
-              </IconButton>
-            </InputLabel>
-            <Input
-              type="file"
-              style={{ display: "none" }}
-            />
+              <Button 
+              style={{ background: "none",outline:"none" }}
+                variant="contained"
+                component="label"
+              
+              >
+                <InputLabel htmlFor="icon-button-file">
+                  <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
+                    <PhotoCamera />
+                  </IconButton>
+                </InputLabel>
+                <Input
+                  type="file"
+                  style={{ display: "none" }}
+                />
+              </Button>
+            
               </Grid>
               
             </Grid>
