@@ -8,6 +8,10 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import logo from './../Login/img/logo.png'
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import InputLabel from '@material-ui/core/InputLabel'
+import IconButton from '@material-ui/core/IconButton'
+import Input from '@material-ui/core/Input'
 
 class Register extends React.Component<{
   classes: any,
@@ -67,6 +71,7 @@ class Register extends React.Component<{
                 onChange={ this.props.getFantasyName }
               />
             </Grid>
+            
            
             <Grid item xs={12} sm={6}>
               <TextField
@@ -190,6 +195,18 @@ class Register extends React.Component<{
                   Ya soy miembro. Iniciar sesion
                 </Link>
               </Grid>
+              <Grid item>
+              <InputLabel htmlFor="icon-button-file">
+              <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
+                <PhotoCamera />
+              </IconButton>
+            </InputLabel>
+            <Input
+              type="file"
+              style={{ display: "none" }}
+            />
+              </Grid>
+              
             </Grid>
           </form>
         </div>

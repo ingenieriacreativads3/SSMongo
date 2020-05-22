@@ -43,10 +43,10 @@ class Login extends React.Component<{
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
+              id="usuario"
+              label="Usuario"
+              name="usuario"
+              autoComplete="usuario"
               autoFocus
               InputLabelProps={{
                 classes: {
