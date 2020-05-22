@@ -144,10 +144,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export function SolicitudesValidacion() {
+export function SolicitudesValidacion(props: {
+  data: any
+}) {
 
 	const classes = useStyles(theme);
-	return <Lista classes={classes} />;
+  return <Lista 
+    classes={ classes }
+    data={ props.data }
+  />;
 
 }
 

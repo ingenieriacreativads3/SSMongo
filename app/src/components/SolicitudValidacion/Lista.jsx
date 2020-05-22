@@ -1,8 +1,6 @@
 import React from 'react'
 import AppBar from '../AppBar'
 import MenuLateral from '../Drawer'
-import { connect } from 'react-redux'
-
 
 import MaterialTable from 'material-table'
 import { CssBaseline } from '@material-ui/core';
@@ -46,38 +44,27 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-function mapStateToProps(store) {
-  return {
-    Item: store.Item,
-    //idEmpresa: store.login.data.empresa._id
-  };
-}
-
 class Lista extends React.Component {
 
   constructor(props) {
-    super(props);
+		super(props);
     this.state = {
 			columns: [
-				{ title: 'Nº', field: 'id', type: 'numeric' },
-				{ title: 'Fecha', field: 'fecha', type: 'date' },
-				{ title: 'Empresa', field: 'empresa' },
+				{ title: '_id', field: '_id', type: 'string' },
+				{ title: 'empresa_id', field: 'empresa_id', type: 'string' },
+				{ title: 'updated_at', field: 'updated_at', type: 'string' },
+				{ title: 'created_at', field: 'created_at', type: 'string' },
 				
 				{
-					title: 'Estado',
+					title: 'estado',
 					field: 'estado',
-					lookup: { 1: 'Resuelta', 2: 'No Resuelta' },
+					lookup: { 'Resuelta': 'Resuelta', 'No resuelta': 'No Resuelta' },
 				},
 				
-			],
-			data: [
-				{ id: '1', fecha:'10/02/2020',empresa:'Symsa', estado: 1},
-				{ id: '2', fecha:'10/02/2020',empresa:'CorpuSoft', estado: 2},
-				{ id: '3', fecha:'10/02/2020',empresa:'Macoser', estado: 2},
+			]
+		};
 
-			],
-    };
-  }
+	}
 
   render(){
 
@@ -88,26 +75,26 @@ class Lista extends React.Component {
 
         <CssBaseline />
         <AppBar></AppBar>
-		<MenuLateral></MenuLateral>
+				<MenuLateral></MenuLateral>
 				<TableContainer className={classes.container}>
 
 					<MaterialTable
 						icons={tableIcons}
 						title="Solicitudes de Validación"
 						columns={this.state.columns}
-						data={this.state.data}
+						data={this.props.data}
 						editable={{
 							onRowAdd: (newData) =>
-								new Promise((resolve) => {
-									setTimeout(() => {
-										resolve();
-										this.setState((prevState) => {
-											const data = [...prevState.data];
-											data.push(newData);
-											return { ...prevState, data };
-										});
-									}, 600);
-								}),
+							new Promise((resolve) => {
+								setTimeout(() => {
+									resolve();
+									this.setState((prevState) => {
+										const data = [...prevState.data];
+										data.push(newData);
+										return { ...prevState, data };
+									});
+								}, 600);
+							}),
 							onRowUpdate: (newData, oldData) =>
 								new Promise((resolve) => {
 									setTimeout(() => {
@@ -140,6 +127,4 @@ class Lista extends React.Component {
   }
 }
 
-
-
-export default connect(mapStateToProps)(Lista)
+export default Lista

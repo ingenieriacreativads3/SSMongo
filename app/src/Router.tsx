@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { connect } from 'react-redux';
+
 import AppBar from './components/AppBar'
 import { NuevoItem } from './components/Item'
 import { EditarItem } from './components/Item'
@@ -18,7 +18,6 @@ import { ComprasPresupuestos } from './components/Presupuesto'
 import { VentasPresupuestos } from './components/Presupuesto'
 import { EvaluarEmpresa } from './components/Evaluacion'
 import { EvaluarPlataforma } from './components/Evaluacion'
-import { SolicitudesValidacion}from './components/SolicitudValidacion'
 import { ValidarNuevoUsuario } from './components/SolicitudValidacion'
 import { PerfilPropio } from './components/Perfil'
 import { Footer } from './components/Footer'
@@ -26,18 +25,7 @@ import { Presupuestar } from './components/Presupuesto'
 
 import Login from './containers/Login'
 import Register from './containers/Register'
-
-function mapStateToProps(store: {
-	solicitudDeValidacion: {
-		data: {
-			solicitudesDeValidacion: []
-		}
-	}
-}) {
-	return {
-		SolicitudDeValidacion: store.solicitudDeValidacion.data.solicitudesDeValidacion,
-	};
-}
+import ValidationRequest from './containers/ValidationRequest'
 
 class App extends React.Component {
 
@@ -70,7 +58,7 @@ class App extends React.Component {
 						<Route path="/ventas/presupuestos/lista" 			component={ VentasPresupuestos } />
 						<Route path="/evaluacion/empresa" 						component={ EvaluarEmpresa } />
 						<Route path="/evaluacion/suppliersStore" 			component={ EvaluarPlataforma }></Route>
-						<Route path="/solicitud/validacion" 					component={ SolicitudesValidacion }></Route>
+						<Route path="/solicitud/validacion" 					component={ ValidationRequest }></Route>
 						<Route path="/solicitud/nuevoUsuario/:id" 		component={ ValidarNuevoUsuario }></Route>
 						<Route path="/home/perfil" 										component={ PerfilPropio }></Route>
 						<Route path="/footer" 												component={ Footer }></Route>
@@ -82,4 +70,4 @@ class App extends React.Component {
 	}
 }
 
-export default connect(mapStateToProps)(App);
+export default App
