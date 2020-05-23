@@ -79,8 +79,8 @@ class Validacion extends React.Component <{}, {
 
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar></AppBar>
-        <MenuLateral></MenuLateral>
+        <AppBar />
+        <MenuLateral />
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>

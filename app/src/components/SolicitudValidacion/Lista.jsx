@@ -3,7 +3,9 @@ import AppBar from '../AppBar'
 import MenuLateral from '../Drawer'
 
 import MaterialTable from 'material-table'
-import { CssBaseline } from '@material-ui/core';
+import { Container, Grid, CssBaseline, Card, Box, Typography } from '@material-ui/core';
+import MaterialLink from '@material-ui/core/Link';
+import clsx from 'clsx'
 
 import { forwardRef } from 'react';
 
@@ -44,84 +46,58 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <MaterialLink color="inherit" href="https://material-ui.com/">
+        Your Website
+      </MaterialLink>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
 class Lista extends React.Component {
 
   constructor(props) {
 		super(props);
     this.state = {
-			columns: [
-				{ title: '_id', field: '_id', type: 'string' },
-				{ title: 'empresa_id', field: 'empresa_id', type: 'string' },
-				{ title: 'updated_at', field: 'updated_at', type: 'string' },
-				{ title: 'created_at', field: 'created_at', type: 'string' },
-				
-				{
-					title: 'estado',
-					field: 'estado',
-					lookup: { 'Resuelta': 'Resuelta', 'No resuelta': 'No Resuelta' },
-				},
-				
-			]
 		};
 
 	}
 
   render(){
 
-		const classes = this.props.classes
+    const classes = this.props.classes
 
     return(
-			<div className={classes.root} style={{marginTop: '10%'}}>
+      
+			<div className={classes.root} >
 
         <CssBaseline />
-        <AppBar></AppBar>
-				<MenuLateral></MenuLateral>
-				<TableContainer className={classes.container}>
-
-					<MaterialTable
-						icons={tableIcons}
-						title="Solicitudes de Validación"
-						columns={this.state.columns}
-						data={this.props.data}
-						editable={{
-							onRowAdd: (newData) =>
-							new Promise((resolve) => {
-								setTimeout(() => {
-									resolve();
-									this.setState((prevState) => {
-										const data = [...prevState.data];
-										data.push(newData);
-										return { ...prevState, data };
-									});
-								}, 600);
-							}),
-							onRowUpdate: (newData, oldData) =>
-								new Promise((resolve) => {
-									setTimeout(() => {
-										resolve();
-										if (oldData) {
-											this.setState((prevState) => {
-												const data = [...prevState.data];
-												data[data.indexOf(oldData)] = newData;
-												return { ...prevState, data };
-											});
-										}
-									}, 600);
-								}),
-							onRowDelete: (oldData) =>
-								new Promise((resolve) => {
-									setTimeout(() => {
-										resolve();
-										this.setState((prevState) => {
-											const data = [...prevState.data];
-											data.splice(data.indexOf(oldData), 1);
-											return { ...prevState, data };
-										});
-									}, 600);
-								}),
-						}}
-					/>
-				</TableContainer>
+        <AppBar />
+				<MenuLateral />
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+              <Grid item lg={12}>
+                <MaterialTable
+                  icons={tableIcons}
+                  title={this.props.title}
+                  columns={this.props.columns}
+                  data={this.props.data}
+                />
+              </Grid>
+            </Grid>
+            <Box pt={4}>
+              <Copyright />
+            </Box>
+          </Container>
+        </main>
+				
 			</div>
     );
   }

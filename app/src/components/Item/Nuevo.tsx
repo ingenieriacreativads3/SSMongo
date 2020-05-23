@@ -8,15 +8,10 @@ import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
 import * as Login from './../../store/actions/login'
 
-
-//import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 import MenuLateral from '../Drawer';
-
 
 function Copyright() {
   return (
@@ -56,14 +51,6 @@ class Nuevo extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-/*     this.onSubmit = this.onSubmit.bind(this);
-    this.getNombre = this.getNombre.bind(this);
-    this.getPrecio = this.getPrecio.bind(this);
-    this.getFoto = this.getFoto.bind(this);
-    this.getDescripcion = this.getDescripcion.bind(this);
-    this.getCaracteristicas = this.getCaracteristicas.bind(this);
-    this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
-    this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
     this.state = {
       Item: {
         nombre: '',
@@ -76,87 +63,6 @@ class Nuevo extends React.Component {
       }
     };
   }
-/* 
-  onSubmit() {
-    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
-  }
-
-  getNombre(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        nombre: e.target.value
-      }
-    });
-
-  }
-
-  getPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        precio: e.target.value
-      }
-    });
-
-  }
-
-  getFoto(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        foto: e.target.value
-      }
-    });
-
-  }
-
-  getDescripcion(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        descripcion: e.target.value
-      }
-    });
-
-  }
-
-  getCaracteristicas(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        caracteristicas: e.target.value
-      }
-    });
-
-  }
-
-  getUnidadDeMedida(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  }
-
-  getMostrarPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        mostrarPrecio: e.target.value
-      }
-    });
-
-  } */
 
   async register(): Promise<void> {
     return new Promise<void>( async (resolve, reject) => {

@@ -145,13 +145,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function SolicitudesValidacion(props: {
-  data: any
+  data: any,
+  title: string,
+  columns: {}[]
 }) {
 
 	const classes = useStyles(theme);
   return <Lista 
     classes={ classes }
     data={ props.data }
+    title={ props.title }
+    columns={ props.columns }
   />;
 
 }

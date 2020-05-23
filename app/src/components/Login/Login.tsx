@@ -95,15 +95,15 @@ class Login extends React.Component<{
               label="Recordarme"
             />
             <Link href="/home/inicio" className={classes.submit}>
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              className={classes.submit}
-              onClick={ this.props.login }
-            >
-              Ingresar
-            </Button>
+              <Button
+                type="button"
+                fullWidth
+                variant="contained"
+                className={classes.submit}
+                onClick={ this.props.login }
+              >
+                Ingresar
+              </Button>
             </Link>
             <Grid container>
               <Grid item xs>
