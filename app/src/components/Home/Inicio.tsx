@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import  foto  from '../Login/img/photo2.png';
+import { Footer } from '../Footer'
 
 import * as dialogAction from './../../store/actions/dialog'
 
@@ -87,49 +88,6 @@ class Inicio extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        <Drawer >
-              <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            subheader={
-              <ListSubheader component="div" id="nested-list-subheader">
-                Nested List Items
-              </ListSubheader>
-            }
-            className={classes.root}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <SendIcon />
-              </ListItemIcon>
-              <ListItemText primary="Sent mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-            <ListItem button >
-            {/* onClick={handleClick} */}
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-              {/* {open ? <ExpandLess /> : <ExpandMore />} */}
-            </ListItem>
-            {/* <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItem button className={classes.nested}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
-                </ListItem>
-              </List>
-          </Collapse> */}
-        </List>
-        </Drawer>
 					<main className={classes.content}>
           <Paper className={classes.mainFeaturedPost} /* style={{ backgroundImage: `url(${post.image})` }} */>
       {/* Increase the priority of the hero background image */}
@@ -351,8 +309,10 @@ class Inicio extends React.Component {
 								<Copyright />
 							</Box>
 						</Container>
+            <Footer></Footer>
 					</main>
 
+          
          
 		 </div>
 

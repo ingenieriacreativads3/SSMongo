@@ -189,31 +189,22 @@ class Register extends React.Component<{
             >
               REGISTRARME
             </Button>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              className={classes.submit}
+              onClick={ this.props.register }
+            >
+              ADJUNTAR CONTRATO SOCIAL
+            </Button>
             <Grid container >
               <Grid item xs>
                 <Link href="/ingresar" variant="body2"className={classes.Link}>
                   Ya soy miembro. Iniciar sesion
                 </Link>
               </Grid>
-              <Grid item>
-              <Button 
-              style={{ background: "none",outline:"none" }}
-                variant="contained"
-                component="label"
-              
-              >
-                <InputLabel htmlFor="icon-button-file">
-                  <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-                    <PhotoCamera />
-                  </IconButton>
-                </InputLabel>
-                <Input
-                  type="file"
-                  style={{ display: "none" }}
-                />
-              </Button>
-            
-              </Grid>
+             
               
             </Grid>
           </form>
