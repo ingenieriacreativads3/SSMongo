@@ -94,6 +94,7 @@ class Login extends React.Component<{
                 }} />}
               label="Recordarme"
             />
+            <Link href="/home/inicio" className={classes.submit}>
             <Button
               type="button"
               fullWidth
@@ -103,6 +104,7 @@ class Login extends React.Component<{
             >
               Ingresar
             </Button>
+            </Link>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2"className={classes.Link}>

@@ -48,7 +48,7 @@ class Lista extends React.Component {
 
   constructor(props) {
 		super(props);
-|    this.state = {
+    this.state = {
 			columns: [
 				{ title: '_id', field: '_id', type: 'string' },
 				{ title: 'empresa_id', field: 'empresa_id', type: 'string' },

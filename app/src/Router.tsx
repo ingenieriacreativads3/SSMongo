@@ -64,7 +64,7 @@ class App extends React.Component {
 						<Route path="/home/perfil"                    component={ PerfilPropio }></Route>
 						<Route path="/footer"                         component={ Footer }></Route>
 						<Route path="/ventas/presupuesto/:id"         component={ Presupuestar }></Route>
-						{/* <Route path="/home/inicio"                component={ PantallaInicio }></Route> */}
+						<Route path="/home/inicio"                    component={ PantallaInicio }></Route>
 					</Switch>
 				</div>
 			</Router>

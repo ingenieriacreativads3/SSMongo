@@ -7,7 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 
-import { Container, Grid,  Typography,CssBaseline, Avatar} from '@material-ui/core';
+import { Container, Grid, Box, Typography, CssBaseline, Avatar} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 
@@ -71,8 +71,21 @@ class Footer extends React.Component {
       <footer className={classes.footer}>
       <Container maxWidth="lg">
         
-     
+      <Box display="flex" p={1} >
+      <Box p={1} >
       <Typography variant="h5" align='left' gutterBottom>
+      Sobre Nosotros
+       </Typography>
+        <Typography variant="h6" align='left'  gutterBottom>
+        En esta plataforma podras encontrar de manera rápida y sencilla a tus proveedores. 
+       Registrate, Ingresá y comenzá a hacer tus pedidos. 
+       </Typography>
+      
+       <Avatar  src={logo} className={classes.avatar} ></Avatar>
+       
+       </Box>
+       <Box  p={1} flexShrink={1} >
+       <Typography variant="h5" align='left' gutterBottom>
              ¿Por qué elegirnos?
        </Typography>
         <Typography variant="h6" align='left'  gutterBottom>
@@ -87,7 +100,8 @@ class Footer extends React.Component {
        <EqualizerIcon fontSize="large" style={{ color: '#d93211' }} />
        Perfil personalizado, con estadísticas acerca de tus negocios en la plataforma
        </Typography>
-      
+       </Box>
+      </Box>
        
       </Container>
     </footer>

@@ -94,7 +94,8 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto',
   },
   fixedHeightCAtalog:{
-    height: 345,
+    height:330,
+    width:250,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -129,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
    },
   },
   Link:{
-    color:'#d93211',
+    outline:'none',
   },
   img:{
     width:300,
@@ -147,6 +148,34 @@ const useStyles = makeStyles((theme) => ({
       borderColor: '#d93211'
     }
   },
+  mainFeaturedPost: {
+    position: 'relative',
+    backgroundColor: theme.palette.grey[800],
+    color: theme.palette.common.white,
+    marginBottom: theme.spacing(4),
+    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    backgroundColor: 'rgba(0,0,0,.3)',
+  },
+  mainFeaturedPostContent: {
+    position: 'relative',
+    padding: theme.spacing(3),
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(6),
+      paddingRight: 0,
+    },
+  },
+
+  
   
 }));
 
