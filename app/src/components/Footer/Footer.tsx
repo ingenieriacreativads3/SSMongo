@@ -76,7 +76,7 @@ class Footer extends React.Component {
       <Typography variant="h5" align='left' gutterBottom>
       Sobre Nosotros
        </Typography>
-        <Typography variant="h6" align='left'  gutterBottom>
+        <Typography variant="h6" align='left' gutterBottom>
         En esta plataforma podras encontrar de manera rápida y sencilla a tus proveedores. 
        Registrate, Ingresá y comenzá a hacer tus pedidos. 
        </Typography>
