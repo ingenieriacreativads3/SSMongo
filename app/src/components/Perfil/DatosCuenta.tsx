@@ -245,7 +245,29 @@ class DatosCuenta extends React.Component {
                         <Grid container spacing={3}>
                             
                             <Grid item lg={4}>
+                              
                             <TextField
+                              className={classes.textField}
+                              label="Usuario"
+                              variant="outlined"
+                              defaultValue= "CorpuSA"
+                              id="mui-theme-provider-outlined-input"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
+                            {/* <TextField
+                            className={classes.textField}
                             variant="outlined"
                               defaultValue= "CorpuSA"
                               label="Usuario"
@@ -264,11 +286,12 @@ class DatosCuenta extends React.Component {
                                   notchedOutline: classes.notchedOutline,
                                 },
                               }}
-                            />
+                            /> */}
                               
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                            className={classes.textField}
                             variant="outlined"
                               defaultValue= "corpu@sa.com.ar"
                               label="Email"
@@ -291,6 +314,7 @@ class DatosCuenta extends React.Component {
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                              className={classes.textField}
                             variant="outlined"
                               defaultValue= "micontraseña"
                               label="Contraseña"
@@ -321,6 +345,7 @@ class DatosCuenta extends React.Component {
                           <Grid container spacing={3}>
                           <Grid item lg={4}>
                             <TextField
+                              className={classes.textField}
                             variant="outlined"
                             disabled
                               defaultValue= "30236547815"
@@ -343,6 +368,7 @@ class DatosCuenta extends React.Component {
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                              className={classes.textField}
                             variant="outlined"
                             disabled
                               defaultValue= "CorpuSoft"
@@ -365,6 +391,7 @@ class DatosCuenta extends React.Component {
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
+                              className={classes.textField}
                             variant="outlined"
                             disabled
                               defaultValue= "CorpuSoft SA"
@@ -392,10 +419,12 @@ class DatosCuenta extends React.Component {
                           <Grid container spacing={3}>
                           <Grid item lg={4}>
                             <TextField
+                            
                             variant="outlined"
                               defaultValue= "Bv. Roca 1200"
                               label="Domicilio"
                               type="text"
+                              className={classes.textField}
                               InputLabelProps={{
                                 classes: {
                                   root: classes.cssLabel,
@@ -460,6 +489,7 @@ class DatosCuenta extends React.Component {
                           <Grid container spacing={3}>
                           <Grid item lg={4}>
                             <TextField
+                              className={classes.textField}
                             variant="outlined"
                               defaultValue= "03564421589"
                               label="Teléfono"
@@ -482,10 +512,11 @@ class DatosCuenta extends React.Component {
                             <Button
                               variant="contained"
                               component="label"
+                              className={classes.botonIcono}
                             >
                               <InputLabel htmlFor="icon-button-file">
                                 <IconButton color="primary"  aria-label="upload picture" component="span" className={classes.iconButton}>
-                                  <PhotoCamera fontSize="small"/>
+                                  <PhotoCamera />
                                 </IconButton>
                               </InputLabel>
                               <Input

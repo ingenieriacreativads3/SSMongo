@@ -22,6 +22,7 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -149,6 +150,14 @@ const useStyles = makeStyles((theme) => ({
       // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
       borderColor: '#d93211'
     }
+  },
+  botonIcono:{
+    
+    width:'20px',
+    height:'40px',
+    backgroundColor: '#ffffff',
+    outline:'none',
+    margin: theme.spacing(5),
   },
   
 }));

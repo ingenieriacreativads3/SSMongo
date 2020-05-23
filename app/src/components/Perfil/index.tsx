@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     height: 345,
   },
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
     minWidth: 200,
     
   },
@@ -107,6 +107,10 @@ const useStyles = makeStyles((theme) => ({
   card: {
     minHeight: 300
   },
+  textField:{
+    margin: theme.spacing(2),
+  },
+
   button: {
     margin: theme.spacing(0.5),
     backgroundColor: '#d93211',
@@ -123,6 +127,16 @@ const useStyles = makeStyles((theme) => ({
     color:"#ffffff",
     backgroundColor:'#d93211',
   },
+
+  botonIcono:{
+    
+    width:'20px',
+    height:'40px',
+    backgroundColor: '#ffffff',
+    outline:'none',
+    margin: theme.spacing(5),
+  },
+
   iconButton:{
     
     color:'#d93211',
@@ -137,17 +151,16 @@ const useStyles = makeStyles((theme) => ({
     width:300,
     display:'flex'
   },
-  
+
   cssOutlinedInput: {
     '&$cssFocused $notchedOutline': {
       borderColor: `#d93211 !important`,
     }
   },
-  inputLabel:{
-    
-    "&.Mui-focused": {
-      color: '#d93211'
-    }
+
+  cssFocused: {color:`#d93211 !important`},
+  notchedOutline: {
+    borderWidth: '2px',
   },
 
  
@@ -165,10 +178,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
 
-  cssFocused: {color:`#d93211 !important`},
-  notchedOutline: {
-    borderWidth: '1px',
-  },
+  
 
 
   

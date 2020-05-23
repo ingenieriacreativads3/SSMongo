@@ -12,6 +12,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import InputLabel from '@material-ui/core/InputLabel'
 import IconButton from '@material-ui/core/IconButton'
 import Input from '@material-ui/core/Input'
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 class Register extends React.Component<{
   classes: any,
@@ -180,24 +181,33 @@ class Register extends React.Component<{
             </Grid>
             
           </Grid>
+          <div className={classes.root}>
             <Button
               type="button"
-              fullWidth
+             
               variant="contained"
               className={classes.submit}
               onClick={ this.props.register }
             >
               REGISTRARME
             </Button>
+            
             <Button
-              type="button"
-              fullWidth
               variant="contained"
+              component="label"
               className={classes.submit}
-              onClick={ this.props.register }
+              startIcon={<CloudUploadIcon />}
             >
-              ADJUNTAR CONTRATO SOCIAL
+              <InputLabel htmlFor="icon-button-file">
+            
+              </InputLabel>
+              <Input
+                type="file"
+                style={{ display: "none" }}
+              />
+              CONTRATO SOCIAL
             </Button>
+            </div>
             <Grid container >
               <Grid item xs>
                 <Link href="/ingresar" variant="body2"className={classes.Link}>

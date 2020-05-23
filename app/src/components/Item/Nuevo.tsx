@@ -3,6 +3,7 @@ import AppBar from './../AppBar'
 import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
+import { withStyles } from '@material-ui/core/styles';
 
 import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
@@ -12,6 +13,28 @@ import * as Login from './../../store/actions/login'
 
 import { connect } from 'react-redux'
 import MenuLateral from '../Drawer';
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: '#d93211',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#d93211',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#d93211',
+      },
+      '&:hover fieldset': {
+        borderColor: '#d93211',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#d93211',
+      },
+    },
+  },
+})(TextField);
 
 function Copyright() {
   return (
@@ -120,11 +143,13 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <TextField id="standard-required" label="Nombre"  className={classes.input}  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre"  />
+                            
                               
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField id="standard-required" label="Precio"  type="number" className={classes.input}   />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio"   type="number" />
+                            
                             </Grid>
                             <Grid item lg={4}>
                               <FormControlLabel
@@ -178,6 +203,7 @@ class Nuevo extends React.Component {
                             <Button
                               variant="contained"
                               component="label"
+                              className={classes.botonIcono}
                             >
                               <InputLabel htmlFor="icon-button-file">
                                 <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>

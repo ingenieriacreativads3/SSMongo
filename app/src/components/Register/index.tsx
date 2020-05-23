@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
   Link:{
     color:'#d93211',
+    margin: theme.spacing(3),
   },
  
   cssOutlinedInput: {
@@ -66,6 +67,11 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: "#d93211",
    },
+  },
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
 
 }));

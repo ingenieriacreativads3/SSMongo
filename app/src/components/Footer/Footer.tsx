@@ -105,49 +105,7 @@ class Footer extends React.Component {
        
       </Container>
     </footer>
-     //   <div className={classes.root}>
-    //   <CssBaseline />
-      
-    //   <footer className={classes.footer}>
-    //     <Container maxWidth="sm">
-    //     <Grid container spacing={3}>
-    //       <Grid container spacing={3}>
-    //          <Grid item lg={4}>
-    //         <Typography variant="h3" gutterBottom>
-    //    Sobre Nosotros
-    //   </Typography>
-    //   <Typography variant="h6" gutterBottom>
-    //   En esta plataforma podras encontrar de manera rápida y sencilla a tus proveedores. 
-    //   Registrate, Ingresá y comenzá a hacer tus pedidos. 
-    //   </Typography>
-    //         </Grid> 
-    //         <Grid item lg={4}>
-    //         <Typography variant="h3" gutterBottom>
-    //         ¿Por qué elegirnos?
-    //   </Typography>
-    //   <Typography variant="h6" gutterBottom>
-    //   <VerifiedUserIcon fontSize="large" style={{ color: '#d93211' }} />
-    //   Todas las empresas de esta plataforma, son legalmente verificadas
-    //   </Typography>
-    //   <Typography variant="h6" gutterBottom>
-    //   <ShoppingCartIcon fontSize="large" style={{ color: '#d93211' }} />
-    //   Amplia oferta de productos y servicios
-    //   </Typography>
-    //   <Typography variant="h6" gutterBottom>
-    //   <EqualizerIcon fontSize="large" style={{ color: '#d93211' }} />
-    //   Perfil personalizado, con estadísticas acerca de tus negocios en la plataforma
-    //   </Typography>
-    //         </Grid>
-    //         <Grid item lg={4}>
-             
-		// 				<Avatar src={logo} className={classes.avatar} ></Avatar>
-				
-    //       </Grid>
-    //       </Grid>
-    //     </Grid>
-    //     </Container>
-    //   </footer>
-    // </div> */}
+     
 
     );
   }

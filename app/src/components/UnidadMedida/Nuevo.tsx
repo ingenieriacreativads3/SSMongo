@@ -2,17 +2,35 @@ import React from 'react';
 import AppBar from './../AppBar'
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
+import { withStyles } from '@material-ui/core/styles';
 
 import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, Button, CardContent, Input,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
-
-
-
-
-
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: '#d93211',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#d93211',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#d93211',
+      },
+      '&:hover fieldset': {
+        borderColor: '#d93211',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#d93211',
+      },
+    },
+  },
+})(TextField);
 
 
 function Copyright() {
@@ -189,19 +207,25 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
-                            <TextField disabled id="standard-required" label="Usuario" defaultValue="CorpuSoft" className={classes.input}  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Usuario"  />
+                          
                             </Grid>
                             <Grid item lg={6}>
-                            <TextField id="standard-required" label="Unidad"  className={classes.input}  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Unidad"  />
+
+                           
                             </Grid>
                             
                           </Grid>
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
-                            <TextField id="standard-required" label="Simbolo"  className={classes.input}  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input"  label="Simbolo"  />
+
+                          
                             </Grid>
                             <Grid item lg={6}>
-                            <TextField id="standard-required" label="Magnitud"  className={classes.input}  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input"  label="Magnitud"  />
+                  
                             </Grid>
                             
                           </Grid>

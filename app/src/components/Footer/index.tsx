@@ -25,7 +25,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
   },
- 
+  avatar: {
+    marginLeft: theme.spacing(15),
+    marginRight: theme.spacing(15),
+    width:'320px',
+    height:'200px',
+    
+	
+	},
 }));
 
 export  function Footer() {
