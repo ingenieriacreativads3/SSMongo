@@ -3,7 +3,13 @@ export default function SolicitudesDeValidacionReducer ( state = {
 	status: 0,
   message: '',
   data: {
-		solicitudesDeValidaciones: []
+		solicitudDeValidacion: {
+			_id: '',
+			empresa: {
+				nombre: '',
+				cuit: ''
+			}
+		}
 	},
   fetching: false,
 	fetched: false,
@@ -47,7 +53,41 @@ export default function SolicitudesDeValidacionReducer ( state = {
 					solicitudesDeValidaciones: action.payload.data.data.solicitudesDeValidaciones
 				}
       };
+			
+		}
 
+		case 'GET_SOLICITUD_DE_VALIDACION_PENDING': {
+
+			return { 
+				...state, 
+				fetching: true 
+			};
+
+		}
+	
+		case 'GET_SOLICITUD_DE_VALIDACION_REJECTED': {
+
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+
+		}
+	
+		case 'GET_SOLICITUD_DE_VALIDACION_FULFILLED': {
+			
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: {
+					solicitudDeValidacion: action.payload.data.data.solicitudesDeValidaciones
+				}
+      };
+			
 		}
 	
 		case 'E': {

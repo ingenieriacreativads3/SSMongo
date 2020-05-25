@@ -106,7 +106,8 @@ const useStyles = makeStyles((theme) => ({
 export function SolicitudesValidacion(props: {
   data: any,
   title: string,
-  columns: {}[]
+  columns: {}[],
+  action: any
 }) {
 
 	const classes = useStyles(theme);
@@ -115,14 +116,20 @@ export function SolicitudesValidacion(props: {
     data={ props.data }
     title={ props.title }
     columns={ props.columns }
+    action= { props.action }
   />;
 
 }
 
-export function ValidarNuevoUsuario() {
+export function ValidarNuevoUsuario(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}) {
 
 	const classes = useStyles(theme);
-	return <Validacion classes={classes} />;
+	return <Validacion classes={classes} history={props.history} location={props.location} match={props.match} staticContext={props.staticContext} />;
 
 }
 

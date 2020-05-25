@@ -60,7 +60,8 @@ class App extends React.Component {
 						<Route path="/evaluacion/empresa"             component={ EvaluarEmpresa } />
 						<Route path="/evaluacion/suppliersStore"      component={ EvaluarPlataforma }></Route>
 						<Route path="/solicitud/validacion"           component={ ValidationRequest }></Route>
-						<Route path="/solicitud/nuevoUsuario/:id"     component={ ValidarNuevoUsuario }></Route>
+						{/* <Route path='/solicitud/nuevoUsuario/:id'   component={ ValidarNuevoUsuario }></Route> */}
+						<Route path='/solicitud/nuevoUsuario/:id' render={(props) => <ValidarNuevoUsuario {...props}/>}/>
 						<Route path="/home/perfil"                    component={ PerfilPropio }></Route>
 						<Route path="/footer"                         component={ Footer }></Route>
 						<Route path="/ventas/presupuesto/:id"         component={ Presupuestar }></Route>

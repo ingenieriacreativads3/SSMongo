@@ -2,15 +2,15 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-
 import { Container, Grid,TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize, List} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 import menuLateral from '../Drawer'
 
-//import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 import MenuLateral from '../Drawer';
+
+import * as SolicitudDeValidacionActions from './../../store/actions/solicitudDeValidacion'
 
 function Copyright() {
   return (
@@ -25,14 +25,28 @@ function Copyright() {
   );
 }
 
-function mapStateToProps(store: {}) {
+function mapStateToProps(store: {
+  solicitudDeValidacionReducer: {}
+}) {
   return {
-    Item: store
+    solicitudDeValidacion: store.solicitudDeValidacionReducer
   };
 }
 
-class Validacion extends React.Component <{}, {
-  personName: []
+class Validacion extends React.Component <{
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}, {
+  personName: [],
+  solicitudDeValidacion: {
+    _id: string,
+    empresa: {
+      nombre: string,
+      cuit: string
+    }
+  }
 }> {
 
   props: any
@@ -43,7 +57,18 @@ class Validacion extends React.Component <{}, {
     super(props);
     this.state = {
       personName: [],
+      solicitudDeValidacion: {
+        _id: '',
+        empresa: {
+          nombre: '',
+          cuit: ''
+        }
+      }
     };
+  }
+
+  componentWillMount() {
+    this.props.dispatch(SolicitudDeValidacionActions.getById(this.props.match.params.id))
   }
   
   render(){
@@ -75,6 +100,44 @@ class Validacion extends React.Component <{}, {
       },
     };
 
+
+    let solicitudDeValidacion = {
+      _id: '',
+      empresa: {
+        nombre: '',
+        cuit: ''
+      }
+    }
+
+    // if(
+    //   this.props.solicitudDeValidacion.status === 200
+    // ) {
+    //   this.setState({
+    //     solicitudDeValidacion: this.props.solicitudDeValidacion.data.solicitudDeValidacion
+    //   })
+    // }
+
+    let _id: string = ''
+    let empresaNombre: string = ''
+    let empresaCuit: string = ''
+
+    if(
+      this.props.solicitudDeValidacion &&
+      this.props.solicitudDeValidacion.data &&
+      this.props.solicitudDeValidacion.data.solicitudDeValidacion
+    ) {
+      if(this.props.solicitudDeValidacion.data.solicitudDeValidacion._id) _id = this.props.solicitudDeValidacion.data.solicitudDeValidacion._id
+      if(this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa) {
+        if(this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa.nombre) empresaNombre = this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa.nombre
+        if(this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa.cuit) empresaCuit = this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa.cuit
+      }
+    }
+
+    console.log(_id)
+    console.log(empresaNombre)
+    console.log(empresaCuit)
+
+
     return(
 
       <div className={classes.root}>
@@ -103,31 +166,31 @@ class Validacion extends React.Component <{}, {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="ID Solicitud" defaultValue="1"  className={classes.input}  />
+                              <TextField disabled id="standard-required" label="ID Solicitud" value={_id} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Empresa" defaultValue="Symsa"  className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Empresa" value={empresaNombre}  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" target="_blank" >
-                                      <Button
-                                      type="button"
-                                      
-                                      variant="contained"
-                                      className={classes.Boton}
-                                      // onClick={this.ingresar}
-                                      >
-                                      Validar CUIT
-                                      </Button>
-                                    </Link>
-                                    </Grid>
+                              <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" target="_blank" >
+                                <Button
+                                type="button"
+                                
+                                variant="contained"
+                                className={classes.Boton}
+                                // onClick={this.ingresar}
+                                >
+                                Validar CUIT
+                                </Button>
+                              </Link>
+                            </Grid>
                             
                           </Grid>
                           
                           <Grid container spacing={3}>
                          
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="CUIT" defaultValue="30255698474"  className={classes.input}  />
+                            <TextField disabled id="standard-required" label="CUIT" value={empresaCuit}  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
                             
@@ -238,12 +301,6 @@ class Validacion extends React.Component <{}, {
 
     );
   }
-}
-
-Validacion.defaultProps = {
-	classes: {
-		color: 'color'
-	}
 }
 
 export default connect(mapStateToProps)(Validacion)

@@ -45,6 +45,8 @@ class Login extends React.Component<{}, {
         this.props.dispatch(dialogAction.openOneButton())
       } else {
         this.props.dispatch(dialogAction.closeOneButton())
+        this.props.dispatch(loginAction.reintentar())
+        this.props.history.push("/home/inicio");
       }
     } else {
       this.props.dispatch(dialogAction.closeOneButton())
