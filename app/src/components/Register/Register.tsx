@@ -182,17 +182,8 @@ class Register extends React.Component<{
             
           </Grid>
           <div className={classes.root}>
-            <Button
-              type="button"
-             
-              variant="contained"
-              className={classes.submit}
-              onClick={ this.props.register }
-            >
-              REGISTRARME
-            </Button>
             
-            <Button
+          <Button
               variant="contained"
               component="label"
               className={classes.submit}
@@ -207,6 +198,19 @@ class Register extends React.Component<{
               />
               CONTRATO SOCIAL
             </Button>
+            
+            
+            <Button
+              type="button"
+             
+              variant="contained"
+              className={classes.submit}
+              onClick={ this.props.register }
+            >
+              REGISTRARME
+            </Button>
+            
+            
             </div>
             <Grid container >
               <Grid item xs>

@@ -258,7 +258,7 @@ class Nuevo extends React.Component {
                             <TextField disabled id="standard-required" label="Unidad" defaultValue="Unidad" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Mensaje"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  />
                             </Grid>
                           </Grid>
                             

@@ -217,23 +217,23 @@ class Detalle extends React.Component {
                             
 
                                   <div>
-                                    <Link href="/pedido/nuevo" className={classes.button}>
+                                    <Link href="/pedido/nuevo" >
                                       <Button
                                       type="button"
                                       
                                       variant="contained"
-                                      className={classes.button}
+                                      className={classes.Boton}
                                       // onClick={this.ingresar}
                                       >
                                       Solicitar pedido
                                       </Button>
                                     </Link>
-                                  <Link href="/presupuesto/nuevo" className={classes.button}>
+                                  <Link href="/presupuesto/nuevo" >
                                     <Button
                                     type="button"
                                     
                                     variant="contained"
-                                    className={classes.button}
+                                    className={classes.Boton}
                                     // onClick={this.ingresar}
                                     >
                                     Solicitar presupuesto

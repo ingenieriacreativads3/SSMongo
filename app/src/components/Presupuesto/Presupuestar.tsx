@@ -5,12 +5,36 @@ import AppBar from '../../components/AppBar'
 import {TextField, Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input,  CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
+import { withStyles } from '@material-ui/core/styles';
+import MenuLateral from '../Drawer'
 
 import * as PresupuestoAction from './../../store/actions/login'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: '#d93211',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#d93211',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#d93211',
+      },
+      '&:hover fieldset': {
+        borderColor: '#d93211',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#d93211',
+      },
+    },
+  },
+})(TextField);
 
 
 function Copyright() {
@@ -176,7 +200,7 @@ class Presupuestar extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-
+        <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -234,18 +258,20 @@ class Presupuestar extends React.Component {
                             <TextField disabled id="standard-required" label="Precio" defaultValue="10000" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize disabled aria-label="minimum height" rowsMin={5} defaultValue="Mensaje de presupuesto"  />
+                            <TextareaAutosize disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} defaultValue="Mensaje de presupuesto"  />
                             </Grid>
                           </Grid>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <TextField id="standard-required" label="Cantidad"  className={classes.input}  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad"   />
+                            
                             </Grid>
                             <Grid item lg={4}>
-                          <TextField  id="standard-required" label="Precio"  className={classes.input}  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio" type="number"   />
+                      
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Mensaje"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={8} className={classes.textTarea} placeholder="Mensaje"  />
                             </Grid>
                           </Grid>
                          

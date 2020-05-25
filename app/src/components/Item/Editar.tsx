@@ -208,13 +208,13 @@ class Editar extends React.Component {
 
                             </Grid>
                             <Grid item lg={4}>
-                              <FormControlLabel
+                              <FormControlLabel className={classes.Checkbox}
                                   control={
                                     <Checkbox
                                       // checked = "false"
                                       // onChange={this.getMostrarPrecio}
                                       style ={{
-                                        color: "#ff6c00",
+                                        color: "#d93211",
                                       }}
                                     />
                                   }
@@ -243,8 +243,8 @@ class Editar extends React.Component {
                               </FormControl>
                             </Grid>
                             <Grid item lg={6}>
-                              <Link href="/unidadMedida/nuevo"  className={classes.button} >
-                                <Button variant="contained" className={classes.button}>
+                              <Link href="/unidadMedida/nuevo"  >
+                                <Button variant="contained" className={classes.Boton}>
                                   Nueva Unidad
                                 </Button>
                               </Link>
@@ -252,10 +252,10 @@ class Editar extends React.Component {
                           </Grid>
                           <Grid container spacing={3}> 
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Android (9.0). Pantalla 16.4' Nano SIM"   />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Android (9.0). Pantalla 16.4' Nano SIM"   />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
                             </Grid>
                             <Grid item lg={4}>
                             <Button

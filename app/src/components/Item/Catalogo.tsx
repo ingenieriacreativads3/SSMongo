@@ -2,12 +2,13 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+import { Container, InputBase, Grid, Card, Box, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Link} from "react-router-dom";
 import MenuLateral from '../Drawer'
+import SearchIcon from '@material-ui/icons/Search';
 
 import * as dialogAction from './../../store/actions/dialog'
 
@@ -76,9 +77,22 @@ class Catalogo extends React.Component {
         <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
+            <div className={classes.search}>
+						<div className={classes.searchIcon}>
+							<SearchIcon />
+						</div>
+						<InputBase
+							placeholder="Buscar"
+							classes={{
+								root: classes.inputRoot,
+								input: classes.inputInput,
+							}}
+							inputProps={{ 'aria-label': 'search' }}
+						/>
+					</div>
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
-
+              
                 <Grid item lg={4}>
                   <Card className={fixedHeightCardCatalog}>
                     <CardActionArea>

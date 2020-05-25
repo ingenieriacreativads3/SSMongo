@@ -272,7 +272,7 @@ class Nuevo extends React.Component {
 
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Mensaje"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
                             </Grid>
                           </Grid>
                             
