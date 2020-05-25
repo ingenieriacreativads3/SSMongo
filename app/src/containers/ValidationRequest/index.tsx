@@ -39,13 +39,13 @@ class ValidationRequest extends React.Component<{}, {}> {
         <ValidationRequestComponent
           title={'Solicitudes de Validación'}
           columns={[
-            { title: '_id', field: '_id', type: 'string' },
-            { title: 'empresa_id', field: 'empresa_id', type: 'string' },
-            { title: 'updated_at', field: 'updated_at', type: 'string' },
-            { title: 'created_at', field: 'created_at', type: 'string' },
+            { title: 'N°', field: 'n°', type: 'string' },
+            { title: 'Empresa', field: 'empresa', type: 'string' },
+            { title: 'Fecha actualización', field: 'fechaActualizacion', type: 'string' },
+            { title: 'Fecha creación', field: 'fechaCreacion', type: 'string' },
             
             {
-              title: 'estado',
+              title: 'Estado',
               field: 'estado',
               lookup: { 'Resuelta': 'Resuelta', 'No resuelta': 'No Resuelta' },
             },

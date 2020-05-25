@@ -109,12 +109,12 @@ class Validacion extends React.Component <{}, {
                             <TextField disabled id="standard-required" label="Empresa" defaultValue="Symsa"  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" target="_blank" className={classes.button}>
+                            <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" target="_blank" >
                                       <Button
                                       type="button"
                                       
                                       variant="contained"
-                                      className={classes.button}
+                                      className={classes.Boton}
                                       // onClick={this.ingresar}
                                       >
                                       Validar CUIT
@@ -131,12 +131,12 @@ class Validacion extends React.Component <{}, {
                             </Grid>
                             <Grid item lg={4}>
                             
-                            <Link href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do" target="_blank" className={classes.button}>
+                            <Link href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do" target="_blank" >
                                       <Button
                                       type="button"
                                       
                                       variant="contained"
-                                      className={classes.button}
+                                      className={classes.Boton}
                                       // onClick={this.ingresar}
                                       >
                                       Verificar rubro
@@ -151,7 +151,7 @@ class Validacion extends React.Component <{}, {
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
                               <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label"className={classes.input}>Estado</InputLabel>
+                              <InputLabel id="demo-simple-select-label">Estado</InputLabel>
                                 <Select
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"

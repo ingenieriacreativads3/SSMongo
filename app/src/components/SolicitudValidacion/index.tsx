@@ -22,60 +22,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-  title: {
-    flexGrow: 1,
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
-  },
+ 
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -94,47 +41,59 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 500,
+    height: 400,
   },
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    margin: theme.spacing(2),
+    minWidth: 170,
     maxWidth: 300,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
+   // marginTop: theme.spacing(2),
   },
   card: {
     minHeight: 300
   },
   button: {
     backgroundColor: '#d93211',
+    margin:theme.spacing(2),
     color : '#ffffff',
     '&:hover': {
       background: "#d93211",
    },
   },
+
+  Boton: {
+    backgroundColor: '#d93211',
+    color : '#ffffff',
+    margin:theme.spacing(3),
+    '&:hover': {
+      background: "#d93211",
+   },
+  },
+
   avatar:{
     color:"#ffffff",
     backgroundColor:'#d93211',
   },
-  
+ /*  
   chips: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   chip: {
     margin: 2,
-  },
-  noLabel: {
+  }, */
+  /* noLabel: {
     marginTop: theme.spacing(3),
-  },
+  }, */
   input:{
     
+    margin:theme.spacing(2),
     "&.Mui-focused": {
       color: '#d93211'
-    },
     
+    },
     
     "&:after": {
       // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
