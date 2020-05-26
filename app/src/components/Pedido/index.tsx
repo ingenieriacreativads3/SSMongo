@@ -132,12 +132,25 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export function ComprasPedidos() {
+export function PedidosCompra(props: {
+  data: any,
+  title: string,
+  columns: {}[],
+  action: any
+}) {
 
 	const classes = useStyles(theme);
-	return <ListaCompras classes={classes} />;
+  return <ListaCompras 
+    classes={ classes }
+    data={ props.data }
+    title={ props.title }
+    columns={ props.columns }
+    action= { props.action }
+  />;
 
 }
+
+
 
 export function VentasPedidos() {
 

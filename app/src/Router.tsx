@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import AppBar from './components/AppBar'
 import { NuevoItem } from './components/Item'
 import { EditarItem } from './components/Item'
-import { ComprasPedidos } from './components/Pedido'
 import { VentasPedidos } from './components/Pedido'
 import { NuevaUnidadMedida } from './components/UnidadMedida'
 import { ValidarSolicitud } from './components/UnidadMedida'
@@ -27,6 +26,7 @@ import { PantallaInicio } from './components/Home'
 import Login from './containers/Login'
 import Register from './containers/Register'
 import ValidationRequest from './containers/ValidationRequest'
+import  PedidosCompras  from './containers/Compras/Pedido'
 
 class App extends React.Component {
 
@@ -43,7 +43,7 @@ class App extends React.Component {
 						<Route path="/home/side"                      component={ AppBar } />
 						<Route path="/item/nuevo"                     component={ NuevoItem } />
 						<Route path="/item/editar"                    component={ EditarItem } />
-						<Route path="/compras/pedidos/lista"          component={ ComprasPedidos } />
+						<Route path="/compras/pedidos/lista"          component={ PedidosCompras } />
 						<Route path="/ventas/pedidos/lista"           component={ VentasPedidos } />
 						<Route path="/unidadMedida/nuevo"             component={ NuevaUnidadMedida } />
 						<Route path="/solicitud/unidadMedida/:id"     component={ ValidarSolicitud }></Route>
@@ -60,6 +60,7 @@ class App extends React.Component {
 						<Route path="/evaluacion/empresa"             component={ EvaluarEmpresa } />
 						<Route path="/evaluacion/suppliersStore"      component={ EvaluarPlataforma }></Route>
 						<Route path="/solicitud/validacion"           component={ ValidationRequest }></Route>
+
 						{/* <Route path='/solicitud/nuevoUsuario/:id'   component={ ValidarNuevoUsuario }></Route> */}
 						<Route path='/solicitud/nuevoUsuario/:id' render={(props) => <ValidarNuevoUsuario {...props}/>}/>
 						<Route path="/home/perfil"                    component={ PerfilPropio }></Route>

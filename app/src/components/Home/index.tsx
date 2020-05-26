@@ -108,6 +108,46 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 0,
     },
   },
+ 
+  sidebarSection: {
+    marginTop: theme.spacing(3),
+  },
+  
+  rootSide: {
+    width: '100%',
+    maxWidth: 360,
+    //backgroundColor: theme.palette.background.paper,
+  },
+  nested: {
+  
+    paddingLeft: theme.spacing(4),
+  },
+  formControl: {
+    margin: theme.spacing(2),
+    minWidth: 200,
+    
+  },
+  select:{
+    color: "black",
+ 
+    "&:before": {
+      // changes the bottom textbox border when not focused
+      borderColor: "red"
+    },
+    "&:after": {
+      // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
+      borderColor: '#d93211 !important',
+    }
+  },
+  Boton: {
+    margin: theme.spacing(3),
+    backgroundColor: '#d93211',
+    color : '#ffffff',
+    '&:hover': {
+      background: "#d93211",
+   },
+  },
+
 
   
   
