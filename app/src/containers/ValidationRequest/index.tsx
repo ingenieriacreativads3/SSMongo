@@ -1,10 +1,8 @@
 import React from 'react';
 
-import * as dialogAction from './../../store/actions/dialog'
 import * as solicitudDeValidacionActions from './../../store/actions/solicitudDeValidacion'
 import { connect } from 'react-redux'
 
-import { SolicitudesValidacion as ValidationRequestComponent } from './../../components/SolicitudValidacion'
 import { List } from './../../components/List'
 
 function mapStateToProps(store: {

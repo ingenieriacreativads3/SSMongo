@@ -30,7 +30,7 @@ class PedidosCompras extends React.Component<{}, {}> {
    action(item: {
      _id: string
    }) {
-    this.props.history.push("/compras/pedido/:id" + item._id);
+    this.props.history.push("/compras/pedido/" + item._id);
   } 
 
   render(){
@@ -56,7 +56,6 @@ class PedidosCompras extends React.Component<{}, {}> {
           columns={[
             { title: 'N°', field: '_id', type: 'string' },
             { title: 'Vendedor', field: 'empresa_perteneciente_id', type: 'string' },
-            // { title: 'Comprador', field: 'empresa_demandante_id', type: 'string' },
             { title: 'Importe', field: 'importe', type: 'numeric' },
 
             {

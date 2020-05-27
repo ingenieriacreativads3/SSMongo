@@ -73,10 +73,6 @@ class DetallePedido extends React.Component <{
 
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-   
-
-    
-
 
     let pedido = {
         _id: '',
