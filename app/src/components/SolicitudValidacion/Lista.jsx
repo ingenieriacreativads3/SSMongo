@@ -3,9 +3,8 @@ import AppBar from '../AppBar'
 import MenuLateral from '../Drawer'
 
 import MaterialTable from 'material-table'
-import { Container, Grid, CssBaseline, Card, Box, Typography } from '@material-ui/core';
+import { Container, Grid, CssBaseline, Box, Typography } from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import clsx from 'clsx'
 
 import { forwardRef } from 'react';
 
@@ -25,7 +24,6 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import TableContainer from '@material-ui/core/TableContainer';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),

@@ -110,10 +110,10 @@ class Validacion extends React.Component <{
     }
 
     // if(
-    //   this.props.solicitudDeValidacion.status === 200
+    //   this.props.solicitudDeValidacionReducer.status === 200
     // ) {
     //   this.setState({
-    //     solicitudDeValidacion: this.props.solicitudDeValidacion.data.solicitudDeValidacion
+    //     solicitudDeValidacion: this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones
     //   })
     // }
 
@@ -122,14 +122,14 @@ class Validacion extends React.Component <{
     let empresaCuit: string = ''
 
     if(
-      this.props.solicitudDeValidacion &&
-      this.props.solicitudDeValidacion.data &&
-      this.props.solicitudDeValidacion.data.solicitudDeValidacion
+      this.props.solicitudDeValidacionReducer &&
+      this.props.solicitudDeValidacionReducer.data &&
+      this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones
     ) {
-      if(this.props.solicitudDeValidacion.data.solicitudDeValidacion._id) _id = this.props.solicitudDeValidacion.data.solicitudDeValidacion._id
-      if(this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa) {
-        if(this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa.nombre) empresaNombre = this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa.nombre
-        if(this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa.cuit) empresaCuit = this.props.solicitudDeValidacion.data.solicitudDeValidacion.empresa.cuit
+      if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones._id) _id = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones._id
+      if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa) {
+        if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre) empresaNombre = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre
+        if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit) empresaCuit = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit
       }
     }
 

@@ -1,4 +1,4 @@
-export default function SolicitudesDeValidacionReducer ( state = {
+export default function requestReducer ( state = {
 
 	status: 0,
   message: '',
@@ -14,27 +14,22 @@ export default function SolicitudesDeValidacionReducer ( state = {
 
 	switch (action.type) {
 
-		case 'GET_SOLICITUDES_DE_VALIDACION_PENDING': {
-
+		case 'GET_PURCHASE_REQUESTS_PENDING': {
 			return { 
 				...state, 
 				fetching: true 
 			};
-
 		}
 	
-		case 'GET_SOLICITUDES_DE_VALIDACION_REJECTED': {
-
+		case 'GET_PURCHASE_REQUESTS_REJECTED': {
 			return { 
 				...state, 
 				fetching: false, 
 				error: action.payload 
 			};
-
 		}
 	
-		case 'GET_SOLICITUDES_DE_VALIDACION_FULFILLED': {
-			
+		case 'GET_PURCHASE_REQUESTS_FULFILLED': {
 			return {
         ...state,
         fetching: false,
@@ -43,30 +38,24 @@ export default function SolicitudesDeValidacionReducer ( state = {
         message: action.payload.data.message,
         data: action.payload.data.data
       };
-			
 		}
 
-		case 'GET_SOLICITUD_DE_VALIDACION_PENDING': {
-
+		case 'GET_SALE_REQUESTS_PENDING': {
 			return { 
 				...state, 
 				fetching: true 
 			};
-
 		}
 	
-		case 'GET_SOLICITUD_DE_VALIDACION_REJECTED': {
-
+		case 'GET_SALE_REQUESTS_REJECTED': {
 			return { 
 				...state, 
 				fetching: false, 
 				error: action.payload 
 			};
-
 		}
 	
-		case 'GET_SOLICITUD_DE_VALIDACION_FULFILLED': {
-			
+		case 'GET_SALE_REQUESTS_FULFILLED': {
 			return {
         ...state,
         fetching: false,
@@ -75,11 +64,10 @@ export default function SolicitudesDeValidacionReducer ( state = {
         message: action.payload.data.message,
         data: action.payload.data.data
       };
-			
 		}
 	
 		case 'E': {
-			throw new Error('Este error se manejo asi!' + ' SolicitudesDeValidacion' + 'Reducer.js');
+			throw new Error('Este error se manejo asi!' + ' requestReducer' + 'Reducer.js');
 		}
 		default: {break;}
 	}

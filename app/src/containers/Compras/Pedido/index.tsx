@@ -1,16 +1,16 @@
 import React from 'react';
-
-
-//import * as pedidosCompraActions from './../../store/actions/solicitudDeValidacion'
 import { connect } from 'react-redux'
 
-import { PedidosCompra as PedidosCompraComponent } from '../../../components/Pedido'
+import { List } from './../../../components/List'
+import * as requestActions from './../../../store/actions/request'
 
 function mapStateToProps(store: {
-  pedidosCompraReducer: any,
+  requestReducer: any,
+  login: any
 }) {
   return {
-    pedidosCompraReducer: store.pedidosCompraReducer,
+    requestReducer: store.requestReducer,
+    login: store.login
   };
 }
 
@@ -23,32 +23,36 @@ class PedidosCompras extends React.Component<{}, {}> {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    //this.action = this.action.bind(this);
+    this.action = this.action.bind(this);
     this.state = {};
   }
 
-   action(item: any) {
+   action(item: {
+     _id: string
+   }) {
     this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
   } 
 
   render(){
 
-		/* if(!this.props.solicitudDeValidacionReducer.fetched && !this.props.solicitudDeValidacionReducer.fetching) {
+    console.log(this.props.login)
 
-			this.props.dispatch(solicitudDeValidacionActions.get())
+		if(!this.props.requestReducer.fetched && !this.props.requestReducer.fetching) {
 
-		} */
+			this.props.dispatch(requestActions.get(this.props.login.data.empresa._id))
+
+		}
 
     return(
       <div>
-        <PedidosCompraComponent
+        <List
           title={'Mis compras - Pedidos'}
           columns={[
-            { title: 'Fecha', field: 'fecha', type: 'date' },
-            { title: 'Vendedor', field: 'vendedor' },
-            { title: 'Cantidad', field: 'cantidad', type: 'numeric' },
-            { title: 'Unidad', field: 'unidad' },
-            { title: 'Precio', field: 'precio', type:'numeric' },
+            { title: '_id', field: '_id', type: 'string' },
+            { title: 'perteneciente', field: 'empresa_perteneciente_id', type: 'string' },
+            { title: 'demandante', field: 'empresa_demandante_id', type: 'string' },
+            { title: 'importe', field: 'importe', type: 'numeric' },
+
             {
               title: 'Estado',
               field: 'estado',
@@ -56,7 +60,7 @@ class PedidosCompras extends React.Component<{}, {}> {
             },
             
           ]}
-          data={ this.props.pedidosCompraReducer.data.pedidos }
+          data={ this.props.requestReducer.data.pedidos }
           action={ this.action }
         />
       </div>

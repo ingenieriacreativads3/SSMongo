@@ -5,7 +5,7 @@ export default function LoginReducer (state = {
   data: {},
   fetching: false,
 	fetched: false,
-	error: null,
+  error: null,
 
 }, action: {
 	type: string,
@@ -43,11 +43,9 @@ export default function LoginReducer (state = {
         message: action.payload.data.message,
         data: action.payload.data.data
       };
-
     }
 
     case 'REINTENTAR':{
-      
       return {
         ...state,
         fetching: false,
@@ -56,7 +54,17 @@ export default function LoginReducer (state = {
         message: '',
         data: {}
       };
+    }
 
+    case 'LOGUEAR':{
+      return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: 0,
+        message: '',
+        data: state.data
+      };
     }
   
     case 'E': {

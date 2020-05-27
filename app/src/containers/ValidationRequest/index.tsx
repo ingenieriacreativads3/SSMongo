@@ -5,6 +5,7 @@ import * as solicitudDeValidacionActions from './../../store/actions/solicitudDe
 import { connect } from 'react-redux'
 
 import { SolicitudesValidacion as ValidationRequestComponent } from './../../components/SolicitudValidacion'
+import { List } from './../../components/List'
 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
@@ -27,7 +28,9 @@ class ValidationRequest extends React.Component<{}, {}> {
     this.state = {};
   }
 
-  action(item: any) {
+  action(item: {
+    _id: string
+  }) {
     this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
   }
 
@@ -41,7 +44,7 @@ class ValidationRequest extends React.Component<{}, {}> {
 
     return(
       <div>
-        <ValidationRequestComponent
+        <List
           title={'Solicitudes de Validación'}
           columns={[
             { title: 'Empresa', field: 'empresa.nombre', type: 'string' },
