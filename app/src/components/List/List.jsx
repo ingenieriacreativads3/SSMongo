@@ -91,7 +91,7 @@ class List extends React.Component {
                   data={this.props.data}
                   actions={[
                     {
-                      icon: Edit,
+                      icon: VisibilityIcon,
                       tooltip: 'Ver más',
                       onClick: (event, rowData) => this.props.action(rowData)
                     }
