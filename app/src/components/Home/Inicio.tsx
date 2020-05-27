@@ -10,6 +10,7 @@ import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import  foto  from '../Login/img/photo2.png';
 import { Footer } from '../Footer'
+import { SideBarInicio } from '../SideBarInicio'
 
 import * as dialogAction from './../../store/actions/dialog'
 
@@ -119,146 +120,15 @@ class Inicio extends React.Component <{}, {
             </Paper>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3} >
-            <Grid item xs={12} md={3}>
+            <Grid container spacing={3}>
+           
       
               
-                <List
-                  component="nav"
-                  aria-labelledby="nested-list-subheader"
-                  subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
-                    <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                              Categorias 
-                            </Typography>
-                    </ListSubheader>
-                  } 
-                  className={classes.rootSide}
-                  >
-                <ListItem button>
-                  <ListItemIcon>
-                    <BuildOutlinedIcon className={classes.iconButton} />
-                  </ListItemIcon>
-                  <ListItemText primary="Construccion" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon>
-                    <LocationCityOutlinedIcon className={classes.iconButton} />
-                  </ListItemIcon>
-                  <ListItemText primary="Industria manufacturera" />
-                </ListItem>
-                <ListItem button>  {/*  onClick={handleClick}  */}
-                  <ListItemIcon>
-                    <StorefrontIcon className={classes.iconButton}/>
-                  </ListItemIcon>
-                  <ListItemText primary="Comercio" />
-                {/*   {open ? <ExpandLess /> : <ExpandMore />} */}
-                </ListItem>
-                <Collapse /* in={open} */ timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
-                      <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText primary="Starred" />
-                    </ListItem>
-                  </List>
-                </Collapse>
-                </List>
-                <List
-                  component="nav"
-                  aria-labelledby="nested-list-subheader"
-                  subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
-                    <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                   
-                              Filtros 
-                            </Typography>
-                    </ListSubheader>
-                    
-                  } 
-                  
-                  className={classes.rootSide}
-                  >
-                     <ListItem>
-                  <ListItemIcon>
-                    <RoomIcon className={classes.iconButton} />
-                  </ListItemIcon>
-                  <ListItemText primary="Ubicacion" />
-                </ListItem>
-                    
-                <ListItem >
-                <FormControl variant="outlined" className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                className={classes.select}
-                                // value={age}
-                                // onChange={handleChange}
-                                label="Provincia"
-                                defaultValue={10}
-                                
-                              >
-                                
-                                <MenuItem value={10}>Cordoba</MenuItem>
-                                <MenuItem value={20}>Buenos Aires</MenuItem>
-                                <MenuItem value={30}>Santa Fe</MenuItem>
-                              </Select>
-                            </FormControl>
-                </ListItem>
-                <ListItem >
-                <FormControl variant="outlined"  className={classes.formControl}>
-                          
-                          <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
-                          <Select
-                            labelId="demo-simple-select-outlined-label"
-                            id="demo-simple-select-outlined"
-                            className={classes.select}
-                            // value={age}
-                            // onChange={handleChange}
-                            label="Ciudad"
-                            defaultValue={10}
-                          >
-                            
-                            <MenuItem value={10}>Arroyito</MenuItem>
-                            <MenuItem value={20}>San Francisco</MenuItem>
-                            <MenuItem value={30}>Devoto</MenuItem>
-                          </Select>
-                        </FormControl>
-                </ListItem>
-                  
-                <ListItem>
-                  <ListItemIcon>
-                    <StarHalfIcon className={classes.iconButton} />
-                  </ListItemIcon>
-                  <ListItemText primary="Valoracion" />
-                </ListItem>
-                      <ListItem >
-                      <Rating
-                                name="hover-feedback-price"
-                                value={this.state.valueFilter}
-                                precision={1}
-                                onChange={(event, newValueFilter) => {
-                                  this.setState({
-                                    valueFilter: newValueFilter
-                                  })
-                                }}
-                                onChangeActive={(event, newValueFilter) => {
-                                  this.setState({
-                                    hoverFilter: newValueFilter
-                                  })
-                                }}
-                            />
-                </ListItem>
-                <Button variant="contained" className={classes.Boton}>
-                                Aplicar filtro
-                              </Button>
-                </List>
+                <SideBarInicio></SideBarInicio>
                
               
                
-              </Grid>
+              
               <Grid item lg={3}>
                 <Card className={fixedHeightCardCatalog}>
                   <CardActionArea>
