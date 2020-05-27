@@ -37,7 +37,13 @@ class PedidosCompras extends React.Component<{}, {}> {
 
     console.log(this.props.login)
 
-		if(!this.props.requestReducer.fetched && !this.props.requestReducer.fetching) {
+		if(
+      !this.props.requestReducer.fetched &&
+      !this.props.requestReducer.fetching &&
+      (this.props.login !== undefined) &&
+      (this.props.login.data !== undefined) &&
+      (this.props.login.data.empresa !== undefined)
+    ) {
 
 			this.props.dispatch(requestActions.get(this.props.login.data.empresa._id))
 
