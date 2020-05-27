@@ -30,7 +30,7 @@ class PedidosCompras extends React.Component<{}, {}> {
    action(item: {
      _id: string
    }) {
-    this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
+    this.props.history.push("/compras/pedido/:id" + item._id);
   } 
 
   render(){
@@ -54,10 +54,10 @@ class PedidosCompras extends React.Component<{}, {}> {
         <List
           title={'Mis compras - Pedidos'}
           columns={[
-            { title: '_id', field: '_id', type: 'string' },
-            { title: 'perteneciente', field: 'empresa_perteneciente_id', type: 'string' },
-            { title: 'demandante', field: 'empresa_demandante_id', type: 'string' },
-            { title: 'importe', field: 'importe', type: 'numeric' },
+            { title: 'N°', field: '_id', type: 'string' },
+            { title: 'Vendedor', field: 'empresa_perteneciente_id', type: 'string' },
+            // { title: 'Comprador', field: 'empresa_demandante_id', type: 'string' },
+            { title: 'Importe', field: 'importe', type: 'numeric' },
 
             {
               title: 'Estado',

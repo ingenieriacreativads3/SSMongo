@@ -6,6 +6,7 @@ import orange from '@material-ui/core/colors/orange';
 import ListaCompras from './ListaCompras'
 import ListaVentas from './ListaVentas'
 import PedidoNuevo from './Nuevo'
+import DetallePedido from './DetallePedido'
 
 const drawerWidth = 240;
 
@@ -147,6 +148,18 @@ export function PedidosCompra(props: {
     columns={ props.columns }
     action= { props.action }
   />;
+
+}
+
+export function VerDetallePedido(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}) {
+
+	const classes = useStyles(theme);
+	return <DetallePedido classes={classes} history={props.history} location={props.location} match={props.match} staticContext={props.staticContext} />;
 
 }
 

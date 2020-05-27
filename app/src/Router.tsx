@@ -22,6 +22,7 @@ import { PerfilPropio } from './components/Perfil'
 import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
 import { PantallaInicio } from './components/Home'
+import { VerDetallePedido } from './components/Pedido'
 
 import Login from './containers/Login'
 import Register from './containers/Register'
@@ -67,6 +68,7 @@ class App extends React.Component {
 						<Route path="/footer"                         component={ Footer }></Route>
 						<Route path="/ventas/presupuesto/:id"         component={ Presupuestar }></Route>
 						<Route path="/home/inicio"                    component={ PantallaInicio }></Route>
+						<Route path='/compras/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/>
 					</Switch>
 				</div>
 			</Router>
