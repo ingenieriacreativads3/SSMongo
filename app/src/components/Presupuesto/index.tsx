@@ -7,7 +7,8 @@ import orange from '@material-ui/core/colors/orange';
 import PresupuestoNuevo from './Nuevo'
 import ListaCompras from './ListaCompras'
 import ListaVentas from './ListaVentas'
-import Presupuesto from './Presupuestar'
+import Presupuestacion from './Presupuestar'
+import Detalle from './DetallePresupuesto'
 
 const drawerWidth = 240;
 
@@ -158,6 +159,18 @@ export function VentasPresupuestos() {
 export function Presupuestar() {
 
 	const classes = useStyles(theme);
-	return <Presupuesto classes={classes} />;
+	return <Presupuestacion classes={classes} />;
+
+}
+
+export function VerDetallePresupuesto(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}) {
+
+	const classes = useStyles(theme);
+	return <Detalle classes={classes} history={props.history} location={props.location} match={props.match} staticContext={props.staticContext} />;
 
 }

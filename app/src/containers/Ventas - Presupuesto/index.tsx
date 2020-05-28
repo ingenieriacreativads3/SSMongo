@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { List } from './../../../components/List'
-import * as requestActions from './../../../store/actions/request'
+import { List } from './../../components/List'
+import * as presupuestoActions from './../../store/actions/presupuesto'
 
 function mapStateToProps(store: {
-  requestReducer: any,
+  presupuestoReducer: any,
   login: any
 }) {
   return {
-    requestReducer: store.requestReducer,
+    presupuestoReducer: store.presupuestoReducer,
     login: store.login
   };
 }
 
-class PedidosCompras extends React.Component<{}, {}> {
+class PresupuestosVentas extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -30,7 +30,7 @@ class PedidosCompras extends React.Component<{}, {}> {
    action(item: {
      _id: string
    }) {
-    this.props.history.push("/pedido/" + item._id);
+    this.props.history.push("/presupuesto/" + item._id);
   } 
 
   render(){
@@ -38,34 +38,34 @@ class PedidosCompras extends React.Component<{}, {}> {
     console.log(this.props.login)
 
 		if(
-      !this.props.requestReducer.fetched &&
-      !this.props.requestReducer.fetching &&
+      !this.props.presupuestoReducer.fetched &&
+      !this.props.presupuestoReducer.fetching &&
       (this.props.login !== undefined) &&
       (this.props.login.data !== undefined) &&
       (this.props.login.data.empresa !== undefined)
     ) {
 
-			this.props.dispatch(requestActions.get(this.props.login.data.empresa._id))
+			this.props.dispatch(presupuestoActions.getSale(this.props.login.data.empresa._id))
 
 		}
 
     return(
       <div>
         <List
-          title={'Mis compras - Pedidos'}
+          title={'Mis ventas - Presupuestos'}
           columns={[
             { title: 'N°', field: '_id', type: 'string' },
-            { title: 'Vendedor', field: 'empresa_perteneciente_id', type: 'string' },
+            { title: 'Comprador', field: 'empresa_perteneciente_id', type: 'string' },
             { title: 'Importe', field: 'importe', type: 'numeric' },
 
             {
               title: 'Estado',
               field: 'estado',
-              lookup: { 'En espera': 'En espera', 'Cancelado': 'Cancelado','Enviado':'Enviado', 'Finalizado':'Finalizado' },
+              lookup: { 'En espera': 'En espera', 'Cancelado': 'Cancelado','Presupuestado':'Presupuestado', 'Confirmado':'Confirmado' },
             },
             
           ]}
-          data={ this.props.requestReducer.data.pedidos }
+          data={ this.props.presupuestoReducer.data.presupuestos }
           action={ this.action }
         />
       </div>
@@ -73,4 +73,4 @@ class PedidosCompras extends React.Component<{}, {}> {
   }
 }
 
-export default connect(mapStateToProps)(PedidosCompras)
+export default connect(mapStateToProps)(PresupuestosVentas)

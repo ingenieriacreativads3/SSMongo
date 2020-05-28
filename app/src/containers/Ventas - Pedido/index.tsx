@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { List } from './../../../components/List'
-import * as requestActions from './../../../store/actions/request'
+import { List } from './../../components/List'
+import * as requestActions from './../../store/actions/request'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -14,7 +14,7 @@ function mapStateToProps(store: {
   };
 }
 
-class PedidosCompras extends React.Component<{}, {}> {
+class PedidosVentas extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -45,17 +45,17 @@ class PedidosCompras extends React.Component<{}, {}> {
       (this.props.login.data.empresa !== undefined)
     ) {
 
-			this.props.dispatch(requestActions.get(this.props.login.data.empresa._id))
+			this.props.dispatch(requestActions.getSale(this.props.login.data.empresa._id))
 
 		}
 
     return(
       <div>
         <List
-          title={'Mis compras - Pedidos'}
+          title={'Mis ventas - Pedidos'}
           columns={[
             { title: 'N°', field: '_id', type: 'string' },
-            { title: 'Vendedor', field: 'empresa_perteneciente_id', type: 'string' },
+            { title: 'Comprador', field: 'empresa_perteneciente_id', type: 'string' },
             { title: 'Importe', field: 'importe', type: 'numeric' },
 
             {
@@ -73,4 +73,4 @@ class PedidosCompras extends React.Component<{}, {}> {
   }
 }
 
-export default connect(mapStateToProps)(PedidosCompras)
+export default connect(mapStateToProps)(PedidosVentas)

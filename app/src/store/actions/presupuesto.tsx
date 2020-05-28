@@ -4,25 +4,24 @@ export function get(id: string) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.get(url + '/empresa/' + id + '/pedidos')
+	let payload: any = axios.get(url + '/empresa/' + id + '/presupuestos')
 
 	return {
-		type: 'GET_PURCHASE_REQUESTS',
+		type: 'GET_PURCHASE_PRESUPUESTOS',
 		payload: payload
 	}
 
 }
 
 
-
 export function getSale(id: string) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.get(url + '/empresa/' + id + '/pedidos')
+	let payload: any = axios.get(url + '/empresa/' + id + '/presupuestos')
 
 	return {
-		type: 'GET_SALE_REQUESTS',
+		type: 'GET_SALE_PRESUPUESTOS',
 		payload: payload
 	}
 

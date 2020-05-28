@@ -10,7 +10,7 @@ import menuLateral from '../Drawer'
 import { connect } from 'react-redux'
 import MenuLateral from '../Drawer';
 
-import * as requestActions  from './../../store/actions/request'
+import * as presupuestoActions  from './../../store/actions/presupuesto'
 
 function Copyright() {
   return (
@@ -26,21 +26,21 @@ function Copyright() {
 }
 
 function mapStateToProps(store: {
-  requestReducer: {}
+  presupuestoReducer: {}
 }) {
   return {
-    request: store.requestReducer
+    presupuesto: store.presupuestoReducer
   };
 }
 
-class DetallePedido extends React.Component <{
+class DetallePresupuesto extends React.Component <{
   history: any,
   location: any,
   match: any,
   staticContext?: any
 }, {
-  personName: [],
-  pedido: {
+  
+  presupuesto: {
     _id: string,
     empresa_perteneciente_id: string,
     importe: string
@@ -55,8 +55,8 @@ class DetallePedido extends React.Component <{
   constructor(props: any) {
     super(props);
     this.state = {
-      personName: [],
-      pedido: {
+      
+      presupuesto: {
         _id: '',
         empresa_perteneciente_id: '',
         importe: '',
@@ -66,7 +66,7 @@ class DetallePedido extends React.Component <{
   }
 
   componentWillMount() {
-    this.props.dispatch(requestActions.get(this.props.match.params.id))
+    this.props.dispatch(presupuestoActions.get(this.props.match.params.id))
   }
   
   render(){
@@ -74,7 +74,7 @@ class DetallePedido extends React.Component <{
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 
-    let pedido = {
+    let presupuesto = {
         _id: '',
         empresa_perteneciente_id: '',
         importe: '',
@@ -93,14 +93,14 @@ class DetallePedido extends React.Component <{
     let importe: string = ''
 
     if(
-      this.props.requestReducer &&
-      this.props.requestReducer.data &&
-      this.props.requestReducer.data.pedidos
+      this.props.presupuestoReducer &&
+      this.props.presupuestoReducer.data &&
+      this.props.presupuestoReducer.data.presupuestos
     ) {
-      if(this.props.requestReducer.data.pedidos._id) _id = this.props.requestReducer.data.pedidos._id
-      if(this.props.requestReducer.data.pedidos.empresa) {
-        if(this.props.requestReducer.data.pedidos.empresaPerteneciente) empresaPerteneciente = this.props.requestReducer.data.pedidos.empresaPerteneciente
-        if(this.props.requestReducer.data.pedidos.importe) importe = this.props.requestReducer.data.pedidos.importe
+      if(this.props.presupuestoReducer.data.presupuestos._id) _id = this.props.presupuestoReducer.data.presupuestos._id
+      if(this.props.presupuestoReducer.data.presupuestos.empresa) {
+        if(this.props.presupuestoReducer.data.presupuestos.empresaPerteneciente) empresaPerteneciente = this.props.presupuestoReducer.data.presupuestos.empresaPerteneciente
+        if(this.props.presupuestoReducer.data.presupuestos.importe) importe = this.props.presupuestoReducer.data.presupuestos.importe
       }
     }
 
@@ -128,7 +128,7 @@ class DetallePedido extends React.Component <{
                           D
                         </Avatar>
                       }
-                      title="Detalle Pedido"
+                      title="Detalle Presupuesto"
                       
                     />
 
@@ -164,8 +164,8 @@ class DetallePedido extends React.Component <{
                                 >
                                   <MenuItem value={1}>En Espera</MenuItem>
                                   <MenuItem value={2}>Cancelado</MenuItem>
-                                  <MenuItem value={3}>Enviado</MenuItem>
-                                  <MenuItem value={4}>Finalizado</MenuItem>
+                                  <MenuItem value={3}>Presupuestado</MenuItem>
+                                  <MenuItem value={4}>Confirmado</MenuItem>
                                  
                                 </Select>
                               </FormControl>
@@ -211,4 +211,4 @@ class DetallePedido extends React.Component <{
   }
 }
 
-export default connect(mapStateToProps)(DetallePedido)
+export default connect(mapStateToProps)(DetallePresupuesto)
