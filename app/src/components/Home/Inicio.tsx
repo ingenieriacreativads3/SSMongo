@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBar from '../AppBar'
+import  DrawerInicio  from './../DrawerInicio';
 import clsx from 'clsx'
 
 import { Container, FormControl, Button, InputLabel,Select, MenuItem, Grid, Card, Box, Paper,Drawer, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
@@ -97,6 +98,7 @@ class Inicio extends React.Component <{}, {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
+        <DrawerInicio></DrawerInicio>
 					<main className={classes.content}>
             <Paper className={classes.mainFeaturedPost} /* style={{ backgroundImage: `url(${post.image})` }} */>
               {/* Increase the priority of the hero background image */}
@@ -122,11 +124,7 @@ class Inicio extends React.Component <{}, {
 						<Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
            
-      
-              
                 <SideBarInicio></SideBarInicio>
-               
-              
                
               
               <Grid item lg={3}>
