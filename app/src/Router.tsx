@@ -28,6 +28,7 @@ import PedidosCompras  from './containers/Compras/Pedido'
 import PedidosVentas from './containers/Ventas - Pedido'
 import PresupuestosCompras from './containers/Compras - Presupuesto'
 import PresupuestosVentas from './containers/Ventas - Presupuesto'
+import { Renegociar } from './components/Presupuesto'
 
 class App extends React.Component {
 
@@ -61,12 +62,13 @@ class App extends React.Component {
 						<Route path="/evaluacion/empresa"             component={ EvaluarEmpresa } />
 						<Route path="/evaluacion/suppliersStore"      component={ EvaluarPlataforma }></Route>
 						<Route path="/solicitud/validacion"           component={ ValidationRequest }></Route>
+						<Route path="/renegociacion/:id"              component={ Renegociar }></Route>
 
 						{/* <Route path='/solicitud/nuevoUsuario/:id'   component={ ValidarNuevoUsuario }></Route> */}
 						<Route path='/solicitud/nuevoUsuario/:id' render={(props) => <ValidarNuevoUsuario {...props}/>}/>
 						<Route path="/home/perfil"                    component={ PerfilPropio }></Route>
 						<Route path="/footer"                         component={ Footer }></Route>
-						<Route path="/ventas/presupuesto/:id"         component={ Presupuestar }></Route>
+						<Route path="/presupuestacion/:id"         component={ Presupuestar }></Route>
 						<Route path="/home/inicio"                    component={ PantallaInicio }></Route>
 						<Route path='/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/>
 						<Route path='/presupuesto/:id' render={(props) => <VerDetallePresupuesto {...props}/>}/>

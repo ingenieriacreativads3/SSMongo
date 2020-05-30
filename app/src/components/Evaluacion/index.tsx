@@ -143,7 +143,12 @@ const useStyles = makeStyles((theme) => ({
 		},
 		subtitle:{
 			color:'#d93211',
-			},
+		},
+
+		textTarea:{
+			width:'270px',
+		},
+
 })); 
 
 export  function EvaluarEmpresa() {

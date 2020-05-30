@@ -106,7 +106,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
                           E
                         </Avatar>
                       }
-                      title="¡Gracias por tu compra! Tu opinión es importante para nosotros"
+                      title="¡Gracias por tu elegirnos! Tu opinión es importante para nosotros"
                         
                     />
 
@@ -205,7 +205,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
                           
                             </div>
                             </div>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Mensaje"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
                             </Grid>
                         </Grid>
                       </form>

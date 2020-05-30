@@ -9,6 +9,7 @@ import ListaCompras from './ListaCompras'
 import ListaVentas from './ListaVentas'
 import Presupuestacion from './Presupuestar'
 import Detalle from './DetallePresupuesto'
+import Renegociacion from './Renegociar'
 
 const drawerWidth = 240;
 
@@ -97,7 +98,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 720,
+    height: 930,
+  },
+  fixedHeight2: {
+    height: 700,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -129,6 +133,8 @@ const useStyles = makeStyles((theme) => ({
   },
   textTarea:{
     width:'250px',
+    marginLeft:theme.spacing(2),
+    marginTop:theme.spacing(2),
   }
 
 }));
@@ -160,6 +166,13 @@ export function Presupuestar() {
 
 	const classes = useStyles(theme);
 	return <Presupuestacion classes={classes} />;
+
+}
+
+export function Renegociar() {
+
+	const classes = useStyles(theme);
+	return <Renegociacion classes={classes} />;
 
 }
 

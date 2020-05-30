@@ -211,10 +211,10 @@ class Presupuestar extends React.Component {
                     <CardHeader 
                         avatar={
                           <Avatar aria-label="recipe" className={classes.avatar} >
-                            P
+                            R
                           </Avatar>
                         }
-                        title="Presupuestacion"
+                        title="Renegociacion"
                         
                       />
 
@@ -223,7 +223,7 @@ class Presupuestar extends React.Component {
                         <Grid container spacing={3}>
                         <CardContent>
                         <Typography variant="h5" component="h2">
-                           Solicitante
+                           Mis datos
                         </Typography>
                     </CardContent>
                           <Grid container spacing={3}>
@@ -249,7 +249,7 @@ class Presupuestar extends React.Component {
                           </Grid>
                           <CardContent>
                         <Typography variant="h5" component="h2">
-                          Presupuesto solicitado
+                          Presupuesto
                         </Typography>
                     </CardContent>
                           <Grid container spacing={3}>
@@ -272,16 +272,16 @@ class Presupuestar extends React.Component {
                           </Grid>
                           <CardContent>
                         <Typography variant="h5" component="h2">
-                          Mi presupuesto
+                          Renegociacion
                         </Typography>
                     </CardContent>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad"   />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad" type="number"  />
                             
                             </Grid>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Importe" type="number"   />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Importe sugerido" type="number"   />
                       
                             </Grid>
                             <Grid item lg={4}>

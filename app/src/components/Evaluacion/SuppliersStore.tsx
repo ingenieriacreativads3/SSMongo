@@ -202,7 +202,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                           
                             </div>
                             </div>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Mensaje"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
                             </Grid>
                         </Grid>
                       </form>

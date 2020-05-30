@@ -192,7 +192,7 @@ class Nuevo extends React.Component {
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight2);
 
     return(
 
@@ -220,44 +220,60 @@ class Nuevo extends React.Component {
                     <CardContent>
                       <form className={classes.root}>
                         <Grid container spacing={3}>
+                        <CardContent>
+                        <Typography variant="h5" component="h2">
+                          Mis datos
+                        </Typography>
+                       </CardContent>
                           <Grid container spacing={3}>
-                            <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Nombre" defaultValue="Samsung A20" className={classes.input}  />
-                            </Grid>
+                         
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Empresa" defaultValue="CorpuSoft" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Email" defaultValue="corpusoft@cs.com.ar" className={classes.input}  />
                             </Grid>
-                          </Grid>
-                          <Grid container spacing={3}>
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Telefono" defaultValue="3512469439" className={classes.input}  />
                             </Grid>
+                          </Grid>
+                          <Grid container spacing={3}>
+                            
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Provincia" defaultValue="Cordoba" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Ciudad" defaultValue="San Francisco" className={classes.input}  />
                             </Grid>
-                          </Grid>
-                          <Grid container spacing={3}>
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="CP" defaultValue="2400" className={classes.input}  />
                             </Grid>
+                          </Grid>
+                          <CardContent>
+                        <Typography variant="h5" component="h2">
+                          Datos de presupuesto
+                        </Typography>
+                       </CardContent>
+                          <Grid container spacing={3}>
+                          <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Nombre" defaultValue="Samsung A20" className={classes.input}  />
+                            </Grid>
+                            <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Unidad de Medida" defaultValue="Unidad" className={classes.input}  />
+                            </Grid>
+                            <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Precio" defaultValue="10000" className={classes.input}  />
+                            </Grid>
+
                             
                           </Grid>
                           <Grid container spacing={3}>
                           <Grid item lg={4}>
                           <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad"   type="number" />
-        
-                            </Grid>
 
-                            <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Unidad" defaultValue="Unidad" className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                         
+                            <Grid item lg={6}>
                             <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  />
                             </Grid>
                           </Grid>
