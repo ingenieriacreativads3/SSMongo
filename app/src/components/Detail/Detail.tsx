@@ -31,6 +31,8 @@ function mapStateToProps(store: {
 
 class Detail extends React.Component <{
   title: string,
+  subtitle1:string,
+  subtitle2:string,
   empresa: string,
   importe: string,
   estado: string,
@@ -81,6 +83,11 @@ class Detail extends React.Component <{
                   <CardContent>
                     <div className={classes.root}>
                       <Grid container spacing={3}>
+                      <CardContent>
+                        <Typography variant="h5" component="h2">
+                           {this.props.subtitle1}
+                        </Typography>
+                    </CardContent>
                         <Grid container spacing={3}>
                           <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Empresa" value={this.props.empresa}  className={classes.input}  />
@@ -92,6 +99,11 @@ class Detail extends React.Component <{
                             <TextField disabled id="standard-required" label="Estado" value={this.props.estado}  className={classes.input}  />
                           </Grid>
                         </Grid>
+                        <CardContent>
+                        <Typography variant="h5" component="h2">
+                           {this.props.subtitle2}
+                        </Typography>
+                    </CardContent>
                         <Grid container spacing={3}>
                           <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Nombre" value={this.props.item.nombre}  className={classes.input}  />

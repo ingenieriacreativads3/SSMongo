@@ -131,6 +131,8 @@ const useStyles = makeStyles((theme) => ({
 
 export function Detail(props: {
   title: string,
+  subtitle1:string,
+  subtitle2:string,
   empresa: string,
   importe: string,
   estado: string,
@@ -144,7 +146,9 @@ export function Detail(props: {
 	const classes = useStyles(theme);
 	return <DetailExport 
 		classes={classes}
-		title={props.title}
+    title={props.title}
+    subtitle1={props.subtitle1}
+    subtitle2={props.subtitle2}
 		empresa={props.empresa}
 		importe={props.importe}
 		estado={props.estado}

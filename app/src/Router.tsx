@@ -19,15 +19,14 @@ import { PerfilPropio } from './components/Perfil'
 import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
 import { PantallaInicio } from './components/Home'
-import { VerDetallePedido } from './components/Pedido'
 import { VerDetallePresupuesto } from './components/Presupuesto'
 import Login from './containers/Login'
 import Register from './containers/Register'
 import ValidationRequest from './containers/ValidationRequest'
-import { PurchaseRequests, PurchaseRequest }  from './containers/Compras/Pedido'
-import PedidosVentas from './containers/Ventas - Pedido'
-import PresupuestosCompras from './containers/Compras - Presupuesto'
-import PresupuestosVentas from './containers/Ventas - Presupuesto'
+import { PurchaseRequests, DetailPurchaseRequest }  from './containers/Compras/Pedido'
+import { SaleRequests, DetailSaleRequest } from './containers/Ventas - Pedido'
+import { PurchasePresupuestos, DetailPurchasePresupuesto } from './containers/Compras - Presupuesto'
+import { SalePresupuestos, DetailSalePresupuesto } from './containers/Ventas - Presupuesto'
 import { Renegociar } from './components/Presupuesto'
 
 class App extends React.Component {
@@ -46,7 +45,7 @@ class App extends React.Component {
 						<Route path="/item/nuevo"                     component={ NuevoItem } />
 						<Route path="/item/editar"                    component={ EditarItem } />
 						<Route path="/compras/pedidos/lista"          component={ PurchaseRequests } />
-						<Route path="/ventas/pedidos/lista"           component={ PedidosVentas } />
+						<Route path="/ventas/pedidos/lista"           component={ SaleRequests } />
 						<Route path="/unidadMedida/nuevo"             component={ NuevaUnidadMedida } />
 						<Route path="/solicitud/unidadMedida/:id"     component={ ValidarSolicitud }></Route>
 						<Route path="/solicitud/unidadMedida"         component={ SolicitudesUnidadMedida }></Route>
@@ -57,8 +56,8 @@ class App extends React.Component {
 						<Route path="/item/detalle/:id"               component={ VerDetalleItem }></Route>
 						<Route path="/pedido/nuevo"                   component={ NuevoPedido } />
 						<Route path="/presupuesto/nuevo"              component={ NuevoPresupuesto } />
-						<Route path="/compras/presupuestos/lista"     component={ PresupuestosCompras } />
-						<Route path="/ventas/presupuestos/lista"      component={ PresupuestosVentas } />
+						<Route path="/compras/presupuestos/lista"     component={ PurchasePresupuestos } />
+						<Route path="/ventas/presupuestos/lista"      component={ SalePresupuestos } />
 						<Route path="/evaluacion/empresa"             component={ EvaluarEmpresa } />
 						<Route path="/evaluacion/suppliersStore"      component={ EvaluarPlataforma }></Route>
 						<Route path="/solicitud/validacion"           component={ ValidationRequest }></Route>
@@ -71,8 +70,11 @@ class App extends React.Component {
 						<Route path="/presupuestacion/:id"            component={ Presupuestar }></Route>
 						<Route path="/home/inicio"                    component={ PantallaInicio }></Route>
 						{/* <Route path='/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/> */}
-						<Route path='/pedido/:id'                     component={ PurchaseRequest }/>
-						<Route path='/presupuesto/:id' render={(props) => <VerDetallePresupuesto {...props}/>}/>
+						<Route path='/compras/pedido/:id'                     component={ DetailPurchaseRequest }/>
+						<Route path='/compras/presupuesto/:id'                     component={ DetailPurchasePresupuesto }/>
+						<Route path='/ventas/pedido/:id'                     component={ DetailSaleRequest }/>
+						<Route path='/ventas/presupuesto/:id'                     component={ DetailSalePresupuesto }/>
+					
 					</Switch>
 				</div>
 			</Router>

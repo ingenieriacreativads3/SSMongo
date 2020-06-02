@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Detail as DetailExport } from './../../../components/Detail'
-import * as requestActions from './../../../store/actions/request'
+import { Detail as DetailExport } from './../../components/Detail'
+import * as requestActions from './../../store/actions/request'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -46,7 +46,7 @@ class Detail extends React.Component<{}, {}> {
       (this.props.login.data.empresa !== undefined)
     ) {
 
-      this.props.dispatch(requestActions.getPurchase(this.props.login.data.empresa._id))
+      this.props.dispatch(requestActions.getSale(this.props.login.data.empresa._id))
       console.log(this.props.requestReducer)
 
 		}
@@ -54,7 +54,7 @@ class Detail extends React.Component<{}, {}> {
     return(
       <div>
         <DetailExport
-          title={'Mis compras - Detalle de pedido'}
+          title={'Mis ventas - Detalle de pedido'}
           subtitle1={'Datos del pedido'}
           subtitle2={'Item solicitado'}
 					empresa={'Empresa'}

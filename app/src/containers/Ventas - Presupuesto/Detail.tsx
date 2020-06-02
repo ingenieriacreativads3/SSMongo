@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Detail as DetailExport } from './../../../components/Detail'
-import * as requestActions from './../../../store/actions/request'
+import { Detail as DetailExport } from './../../components/Detail'
+import * as presupuestosActions from './../../store/actions/presupuesto'
 
 function mapStateToProps(store: {
-  requestReducer: any,
+  presupuestoReducer: any,
   login: any
 }) {
   return {
-    requestReducer: store.requestReducer,
+    presupuestoReducer: store.presupuestoReducer,
     login: store.login
   };
 }
@@ -28,34 +28,34 @@ class Detail extends React.Component<{}, {}> {
   }
 
   action(item: {
-    pedido: {
+    presupuesto: {
       _id: string
     }
   }) {
 
-    this.props.history.push("/pedido/" + item.pedido._id);
+    this.props.history.push("/presupuesto/" + item.presupuesto._id);
   } 
 
   render(){
 
 		if(
-      !this.props.requestReducer.fetched &&
-      !this.props.requestReducer.fetching &&
+      !this.props.presupuestoReducer.fetched &&
+      !this.props.presupuestoReducer.fetching &&
       (this.props.login !== undefined) &&
       (this.props.login.data !== undefined) &&
       (this.props.login.data.empresa !== undefined)
     ) {
 
-      this.props.dispatch(requestActions.getPurchase(this.props.login.data.empresa._id))
-      console.log(this.props.requestReducer)
+      this.props.dispatch(presupuestosActions.getSale(this.props.login.data.empresa._id))
+      console.log(this.props.presupuestoReducer)
 
 		}
 
     return(
       <div>
         <DetailExport
-          title={'Mis compras - Detalle de pedido'}
-          subtitle1={'Datos del pedido'}
+          title={'Mis ventas - Detalle de presupuesto'}
+          subtitle1={'Datos del presupuesto'}
           subtitle2={'Item solicitado'}
 					empresa={'Empresa'}
 					importe={'importe'}

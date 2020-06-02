@@ -6,6 +6,6 @@ export function PurchaseRequests() {
 	return <List />;
 }
 
-export function PurchaseRequest() {
+export function DetailPurchaseRequest() {
 	return <Detail />;
 }
