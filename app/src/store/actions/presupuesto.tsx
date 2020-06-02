@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export function get(id: string) {
+export function getPurchase(id: string) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.get(url + '/empresa/' + id + '/presupuestos')
+	let payload: any = axios.get(url + '/empresa/' + id + '/presupuestossolicitados')
 
 	return {
 		type: 'GET_PURCHASE_PRESUPUESTOS',

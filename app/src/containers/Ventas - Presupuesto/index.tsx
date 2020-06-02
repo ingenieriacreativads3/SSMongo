@@ -54,14 +54,15 @@ class PresupuestosVentas extends React.Component<{}, {}> {
         <List
           title={'Mis ventas - Presupuestos'}
           columns={[
-            { title: 'N°', field: '_id', type: 'string' },
-            { title: 'Comprador', field: 'empresa_perteneciente_id', type: 'string' },
-            { title: 'Importe', field: 'importe', type: 'numeric' },
+            { title: 'Comprador', field: 'presupuesto.empresa_demandante.nombre', type: 'string' },
+            { title: 'Importe', field: 'presupuesto.importe', type: 'numeric' },
+            { title: 'Fecha Creación', field: 'presupuesto.created_at', type: 'date' },
+            { title: 'Fecha Actualización', field: 'presupuesto.updated_at', type: 'date' },
 
             {
               title: 'Estado',
-              field: 'estado',
-              lookup: { 'En espera': 'En espera', 'Cancelado': 'Cancelado','Presupuestado':'Presupuestado', 'Confirmado':'Confirmado' },
+              field: 'presupuesto.estado',
+              lookup: { 'En espera': 'En espera', 'Cancelado': 'Cancelado', 'Presupuestado':'Presupuestado', 'Confirmado':'Confirmado' },
             },
             
           ]}

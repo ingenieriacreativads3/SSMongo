@@ -35,8 +35,6 @@ class PresupuestosCompras extends React.Component<{}, {}> {
 
   render(){
 
-    console.log(this.props.login)
-
 		if(
       !this.props.presupuestoReducer.fetched &&
       !this.props.presupuestoReducer.fetching &&
@@ -45,7 +43,7 @@ class PresupuestosCompras extends React.Component<{}, {}> {
       (this.props.login.data.empresa !== undefined)
     ) {
 
-			this.props.dispatch(presupuestoActions.get(this.props.login.data.empresa._id))
+			this.props.dispatch(presupuestoActions.getPurchase(this.props.login.data.empresa._id))
 
 		}
 
@@ -54,14 +52,15 @@ class PresupuestosCompras extends React.Component<{}, {}> {
         <List
           title={'Mis compras - Presupuestos'}
           columns={[
-            { title: 'N°', field: '_id', type: 'string' },
-            { title: 'Vendedor', field: 'empresa_perteneciente_id', type: 'string' },
-            { title: 'Importe', field: 'importe', type: 'numeric' },
+            { title: 'Vendedor', field: 'presupuesto.empresa_perteneciente.nombre', type: 'string' },
+            { title: 'Importe', field: 'presupuesto.importe', type: 'numeric' },
+            { title: 'Fecha Creación', field: 'presupuesto.created_at', type: 'date' },
+            { title: 'Fecha Actualización', field: 'presupuesto.updated_at', type: 'date' },
 
             {
               title: 'Estado',
-              field: 'estado',
-              lookup: { 'En espera': 'En espera', 'Cancelado': 'Cancelado','Presupuestado':'Presupuestado', 'Confirmado':'Confirmado' },
+              field: 'presupuesto.estado',
+              lookup: { 'En espera': 'En espera', 'Cancelado': 'Cancelado', 'Presupuestado':'Presupuestado', 'Confirmado':'Confirmado' },
             },
             
           ]}

@@ -29,7 +29,7 @@ function mapStateToProps(store: {
   requestReducer: {}
 }) {
   return {
-    request: store.requestReducer
+    requestReducer: store.requestReducer
   };
 }
 
@@ -66,7 +66,7 @@ class DetallePedido extends React.Component <{
   }
 
   componentWillMount() {
-    this.props.dispatch(requestActions.get(this.props.match.params.id))
+    this.props.dispatch(requestActions.getRequest(this.props.match.params.id))
   }
   
   render(){
@@ -91,23 +91,20 @@ class DetallePedido extends React.Component <{
     let _id: string = ''
     let empresaPerteneciente: string = ''
     let importe: string = ''
+    let estado: string = ''
 
     if(
       this.props.requestReducer &&
       this.props.requestReducer.data &&
-      this.props.requestReducer.data.pedidos
+      this.props.requestReducer.data.pedido
     ) {
-      if(this.props.requestReducer.data.pedidos._id) _id = this.props.requestReducer.data.pedidos._id
-      if(this.props.requestReducer.data.pedidos.empresa) {
-        if(this.props.requestReducer.data.pedidos.empresaPerteneciente) empresaPerteneciente = this.props.requestReducer.data.pedidos.empresaPerteneciente
-        if(this.props.requestReducer.data.pedidos.importe) importe = this.props.requestReducer.data.pedidos.importe
+      if(this.props.requestReducer.data.pedido.importe) importe = this.props.requestReducer.data.pedido.importe
+      if(this.props.requestReducer.data.pedido.estado) estado = this.props.requestReducer.data.pedido.estado
+      if(this.props.requestReducer.data.pedido.empresa_perteneciente) {
+        if(this.props.requestReducer.data.pedido.empresa_perteneciente) empresaPerteneciente = this.props.requestReducer.data.pedido.empresa_perteneciente.nombre
       }
+      
     }
-
-    console.log(_id)
-    console.log(empresaPerteneciente)
-    console.log(importe)
-
 
     return(
 
@@ -137,42 +134,17 @@ class DetallePedido extends React.Component <{
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="ID Pedido" value={_id} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
                               <TextField disabled id="standard-required" label="Empresa" value={empresaPerteneciente}  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Importe" value={importe}  className={classes.input}  />
-
+                              <TextField disabled id="standard-required" label="Importe" value={importe}  className={classes.input}  />
+                            </Grid>
+                            <Grid item lg={4}>
+                              <TextField disabled id="standard-required" label="Estado" value={estado}  className={classes.input}  />
                             </Grid>
                             
                           </Grid>
                           
-                         
-                          <Grid container spacing={3}>
-                            <Grid item lg={6}>
-                              <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label">Estado</InputLabel>
-                                <Select
-                                  labelId="demo-simple-select-label"
-                                  id="demo-simple-select"
-                                  defaultValue={1}
-                                  // value={unidadDeMedida}
-                                  // onChange={this.getUnidadDeMedida}
-                                  
-                                >
-                                  <MenuItem value={1}>En Espera</MenuItem>
-                                  <MenuItem value={2}>Cancelado</MenuItem>
-                                  <MenuItem value={3}>Enviado</MenuItem>
-                                  <MenuItem value={4}>Finalizado</MenuItem>
-                                 
-                                </Select>
-                              </FormControl>
-                            </Grid>
-                           
-                           
-                        </Grid>
                         </Grid>
                       </form>
                     </CardContent>

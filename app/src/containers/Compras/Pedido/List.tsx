@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { List } from './../../components/List'
-import * as requestActions from './../../store/actions/request'
+import { List } from './../../../components/List'
+import * as requestActions from './../../../store/actions/request'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -14,7 +14,7 @@ function mapStateToProps(store: {
   };
 }
 
-class PedidosVentas extends React.Component<{}, {}> {
+class PedidosCompras extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -27,15 +27,16 @@ class PedidosVentas extends React.Component<{}, {}> {
     this.state = {};
   }
 
-   action(item: {
-     _id: string
-   }) {
-    this.props.history.push("/pedido/" + item._id);
+  action(item: {
+    pedido: {
+      _id: string
+    }
+  }) {
+
+    this.props.history.push("/pedido/" + item.pedido._id);
   } 
 
   render(){
-
-    console.log(this.props.login)
 
 		if(
       !this.props.requestReducer.fetched &&
@@ -45,16 +46,17 @@ class PedidosVentas extends React.Component<{}, {}> {
       (this.props.login.data.empresa !== undefined)
     ) {
 
-			this.props.dispatch(requestActions.getSale(this.props.login.data.empresa._id))
+      this.props.dispatch(requestActions.getPurchase(this.props.login.data.empresa._id))
+      console.log(this.props.requestReducer)
 
 		}
 
     return(
       <div>
         <List
-          title={'Mis ventas - Pedidos'}
+          title={'Mis compras - Pedidos'}
           columns={[
-            { title: 'Comprador', field: 'pedido.empresa_demandante.nombre', type: 'string' },
+            { title: 'Vendedor', field: 'pedido.empresa_perteneciente.nombre', type: 'string' },
             { title: 'Importe', field: 'pedido.importe', type: 'numeric' },
             { title: 'Fecha Creación', field: 'pedido.created_at', type: 'date' },
             { title: 'Fecha Actualización', field: 'pedido.updated_at', type: 'date' },
@@ -74,4 +76,4 @@ class PedidosVentas extends React.Component<{}, {}> {
   }
 }
 
-export default connect(mapStateToProps)(PedidosVentas)
+export default connect(mapStateToProps)(PedidosCompras)

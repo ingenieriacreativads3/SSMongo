@@ -66,7 +66,7 @@ class DetallePresupuesto extends React.Component <{
   }
 
   componentWillMount() {
-    this.props.dispatch(presupuestoActions.get(this.props.match.params.id))
+    this.props.dispatch(presupuestoActions.getPurchase(this.props.match.params.id))
   }
   
   render(){

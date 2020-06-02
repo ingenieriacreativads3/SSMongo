@@ -24,7 +24,7 @@ import { VerDetallePresupuesto } from './components/Presupuesto'
 import Login from './containers/Login'
 import Register from './containers/Register'
 import ValidationRequest from './containers/ValidationRequest'
-import PedidosCompras  from './containers/Compras/Pedido'
+import { PurchaseRequests, PurchaseRequest }  from './containers/Compras/Pedido'
 import PedidosVentas from './containers/Ventas - Pedido'
 import PresupuestosCompras from './containers/Compras - Presupuesto'
 import PresupuestosVentas from './containers/Ventas - Presupuesto'
@@ -45,7 +45,7 @@ class App extends React.Component {
 						<Route path="/home/side"                      component={ AppBar } />
 						<Route path="/item/nuevo"                     component={ NuevoItem } />
 						<Route path="/item/editar"                    component={ EditarItem } />
-						<Route path="/compras/pedidos/lista"          component={ PedidosCompras } />
+						<Route path="/compras/pedidos/lista"          component={ PurchaseRequests } />
 						<Route path="/ventas/pedidos/lista"           component={ PedidosVentas } />
 						<Route path="/unidadMedida/nuevo"             component={ NuevaUnidadMedida } />
 						<Route path="/solicitud/unidadMedida/:id"     component={ ValidarSolicitud }></Route>
@@ -68,9 +68,10 @@ class App extends React.Component {
 						<Route path='/solicitud/nuevoUsuario/:id' render={(props) => <ValidarNuevoUsuario {...props}/>}/>
 						<Route path="/home/perfil"                    component={ PerfilPropio }></Route>
 						<Route path="/footer"                         component={ Footer }></Route>
-						<Route path="/presupuestacion/:id"         component={ Presupuestar }></Route>
+						<Route path="/presupuestacion/:id"            component={ Presupuestar }></Route>
 						<Route path="/home/inicio"                    component={ PantallaInicio }></Route>
-						<Route path='/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/>
+						{/* <Route path='/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/> */}
+						<Route path='/pedido/:id'                     component={ PurchaseRequest }/>
 						<Route path='/presupuesto/:id' render={(props) => <VerDetallePresupuesto {...props}/>}/>
 					</Switch>
 				</div>
