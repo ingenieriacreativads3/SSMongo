@@ -14,7 +14,12 @@ function mapStateToProps(store: {
   };
 }
 
-class Detail extends React.Component<{}, {}> {
+class Detail extends React.Component<{
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -23,32 +28,54 @@ class Detail extends React.Component<{}, {}> {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.action = this.action.bind(this);
     this.state = {};
   }
 
-  action(item: {
-    pedido: {
-      _id: string
-    }
-  }) {
-
-    this.props.history.push("/pedido/" + item.pedido._id);
-  } 
+ 
 
   render(){
 
 		if(
       !this.props.requestReducer.fetched &&
-      !this.props.requestReducer.fetching &&
-      (this.props.login !== undefined) &&
-      (this.props.login.data !== undefined) &&
-      (this.props.login.data.empresa !== undefined)
+      !this.props.requestReducer.fetching
     ) {
 
-      this.props.dispatch(requestActions.getSale(this.props.login.data.empresa._id))
-      console.log(this.props.requestReducer)
+      this.props.dispatch(requestActions.getRequest(this.props.match.params.id))
+  
 
+    }
+    
+    let empresa: string = 'nombreEmpresa'
+		let importe: string = 'importe'
+		let estado: string = 'estado'
+		let cantidad: string = 'cantidad'
+		let item: {
+			nombre: string,
+			precio: string,
+			unidad: string
+		} = {
+			nombre: 'nombreItem',
+			precio: 'precioItem',
+			unidad: 'unidadItem'
+    }
+    
+    if(this.props.requestReducer !== undefined) {
+			if(this.props.requestReducer.data !== undefined) {
+				if(this.props.requestReducer.data.pedido !== undefined) {
+					if(this.props.requestReducer.data.pedido.empresa_perteneciente !== undefined) {
+						if(this.props.requestReducer.data.pedido.empresa_perteneciente.nombre !== undefined) {
+							empresa = this.props.requestReducer.data.pedido.empresa_perteneciente.nombre
+						}
+					}
+					if(this.props.requestReducer.data.pedido.importe) {
+						importe = this.props.requestReducer.data.pedido.importe
+					}
+					if(this.props.requestReducer.data.pedido.estado) {
+						estado = this.props.requestReducer.data.pedido.estado
+					}
+
+				}
+			}
 		}
 
     return(
@@ -57,15 +84,11 @@ class Detail extends React.Component<{}, {}> {
           title={'Mis ventas - Detalle de pedido'}
           subtitle1={'Datos del pedido'}
           subtitle2={'Item solicitado'}
-					empresa={'Empresa'}
-					importe={'importe'}
-					estado={'estado'}
-					cantidad={'cantidad'}
-					item={{
-						nombre: 'nombre',
-						precio: 'precio',
-						unidad: 'unidad'
-					}}
+          empresa={empresa}
+					importe={importe}
+					estado={estado}
+					cantidad={cantidad}
+					item={item}
         />
       </div>
     );
