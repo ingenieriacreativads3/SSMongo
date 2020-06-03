@@ -81,11 +81,11 @@ class Detail extends React.Component<{
           title={'Mis compras - Detalle de pedido'}
           subtitle1={'Datos del pedido'}
           subtitle2={'Item solicitado'}
-					empresa={empresa}
-					importe={importe}
-					estado={estado}
-					cantidad={cantidad}
-					item={item}
+		  empresa={empresa}
+		  importe={importe}
+		  estado={estado}
+		  cantidad={cantidad}
+		  item={item}
         />
       </div>
     );

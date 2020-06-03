@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { Detail as DetailExport } from './../../components/Detail'
-import * as presupuestosActions from './../../store/actions/presupuesto'
+import * as presupuestoActions from './../../store/actions/presupuesto'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -14,7 +14,12 @@ function mapStateToProps(store: {
   };
 }
 
-class Detail extends React.Component<{}, {}> {
+class Detail extends React.Component<{ 
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -23,32 +28,52 @@ class Detail extends React.Component<{}, {}> {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.action = this.action.bind(this);
     this.state = {};
   }
 
-  action(item: {
-    presupuesto: {
-      _id: string
-    }
-  }) {
-
-    this.props.history.push("/presupuesto/" + item.presupuesto._id);
-  } 
+ 
 
   render(){
 
 		if(
       !this.props.presupuestoReducer.fetched &&
-      !this.props.presupuestoReducer.fetching &&
-      (this.props.login !== undefined) &&
-      (this.props.login.data !== undefined) &&
-      (this.props.login.data.empresa !== undefined)
+      !this.props.presupuestoReducer.fetching
     ) {
 
-      this.props.dispatch(presupuestosActions.getSale(this.props.login.data.empresa._id))
-      console.log(this.props.presupuestoReducer)
+      this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
 
+    }
+    
+    let empresa: string = 'nombreEmpresa'
+		let importe: string = 'importe'
+		let estado: string = 'estado'
+		let cantidad: string = 'cantidad'
+		let item: {
+			nombre: string,
+			precio: string,
+			unidad: string
+		} = {
+			nombre: 'nombreItem',
+			precio: 'precioItem',
+			unidad: 'unidadItem'
+    }
+
+    if(this.props.presupuestoReducer !== undefined) {
+			if(this.props.presupuestoReducer.data !== undefined) {
+				if(this.props.presupuestoReducer.data.pedido !== undefined) {
+					if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente !== undefined) {
+						if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre !== undefined) {
+							empresa = this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre
+						}
+					}
+					if(this.props.presupuestoReducer.data.pedido.importe) {
+						importe = this.props.presupuestoReducer.data.pedido.importe
+					}
+					if(this.props.presupuestoReducer.data.pedido.estado) {
+						estado = this.props.presupuestoReducer.data.pedido.estado
+					}
+				}
+			}
 		}
 
     return(
@@ -57,15 +82,11 @@ class Detail extends React.Component<{}, {}> {
           title={'Mis ventas - Detalle de presupuesto'}
           subtitle1={'Datos del presupuesto'}
           subtitle2={'Item solicitado'}
-					empresa={'Empresa'}
-					importe={'importe'}
-					estado={'estado'}
-					cantidad={'cantidad'}
-					item={{
-						nombre: 'nombre',
-						precio: 'precio',
-						unidad: 'unidad'
-					}}
+				  empresa={empresa}
+          importe={importe}
+          estado={estado}
+          cantidad={cantidad}
+          item={item}
         />
       </div>
     );
