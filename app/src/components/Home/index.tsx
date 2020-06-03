@@ -66,10 +66,7 @@ const useStyles = makeStyles((theme) => ({
   Link:{
     outline:'none',
   },
-  img:{
-    width:300,
-    display:'flex'
-  },
+ 
   input:{
     
     "&.Mui-focused": {
@@ -146,6 +143,25 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       background: "#d93211",
    },
+  },
+  rootCarousel: {
+    maxWidth: 1500,
+    flexGrow: 1,
+    padding: theme.spacing(10),
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    height: 250,
+    paddingLeft: theme.spacing(4),
+    backgroundColor: theme.palette.background.default,
+  },
+  img: {
+    height: 255,
+    display: 'block',
+    maxWidth: 400,
+    overflow: 'hidden',
+    width: '100%',
   },
 
 

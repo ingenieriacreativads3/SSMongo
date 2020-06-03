@@ -15,7 +15,12 @@ function mapStateToProps(store: {
   };
 }
 
-class PedidosVentas extends React.Component<{}, {}> {
+class PedidosVentas extends React.Component<{
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}, {}> {
 
 	props: any
 	static propTypes: any

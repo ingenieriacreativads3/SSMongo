@@ -14,7 +14,12 @@ function mapStateToProps(store: {
   };
 }
 
-class ValidationRequest extends React.Component<{}, {}> {
+class ValidationRequest extends React.Component<{
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}, {}> {
 
 	props: any
 	static propTypes: any

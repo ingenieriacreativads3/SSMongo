@@ -45,7 +45,7 @@ class App extends React.Component {
 						<Route path="/item/nuevo"                     component={ NuevoItem } />
 						<Route path="/item/editar"                    component={ EditarItem } />
 						<Route path="/compras/pedidos/lista"          render={(props) => <PurchaseRequests {...props}/>} />
-						{/* <Route path="/ventas/pedidos/lista"           render={(props) => <SaleRequests {...props}/>} /> */}
+					    <Route path="/ventas/pedidos/lista"           render={(props) => <SaleRequests {...props}/>} /> 
 						<Route path="/unidadMedida/nuevo"             component={ NuevaUnidadMedida } />
 						<Route path="/solicitud/unidadMedida/:id"     component={ ValidarSolicitud } />
 						<Route path="/solicitud/unidadMedida"         component={ SolicitudesUnidadMedida } />
@@ -56,8 +56,8 @@ class App extends React.Component {
 						<Route path="/item/detalle/:id"               component={ VerDetalleItem } />
 						<Route path="/pedido/nuevo"                   component={ NuevoPedido } />
 						<Route path="/presupuesto/nuevo"              component={ NuevoPresupuesto } />
-						{/* <Route path="/compras/presupuestos/lista"     render={(props) => <PurchasePresupuestos {...props}/>} /> */}
-						{/* <Route path="/ventas/presupuestos/lista"      render={(props) => <SalePresupuestos {...props}/>} /> */}
+						<Route path="/compras/presupuestos/lista"     render={(props) => <PurchasePresupuestos {...props}/>} /> 
+						<Route path="/ventas/presupuestos/lista"      render={(props) => <SalePresupuestos {...props}/>} /> 
 						<Route path="/evaluacion/empresa"             component={ EvaluarEmpresa } />
 						<Route path="/evaluacion/suppliersStore"      component={ EvaluarPlataforma } />
 						<Route path="/solicitud/validacion"           component={ ValidationRequest } />
