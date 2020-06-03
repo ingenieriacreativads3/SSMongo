@@ -47,6 +47,7 @@ class Login extends React.Component<{}, {
         this.props.dispatch(dialogAction.closeOneButton())
         this.props.dispatch(loginAction.loguear())
         this.props.history.push('/compras/pedidos/lista');
+        
       }
     } else {
       this.props.dispatch(dialogAction.closeOneButton())
