@@ -136,6 +136,7 @@ export function Detail(props: {
   empresa: string,
   importe: string,
   estado: string,
+  cantidad: string,
   item: {
     nombre: string,
     precio: string,
@@ -152,6 +153,7 @@ export function Detail(props: {
 		empresa={props.empresa}
 		importe={props.importe}
 		estado={props.estado}
+		cantidad={props.cantidad}
 		item={props.item}
 	/>;
 

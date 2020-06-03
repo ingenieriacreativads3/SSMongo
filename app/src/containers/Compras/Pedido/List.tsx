@@ -14,7 +14,12 @@ function mapStateToProps(store: {
   };
 }
 
-class PedidosCompras extends React.Component<{}, {}> {
+class PedidosCompras extends React.Component<{
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -33,7 +38,7 @@ class PedidosCompras extends React.Component<{}, {}> {
     }
   }) {
 
-    this.props.history.push("/pedido/" + item.pedido._id);
+    this.props.history.push("/compras/pedido/" + item.pedido._id);
   } 
 
   render(){
@@ -52,8 +57,13 @@ class PedidosCompras extends React.Component<{}, {}> {
 		}
 
     return(
-      <div>
+      <div >
+				
         <List
+					history= { this.props.history }
+					location= { this.props.location }
+					match= { this.props.match }
+					staticContext= { this.props.staticContext }
           title={'Mis compras - Pedidos'}
           columns={[
             { title: 'Vendedor', field: 'pedido.empresa_perteneciente.nombre', type: 'string' },

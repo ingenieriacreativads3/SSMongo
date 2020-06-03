@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize, List} from '@material-ui/core';
+import { Container, Grid, TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize, List, ListItemText} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 import menuLateral from '../Drawer'
@@ -39,7 +39,7 @@ class Validacion extends React.Component <{
   match: any,
   staticContext?: any
 }, {
-  personName: [],
+  personName: string[],
   solicitudDeValidacion: {
     _id: string,
     empresa: {
@@ -55,6 +55,7 @@ class Validacion extends React.Component <{
   
   constructor(props: any) {
     super(props);
+    this.handleChange = this.handleChange.bind(this)
     this.state = {
       personName: [],
       solicitudDeValidacion: {
@@ -70,12 +71,18 @@ class Validacion extends React.Component <{
   componentWillMount() {
     this.props.dispatch(SolicitudDeValidacionActions.getById(this.props.match.params.id))
   }
+
+  handleChange(event: React.ChangeEvent<{ value: unknown }>) {
+    this.setState({
+      personName: event.target.value as string[]
+    });
+  };
   
   render(){
 
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    const names = [
+    const names: string[] = [
       'Oliver Hansen',
       'Van Henry',
       'April Tucker',
@@ -109,14 +116,6 @@ class Validacion extends React.Component <{
       }
     }
 
-    // if(
-    //   this.props.solicitudDeValidacionReducer.status === 200
-    // ) {
-    //   this.setState({
-    //     solicitudDeValidacion: this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones
-    //   })
-    // }
-
     let _id: string = ''
     let empresaNombre: string = ''
     let empresaCuit: string = ''
@@ -132,11 +131,6 @@ class Validacion extends React.Component <{
         if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit) empresaCuit = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit
       }
     }
-
-    console.log(_id)
-    console.log(empresaNombre)
-    console.log(empresaCuit)
-
 
     return(
 
@@ -195,16 +189,16 @@ class Validacion extends React.Component <{
                             <Grid item lg={4}>
                             
                             <Link href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do" target="_blank" >
-                                      <Button
-                                      type="button"
-                                      
-                                      variant="contained"
-                                      className={classes.Boton}
-                                      // onClick={this.ingresar}
-                                      >
-                                      Verificar rubro
-                                      </Button>
-                                    </Link>
+                              <Button
+                              type="button"
+                              
+                              variant="contained"
+                              className={classes.Boton}
+                              // onClick={this.ingresar}
+                              >
+                              Verificar rubro
+                              </Button>
+                            </Link>
                             
                             
                               
@@ -232,36 +226,32 @@ class Validacion extends React.Component <{
                               </FormControl>
                             </Grid>
                             <Grid item lg={6}>
-                              {/* <FormControl className={classes.formControl}>
-                                    <InputLabel id="demo-mutiple-chip-label">Rubro</InputLabel>
-                                    <Select
-                                    labelId="demo-mutiple-chip-label"
-                                    id="demo-mutiple-chip"
-                                    multiple
-                                    value={this.state.personName}
-                                    onChange={(event, newPersonName ) => {
-                                        this.setState({
-                                            personName: newPersonName
-                                        })
-                                      }}
-
-                                    input={<Input id="select-multiple-chip" />}
-                                    renderValue={(selected) => (
-                                        <div className={classes.chips}>
-                                        {selected.map((value) => (
-                                            <Chip key={value} label={value} className={classes.chip} />
-                                        ))}
-                                        </div>
-                                    )}
-                                    MenuProps={MenuProps}
-                                    >
-                                    {names.map((name) => (
-                                        <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-                                        {name}
-                                        </MenuItem>
-                                    ))}
-                                    </Select>
-                                </FormControl> */}
+                              <FormControl className={classes.formControl}>
+                                <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+                                <Select
+                                  labelId="demo-mutiple-chip-label"
+                                  id="demo-mutiple-chip"
+                                  multiple
+                                  value={this.state.personName}
+                                  onChange={this.handleChange}
+                                  input={<Input id="select-multiple-chip" />}
+                                  renderValue={(selected) => (
+                                    <div className={classes.chips}>
+                                      {(selected as string[]).map((value) => (
+                                        <Chip key={value} label={value} className={classes.chip} />
+                                      ))}
+                                    </div>
+                                  )}
+                                  MenuProps={MenuProps}
+                                >
+                                  {names.map((name) => (
+                                    <MenuItem key={name} value={name}>
+                                      <Checkbox checked={this.state.personName.indexOf(name) > -1} />
+                                      <ListItemText primary={name} />
+                                    </MenuItem>
+                                  ))}
+                                </Select>
+                              </FormControl>
                             </Grid>
                            
                         </Grid>

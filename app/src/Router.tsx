@@ -44,36 +44,37 @@ class App extends React.Component {
 						<Route path="/home/side"                      component={ AppBar } />
 						<Route path="/item/nuevo"                     component={ NuevoItem } />
 						<Route path="/item/editar"                    component={ EditarItem } />
-						<Route path="/compras/pedidos/lista"          component={ PurchaseRequests } />
-						<Route path="/ventas/pedidos/lista"           component={ SaleRequests } />
+						<Route path="/compras/pedidos/lista"          render={(props) => <PurchaseRequests {...props}/>} />
+						{/* <Route path="/ventas/pedidos/lista"           render={(props) => <SaleRequests {...props}/>} /> */}
 						<Route path="/unidadMedida/nuevo"             component={ NuevaUnidadMedida } />
-						<Route path="/solicitud/unidadMedida/:id"     component={ ValidarSolicitud }></Route>
-						<Route path="/solicitud/unidadMedida"         component={ SolicitudesUnidadMedida }></Route>
-						<Route path="/home/catalogo"                  component={ MostrarCatalogo }></Route>
-						<Route path="/ingresar" 											component={ Login }></Route>
-						<Route path="/registrar" 											component={ Register }></Route>
-						<Route path="/asd" 												    component={ asd }></Route>
-						<Route path="/item/detalle/:id"               component={ VerDetalleItem }></Route>
+						<Route path="/solicitud/unidadMedida/:id"     component={ ValidarSolicitud } />
+						<Route path="/solicitud/unidadMedida"         component={ SolicitudesUnidadMedida } />
+						<Route path="/home/catalogo"                  component={ MostrarCatalogo } />
+						<Route path="/ingresar" 											component={ Login } />
+						<Route path="/registrar" 											component={ Register } />
+						<Route path="/asd" 												    component={ asd } />
+						<Route path="/item/detalle/:id"               component={ VerDetalleItem } />
 						<Route path="/pedido/nuevo"                   component={ NuevoPedido } />
 						<Route path="/presupuesto/nuevo"              component={ NuevoPresupuesto } />
-						<Route path="/compras/presupuestos/lista"     component={ PurchasePresupuestos } />
-						<Route path="/ventas/presupuestos/lista"      component={ SalePresupuestos } />
+						{/* <Route path="/compras/presupuestos/lista"     render={(props) => <PurchasePresupuestos {...props}/>} /> */}
+						{/* <Route path="/ventas/presupuestos/lista"      render={(props) => <SalePresupuestos {...props}/>} /> */}
 						<Route path="/evaluacion/empresa"             component={ EvaluarEmpresa } />
-						<Route path="/evaluacion/suppliersStore"      component={ EvaluarPlataforma }></Route>
-						<Route path="/solicitud/validacion"           component={ ValidationRequest }></Route>
-						<Route path="/renegociacion/:id"              component={ Renegociar }></Route>
+						<Route path="/evaluacion/suppliersStore"      component={ EvaluarPlataforma } />
+						<Route path="/solicitud/validacion"           component={ ValidationRequest } />
+						<Route path="/solicitud/validacion"           render={(props) => <ValidationRequest {...props}/>} />
+						<Route path="/renegociacion/:id"              component={ Renegociar } />
 
-						{/* <Route path='/solicitud/nuevoUsuario/:id'   component={ ValidarNuevoUsuario }></Route> */}
-						<Route path='/solicitud/nuevoUsuario/:id' render={(props) => <ValidarNuevoUsuario {...props}/>}/>
-						<Route path="/home/perfil"                    component={ PerfilPropio }></Route>
-						<Route path="/footer"                         component={ Footer }></Route>
-						<Route path="/presupuestacion/:id"            component={ Presupuestar }></Route>
-						<Route path="/home/inicio"                    component={ PantallaInicio }></Route>
+						{/* <Route path='/solicitud/nuevoUsuario/:id'   component={ ValidarNuevoUsuario } /> */}
+						<Route path='/solicitud/nuevoUsuario/:id'     render={(props) => <ValidarNuevoUsuario {...props}/>}/>
+						<Route path="/home/perfil"                    component={ PerfilPropio } />
+						<Route path="/footer"                         component={ Footer } />
+						<Route path="/presupuestacion/:id"            component={ Presupuestar } />
+						<Route path="/home/inicio"                    component={ PantallaInicio } />
 						{/* <Route path='/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/> */}
-						<Route path='/compras/pedido/:id'                     component={ DetailPurchaseRequest }/>
-						<Route path='/compras/presupuesto/:id'                     component={ DetailPurchasePresupuesto }/>
-						<Route path='/ventas/pedido/:id'                     component={ DetailSaleRequest }/>
-						<Route path='/ventas/presupuesto/:id'                     component={ DetailSalePresupuesto }/>
+						<Route path='/compras/pedido/:id'             render={(props) => <DetailPurchaseRequest {...props}/>}/>
+						<Route path='/compras/presupuesto/:id'        component={ DetailPurchasePresupuesto }/>
+						<Route path='/ventas/pedido/:id'              component={ DetailSaleRequest }/>
+						<Route path='/ventas/presupuesto/:id'         component={ DetailSalePresupuesto }/>
 					
 					</Switch>
 				</div>

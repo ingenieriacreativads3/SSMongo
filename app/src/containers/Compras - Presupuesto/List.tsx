@@ -50,6 +50,10 @@ class PresupuestosCompras extends React.Component<{}, {}> {
     return(
       <div>
         <List
+          history= { this.props.history }
+          location= { this.props.location }
+          match= { this.props.match }
+          staticContext= { this.props.staticContext }
           title={'Mis compras - Presupuestos'}
           columns={[
             { title: 'Vendedor', field: 'presupuesto.empresa_perteneciente.nombre', type: 'string' },

@@ -36,6 +36,7 @@ class Detail extends React.Component <{
   empresa: string,
   importe: string,
   estado: string,
+  cantidad: string,
   item: {
     nombre: string,
     precio: string,
@@ -105,13 +106,16 @@ class Detail extends React.Component <{
                         </Typography>
                     </CardContent>
                         <Grid container spacing={3}>
-                          <Grid item lg={4}>
+                          <Grid item lg={3}>
                             <TextField disabled id="standard-required" label="Nombre" value={this.props.item.nombre}  className={classes.input}  />
                           </Grid>
-                          <Grid item lg={4}>
+                          <Grid item lg={3}>
                             <TextField disabled id="standard-required" label="Precio" value={this.props.item.precio}  className={classes.input}  />
                           </Grid>
-                          <Grid item lg={4}>
+                          <Grid item lg={3}>
+                            <TextField disabled id="standard-required" label="Cantidad" value={this.props.cantidad}  className={classes.input}  />
+                          </Grid>
+                          <Grid item lg={3}>
                             <TextField disabled id="standard-required" label="Unidad de Medida" value={this.props.item.unidad}  className={classes.input}  />
                           </Grid>
                         </Grid>

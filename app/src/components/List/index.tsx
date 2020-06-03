@@ -99,6 +99,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function List(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any,
   data: any,
   title: string,
   columns: {}[],
@@ -112,6 +116,10 @@ export function List(props: {
     title={ props.title }
     columns={ props.columns }
     action= { props.action }
+    history= { props.history }
+    location= { props.location }
+    match= { props.match }
+    staticContext= { props.staticContext }
   />;
 
 }

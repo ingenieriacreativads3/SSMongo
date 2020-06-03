@@ -52,6 +52,10 @@ class PedidosVentas extends React.Component<{}, {}> {
     return(
       <div>
         <List
+          history= { this.props.history }
+          location= { this.props.location }
+          match= { this.props.match }
+          staticContext= { this.props.staticContext }
           title={'Mis ventas - Pedidos'}
           columns={[
             { title: 'Comprador', field: 'pedido.empresa_demandante.nombre', type: 'string' },

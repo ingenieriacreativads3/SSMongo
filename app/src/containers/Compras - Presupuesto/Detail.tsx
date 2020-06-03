@@ -59,7 +59,8 @@ class Detail extends React.Component<{}, {}> {
           subtitle2={'Item solicitado'}
 					empresa={'Empresa'}
 					importe={'importe'}
-					estado={'estado'}
+          estado={'estado'}
+          cantidad={'cantidad'}
 					item={{
 						nombre: 'nombre',
 						precio: 'precio',

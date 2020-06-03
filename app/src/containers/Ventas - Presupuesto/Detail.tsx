@@ -60,6 +60,7 @@ class Detail extends React.Component<{}, {}> {
 					empresa={'Empresa'}
 					importe={'importe'}
 					estado={'estado'}
+					cantidad={'cantidad'}
 					item={{
 						nombre: 'nombre',
 						precio: 'precio',

@@ -159,7 +159,13 @@ export function VerDetallePedido(props: {
 }) {
 
 	const classes = useStyles(theme);
-	return <DetallePedido classes={classes} history={props.history} location={props.location} match={props.match} staticContext={props.staticContext} />;
+  return <DetallePedido 
+    classes={classes}
+    history={props.history}
+    location={props.location}
+    match={props.match}
+    staticContext={props.staticContext}
+  />;
 
 }
 
