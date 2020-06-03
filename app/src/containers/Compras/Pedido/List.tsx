@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { List } from './../../../components/List'
 import * as requestActions from './../../../store/actions/request'
+import { Drawer } from './../../Drawer'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -37,9 +38,17 @@ class PedidosCompras extends React.Component<{
       _id: string
     }
   }) {
-
     this.props.history.push("/compras/pedido/" + item.pedido._id);
-  } 
+  }
+
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
 
   render(){
 
@@ -80,6 +89,7 @@ class PedidosCompras extends React.Component<{
           ]}
           data={ this.props.requestReducer.data.pedidos }
           action={ this.action }
+          drawer={ this.drawer() }
         />
       </div>
     );

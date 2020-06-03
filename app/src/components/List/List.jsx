@@ -73,39 +73,41 @@ class List extends React.Component {
     const classes = this.props.classes
 
     return(
-      
-			<div className={classes.root} >
+      <div>
+        <div className={classes.root} >
 
-        <CssBaseline />
-        <AppBar />
-				<MenuLateral />
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3}>
-              <Grid item lg={12}>
-                <MaterialTable
-                  icons={tableIcons}
-                  title={this.props.title}
-                  columns={this.props.columns}
-                  data={this.props.data}
-                  actions={[
-                    {
-                      icon: VisibilityIcon,
-                      tooltip: 'Ver más',
-                      onClick: (event, rowData) => this.props.action(rowData)
-                    }
-                  ]}
-                />
+          <CssBaseline />
+          <AppBar />
+          {this.props.drawer}
+          <main className={classes.content}>
+            <div className={classes.appBarSpacer} />
+            <Container maxWidth="lg" className={classes.container}>
+              <Grid container spacing={3}>
+                <Grid item lg={12}>
+                  <MaterialTable
+                    icons={tableIcons}
+                    title={this.props.title}
+                    columns={this.props.columns}
+                    data={this.props.data}
+                    actions={[
+                      {
+                        icon: VisibilityIcon,
+                        tooltip: 'Ver más',
+                        onClick: (event, rowData) => this.props.action(rowData)
+                      }
+                    ]}
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-            <Box pt={4}>
-              <Copyright />
-            </Box>
-          </Container>
-        </main>
-				
-			</div>
+              <Box pt={4}>
+                <Copyright />
+              </Box>
+            </Container>
+          </main>
+          
+        </div>
+
+      </div>
     );
   }
 }

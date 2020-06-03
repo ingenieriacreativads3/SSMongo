@@ -75,10 +75,22 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
 	
-	
 })); 
 
-export default function MenuLateral() {
+export default function MenuLateral(props?: {
+	link?: any
+}) {
 	const classes = useStyles();
-	return <Menu classes={ classes } />;
+	let propsReturn: {
+		link: any
+	} = {
+		link: {}
+	}
+	if(props) {
+		if(props.link) propsReturn = propsReturn
+	}
+	return <Menu 
+		classes={ classes }
+		link={ propsReturn.link }
+	/>;
 }

@@ -30,7 +30,9 @@ function mapStateToProps(store: {
   };
 }
 
-class MenuLateral extends React.Component<{}, {
+class MenuLateral extends React.Component<{
+	link?: any
+}, {
 	anchorEl: null | HTMLElement,
 	mobileMoreAnchorEl: null | HTMLElement
 }> {
@@ -75,22 +77,20 @@ class MenuLateral extends React.Component<{}, {
 					</div>
 					<Divider />
 					
-					<Link href="/home/catalogo" className={classes.link}>
-					<ListItem button>
+					<ListItem button onClick={this.props.link}>
 						<ListItemIcon >
 							<DashboardIcon className={classes.icon}/>
 						</ListItemIcon>
 						<ListItemText primary="Mi catálogo" />
 					</ListItem>
-					</Link>
 					
-					<Link href="/item/nuevo"className={classes.link}>
-					<ListItem button>
-						<ListItemIcon>
-							<AddIcon className={classes.icon}/>
-						</ListItemIcon>
-						<ListItemText primary="Nuevo Item" />
-					</ListItem>
+					<Link href="/item/nuevo" className={classes.link}>
+						<ListItem button>
+							<ListItemIcon>
+								<AddIcon className={classes.icon}/>
+							</ListItemIcon>
+							<ListItemText primary="Nuevo Item" />
+						</ListItem>
 					</Link>
 
 					<Divider/>

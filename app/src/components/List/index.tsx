@@ -106,7 +106,8 @@ export function List(props: {
   data: any,
   title: string,
   columns: {}[],
-  action: any
+  action: any,
+  drawer: any
 }) {
 
 	const classes = useStyles(theme);
@@ -115,11 +116,12 @@ export function List(props: {
     data={ props.data }
     title={ props.title }
     columns={ props.columns }
-    action= { props.action }
-    history= { props.history }
-    location= { props.location }
-    match= { props.match }
-    staticContext= { props.staticContext }
+    action={ props.action }
+    history={ props.history }
+    location={ props.location }
+    match={ props.match }
+    staticContext={ props.staticContext }
+    drawer={ props.drawer }
   />;
 
 }

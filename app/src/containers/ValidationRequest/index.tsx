@@ -4,6 +4,7 @@ import * as solicitudDeValidacionActions from './../../store/actions/solicitudDe
 import { connect } from 'react-redux'
 
 import { List } from './../../components/List'
+import { Drawer } from './../Drawer'
 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
@@ -30,6 +31,15 @@ class ValidationRequest extends React.Component<{}, {}> {
     _id: string
   }) {
     this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
+  }
+
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
   }
 
   render(){
@@ -63,6 +73,7 @@ class ValidationRequest extends React.Component<{}, {}> {
           ]}
           data={ this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones }
           action={ this.action }
+          drawer={ this.drawer() }
         />
       </div>
     );
