@@ -28,6 +28,7 @@ import { SaleRequests, DetailSaleRequest } from './containers/Ventas - Pedido'
 import { PurchasePresupuestos, DetailPurchasePresupuesto } from './containers/Compras - Presupuesto'
 import { SalePresupuestos, DetailSalePresupuesto } from './containers/Ventas - Presupuesto'
 import { Renegociar } from './components/Presupuesto'
+import { VerEstadisticaActividad } from './components/Estadisticas'
 
 class App extends React.Component {
 
@@ -75,6 +76,7 @@ class App extends React.Component {
 						<Route path='/compras/presupuesto/:id'        component={ DetailPurchasePresupuesto }/>
 						<Route path='/ventas/pedido/:id'              component={ DetailSaleRequest }/>
 						<Route path='/ventas/presupuesto/:id'         component={ DetailSalePresupuesto }/>
+						<Route path="/home/estadistica/actividad"      component={ VerEstadisticaActividad } />
 					
 					</Switch>
 				</div>
