@@ -131,6 +131,24 @@ class MenuLateral extends React.Component<{
 					</ListItem>
 					</Link>
 					<Divider/>
+					<ListSubheader inset className={classes.subtitle}>Estadisticas</ListSubheader>
+					<Link href="/home/resumen"className={classes.link}>
+					<ListItem button>
+						<ListItemIcon>
+							<AttachMoney className={classes.icon} />
+						</ListItemIcon>
+						<ListItemText primary="Mi resumen" />
+					</ListItem>
+					</Link>
+					<Link href="/ventas/pedidos/lista"className={classes.link}>
+					<ListItem button>
+						<ListItemIcon>
+							<ShoppingCart className={classes.icon}/>
+						</ListItemIcon>
+						<ListItemText primary="Reputacion" />
+					</ListItem>
+					</Link>
+					<Divider/>
 					<ListSubheader inset className={classes.subtitle}>Solicitudes</ListSubheader>
 					<Link href="/item/nuevo"className={classes.link}>
 					<ListItem button>

@@ -76,7 +76,7 @@ class App extends React.Component {
 						<Route path='/compras/presupuesto/:id'        component={ DetailPurchasePresupuesto }/>
 						<Route path='/ventas/pedido/:id'              component={ DetailSaleRequest }/>
 						<Route path='/ventas/presupuesto/:id'         component={ DetailSalePresupuesto }/>
-						<Route path="/home/estadistica/actividad"      component={ VerEstadisticaActividad } />
+						<Route path="/home/resumen"      component={ VerEstadisticaActividad } />
 					
 					</Switch>
 				</div>
