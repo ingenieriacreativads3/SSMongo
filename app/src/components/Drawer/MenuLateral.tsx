@@ -17,6 +17,8 @@ import PersonAdd from '@material-ui/icons/PersonAdd';
 import PostAdd from '@material-ui/icons/PostAdd';
 import Link from '@material-ui/core/Link';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import StarIcon from '@material-ui/icons/Star';
+import BarChartIcon from '@material-ui/icons/BarChart';
 
 import * as drawerAction from './../../store/actions/drawer';
 
@@ -135,15 +137,15 @@ class MenuLateral extends React.Component<{
 					<Link href="/home/resumen"className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<AttachMoney className={classes.icon} />
+							<BarChartIcon className={classes.icon} />
 						</ListItemIcon>
 						<ListItemText primary="Mi resumen" />
 					</ListItem>
 					</Link>
-					<Link href="/ventas/pedidos/lista"className={classes.link}>
+					<Link href="/home/reputacion"className={classes.link}>
 					<ListItem button>
 						<ListItemIcon>
-							<ShoppingCart className={classes.icon}/>
+							<StarIcon className={classes.icon}/>
 						</ListItemIcon>
 						<ListItemText primary="Reputacion" />
 					</ListItem>

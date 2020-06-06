@@ -3,6 +3,7 @@ import { makeStyles} from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 import EstadisticaActividad from './EstadisticaActividad'
+import Reputacion from './Reputacion'
 
 
 
@@ -86,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 
 	  list: {
 		width: '100%',
-		maxWidth: '36ch',
+		maxWidth: '70ch',
 		backgroundColor: theme.palette.background.paper,
 		margin:theme.spacing(10),
 	  },
@@ -94,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'inline',
 	  },
 	  grafico:{
-		width:'200px',
+		width:'300px',
 		height:'auto',
 		
 		
@@ -108,6 +109,11 @@ const useStyles = makeStyles((theme) => ({
 export  function VerEstadisticaActividad() {
 	const classes = useStyles();
 	return <EstadisticaActividad classes={ classes } />;
+}
+
+export  function VerReputacion() {
+	const classes = useStyles();
+	return <Reputacion classes={ classes } />;
 }
 
 

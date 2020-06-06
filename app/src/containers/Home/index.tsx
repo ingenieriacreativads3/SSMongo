@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeExport from './Home'
 
-export function Home(props: {
+export function Inicio(props: {
   history: any,
   location: any,
   match: any,

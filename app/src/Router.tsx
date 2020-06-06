@@ -8,7 +8,6 @@ import { NuevaUnidadMedida } from './components/UnidadMedida'
 import { ValidarSolicitud } from './components/UnidadMedida'
 import { SolicitudesUnidadMedida } from './components/UnidadMedida'
 import { MostrarCatalogo } from './components/Item'
-import asd from './containers/home/'
 import { VerDetalleItem } from './components/Item'
 import { NuevoPedido } from './components/Pedido'
 import { NuevoPresupuesto } from './components/Presupuesto'
@@ -18,7 +17,7 @@ import { ValidarNuevoUsuario } from './components/SolicitudValidacion'
 import { PerfilPropio } from './components/Perfil'
 import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
-import { Home } from './containers/Home'
+import { Inicio } from './containers/home'
 import { VerDetallePresupuesto } from './components/Presupuesto'
 import Login from './containers/Login'
 import Register from './containers/Register'
@@ -29,6 +28,7 @@ import { PurchasePresupuestos, DetailPurchasePresupuesto } from './containers/Co
 import { SalePresupuestos, DetailSalePresupuesto } from './containers/Ventas - Presupuesto'
 import { Renegociar } from './components/Presupuesto'
 import { VerEstadisticaActividad } from './components/Estadisticas'
+import { VerReputacion } from './components/Estadisticas'
 
 class App extends React.Component {
 
@@ -42,8 +42,7 @@ class App extends React.Component {
 			<Router>
 				<div>
 					<Switch>
-						<Route path='/home/inicio'                    render={(props) => <Home {...props}/>}/>
-						
+						{/* <Route path='/home/inicio'                    render={(props) => <Inicio {...props}/>}/> */}						
 						<Route path="/home/side"                      component={ AppBar } />
 						<Route path="/item/nuevo"                     component={ NuevoItem } />
 						<Route path="/item/editar"                    component={ EditarItem } />
@@ -55,7 +54,7 @@ class App extends React.Component {
 						<Route path="/home/catalogo"                  component={ MostrarCatalogo } />
 						<Route path="/ingresar" 											component={ Login } />
 						<Route path="/registrar" 											component={ Register } />
-						<Route path="/asd" 												    component={ asd } />
+						{/* <Route path="/asd" 												    component={ asd } /> */}
 						<Route path="/item/detalle/:id"               component={ VerDetalleItem } />
 						<Route path="/pedido/nuevo"                   component={ NuevoPedido } />
 						<Route path="/presupuesto/nuevo"              component={ NuevoPresupuesto } />
@@ -79,6 +78,7 @@ class App extends React.Component {
 						<Route path='/ventas/pedido/:id'              component={ DetailSaleRequest }/>
 						<Route path='/ventas/presupuesto/:id'         component={ DetailSalePresupuesto }/>
 						<Route path="/home/resumen"      component={ VerEstadisticaActividad } />
+						<Route path="/home/reputacion"      component={ VerReputacion } />
 					
 					</Switch>
 				</div>
