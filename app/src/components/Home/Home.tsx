@@ -20,15 +20,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 
-//npm install @types/react-swipeable-views
-//npm install @types/react-swipeable-views-utils
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-
-
-
-
-
 
 function Copyright() {
   return (
@@ -43,20 +35,14 @@ function Copyright() {
   );
 }
 
-function mapStateToProps(store: {
-  dialogReducer: {
-    openDialog: boolean
-  }
-}) {
-  return {
-    openDialog: store.dialogReducer.openDialog
-  };
-}
-
-class Inicio extends React.Component <{}, {
+class Home extends React.Component <{
+  clasess: any,
+  theme: any
+}, {
 
   valueFilter: number | null,
   hoverFilter: any,
+  activeStep: number
   
 }> {
 
@@ -69,15 +55,14 @@ class Inicio extends React.Component <{}, {
 		this.state = {
 			valueFilter: 2,
       hoverFilter: -1,
-      
+      activeStep: 0
 		};
   }
 
- 
-
   render(){
 
-		const classes = this.props.classes
+    const classes = this.props.classes
+    const theme = this.props.theme
 		const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
     
     const tutorialSteps = [
@@ -91,11 +76,27 @@ class Inicio extends React.Component <{}, {
         imgPath:
           'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
       },
-      
     ];
 
+    const maxSteps = tutorialSteps.length;
 
-
+    const handleNext = () => {
+      this.setState({
+        activeStep: this.state.activeStep + 1
+      });
+    };
+  
+    const handleBack = () => {
+      this.setState({
+        activeStep: this.state.activeStep - 1
+      });
+    };
+  
+    const handleStepChange = (step: number) => {
+      this.setState({
+        activeStep: step
+      });
+    };
 
     return(
 
@@ -105,37 +106,35 @@ class Inicio extends React.Component <{}, {
         <DrawerInicio></DrawerInicio>
 					<main className={classes.content}>
           <div className={classes.rootCarousel}>
-          <Paper square elevation={0} className={classes.header}>
-            {/* <Typography>{tutorialSteps[activeStep].label}</Typography> */}
-          </Paper>
-         {/*  <AutoPlaySwipeableViews
-             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-             index={activeStep}
-             onChangeIndex={handleStepChange}
+          
+          <AutoPlaySwipeableViews
+            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+            index={this.state.activeStep}
+            onChangeIndex={handleStepChange}
             enableMouseEvents
           >
             {tutorialSteps.map((step, index) => (
               <div key={step.label}>
-                 {Math.abs(activeStep - index) <= 2 ? (
+                {Math.abs(this.state.activeStep - index) <= 2 ? (
                   <img className={classes.img} src={step.imgPath} alt={step.label} />
-                ) : null} 
+                ) : null}
               </div>
             ))}
-          </AutoPlaySwipeableViews> */}
+          </AutoPlaySwipeableViews>
           <MobileStepper
-            steps={tutorialSteps.length}
+            steps={maxSteps}
             position="static"
             variant="text"
-            // activeStep={activeStep}
+            activeStep={this.state.activeStep}
             nextButton={
-              <Button size="small" /* onClick={handleNext} disabled={activeStep === maxSteps - 1} */>
+              <Button size="small" onClick={handleNext} disabled={this.state.activeStep === maxSteps - 1} >
                 Next
-                {/* {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />} */}
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
               </Button>
             }
             backButton={
-              <Button size="small" /* onClick={handleBack} disabled={activeStep === 0} */>
-              {/*   {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />} */}
+              <Button size="small" onClick={handleBack} disabled={this.state.activeStep === 0}>
+                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
                 Back
               </Button>
             }
@@ -259,4 +258,4 @@ class Inicio extends React.Component <{}, {
   }
 }
 
-export default connect(mapStateToProps)(Inicio)
+export default Home

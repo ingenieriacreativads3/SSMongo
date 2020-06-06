@@ -18,7 +18,7 @@ import { ValidarNuevoUsuario } from './components/SolicitudValidacion'
 import { PerfilPropio } from './components/Perfil'
 import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
-import { PantallaInicio } from './components/Home'
+import { Home } from './containers/Home'
 import { VerDetallePresupuesto } from './components/Presupuesto'
 import Login from './containers/Login'
 import Register from './containers/Register'
@@ -42,6 +42,8 @@ class App extends React.Component {
 			<Router>
 				<div>
 					<Switch>
+						<Route path='/home/inicio'                    render={(props) => <Home {...props}/>}/>
+						
 						<Route path="/home/side"                      component={ AppBar } />
 						<Route path="/item/nuevo"                     component={ NuevoItem } />
 						<Route path="/item/editar"                    component={ EditarItem } />
@@ -70,7 +72,7 @@ class App extends React.Component {
 						<Route path="/home/perfil"                    component={ PerfilPropio } />
 						<Route path="/footer"                         component={ Footer } />
 						<Route path="/presupuestacion/:id"            component={ Presupuestar } />
-						<Route path="/home/inicio"                    component={ PantallaInicio } />
+
 						{/* <Route path='/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/> */}
 						<Route path='/compras/pedido/:id'             render={(props) => <DetailPurchaseRequest {...props}/>}/>
 						<Route path='/compras/presupuesto/:id'        component={ DetailPurchasePresupuesto }/>

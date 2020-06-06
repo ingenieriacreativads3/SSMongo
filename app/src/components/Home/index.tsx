@@ -1,9 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
-import Home from './Inicio'
+import Home from './Home'
 
 const drawerWidth = 200;
 
@@ -20,8 +20,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  
-  
  
   appBarSpacer: theme.mixins.toolbar,
   content: {
@@ -163,18 +161,17 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     width: '100%',
   },
-
-
-  
-  
 }));
 
-export function PantallaInicio() {
+export function InitLayout() {
 
 	const classes = useStyles(theme);
  
   return <div>
-  <Home classes={classes} />
+    <Home
+      classes={classes} 
+      theme={useTheme}
+    />
   </div>;
 }
 
