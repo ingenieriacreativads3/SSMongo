@@ -5,11 +5,11 @@ import Link from '@material-ui/core/Link';
 import { NuevoItem as ItemNuevo} from './../../components/Item'
 
 function mapStateToProps(store: {
-
+  itemReducer: any,
   login: any
 }) {
   return {
-    
+    item : store.itemReducer,
     login: store.login
   };
 }
