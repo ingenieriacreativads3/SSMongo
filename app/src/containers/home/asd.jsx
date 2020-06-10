@@ -13,7 +13,7 @@ class Index extends React.Component {
 
   render(){
 
-    const Slide = require('./Slide').default;
+    //const Slide = require('./Slide').default;
     const { red, blue, green } = require('@material-ui/core/colors');
     const Button = require('@material-ui/core/Button').default;
 

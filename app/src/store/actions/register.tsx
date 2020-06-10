@@ -35,3 +35,17 @@ export function registrar(
 	}
 
 }
+
+
+export function getEmpresa(id:string) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + 'no se la ruta')
+
+	return {
+		type: 'GET_EMPRESA',
+		payload: payload
+	}
+
+}

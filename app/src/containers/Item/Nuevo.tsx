@@ -145,7 +145,7 @@ class Nuevo extends React.Component<{
           // unidadesDeMedida={this.props.unidadesDeMedidaReducer}
         />
         <OneButton 
-          title={ 'Agregar Item' }
+          title={ 'Nuevo Item' }
           text={ this.props.itemReducer.message }
           functionRight={ this.aceptar }
           labelButtonRight={ 'Aceptar' }
