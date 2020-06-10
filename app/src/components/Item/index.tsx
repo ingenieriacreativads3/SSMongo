@@ -191,11 +191,16 @@ export  function VerDetalleItem() {
 
 }
 
-export  function EditarItem() {
+export  function EditarItem(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}) {
 
 	const classes = useStyles(theme);
  
-  return <ItemEditar classes={classes} />;
+  return <ItemEditar classes={classes} history={props.history} location={props.location} match={props.match} staticContext={props.staticContext}  />;
 
 }
 

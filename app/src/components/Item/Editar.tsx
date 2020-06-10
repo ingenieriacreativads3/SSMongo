@@ -56,7 +56,14 @@ function mapStateToProps(store: {}) {
   };
 }
 
-class Editar extends React.Component {
+class Editar extends React.Component <{
+
+  title: string,
+  nombre: string,
+  precio: string,
+  unidad: string,
+
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -65,107 +72,9 @@ class Editar extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-/*     this.onSubmit = this.onSubmit.bind(this);
-    this.getNombre = this.getNombre.bind(this);
-    this.getPrecio = this.getPrecio.bind(this);
-    this.getFoto = this.getFoto.bind(this);
-    this.getDescripcion = this.getDescripcion.bind(this);
-    this.getCaracteristicas = this.getCaracteristicas.bind(this);
-    this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
-    this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
-    this.state = {
-      Item: {
-        nombre: '',
-        precio: '',
-        foto: '',
-        descripcion: '',
-        caracteristicas: '',
-        unidadDeMedida: '',
-        mostrarPrecio: false
-      }
-    };
-  }
-/* 
-  onSubmit() {
-    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
+    this.state = {};
   }
 
-  getNombre(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        nombre: e.target.value
-      }
-    });
-
-  }
-
-  getPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        precio: e.target.value
-      }
-    });
-
-  }
-
-  getFoto(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        foto: e.target.value
-      }
-    });
-
-  }
-
-  getDescripcion(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        descripcion: e.target.value
-      }
-    });
-
-  }
-
-  getCaracteristicas(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        caracteristicas: e.target.value
-      }
-    });
-
-  }
-
-  getUnidadDeMedida(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  }
-
-  getMostrarPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        mostrarPrecio: e.target.value
-      }
-    });
-
-  } */
 
   render(){
 
@@ -191,7 +100,7 @@ class Editar extends React.Component {
                             E
                           </Avatar>
                         }
-                        title="Editar Item"
+                        title={this.props.title}
                         
                       />
 
@@ -200,11 +109,11 @@ class Editar extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre" defaultValue="Samsung A20" />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre" defaultValue={this.props.nombre } />
                             
                             </Grid>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio" type="number" defaultValue="16000" />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio" type="number" defaultValue={ this.props.precio } />
 
                             </Grid>
                             <Grid item lg={4}>
@@ -229,7 +138,7 @@ class Editar extends React.Component {
                                 <Select
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"
-                                  defaultValue={1}
+                                  defaultValue={this.props.unidad}
                                   // value={unidadDeMedida}
                                   // onChange={this.getUnidadDeMedida}
                                   
@@ -271,6 +180,7 @@ class Editar extends React.Component {
                               <Input
                                 type="file"
                                 style={{ display: "none" }}
+                               
                               />
                             </Button>
                           </Grid>
@@ -287,6 +197,7 @@ class Editar extends React.Component {
                             size="small"
                             className={classes.button}
                             startIcon={<SaveIcon />}
+                            //onClick={() => this.save()}
                           >
                             Actualizar
                           </Button>

@@ -1,0 +1,75 @@
+export default function itemReducer ( state = {
+
+	status: 0,
+  message: '',
+  data: {},
+  fetching: false,
+	fetched: false,
+	error: null,
+	
+}, action: {
+	type: string,
+	payload: any
+}) {
+
+	switch (action.type) {
+
+		case 'GET_ITEM_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'GET_ITEM_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'GET_ITEM_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
+		case 'SET_ITEM_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'SET_ITEM_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'SET_ITEM_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+	
+		case 'E': {
+			throw new Error('Este error se manejo asi!' + ' itemReducer' + 'Reducer.js');
+		}
+		default: {break;}
+	}
+	return state;
+}

@@ -49,66 +49,30 @@ function Copyright() {
   );
 }
 
-function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
-}) {
-  return {
-    Item: store.Item,
-    // idEmpresa: store.login.data.empresa._id
-  };
-}
 
-class Nuevo extends React.Component {
 
-	props: any
+class Nuevo extends React.Component <{
+
+	
+  classes: any,
+  getNombre: any,
+  getPrecio: any,
+  getMagnitud: any,
+  getFoto: any,
+  save: any
+}, {}> {
+
+  props: any
 	static propTypes: any
-	static defaultProps: any
+  static defaultProps: any
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.state = {
-      Item: {
-        nombre: '',
-        precio: '',
-        foto: '',
-        descripcion: '',
-        caracteristicas: '',
-        unidadDeMedida: '',
-        mostrarPrecio: false
-      }
-    };
+    this.state = {};
   }
 
-  async register(): Promise<void> {
-    return new Promise<void>( async (resolve, reject) => {
-      await this.props.dispatch(Login.register({
-        empresa :	{
-          nombre: "macoser",
-          cuit: "30716221659",
-          usuario: "macoser",
-          clave: "admin",
-          email: "macoser@test.com",
-          rubros: [
-              null
-          ]
-        }
-      })).then((res: any)=> {
-        console.log(res)
-        resolve(res)
-      }).catch((err: any)=> {
-        console.log(err)
-        reject(err)
-      })
-		})
-  }
+  
 
   render(){
 
@@ -143,12 +107,12 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre"  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre"  onChange={ this.props.getNombre }  />
                             
                               
                             </Grid>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio"   type="number" />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio"   type="number"  onChange={ this.props.getPrecio } />
                             
                             </Grid>
                             <Grid item lg={4}>
@@ -156,7 +120,7 @@ class Nuevo extends React.Component {
                                   control={
                                     <Checkbox
                                       // checked = "false"
-                                      // onChange={this.getMostrarPrecio}
+                                      //onChange={ this.props.getMostrarPrecio }
                                       style ={{
                                         color: "#d93211",
                                       }}
@@ -174,7 +138,7 @@ class Nuevo extends React.Component {
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"
                                   // value={unidadDeMedida}
-                                  // onChange={this.getUnidadDeMedida}
+                                   onChange={this.props.getMagnitud}
                                 >
                                   <MenuItem value={1}>Kilogramos</MenuItem>
                                   <MenuItem value={2}>Metros</MenuItem>
@@ -213,6 +177,7 @@ class Nuevo extends React.Component {
                               <Input
                                 type="file"
                                 style={{ display: "none" }}
+                                onChange = {this.props.getFoto}
                               />
                             </Button>
                             </Grid>
@@ -237,7 +202,7 @@ class Nuevo extends React.Component {
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
-                              onClick={() => this.register()}
+                              //onClick={() => this.save()}
                             >
                               Guardar
                             </Button>
@@ -266,10 +231,5 @@ class Nuevo extends React.Component {
   }
 }
 
-Nuevo.defaultProps = {
-	classes: {
-		color: 'color'
-	}
-}
 
-export default connect(mapStateToProps)(Nuevo)
+export default Nuevo
