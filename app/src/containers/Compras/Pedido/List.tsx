@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import Cookies from 'universal-cookie';
 
 import { List } from './../../../components/List'
 import * as requestActions from './../../../store/actions/request'
@@ -19,7 +20,8 @@ class PedidosCompras extends React.Component<{
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  cookies: Cookies
 }, {}> {
 
 	props: any
@@ -52,16 +54,13 @@ class PedidosCompras extends React.Component<{
 
   render(){
 
-		if(
+    
+    if(
       !this.props.requestReducer.fetched &&
-      !this.props.requestReducer.fetching &&
-      (this.props.login !== undefined) &&
-      (this.props.login.data !== undefined) &&
-      (this.props.login.data.empresa !== undefined)
+      !this.props.requestReducer.fetching
     ) {
 
-      this.props.dispatch(requestActions.getPurchase(this.props.login.data.empresa._id))
-      console.log(this.props.requestReducer)
+      this.props.dispatch(requestActions.getPurchase(localStorage.getItem('empresaId') as string))
 
 		}
 

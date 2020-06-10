@@ -7,13 +7,12 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import store from './store/index';
 
-
 ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <Router />
-    </React.StrictMode>
-  </Provider>,
+    <Provider store={store}>
+      <React.StrictMode>
+        <Router />
+      </React.StrictMode>
+    </Provider>,
   document.getElementById('root')
 );
 

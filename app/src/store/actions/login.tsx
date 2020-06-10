@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 export function reintentar() {
 
@@ -9,7 +10,9 @@ export function reintentar() {
 
 }
 
-export function loguear() {
+export function loguear( cookies: Cookies, empresaId: string ) {
+
+	cookies.set('empresaId', empresaId, { path: '/' });
 
 	return {
 		type: 'LOGUEAR',

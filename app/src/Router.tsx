@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
 import AppBar from './components/AppBar'
 import { NuevoItem } from './components/Item'
@@ -17,9 +18,9 @@ import { ValidarNuevoUsuario } from './components/SolicitudValidacion'
 import { PerfilPropio } from './components/Perfil'
 import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
-import { Inicio } from './containers/home'
+import { Inicio } from './containers/Home'
 import { VerDetallePresupuesto } from './components/Presupuesto'
-import Login from './containers/Login'
+import { Login } from './containers/Login'
 import Register from './containers/Register'
 import ValidationRequest from './containers/ValidationRequest'
 import { PurchaseRequests, DetailPurchaseRequest }  from './containers/Compras/Pedido'
@@ -38,21 +39,23 @@ class App extends React.Component {
 
 	render() {
 
+		const cookies = new Cookies();
+
 		return (
 			<Router>
 				<div>
 					<Switch>
-						{/* <Route path='/home/inicio'                    render={(props) => <Inicio {...props}/>}/> */}						
+						<Route path='/home/inicio'                    render={(props) => <Inicio {...props} cookies={cookies}/>}/>						
 						<Route path="/home/side"                      component={ AppBar } />
 						<Route path="/item/nuevo"                     component={ NuevoItem } />
 						<Route path="/item/editar"                    component={ EditarItem } />
-						<Route path="/compras/pedidos/lista"          render={(props) => <PurchaseRequests {...props}/>} />
-					    <Route path="/ventas/pedidos/lista"           render={(props) => <SaleRequests {...props}/>} /> 
+						<Route path="/compras/pedidos/lista"          render={(props) => <PurchaseRequests {...props} cookies={cookies}/>} />
+						<Route path="/ventas/pedidos/lista"           render={(props) => <SaleRequests {...props}/>} /> 
 						<Route path="/unidadMedida/nuevo"             component={ NuevaUnidadMedida } />
 						<Route path="/solicitud/unidadMedida/:id"     component={ ValidarSolicitud } />
 						<Route path="/solicitud/unidadMedida"         component={ SolicitudesUnidadMedida } />
 						<Route path="/home/catalogo"                  component={ MostrarCatalogo } />
-						<Route path="/ingresar" 											component={ Login } />
+						<Route path="/ingresar"                       render={(props) => <Login { ...props } cookies={cookies} />} /> 
 						<Route path="/registrar" 											component={ Register } />
 						{/* <Route path="/asd" 												    component={ asd } /> */}
 						<Route path="/item/detalle/:id"               component={ VerDetalleItem } />

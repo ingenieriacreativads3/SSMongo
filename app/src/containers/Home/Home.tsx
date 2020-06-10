@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import Cookies from 'universal-cookie';
 
 import { InitLayout as HomeComponent } from './../../components/Home'
 
@@ -17,7 +18,8 @@ class Home extends React.Component<{
   history: any,
   location: any,
   match: any,
-	staticContext?: any,
+  staticContext?: any,
+  cookies: Cookies
 }, {}> {
 
 	props: any
@@ -31,6 +33,8 @@ class Home extends React.Component<{
 	}
 
   render(){
+
+    // console.log(localStorage.getItem('empresaId'))
 
     return(
       <div>

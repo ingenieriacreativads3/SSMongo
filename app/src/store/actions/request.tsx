@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-export function getPurchase(id: string) {
+export function getPurchase(id?: string) {
 
 	let url: string = 'http://127.0.0.1:8000';
+
+	let idAux = ''
+
+	if(id) idAux = id
 	
 	let payload: any = axios.get(url + '/empresa/' + id + '/pedidossolicitados')
 
