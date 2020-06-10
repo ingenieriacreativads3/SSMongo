@@ -58,10 +58,10 @@ function mapStateToProps(store: {}) {
 
 class Editar extends React.Component <{
 
-  title: string,
-  nombre: string,
-  precio: string,
-  unidad: string,
+  // title: string,
+  // nombre: string,
+  // precio: string,
+  // unidad: string,
 
 }, {}> {
 

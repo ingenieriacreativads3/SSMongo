@@ -200,7 +200,13 @@ export  function EditarItem(props: {
 
 	const classes = useStyles(theme);
  
-  return <ItemEditar classes={classes} history={props.history} location={props.location} match={props.match} staticContext={props.staticContext}  />;
+  return <ItemEditar 
+    classes={classes}
+    history={props.history}
+    location={props.location}
+    match={props.match}
+    staticContext={props.staticContext}
+  />;
 
 }
 

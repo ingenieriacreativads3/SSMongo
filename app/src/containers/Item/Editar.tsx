@@ -70,17 +70,18 @@ class Editar extends React.Component<{
 			}
     }
   }
-  
-    
-    
 
     return(
       <div>
-        <ItemEditar  
-         title={'Editar Item'}
-         nombre={ nombre }
-         precio={ precio }
-         unidad={ unidad }
+        <ItemEditar 
+          history={this.props.history}
+          location={this.props.location}
+          match={this.props.match}
+          staticContext={this.props.staticContext}
+          // title={'Editar Item'}
+          // nombre={ nombre }
+          // precio={ precio }
+          // unidad={ unidad }
          />
       </div>
     );

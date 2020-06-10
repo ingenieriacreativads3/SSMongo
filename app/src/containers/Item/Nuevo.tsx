@@ -19,12 +19,18 @@ class Nuevo extends React.Component<{
   location: any,
   match: any,
   staticContext?: any,
+  // id: string,
+	// nombre: string,
+  // precio: string,
+  // idMagnitud : string,
+	// path: string,
+}, {
   id: string,
 	nombre: string,
   precio: string,
   idMagnitud : string,
 	path: string,
-}, {}> {
+}> {
 
 	props: any
 	static propTypes: any
@@ -40,11 +46,12 @@ class Nuevo extends React.Component<{
     this.redirect = this.redirect.bind(this);
     this.guardar = this.guardar.bind(this);
     this.state = {
-    nombre: '',
-    precio: '',
-    idMagnitud: '',
-    path: '',
-  };
+      id: '',
+      nombre: '',
+      precio: '',
+      idMagnitud: '',
+      path: '',
+    };
 }
 
 getNombre(e: any) {
@@ -82,11 +89,10 @@ getFoto(e: any) {
 guardar() {
 
   this.props.dispatch(itemActions.setItem(
-        this.state.nombre,
-        this.state.precio,
-        this.state.idMagnitud,
-        this.state.path
-    
+    this.state.nombre,
+    this.state.precio,
+    this.state.idMagnitud,
+    this.state.path
   ))
 
 }
@@ -103,11 +109,12 @@ redirect() {
     return(
       <div>
         <ItemNuevo 
-         getNombre={ this.getNombre }
-         getPrecio={ this.getPrecio }
-         getMagnitud={ this.getMagnitud }
-         getFoto={ this.getFoto }
-         save={ this.guardar }/>
+        //  getNombre={ this.getNombre }
+        //  getPrecio={ this.getPrecio }
+        //  getMagnitud={ this.getMagnitud }
+        //  getFoto={ this.getFoto }
+        //  save={ this.guardar }
+        />
       </div>
     );
   }
