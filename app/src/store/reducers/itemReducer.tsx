@@ -65,6 +65,28 @@ export default function itemReducer ( state = {
         data: action.payload.data.data
       };
 		}
+
+		case 'REINTENTAR':{
+      return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: 0,
+        message: '',
+        data: {}
+      };
+		}
+		
+		case 'SETEAR':{
+      return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: 200,
+        message: '',
+        data: state.data
+      };
+    }
 	
 		case 'E': {
 			throw new Error('Este error se manejo asi!' + ' itemReducer' + 'Reducer.js');

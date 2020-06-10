@@ -1,4 +1,6 @@
 import React from 'react';
+import Cookies from 'universal-cookie';
+
 import NuevoItem from './Nuevo'
 import DetalleItem from './Detalle'
 import EditarItem from './Editar'
@@ -8,13 +10,15 @@ export function ItemNuevo(props: {
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  cookies: Cookies
 }) {
 	return <NuevoItem
     history={props.history}
     location={props.location}
     match={props.match}
     staticContext={props.staticContext}
+    cookies={props.cookies}
   />;
 }
 

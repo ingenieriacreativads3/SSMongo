@@ -5,7 +5,7 @@ export function reintentar() {
 
 	return {
 		type: 'REINTENTAR',
-		payload: ''
+		payload: {}
 	}
 
 }
@@ -16,7 +16,7 @@ export function loguear( cookies: Cookies, empresaId: string ) {
 
 	return {
 		type: 'LOGUEAR',
-		payload: ''
+		payload: {}
 	}
 
 }

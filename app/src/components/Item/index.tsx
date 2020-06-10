@@ -113,8 +113,6 @@ const useStyles = makeStyles((theme) => ({
   },
   botonIcono:{
     
-    width:'20px',
-    height:'40px',
     backgroundColor: '#ffffff',
     outline:'none',
     margin: theme.spacing(5),
@@ -173,13 +171,34 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-export  function NuevoItem() {
+export  function NuevoItem(props: {
+  getNombre: any,
+  getPrecio: any,
+  getMagnitud: any,
+  getCaracteristicas: any,
+  getDescripcion: any,
+  getMostrarPrecio: any,
+  getFoto: any,
+  save: any,
+  nombre: string
+}) {
 
 	const classes = useStyles(theme);
-  return <ItemNuevo classes={ classes } />;
-
+  return <ItemNuevo 
+    classes={ classes }
+    getNombre={ props.getNombre }
+    getPrecio={ props.getPrecio }
+    getMagnitud={ props.getMagnitud }
+    getCaracteristicas={ props.getCaracteristicas }
+    getDescripcion={ props.getDescripcion }
+    getMostrarPrecio={ props.getMostrarPrecio }
+    getFoto={ props.getFoto }
+    save={ props.save }
+    nombre={ props.nombre }
+  />;
 
 }
+
 export  function VerDetalleItem() {
 
 	const classes = useStyles(theme);

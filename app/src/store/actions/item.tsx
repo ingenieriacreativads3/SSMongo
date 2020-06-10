@@ -1,34 +1,49 @@
 import axios from 'axios';
 
-export function setItem(	
-    //id: string,
+export function setear() {
+
+	return {
+		type: 'SETEAR',
+		payload: {}
+	}
+
+}
+
+export function reintentar() {
+
+	return {
+		type: 'REINTENTAR',
+		payload: {}
+	}
+
+}
+
+export function setItem(
+	idEmpresa: string,	
 	nombre: string,
-    precio: string,
-    idMagnitud : string,
+	precio: string,
+	idMagnitud : string,
 	path: string,
-   
-    
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
 	let payload: any = axios.post(url + '/empresa/agregaritem',{
-       // idEmpresa : id,
-        item: {
+    idEmpresa : idEmpresa,
+    item: {
 			nombre: nombre,
 			precio: precio,
 			idMagnitud: idMagnitud,
 			foto: path
-			
 		}
-    } )
-    
-    return {
-		type: 'SET_NEW_ITEM',
+	})
+
+	console.log(payload)
+	
+  return {
+		type: 'SET_ITEM',
 		payload: payload
 	}
-
-	
 
 }
 

@@ -1,16 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import * as itemActions from './../../store/actions/item'
+import Cookies from 'universal-cookie';
+
 import Link from '@material-ui/core/Link';
+
 import { NuevoItem as ItemNuevo} from './../../components/Item'
+import { OneButton } from './../../components/Dialogs'
+
+import * as itemActions from './../../store/actions/item'
+import * as dialogAction from './../../store/actions/dialog'
 
 function mapStateToProps(store: {
   itemReducer: any,
-  login: any
 }) {
   return {
-    item : store.itemReducer,
-    login: store.login
+    itemReducer: store.itemReducer,
   };
 }
 
@@ -19,17 +23,16 @@ class Nuevo extends React.Component<{
   location: any,
   match: any,
   staticContext?: any,
-  // id: string,
-	// nombre: string,
-  // precio: string,
-  // idMagnitud : string,
-	// path: string,
+  cookies: Cookies
 }, {
   id: string,
 	nombre: string,
   precio: string,
   idMagnitud : string,
-	path: string,
+  path: string,
+  caracteristicas: string,
+  descripcion: string,
+  displayPrice: boolean
 }> {
 
 	props: any
@@ -42,78 +45,110 @@ class Nuevo extends React.Component<{
     this.getNombre = this.getNombre.bind(this);
     this.getPrecio = this.getPrecio.bind(this);
     this.getMagnitud = this.getMagnitud.bind(this);
+    this.getCaracteristicas = this.getCaracteristicas.bind(this);
+    this.getDescripcion = this.getDescripcion.bind(this);
+    this.getMostrarPrecio = this.getMostrarPrecio.bind(this);
     this.getFoto = this.getFoto.bind(this);
-    this.redirect = this.redirect.bind(this);
-    this.guardar = this.guardar.bind(this);
+    this.save = this.save.bind(this);
+    this.aceptar = this.aceptar.bind(this);
     this.state = {
       id: '',
       nombre: '',
       precio: '',
       idMagnitud: '',
       path: '',
+      caracteristicas: '',
+      descripcion: '',
+      displayPrice: false
     };
-}
+  }
 
-getNombre(e: any) {
+  componentDidUpdate() {
 
-  this.setState({
-    nombre: e.target.value
-  })
+    if(this.props.itemReducer.fetched) {
+      this.props.dispatch(dialogAction.openOneButton())
+    } else {
+      this.props.dispatch(dialogAction.closeOneButton())
+    }
 
-}
+  }
 
-getPrecio(e: any) {
+  getNombre(e: any) {
+    this.setState({ nombre: e.target.value })
+  }
 
-  this.setState({
-    precio: e.target.value
-  })
+  getPrecio(e: any) {
+    this.setState({ precio: e.target.value })
+  }
 
-}
+  getMagnitud(e: any) {
+    this.setState({ idMagnitud: e.target.value })
+  }
 
-getMagnitud(e: any) {
+  getCaracteristicas(e: any) {
+    this.setState({ caracteristicas: e.target.value })
+  }
 
-  this.setState({
-    idMagnitud: e.target.value
-  })
+  getDescripcion(e: any) {
+    this.setState({ descripcion: e.target.value })
+  }
 
-}
+  getMostrarPrecio(display: boolean) {
+    this.setState({ displayPrice: display })
+  }
 
-getFoto(e: any) {
+  getFoto(image: any) {
+    console.log(image)
+    // this.setState({ path: path })
+  }
 
-  this.setState({
-    path: e.target.value
-  })
+  save() {
 
-}
+    this.props.dispatch(itemActions.setItem(
+      this.props.cookies.get('empresaId'),
+      this.state.nombre,
+      this.state.precio,
+      '5ecdb0bcdb386b4e1b75e378',
+      'path/to/imagen/'
+    ))
 
-guardar() {
+  }
 
-  this.props.dispatch(itemActions.setItem(
-    this.state.nombre,
-    this.state.precio,
-    this.state.idMagnitud,
-    this.state.path
-  ))
+  aceptar() {
 
-}
+    this.props.dispatch(dialogAction.closeOneButton())
+    if(this.props.itemReducer.status !== 200) {
+      this.props.dispatch(itemActions.reintentar())
+    } else {
+      this.props.dispatch(itemActions.setear())
+      this.setState({nombre: ''})
+    }
 
-redirect() {
-  return <Link href="/home/catalogo" variant="body2" />
-}
-
-
-
+  }
 
   render(){
+
+    console.log(this.props.itemReducer)
 
     return(
       <div>
         <ItemNuevo 
-        //  getNombre={ this.getNombre }
-        //  getPrecio={ this.getPrecio }
-        //  getMagnitud={ this.getMagnitud }
-        //  getFoto={ this.getFoto }
-        //  save={ this.guardar }
+          getNombre={ this.getNombre }
+          getPrecio={ this.getPrecio }
+          getMagnitud={ this.getMagnitud }
+          getCaracteristicas={ this.getCaracteristicas }
+          getDescripcion={ this.getDescripcion }
+          getMostrarPrecio={ this.getMostrarPrecio }
+          getFoto={ this.getFoto }
+          save={ this.save }
+          nombre={ this.state.nombre }
+          // unidadesDeMedida={this.props.unidadesDeMedidaReducer}
+        />
+        <OneButton 
+          title={ 'Agregar Item' }
+          text={ this.props.itemReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
         />
       </div>
     );

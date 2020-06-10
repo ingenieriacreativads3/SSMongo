@@ -60,7 +60,7 @@ class PedidosCompras extends React.Component<{
       !this.props.requestReducer.fetching
     ) {
 
-      this.props.dispatch(requestActions.getPurchase(localStorage.getItem('empresaId') as string))
+      this.props.dispatch(requestActions.getPurchase(this.props.cookies.get('empresaId')))
 
 		}
 

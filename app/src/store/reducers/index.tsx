@@ -8,6 +8,7 @@ import registerReducer from './registerReducer'
 import solicitudDeValidacionReducer from './solicitudDeValidacionReducer'
 import requestReducer from './requestReducer'
 import presupuestoReducer from './presupuestoReducer'
+import itemReducer from './itemReducer'
 
 export default combineReducers({
     apiWork,
@@ -18,4 +19,5 @@ export default combineReducers({
     solicitudDeValidacionReducer,
     requestReducer,
     presupuestoReducer,
+    itemReducer,
 })
