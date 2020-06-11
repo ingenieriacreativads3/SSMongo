@@ -8,7 +8,7 @@ import { EditarItem } from './components/Item'
 import { NuevaUnidadMedida } from './components/UnidadMedida'
 import { ValidarSolicitud } from './components/UnidadMedida'
 import { SolicitudesUnidadMedida } from './components/UnidadMedida'
-import { MostrarCatalogo } from './components/Item'
+import { Catalogo } from './containers/Item'
 import { VerDetalleItem } from './components/Item'
 import { NuevoPedido } from './components/Pedido'
 import { NuevoPresupuesto } from './components/Presupuesto'
@@ -54,7 +54,7 @@ class App extends React.Component {
 						<Route path='/unidadMedida/nuevo'             component={ NuevaUnidadMedida } />
 						<Route path='/solicitud/unidadMedida/:id'     component={ ValidarSolicitud } />
 						<Route path='/solicitud/unidadMedida'         component={ SolicitudesUnidadMedida } />
-						<Route path='/home/catalogo'                  component={ MostrarCatalogo } />
+						<Route path='/home/catalogo'                  render={(props) => <Catalogo { ...props } cookies={cookies} />} /> 
 						<Route path='/ingresar'                       render={(props) => <Login { ...props } cookies={cookies} />} /> 
 						<Route path='/registrar' 											component={ Register } />
 						{/* <Route path='/asd' 												    component={ asd } /> */}

@@ -10,6 +10,9 @@ import { Link} from "react-router-dom";
 import MenuLateral from '../Drawer'
 import SearchIcon from '@material-ui/icons/Search';
 
+import foto from './../Login/img/photo2.png'
+import foto1 from './../Login/img/logo.png'
+
 import * as dialogAction from './../../store/actions/dialog'
 
 import { connect } from 'react-redux'
@@ -37,7 +40,9 @@ function mapStateToProps(store: {
   };
 }
 
-class Catalogo extends React.Component {
+class Catalogo extends React.Component <{
+  items: any[]
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -48,15 +53,6 @@ class Catalogo extends React.Component {
     super(props);
     this.eliminarItem = this.eliminarItem.bind(this);
     this.state = {
-      Item: {
-        nombre: '',
-        precio: '',
-        foto: '',
-        descripcion: '',
-        caracteristicas: '',
-        unidadDeMedida: '',
-        mostrarPrecio: false
-      }
     };
   }
 
@@ -67,7 +63,7 @@ class Catalogo extends React.Component {
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
+    const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
  
     return(
 
@@ -93,110 +89,65 @@ class Catalogo extends React.Component {
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
               
-                <Grid item lg={4}>
-                  <Card className={fixedHeightCardCatalog}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt="Samsung A20"
-                        height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Samsung A20"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          asdasd
-                        </Typography>
-                        <Typography variant="subtitle1" component="h2">
-                          $16000
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                          Android (9.0) 
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                    <CardActions disableSpacing>
-                    <Link to="/item/editar">
-                      <IconButton aria-label="editar"className={classes.iconButton}>
-                        <EditIcon />
-                      </IconButton>
-                      </Link>
-                      <IconButton aria-label="eliminar"className={classes.iconButton} onClick={this.eliminarItem}>
-                        <DeleteIcon />
-                      </IconButton>
-                      
-                    </CardActions>
-                    </Card>
-                  </Grid>
-                  <Grid item lg={4}>
-                  <Card className={fixedHeightCardCatalog}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt="Samsung A20"
-                        height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Samsung A20"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          Samsung A20
-                        </Typography>
-                        <Typography variant="subtitle1" component="h2">
-                          $16000
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                          Android (9.0) 
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                    <CardActions disableSpacing>
-                      <Link to="/item/editar">
-                      <IconButton aria-label="editar"className={classes.iconButton}>
-                        <EditIcon />
-                      </IconButton>
-                      </Link>
-                      <IconButton aria-label="eliminar"className={classes.iconButton}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </CardActions>
-                    </Card>
-                  </Grid>
-                  <Grid item lg={4}>
-                  <Card className={fixedHeightCardCatalog}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt="Samsung A20"
-                        height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Samsung A20"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          Samsung A20
-                        </Typography>
-                        <Typography variant="subtitle1" component="h2">
-                          $16000
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                          Android (9.0) 
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                    <CardActions disableSpacing>
-                    <Link to="/item/editar">
-                      <IconButton aria-label="editar" className={classes.iconButton}> 
-                        <EditIcon />
-                      </IconButton>
-                      </Link>
-                      <IconButton aria-label="eliminar" className={classes.iconButton}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </CardActions>
-                    </Card>
-                  </Grid>
-
+                {this.props.items.map((itemAux: {
+                  item: {
+                    _id: string,
+                    nombre: string,
+                    precio: string,
+                    foto: string,
+                    unidad_de_medida_id: string,
+                    updated_at: string,
+                    created_at: string,
+                    catalogo_id: string,
+                    unidad_de_medida: {
+                      _id: string,
+                      nombre: string,
+                      abreviatura: string,
+                      updated_at: string,
+                      created_at: string,
+                    }
+                  }
+                }) => {
+                  return <div>
+                    <Grid item lg={3} md={4} sm={6}>
+                      <Card className={fixedHeightCardCatalog}>
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            alt={itemAux.item.nombre}
+                            height="150"
+                            image={foto}
+                            title={itemAux.item.nombre}
+                          />
+                          <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                              {itemAux.item.nombre}
+                            </Typography>
+                            <Typography variant="subtitle1" component="h2">
+                              {itemAux.item.precio}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                              Descripcion (falta traer) 
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions disableSpacing>
+                        <Link to="/item/editar">
+                          <IconButton aria-label="editar"className={classes.iconButton}>
+                            <EditIcon />
+                          </IconButton>
+                          </Link>
+                          <IconButton aria-label="eliminar"className={classes.iconButton} onClick={this.eliminarItem}>
+                            <DeleteIcon />
+                          </IconButton>
+                          
+                        </CardActions>
+                        </Card>
+                    </Grid>
+                  </div>
+                })}
+                
+                  
 							</Grid>
 							<Box pt={4}>
 								<Copyright />

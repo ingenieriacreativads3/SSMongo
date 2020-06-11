@@ -66,6 +66,32 @@ export default function itemReducer ( state = {
       };
 		}
 
+		case 'GET_CATALOGO_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'GET_CATALOGO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'GET_CATALOGO_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
 		case 'REINTENTAR':{
       return {
         ...state,

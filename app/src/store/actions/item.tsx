@@ -64,7 +64,7 @@ export function getCatalogo(id: string){
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.get(url + '/empresa/' + id + '/items')
+	let payload: any = axios.get(url + '/empresa/' + id + '/catalogo/items')
         
 	return {
 		type: 'GET_CATALOGO',

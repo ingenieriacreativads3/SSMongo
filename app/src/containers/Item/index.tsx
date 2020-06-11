@@ -55,11 +55,13 @@ export function Catalogo(props: {
   location: any,
   match: any,
   staticContext?: any
+  cookies: Cookies
 }) {
 	return <Catalog
     history={props.history}
     location={props.location}
     match={props.match}
     staticContext={props.staticContext}
+    cookies={props.cookies}
   />;
 }

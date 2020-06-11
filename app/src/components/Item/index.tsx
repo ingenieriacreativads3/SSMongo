@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto',
   },
   fixedHeightCAtalog:{
-    height: 345,
   },
   formControl: {
     margin: theme.spacing(2),
@@ -180,7 +179,7 @@ export  function NuevoItem(props: {
   getMostrarPrecio: any,
   getFoto: any,
   save: any,
-  nombre: string
+  unidadesDeMedida: any[]
 }) {
 
 	const classes = useStyles(theme);
@@ -194,7 +193,7 @@ export  function NuevoItem(props: {
     getMostrarPrecio={ props.getMostrarPrecio }
     getFoto={ props.getFoto }
     save={ props.save }
-    nombre={ props.nombre }
+    unidadesDeMedida={ props.unidadesDeMedida }
   />;
 
 }
@@ -229,12 +228,17 @@ export  function EditarItem(props: {
 
 }
 
-export  function MostrarCatalogo() {
+export  function MostrarCatalogo(props: {
+  items: any[]
+}) {
 
 	const classes = useStyles(theme);
  
   return <div>
-    <Catalogo classes={classes} />
+    <Catalogo 
+      classes={classes}
+      items={props.items}
+    />
   </div>;
 
 }

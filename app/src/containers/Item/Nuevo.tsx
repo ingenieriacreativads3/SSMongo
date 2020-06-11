@@ -8,13 +8,16 @@ import { NuevoItem as ItemNuevo} from './../../components/Item'
 import { OneButton } from './../../components/Dialogs'
 
 import * as itemActions from './../../store/actions/item'
-import * as dialogAction from './../../store/actions/dialog'
+import * as dialogActions from './../../store/actions/dialog'
+import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 
 function mapStateToProps(store: {
   itemReducer: any,
+  unidadDeMedidaReducer: any
 }) {
   return {
     itemReducer: store.itemReducer,
+    unidadDeMedidaReducer: store.unidadDeMedidaReducer,
   };
 }
 
@@ -63,12 +66,23 @@ class Nuevo extends React.Component<{
     };
   }
 
+  componentWillMount() {
+
+    if(
+      !this.props.unidadDeMedidaReducer.fetched &&
+      !this.props.unidadDeMedidaReducer.fetching
+    ) {
+      this.props.dispatch(unidadDeMedidaActions.getUnidadesDeMedida())
+    }
+
+  }
+
   componentDidUpdate() {
 
     if(this.props.itemReducer.fetched) {
-      this.props.dispatch(dialogAction.openOneButton())
+      this.props.dispatch(dialogActions.openOneButton())
     } else {
-      this.props.dispatch(dialogAction.closeOneButton())
+      this.props.dispatch(dialogActions.closeOneButton())
     }
 
   }
@@ -116,19 +130,34 @@ class Nuevo extends React.Component<{
 
   aceptar() {
 
-    this.props.dispatch(dialogAction.closeOneButton())
+    this.props.dispatch(dialogActions.closeOneButton())
     if(this.props.itemReducer.status !== 200) {
       this.props.dispatch(itemActions.reintentar())
     } else {
       this.props.dispatch(itemActions.setear())
-      this.setState({nombre: ''})
+      this.props.history.push('/home/catalogo')
     }
 
   }
 
   render(){
 
-    console.log(this.props.itemReducer)
+    let unidadesDeMedida: any[] = [
+      {
+        "_id": "5ecdb0bcdb386b4e1b75e378",
+        "nombre": "fruta1",
+        "abreviatura": "U",
+        "updated_at": "2020-05-27 00:13:48",
+        "created_at": "2020-05-27 00:13:48"
+      }
+    ]
+
+    if(
+      this.props.unidadDeMedidaReducer.fetched &&
+      this.props.unidadDeMedidaReducer.data !== undefined
+    ) {
+      unidadesDeMedida = this.props.unidadDeMedidaReducer.data
+    }
 
     return(
       <div>
@@ -141,8 +170,7 @@ class Nuevo extends React.Component<{
           getMostrarPrecio={ this.getMostrarPrecio }
           getFoto={ this.getFoto }
           save={ this.save }
-          nombre={ this.state.nombre }
-          // unidadesDeMedida={this.props.unidadesDeMedidaReducer}
+          unidadesDeMedida={unidadesDeMedida}
         />
         <OneButton 
           title={ 'Nuevo Item' }

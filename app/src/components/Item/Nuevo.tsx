@@ -59,7 +59,7 @@ class Nuevo extends React.Component <{
   getMostrarPrecio: any,
   getFoto: any,
   save: any,
-  nombre: string
+  unidadesDeMedida: any[]
 }, {}> {
 
   props: any
@@ -108,7 +108,6 @@ class Nuevo extends React.Component <{
                               className={classes.margin}
                               id="custom-css-standard-input"
                               label="Nombre"
-                              value={this.props.nombre}
                               onChange={ this.props.getNombre } 
                             />
                           </Grid>
@@ -146,10 +145,12 @@ class Nuevo extends React.Component <{
                                 // value={unidadDeMedida}
                                   onChange={this.props.getMagnitud}
                               >
-                                <MenuItem value={1}>Kilogramos</MenuItem>
-                                <MenuItem value={2}>Metros</MenuItem>
-                                <MenuItem value={3}>Litros</MenuItem>
-                                <MenuItem value={4}>Horas</MenuItem>
+                                {this.props.unidadesDeMedida.map((unidadDeMedida: {
+                                  _id: string,
+                                  nombre: string
+                                }) => {
+                                  return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
+                                })}
                               </Select>
                             </FormControl>
                           </Grid>
