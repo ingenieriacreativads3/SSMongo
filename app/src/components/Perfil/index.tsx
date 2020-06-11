@@ -188,12 +188,22 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export  function PerfilPropio() {
+export  function PerfilPropio(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}) {
 
 	const classes = useStyles(theme);
  
   return <div>
-    <DatosCuenta classes={classes} />
+    <DatosCuenta 
+    classes={classes}
+    history={props.history}
+    location={props.location}
+    match={props.match}
+    staticContext={props.staticContext} />
   </div>;
 
 }

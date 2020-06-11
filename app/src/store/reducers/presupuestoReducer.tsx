@@ -14,6 +14,28 @@ export default function presupuestoReducer ( state = {
 
 	switch (action.type) {
 
+		case 'REINTENTAR':{
+			return {
+			  ...state,
+			  fetching: false,
+			  fetched: false,
+			  status: 0,
+			  message: '',
+			  data: {}
+			};
+			  }
+			  
+			  case 'SETEAR':{
+			return {
+			  ...state,
+			  fetching: false,
+			  fetched: false,
+			  status: 200,
+			  message: '',
+			  data: state.data
+			};
+		  }
+
 		case 'GET_PURCHASE_PRESUPUESTOS_PENDING': {
 			return { 
 				...state, 
@@ -65,6 +87,32 @@ export default function presupuestoReducer ( state = {
         data: action.payload.data.data
       };
 		}
+
+		case 'SET_NEW_PRESUPUESTO_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'SET_NEW_PRESUPUESTO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'SET_NEW_PRESUPUESTO_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+	  };
+	}
 	
 		case 'E': {
 			throw new Error('Este error se manejo asi!' + ' requestReducer' + 'Reducer.js');

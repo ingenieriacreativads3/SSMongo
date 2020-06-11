@@ -46,10 +46,10 @@ class DatosPerfil extends React.Component<{
     return(
       <div>
         <Perfil 
-        //   history={this.props.history}
-        //   location={this.props.location}
-        //   match={this.props.match}
-        //   staticContext={this.props.staticContext}
+          history={this.props.history}
+          location={this.props.location}
+          match={this.props.match}
+          staticContext={this.props.staticContext}
          
          />
       </div>

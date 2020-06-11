@@ -7,7 +7,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import { Container, Grid, Card, Box, Typography, TextField, CardMedia, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
-
+import * as registerActions  from './../../store/actions/register'
 import purple from '@material-ui/core/colors/purple';
 import red from '@material-ui/core/colors/red';
 import * as Login from './../../store/actions/login'
@@ -32,153 +32,54 @@ function Copyright() {
 }
 
 function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
+  registerReducer:{}
 }) {
   return {
-    Item: store.Item,
-    // idEmpresa: store.login.data.empresa._id
+    empresa: store.registerReducer
   };
 }
 
-class DatosCuenta extends React.Component {
+class DatosCuenta extends React.Component <{
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+
+
+}, {
+  
+  empresa: {
+  _id: string,
+  nombre: string,
+  cuit: string,
+  usuario: string,
+  clave: string,
+  email:string,
+  
+}}>  {
 
 	props: any
 	static propTypes: any
 	static defaultProps: any
 
-  // eslint-disable-next-line no-useless-constructor
+ 
   constructor(props: any) {
     super(props);
-/*     this.onSubmit = this.onSubmit.bind(this);
-    this.getNombre = this.getNombre.bind(this);
-    this.getPrecio = this.getPrecio.bind(this);
-    this.getFoto = this.getFoto.bind(this);
-    this.getDescripcion = this.getDescripcion.bind(this);
-    this.getCaracteristicas = this.getCaracteristicas.bind(this);
-    this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
-    this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
     this.state = {
-      Item: {
+      empresa: {
+        _id: '',
         nombre: '',
-        precio: '',
-        foto: '',
-        descripcion: '',
-        caracteristicas: '',
-        unidadDeMedida: '',
-        mostrarPrecio: false
+        cuit: '',
+        usuario: '',
+        clave: '',
+        email:'',
+        
       }
     };
   }
-/* 
-  onSubmit() {
-    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
-  }
 
-  getNombre(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        nombre: e.target.value
-      }
-    });
-
-  }
-
-  getPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        precio: e.target.value
-      }
-    });
-
-  }
-
-  getFoto(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        foto: e.target.value
-      }
-    });
-
-  }
-
-  getDescripcion(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        descripcion: e.target.value
-      }
-    });
-
-  }
-
-  getCaracteristicas(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        caracteristicas: e.target.value
-      }
-    });
-
-  }
-
-  getUnidadDeMedida(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  }
-
-  getMostrarPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        mostrarPrecio: e.target.value
-      }
-    });
-
-  } */
-
-  async register(): Promise<void> {
-    return new Promise<void>( async (resolve, reject) => {
-      await this.props.dispatch(Login.register({
-        empresa :	{
-          nombre: "macoser",
-          cuit: "30716221659",
-          usuario: "macoser",
-          clave: "admin",
-          email: "macoser@test.com",
-          rubros: [
-              null
-          ]
-        }
-      })).then((res: any)=> {
-        console.log(res)
-        resolve(res)
-      }).catch((err: any)=> {
-        console.log(err)
-        reject(err)
-      })
-		})
+  componentWillMount() {
+    this.props.dispatch(registerActions.getEmpresa(this.props.match.params.id))
   }
 
   render(){
@@ -266,27 +167,7 @@ class DatosCuenta extends React.Component {
                                 },
                               }}
                             />
-                            {/* <TextField
-                            className={classes.textField}
-                            variant="outlined"
-                              defaultValue= "CorpuSA"
-                              label="Usuario"
-                              type="text"
-                              autoFocus
-                              InputLabelProps={{
-                                classes: {
-                                  root: classes.cssLabel,
-                                  focused: classes.cssFocused,
-                                },
-                              }}
-                              InputProps={{
-                                classes: {
-                                  root: classes.cssOutlinedInput,
-                                  focused: classes.cssFocused,
-                                  notchedOutline: classes.notchedOutline,
-                                },
-                              }}
-                            /> */}
+                            
                               
                             </Grid>
                             <Grid item lg={4}>
@@ -541,7 +422,7 @@ class DatosCuenta extends React.Component {
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
-                              onClick={() => this.register()}
+                              
                             >
                               Guardar
                             </Button>
