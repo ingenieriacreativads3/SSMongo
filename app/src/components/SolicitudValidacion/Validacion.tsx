@@ -34,22 +34,15 @@ function mapStateToProps(store: {
 }
 
 class Validacion extends React.Component <{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any
-}, {
-  personName: string[],
-  solicitudDeValidacion: {
+  title:string,
+  rubros: string[],
     _id: string,
-    empresa: {
-      nombre: string,
-      cuit: string
-    }
-  }
-}> {
+    nombre: string,
+    cuit: string,
+    
 
-  props: any
+},  {}> {
+   props: any
 	static propTypes: any
   static defaultProps: any
   
@@ -57,20 +50,20 @@ class Validacion extends React.Component <{
     super(props);
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      personName: [],
-      solicitudDeValidacion: {
-        _id: '',
-        empresa: {
-          nombre: '',
-          cuit: ''
-        }
-      }
+      // personName: [],
+      // solicitudDeValidacion: {
+      //   _id: '',
+      //   empresa: {
+      //     nombre: '',
+      //     cuit: ''
+      //   }
+      // }
     };
   }
 
-  componentWillMount() {
-    this.props.dispatch(SolicitudDeValidacionActions.getById(this.props.match.params.id))
-  }
+  // componentWillMount() {
+  //   this.props.dispatch(SolicitudDeValidacionActions.getById(this.props.match.params.id))
+  // }
 
   handleChange(event: React.ChangeEvent<{ value: unknown }>) {
     this.setState({
@@ -82,7 +75,7 @@ class Validacion extends React.Component <{
 
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    const names: string[] = [
+    const rubros: string[] = [
       'Oliver Hansen',
       'Van Henry',
       'April Tucker',
@@ -108,29 +101,29 @@ class Validacion extends React.Component <{
     };
 
 
-    let solicitudDeValidacion = {
-      _id: '',
-      empresa: {
-        nombre: '',
-        cuit: ''
-      }
-    }
+    // let solicitudDeValidacion = {
+    //   _id: '',
+    //   empresa: {
+    //     nombre: '',
+    //     cuit: ''
+    //   }
+    // }
 
-    let _id: string = ''
-    let empresaNombre: string = ''
-    let empresaCuit: string = ''
+    // let _id: string = ''
+    // let empresaNombre: string = ''
+    // let empresaCuit: string = ''
 
-    if(
-      this.props.solicitudDeValidacionReducer &&
-      this.props.solicitudDeValidacionReducer.data &&
-      this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones
-    ) {
-      if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones._id) _id = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones._id
-      if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa) {
-        if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre) empresaNombre = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre
-        if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit) empresaCuit = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit
-      }
-    }
+    // if(
+    //   this.props.solicitudDeValidacionReducer &&
+    //   this.props.solicitudDeValidacionReducer.data &&
+    //   this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones
+    // ) {
+    //   if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones._id) _id = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones._id
+    //   if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa) {
+    //     if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre) empresaNombre = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre
+    //     if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit) empresaCuit = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit
+    //   }
+    // }
 
     return(
 
@@ -151,7 +144,7 @@ class Validacion extends React.Component <{
                           S
                         </Avatar>
                       }
-                      title="Solicitud de Validación"
+                      title={this.props.title}
                       
                     />
 
@@ -160,10 +153,10 @@ class Validacion extends React.Component <{
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="ID Solicitud" value={_id} className={classes.input}  />
+                              <TextField disabled id="standard-required" label="ID Solicitud" value={this.props._id} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="Empresa" value={empresaNombre}  className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Empresa" value={this.props.nombre}  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
                               <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" target="_blank" >
@@ -184,7 +177,7 @@ class Validacion extends React.Component <{
                           <Grid container spacing={3}>
                          
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="CUIT" value={empresaCuit}  className={classes.input}  />
+                            <TextField disabled id="standard-required" label="CUIT" value={this.props.cuit}  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
                             
@@ -232,7 +225,7 @@ class Validacion extends React.Component <{
                                   labelId="demo-mutiple-chip-label"
                                   id="demo-mutiple-chip"
                                   multiple
-                                  value={this.state.personName}
+                                  value={this.props.personName}
                                   onChange={this.handleChange}
                                   input={<Input id="select-multiple-chip" />}
                                   renderValue={(selected) => (
@@ -244,9 +237,9 @@ class Validacion extends React.Component <{
                                   )}
                                   MenuProps={MenuProps}
                                 >
-                                  {names.map((name) => (
+                                  {rubros.map((name) => (
                                     <MenuItem key={name} value={name}>
-                                      <Checkbox checked={this.state.personName.indexOf(name) > -1} />
+                                      <Checkbox checked={this.props.personName.indexOf(name) > -1} />
                                       <ListItemText primary={name} />
                                     </MenuItem>
                                   ))}

@@ -125,11 +125,20 @@ export function ValidarNuevoUsuario(props: {
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  title: string,
+  _id: string,
+  empresaNombre: string,
+  empresaCuit:string,
+
 }) {
 
 	const classes = useStyles(theme);
-	return <Validacion classes={classes} history={props.history} location={props.location} match={props.match} staticContext={props.staticContext} />;
-
+  return <div>
+   <Validacion  
+  classes={classes} 
+  title={'Solicitud de Validacion'}
+   />
+ </div>
 }
 

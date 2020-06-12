@@ -22,7 +22,7 @@ import { Inicio } from './containers/Home'
 import { VerDetallePresupuesto } from './components/Presupuesto'
 import { Login } from './containers/Login'
 import Register from './containers/Register'
-import ValidationRequest from './containers/ValidationRequest'
+import { SolicitudesValidacion } from './containers/ValidationRequest'
 import { PurchaseRequests, DetailPurchaseRequest }  from './containers/Compras/Pedido'
 import { SaleRequests, DetailSaleRequest } from './containers/Ventas - Pedido'
 import { PurchasePresupuestos, DetailPurchasePresupuesto } from './containers/Compras - Presupuesto'
@@ -65,8 +65,8 @@ class App extends React.Component {
 						<Route path='/ventas/presupuestos/lista'      render={(props) => <SalePresupuestos {...props} />} /> 
 						<Route path='/evaluacion/empresa'             component={ EvaluarEmpresa } />
 						<Route path='/evaluacion/suppliersStore'      component={ EvaluarPlataforma } />
-						<Route path='/solicitud/validacion'           component={ ValidationRequest } />
-						<Route path='/solicitud/validacion'           render={(props) => <ValidationRequest {...props}/>} />
+						{/* <Route path='/solicitud/validacion'           component={ ValidationRequest } /> */}
+						<Route path='/solicitud/validacion'           render={(props) => <SolicitudesValidacion {...props}/>} />
 						<Route path='/renegociacion/:id'              component={ Renegociar } />
 
 						{/* <Route path='/solicitud/nuevoUsuario/:id'   component={ ValidarNuevoUsuario } /> */}
