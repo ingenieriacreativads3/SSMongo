@@ -1,5 +1,6 @@
 import React from 'react';
-import {fade, makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles, withStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Switch from '@material-ui/core/Switch';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
@@ -7,6 +8,42 @@ import ItemNuevo from './Nuevo'
 import ItemEditar from './Editar'
 import Catalogo from './Catalogo'
 import DetalleItem from './Detalle'
+
+export const AntSwitch = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: 28,
+      height: 16,
+      padding: 0,
+      display: 'flex',
+    },
+    switchBase: {
+      padding: 2,
+      color: theme.palette.grey[500],
+      '&$checked': {
+        transform: 'translateX(12px)',
+        color: theme.palette.common.white,
+        '& + $track': {
+          opacity: 1,
+          backgroundColor: theme.palette.primary.main,
+          borderColor: theme.palette.primary.main,
+        },
+      },
+    },
+    thumb: {
+      width: 12,
+      height: 12,
+      boxShadow: 'none',
+    },
+    track: {
+      border: `1px solid ${theme.palette.grey[500]}`,
+      borderRadius: 16 / 2,
+      opacity: 1,
+      backgroundColor: theme.palette.common.white,
+    },
+    checked: {},
+  }),
+)(Switch);
 
 const drawerWidth = 200;
 
@@ -136,11 +173,11 @@ const useStyles = makeStyles((theme) => ({
 			backgroundColor: fade(theme.palette.common.white, 0.25),
 		},
     marginRight: theme.spacing(2),
-    marginTop:theme.spacing(2),
-		marginLeft: 0,
-		width: '100%',
-		[theme.breakpoints.up('sm')]: {
-			marginLeft: theme.spacing(130),
+    marginTop:theme.spacing(5),
+		marginLeft: theme.spacing(2),
+		width: 'auto',
+		[theme.breakpoints.up('lg')]: {
+			marginLeft: theme.spacing(120),
 			width: 'auto',
 		},
 	},
@@ -229,15 +266,19 @@ export  function EditarItem(props: {
 }
 
 export  function MostrarCatalogo(props: {
-  items: any[]
+  items: any[],
+  getChecked: any,
+  checked: boolean,
 }) {
 
 	const classes = useStyles(theme);
- 
+
   return <div>
-    <Catalogo 
+    <Catalogo
       classes={classes}
       items={props.items}
+      getChecked={props.getChecked}
+      checked={props.checked}
     />
   </div>;
 

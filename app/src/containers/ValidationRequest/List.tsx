@@ -50,7 +50,10 @@ class ValidationRequest extends React.Component<{
 
   render(){
 
-		if(!this.props.solicitudDeValidacionReducer.fetched && !this.props.solicitudDeValidacionReducer.fetching) {
+    if(
+      !this.props.solicitudDeValidacionReducer.fetched &&
+      !this.props.solicitudDeValidacionReducer.fetching
+    ) {
 
 			this.props.dispatch(solicitudDeValidacionActions.get())
 

@@ -39,6 +39,7 @@ class Login extends React.Component<{
     this.getUser = this.getUser.bind(this);
     this.getPass = this.getPass.bind(this);
     this.aceptar = this.aceptar.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.state = {
       user: '',
       pass: '',
@@ -92,6 +93,12 @@ class Login extends React.Component<{
 
   }
 
+  handleKeyPress(key: string) {
+    if(key === 'Enter'){
+      this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
+    }
+  }
+
   render(){
 
     return(
@@ -100,6 +107,7 @@ class Login extends React.Component<{
           getPass={ this.getPass }
           getUser={ this.getUser }
           login={ this.login }
+          handleKeyPress={ this.handleKeyPress }
         />
         <OneButton 
           title={ 'Error de ingreso' }

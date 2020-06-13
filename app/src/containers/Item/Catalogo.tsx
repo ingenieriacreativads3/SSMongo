@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
 
 import { MostrarCatalogo as Catalogo} from './../../components/Item'
+import { List } from './../../components/List'
+import { Drawer } from './../Drawer'
 
 import * as itemActions from './../../store/actions/item'
 
@@ -22,7 +24,9 @@ class Catalog extends React.Component<{
   match: any,
   staticContext?: any,
   cookies: Cookies
-}, {}> {
+}, {
+  checked: boolean
+}> {
 
 	props: any
 	static propTypes: any
@@ -30,8 +34,14 @@ class Catalog extends React.Component<{
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
-		super(props);
-    this.state = {};
+    super(props);
+    this.getChecked = this.getChecked.bind(this);
+    this.layout = this.layout.bind(this);
+    this.action = this.action.bind(this);
+    this.drawer = this.drawer.bind(this);
+    this.state = {
+      checked: false
+    };
   }
   
   componentWillMount() {
@@ -43,6 +53,63 @@ class Catalog extends React.Component<{
       this.props.dispatch(itemActions.getCatalogo(this.props.cookies.get('empresaId')))
     }
 
+  }
+
+  getChecked(checked: boolean) {
+    this.setState({
+      checked: checked
+    })
+  }
+
+  layout(isTable: boolean, items: any[]) {
+
+    let isCatalog: boolean = true
+
+    if(isTable) {
+      return <List
+        history= { this.props.history }
+        location= { this.props.location }
+        match= { this.props.match }
+        staticContext= { this.props.staticContext }
+        title={'Items'}
+        columns={[
+          { title: 'Nombre', field: 'item.nombre', type: 'string' },
+          { title: 'Precio', field: 'item.precio', type: 'string' },
+          { title: 'Unidad', field: 'item.unidad_de_medida.nombre', type: 'string' },
+          { title: 'Fecha creación', field: 'item.created_at', type: 'string' },
+          { title: 'Fecha actualización', field: 'item.updated_at', type: 'string' },
+        ]}
+        data={ items }
+        action={ this.action }
+        drawer={ this.drawer() }
+        checked={this.state.checked}
+        getChecked={this.getChecked}
+        isCatalog={isCatalog}
+      />
+    } else {
+      return <Catalogo 
+        items={items}
+        getChecked={this.getChecked}
+        checked={this.state.checked}
+      />  
+    }
+
+  }
+
+  action(item: {
+    _id: string
+  }) {
+    this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
+    // this.props.dispatch(solicitudDeValidacionActions.resetear())
+  }
+
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
   }
 
   render(){
@@ -78,7 +145,7 @@ class Catalog extends React.Component<{
 
     return(
       <div>
-        <Catalogo items={items} />
+        {this.layout(this.state.checked, items)}
       </div>
     );
   }

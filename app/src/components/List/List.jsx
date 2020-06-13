@@ -1,6 +1,6 @@
 import React from 'react'
 import AppBar from '../AppBar'
-import MenuLateral from '../Drawer'
+import { AntSwitch } from './index'
 
 import MaterialTable from 'material-table'
 import { Container, Grid, CssBaseline, Box, Typography } from '@material-ui/core';
@@ -62,15 +62,47 @@ function Copyright() {
 class List extends React.Component {
 
   constructor(props) {
-		super(props);
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.layout = this.layout.bind(this);
     this.state = {
 		};
 
-	}
+  }
+
+  handleChange = (event) => {
+    this.props.getChecked(event.target.checked)
+  };
+  
+  layout() {
+
+    if(this.props.isCatalog !== undefined) {
+      if(this.props.isCatalog) {
+        return <div className={this.props.classes.search} >
+          <Typography component="div">
+            <Grid component="label" container alignItems="center" spacing={1}>
+              <Grid item>Tarjetas</Grid>
+              <Grid item>
+                <AntSwitch checked={this.props.checked} onChange={this.handleChange} name="checked" />
+              </Grid>
+              <Grid item>Tabla</Grid>
+            </Grid>
+          </Typography>
+        </div>
+      } else {
+        return <div></div>
+      }
+    } else {
+      return <div></div>
+    }
+    
+  }
 
   render(){
 
     const classes = this.props.classes
+
+    // console.log(this.props.data)
 
     return(
       <div>
@@ -81,6 +113,9 @@ class List extends React.Component {
           {this.props.drawer}
           <main className={classes.content}>
             <div className={classes.appBarSpacer} />
+
+            {this.layout()}
+
             <Container maxWidth="lg" className={classes.container}>
               <Grid container spacing={3}>
                 <Grid item lg={12}>

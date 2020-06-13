@@ -10,6 +10,8 @@ import { Link} from "react-router-dom";
 import MenuLateral from '../Drawer'
 import SearchIcon from '@material-ui/icons/Search';
 
+import { AntSwitch } from './index'
+
 import foto from './../Login/img/photo2.png'
 import foto1 from './../Login/img/logo.png'
 
@@ -41,7 +43,9 @@ function mapStateToProps(store: {
 }
 
 class Catalogo extends React.Component <{
-  items: any[]
+  items: any[],
+  getChecked: any,
+  checked: boolean,
 }, {}> {
 
 	props: any
@@ -52,6 +56,7 @@ class Catalogo extends React.Component <{
   constructor(props: any) {
     super(props);
     this.eliminarItem = this.eliminarItem.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
     };
   }
@@ -59,6 +64,10 @@ class Catalogo extends React.Component <{
   eliminarItem() {
     // this.props.dispatch(dialogAction.eliminarItemOpen())
   }
+
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.props.getChecked(event.target.checked)
+  };
 
   render(){
 
@@ -71,92 +80,90 @@ class Catalogo extends React.Component <{
         <CssBaseline />
         <AppBar></AppBar>
         <MenuLateral></MenuLateral>
-					<main className={classes.content}>
-						<div className={classes.appBarSpacer} />
-            <div className={classes.search}>
-						<div className={classes.searchIcon}>
-							<SearchIcon />
-						</div>
-						<InputBase
-							placeholder="Buscar"
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput,
-							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</div>
-						<Container maxWidth="lg" className={classes.container}>
-							<Grid container spacing={3}>
-              
-                {this.props.items.map((itemAux: {
-                  item: {
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+
+          <div className={classes.search}>
+            <Typography component="div">
+              <Grid component="label" container alignItems="center" spacing={1}>
+                <Grid item>Tarjetas</Grid>
+                <Grid item>
+                  <AntSwitch checked={this.props.checked} onChange={this.handleChange} name="checked" />
+                </Grid>
+                <Grid item>Tabla</Grid>
+              </Grid>
+            </Typography>
+          </div>
+
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+            
+              {this.props.items.map((itemAux: {
+                item: {
+                  _id: string,
+                  nombre: string,
+                  precio: string,
+                  foto: string,
+                  unidad_de_medida_id: string,
+                  updated_at: string,
+                  created_at: string,
+                  catalogo_id: string,
+                  unidad_de_medida: {
                     _id: string,
                     nombre: string,
-                    precio: string,
-                    foto: string,
-                    unidad_de_medida_id: string,
+                    abreviatura: string,
                     updated_at: string,
                     created_at: string,
-                    catalogo_id: string,
-                    unidad_de_medida: {
-                      _id: string,
-                      nombre: string,
-                      abreviatura: string,
-                      updated_at: string,
-                      created_at: string,
-                    }
                   }
-                }) => {
-                  return <div>
-                    <Grid item lg={3} md={4} sm={6}>
-                      <Card className={fixedHeightCardCatalog}>
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            alt={itemAux.item.nombre}
-                            height="150"
-                            image={foto}
-                            title={itemAux.item.nombre}
-                          />
-                          <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                              {itemAux.item.nombre}
-                            </Typography>
-                            <Typography variant="subtitle1" component="h2">
-                              {itemAux.item.precio}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                              Descripcion (falta traer) 
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions disableSpacing>
-                        <Link to="/item/editar">
-                          <IconButton aria-label="editar"className={classes.iconButton}>
-                            <EditIcon />
-                          </IconButton>
-                          </Link>
-                          <IconButton aria-label="eliminar"className={classes.iconButton} onClick={this.eliminarItem}>
-                            <DeleteIcon />
-                          </IconButton>
-                          
-                        </CardActions>
-                        </Card>
-                    </Grid>
-                  </div>
-                })}
+                }
+              }) => {
+                return <Grid item lg={3} md={4} sm={6}>
+                  <Card className={fixedHeightCardCatalog}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        alt={itemAux.item.nombre}
+                        height="150"
+                        image={foto}
+                        title={itemAux.item.nombre}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {itemAux.item.nombre}
+                        </Typography>
+                        <Typography variant="subtitle1" component="h2">
+                          {itemAux.item.precio} x {itemAux.item.unidad_de_medida.nombre}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          Descripcion (falta traer) 
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions disableSpacing>
+                    <Link to="/item/editar">
+                      <IconButton aria-label="editar"className={classes.iconButton}>
+                        <EditIcon />
+                      </IconButton>
+                      </Link>
+                      <IconButton aria-label="eliminar"className={classes.iconButton} onClick={this.eliminarItem}>
+                        <DeleteIcon />
+                      </IconButton>
+                      
+                    </CardActions>
+                    </Card>
+                </Grid>
+              })}
+              
                 
-                  
-							</Grid>
-							<Box pt={4}>
-								<Copyright />
-							</Box>
-						</Container>
-					</main>
+            </Grid>
+            <Box pt={4}>
+              <Copyright />
+            </Box>
+          </Container>
+        </main>
 
          
-		 </div>
+		  </div>
 
     );
   }

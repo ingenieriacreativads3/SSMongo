@@ -1,7 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles, Theme, createStyles, fade } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
+import Switch from '@material-ui/core/Switch';
  
 import ListExport from './List'
 
@@ -13,6 +14,42 @@ const theme = createMuiTheme({
 		},
 	},
 });
+
+export const AntSwitch = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: 28,
+      height: 16,
+      padding: 0,
+      display: 'flex',
+    },
+    switchBase: {
+      padding: 2,
+      color: theme.palette.grey[500],
+      '&$checked': {
+        transform: 'translateX(12px)',
+        color: theme.palette.common.white,
+        '& + $track': {
+          opacity: 1,
+          backgroundColor: theme.palette.primary.main,
+          borderColor: theme.palette.primary.main,
+        },
+      },
+    },
+    thumb: {
+      width: 12,
+      height: 12,
+      boxShadow: 'none',
+    },
+    track: {
+      border: `1px solid ${theme.palette.grey[500]}`,
+      borderRadius: 16 / 2,
+      opacity: 1,
+      backgroundColor: theme.palette.common.white,
+    },
+    checked: {},
+  }),
+)(Switch);
 
 const useStyles = makeStyles((theme) => ({
 
@@ -95,6 +132,22 @@ const useStyles = makeStyles((theme) => ({
 		}
 		
   },
+  search: {
+		position: 'relative',
+		borderRadius: theme.shape.borderRadius,
+		backgroundColor: fade(theme.palette.common.white, 0.15),
+		'&:hover': {
+			backgroundColor: fade(theme.palette.common.white, 0.25),
+		},
+    marginRight: theme.spacing(2),
+    marginTop:theme.spacing(5),
+		marginLeft: theme.spacing(2),
+		width: 'auto',
+		[theme.breakpoints.up('lg')]: {
+			marginLeft: theme.spacing(120),
+			width: 'auto',
+		},
+	},
 
 }));
 
@@ -107,7 +160,10 @@ export function List(props: {
   title: string,
   columns: {}[],
   action: any,
-  drawer: any
+  drawer: any,
+  checked?: boolean,
+  getChecked?: any,
+  isCatalog?: boolean,
 }) {
 
 	const classes = useStyles(theme);
@@ -117,11 +173,11 @@ export function List(props: {
     title={ props.title }
     columns={ props.columns }
     action={ props.action }
-    history={ props.history }
-    location={ props.location }
-    match={ props.match }
-    staticContext={ props.staticContext }
     drawer={ props.drawer }
+    isCatalog={ props.isCatalog }
+    checked={ props.checked }
+    getChecked={ props.getChecked }
+
   />;
 
 }

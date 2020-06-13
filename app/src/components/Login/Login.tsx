@@ -15,6 +15,7 @@ class Login extends React.Component<{
   getPass: any,
   getUser: any,
   login: any,
+  handleKeyPress: any
 }, {}> {
 
 	props: any
@@ -24,8 +25,13 @@ class Login extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.state = {
     };
+  }
+
+  handleKeyPress(e: any) {
+    this.props.handleKeyPress(e.key)
   }
 
   render(){
@@ -62,6 +68,7 @@ class Login extends React.Component<{
                 },
               }}
               onChange={ this.props.getUser }
+              onKeyPress={ this.handleKeyPress }
             />
             <TextField
               variant="outlined"
@@ -87,6 +94,7 @@ class Login extends React.Component<{
                 },
               }}
               onChange={ this.props.getPass }
+              onKeyPress={this.handleKeyPress}
             />
             <FormControlLabel
               control={<Checkbox value="remember" style ={{

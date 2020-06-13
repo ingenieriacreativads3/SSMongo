@@ -86,7 +86,7 @@ export default function SolicitudesDeValidacionReducer ( state = {
         fetched: false,
         status: 0,
         message: {},
-        data: {}
+        data: state.data
       };
 			
 		}
