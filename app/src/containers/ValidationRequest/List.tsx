@@ -36,6 +36,7 @@ class ValidationRequest extends React.Component<{
     _id: string
   }) {
     this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
+    this.props.dispatch(solicitudDeValidacionActions.resetear())
   }
 
   drawer() {

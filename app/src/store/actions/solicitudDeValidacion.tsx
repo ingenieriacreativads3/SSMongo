@@ -25,3 +25,12 @@ export function getById(id: string) {
 	}
 
 }
+
+export function resetear() {
+
+	return {
+		type: 'RESETEAR',
+		payload: {}
+	}
+
+}

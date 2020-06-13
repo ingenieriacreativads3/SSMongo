@@ -122,23 +122,27 @@ export function SolicitudesValidacion(props: {
 }
 
 export function ValidarNuevoUsuario(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
   title: string,
   _id: string,
-  empresaNombre: string,
-  empresaCuit:string,
-
+  nombre: string,
+  cuit:string,
+  rubros: string[],
+  listaRubros: string[],
+  getRubros: any
 }) {
 
 	const classes = useStyles(theme);
   return <div>
-   <Validacion  
-  classes={classes} 
-  title={'Solicitud de Validacion'}
-   />
- </div>
+    <Validacion
+      classes={classes} 
+      title={props.title}
+      _id={props._id}
+      nombre={props.nombre}
+      cuit={props.cuit}
+      rubros={props.rubros}
+      listaRubros={props.listaRubros}
+      getRubros={props.getRubros}
+    />
+  </div>
 }
 

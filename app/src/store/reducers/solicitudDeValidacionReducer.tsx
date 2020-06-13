@@ -77,6 +77,19 @@ export default function SolicitudesDeValidacionReducer ( state = {
       };
 			
 		}
+
+		case 'RESETEAR': {
+			
+			return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: 0,
+        message: {},
+        data: {}
+      };
+			
+		}
 	
 		case 'E': {
 			throw new Error('Este error se manejo asi!' + ' SolicitudesDeValidacion' + 'Reducer.js');

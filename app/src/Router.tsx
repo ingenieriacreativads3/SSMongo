@@ -14,7 +14,7 @@ import { NuevoPedido } from './components/Pedido'
 import { NuevoPresupuesto } from './components/Presupuesto'
 import { EvaluarEmpresa } from './components/Evaluacion'
 import { EvaluarPlataforma } from './components/Evaluacion'
-import { ValidarNuevoUsuario } from './components/SolicitudValidacion'
+import { SolicitudDeValidacion } from './containers/ValidationRequest'
 import { PerfilPropio } from './components/Perfil'
 import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
@@ -55,7 +55,6 @@ class App extends React.Component {
 						<Route path='/solicitud/unidadMedida/:id'     component={ ValidarSolicitud } />
 						<Route path='/solicitud/unidadMedida'         component={ SolicitudesUnidadMedida } />
 						<Route path='/home/catalogo'                  render={(props) => <Catalogo { ...props } cookies={cookies} />} /> 
-						<Route path='/ingresar'                       render={(props) => <Login { ...props } cookies={cookies} />} /> 
 						<Route path='/registrar' 											component={ Register } />
 						{/* <Route path='/asd' 												    component={ asd } /> */}
 						<Route path='/item/detalle/:id'               component={ VerDetalleItem } />
@@ -70,7 +69,7 @@ class App extends React.Component {
 						<Route path='/renegociacion/:id'              component={ Renegociar } />
 
 						{/* <Route path='/solicitud/nuevoUsuario/:id'   component={ ValidarNuevoUsuario } /> */}
-						<Route path='/solicitud/nuevoUsuario/:id'     render={(props) => <ValidarNuevoUsuario {...props}/>}/>
+						<Route path='/solicitud/nuevoUsuario/:id'     render={(props) => <SolicitudDeValidacion {...props}/>}/>
 						<Route path='/home/perfil'                    component={ PerfilPropio } />
 						<Route path='/footer'                         component={ Footer } />
 						<Route path='/presupuestacion/:id'            component={ Presupuestar } />
@@ -80,8 +79,10 @@ class App extends React.Component {
 						<Route path='/compras/presupuesto/:id'        component={ DetailPurchasePresupuesto }/>
 						<Route path='/ventas/pedido/:id'              component={ DetailSaleRequest }/>
 						<Route path='/ventas/presupuesto/:id'         component={ DetailSalePresupuesto }/>
-						<Route path='/home/resumen'      component={ VerEstadisticaActividad } />
-						<Route path='/home/reputacion'      component={ VerReputacion } />
+						<Route path='/home/resumen'                   component={ VerEstadisticaActividad } />
+						<Route path='/home/reputacion'                component={ VerReputacion } />
+						
+						<Route path='/'                               render={(props) => <Login { ...props } cookies={cookies} />} /> 
 					
 					</Switch>
 				</div>

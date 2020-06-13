@@ -40,7 +40,6 @@ class Detail extends React.Component<{
     ) {
 
       this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
-      
 
     }
     

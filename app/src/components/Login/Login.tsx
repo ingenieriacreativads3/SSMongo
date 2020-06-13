@@ -37,7 +37,7 @@ class Login extends React.Component<{
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar   src={logo} className={classes.avatar}  />
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate >
             <TextField
               variant="outlined"
               margin="normal"
@@ -99,7 +99,7 @@ class Login extends React.Component<{
               fullWidth
               variant="contained"
               className={classes.submit}
-              onClick={ this.props.login }
+              onClick={this.props.login}
             >
               Ingresar
             </Button>

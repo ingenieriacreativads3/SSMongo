@@ -33,9 +33,9 @@ class PresupuestosCompras extends React.Component<{
     this.state = {};
   }
 
-   action(item: {
-     _id: string
-   }) {
+  action(item: {
+    _id: string
+  }) {
     this.props.history.push("/presupuesto/" + item._id);
   } 
 

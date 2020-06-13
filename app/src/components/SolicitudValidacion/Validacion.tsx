@@ -5,7 +5,6 @@ import clsx from 'clsx'
 import { Container, Grid, TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize, List, ListItemText} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
-import menuLateral from '../Drawer'
 
 import { connect } from 'react-redux'
 import MenuLateral from '../Drawer';
@@ -34,15 +33,17 @@ function mapStateToProps(store: {
 }
 
 class Validacion extends React.Component <{
+  classes: any,
   title:string,
+  _id: string,
+  nombre: string,
+  cuit: string,
   rubros: string[],
-    _id: string,
-    nombre: string,
-    cuit: string,
-    
-
+  listaRubros: string[],
+  getRubros: any
 },  {}> {
-   props: any
+
+  props: any
 	static propTypes: any
   static defaultProps: any
   
@@ -66,27 +67,24 @@ class Validacion extends React.Component <{
   // }
 
   handleChange(event: React.ChangeEvent<{ value: unknown }>) {
-    this.setState({
-      personName: event.target.value as string[]
-    });
+    this.props.getRubros(event.target.value as string[])
   };
   
   render(){
 
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    const rubros: string[] = [
-      'Oliver Hansen',
-      'Van Henry',
-      'April Tucker',
-      'Ralph Hubbard',
-      'Omar Alexander',
-      'Carlos Abbott',
-      'Miriam Wagner',
-      'Bradley Wilkerson',
-      'Virginia Andrews',
-      'Kelly Snyder',
+
+    let listaRubros: string[] = [
+      'Lista de Rubros'
     ];
+
+    let rubros: string[] = [
+      'Rubros Seleccionados'
+    ]
+
+    if(this.props.listaRubros) listaRubros = this.props.listaRubros
+    if(this.props.rubros) rubros = this.props.rubros
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -99,7 +97,6 @@ class Validacion extends React.Component <{
         },
       },
     };
-
 
     // let solicitudDeValidacion = {
     //   _id: '',
@@ -225,7 +222,7 @@ class Validacion extends React.Component <{
                                   labelId="demo-mutiple-chip-label"
                                   id="demo-mutiple-chip"
                                   multiple
-                                  value={this.props.personName}
+                                  value={rubros}
                                   onChange={this.handleChange}
                                   input={<Input id="select-multiple-chip" />}
                                   renderValue={(selected) => (
@@ -237,9 +234,9 @@ class Validacion extends React.Component <{
                                   )}
                                   MenuProps={MenuProps}
                                 >
-                                  {rubros.map((name) => (
+                                  {listaRubros.map((name) => (
                                     <MenuItem key={name} value={name}>
-                                      <Checkbox checked={this.props.personName.indexOf(name) > -1} />
+                                      <Checkbox checked={rubros.indexOf(name) > -1} />
                                       <ListItemText primary={name} />
                                     </MenuItem>
                                   ))}
