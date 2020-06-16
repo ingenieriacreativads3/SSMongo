@@ -178,9 +178,17 @@ export function VentasPedidos() {
 
 }
 
-export function NuevoPedido() {
+export function NuevoPedido(props:{
+  getCantidadItem: any,
+  getComentario:any,
+  save:any,
+}) {
 
 	const classes = useStyles(theme);
-	return <PedidoNuevo classes={classes} />;
+  return <PedidoNuevo 
+  classes={classes} 
+  getCantidadItem={props.getCantidadItem}
+  getComentario={props.getComentario}
+  save={props.save}/>;
 
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import List from './List'
 import Detail from './Detail'
 import Cookies from 'universal-cookie';
+import NuevoPedido from './NuevoPedido'
 
 export function PurchaseRequests(props: {
   history: any,
@@ -32,3 +33,19 @@ export function DetailPurchaseRequest(props: {
     staticContext={props.staticContext}
   />;
 }
+
+export function PedidoNuevo(props: {
+	history: any,
+	location: any,
+	match: any,
+	staticContext?: any,
+	cookies: Cookies
+  }) {
+	  return <NuevoPedido
+	  history={props.history}
+	  location={props.location}
+	  match={props.match}
+	  staticContext={props.staticContext}
+	  cookies={props.cookies}
+	/>;
+  }

@@ -66,7 +66,14 @@ function mapStateToProps(store: {
   };
 }
 
-class Presupuestar extends React.Component {
+class Presupuestar extends React.Component <{
+  classes: any,
+  getCantidadItem: any,
+  getComentario: any,
+  getPrecioSugerido:any,
+  save: any,
+
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -75,120 +82,11 @@ class Presupuestar extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    /*  this.onSubmit = this.onSubmit.bind(this);
-    this.getTelefono = this.getTelefono.bind(this);
-    this.getProvincia = this.getProvincia.bind(this);
-    this.getLocalidad = this.getLocalidad.bind(this);
-    this.getCodigo = this.getCodigo.bind(this);
-    this.getMensaje = this.getMensaje.bind(this);
-    this.getCantidad = this.getCantidad.bind(this);
-    this.getUnidad = this.getUnidad.bind(this);  */
-    this.state = {
-        Presupuesto: {
-            items: [
-              {
-                _id: '5de5976473e8542058470864'
-              }
-            ],
-            idEmpresaDemandante: '5de181d5c062d16c024321e4',
-            telefonoDemandante: '',
-            provinciaDemandante: '',
-            localidadDemandante: '',
-            codigoPostalDemandante: '',
-            mensaje: '',
-            cantidad: 0,
-            unidadDeMedida: '',
-            idEmpresaDemandada: '5de181d5c062d16c024321e4'
-          }
-    };
+    
+    this.state = {};
   }
  
-  /* onSubmit() {
-    this.props.dispatch(PresupuestoAction.nuevo(
-
-      this.state.Presupuesto.idEmpresaDemandada,
-      this.state.Presupuesto.idEmpresaDemandante,
-      this.state.Presupuesto.items
-
-    ));
-  }
-
- getTelefono(e) {
-
-    this.setState({
-      Presupuesto: {
-        ...this.state.Presupuesto,
-        telefonoDemandante: e.target.value
-      }
-    });
-
-  }
-
-  getProvincia(e) {
-
-    this.setState({
-      Presupuesto: {
-        ...this.state.Presupuesto,
-        provinciaDemandante: e.target.value
-      }
-    });
-
-  }
-
-  getLocalidad(e) {
-
-    this.setState({
-      Presupuesto: {
-        ...this.state.Presupuesto,
-        localidadDemandante: e.target.value
-      }
-    });
-
-  }
-
-  getCodigo(e) {
-
-    this.setState({
-      Presupuesto: {
-        ...this.state.Presupuesto,
-        codigoPostalDemandante: e.target.value
-      }
-    });
-
-  }
-
-  getMensaje(e) {
-
-    this.setState({
-      Presupuesto: {
-        ...this.state.Presupuesto,
-        mensaje: e.target.value
-      }
-    });
-
-  }
-
-  getCantidad(e) {
-
-    this.setState({
-      Presupuesto: {
-        ...this.state.Presupuesto,
-        cantidad: e.target.value
-      }
-    });
-
-  }
-
-  getUnidad(e) {
-
-    this.setState({
-      Presupuesto: {
-        ...this.state.Presupuesto,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  } */
+ 
 
   render(){
 
@@ -277,15 +175,15 @@ class Presupuestar extends React.Component {
                     </CardContent>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad" type="number"  />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad" type="number" onChange={this.props.getCantidadItem} />
                             
                             </Grid>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Importe sugerido" type="number"   />
+                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Importe sugerido" type="number" onChange={this.props.getPrecioSugerido}   />
                       
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={8} className={classes.textTarea} placeholder="Mensaje"  />
+                            <TextareaAutosize aria-label="minimum height" rowsMin={8} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
                             </Grid>
                           </Grid>
                          

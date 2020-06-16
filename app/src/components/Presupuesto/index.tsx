@@ -10,6 +10,7 @@ import ListaVentas from './ListaVentas'
 import Presupuestacion from './Presupuestar'
 import Detalle from './DetallePresupuesto'
 import Renegociacion from './Renegociar'
+import { checkPropTypes } from 'prop-types';
 
 const drawerWidth = 240;
 
@@ -141,10 +142,18 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export function NuevoPresupuesto() {
+export function NuevoPresupuesto(props:{
+  getCantidadItem: any,
+  getComentario:any,
+  save:any,
+}) {
 
 	const classes = useStyles(theme);
-	return <PresupuestoNuevo classes={classes} />;
+  return <PresupuestoNuevo 
+  classes={classes}
+  getCantidadItem={props.getCantidadItem}
+  getComentario={props.getComentario}
+  save={props.save} />;
 
 }
 
@@ -162,17 +171,37 @@ export function VentasPresupuestos() {
 
 }
 
-export function Presupuestar() {
+export function Presupuestar(props:{
+  getCantidadItem: any,
+  //getComentario:any,
+  getImporte:any,
+  save:any,
+}) {
 
 	const classes = useStyles(theme);
-	return <Presupuestacion classes={classes} />;
+  return <Presupuestacion 
+  classes={classes} 
+  getCantidadItem={props.getCantidadItem}
+  //getComentario={props.getComentario}
+  getImporte={props.getImporte}
+  save={props.save}/>;
 
 }
 
-export function Renegociar() {
+export function Renegociar(props:{
+  getCantidadItem: any,
+  getComentario:any,
+  getPrecioSugerido:any,
+  save:any,
+}) {
 
 	const classes = useStyles(theme);
-	return <Renegociacion classes={classes} />;
+  return <Renegociacion 
+  classes={classes} 
+  getCantidadItem={props.getCantidadItem}
+  getComentario={props.getComentario}
+  getPrecioSugerido={props.getPrecioSugerido}
+  save={props.save}/>;
 
 }
 

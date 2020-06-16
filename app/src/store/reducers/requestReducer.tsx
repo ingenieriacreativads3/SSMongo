@@ -91,6 +91,32 @@ export default function requestReducer ( state = {
         data: action.payload.data.data
       };
 		}
+
+		case 'SET_NEW_PEDIDO_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'SET_NEW_PEDIDO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'SET_NEW_PEDIDO_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+	  };
+	}
 	
 		case 'E': {
 			throw new Error('Este error se manejo asi!' + ' requestReducer' + 'Reducer.js');

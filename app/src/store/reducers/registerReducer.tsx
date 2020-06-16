@@ -46,6 +46,8 @@ export default function RegiterReducer (state = {
 
     }
 
+    
+
     case 'REINTENTAR':{
       
       return {

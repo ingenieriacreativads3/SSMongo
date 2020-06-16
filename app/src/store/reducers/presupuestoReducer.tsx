@@ -114,6 +114,59 @@ export default function presupuestoReducer ( state = {
 	  };
 	}
 	
+
+		case 'PRESUPUESTAR_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+
+		case 'PRESUPUESTAR_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+
+		case 'PRESUPUESTAR_FULFILLED': {
+			return {
+		...state,
+		fetching: false,
+		fetched: true,
+		status: action.payload.data.status,
+		message: action.payload.data.message,
+		data: action.payload.data.data
+	};
+	}
+
+
+		case 'RENEGOCIAR_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+
+		case 'RENEGOCIAR_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+
+		case 'RENEGOCIAR_FULFILLED': {
+			return {
+		...state,
+		fetching: false,
+		fetched: true,
+		status: action.payload.data.status,
+		message: action.payload.data.message,
+		data: action.payload.data.data
+		};
+		}
 		case 'E': {
 			throw new Error('Este error se manejo asi!' + ' requestReducer' + 'Reducer.js');
 		}

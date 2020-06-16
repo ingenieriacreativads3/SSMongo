@@ -76,6 +76,79 @@ export function setPresupuesto(
 
 }
 
+export function Presupuestar(
+	idPresupuesto: string,
+	idItem:string,	
+	cantidad: string,
+	importe:string,
+	//comentario:string
+	
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/presupuesto/presupuestar',{
+	
+	presupuesto:{
+		_id:idPresupuesto,
+	},
+    items: {
+			_id: idItem,
+			cantidad: cantidad,
+			
+		},
+	importe : importe,
+	//comentario:comentario,
+	})
+
+	console.log(payload)
+	
+  return {
+		type: 'PRESUPUESTAR',
+		payload: payload
+	}
+
+}
+
+export function Renegociar(
+	idPresupuesto: string,
+	idItem:string,	
+	cantidad: string,
+	idEmpresaOferente:string,
+	precioSugerido:string,
+	comentario:string
+	
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/renegociar',{
+	
+	presupuesto:{
+		_id:idPresupuesto,
+	},
+    items: {
+			_id: idItem,
+			cantidad: cantidad,
+			
+		},
+	empresaReoferente:{
+		_id:idEmpresaOferente,
+	},
+
+	precioSugerido : precioSugerido,
+	comentario:comentario,
+	})
+
+	console.log(payload)
+	
+  return {
+		type: 'RENEGOCIAR',
+		payload: payload
+	}
+
+}
+
 export function setear() {
 
 	return {
