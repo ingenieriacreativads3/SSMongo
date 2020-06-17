@@ -16,6 +16,14 @@ import AppBar from '../AppBar'
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
+import MobileStepper from '@material-ui/core/MobileStepper';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
 
 function Copyright() {
   return (
@@ -46,7 +54,15 @@ function mapStateToProps(store: {
   };
 }
 
-class Detalle extends React.Component {
+class Detalle extends React.Component <{
+  clasess: any,
+  theme: any
+}, {
+
+
+  activeStep: number
+  
+}>  {
 
 	props: any
 	static propTypes: any
@@ -55,16 +71,9 @@ class Detalle extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-/*     this.onSubmit = this.onSubmit.bind(this);
-    this.getNombre = this.getNombre.bind(this);
-    this.getPrecio = this.getPrecio.bind(this);
-    this.getFoto = this.getFoto.bind(this);
-    this.getDescripcion = this.getDescripcion.bind(this);
-    this.getCaracteristicas = this.getCaracteristicas.bind(this);
-    this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
-    this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
     this.state = {
-      Item: {
+      activeStep: 0
+      /* Item: {
         nombre: '',
         precio: '',
         foto: '',
@@ -72,97 +81,49 @@ class Detalle extends React.Component {
         caracteristicas: '',
         unidadDeMedida: '',
         mostrarPrecio: false
-      }
+      } */
     };
   }
-/* 
-  onSubmit() {
-    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
-  }
-
-  getNombre(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        nombre: e.target.value
-      }
-    });
-
-  }
-
-  getPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        precio: e.target.value
-      }
-    });
-
-  }
-
-  getFoto(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        foto: e.target.value
-      }
-    });
-
-  }
-
-  getDescripcion(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        descripcion: e.target.value
-      }
-    });
-
-  }
-
-  getCaracteristicas(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        caracteristicas: e.target.value
-      }
-    });
-
-  }
-
-  getUnidadDeMedida(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  }
-
-  getMostrarPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        mostrarPrecio: e.target.value
-      }
-    });
-
-  } */
 
   
 
   render(){
 
-		const classes = this.props.classes
+    const classes = this.props.classes
+    const theme = this.props.theme
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    const tutorialSteps = [
+      {
+        label: 'San Francisco – Oakland Bay Bridge, United States',
+        imgPath:
+          'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      },
+      {
+        label: 'Bird',
+        imgPath:
+          'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+      },
+    ];
+
+    const maxSteps = tutorialSteps.length;
+
+    const handleNext = () => {
+      this.setState({
+        activeStep: this.state.activeStep + 1
+      });
+    };
+  
+    const handleBack = () => {
+      this.setState({
+        activeStep: this.state.activeStep - 1
+      });
+    };
+  
+    const handleStepChange = (step: number) => {
+      this.setState({
+        activeStep: step
+      });
+    };
 
     return(
 
@@ -197,12 +158,7 @@ class Detalle extends React.Component {
                             <Typography variant="subtitle2" component="h4">
                               El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
                             </Typography>
-                            <Typography gutterBottom variant="h5" component="h2" >
-                              Características
-                            </Typography>
-                            <Typography variant="subtitle2" component="h4">
-                              El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
-                            </Typography>
+                            
                               
                             
                               
@@ -213,7 +169,43 @@ class Detalle extends React.Component {
                                 justify="space-around"
                                 alignItems="center">
                       
-                                    <img src={foto} className = {classes.img}></img>
+                              <div className={classes.rootCarousel}>
+          
+                                <AutoPlaySwipeableViews
+                                  axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                                  index={this.state.activeStep}
+                                  onChangeIndex={handleStepChange}
+                                  enableMouseEvents
+                                >
+                                  {tutorialSteps.map((step, index) => (
+                                    <div key={step.label}>
+                                      {Math.abs(this.state.activeStep - index) <= 2 ? (
+                                        <img className={classes.img} src={step.imgPath} alt={step.label} />
+                                      ) : null}
+                                    </div>
+                                  ))}
+                                </AutoPlaySwipeableViews>
+                                <MobileStepper
+                                  steps={maxSteps}
+                                  position="static"
+                                  variant="text"
+                                  activeStep={this.state.activeStep}
+                                  nextButton={
+                                    <Button size="small" onClick={handleNext} disabled={this.state.activeStep === maxSteps - 1} >
+                                      Next
+                                      {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                                    </Button>
+                                  }
+                                  backButton={
+                                    <Button size="small" onClick={handleBack} disabled={this.state.activeStep === 0}>
+                                      {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                                      Back
+                                    </Button>
+                                  }
+                                />
+                              </div>
+
+                                   {/*  <img src={foto} className = {classes.img}></img> */}
                             
 
                                   <div>

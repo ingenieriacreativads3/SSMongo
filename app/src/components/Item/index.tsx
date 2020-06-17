@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, makeStyles, withStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { fade, useTheme, makeStyles, withStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
@@ -91,6 +91,9 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2),
     minWidth: 150,
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#d93211',
+    },
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -131,10 +134,10 @@ const useStyles = makeStyles((theme) => ({
   Link:{
     color:'#d93211',
   },
-  img:{
+ /*  img:{
     width:300,
     display:'flex'
-  },
+  }, */
   input:{
     margin:theme.spacing(1),
     "&.Mui-focused": {
@@ -203,8 +206,36 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.up('md')]: {
 			width: '20ch',
 		},
-	},
+  },
   
+  rootCarousel: {
+    maxWidth: 1500,
+    flexGrow: 1,
+    padding: theme.spacing(10),
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    height: 250,
+    paddingLeft: theme.spacing(4),
+    backgroundColor: theme.palette.background.default,
+  },
+  img: {
+    height: 255,
+    display: 'block',
+    maxWidth: 400,
+    overflow: 'hidden',
+    width: '100%',
+  },
+
+  inputLabel: {
+   
+    "&.Mui-focused": {
+      color: '#d93211',
+    },
+  },
+
+   
 }));
 
 export  function NuevoItem(props: {
@@ -240,7 +271,9 @@ export  function VerDetalleItem() {
 	const classes = useStyles(theme);
 
   return <div>
-    <DetalleItem classes={classes} />;
+    <DetalleItem 
+    classes={classes}
+    theme={useTheme} />;
    
   </div>
 

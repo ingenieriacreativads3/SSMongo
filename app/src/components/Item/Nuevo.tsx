@@ -138,8 +138,9 @@ class Nuevo extends React.Component <{
                         <Grid container spacing={3}>
                           <Grid item lg={6}>
                             <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-label" >Unidad</InputLabel>
+                            <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Unidad</InputLabel>
                               <Select
+                            
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 // value={unidadDeMedida}
@@ -164,16 +165,7 @@ class Nuevo extends React.Component <{
                           
                         </Grid>
                         <Grid container spacing={3}> 
-                          <Grid item lg={4}>
-                            <TextareaAutosize
-                              aria-label="minimum
-                              height"
-                              rowsMin={10}
-                              className={classes.textTarea}
-                              placeholder="Caracteristicas"
-                              onChange={ this.props.getCaracteristicas }
-                            />
-                          </Grid>
+                        
                           <Grid item lg={4}>
                             <TextareaAutosize
                               aria-label="minimum height"

@@ -134,7 +134,7 @@ class Editar extends React.Component <{
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
                               <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label">Unidad</InputLabel>
+                              <InputLabel id="demo-simple-select-label"  className={classes.inputLabel}>Unidad</InputLabel>
                                 <Select
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"
@@ -160,9 +160,7 @@ class Editar extends React.Component <{
                           </Grid>
                           </Grid>
                           <Grid container spacing={3}> 
-                            <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Android (9.0). Pantalla 16.4' Nano SIM"   />
-                            </Grid>
+                          
                             <Grid item lg={4}>
                             <TextareaAutosize aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
                             </Grid>
@@ -171,7 +169,9 @@ class Editar extends React.Component <{
                               variant="contained"
                               component="label"
                               className={classes.botonIcono}
+                              
                             >
+                               Imagen
                               <InputLabel htmlFor="icon-button-file">
                                 <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
                                   <PhotoCamera />
