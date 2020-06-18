@@ -36,8 +36,7 @@ export default function unidadDeMedidaReducer ( state = {
         fetched: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
-        // data: action.payload.data.data
-        data: action.payload.data
+        data: action.payload.data.data
       };
 		}
 

@@ -182,11 +182,12 @@ class Nuevo extends React.Component <{
                                 <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
                                   <PhotoCamera />
                                   <Input
+                                    inputProps={{ multiple: true }} 
                                     className={classes.input}
                                     style={{ display: 'none' }}
                                     id="raised-button-file"
                                     type="file"
-                                    onClick = {this.props.getFoto}
+                                    onChange = {this.props.getFoto}
                                   />
                                 </IconButton>
                               </Button>

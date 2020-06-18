@@ -35,7 +35,8 @@ class Nuevo extends React.Component<{
   path: string,
   caracteristicas: string,
   descripcion: string,
-  displayPrice: boolean
+  displayPrice: boolean,
+  photo: File[]
 }> {
 
 	props: any
@@ -62,7 +63,8 @@ class Nuevo extends React.Component<{
       path: '',
       caracteristicas: '',
       descripcion: '',
-      displayPrice: false
+      displayPrice: false,
+      photo: []
     };
   }
 
@@ -111,9 +113,16 @@ class Nuevo extends React.Component<{
     this.setState({ displayPrice: display })
   }
 
-  getFoto(image: any) {
-    console.log(image)
-    // this.setState({ path: path })
+  getFoto(e: any) {
+
+    let files: File[] = []
+
+    for (var i = 0; i < e.target.files.length; i++) {
+      files.push(e.target.files[i.toString()])
+      files.push(e.target.files['0'])
+    }
+
+    this.setState({ photo: files })
   }
 
   save() {
@@ -123,7 +132,7 @@ class Nuevo extends React.Component<{
       this.state.nombre,
       this.state.precio,
       '5ecdb0bcdb386b4e1b75e378',
-      'path/to/imagen/'
+      []
     ))
 
   }
@@ -156,7 +165,7 @@ class Nuevo extends React.Component<{
       this.props.unidadDeMedidaReducer.fetched &&
       this.props.unidadDeMedidaReducer.data !== undefined
     ) {
-      unidadesDeMedida = this.props.unidadDeMedidaReducer.data
+      unidadesDeMedida = this.props.unidadDeMedidaReducer.data.unidadesDeMedida
     }
 
     return(
