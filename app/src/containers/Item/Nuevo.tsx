@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
-
+import { Drawer } from './../Drawer'
 import Link from '@material-ui/core/Link';
 
 import { NuevoItem as ItemNuevo} from './../../components/Item'
@@ -149,6 +149,15 @@ class Nuevo extends React.Component<{
 
   }
 
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     let unidadesDeMedida: any[] = [
@@ -186,6 +195,7 @@ class Nuevo extends React.Component<{
           text={ this.props.itemReducer.message }
           functionRight={ this.aceptar }
           labelButtonRight={ 'Aceptar' }
+        
         />
       </div>
     );

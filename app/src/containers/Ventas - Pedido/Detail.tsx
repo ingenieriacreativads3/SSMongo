@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Detail as DetailExport } from './../../components/Detail'
 import * as requestActions from './../../store/actions/request'
+import { Drawer } from './../Drawer'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -29,6 +30,15 @@ class Detail extends React.Component<{
   constructor(props: any) {
     super(props);
     this.state = {};
+  }
+
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
   }
 
  
@@ -88,7 +98,8 @@ class Detail extends React.Component<{
 					importe={importe}
 					estado={estado}
 					cantidad={cantidad}
-					item={item}
+          item={item}
+          drawer={ this.drawer() }
         />
       </div>
     );

@@ -3,17 +3,18 @@ import HomeExport from './Home'
 import Cookies from 'universal-cookie';
 
 export function Inicio(props: {
+  
   history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
+	location: any,
+	match: any,
+  staticContext?: any
+  cookies: any,
 }) {
 	return <HomeExport
-    history={props.history}
-    location={props.location}
-    match={props.match}
-    staticContext={props.staticContext}
-    cookies={props.cookies}
+  history={props.history}
+  location={props.location}
+  match={props.match}
+staticContext={props.staticContext}
+cookies={props.cookies}
   />;
 }

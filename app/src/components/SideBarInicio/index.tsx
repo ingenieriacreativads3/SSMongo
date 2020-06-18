@@ -93,6 +93,11 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(2),
     minWidth: 200,
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: '#d93211',
+      },
+    },
     
   },
   select:{
@@ -115,6 +120,13 @@ const useStyles = makeStyles((theme) => ({
       background: "#d93211",
    },
   },
+  inputLabel: {
+   
+    "&.Mui-focused": {
+      color: '#d93211',
+    },
+  },
+  
 
 
   

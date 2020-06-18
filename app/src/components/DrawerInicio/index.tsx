@@ -89,7 +89,12 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     
-	minWidth: 180,
+  minWidth: 180,
+  '& .MuiOutlinedInput-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#d93211',
+    },
+  },
 	//paddingLeft:theme.spacing(5),
   },
   select:{
@@ -117,7 +122,12 @@ const useStyles = makeStyles((theme) => ({
 	color:'#d93211',
   },
 
- 
+  inputLabel: {
+   
+    "&.Mui-focused": {
+      color: '#d93211',
+    },
+  },
 
   rating:{
 	paddingLeft:theme.spacing(3),

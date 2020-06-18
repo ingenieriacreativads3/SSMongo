@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Detail as DetailExport } from './../../components/Detail'
 import * as presupuestoActions from './../../store/actions/presupuesto'
+import { Drawer } from './../Drawer'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -31,6 +32,14 @@ class Detail extends React.Component<{
     this.state = {};
   }
 
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
  
   render(){
 
@@ -87,6 +96,7 @@ class Detail extends React.Component<{
           estado={estado}
           cantidad={cantidad}
           item={item}
+          drawer={ this.drawer() }
         />
       </div>
     );

@@ -137,11 +137,13 @@ export function Detail(props: {
   importe: string,
   estado: string,
   cantidad: string,
+  drawer:any,
   item: {
     nombre: string,
     precio: string,
     unidad: string
   }
+  
 }) {
 
 	const classes = useStyles(theme);
@@ -154,7 +156,8 @@ export function Detail(props: {
 		importe={props.importe}
 		estado={props.estado}
 		cantidad={props.cantidad}
-		item={props.item}
+    item={props.item}
+    drawer={props.drawer}
 	/>;
 
 }

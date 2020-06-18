@@ -8,6 +8,7 @@ import ItemNuevo from './Nuevo'
 import ItemEditar from './Editar'
 import Catalogo from './Catalogo'
 import DetalleItem from './Detalle'
+import Cookies from 'universal-cookie';
 
 export const AntSwitch = withStyles((theme: Theme) =>
   createStyles({
@@ -248,6 +249,7 @@ export  function NuevoItem(props: {
   getFoto: any,
   save: any,
   unidadesDeMedida: any[]
+
 }) {
 
 	const classes = useStyles(theme);
@@ -262,6 +264,7 @@ export  function NuevoItem(props: {
     getFoto={ props.getFoto }
     save={ props.save }
     unidadesDeMedida={ props.unidadesDeMedida }
+    
   />;
 
 }

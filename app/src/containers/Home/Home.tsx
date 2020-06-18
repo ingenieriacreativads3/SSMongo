@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
 
 import { InitLayout as HomeComponent } from './../../components/Home'
+import { InicioDrawer } from './../DrawerInicio'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -30,7 +31,16 @@ class Home extends React.Component<{
   constructor(props: any) {
 		super(props);
     this.state = {};
-	}
+  }
+  
+  drawer() {
+    return <InicioDrawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
 
   render(){
 
@@ -38,7 +48,13 @@ class Home extends React.Component<{
 
     return(
       <div>
-        <HomeComponent />
+        <HomeComponent
+        history={this.props.history}
+        location={this.props.location}
+        match={this.props.match}
+        staticContext={this.props.staticContext}
+        cookies={this.props.cookies}
+        drawer={ this.drawer() } />
       </div>
     );
   }

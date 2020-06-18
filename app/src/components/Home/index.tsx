@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
-
+import Cookies from 'universal-cookie';
 import Home from './Home'
 
 const drawerWidth = 200;
@@ -163,14 +163,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function InitLayout() {
+export function InitLayout(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any,
+  cookies: Cookies
+  drawer: any,
+
+}) {
 
 	const classes = useStyles(theme);
  
   return <div>
     <Home
+  
       classes={classes} 
       theme={useTheme}
+      history={props.history}
+      location={props.location}
+      match={props.match}
+      staticContext={props.staticContext}
+      cookies={props.cookies}
+      drawer={props.drawer}
     />
   </div>;
 }

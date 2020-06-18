@@ -198,7 +198,7 @@ class Validacion extends React.Component <{
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
                               <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label">Estado</InputLabel>
+                              <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
                                 <Select
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"
@@ -217,7 +217,7 @@ class Validacion extends React.Component <{
                             </Grid>
                             <Grid item lg={6}>
                               <FormControl className={classes.formControl}>
-                                <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+                                <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Rubro</InputLabel>
                                 <Select
                                   labelId="demo-mutiple-chip-label"
                                   id="demo-mutiple-chip"

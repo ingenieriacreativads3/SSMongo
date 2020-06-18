@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
     minWidth: 170,
     maxWidth: 300,
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#d93211',
+    },
   },
   selectEmpty: {
    // marginTop: theme.spacing(2),
@@ -99,6 +102,12 @@ const useStyles = makeStyles((theme) => ({
       // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
       borderColor: '#d93211'
     }
+  },
+  inputLabel: {
+   
+    "&.Mui-focused": {
+      color: '#d93211',
+    },
   },
 
 }));

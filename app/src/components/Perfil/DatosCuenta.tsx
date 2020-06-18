@@ -395,6 +395,7 @@ class DatosCuenta extends React.Component <{
                               component="label"
                               className={classes.botonIcono}
                             >
+                              Logo
                               <InputLabel htmlFor="icon-button-file">
                                 <IconButton color="primary"  aria-label="upload picture" component="span" className={classes.iconButton}>
                                   <PhotoCamera />
