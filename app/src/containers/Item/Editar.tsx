@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { EditarItem as ItemEditar} from './../../components/Item'
 import * as itemActions from './../../store/actions/item'
 import Link from '@material-ui/core/Link';
+import { Drawer } from './../Drawer'
 
 function mapStateToProps(store: {
   itemReducer : any
@@ -34,6 +35,14 @@ class Editar extends React.Component<{
     this.state = {};
 }
 
+drawer() {
+  return <Drawer 
+    history={this.props.history}
+    location={this.props.location}
+    match={this.props.match}
+    staticContext={this.props.staticContext}
+  />
+}
 
   render(){
 
@@ -78,6 +87,7 @@ class Editar extends React.Component<{
           location={this.props.location}
           match={this.props.match}
           staticContext={this.props.staticContext}
+          drawer={ this.drawer() }
           // title={'Editar Item'}
           // nombre={ nombre }
           // precio={ precio }

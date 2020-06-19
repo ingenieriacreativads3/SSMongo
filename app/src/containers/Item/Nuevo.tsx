@@ -189,13 +189,14 @@ class Nuevo extends React.Component<{
           getFoto={ this.getFoto }
           save={ this.save }
           unidadesDeMedida={unidadesDeMedida}
+          drawer={ this.drawer() }
         />
         <OneButton 
           title={ 'Nuevo Item' }
           text={ this.props.itemReducer.message }
           functionRight={ this.aceptar }
           labelButtonRight={ 'Aceptar' }
-        
+         
         />
       </div>
     );

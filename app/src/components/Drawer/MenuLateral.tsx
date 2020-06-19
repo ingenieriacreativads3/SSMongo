@@ -78,16 +78,18 @@ class MenuLateral extends React.Component<{
 						</IconButton>
 					</div>
 					<Divider />
+
+					<Link href="/home/catalogo" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button onClick={this.props.link}>
+							<ListItemIcon >
+								<DashboardIcon className={classes.icon}/>
+							</ListItemIcon>
+							<ListItemText primary="Mi catálogo" />
+						</ListItem>
+					</Link>
 					
-					<ListItem button onClick={this.props.link}>
-						<ListItemIcon >
-							<DashboardIcon className={classes.icon}/>
-						</ListItemIcon>
-						<ListItemText primary="Mi catálogo" />
-					</ListItem>
-					
-					<Link href="/item/nuevo" className={classes.link}>
-						<ListItem button>
+					<Link href="/item/nuevo" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button >
 							<ListItemIcon>
 								<AddIcon className={classes.icon}/>
 							</ListItemIcon>
@@ -97,7 +99,7 @@ class MenuLateral extends React.Component<{
 
 					<Divider/>
 					<ListSubheader inset className={classes.subtitle}>Mis compras</ListSubheader>
-					<Link href="#"className={classes.link}>
+					<Link  href="/compras/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
 							<AttachMoney className={classes.icon}/>
@@ -106,7 +108,7 @@ class MenuLateral extends React.Component<{
 					</ListItem>
 					</Link>
 					
-					<Link href="/compras/pedidos/lista" className={classes.link}>
+					<Link href="/compras/pedidos/lista" className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
 							<ShoppingCart className={classes.icon} />
@@ -116,7 +118,7 @@ class MenuLateral extends React.Component<{
 					</Link>
 					<Divider/>
 					<ListSubheader inset className={classes.subtitle}>Mis ventas</ListSubheader>
-					<Link href="#"className={classes.link}>
+					<Link href="/ventas/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
 							<AttachMoney className={classes.icon} />
@@ -124,7 +126,7 @@ class MenuLateral extends React.Component<{
 						<ListItemText primary="Presupuestos" />
 					</ListItem>
 					</Link>
-					<Link href="/ventas/pedidos/lista"className={classes.link}>
+					<Link href="/ventas/pedidos/lista"className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
 							<ShoppingCart className={classes.icon}/>
@@ -134,7 +136,7 @@ class MenuLateral extends React.Component<{
 					</Link>
 					<Divider/>
 					<ListSubheader inset className={classes.subtitle}>Estadisticas</ListSubheader>
-					<Link href="/home/resumen"className={classes.link}>
+					<Link href="/home/resumen"className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
 							<BarChartIcon className={classes.icon} />
@@ -142,7 +144,7 @@ class MenuLateral extends React.Component<{
 						<ListItemText primary="Mi resumen" />
 					</ListItem>
 					</Link>
-					<Link href="/home/reputacion"className={classes.link}>
+					<Link href="/home/reputacion"className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
 							<StarIcon className={classes.icon}/>
@@ -152,7 +154,7 @@ class MenuLateral extends React.Component<{
 					</Link>
 					<Divider/>
 					<ListSubheader inset className={classes.subtitle}>Solicitudes</ListSubheader>
-					<Link href="/item/nuevo"className={classes.link}>
+					<Link href="/solicitud/validacion"className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
 							<PersonAdd className={classes.icon} />
@@ -160,7 +162,7 @@ class MenuLateral extends React.Component<{
 						<ListItemText primary="Validación" />
 					</ListItem>
 					</Link>
-					<Link href="/solicitud/unidadMedida"className={classes.link}>
+					<Link href="/solicitud/unidadMedida"className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
 							<PostAdd className={classes.icon}/>

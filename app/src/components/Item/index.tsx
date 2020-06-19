@@ -249,6 +249,7 @@ export  function NuevoItem(props: {
   getFoto: any,
   save: any,
   unidadesDeMedida: any[]
+  drawer:any,
 
 }) {
 
@@ -264,7 +265,7 @@ export  function NuevoItem(props: {
     getFoto={ props.getFoto }
     save={ props.save }
     unidadesDeMedida={ props.unidadesDeMedida }
-    
+    drawer={props.drawer}
   />;
 
 }
@@ -287,6 +288,7 @@ export  function EditarItem(props: {
   location: any,
   match: any,
   staticContext?: any
+  drawer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -297,6 +299,7 @@ export  function EditarItem(props: {
     location={props.location}
     match={props.match}
     staticContext={props.staticContext}
+    drawer={props.drawer}
   />;
 
 }
