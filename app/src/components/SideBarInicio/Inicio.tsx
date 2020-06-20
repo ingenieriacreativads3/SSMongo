@@ -5,9 +5,6 @@ import clsx from 'clsx'
 import { Container, FormControl, Button, InputLabel,Select, MenuItem, Grid, Card, Box, Paper,Drawer, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
-
-
-
 import { connect } from 'react-redux'
 
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -26,6 +23,8 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Rating from '@material-ui/lab/Rating';
 
+import * as ubicacionActions from './../../store/actions/ubicacion'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -40,12 +39,14 @@ function Copyright() {
 }
 
 function mapStateToProps(store: {
+  ubicacionReducer: any,
   dialogReducer: {
     openDialog: boolean
   }
 }) {
   return {
-    openDialog: store.dialogReducer.openDialog
+    openDialog: store.dialogReducer.openDialog,
+    ubicacionReducer: store.ubicacionReducer
   };
 }
 
@@ -53,6 +54,8 @@ class SideBarInicio extends React.Component <{}, {
 
   valueFilter: number | null,
   hoverFilter: any,
+  provincia: string,
+  municipio: string
   
 }> {
 
@@ -61,15 +64,53 @@ class SideBarInicio extends React.Component <{}, {
 	static defaultProps: any
 
 	constructor(props: any) {
-		super(props);
+    super(props);
+    this.handleChangeProvincia = this.handleChangeProvincia.bind(this);
+    this.handleChangeMunicipio = this.handleChangeMunicipio.bind(this);
 		this.state = {
 			valueFilter: 2,
       hoverFilter: -1,
-      
+      provincia: '',
+      municipio: ''
 		};
   }
 
- 
+  componentWillMount() {
+
+    if(
+      !this.props.ubicacionReducer.fetched &&
+      !this.props.ubicacionReducer.fetching
+    ) {
+      this.props.dispatch(ubicacionActions.getProvincias())
+    }
+
+  }
+
+  handleChangeProvincia(e: any) {
+    this.setState({
+      provincia: e.target.value
+    });
+
+    if(
+      this.props.ubicacionReducer.provincias !== undefined
+    ) {
+      this.props.ubicacionReducer.provincias.map((provincia: {
+        nombre: string,
+        id: string
+      }) => {
+        if(e.target.value == provincia.nombre) {
+          this.props.dispatch(ubicacionActions.getMunicipios(provincia.id))
+        }
+      })
+    }
+
+  }
+
+  handleChangeMunicipio(e: any) {
+    this.setState({
+      municipio: e.target.value
+    });
+  }
 
   render(){
 
@@ -84,7 +125,33 @@ class SideBarInicio extends React.Component <{}, {
       5: 'Excelente',
     };
 
+    let provincias: any[] = [
+      {
+        nombre: 'Seleccionar',
+        id: '1'
+      }
+    ]
 
+    let municipios: any[] = [
+      {
+        nombre: 'Seleccionar',
+        id: '1'
+      }
+    ]
+
+    if(
+      this.props.ubicacionReducer.fetched &&
+      this.props.ubicacionReducer.provincias !== undefined
+    ) {
+      provincias = this.props.ubicacionReducer.provincias
+    }
+
+    if(
+      this.props.ubicacionReducer.fetched &&
+      this.props.ubicacionReducer.municipios !== undefined
+    ) {
+      municipios = this.props.ubicacionReducer.municipios
+    }
 
     return(
 
@@ -136,11 +203,11 @@ class SideBarInicio extends React.Component <{}, {
                   component="nav"
                   aria-labelledby="nested-list-subheader"
                   subheader={
+
                     <ListSubheader component="div" id="nested-list-subheader">
-                    <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                   
-                              Filtros 
-                            </Typography>
+                      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+                        Filtros 
+                      </Typography>
                     </ListSubheader>
                     
                   } 
@@ -155,44 +222,46 @@ class SideBarInicio extends React.Component <{}, {
                 </ListItem>
                     
                 <ListItem >
-                <FormControl variant="outlined" className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                className={classes.select}
-                                // value={age}
-                                // onChange={handleChange}
-                                label="Provincia"
-                                defaultValue={10}
-                                
-                              >
-                                
-                                <MenuItem value={10}>Cordoba</MenuItem>
-                                <MenuItem value={20}>Buenos Aires</MenuItem>
-                                <MenuItem value={30}>Santa Fe</MenuItem>
-                              </Select>
-                            </FormControl>
+                  <FormControl variant="outlined" className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      className={classes.select}
+                      label="Provincia"
+                      value={this.state.provincia} 
+                      onChange={this.handleChangeProvincia}
+                    >
+                      {provincias.map((provincia: {
+                        nombre: string,
+                        id: string
+                      }) => {
+                        return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
+                      })}
+                    </Select>
+                  </FormControl>
                 </ListItem>
                 <ListItem >
-                <FormControl variant="outlined"  className={classes.formControl}>
+                  <FormControl variant="outlined"  className={classes.formControl}>
                           
-                          <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
-                          <Select
-                            labelId="demo-simple-select-outlined-label"
-                            id="demo-simple-select-outlined"
-                            className={classes.select}
-                            // value={age}
-                            // onChange={handleChange}
-                            label="Ciudad"
-                            defaultValue={10}
-                          >
-                            
-                            <MenuItem value={10}>Arroyito</MenuItem>
-                            <MenuItem value={20}>San Francisco</MenuItem>
-                            <MenuItem value={30}>Devoto</MenuItem>
-                          </Select>
-                        </FormControl>
+                    <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      className={classes.select}
+                      label="Ciudad"
+                      value={this.state.municipio} 
+                      onChange={this.handleChangeMunicipio}
+                      defaultValue={1}
+                    >
+                      {municipios.map((municipio: {
+                        nombre: string,
+                        id: string
+                      }) => {
+                        return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
+                      })}
+                    </Select>
+                  </FormControl>
                 </ListItem>
                   
                 <ListItem>

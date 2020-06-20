@@ -10,6 +10,7 @@ import requestReducer from './requestReducer'
 import presupuestoReducer from './presupuestoReducer'
 import itemReducer from './itemReducer'
 import unidadDeMedidaReducer from './unidadDeMedidaReducer'
+import ubicacionReducer from './ubicacionReducer'
 
 export default combineReducers({
     apiWork,
@@ -21,5 +22,6 @@ export default combineReducers({
     requestReducer,
     presupuestoReducer,
     itemReducer,
-    unidadDeMedidaReducer
+    unidadDeMedidaReducer,
+    ubicacionReducer
 })
