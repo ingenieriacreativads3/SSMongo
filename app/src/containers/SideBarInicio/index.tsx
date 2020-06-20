@@ -1,13 +1,13 @@
 import React from 'react';
-import DrawerInicioExport from './DrawerInicio'
+import SideBarExport from './SideBar'
 
-export function InicioDrawer(props: {
+export function SideBarInicio(props: {
   history: any,
   location: any,
   match: any,
   staticContext?: any
 }) {
-	return <DrawerInicioExport
+	return <SideBarExport
     history={props.history}
     location={props.location}
     match={props.match}

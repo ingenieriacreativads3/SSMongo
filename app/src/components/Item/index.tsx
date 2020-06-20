@@ -270,15 +270,26 @@ export  function NuevoItem(props: {
 
 }
 
-export  function VerDetalleItem() {
+export  function VerDetalleItem(props: {
+  // history: any,
+  // location: any,
+  // match: any,
+  // staticContext?: any
+  drawer:any,
+}) {
 
 	const classes = useStyles(theme);
 
   return <div>
     <DetalleItem 
     classes={classes}
-    theme={useTheme} />;
-   
+    theme={useTheme}
+    drawer={props.drawer} />;
+    {/* history={props.history}
+    location={props.location}
+    match={props.match}
+    staticContext={props.staticContext} */}
+    
   </div>
 
 }

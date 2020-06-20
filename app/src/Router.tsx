@@ -9,7 +9,8 @@ import { NuevaUnidadMedida } from './components/UnidadMedida'
 import { ValidarSolicitud } from './components/UnidadMedida'
 import { SolicitudesUnidadMedida } from './components/UnidadMedida'
 import { Catalogo } from './containers/Item'
-import { VerDetalleItem } from './components/Item'
+ import { VerDetalleItem } from './components/Item'
+//import { ItemDetalle } from './containers/Item'
 import { NuevoPedido } from './components/Pedido'
 import { NuevoPresupuesto } from './components/Presupuesto'
 import { EvaluarEmpresa } from './components/Evaluacion'
@@ -30,6 +31,7 @@ import { SalePresupuestos, DetailSalePresupuesto } from './containers/Ventas - P
 import { Renegociar } from './components/Presupuesto'
 import { VerEstadisticaActividad } from './components/Estadisticas'
 import { VerReputacion } from './components/Estadisticas'
+import Item from './entities/Item';
 
 class App extends React.Component {
 
@@ -58,6 +60,7 @@ class App extends React.Component {
 						<Route path='/registrar' 											component={ Register } />
 						{/* <Route path='/asd' 												    component={ asd } /> */}
 						<Route path='/item/detalle/:id'               component={ VerDetalleItem } />
+						{/* <Route path='/item/detallle/:id'     render={(props) => <ItemDetalle {...props} />} /> */}
 						<Route path='/pedido/nuevo'                   component={ NuevoPedido } />
 						<Route path='/presupuesto/nuevo'              component={ NuevoPresupuesto } />
 						<Route path='/compras/presupuestos/lista'     render={(props) => <PurchasePresupuestos {...props} />} /> 

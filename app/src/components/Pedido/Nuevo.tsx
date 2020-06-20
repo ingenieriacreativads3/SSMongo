@@ -9,7 +9,7 @@ import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
 import * as PedidoAction from './../../store/actions/login'
-
+import MenuLateral from './../DrawerInicio'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -97,7 +97,7 @@ class Nuevo extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-
+        <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -116,13 +116,18 @@ class Nuevo extends React.Component <{
                       />
 
                     <CardContent>
+
+
                       <form className={classes.root}>
+                      
                         <Grid container spacing={3}>
+                        <CardContent>
+                        <Typography variant="h5" component="h2">
+                          Mis datos
+                        </Typography>
+                    </CardContent>
                           <Grid container spacing={3}>
-                            <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Nombre" defaultValue="Samsung A20" className={classes.input}  />
-                          
-                            </Grid>
+                            
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Empresa" defaultValue="CorpuSoft" className={classes.input}  />
                             
@@ -131,12 +136,18 @@ class Nuevo extends React.Component <{
                             <TextField disabled id="standard-required" label="Email" defaultValue="corpusoft@cs.com.ar" className={classes.input}  />
                           
                             </Grid>
+                            <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Domicilio" defaultValue="Bv.Roca 1500" className={classes.input}  />
+                          
+                            </Grid>
                           </Grid>
                           <Grid container spacing={3}>
-                            <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Telefono" defaultValue="3512469439" className={classes.input}  />
+                          <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="CP" defaultValue="2400" className={classes.input}  />
                            
                             </Grid>
+                           
+                            
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Provincia" defaultValue="Cordoba" className={classes.input}  />
                             
@@ -147,28 +158,39 @@ class Nuevo extends React.Component <{
                             </Grid>
                           </Grid>
                           <Grid container spacing={3}>
-                            <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="CP" defaultValue="2400" className={classes.input}  />
+                          <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Telefono" defaultValue="3512469439" className={classes.input}  />
                            
-                            </Grid>
-                            <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Domicilio" defaultValue="Bv.Roca 1500" className={classes.input}  />
-                          
                             </Grid>
                             
                           </Grid>
+                          <CardContent>
+                        <Typography variant="h5" component="h2">
+                          Datos de pedido
+                        </Typography>
+                    </CardContent>
                           <Grid container spacing={3}>
                           <Grid item lg={4}>
-                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad"   type="number" onChange={this.props.getCantidadItem}/>
-                            
+                            <TextField disabled id="standard-required" label="Nombre" defaultValue="Samsung A20" className={classes.input}  />
+                          
                             </Grid>
+                         
+
+                            <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Precio" defaultValue="10000" className={classes.input}  />
+                            </Grid>
+
 
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Unidad" defaultValue="Unidad" className={classes.input}  />
 
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
+                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad"   type="number" onChange={this.props.getCantidadItem}/>
+                            
+                            </Grid>
+                            <Grid item lg={4}>
+                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
                             </Grid>
                           </Grid>
                             

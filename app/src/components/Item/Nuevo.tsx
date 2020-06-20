@@ -82,7 +82,7 @@ class Nuevo extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        <MenuLateral></MenuLateral>
+        {this.props.drawer}
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>

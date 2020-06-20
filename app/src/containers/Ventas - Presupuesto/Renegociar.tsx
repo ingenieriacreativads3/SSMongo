@@ -8,7 +8,7 @@ import { Renegociar as RenegociarExport} from './../../components/Presupuesto'
 import * as dialogActions from './../../store/actions/dialog'
 
 import * as presupuestoActions from './../../store/actions/presupuesto'
-
+import { Drawer } from './../Drawer'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -102,6 +102,15 @@ class Renegociacion extends React.Component<{
 
   }
 
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     return(
@@ -111,6 +120,7 @@ class Renegociacion extends React.Component<{
           getComentario={ this.getComentario }
           getPrecioSugerido = {this.getPrecioSugerido}
            save={ this.save }
+           drawer={this.drawer()}
         />
         <OneButton 
           title={ 'Renegociacion' }

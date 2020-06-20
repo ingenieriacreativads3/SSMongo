@@ -9,6 +9,7 @@ import * as dialogActions from './../../store/actions/dialog'
 
 import * as presupuestoActions from './../../store/actions/presupuesto'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
+import { InicioDrawer } from './../DrawerInicio'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -94,6 +95,16 @@ class NuevoPresupuesto extends React.Component<{
 
   }
 
+  drawer() {
+    return <InicioDrawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+  
+
   render(){
 
     return(
@@ -102,6 +113,7 @@ class NuevoPresupuesto extends React.Component<{
           getCantidadItem={ this.getCantidadItem }
           getComentario={ this.getComentario }
            save={ this.save }
+           drawer={this.drawer()}
         />
         <OneButton 
           title={ 'Nuevo Presupuesto' }

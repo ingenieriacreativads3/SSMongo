@@ -6,7 +6,7 @@ import {TextField, Container, Grid, Card, Box, Typography, CssBaseline, CardHead
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
-
+import MenuLateral from './../DrawerInicio'
 import * as PresupuestoAction from './../../store/actions/login'
 
 
@@ -81,7 +81,7 @@ class Nuevo extends React.Component  <{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-
+        <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -141,11 +141,12 @@ class Nuevo extends React.Component  <{
                             <TextField disabled id="standard-required" label="Nombre" defaultValue="Samsung A20" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Unidad de Medida" defaultValue="Unidad" className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Precio" defaultValue="10000" className={classes.input}  />
                             </Grid>
+                            <Grid item lg={4}>
+                            <TextField disabled id="standard-required" label="Unidad" defaultValue="Unidad" className={classes.input}  />
+                            </Grid>
+                            
 
                             
                           </Grid>
@@ -156,7 +157,7 @@ class Nuevo extends React.Component  <{
                             </Grid>
                          
                             <Grid item lg={6}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  onChange={this.props.getComentario} />
+                            <TextareaAutosize  style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  onChange={this.props.getComentario} />
                             </Grid>
                           </Grid>
                             
