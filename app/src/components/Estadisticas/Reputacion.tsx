@@ -1,17 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Container, Grid, Card, Box, Avatar,List, ListItemAvatar,ListItemText,Divider, TextField, CardActions, Button, CardHeader, ListItem, ListItemIcon, Typography, CssBaseline,  CardContent, IconButton, CardMedia} from '@material-ui/core';
+import { Container, Grid, Card, Box, Avatar,List, ListItemAvatar,ListItemText,Divider, CardActions, Button, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import MenuLateral from './../Drawer';
-import AttachMoney from '@material-ui/icons/AttachMoney';
-import Radio from '@material-ui/core/Radio';
-import ShoppingCart from '@material-ui/icons/ShoppingCart';
-import * as Login from './../../store/actions/login'
 import * as drawerActions from './../../store/actions/drawer'
 import AppBar from './../AppBar'
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import Paper from '@material-ui/core/Paper';
 import {
   Chart,
   PieSeries,

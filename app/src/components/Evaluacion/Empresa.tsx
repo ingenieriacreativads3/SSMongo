@@ -4,12 +4,9 @@ import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Avatar,  Button, CardContent,FormControlLabel, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import Link from '@material-ui/core/Link';
 import Rating from '@material-ui/lab/Rating';
 
 import Radio from '@material-ui/core/Radio';
-
-import * as Login from './../../store/actions/login'
 import * as drawerActions from './../../store/actions/drawer'
 import AppBar from './../AppBar'
 

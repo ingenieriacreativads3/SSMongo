@@ -4,11 +4,9 @@ import SendIcon from '@material-ui/icons/Send';
 import AppBar from '../../components/AppBar'
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, Button, CardContent, Input,  CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, Button, CardContent,CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import Link from '@material-ui/core/Link';
 
-import * as PedidoAction from './../../store/actions/login'
 import MenuLateral from './../DrawerInicio'
 
 //import * as ItemAction from "../../store/actions/ItemAction";

@@ -168,6 +168,7 @@ class Nuevo extends React.Component <{
                         
                           <Grid item lg={4}>
                             <TextareaAutosize
+                            style={{borderRadius:7}}
                               aria-label="minimum height"
                               rowsMin={10}
                               className={classes.textTarea}

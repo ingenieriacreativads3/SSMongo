@@ -151,10 +151,25 @@ const useStyles = makeStyles((theme) => ({
 
 })); 
 
-export  function EvaluarEmpresa() {
+export  function EvaluarEmpresa(props: {
+	getNumeroValoracion: any,
+	getConceptoValoracion: any,
+	getOpinion: any,
+	drawer:any,
+	save: any,
+	
+  }) {
 	const classes = useStyles();
-	return <EvaluacionEmpresa classes={ classes } />;
+	
+	return <EvaluacionEmpresa 
+	classes={ classes } 
+    getNumeroValoracion={ props.getNumeroValoracion }
+    getConceptoValoracion={ props.getConceptoValoracion }
+    getOpinion={ props.getOpinion }
+    save={ props.save }
+    drawer={props.drawer}/>;
 }
+
 
 export  function EvaluarPlataforma() {
 	const classes = useStyles();

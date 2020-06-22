@@ -4,10 +4,8 @@ import  DrawerInicio  from './../DrawerInicio';
 import clsx from 'clsx'
 import { connect } from 'react-redux'
 
-import { Container, FormControl, Button, InputLabel,Select, MenuItem, Grid, Card, Box, Paper,Drawer, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+import { Container,  Button, Grid, Card, Box, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import EditIcon from '@material-ui/icons/Edit'
-import DeleteIcon from '@material-ui/icons/Delete'
 import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import  foto  from '../Login/img/photo2.png';

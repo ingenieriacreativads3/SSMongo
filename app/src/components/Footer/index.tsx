@@ -4,7 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import Foot from './Footer'
-const drawerWidth = 200;
+//const drawerWidth = 200;
 
 const theme = createMuiTheme({
 	palette: {

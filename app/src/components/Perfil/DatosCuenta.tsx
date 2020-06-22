@@ -4,13 +4,10 @@ import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Grid, Card, Box, Typography, TextField, CardMedia, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import Link from '@material-ui/core/Link';
 import * as registerActions  from './../../store/actions/register'
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
-import * as Login from './../../store/actions/login'
+
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";

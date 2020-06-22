@@ -1,15 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
-import foto from './../Login/img/photo2.png';
 
 
-import { Container, Grid, Card, Box, Typography,Divider, CssBaseline,  Button, CardContent,  CardActions} from '@material-ui/core';
+
+import { Container, Grid, Card, Box, Typography,CssBaseline,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
-import * as Login from './../../store/actions/login'
 import AppBar from '../AppBar'
 import DrawerInicio from '../DrawerInicio'
 

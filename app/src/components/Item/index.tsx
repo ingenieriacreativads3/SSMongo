@@ -20,14 +20,14 @@ export const AntSwitch = withStyles((theme: Theme) =>
     },
     switchBase: {
       padding: 2,
-      color: theme.palette.grey[500],
+      color:'#d93211',
       '&$checked': {
         transform: 'translateX(12px)',
         color: theme.palette.common.white,
         '& + $track': {
           opacity: 1,
-          backgroundColor: theme.palette.primary.main,
-          borderColor: theme.palette.primary.main,
+          backgroundColor: '#d93211',
+          borderColor: '#d93211',
         },
       },
     },
@@ -235,6 +235,7 @@ const useStyles = makeStyles((theme) => ({
       color: '#d93211',
     },
   },
+
 
    
 }));

@@ -5,7 +5,7 @@ import orange from '@material-ui/core/colors/orange';
 import Cookies from 'universal-cookie';
 import Home from './Home'
 
-const drawerWidth = 200;
+//const drawerWidth = 200;
 
 const theme = createMuiTheme({
 	palette: {

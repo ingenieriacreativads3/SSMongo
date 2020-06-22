@@ -6,7 +6,7 @@ import orange from '@material-ui/core/colors/orange';
 import Lista from './Lista'
 import Validacion from './Validacion'
 
-const drawerWidth = 240;
+//const drawerWidth = 240;
 
 
 const theme = createMuiTheme({

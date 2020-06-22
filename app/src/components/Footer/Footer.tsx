@@ -7,12 +7,11 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 
-import { Container, Grid, Box, Typography, CssBaseline, Avatar} from '@material-ui/core';
+import { Container, Box, Typography, Avatar} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 
-import purple from '@material-ui/core/colors/purple';
-import orange from '@material-ui/core/colors/orange';
+
 
 
 
