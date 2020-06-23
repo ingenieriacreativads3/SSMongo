@@ -170,6 +170,7 @@ export function InitLayout(props: {
   staticContext?: any,
   cookies: Cookies
   drawer: any,
+  footer: any,
 
 }) {
 
@@ -186,6 +187,7 @@ export function InitLayout(props: {
       staticContext={props.staticContext}
       cookies={props.cookies}
       drawer={props.drawer}
+      footer={props.footer}
     />
   </div>;
 }

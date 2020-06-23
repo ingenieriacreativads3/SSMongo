@@ -137,7 +137,8 @@ export function ValidarNuevoUsuario(props: {
   cuit:string,
   rubros: string[],
   listaRubros: string[],
-  getRubros: any
+  getRubros: any,
+  footer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -151,6 +152,7 @@ export function ValidarNuevoUsuario(props: {
       rubros={props.rubros}
       listaRubros={props.listaRubros}
       getRubros={props.getRubros}
+      footer={props.footer}
     />
   </div>
 }

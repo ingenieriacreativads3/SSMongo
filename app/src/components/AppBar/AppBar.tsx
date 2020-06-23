@@ -197,9 +197,9 @@ class AppBare extends React.Component<{}, {
 							>
 								<AccountCircle />
 							</IconButton>
-							<Link href="/home/perfil" >
+							
 							<p className={classes.subtitle} >Mi Perfil</p>
-							</Link>
+					
 						</MenuItem>
 					</Menu>
 					<Menu
@@ -212,7 +212,7 @@ class AppBare extends React.Component<{}, {
 						onClose={handleMenuClose}
 					>
 						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/home/perfil"></Link>Mi perfil</MenuItem>
-						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/registrar"></Link>Cerrar Sesión</MenuItem>
+						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/"></Link>Cerrar Sesión</MenuItem>
 					</Menu>
 					
 				</Toolbar>

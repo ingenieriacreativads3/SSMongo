@@ -79,9 +79,9 @@ class App extends React.Component {
 
 						{/* <Route path='/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/> */}
 						<Route path='/compras/pedido/:id'             render={(props) => <DetailPurchaseRequest {...props}/>}/>
-						<Route path='/compras/presupuesto/:id'        component={ DetailPurchasePresupuesto }/>
-						<Route path='/ventas/pedido/:id'              component={ DetailSaleRequest }/>
-						<Route path='/ventas/presupuesto/:id'         component={ DetailSalePresupuesto }/>
+						<Route path='/compras/presupuesto/:id'          render={(props) => <DetailPurchasePresupuesto {...props}/>}/>
+						<Route path='/ventas/pedido/:id'               render={(props) => <DetailSaleRequest {...props}/>}/>
+						<Route path='/ventas/presupuesto/:id'          render={(props) => <DetailSalePresupuesto {...props}/>}/>
 						<Route path='/home/resumen'                   component={ VerEstadisticaActividad } />
 						<Route path='/home/reputacion'                component={ VerReputacion } />
 						

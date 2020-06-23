@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie';
 import { List } from './../../../components/List'
 import * as requestActions from './../../../store/actions/request'
 import { Drawer } from './../../Drawer'
+import { Footer } from './../../Footer'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -52,6 +53,15 @@ class PedidosCompras extends React.Component<{
     />
   }
 
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     
@@ -89,6 +99,7 @@ class PedidosCompras extends React.Component<{
           data={ this.props.requestReducer.data.pedidos }
           action={ this.action }
           drawer={ this.drawer() }
+          footer={this.footer()}
         />
       </div>
     );

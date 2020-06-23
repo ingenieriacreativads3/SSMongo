@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { List } from './../../components/List'
 import * as requestActions from './../../store/actions/request'
 import { Drawer } from './../Drawer'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -41,6 +42,15 @@ class PedidosVentas extends React.Component<{
 
   drawer() {
     return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+  footer() {
+    return <Footer 
       history={this.props.history}
       location={this.props.location}
       match={this.props.match}
@@ -88,6 +98,7 @@ class PedidosVentas extends React.Component<{
           data={ this.props.requestReducer.data.pedidos }
           action={ this.action }
           drawer={ this.drawer() }
+          footer={this.footer()}
         />
       </div>
     );

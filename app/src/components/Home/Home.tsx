@@ -101,7 +101,7 @@ class Home extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        <DrawerInicio></DrawerInicio>
+        {this.props.drawer}
 					<main className={classes.content}>
           <div className={classes.rootCarousel}>
           
@@ -241,11 +241,9 @@ class Home extends React.Component <{
 
               </Grid>
 							
-							<Box pt={4}>
-								<Copyright />
-							</Box>
+							
 						</Container>
-            <Footer></Footer>
+            {this.props.footer}
 					</main>
 
           

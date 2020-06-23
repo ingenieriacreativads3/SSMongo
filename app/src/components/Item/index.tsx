@@ -251,6 +251,7 @@ export  function NuevoItem(props: {
   save: any,
   unidadesDeMedida: any[]
   drawer:any,
+  footer:any,
 
 }) {
 
@@ -267,6 +268,7 @@ export  function NuevoItem(props: {
     save={ props.save }
     unidadesDeMedida={ props.unidadesDeMedida }
     drawer={props.drawer}
+    footer={props.footer}
   />;
 
 }
