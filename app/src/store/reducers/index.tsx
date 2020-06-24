@@ -11,6 +11,7 @@ import presupuestoReducer from './presupuestoReducer'
 import itemReducer from './itemReducer'
 import unidadDeMedidaReducer from './unidadDeMedidaReducer'
 import ubicacionReducer from './ubicacionReducer'
+import fileReducer from './fileReducer'
 
 export default combineReducers({
     apiWork,
@@ -23,5 +24,6 @@ export default combineReducers({
     presupuestoReducer,
     itemReducer,
     unidadDeMedidaReducer,
-    ubicacionReducer
+    ubicacionReducer,
+    fileReducer
 })

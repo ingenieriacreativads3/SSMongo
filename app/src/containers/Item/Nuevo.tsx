@@ -8,6 +8,7 @@ import { NuevoItem as ItemNuevo} from './../../components/Item'
 import { OneButton } from './../../components/Dialogs'
 
 import * as itemActions from './../../store/actions/item'
+import * as fileActions from './../../store/actions/file'
 import * as dialogActions from './../../store/actions/dialog'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import { Footer } from './../Footer'
@@ -122,6 +123,8 @@ class Nuevo extends React.Component<{
       files.push(e.target.files[i.toString()])
       files.push(e.target.files['0'])
     }
+
+    this.props.dispatch(fileActions.upload(files))
 
     this.setState({ photo: files })
   }
