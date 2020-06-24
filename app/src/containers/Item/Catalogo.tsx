@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 import { MostrarCatalogo as Catalogo} from './../../components/Item'
 import { List } from './../../components/List'
 import { Drawer } from './../Drawer'
-
+import { Footer } from './../Footer'
 import * as itemActions from './../../store/actions/item'
 
 function mapStateToProps(store: {
@@ -61,6 +61,15 @@ class Catalog extends React.Component<{
     })
   }
 
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   layout(isTable: boolean, items: any[]) {
 
     let isCatalog: boolean = true
@@ -85,6 +94,7 @@ class Catalog extends React.Component<{
         checked={this.state.checked}
         getChecked={this.getChecked}
         isCatalog={isCatalog}
+        footer={this.footer()}
       />
     } else {
       return <Catalogo 

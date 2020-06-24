@@ -4,6 +4,7 @@ import Cookies from 'universal-cookie';
 
 import { InitLayout as HomeComponent } from './../../components/Home'
 import { InicioDrawer } from './../DrawerInicio'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -42,6 +43,16 @@ class Home extends React.Component<{
     />
   }
 
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+
   render(){
 
     // console.log(localStorage.getItem('empresaId'))
@@ -54,7 +65,8 @@ class Home extends React.Component<{
         match={this.props.match}
         staticContext={this.props.staticContext}
         cookies={this.props.cookies}
-        drawer={ this.drawer() } />
+        drawer={ this.drawer() }
+        footer={ this.footer() } />
       </div>
     );
   }

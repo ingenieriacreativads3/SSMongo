@@ -8,7 +8,7 @@ import { Presupuestar as PresupuestarExport} from './../../components/Presupuest
 import * as dialogActions from './../../store/actions/dialog'
 
 import * as presupuestoActions from './../../store/actions/presupuesto'
-
+import { Drawer } from './../Drawer'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -99,6 +99,15 @@ class Presupuestacion extends React.Component<{
 
   }
 
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     return(
@@ -108,6 +117,7 @@ class Presupuestacion extends React.Component<{
           //getComentario={ this.getComentario }
           getImporte = {this.getImporte}
            save={ this.save }
+           drawer={this.drawer()}
         />
         <OneButton 
           title={ 'Presupuestacion' }

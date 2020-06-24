@@ -146,6 +146,7 @@ export function NuevoPresupuesto(props:{
   getCantidadItem: any,
   getComentario:any,
   save:any,
+  drawer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -153,7 +154,8 @@ export function NuevoPresupuesto(props:{
   classes={classes}
   getCantidadItem={props.getCantidadItem}
   getComentario={props.getComentario}
-  save={props.save} />;
+  save={props.save} 
+  drawer={props.drawer}/>;
 
 }
 
@@ -176,6 +178,7 @@ export function Presupuestar(props:{
   //getComentario:any,
   getImporte:any,
   save:any,
+  drawer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -184,7 +187,8 @@ export function Presupuestar(props:{
   getCantidadItem={props.getCantidadItem}
   //getComentario={props.getComentario}
   getImporte={props.getImporte}
-  save={props.save}/>;
+  save={props.save}
+  drawer={props.drawer}/>;
 
 }
 
@@ -193,6 +197,7 @@ export function Renegociar(props:{
   getComentario:any,
   getPrecioSugerido:any,
   save:any,
+  drawer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -201,7 +206,8 @@ export function Renegociar(props:{
   getCantidadItem={props.getCantidadItem}
   getComentario={props.getComentario}
   getPrecioSugerido={props.getPrecioSugerido}
-  save={props.save}/>;
+  save={props.save}
+  drawer={props.drawer}/>;
 
 }
 

@@ -164,6 +164,7 @@ export function List(props: {
   checked?: boolean,
   getChecked?: any,
   isCatalog?: boolean,
+  footer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -177,7 +178,7 @@ export function List(props: {
     isCatalog={ props.isCatalog }
     checked={ props.checked }
     getChecked={ props.getChecked }
-
+    footer={props.footer}
   />;
 
 }

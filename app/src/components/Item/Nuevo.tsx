@@ -82,7 +82,7 @@ class Nuevo extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        <MenuLateral></MenuLateral>
+        {this.props.drawer}
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
@@ -168,6 +168,7 @@ class Nuevo extends React.Component <{
                         
                           <Grid item lg={4}>
                             <TextareaAutosize
+                            style={{borderRadius:7}}
                               aria-label="minimum height"
                               rowsMin={10}
                               className={classes.textTarea}
@@ -216,10 +217,11 @@ class Nuevo extends React.Component <{
                 </Card>
               </Grid>
             </Grid>
-            <Box pt={4}>
+            {/* <Box pt={4}>
               <Copyright />
-            </Box>
+            </Box> */}
           </Container>
+          {this.props.footer}
         </main>
       </div>
 

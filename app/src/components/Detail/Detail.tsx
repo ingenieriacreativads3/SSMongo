@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize, List} from '@material-ui/core';
+import { Container, Grid,TextField, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 import { connect } from 'react-redux'

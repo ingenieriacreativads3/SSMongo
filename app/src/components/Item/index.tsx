@@ -20,14 +20,14 @@ export const AntSwitch = withStyles((theme: Theme) =>
     },
     switchBase: {
       padding: 2,
-      color: theme.palette.grey[500],
+      color:'#d93211',
       '&$checked': {
         transform: 'translateX(12px)',
         color: theme.palette.common.white,
         '& + $track': {
           opacity: 1,
-          backgroundColor: theme.palette.primary.main,
-          borderColor: theme.palette.primary.main,
+          backgroundColor: '#d93211',
+          borderColor: '#d93211',
         },
       },
     },
@@ -236,6 +236,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+
    
 }));
 
@@ -250,6 +251,7 @@ export  function NuevoItem(props: {
   save: any,
   unidadesDeMedida: any[]
   drawer:any,
+  footer:any,
 
 }) {
 
@@ -266,19 +268,31 @@ export  function NuevoItem(props: {
     save={ props.save }
     unidadesDeMedida={ props.unidadesDeMedida }
     drawer={props.drawer}
+    footer={props.footer}
   />;
 
 }
 
-export  function VerDetalleItem() {
+export  function VerDetalleItem(props: {
+  // history: any,
+  // location: any,
+  // match: any,
+  // staticContext?: any
+  drawer:any,
+}) {
 
 	const classes = useStyles(theme);
 
   return <div>
     <DetalleItem 
     classes={classes}
-    theme={useTheme} />;
-   
+    theme={useTheme}
+    drawer={props.drawer} />;
+    {/* history={props.history}
+    location={props.location}
+    match={props.match}
+    staticContext={props.staticContext} */}
+    
   </div>
 
 }

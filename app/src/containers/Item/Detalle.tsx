@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { VerDetalleItem as ItemDetalle} from './../../components/Item'
 import * as itemActions from './../../store/actions/item'
-
+import { InicioDrawer } from './../DrawerInicio'
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -32,6 +32,14 @@ class Detalle extends React.Component<{
     this.state = {};
   }
   
+  drawer() {
+    return <InicioDrawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
   
 
   render(){
@@ -48,10 +56,11 @@ class Detalle extends React.Component<{
     return(
       <div>
         <ItemDetalle
-        // history={this.props.history}
-        // location={this.props.location}
-        // match={this.props.match}
-        // staticContext={this.props.staticContext}
+           drawer={ this.drawer() }
+          // history={this.props.history}
+          // location={this.props.location}
+          // match={this.props.match}
+          // staticContext={this.props.staticContext}
          />
       </div>
     );

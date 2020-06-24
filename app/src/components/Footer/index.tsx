@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles,useTheme } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import Foot from './Footer'
-const drawerWidth = 200;
+//const drawerWidth = 200;
 
 const theme = createMuiTheme({
 	palette: {
@@ -18,10 +18,10 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   
   footer: {
-    padding: theme.spacing(6, 0),
-    marginTop: theme.spacing(71),
-   
-
+    
+    marginTop: theme.spacing(60),
+    scrollmarginBottom: theme.spacing(60),
+    
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
   },
@@ -35,10 +35,22 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export  function Footer() {
+export  function Footer(
+  props: {
+    history: any,
+    location: any,
+    match: any,
+    staticContext?: any,
+}) {
 
 	const classes = useStyles(theme);
-  return <Foot classes={ classes } />;
+  return <Foot 
+      classes={classes} 
+      theme={useTheme}
+      history={props.history}
+      location={props.location}
+      match={props.match}
+      staticContext={props.staticContext} />;
 
 
 }

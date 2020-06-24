@@ -10,6 +10,7 @@ import { OneButton } from './../../components/Dialogs'
 import * as itemActions from './../../store/actions/item'
 import * as dialogActions from './../../store/actions/dialog'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -158,6 +159,15 @@ class Nuevo extends React.Component<{
     />
   }
 
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     let unidadesDeMedida: any[] = [
@@ -190,6 +200,7 @@ class Nuevo extends React.Component<{
           save={ this.save }
           unidadesDeMedida={unidadesDeMedida}
           drawer={ this.drawer() }
+          footer={ this.footer() }
         />
         <OneButton 
           title={ 'Nuevo Item' }

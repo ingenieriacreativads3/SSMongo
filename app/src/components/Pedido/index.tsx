@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 600,
+    height: 800,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -109,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
-    margin:theme.spacing(2),
+    //margin:theme.spacing(2),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
@@ -129,6 +129,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textTarea:{
     width:'250px',
+    margin:theme.spacing(2),
   }
 
 }));
@@ -182,6 +183,7 @@ export function NuevoPedido(props:{
   getCantidadItem: any,
   getComentario:any,
   save:any,
+  drawer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -189,6 +191,8 @@ export function NuevoPedido(props:{
   classes={classes} 
   getCantidadItem={props.getCantidadItem}
   getComentario={props.getComentario}
-  save={props.save}/>;
+  save={props.save}
+  drawer={props.drawer}/>;
+
 
 }

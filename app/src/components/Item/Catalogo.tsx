@@ -2,13 +2,12 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, InputBase, Grid, Card, Box, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Link} from "react-router-dom";
 import MenuLateral from '../Drawer'
-import SearchIcon from '@material-ui/icons/Search';
 
 import { AntSwitch } from './index'
 
@@ -69,11 +68,15 @@ class Catalogo extends React.Component <{
     this.props.getChecked(event.target.checked)
   };
 
+ 
+
   render(){
 
 		const classes = this.props.classes
     const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
  
+    
+
     return(
 
       <div className={classes.root}>
@@ -88,7 +91,7 @@ class Catalogo extends React.Component <{
               <Grid component="label" container alignItems="center" spacing={1}>
                 <Grid item>Tarjetas</Grid>
                 <Grid item>
-                  <AntSwitch checked={this.props.checked} onChange={this.handleChange} name="checked" />
+                  <AntSwitch checked={this.props.checked} onChange={this.handleChange} name="checked" className={classes.switch}  />
                 </Grid>
                 <Grid item>Tabla</Grid>
               </Grid>

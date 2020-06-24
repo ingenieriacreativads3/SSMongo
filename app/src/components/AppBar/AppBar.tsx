@@ -5,14 +5,13 @@ import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
-import { IconButton, Typography, Badge, Button } from '@material-ui/core';
+import { IconButton, Badge } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -198,9 +197,9 @@ class AppBare extends React.Component<{}, {
 							>
 								<AccountCircle />
 							</IconButton>
-							<Link href="/home/perfil" >
+							
 							<p className={classes.subtitle} >Mi Perfil</p>
-							</Link>
+					
 						</MenuItem>
 					</Menu>
 					<Menu
@@ -213,7 +212,7 @@ class AppBare extends React.Component<{}, {
 						onClose={handleMenuClose}
 					>
 						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/home/perfil"></Link>Mi perfil</MenuItem>
-						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/registrar"></Link>Cerrar Sesión</MenuItem>
+						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/"></Link>Cerrar Sesión</MenuItem>
 					</Menu>
 					
 				</Toolbar>

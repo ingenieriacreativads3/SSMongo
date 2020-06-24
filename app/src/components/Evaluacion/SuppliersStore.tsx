@@ -5,7 +5,6 @@ import SendIcon from '@material-ui/icons/Send';
 
 import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Avatar,  Button, CardContent, FormControlLabel, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import Link from '@material-ui/core/Link';
 import Rating from '@material-ui/lab/Rating';
 
 import purple from '@material-ui/core/colors/purple';
@@ -15,9 +14,8 @@ import Radio from '@material-ui/core/Radio';
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
-const primary = red[500]; // #F44336
-const accent = purple['A200']; // #E040FB
+import MenuLateral from '../DrawerInicio';
+
 
 function Copyright() {
   return (
@@ -91,7 +89,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        
+        <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>

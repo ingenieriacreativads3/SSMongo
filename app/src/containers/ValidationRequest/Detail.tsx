@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { ValidarNuevoUsuario as Validacion } from './../../components/SolicitudValidacion'
 import * as solicitudesActions from './../../store/actions/solicitudDeValidacion'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
@@ -40,6 +41,15 @@ class Detail extends React.Component<{
       rubros: rubros
     })
 
+  }
+
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
   }
 
   render(){
@@ -80,6 +90,8 @@ class Detail extends React.Component<{
       'Desarrollador de Software',
       'Etc'
     ]
+
+    
   
 
     return(
@@ -92,6 +104,7 @@ class Detail extends React.Component<{
           rubros={this.props.rubros}
           listaRubros={listaRubros}
           getRubros={this.getRubros}
+          footer={this.footer()}
         />
       </div>
     );

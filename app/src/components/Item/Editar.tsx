@@ -162,7 +162,7 @@ class Editar extends React.Component <{
                           <Grid container spacing={3}> 
                           
                             <Grid item lg={4}>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
+                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
                             </Grid>
                             <Grid item lg={4}>
                             <Button

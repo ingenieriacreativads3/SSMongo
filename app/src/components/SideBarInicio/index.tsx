@@ -5,7 +5,7 @@ import orange from '@material-ui/core/colors/orange';
 
 import SideBar from './Inicio'
 
-const drawerWidth = 200;
+//const drawerWidth = 200;
 
 const theme = createMuiTheme({
 	palette: {

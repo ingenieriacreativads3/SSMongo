@@ -5,7 +5,7 @@ import orange from '@material-ui/core/colors/orange';
 import Cookies from 'universal-cookie';
 import Home from './Home'
 
-const drawerWidth = 200;
+//const drawerWidth = 200;
 
 const theme = createMuiTheme({
 	palette: {
@@ -170,6 +170,7 @@ export function InitLayout(props: {
   staticContext?: any,
   cookies: Cookies
   drawer: any,
+  footer: any,
 
 }) {
 
@@ -186,6 +187,7 @@ export function InitLayout(props: {
       staticContext={props.staticContext}
       cookies={props.cookies}
       drawer={props.drawer}
+      footer={props.footer}
     />
   </div>;
 }
