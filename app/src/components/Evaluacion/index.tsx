@@ -152,22 +152,22 @@ const useStyles = makeStyles((theme) => ({
 })); 
 
 export  function EvaluarEmpresa(props: {
-	getNumeroValoracion: any,
+	 getNumeroValoracion: any,
 	getConceptoValoracion: any,
 	getOpinion: any,
 	drawer:any,
-	save: any,
+	save: any, 
 	
   }) {
 	const classes = useStyles();
 	
 	return <EvaluacionEmpresa 
 	classes={ classes } 
-    getNumeroValoracion={ props.getNumeroValoracion }
+     getNumeroValoracion={ props.getNumeroValoracion }
     getConceptoValoracion={ props.getConceptoValoracion }
     getOpinion={ props.getOpinion }
     save={ props.save }
-    drawer={props.drawer}/>;
+    drawer={props.drawer} />;
 }
 
 
@@ -175,3 +175,4 @@ export  function EvaluarPlataforma() {
 	const classes = useStyles();
 	return <EvaluacionSuppliersStore classes={ classes } />;
 }
+

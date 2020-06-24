@@ -8,6 +8,7 @@ import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHea
 import MaterialLink from '@material-ui/core/Link';
 import * as registerActions  from './../../store/actions/register'
 
+import * as ubicacionActions from './../../store/actions/ubicacion'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
@@ -29,10 +30,12 @@ function Copyright() {
 }
 
 function mapStateToProps(store: {
+  ubicacionReducer: any,
   registerReducer:{}
 }) {
   return {
-    empresa: store.registerReducer
+    empresa: store.registerReducer,
+    ubicacionReducer: store.ubicacionReducer
   };
 }
 
@@ -40,11 +43,13 @@ class DatosCuenta extends React.Component <{
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+ 
 
 
 }, {
-  
+  provincia: string,
+  municipio: string,
   empresa: {
   _id: string,
   nombre: string,
@@ -62,27 +67,99 @@ class DatosCuenta extends React.Component <{
  
   constructor(props: any) {
     super(props);
+    this.handleChangeProvincia = this.handleChangeProvincia.bind(this);
+    this.handleChangeMunicipio = this.handleChangeMunicipio.bind(this);
     this.state = {
+      provincia: '',
+      municipio: '',
       empresa: {
         _id: '',
         nombre: '',
         cuit: '',
         usuario: '',
         clave: '',
-        email:'',
+        email:''
+    
         
       }
     };
   }
 
+ 
+
   componentWillMount() {
+
     this.props.dispatch(registerActions.getEmpresa(this.props.match.params.id))
+
+    if(
+      !this.props.ubicacionReducer.fetched &&
+      !this.props.ubicacionReducer.fetching
+    ) {
+      this.props.dispatch(ubicacionActions.getProvincias())
+    }
+
   }
+
+  handleChangeProvincia(e: any) {
+    this.setState({
+      provincia: e.target.value
+    });
+
+    if(
+      this.props.ubicacionReducer.provincias !== undefined
+    ) {
+      this.props.ubicacionReducer.provincias.map((provincia: {
+        nombre: string,
+        id: string
+      }) => {
+        if(e.target.value == provincia.nombre) {
+          this.props.dispatch(ubicacionActions.getMunicipios(provincia.id))
+        }
+      })
+    }
+
+  }
+
+  handleChangeMunicipio(e: any) {
+    this.setState({
+      municipio: e.target.value
+    });
+  }
+
 
   render(){
 
 		const classes = this.props.classes
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+
+
+    let provincias: any[] = [
+      {
+        nombre: 'Seleccionar',
+        id: '1'
+      }
+    ]
+
+    let municipios: any[] = [
+      {
+        nombre: 'Seleccionar',
+        id: '1'
+      }
+    ]
+
+    if(
+      this.props.ubicacionReducer.fetched &&
+      this.props.ubicacionReducer.provincias !== undefined
+    ) {
+      provincias = this.props.ubicacionReducer.provincias
+    }
+
+    if(
+      this.props.ubicacionReducer.fetched &&
+      this.props.ubicacionReducer.municipios !== undefined
+    ) {
+      municipios = this.props.ubicacionReducer.municipios
+    }
 
     return(
 
@@ -325,19 +402,18 @@ class DatosCuenta extends React.Component <{
                                 labelId="demo-simple-select-outlined-label"
                                 id="demo-simple-select-outlined"
                                 className={classes.select}
-                                // value={age}
-                                // onChange={handleChange}
                                 label="Provincia"
-                                defaultValue={10}
-                                
+                                value={this.state.provincia} 
+                                onChange={this.handleChangeProvincia}
                               >
-                                
-                                <MenuItem value={10}>Cordoba</MenuItem>
-                                <MenuItem value={20}>Buenos Aires</MenuItem>
-                                <MenuItem value={30}>Santa Fe</MenuItem>
+                                {provincias.map((provincia: {
+                                  nombre: string,
+                                  id: string
+                                }) => {
+                                  return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
+                                })}
                               </Select>
                             </FormControl>
-                            
                             </Grid>
                             <Grid item lg={4}>
                             <FormControl variant="outlined"  className={classes.formControl}>
@@ -347,15 +423,17 @@ class DatosCuenta extends React.Component <{
                                 labelId="demo-simple-select-outlined-label"
                                 id="demo-simple-select-outlined"
                                 className={classes.select}
-                                // value={age}
-                                // onChange={handleChange}
                                 label="Ciudad"
-                                defaultValue={10}
+                                value={this.state.municipio} 
+                                onChange={this.handleChangeMunicipio}
+                                defaultValue={1}
                               >
-                                
-                                <MenuItem value={10}>Arroyito</MenuItem>
-                                <MenuItem value={20}>San Francisco</MenuItem>
-                                <MenuItem value={30}>Devoto</MenuItem>
+                                {municipios.map((municipio: {
+                                  nombre: string,
+                                  id: string
+                                }) => {
+                                  return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
+                                })}
                               </Select>
                             </FormControl>
                            

@@ -9,6 +9,7 @@ import Rating from '@material-ui/lab/Rating';
 import Radio from '@material-ui/core/Radio';
 import * as drawerActions from './../../store/actions/drawer'
 import AppBar from './../AppBar'
+import MenuLateral from '../DrawerInicio'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -89,7 +90,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        
+       
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -103,7 +104,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
                           E
                         </Avatar>
                       }
-                      title="¡Gracias por tu elegirnos! Tu opinión es importante para nosotros"
+                      title="¡Gracias por elegirnos! Tu opinión es importante para nosotros"
                         
                     />
 
@@ -202,7 +203,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
                           
                             </div>
                             </div>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
+                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
                             </Grid>
                         </Grid>
                       </form>

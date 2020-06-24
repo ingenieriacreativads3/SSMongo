@@ -122,7 +122,7 @@ class ValoracionEmpresa extends React.Component<{
           getConceptoValoracion={ this.getConceptoValoracion }
           getOpinion={ this.getOpinion }
           save={ this.save }
-          drawer={ this.drawer() }
+          drawer={ this.drawer() } 
         />
         <OneButton 
           title={ 'Evaluacion' }

@@ -18,14 +18,17 @@ import StarHalfIcon from '@material-ui/icons/StarHalf';
 import RoomIcon from '@material-ui/icons/Room';
 import Rating from '@material-ui/lab/Rating';
 
+import * as ubicacionActions from './../../store/actions/ubicacion'
 
 function mapStateToProps(store: {
+  ubicacionReducer: any,
   drawerReducer: {
     open: boolean
   }
 }) {
   return {
-    open: store.drawerReducer.open
+	open: store.drawerReducer.open,
+	ubicacionReducer: store.ubicacionReducer
   };
 }
 
@@ -33,7 +36,9 @@ class DrawerInicio extends React.Component<{}, {
 	anchorEl: null | HTMLElement,
 	mobileMoreAnchorEl: null | HTMLElement
 	valueFilter: number | null,
-  	hoverFilter: any,
+	hoverFilter: any,
+	provincia: string,
+  	municipio: string
 }> {
 
 	props: any
@@ -42,13 +47,57 @@ class DrawerInicio extends React.Component<{}, {
 
 	constructor(props: any) {
 		super(props);
+		this.handleChangeProvincia = this.handleChangeProvincia.bind(this);
+		this.handleChangeMunicipio = this.handleChangeMunicipio.bind(this);
 		this.state = {
 			anchorEl: null,
 			mobileMoreAnchorEl: null,
 			valueFilter: 2,
 			hoverFilter: -1,
+			provincia: '',
+			municipio: ''
 		};
 	}
+
+
+	componentWillMount() {
+
+		if(
+		  !this.props.ubicacionReducer.fetched &&
+		  !this.props.ubicacionReducer.fetching
+		) {
+		  this.props.dispatch(ubicacionActions.getProvincias())
+		}
+	
+	  }
+
+	handleChangeProvincia(e: any) {
+		this.setState({
+		  provincia: e.target.value
+		});
+	
+		if(
+		  this.props.ubicacionReducer.provincias !== undefined
+		) {
+		  this.props.ubicacionReducer.provincias.map((provincia: {
+			nombre: string,
+			id: string
+		  }) => {
+			if(e.target.value == provincia.nombre) {
+			  this.props.dispatch(ubicacionActions.getMunicipios(provincia.id))
+			}
+		  })
+		}
+	
+	  }
+
+
+	  handleChangeMunicipio(e: any) {
+		this.setState({
+		  municipio: e.target.value
+		});
+	  }
+
 
 	render(){
 
@@ -65,6 +114,34 @@ class DrawerInicio extends React.Component<{}, {
 			4: 'Muy Bueno',
 			5: 'Excelente',
 		  };
+
+		  let provincias: any[] = [
+			{
+			  nombre: 'Seleccionar',
+			  id: '1'
+			}
+		  ]
+	  
+		  let municipios: any[] = [
+			{
+			  nombre: 'Seleccionar',
+			  id: '1'
+			}
+		  ]
+
+		  if(
+			this.props.ubicacionReducer.fetched &&
+			this.props.ubicacionReducer.provincias !== undefined
+		  ) {
+			provincias = this.props.ubicacionReducer.provincias
+		  }
+	  
+		  if(
+			this.props.ubicacionReducer.fetched &&
+			this.props.ubicacionReducer.municipios !== undefined
+		  ) {
+			municipios = this.props.ubicacionReducer.municipios
+		  }
 
 		return(
 			
@@ -114,42 +191,45 @@ class DrawerInicio extends React.Component<{}, {
 						<ListItemText primary="Ubicacion" />
                 	</ListItem>
 					<ListItem >
-						<FormControl variant="outlined" className={classes.formControl}>
-							<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
-								<Select
-									labelId="demo-simple-select-outlined-label"
-									id="demo-simple-select-outlined"
-									className={classes.select}
-									// value={age}
-									// onChange={handleChange}
-									label="Provincia"
-									defaultValue={10}
-									
-								>
-									
-									<MenuItem value={10}>Cordoba</MenuItem>
-									<MenuItem value={20}>Buenos Aires</MenuItem>
-									<MenuItem value={30}>Santa Fe</MenuItem>
-								</Select>
-						</FormControl>
+					<FormControl variant="outlined" className={classes.formControl}>
+						<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
+							<Select
+							labelId="demo-simple-select-outlined-label"
+							id="demo-simple-select-outlined"
+							className={classes.select}
+							label="Provincia"
+							value={this.state.provincia} 
+							onChange={this.handleChangeProvincia}
+							>
+							{provincias.map((provincia: {
+								nombre: string,
+								id: string
+							}) => {
+								return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
+							})}
+							</Select>
+					</FormControl>
                     </ListItem>
 					<ListItem >
-						<FormControl variant="outlined"  className={classes.formControl}>
-							<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
-								<Select
-									labelId="demo-simple-select-outlined-label"
-									id="demo-simple-select-outlined"
-									className={classes.select}
-									// value={age}
-									// onChange={handleChange}
-									label="Ciudad"
-									defaultValue={10}
-								>
-									
-									<MenuItem value={10}>Arroyito</MenuItem>
-									<MenuItem value={20}>San Francisco</MenuItem>
-									<MenuItem value={30}>Devoto</MenuItem>
-								</Select>
+					<FormControl variant="outlined"  className={classes.formControl}>
+                          
+						  <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
+						  <Select
+							labelId="demo-simple-select-outlined-label"
+							id="demo-simple-select-outlined"
+							className={classes.select}
+							label="Ciudad"
+							value={this.state.municipio} 
+							onChange={this.handleChangeMunicipio}
+							defaultValue={1}
+						  >
+							{municipios.map((municipio: {
+							  nombre: string,
+							  id: string
+							}) => {
+							  return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
+							})}
+						  </Select>
 						</FormControl>
                  	</ListItem>
 

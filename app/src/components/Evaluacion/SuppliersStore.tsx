@@ -179,7 +179,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                         { this.state.valueTime !== null && <Box ml={2}>{labels[this.state.hoverTime!== -1 ? this.state.hoverTime : this.state.valueTime]}</Box>}
                             
                             <Typography variant="subtitle1" gutterBottom>
-                            ¿Volvería a usar Suppliers Store?
+                            ¿Recomendaria Suppliers Store?
                        </Typography>
                        <RadioGroup row aria-label="position" name="position" defaultValue="top"  >
                           <FormControlLabel
@@ -200,7 +200,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                           
                             </div>
                             </div>
-                            <TextareaAutosize aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
+                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
                             </Grid>
                         </Grid>
                       </form>
