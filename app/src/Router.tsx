@@ -5,18 +5,20 @@ import Cookies from 'universal-cookie';
 import AppBar from './components/AppBar'
 import { ItemNuevo } from './containers/Item'
 import { EditarItem } from './components/Item'
+import { ItemEditar } from './containers/Item'
 import { NuevaUnidadMedida } from './components/UnidadMedida'
 import { ValidarSolicitud } from './components/UnidadMedida'
 import { SolicitudesUnidadMedida } from './components/UnidadMedida'
 import { Catalogo } from './containers/Item'
- import { VerDetalleItem } from './components/Item'
-//import { ItemDetalle } from './containers/Item'
-import { NuevoPedido } from './components/Pedido'
-import { NuevoPresupuesto } from './components/Presupuesto'
-import { EvaluarEmpresa } from './components/Evaluacion'
-import { EvaluarPlataforma } from './components/Evaluacion'
+import { VerDetalleItem } from './components/Item'
+import { ItemDetalle } from './containers/Item'
+// import { NuevoPedido } from './components/Pedido'
+import { PedidoNuevo } from './containers/Compras/Pedido'
+// import { NuevoPresupuesto } from './components/Presupuesto'
+import { PresupuestoNuevo } from './containers/Compras - Presupuesto'
 import { SolicitudDeValidacion } from './containers/ValidationRequest'
-import { PerfilPropio } from './components/Perfil'
+// import { PerfilPropio } from './components/Perfil'
+import { MiPerfil } from './containers/Perfil'
 import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
 import { Inicio } from './containers/Home'
@@ -32,6 +34,8 @@ import { Renegociar } from './components/Presupuesto'
 import { VerEstadisticaActividad } from './components/Estadisticas'
 import { VerReputacion } from './components/Estadisticas'
 import Item from './entities/Item';
+import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion'
+
 
 class App extends React.Component {
 
@@ -50,41 +54,33 @@ class App extends React.Component {
 						<Route path='/home/inicio'                    render={(props) => <Inicio {...props} cookies={cookies} />} />						
 						<Route path='/home/side'                      component={ AppBar } />
 						<Route path='/item/nuevo'                     render={(props) => <ItemNuevo {...props} cookies={cookies} />} /> 
-						<Route path='/item/editar'                    component={ EditarItem } />
+						<Route path='/item/editar'                    render={(props) => <ItemEditar {...props} cookies={cookies} />} />
 						<Route path='/compras/pedidos/lista'          render={(props) => <PurchaseRequests {...props} cookies={cookies} />} />
 						<Route path='/ventas/pedidos/lista'           render={(props) => <SaleRequests {...props} />} /> 
 						<Route path='/unidadMedida/nuevo'             component={ NuevaUnidadMedida } />
 						<Route path='/solicitud/unidadMedida/:id'     component={ ValidarSolicitud } />
 						<Route path='/solicitud/unidadMedida'         component={ SolicitudesUnidadMedida } />
 						<Route path='/home/catalogo'                  render={(props) => <Catalogo { ...props } cookies={cookies} />} /> 
-						<Route path='/registrar' 											component={ Register } />
-						{/* <Route path='/asd' 												    component={ asd } /> */}
-						<Route path='/item/detalle/:id'               component={ VerDetalleItem } />
-						{/* <Route path='/item/detallle/:id'     render={(props) => <ItemDetalle {...props} />} /> */}
-						<Route path='/pedido/nuevo'                   component={ NuevoPedido } />
-						<Route path='/presupuesto/nuevo'              component={ NuevoPresupuesto } />
+						<Route path='/registrar' 					  component={ Register } />
+					    <Route path='/item/detalle/:id'     		  render={(props) => <ItemDetalle {...props} />} /> 
+						<Route path='/pedido/nuevo'                    render={(props) => <PedidoNuevo { ...props } cookies={cookies} />} />
+						<Route path='/presupuesto/nuevo'              render={(props) => <PresupuestoNuevo { ...props } cookies={cookies} />} />
 						<Route path='/compras/presupuestos/lista'     render={(props) => <PurchasePresupuestos {...props} />} /> 
 						<Route path='/ventas/presupuestos/lista'      render={(props) => <SalePresupuestos {...props} />} /> 
-						<Route path='/evaluacion/empresa'             component={ EvaluarEmpresa } />
-						<Route path='/evaluacion/suppliersStore'      component={ EvaluarPlataforma } />
-						{/* <Route path='/solicitud/validacion'           component={ ValidationRequest } /> */}
+						<Route path='/evaluacion/empresa'             render={(props) => <EvaluacionEmpresa {...props} cookies={cookies} />} /> 
+						<Route path='/evaluacion/suppliersStore'      render={(props) => <EvaluacionPlataforma {...props} cookies={cookies} />} /> 
 						<Route path='/solicitud/validacion'           render={(props) => <SolicitudesValidacion {...props}/>} />
 						<Route path='/renegociacion/:id'              component={ Renegociar } />
-
-						{/* <Route path='/solicitud/nuevoUsuario/:id'   component={ ValidarNuevoUsuario } /> */}
 						<Route path='/solicitud/nuevoUsuario/:id'     render={(props) => <SolicitudDeValidacion {...props}/>}/>
-						<Route path='/home/perfil'                    component={ PerfilPropio } />
+						<Route path='/home/perfil'                    render={(props) => <MiPerfil {...props} cookies={cookies} />} />
 						<Route path='/footer'                         component={ Footer } />
 						<Route path='/presupuestacion/:id'            component={ Presupuestar } />
-
-						{/* <Route path='/pedido/:id' render={(props) => <VerDetallePedido {...props}/>}/> */}
 						<Route path='/compras/pedido/:id'             render={(props) => <DetailPurchaseRequest {...props}/>}/>
-						<Route path='/compras/presupuesto/:id'          render={(props) => <DetailPurchasePresupuesto {...props}/>}/>
-						<Route path='/ventas/pedido/:id'               render={(props) => <DetailSaleRequest {...props}/>}/>
-						<Route path='/ventas/presupuesto/:id'          render={(props) => <DetailSalePresupuesto {...props}/>}/>
+						<Route path='/compras/presupuesto/:id'        render={(props) => <DetailPurchasePresupuesto {...props}/>}/>
+						<Route path='/ventas/pedido/:id'              render={(props) => <DetailSaleRequest {...props}/>}/>
+						<Route path='/ventas/presupuesto/:id'         render={(props) => <DetailSalePresupuesto {...props}/>}/>
 						<Route path='/home/resumen'                   component={ VerEstadisticaActividad } />
 						<Route path='/home/reputacion'                component={ VerReputacion } />
-						
 						<Route path='/'                               render={(props) => <Login { ...props } cookies={cookies} />} /> 
 					
 					</Switch>

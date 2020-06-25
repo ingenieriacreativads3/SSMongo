@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import * as registerActions from '../../store/actions/register'
 import { PerfilPropio as Perfil} from './../../components/Perfil'
 import Link from '@material-ui/core/Link';
+import { Footer } from './../Footer'
+import { Drawer } from './../Drawer'
+
 
 function mapStateToProps(store: {
   
@@ -33,6 +36,23 @@ class DatosPerfil extends React.Component<{
     this.state = {};
 }
 
+footer() {
+  return <Footer 
+    history={this.props.history}
+    location={this.props.location}
+    match={this.props.match}
+    staticContext={this.props.staticContext}
+  />
+}
+
+drawer() {
+  return <Drawer 
+    history={this.props.history}
+    location={this.props.location}
+    match={this.props.match}
+    staticContext={this.props.staticContext}
+  />
+}
 
   render(){
 
@@ -50,6 +70,8 @@ class DatosPerfil extends React.Component<{
           location={this.props.location}
           match={this.props.match}
           staticContext={this.props.staticContext}
+          footer={this.footer()}
+          drawer={this.drawer()}
          
          />
       </div>

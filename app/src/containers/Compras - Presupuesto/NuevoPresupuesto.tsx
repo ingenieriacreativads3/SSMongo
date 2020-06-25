@@ -10,12 +10,15 @@ import * as dialogActions from './../../store/actions/dialog'
 import * as presupuestoActions from './../../store/actions/presupuesto'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import { InicioDrawer } from './../DrawerInicio'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
+  itemReducer:any,
   presupuestoReducer: any,
 
 }) {
   return {
+    itemReducer: store.itemReducer,
     presupuestoReducer: store.presupuestoReducer,
    
   };
@@ -103,6 +106,15 @@ class NuevoPresupuesto extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
+
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
   
 
   render(){
@@ -114,6 +126,7 @@ class NuevoPresupuesto extends React.Component<{
           getComentario={ this.getComentario }
            save={ this.save }
            drawer={this.drawer()}
+           footer={this.footer()}
         />
         <OneButton 
           title={ 'Nuevo Presupuesto' }

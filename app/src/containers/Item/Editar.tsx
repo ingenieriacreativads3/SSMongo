@@ -5,6 +5,7 @@ import { EditarItem as ItemEditar} from './../../components/Item'
 import * as itemActions from './../../store/actions/item'
 import Link from '@material-ui/core/Link';
 import { Drawer } from './../Drawer'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   itemReducer : any
@@ -44,16 +45,26 @@ drawer() {
   />
 }
 
+footer() {
+  return <Footer 
+    history={this.props.history}
+    location={this.props.location}
+    match={this.props.match}
+    staticContext={this.props.staticContext}
+  />
+}
+
+
   render(){
 
-    if(
+    /* if(
       !this.props.itemReducer.fetched &&
       !this.props.itemReducer.fetching
-    ) {
+    ) */ /* {
     
     this.props.dispatch(itemActions.getItem(this.props.match.params.id))
     }
-
+ */
   
 		let	nombre: string = 'nombre'
 		let	precio: string = 'precio'
@@ -88,6 +99,7 @@ drawer() {
           match={this.props.match}
           staticContext={this.props.staticContext}
           drawer={ this.drawer() }
+          footer={ this.footer() }
           // title={'Editar Item'}
           // nombre={ nombre }
           // precio={ precio }

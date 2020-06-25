@@ -41,6 +41,33 @@ export default function evaluacionReducer ( state = {
 
     }
 
+        case 'SET_EVALUACION_PLATAFORMA_PENDING': {
+            return { 
+                ...state, 
+                fetching: true 
+            };
+        }
+        
+        case 'SET_EVALUACION_PLATAFORMA_REJECTED': {
+            return { 
+                ...state, 
+                fetching: false, 
+                error: action.payload 
+            };
+        }
+        
+        case 'SET_EVALUACION_PLATAFORMA_FULFILLED': {
+            return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+        };
+
+    }
+
     case 'REINTENTAR':{
         return {
           ...state,

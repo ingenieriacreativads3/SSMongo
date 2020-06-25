@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 import { InicioDrawer } from './../DrawerInicio'
 import Link from '@material-ui/core/Link';
 
-import { EvaluarEmpresa as EvaluacionEmpresa} from './../../components/Evaluacion'
+import { EvaluarPlataforma as EvaluacionPlataforma} from './../../components/Evaluacion'
 import { OneButton } from './../../components/Dialogs'
 
 import * as evaluacionActions from './../../store/actions/evaluacion'
@@ -13,24 +13,23 @@ import DrawerInicio from '../../components/DrawerInicio';
 import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
-  itemReducer: any,
   evaluacionReducer: any,
+  itemReducer: any,
 }) {
   return {
-    itemReducer: store.itemReducer,
     evaluacionReducer: store.evaluacionReducer,
-   
+    itemReducer: store.itemReducer,
   };
 }
 
-class ValoracionEmpresa extends React.Component<{
+class ValoracionPlataforma extends React.Component<{
   history: any,
   location: any,
   match: any,
   staticContext?: any,
   cookies: Cookies
 }, {
-  empresaCriticadaId: string,
+  
   numeroValoracion: number,
   conceptoValoracion: string,
   opinion : string,
@@ -50,7 +49,7 @@ class ValoracionEmpresa extends React.Component<{
     this.save = this.save.bind(this);
     this.aceptar = this.aceptar.bind(this);
     this.state = {
-      empresaCriticadaId: '',
+    
       numeroValoracion: 0,
       conceptoValoracion: '',
       opinion: '',
@@ -83,9 +82,8 @@ class ValoracionEmpresa extends React.Component<{
 
   save() {
 
-    this.props.dispatch(evaluacionActions.setEvaluacionEmpresa(
+    this.props.dispatch(evaluacionActions.setEvaluacionPlataforma(
       this.props.cookies.get('empresaId'),
-      this.state.empresaCriticadaId,
       this.state.numeroValoracion,
       this.state.conceptoValoracion,
       this.state.opinion,
@@ -114,13 +112,12 @@ class ValoracionEmpresa extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
- 
 
   render(){
 
     return(
       <div>
-        <EvaluacionEmpresa 
+        <EvaluacionPlataforma 
           getNumeroValoracion={ this.getNumeroValoracion }
           getConceptoValoracion={ this.getConceptoValoracion }
           getOpinion={ this.getOpinion }
@@ -139,4 +136,4 @@ class ValoracionEmpresa extends React.Component<{
   }
 }
 
-export default connect(mapStateToProps)(ValoracionEmpresa)
+export default connect(mapStateToProps)(ValoracionPlataforma)

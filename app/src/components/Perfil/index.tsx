@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(2),
-    minWidth: 200,
+    minWidth: 225,
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused fieldset': {
         borderColor: '#d93211',
@@ -201,7 +201,9 @@ export  function PerfilPropio(props: {
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  footer:any,
+  drawer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -212,7 +214,10 @@ export  function PerfilPropio(props: {
     history={props.history}
     location={props.location}
     match={props.match}
-    staticContext={props.staticContext} />
+    staticContext={props.staticContext}
+    footer={props.footer}
+    drawer={props.drawer}
+     />
   </div>;
 
 }

@@ -137,6 +137,7 @@ const useStyles = makeStyles((theme) => ({
 		display:'flex'
 	  },
 	  radioButton:{
+		  color:"#d93211",
 		'&$checked': {
 			color:"#d93211",
 		},
@@ -155,7 +156,7 @@ export  function EvaluarEmpresa(props: {
 	 getNumeroValoracion: any,
 	getConceptoValoracion: any,
 	getOpinion: any,
-	drawer:any,
+	footer:any,
 	save: any, 
 	
   }) {
@@ -167,12 +168,25 @@ export  function EvaluarEmpresa(props: {
     getConceptoValoracion={ props.getConceptoValoracion }
     getOpinion={ props.getOpinion }
     save={ props.save }
-    drawer={props.drawer} />;
+    footer={props.footer} />;
 }
 
 
-export  function EvaluarPlataforma() {
+export  function EvaluarPlataforma(props: {
+	getNumeroValoracion: any,
+   getConceptoValoracion: any,
+   getOpinion: any,
+   footer:any,
+   save: any, 
+   
+ }) {
 	const classes = useStyles();
-	return <EvaluacionSuppliersStore classes={ classes } />;
+	return <EvaluacionSuppliersStore 
+	classes={ classes } 
+	getNumeroValoracion={ props.getNumeroValoracion }
+    getConceptoValoracion={ props.getConceptoValoracion }
+    getOpinion={ props.getOpinion }
+    save={ props.save }
+    footer={props.footer} />;
 }
 

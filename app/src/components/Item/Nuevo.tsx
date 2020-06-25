@@ -156,7 +156,7 @@ class Nuevo extends React.Component <{
                             </FormControl>
                           </Grid>
                           <Grid item lg={6}>
-                          <Link href="/unidadMedida/nuevo"  >
+                          <Link href="/unidadMedida/nuevo" style={{textDecoration: 'none'}} >
                             <Button variant="contained" className={classes.Boton}>
                               Nueva Unidad
                             </Button>

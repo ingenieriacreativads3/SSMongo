@@ -101,6 +101,7 @@ class Catalog extends React.Component<{
         items={items}
         getChecked={this.getChecked}
         checked={this.state.checked}
+        footer={this.footer()}
       />  
     }
 

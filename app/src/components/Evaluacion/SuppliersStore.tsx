@@ -15,7 +15,7 @@ import Radio from '@material-ui/core/Radio';
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 import MenuLateral from '../DrawerInicio';
-
+import * as drawerActions from './../../store/actions/drawer'
 
 function Copyright() {
   return (
@@ -70,6 +70,11 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
       hoverUpdate: -1,
 		};
 	}
+
+  componentWillMount() {
+    this.props.dispatch(drawerActions.invisibleDrawer())
+  }
+
 
   render(){
 
@@ -233,10 +238,12 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 
 
 							</Grid>
-							<Box pt={4}>
+							{/* <Box pt={4}>
 								<Copyright />
-							</Box>
+							</Box> */}
+              
 						</Container>
+            {this.props.footer}
 					</main>
 
          

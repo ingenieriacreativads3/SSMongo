@@ -46,3 +46,30 @@ export function setEvaluacionEmpresa(
 	}
 
 }
+
+export function setEvaluacionPlataforma(
+	empresaCriticaId: string,	
+	numeroValoracion:number,
+	conceptoValoracion:string,
+	opinion:string,
+	
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/falta el endpoint',{
+    
+    empresaCriticaId: empresaCriticaId,
+    numeroValoracion: numeroValoracion,
+    conceptoValoracion: conceptoValoracion,
+    opinion: opinion,
+	})
+
+	console.log(payload)
+	
+  return {
+		type: 'SET_EVALUACION_PLATAFORMA',
+		payload: payload
+	}
+
+}

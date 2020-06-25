@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { VerDetalleItem as ItemDetalle} from './../../components/Item'
 import * as itemActions from './../../store/actions/item'
 import { InicioDrawer } from './../DrawerInicio'
+import { Footer } from './../Footer'
+
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -41,22 +43,32 @@ class Detalle extends React.Component<{
     />
   }
   
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+  
 
   render(){
 
 
-    if(
-      !this.props.itemReducer.fetched &&
-      !this.props.itemReducer.fetching
-    ) {
+    // if(
+    //   !this.props.itemReducer.fetched &&
+    //   !this.props.itemReducer.fetching
+    // ) {
     
-    this.props.dispatch(itemActions.getItem(this.props.match.params.id))
-    }
+    // this.props.dispatch(itemActions.getItem(this.props.match.params.id))
+    // }
 
     return(
       <div>
         <ItemDetalle
            drawer={ this.drawer() }
+           footer={this.footer()}
           // history={this.props.history}
           // location={this.props.location}
           // match={this.props.match}

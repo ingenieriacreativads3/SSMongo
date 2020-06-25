@@ -279,6 +279,7 @@ export  function VerDetalleItem(props: {
   // match: any,
   // staticContext?: any
   drawer:any,
+  footer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -287,7 +288,9 @@ export  function VerDetalleItem(props: {
     <DetalleItem 
     classes={classes}
     theme={useTheme}
-    drawer={props.drawer} />;
+    drawer={props.drawer}
+    footer={props.footer} />;
+    
     {/* history={props.history}
     location={props.location}
     match={props.match}
@@ -303,6 +306,7 @@ export  function EditarItem(props: {
   match: any,
   staticContext?: any
   drawer:any,
+  footer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -314,6 +318,7 @@ export  function EditarItem(props: {
     match={props.match}
     staticContext={props.staticContext}
     drawer={props.drawer}
+    footer={props.footer}
   />;
 
 }
@@ -322,6 +327,7 @@ export  function MostrarCatalogo(props: {
   items: any[],
   getChecked: any,
   checked: boolean,
+  footer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -332,6 +338,7 @@ export  function MostrarCatalogo(props: {
       items={props.items}
       getChecked={props.getChecked}
       checked={props.checked}
+      footer={props.footer}
     />
   </div>;
 

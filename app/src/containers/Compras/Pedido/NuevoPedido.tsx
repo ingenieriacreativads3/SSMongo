@@ -10,13 +10,15 @@ import * as dialogActions from './../../../store/actions/dialog'
 import * as pedidoActions from './../../../store/actions/request'
 import * as unidadDeMedidaActions from './../../../store/actions/unidadDeMedida'
 import { InicioDrawer } from './../../DrawerInicio'
-
+import { Footer } from './../../Footer'
 
 function mapStateToProps(store: {
+  itemReducer:any,
   requestReducer: any,
 
 }) {
   return {
+    itemReducer: store.itemReducer,
     requestReducer: store.requestReducer,
  
   };
@@ -106,6 +108,15 @@ class NuevoPedido extends React.Component<{
     />
   }
 
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     return(
@@ -115,6 +126,7 @@ class NuevoPedido extends React.Component<{
           getComentario={ this.getComentario }
            save={ this.save }
            drawer={ this.drawer() }
+           footer={this.footer()}
            
         />
         <OneButton 

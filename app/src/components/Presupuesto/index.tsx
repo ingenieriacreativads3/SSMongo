@@ -147,6 +147,7 @@ export function NuevoPresupuesto(props:{
   getComentario:any,
   save:any,
   drawer:any,
+  footer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -155,7 +156,8 @@ export function NuevoPresupuesto(props:{
   getCantidadItem={props.getCantidadItem}
   getComentario={props.getComentario}
   save={props.save} 
-  drawer={props.drawer}/>;
+  drawer={props.drawer}
+  footer={props.footer}/>;
 
 }
 

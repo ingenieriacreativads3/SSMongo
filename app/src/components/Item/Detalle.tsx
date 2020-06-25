@@ -128,7 +128,7 @@ class Detalle extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        <DrawerInicio></DrawerInicio>
+        {this.props.drawer}
         <main className={classes.content}>
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
@@ -208,7 +208,7 @@ class Detalle extends React.Component <{
                             
 
                                   <div>
-                                    <Link href="/pedido/nuevo" >
+                                    <Link href="/pedido/nuevo" style={{textDecoration: 'none'}} >
                                       <Button
                                       type="button"
                                       
@@ -219,7 +219,7 @@ class Detalle extends React.Component <{
                                       Solicitar pedido
                                       </Button>
                                     </Link>
-                                  <Link href="/presupuesto/nuevo" >
+                                  <Link href="/presupuesto/nuevo" style={{textDecoration: 'none'}} >
                                     <Button
                                     type="button"
                                     
@@ -248,10 +248,11 @@ class Detalle extends React.Component <{
 
 
             </Grid>
-            <Box pt={4}>
+            {/* <Box pt={4}>
               <Copyright />
-            </Box>
+            </Box> */}
           </Container>
+        {this.props.footer}
         </main>
 
          
