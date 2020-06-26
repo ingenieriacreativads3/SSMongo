@@ -181,6 +181,7 @@ export function Presupuestar(props:{
   getImporte:any,
   save:any,
   drawer:any,
+  footer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -190,7 +191,9 @@ export function Presupuestar(props:{
   //getComentario={props.getComentario}
   getImporte={props.getImporte}
   save={props.save}
-  drawer={props.drawer}/>;
+  drawer={props.drawer}
+  footer={props.footer}
+  />;
 
 }
 
@@ -200,6 +203,7 @@ export function Renegociar(props:{
   getPrecioSugerido:any,
   save:any,
   drawer:any,
+  footer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -209,7 +213,8 @@ export function Renegociar(props:{
   getComentario={props.getComentario}
   getPrecioSugerido={props.getPrecioSugerido}
   save={props.save}
-  drawer={props.drawer}/>;
+  drawer={props.drawer}
+  footer={props.footer}/>;
 
 }
 

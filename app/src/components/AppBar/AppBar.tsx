@@ -84,6 +84,8 @@ class AppBare extends React.Component<{}, {
 			this.props.dispatch(drawerAction.open())
 		};
 
+		
+
 		const menuId = 'primary-search-account-menu';
 	
 		const mobileMenuId = 'primary-search-account-menu-mobile';

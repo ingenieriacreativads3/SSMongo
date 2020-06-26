@@ -12,15 +12,14 @@ import { SolicitudesUnidadMedida } from './components/UnidadMedida'
 import { Catalogo } from './containers/Item'
 import { VerDetalleItem } from './components/Item'
 import { ItemDetalle } from './containers/Item'
-// import { NuevoPedido } from './components/Pedido'
 import { PedidoNuevo } from './containers/Compras/Pedido'
-// import { NuevoPresupuesto } from './components/Presupuesto'
 import { PresupuestoNuevo } from './containers/Compras - Presupuesto'
 import { SolicitudDeValidacion } from './containers/ValidationRequest'
-// import { PerfilPropio } from './components/Perfil'
 import { MiPerfil } from './containers/Perfil'
 import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
+import { Presupuestacion } from './containers/Ventas - Presupuesto'
+import { Renegociacion } from './containers/Ventas - Presupuesto'
 import { Inicio } from './containers/Home'
 import { VerDetallePresupuesto } from './components/Presupuesto'
 import { Login } from './containers/Login'
@@ -70,11 +69,10 @@ class App extends React.Component {
 						<Route path='/evaluacion/empresa'             render={(props) => <EvaluacionEmpresa {...props} cookies={cookies} />} /> 
 						<Route path='/evaluacion/suppliersStore'      render={(props) => <EvaluacionPlataforma {...props} cookies={cookies} />} /> 
 						<Route path='/solicitud/validacion'           render={(props) => <SolicitudesValidacion {...props}/>} />
-						<Route path='/renegociacion/:id'              component={ Renegociar } />
+						<Route path='/renegociacion/:id'              render={(props) => <Renegociacion {...props} />} /> 
 						<Route path='/solicitud/nuevoUsuario/:id'     render={(props) => <SolicitudDeValidacion {...props}/>}/>
 						<Route path='/home/perfil'                    render={(props) => <MiPerfil {...props} cookies={cookies} />} />
-						<Route path='/footer'                         component={ Footer } />
-						<Route path='/presupuestacion/:id'            component={ Presupuestar } />
+						<Route path='/presupuestacion/:id'            render={(props) => <Presupuestacion {...props}/>}/>
 						<Route path='/compras/pedido/:id'             render={(props) => <DetailPurchaseRequest {...props}/>}/>
 						<Route path='/compras/presupuesto/:id'        render={(props) => <DetailPurchasePresupuesto {...props}/>}/>
 						<Route path='/ventas/pedido/:id'              render={(props) => <DetailSaleRequest {...props}/>}/>

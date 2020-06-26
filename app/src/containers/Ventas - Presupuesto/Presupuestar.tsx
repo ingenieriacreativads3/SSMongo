@@ -9,12 +9,15 @@ import * as dialogActions from './../../store/actions/dialog'
 
 import * as presupuestoActions from './../../store/actions/presupuesto'
 import { Drawer } from './../Drawer'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
+  itemReducer:any,
   presupuestoReducer: any,
 
 }) {
   return {
+    itemReducer:store.itemReducer,
     presupuestoReducer: store.presupuestoReducer,
    
   };
@@ -25,7 +28,7 @@ class Presupuestacion extends React.Component<{
   location: any,
   match: any,
   staticContext?: any,
-  cookies: Cookies
+ 
 }, {
     idPresupuesto: string,
     idItem: string,
@@ -108,6 +111,15 @@ class Presupuestacion extends React.Component<{
     />
   }
 
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     return(
@@ -118,6 +130,7 @@ class Presupuestacion extends React.Component<{
           getImporte = {this.getImporte}
            save={ this.save }
            drawer={this.drawer()}
+           footer={this.footer()}
         />
         <OneButton 
           title={ 'Presupuestacion' }

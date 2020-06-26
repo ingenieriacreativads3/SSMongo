@@ -97,7 +97,7 @@ class Presupuestar extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        <MenuLateral></MenuLateral>
+          {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -218,10 +218,11 @@ class Presupuestar extends React.Component <{
 
 
 							</Grid>
-							<Box pt={4}>
+							{/* <Box pt={4}>
 								<Copyright />
-							</Box>
+							</Box> */}
 						</Container>
+            {this.props.footer}
 					</main>
 
          
