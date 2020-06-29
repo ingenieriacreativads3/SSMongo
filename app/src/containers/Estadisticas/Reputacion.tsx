@@ -1,0 +1,72 @@
+import React from 'react';
+import { connect } from 'react-redux'
+import Cookies from 'universal-cookie';
+
+import { VerReputacion as Reputacion } from './../../components/Estadisticas'
+import { Drawer } from './../Drawer'
+import { Footer } from './../Footer'
+
+function mapStateToProps(store: {
+  login: any
+}) {
+  return {
+    login: store.login
+  };
+}
+
+class OpinionUsuarios extends React.Component<{
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any,
+  cookies: Cookies
+}, {}> {
+
+	props: any
+	static propTypes: any
+	static defaultProps: any
+
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props: any) {
+		super(props);
+    this.state = {};
+  }
+  
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+
+  render(){
+
+    // console.log(localStorage.getItem('empresaId'))
+
+    return(
+      <div>
+        <Reputacion
+        history={this.props.history}
+        location={this.props.location}
+        match={this.props.match}
+        staticContext={this.props.staticContext}
+        drawer={ this.drawer() }
+        footer={ this.footer() } />
+      </div>
+    );
+  }
+}
+
+export default connect(mapStateToProps)(OpinionUsuarios)

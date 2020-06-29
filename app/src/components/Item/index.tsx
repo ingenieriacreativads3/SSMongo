@@ -307,6 +307,7 @@ export  function EditarItem(props: {
   staticContext?: any
   drawer:any,
   footer:any,
+  title: string,
 }) {
 
 	const classes = useStyles(theme);
@@ -319,6 +320,7 @@ export  function EditarItem(props: {
     staticContext={props.staticContext}
     drawer={props.drawer}
     footer={props.footer}
+    title={props.title}
   />;
 
 }

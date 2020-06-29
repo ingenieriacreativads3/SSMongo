@@ -106,14 +106,42 @@ const useStyles = makeStyles((theme) => ({
 	  
 })); 
 
-export  function VerEstadisticaActividad() {
+export  function VerEstadisticaActividad(props: {
+	history: any,
+	location: any,
+	match: any,
+	staticContext?: any
+	drawer:any,
+	footer:any,
+  }) {
 	const classes = useStyles();
-	return <EstadisticaActividad classes={ classes } />;
+	return <EstadisticaActividad 
+	classes={ classes }
+	history={props.history}
+    location={props.location}
+    match={props.match}
+    staticContext={props.staticContext}
+    drawer={props.drawer}
+    footer={props.footer} />;
 }
 
-export  function VerReputacion() {
+export  function VerReputacion(props: {
+	history: any,
+	location: any,
+	match: any,
+	staticContext?: any
+	drawer:any,
+	footer:any,
+  }) {
 	const classes = useStyles();
-	return <Reputacion classes={ classes } />;
+	return <Reputacion 
+	classes={ classes }
+	history={props.history}
+    location={props.location}
+    match={props.match}
+    staticContext={props.staticContext}
+    drawer={props.drawer}
+    footer={props.footer} />;
 }
 
 

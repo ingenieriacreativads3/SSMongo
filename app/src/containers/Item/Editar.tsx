@@ -24,7 +24,9 @@ class Editar extends React.Component<{
   match: any,
   staticContext?: any,
  
-}, {}> {
+}, {
+  title:string,
+}> {
 
 	props: any
 	static propTypes: any
@@ -33,7 +35,9 @@ class Editar extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
 		super(props);
-    this.state = {};
+    this.state = {
+      title: '',
+    };
 }
 
 drawer() {
@@ -69,6 +73,7 @@ footer() {
 		let	nombre: string = 'nombre'
 		let	precio: string = 'precio'
     let unidad: string = 'unidad'
+  
       
     if(this.props.itemReducer !== undefined) {
 			if(this.props.itemReducer.data !== undefined) {
@@ -100,7 +105,7 @@ footer() {
           staticContext={this.props.staticContext}
           drawer={ this.drawer() }
           footer={ this.footer() }
-          // title={'Editar Item'}
+          title={'Editar Item'}
           // nombre={ nombre }
           // precio={ precio }
           // unidad={ unidad }

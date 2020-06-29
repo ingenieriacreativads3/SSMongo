@@ -31,6 +31,7 @@ import { PurchasePresupuestos, DetailPurchasePresupuesto } from './containers/Co
 import { SalePresupuestos, DetailSalePresupuesto } from './containers/Ventas - Presupuesto'
 import { Renegociar } from './components/Presupuesto'
 import { VerEstadisticaActividad } from './components/Estadisticas'
+import { ResumenActividad, Reputacion} from './containers/Estadisticas'
 import { VerReputacion } from './components/Estadisticas'
 import Item from './entities/Item';
 import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion'
@@ -77,8 +78,8 @@ class App extends React.Component {
 						<Route path='/compras/presupuesto/:id'        render={(props) => <DetailPurchasePresupuesto {...props}/>}/>
 						<Route path='/ventas/pedido/:id'              render={(props) => <DetailSaleRequest {...props}/>}/>
 						<Route path='/ventas/presupuesto/:id'         render={(props) => <DetailSalePresupuesto {...props}/>}/>
-						<Route path='/home/resumen'                   component={ VerEstadisticaActividad } />
-						<Route path='/home/reputacion'                component={ VerReputacion } />
+						<Route path='/home/resumen'               render={(props) => <ResumenActividad {...props} cookies={cookies}/>}/>
+						<Route path='/home/reputacion'                render={(props) => <Reputacion {...props} cookies={cookies}/>}/>
 						<Route path='/'                               render={(props) => <Login { ...props } cookies={cookies} />} /> 
 					
 					</Switch>
