@@ -325,7 +325,7 @@ class DatosCuenta extends React.Component <{
                             <TextField
                               className={classes.textField}
                             variant="outlined"
-                            disabled
+                            
                               defaultValue= "CorpuSoft"
                               label="Nombre"
                               type="text"

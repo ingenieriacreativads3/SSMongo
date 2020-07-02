@@ -4,6 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import DatosCuenta from './DatosCuenta'
+import Perfil from './PerfilEmpresa'
 
 const drawerWidth = 200;
 
@@ -217,6 +218,19 @@ export  function PerfilPropio(props: {
     staticContext={props.staticContext}
     footer={props.footer}
     drawer={props.drawer}
+     />
+  </div>;
+
+}
+
+
+export  function PerfilEmpresa() {
+
+	const classes = useStyles(theme);
+ 
+  return <div>
+    <Perfil 
+    classes={classes}
      />
   </div>;
 
