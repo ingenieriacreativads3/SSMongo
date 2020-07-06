@@ -1,10 +1,11 @@
 import React from 'react';
 import AppBar from './../AppBar'
 import clsx from 'clsx'
+import { Link} from "react-router-dom";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
-
-import { Container, Grid, CardActionArea, CardMedia,Link, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { Container, Grid, TextareaAutosize,Divider, CardActionArea, CardMedia, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import * as registerActions  from './../../store/actions/register'
 import  foto  from './../Login/img/logo.png'
@@ -19,6 +20,28 @@ import MenuLateral from '../Drawer';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: '#d93211',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#d93211',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#d93211',
+      },
+      '&:hover fieldset': {
+        borderColor: '#d93211',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#d93211',
+      },
+    },
+  },
+})(TextField);
 
 function Copyright() {
   return (
@@ -113,21 +136,213 @@ class PerfilEmpresa extends React.Component <{
             <div className={classes.appBarSpacer} />
             <Container maxWidth="lg" className={classes.container}>
                 <Grid container spacing={3}>
-
-                    <Grid item xs={12}>
-            
+                
+                  <Grid item xs={12}>
                     <Card className={fixedHeightCard}>
+                      <Grid container spacing={3} >
+                        <Grid item xs={12} sm={6} container
+                                direction="column"
+                                justify="space-around"
+                                alignItems="center">
+                          <Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
+                              Suppliers Store
+                          </Typography>
+                                  
+                            <img src={foto} className = {classes.img}></img> 
+
+                        </Grid>
+                         <Grid item xs={12} sm={6} container
+                                direction="column"
+                                justify="space-around"
+                                alignItems="center">
+                        {/* <Typography  variant="h4" component="h3" gutterBottom>
+                              Contactanos
+                          </Typography> */}
+                                  
+                                          
+                        </Grid> 
+
+                        <Grid item xs={6} sm={6}>
+                        <div className={classes.datos}>
+                        <Typography variant="h5"   gutterBottom>
+                            <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
+                            Construccion
+                        </Typography>
+                        <Typography variant="h5"   gutterBottom>
+                            <LocationOnIcon fontSize="large" style={{ color: '#d93211' }} />
+                            San Francisco - Cordoba
+                        </Typography>
+                        <Typography variant="h5"   gutterBottom>
+                            <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
+                            35644225394
+                        </Typography>
+                        </div>
+                        </Grid>
+
+                      
+                        
+
+                        <Grid item xs={12} container
+                                direction="column"
+                                justify="space-around"
+                                alignItems="center">
+                        <Typography variant="h5" align='left'  gutterBottom>
+                                    
+                            Nuestros Productos
+                        </Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
+                        <Card className={fixedHeightCardCatalog}>
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              alt="Samsung A20"
+                              height="140"
+                              image={foto}
+                              title="Samsung A20"
+                            />
+                            <CardContent>
+                              <Typography gutterBottom variant="h5" component="h2">
+                                asdasd
+                              </Typography>
+                              <Typography variant="subtitle1" component="h2">
+                                $16000
+                              </Typography>
+                            
+                            </CardContent>
+                          </CardActionArea>
+                          <CardActions >
+                          <Link to="/item/detalle/:id">
+                            <IconButton aria-label="ver" className={classes.iconButton}> 
+                              <VisibilityIcon style={{ fontSize: 40 }}  />
+                            </IconButton>
+                            </Link>
+                          
+                            
+                          </CardActions>
+                        </Card>
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
+                        <Card className={fixedHeightCardCatalog}>
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              alt="Samsung A20"
+                              height="140"
+                              image={foto}
+                              title="Samsung A20"
+                            />
+                            <CardContent>
+                              <Typography gutterBottom variant="h5" component="h2">
+                                asdasd
+                              </Typography>
+                              <Typography variant="subtitle1" component="h2">
+                                $16000
+                              </Typography>
+                            
+                            </CardContent>
+                          </CardActionArea>
+                          <CardActions >
+                          <Link to="/item/detalle/:id">
+                            <IconButton aria-label="ver" className={classes.iconButton}> 
+                              <VisibilityIcon style={{ fontSize: 40 }}  />
+                            </IconButton>
+                            </Link>
+                          
+                            
+                          </CardActions>
+                        </Card>
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
+                        <Card className={fixedHeightCardCatalog}>
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              alt="Samsung A20"
+                              height="140"
+                              image={foto}
+                              title="Samsung A20"
+                            />
+                            <CardContent>
+                              <Typography gutterBottom variant="h5" component="h2">
+                                asdasd
+                              </Typography>
+                              <Typography variant="subtitle1" component="h2">
+                                $16000
+                              </Typography>
+                            
+                            </CardContent>
+                          </CardActionArea>
+                          <CardActions >
+                          <Link to="/item/detalle/:id">
+                            <IconButton aria-label="ver" className={classes.iconButton}> 
+                              <VisibilityIcon style={{ fontSize: 40 }}  />
+                            </IconButton>
+                            </Link>
+                          
+                            
+                          </CardActions>
+                        </Card>
+                        </Grid>
+                        <Grid item xs={6} sm={3}>
+                        <Card className={fixedHeightCardCatalog}>
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              alt="Samsung A20"
+                              height="140"
+                              image={foto}
+                              title="Samsung A20"
+                            />
+                            <CardContent>
+                              <Typography gutterBottom variant="h5" component="h2">
+                                asdasd
+                              </Typography>
+                              <Typography variant="subtitle1" component="h2">
+                                $16000
+                              </Typography>
+                            
+                            </CardContent>
+                          </CardActionArea>
+                          <CardActions >
+                          <Link to="/item/detalle/:id">
+                            <IconButton aria-label="ver" className={classes.iconButton}> 
+                              <VisibilityIcon style={{ fontSize: 40 }}  />
+                            </IconButton>
+                            </Link>
+                          
+                            
+                          </CardActions>
+                        </Card>
+                        </Grid>
             
-                    <CardContent>
+                    {/* <CardContent>
                     <Grid container spacing={3} >
-                          <Grid item sm={6} xs={12} container
-                          direction="column"
-                          justify="space-around"
-                          alignItems="center">
-                          <Typography variant="h2" component="h3" gutterBottom>
-                               Company Name
+                          <Grid item sm={12} xs={6} >
+                          <Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
+                               Suppliers Store
                             </Typography>
+                           
                                  <img src={foto} className = {classes.img}></img> 
+                                 
+                          </Grid >
+
+                          <Grid item sm={12} xs={6} container
+                          >
+                          <Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
+                               Contactanos
+                            </Typography>
+                           
+                               
+                                 
+                          </Grid >
+
+                          <Grid item xs={6} sm={6}  
+                          container
+                          direction="column"
+                          //justify="space-around"
+                          alignItems="flex-start">
+                          <div className={classes.datos}>
                                  <Typography variant="h5" align='left'  gutterBottom>
                                     <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
                                     Construccion
@@ -140,10 +355,13 @@ class PerfilEmpresa extends React.Component <{
                                     <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
                                    35644225394
                                 </Typography>
+                                </div>
                           </Grid>
 
+                          
 
-                          <Grid item sm={6} xs={12} spacing={3} 
+
+                           <Grid item sm={6} xs={12} spacing={3} 
                           container
                           direction="column"
                           //justify="space-around"
@@ -152,10 +370,31 @@ class PerfilEmpresa extends React.Component <{
                                     
                                     Contactanos
                                 </Typography>
-                          </Grid>
+                                 <Grid item sm={6} xs={12} 
+                          container
+                          direction="column"
+                          //justify="space-around"
+                          alignItems="center">
+                            <TextField disabled id="standard-required" label="Empresa" defaultValue="CorpuSoft" className={classes.input}  />
+                            </Grid>
+                            <Grid item sm={6} xs={12} 
+                          container
+                          direction="column"
+                          //justify="space-around"
+                          alignItems="center">
+                            <TextField disabled id="standard-required" label="Email" defaultValue="corpusoft@cs.com.ar" className={classes.input}  />
+                            </Grid>
+                            <Grid item sm={6} xs={12}  
+                          container
+                          direction="column"
+                          //justify="space-around"
+                          alignItems="center">
+                            <TextareaAutosize  style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  onChange={this.props.getComentario} />
+                            </Grid> 
+                          </Grid> 
                     </Grid>
-                    </CardContent>
-                    <CardActions>
+                    </CardContent> */}
+                    {/* <CardActions>
 
                     <Typography variant="h5" align='left'  gutterBottom>
                                     
@@ -166,15 +405,17 @@ class PerfilEmpresa extends React.Component <{
                   
                   </Card>
                     </CardActions>
-                    
-									</Card>
-								</Grid>
-
-
+                     */}
+									
+								
+                </Grid>
+                </Card>
+                </Grid>
 							</Grid>
 							{/* <Box pt={4}>
 								<Copyright />
 							</Box> */}
+             
 						</Container>
             {this.props.footer}
 					</main>

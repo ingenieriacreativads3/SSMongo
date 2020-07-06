@@ -189,6 +189,14 @@ const useStyles = makeStyles((theme) => ({
       color: '#d93211',
     },
   },
+  nombreEmpresa: {
+    color:'#f48c13'
+  },
+
+  datos:{
+    marginTop:20,
+    marginLeft:80,
+  },
 
 
   
