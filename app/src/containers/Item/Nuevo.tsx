@@ -15,11 +15,13 @@ import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   itemReducer: any,
-  unidadDeMedidaReducer: any
+  unidadDeMedidaReducer: any,
+  fileReducer: any
 }) {
   return {
     itemReducer: store.itemReducer,
     unidadDeMedidaReducer: store.unidadDeMedidaReducer,
+    fileReducer: store.fileReducer
   };
 }
 
@@ -190,6 +192,17 @@ class Nuevo extends React.Component<{
       unidadesDeMedida = this.props.unidadDeMedidaReducer.data.unidadesDeMedida
     }
 
+    let pathImage: string = 'http://localhost:8000/'
+
+    if(
+      this.props.fileReducer.fetched &&
+      this.props.fileReducer.data !== undefined
+    ) {
+      pathImage = pathImage + this.props.fileReducer.data.foto
+    }
+
+    console.log(pathImage)
+
     return(
       <div>
         <ItemNuevo 
@@ -204,6 +217,7 @@ class Nuevo extends React.Component<{
           unidadesDeMedida={unidadesDeMedida}
           drawer={ this.drawer() }
           footer={ this.footer() }
+          pathImage={ pathImage }
         />
         <OneButton 
           title={ 'Nuevo Item' }

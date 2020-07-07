@@ -59,7 +59,8 @@ class Nuevo extends React.Component <{
   getMostrarPrecio: any,
   getFoto: any,
   save: any,
-  unidadesDeMedida: any[]
+  unidadesDeMedida: any[],
+  pathImage: string
 }, {}> {
 
   props: any
@@ -183,7 +184,7 @@ class Nuevo extends React.Component <{
                                 <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
                                   <PhotoCamera />
                                   <Input
-                                    inputProps={{ multiple: true }} 
+                                    inputProps={{ multiple: false }} 
                                     className={classes.input}
                                     style={{ display: 'none' }}
                                     id="raised-button-file"
@@ -193,6 +194,9 @@ class Nuevo extends React.Component <{
                                 </IconButton>
                               </Button>
                             </label> 
+                          </Grid>
+                          <Grid item lg ={4}>
+                            <Avatar alt={this.props.pathImage} src={this.props.pathImage} className={classes.large} />
                           </Grid>
                         </Grid> 
                       </Grid>

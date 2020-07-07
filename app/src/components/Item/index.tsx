@@ -252,7 +252,7 @@ export  function NuevoItem(props: {
   unidadesDeMedida: any[]
   drawer:any,
   footer:any,
-
+  pathImage: string
 }) {
 
 	const classes = useStyles(theme);
@@ -269,6 +269,7 @@ export  function NuevoItem(props: {
     unidadesDeMedida={ props.unidadesDeMedida }
     drawer={props.drawer}
     footer={props.footer}
+    pathImage={props.pathImage}
   />;
 
 }
