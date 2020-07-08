@@ -22,34 +22,23 @@ export function setItem(
 	idEmpresa: string,	
 	nombre: string,
 	precio: string,
-	idMagnitud : string,
-	files: File[],
+	idMagnitud: string,
+	descripcion: string,
+	mostrarPrecio: boolean,
+	imagen: string,
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
-
-	var formData = new FormData();
-
-	if(files !== undefined && files.length > 0) {
-		files.map((file: File) => {
-			formData.append('foto', file)
-		})
-	}
-
-	formData.append('_id', '5ecdb0f7db386b4e1b75e37a')
-	formData.append('nombre', nombre)
-	formData.append('precio', precio)
-	formData.append('idMagnitud', idMagnitud)
-	formData.append('mostrarPrecio', 'true')
-	formData.append('descripcion', 'asd')
 	
-	let payload: any = axios.post(url + '/item', formData,{
-		headers: {
-			'Content-Type': 'multipart/form-data'
-		}
+	let payload: any = axios.post(url + '/item', {
+		idEmpresa,
+		nombre,
+		precio,
+		idMagnitud,
+		descripcion,
+		mostrarPrecio,
+		imagen
 	})
-
-	console.log(payload)
 	
   return {
 		type: 'SET_ITEM',

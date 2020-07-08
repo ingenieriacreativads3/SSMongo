@@ -106,8 +106,10 @@ class Catalogo extends React.Component <{
                   _id: string,
                   nombre: string,
                   precio: string,
-                  foto: string,
+                  descripcion: string,
+                  mostrarPrecio: boolean,
                   unidad_de_medida_id: string,
+                  foto: string,
                   updated_at: string,
                   created_at: string,
                   catalogo_id: string,
@@ -138,15 +140,15 @@ class Catalogo extends React.Component <{
                           {itemAux.item.precio} x {itemAux.item.unidad_de_medida.nombre}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                          Descripcion (falta traer) 
+                          {itemAux.item.descripcion}
                         </Typography>
                       </CardContent>
                     </CardActionArea>
                     <CardActions disableSpacing>
-                    <Link to="/item/editar">
-                      <IconButton aria-label="editar"className={classes.iconButton}>
-                        <EditIcon />
-                      </IconButton>
+                      <Link to="/item/editar">
+                        <IconButton aria-label="editar"className={classes.iconButton}>
+                          <EditIcon />
+                        </IconButton>
                       </Link>
                       <IconButton aria-label="eliminar"className={classes.iconButton} onClick={this.eliminarItem}>
                         <DeleteIcon />

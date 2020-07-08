@@ -138,7 +138,9 @@ class Nuevo extends React.Component<{
       this.state.nombre,
       this.state.precio,
       '5ecdb0bcdb386b4e1b75e378',
-      []
+      this.state.descripcion,
+      this.state.displayPrice,
+      this.props.fileReducer.data.foto
     ))
 
   }
