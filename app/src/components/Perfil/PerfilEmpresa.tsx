@@ -16,9 +16,10 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
+import MenuLateral from '../DrawerInicio';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import SendIcon from '@material-ui/icons/Send';
 
 
 const CssTextField = withStyles({
@@ -131,7 +132,7 @@ class PerfilEmpresa extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-         <MenuLateral></MenuLateral>
+         {this.props.drawer}
         <main className={classes.content}>
             <div className={classes.appBarSpacer} />
             <Container maxWidth="lg" className={classes.container}>
@@ -150,20 +151,7 @@ class PerfilEmpresa extends React.Component <{
                                   
                             <img src={foto} className = {classes.img}></img> 
 
-                        </Grid>
-                         <Grid item xs={12} sm={6} container
-                                direction="column"
-                                justify="space-around"
-                                alignItems="center">
-                        {/* <Typography  variant="h4" component="h3" gutterBottom>
-                              Contactanos
-                          </Typography> */}
-                                  
-                                          
-                        </Grid> 
-
-                        <Grid item xs={6} sm={6}>
-                        <div className={classes.datos}>
+                            <Box className={classes.datos} >
                         <Typography variant="h5"   gutterBottom>
                             <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
                             Construccion
@@ -176,9 +164,82 @@ class PerfilEmpresa extends React.Component <{
                             <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
                             35644225394
                         </Typography>
-                        </div>
-                        </Grid>
+                        </Box>
 
+                        </Grid>
+                         <Grid  item xs={6} sm={6} container
+                                direction="column"
+                                justify="space-around"
+                                alignItems="center">
+                          <Box  className={classes.formularioContacto} border={2} borderRadius={16} borderColor="#7f7f7f">
+                         <Typography className={classes.titulo}  variant="h4" component="h3" gutterBottom>
+                              Contactanos
+                          </Typography> 
+
+                          
+                          <TextField
+                              className={classes.datoContacto}
+                            variant="outlined"
+                            disabled
+                              defaultValue= "CorpuSoft"
+                              label="Nombre"
+                              type="text"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />       
+
+                          <TextField
+                            className={classes.datoContacto}
+                            variant="outlined"
+                            disabled
+                              defaultValue= "corpu@sa.com.ar"
+                              label="Email"
+                              type="email"
+                              InputLabelProps={{
+                                classes: {
+                                  root: classes.cssLabel,
+                                  focused: classes.cssFocused,
+                                },
+                              }}
+                              InputProps={{
+                                classes: {
+                                  root: classes.cssOutlinedInput,
+                                  focused: classes.cssFocused,
+                                  notchedOutline: classes.notchedOutline,
+                                },
+                              }}
+                            />
+
+                            <TextareaAutosize  style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  onChange={this.props.getComentario} />
+
+                            <Button
+                              variant="contained"
+                              color='primary'
+                              size="small"
+                              className={classes.buttonEnviar}
+                              startIcon={<SendIcon />}
+                            //   onClick={() => this.register()}
+                            >
+                              Enviar
+                            </Button>
+
+                            </Box>
+
+                            
+                        </Grid> 
+
+                       
                       
                         
 
@@ -316,96 +377,8 @@ class PerfilEmpresa extends React.Component <{
                         </Card>
                         </Grid>
             
-                    {/* <CardContent>
-                    <Grid container spacing={3} >
-                          <Grid item sm={12} xs={6} >
-                          <Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
-                               Suppliers Store
-                            </Typography>
-                           
-                                 <img src={foto} className = {classes.img}></img> 
-                                 
-                          </Grid >
-
-                          <Grid item sm={12} xs={6} container
-                          >
-                          <Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
-                               Contactanos
-                            </Typography>
-                           
-                               
-                                 
-                          </Grid >
-
-                          <Grid item xs={6} sm={6}  
-                          container
-                          direction="column"
-                          //justify="space-around"
-                          alignItems="flex-start">
-                          <div className={classes.datos}>
-                                 <Typography variant="h5" align='left'  gutterBottom>
-                                    <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
-                                    Construccion
-                                </Typography>
-                                <Typography variant="h5" align='left'  gutterBottom>
-                                    <LocationOnIcon fontSize="large" style={{ color: '#d93211' }} />
-                                    San Francisco - Cordoba
-                                </Typography>
-                                <Typography variant="h5" align='left'  gutterBottom>
-                                    <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
-                                   35644225394
-                                </Typography>
-                                </div>
-                          </Grid>
-
-                          
-
-
-                           <Grid item sm={6} xs={12} spacing={3} 
-                          container
-                          direction="column"
-                          //justify="space-around"
-                          alignItems="center">
-                             <Typography variant="h5" align='left'  gutterBottom>
-                                    
-                                    Contactanos
-                                </Typography>
-                                 <Grid item sm={6} xs={12} 
-                          container
-                          direction="column"
-                          //justify="space-around"
-                          alignItems="center">
-                            <TextField disabled id="standard-required" label="Empresa" defaultValue="CorpuSoft" className={classes.input}  />
-                            </Grid>
-                            <Grid item sm={6} xs={12} 
-                          container
-                          direction="column"
-                          //justify="space-around"
-                          alignItems="center">
-                            <TextField disabled id="standard-required" label="Email" defaultValue="corpusoft@cs.com.ar" className={classes.input}  />
-                            </Grid>
-                            <Grid item sm={6} xs={12}  
-                          container
-                          direction="column"
-                          //justify="space-around"
-                          alignItems="center">
-                            <TextareaAutosize  style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  onChange={this.props.getComentario} />
-                            </Grid> 
-                          </Grid> 
-                    </Grid>
-                    </CardContent> */}
-                    {/* <CardActions>
-
-                    <Typography variant="h5" align='left'  gutterBottom>
-                                    
-                                    Nuestros Productos
-                                </Typography>
-                      
-                                <Card className={fixedHeightCardCatalog}>
-                  
-                  </Card>
-                    </CardActions>
-                     */}
+                    
+                   
 									
 								
                 </Grid>

@@ -154,7 +154,8 @@ const useStyles = makeStyles((theme) => ({
   },
   img:{
     width:300,
-    display:'flex'
+    display:'flex',
+    marginBottom:theme.spacing(5),
   },
 
   cssOutlinedInput: {
@@ -194,12 +195,43 @@ const useStyles = makeStyles((theme) => ({
   },
 
   datos:{
-    marginTop:20,
-    marginLeft:80,
+    marginBottom:theme.spacing(10),
+    marginRight:theme.spacing(20),
   },
+  textTarea:{
+    width:'300px',
+    marginRight:theme.spacing(17),
+    marginTop:theme.spacing(2),
+    marginLeft:theme.spacing(5),
+  },
+  datoContacto:{
+    //margin: theme.spacing(2),
+    
+   // marginRight:theme.spacing(10),
+    marginTop:theme.spacing(3),
+    marginLeft:theme.spacing(5),
+       
 
-
-  
+  },
+  formularioContacto:{
+    marginTop:theme.spacing(10),
+    marginLeft:theme.spacing(7),
+    width:'500px',
+  },
+  titulo:{
+    marginTop:theme.spacing(2),
+    marginLeft:theme.spacing(5),
+  },
+  buttonEnviar: {
+    marginTop: theme.spacing(2),
+    marginLeft:theme.spacing(47),
+    marginBottom:theme.spacing(2),
+    backgroundColor: '#d93211',
+    color : '#ffffff',
+    '&:hover': {
+      background: "#d93211",
+   },
+  },
 
   
 }));
@@ -232,13 +264,26 @@ export  function PerfilPropio(props: {
 }
 
 
-export  function PerfilEmpresa() {
+export  function PerfilEmpresa(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any,
+  footer:any,
+  drawer:any,
+}) {
 
 	const classes = useStyles(theme);
  
   return <div>
     <Perfil 
     classes={classes}
+    history={props.history}
+    location={props.location}
+    match={props.match}
+    staticContext={props.staticContext}
+    footer={props.footer}
+    drawer={props.drawer}
      />
   </div>;
 
