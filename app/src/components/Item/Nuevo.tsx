@@ -221,7 +221,7 @@ class Nuevo extends React.Component <{
                             </label> 
                           </Grid>
                           <Grid item lg ={4}>
-                            <Avatar alt={this.props.pathImage} src={this.props.pathImage} className={classes.large} />
+                            <Avatar className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} />
                           </Grid>
                         </Grid> 
                       </Grid>

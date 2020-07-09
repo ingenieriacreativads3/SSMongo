@@ -2,11 +2,11 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
-
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import {TextField, Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
-
+import MenuLateral from '../Drawer'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -25,6 +25,28 @@ function Copyright() {
   );
 }
 
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: '#d93211',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#d93211',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#d93211',
+      },
+      '&:hover fieldset': {
+        borderColor: '#d93211',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#d93211',
+      },
+    },
+  },
+})(TextField);
+
 function mapStateToProps(store: {
 	Item: {},
 	login: {
@@ -37,7 +59,7 @@ function mapStateToProps(store: {
 }) {
   return {
     Item: store.Item,
-    idEmpresa: store.login.data.empresa._id
+    //idEmpresa: store.login.data.empresa._id
   };
 }
 
@@ -163,7 +185,7 @@ class ValidarSolicitud extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-
+        <MenuLateral></MenuLateral>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -186,26 +208,33 @@ class ValidarSolicitud extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <Input defaultValue="20" disabled inputProps={{ 'aria-label': 'description' }} className={classes.input}  />
+                            <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud"  defaultValue="20" className={classes.input} />
+                            
                             </Grid>
                             <Grid item lg={4}>
-                            <Input defaultValue="'03/04/2020'" disabled inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            <CssTextField disabled id="custom-css-standard-input" label="Fecha"  defaultValue="03/04/2020" className={classes.input} />
+                            
                             </Grid>
                             <Grid item lg={4}>
-                            <Input defaultValue="'Empresa'" disabled inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
+                           
                             </Grid>
                             
                           </Grid>
                           <Grid container spacing={3}>
                             
                             <Grid item lg={4}>
-                            <Input value="Metro cuadrado" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            <CssTextField  id="custom-css-standard-input" label="Unidad"  defaultValue="Metro cuadrado" className={classes.input} />
+                            
                             </Grid>
                             <Grid item lg={4}>
-                            <Input value="M2" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            <CssTextField  id="custom-css-standard-input" label="Simbolo"  defaultValue="M2" className={classes.input} />
+
+                           
                             </Grid>
                             <Grid item lg={4}>
-                            <Input value="Superficie" inputProps={{ 'aria-label': 'description' }} color='primary' />
+                            <CssTextField  id="custom-css-standard-input" label="Magnitud"  defaultValue="Superficie" className={classes.input} />
+                          
                             </Grid>
                             
                           </Grid>
@@ -213,7 +242,7 @@ class ValidarSolicitud extends React.Component {
                             
                             <Grid item lg={12}>
                             <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label">Estado</InputLabel>
+                              <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
                                 <Select
                                   labelId="demo-simple-select-label"
                                   id="demo-simple-select"
@@ -271,10 +300,6 @@ class ValidarSolicitud extends React.Component {
   }
 }
 
-ValidarSolicitud.defaultProps = {
-	classes: {
-		color: 'color'
-	}
-}
+
 
 export default connect(mapStateToProps)(ValidarSolicitud)

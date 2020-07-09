@@ -2,10 +2,10 @@ import React from 'react'
 import AppBar from '../AppBar'
 import { connect } from 'react-redux'
 
-
+import MenuLateral from '../Drawer'
 import MaterialTable from 'material-table'
-import { CssBaseline } from '@material-ui/core';
-
+import {Container, Grid, Box, Typography, CssBaseline } from '@material-ui/core';
+import MaterialLink from '@material-ui/core/Link';
 import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -53,6 +53,20 @@ function mapStateToProps(store) {
   };
 }
 
+
+function Copyright() {
+	return (
+	  <Typography variant="body2" color="textSecondary" align="center">
+		{'Copyright © '}
+		<MaterialLink color="inherit" href="https://material-ui.com/">
+		  Your Website
+		</MaterialLink>{' '}
+		{new Date().getFullYear()}
+		{'.'}
+	  </Typography>
+	);
+  }
+
 class Lista extends React.Component {
 
   constructor(props) {
@@ -85,7 +99,12 @@ class Lista extends React.Component {
 
         <CssBaseline />
         <AppBar></AppBar>
-		<TableContainer className={classes.container}>
+		<MenuLateral />
+		<main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+		<Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+              <Grid item lg={12}>
 				<MaterialTable
 					icons={tableIcons}
 					title="Solicitudes Unidad de Medida"
@@ -129,9 +148,17 @@ class Lista extends React.Component {
 							}),
 					}}
 				/>
-				</TableContainer>
+				</Grid>
+            </Grid>
+            <Box pt={4}>
+              <Copyright />
+            </Box>
+		  </Container>
+		  </main>
+				
 			</div>
-    );
+	);
+				
   }
 }
 

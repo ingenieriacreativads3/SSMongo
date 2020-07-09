@@ -98,8 +98,15 @@ const useStyles = makeStyles((theme) => ({
     height: 500,
   },
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+   
+      marginTop: theme.spacing(2),
+      marginLeft:theme.spacing(5),
+      minWidth: 190,
+      maxWidth: 300,
+      '& .MuiInput-underline:after': {
+        borderBottomColor: '#d93211',
+      },
+    
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -140,6 +147,11 @@ const useStyles = makeStyles((theme) => ({
   cssFocused: {color:`#d93211 !important`},
   notchedOutline: {
     borderWidth: '1px',
+  },
+
+  input: {
+    marginLeft:theme.spacing(5),
+    marginTop:theme.spacing(3),
   },
 
   

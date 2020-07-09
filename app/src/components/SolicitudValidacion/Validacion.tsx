@@ -156,7 +156,7 @@ class Validacion extends React.Component <{
                               <TextField disabled id="standard-required" label="Empresa" value={this.props.nombre}  className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                              <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" target="_blank" >
+                              <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" style={{textDecoration: 'none'}} target="_blank" >
                                 <Button
                                 type="button"
                                 
@@ -178,7 +178,7 @@ class Validacion extends React.Component <{
                             </Grid>
                             <Grid item lg={4}>
                             
-                            <Link href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do" target="_blank" >
+                            <Link href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do" style={{textDecoration: 'none'}} target="_blank" >
                               <Button
                               type="button"
                               

@@ -125,6 +125,7 @@ const useStyles = makeStyles((theme) => ({
   avatar:{
     color:"#ffffff",
     backgroundColor:'#d93211',
+    
   },
   iconButton:{
     color:'#d93211',
@@ -234,6 +235,12 @@ const useStyles = makeStyles((theme) => ({
     "&.Mui-focused": {
       color: '#d93211',
     },
+  },
+  
+  previsualizacion:{
+    fontSize: '70px',
+    width:'150px',
+    height:'150px',
   },
 
 

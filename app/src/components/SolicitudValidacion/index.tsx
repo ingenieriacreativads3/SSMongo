@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     backgroundColor: '#d93211',
-    margin:theme.spacing(2),
+    //margin:theme.spacing(2),
     color : '#ffffff',
     '&:hover': {
       background: "#d93211",
@@ -69,7 +69,9 @@ const useStyles = makeStyles((theme) => ({
   Boton: {
     backgroundColor: '#d93211',
     color : '#ffffff',
-    margin:theme.spacing(3),
+    //margin:theme.spacing(3),
+    marginTop: theme.spacing(5),
+    
     '&:hover': {
       background: "#d93211",
    },
