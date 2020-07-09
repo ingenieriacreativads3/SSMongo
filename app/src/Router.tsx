@@ -35,7 +35,8 @@ import { ResumenActividad, Reputacion} from './containers/Estadisticas'
 import { VerReputacion } from './components/Estadisticas'
 import Item from './entities/Item';
 import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion'
-import { PerfilEmpresa } from './components/Perfil'
+//import { PerfilEmpresa } from './components/Perfil'
+import { EmpresaPerfil } from './containers/Perfil'
 
 class App extends React.Component {
 
@@ -53,7 +54,7 @@ class App extends React.Component {
 					<Switch>
 						<Route path='/home/inicio'                    render={(props) => <Inicio {...props} cookies={cookies} />} />						
 						<Route path='/home/side'                      component={ AppBar } />
-						<Route path='/home/perfil/:id'         		    component={ PerfilEmpresa } />
+						<Route path='/home/perfil/:id'         		   render={(props) => <EmpresaPerfil {...props} cookies={cookies}/>} />
 						<Route path='/item/nuevo'                     render={(props) => <ItemNuevo {...props} cookies={cookies} />} /> 
 						<Route path='/item/editar/:id'                render={(props) => <ItemEditar {...props} cookies={cookies} />} />
 						<Route path='/compras/pedidos/lista'          render={(props) => <PurchaseRequests {...props} cookies={cookies} />} />
