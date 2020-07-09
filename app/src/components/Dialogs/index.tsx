@@ -40,3 +40,28 @@ export function OneButton(props: {
   </div>;
 
 }
+
+export function TwoButton(props: {
+	title: string,
+	text: string,
+	labelButtonLeft: string,
+	labelButtonRight: string,
+	functionLeft: any
+	functionRight: any
+}) {
+
+  const classes = useStyles(theme);
+  
+  return <div>
+    <DialogOneButton 
+			classes={ classes }
+			title={ props.title }
+			text={ props.text }
+			labelButtonLeft={ props.labelButtonLeft }
+			labelButtonRight={ props.labelButtonRight }
+			functionLeft={ props.functionLeft }
+			functionRight={ props.functionRight }
+		/>
+  </div>;
+
+}

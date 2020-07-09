@@ -5,7 +5,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField,Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -72,7 +72,11 @@ class Editar extends React.Component <{
     descripcion: string,
     unidadDeMedidaId: string,
   }
-}, {}> {
+}, {
+  item: {
+    nombre: string
+  }
+}> {
 
 	props: any
 	static propTypes: any
@@ -81,15 +85,37 @@ class Editar extends React.Component <{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.state = {};
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      item: {
+        nombre: props.item.nombre || 'asd'
+      }
+    };
+  }
+
+  componentWillReceiveProps() {
+    if(this.state.item.nombre !== this.props.item.nombre) {
+      this.setState({
+        item: {
+          nombre: this.props.item.nombre
+        }
+      })
+    }
+  }
+
+  handleChange(e: any) {
+
+    this.setState({
+      item: {
+        nombre: e.target.value
+      }
+    })
   }
 
   render(){
 
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    
-    console.log(this.props)
 
     return(
 
@@ -119,11 +145,23 @@ class Editar extends React.Component <{
                       <Grid container spacing={3}>
                         <Grid container spacing={3}>
                           <Grid item lg={4}>
-                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre" value={ this.props.item.nombre } />
+                            <CssTextField
+                              className={classes.margin}
+                              id="nombre"
+                              label="Nombre"
+                              value={this.state.item.nombre}
+                              onChange={this.handleChange}
+                            />
                           
                           </Grid>
                           <Grid item lg={4}>
-                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio" type="text" value={ this.props.item.precio } />
+                            <CssTextField
+                              className={classes.margin}
+                              id="custom-css-standard-input"
+                              label="Precio"
+                              type="text"
+                              value={ this.props.item.precio }
+                            />
 
                           </Grid>
                           <Grid item lg={4}>
@@ -167,33 +205,40 @@ class Editar extends React.Component <{
                                 Nueva Unidad
                               </Button>
                             </Link>
-                        </Grid>
+                          </Grid>
                         </Grid>
                         <Grid container spacing={3}> 
-                        
                           <Grid item lg={4}>
-                          <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value={this.props.item.descripcion}  />
+                            <TextareaAutosize
+                              style={{borderRadius:7}}
+                              aria-label="minimum height"
+                              rowsMin={10}
+                              className={classes.textTarea}
+                              placeholder="Descripcion"
+                              onChange={ this.props.getDescripcion }
+                            />
                           </Grid>
                           <Grid item lg={4}>
-                          <Button
-                            variant="contained"
-                            component="label"
-                            className={classes.botonIcono}
-                            
-                          >
-                              Imagen
-                            <InputLabel htmlFor="icon-button-file">
-                              <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-                                <PhotoCamera />
-                              </IconButton>
-                            </InputLabel>
-                            <Input
-                              type="file"
-                              style={{ display: "none" }}
-                              
-                            />
-                          </Button>
-                        </Grid>
+                            <label htmlFor="raised-button-file">
+                              <Button variant="contained" component="label" className={classes.botonIcono}>
+                                Imagen
+                                <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
+                                  <PhotoCamera />
+                                  <Input
+                                    inputProps={{ multiple: false }} 
+                                    className={classes.input}
+                                    style={{ display: 'none' }}
+                                    id="raised-button-file"
+                                    type="file"
+                                    onChange = {this.props.getFoto}
+                                  />
+                                </IconButton>
+                              </Button>
+                            </label> 
+                          </Grid>
+                          <Grid item lg ={4}>
+                            <Avatar alt={this.props.pathImage} src={this.props.pathImage} className={classes.large} />
+                          </Grid>
                         </Grid>
                       </Grid>
                     </form>
@@ -220,152 +265,16 @@ class Editar extends React.Component <{
 
 
             </Grid>
-          {/* 	<Box pt={4}>
+          	{/* <Box pt={4}>
               <Copyright />
             </Box> */}
           </Container>
           {this.props.footer}
         </main>
-
-          {/* <div class="content-wrapper">
-
-      
-            
-      
-          <div class="col-md-5">
-          <div class="box box-warning">
-              
-              <div class="blog_right_sidebar">
-                  
-                  <aside class="single_sidebar_widget author_widget">
-                      
-                      <div class="box-header with-border">
-                      <img class="author_img rounded-circle" src="img/blog/author.png" alt=""></img>
-
-                    <h3 class="box-title">Imagen</h3>
-                    <p>Selecciona la foto del item</p>
-
-                  </div>
-                      
-                      
-                      <div class="br"></div>
-                      <input type="file" id="exampleInputFile"></input>
-                  </aside>
-                  <aside class="single_sidebar_widget popular_post_widget">
-                    
-                  <div class="box-footer"> 
-                  <div class="col-md-12 text-right">
-                  <a class="primary-btn submit_btn" href="#">Añadir</a>
-                      </div>
-                  </div>
-                  </aside>
-                  
-              </div>
-              </div>
-          </div>
-
-
-
-          <div class="col-md-7">
-          <div class="box box-warning">
-          <div class="box-header with-border">
-
-
-
-                    <h3 class="box-title">Nuevo Item</h3>
-
-
-                  </div>
-                      
-                  <form>
-                      <div class="form-group form-inline">
-                          <div class="form-group col-lg-6 col-md-6 name">
-                          <Input className={classname.color} placeholder="Nombre item" inputProps={{ 'aria-label': 'description' }} color='primary' onChange={ this.getNombre }/>
-                         
-                              
-                          </div>
-                          <div class="form-group col-lg-6 col-md-6 name">
-                          <Input type="number" placeholder="Precio" inputProps={{ 'aria-label': 'description' }} color='primary' onChange={ this.getPrecio }/>
-                          </div>
-                          
-                      </div>
-
-                      <div class="form-group form-inline">
-
-                        
-                          <div class="col-md-6 form-group p_star">
-                          <FormControl>
-                            <InputLabel id="demo-simple-select-label">Unidad</InputLabel>
-                            <Select
-                              labelId="demo-simple-select-label"
-                              id="demo-simple-select"
-                              // value={unidadDeMedida}
-                              onChange={this.getUnidadDeMedida}
-                            >
-                              <MenuItem value={1}>Kilogramos</MenuItem>
-                              <MenuItem value={2}>Metros</MenuItem>
-                              <MenuItem value={3}>Litros</MenuItem>
-                              <MenuItem value={4}>Horas</MenuItem>
-                            </Select>
-                          </FormControl>
-                          
-                          </div>
-
-                          <div class="col-md-6 form-group">
-
-                     
-                          <FormControlLabel
-                          control={
-                            <Checkbox
-                              checked = "false"
-                              onChange={this.getMostrarPrecio}
-                              color="primary"
-                            />
-                          }
-                          label="Mostrar Precio"
-                        />
-                          
-                              
-                        </div>
-                          
-                          </div>
-
-                      
-
-                      <div class="form-group">
-                      <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Caracteristicas" onChange={ this.getCaracteristicas} />
-                       
-                      </div>
-                      <div class="form-group">
-                      <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Descripcion" onChange={ this.getDescripcion} />
-                         
-                      </div>
-
-                      <div class="box-footer">
-                      <div class="col-md-6 text-left">
-                            <Link to="/unidadMedida/nuevo"><button type="submit" value="submit" class="btn btn-warning btn-lg btn-block">Nueva Unidad</button></Link>
-                          </div>
-                      <div class="col-md-6 text-right">
-                      <a href="#" class="primary-btn submit_btn">Guardar</a>
-                      </div>
-                      </div>
-                  </form>
-              </div>
-          </div>
-
-      </div>
-     */}  
-		 
-		 </div>
+		  </div>
 
     );
   }
-}
-
-Editar.defaultProps = {
-	classes: {
-		color: 'color'
-	}
 }
 
 export default connect(mapStateToProps)(Editar)

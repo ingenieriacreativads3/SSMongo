@@ -32,7 +32,8 @@ class Editar extends React.Component<{
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
-		super(props);
+    super(props);
+    this.update = this.update.bind(this);
     this.state = {};
   }
 
@@ -62,6 +63,12 @@ class Editar extends React.Component<{
       match={this.props.match}
       staticContext={this.props.staticContext}
     />
+  }
+
+  update() {
+
+    
+
   }
 
   render(){
@@ -119,6 +126,7 @@ class Editar extends React.Component<{
           footer={ this.footer() }
           title={'Editar Item'}
           item={ item }
+          update={ this.update() }
         />
       </div>
     );

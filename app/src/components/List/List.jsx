@@ -64,6 +64,7 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.getIcons = this.getIcons.bind(this);
     this.layout = this.layout.bind(this);
     this.state = {
 		};
@@ -98,6 +99,25 @@ class List extends React.Component {
     
   }
 
+  getIcons() {
+
+    let icons = [{
+      icon: Edit,
+      tooltip: 'Editar',
+      onClick: (event, rowData) => this.props.action(rowData)
+    }]
+
+    if(this.props.title === 'Catálogo') {
+      icons.push({
+        icon: DeleteOutline,
+        tooltip: 'Eliminar',
+        onClick: (event, rowData) => this.props.delete(rowData)
+      })
+    }
+
+    return icons
+  }
+
   render(){
 
     const classes = this.props.classes
@@ -124,13 +144,7 @@ class List extends React.Component {
                     title={this.props.title}
                     columns={this.props.columns}
                     data={this.props.data}
-                    actions={[
-                      {
-                        icon: VisibilityIcon,
-                        tooltip: 'Ver más',
-                        onClick: (event, rowData) => this.props.action(rowData)
-                      }
-                    ]}
+                    actions={this.getIcons()}
                   />
                 </Grid>
               </Grid>

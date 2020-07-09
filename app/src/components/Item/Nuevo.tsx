@@ -194,7 +194,7 @@ class Nuevo extends React.Component <{
                         
                           <Grid item lg={4}>
                             <TextareaAutosize
-                            style={{borderRadius:7}}
+                              style={{borderRadius:7}}
                               aria-label="minimum height"
                               rowsMin={10}
                               className={classes.textTarea}
@@ -209,12 +209,12 @@ class Nuevo extends React.Component <{
                                 <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
                                   <PhotoCamera />
                                   <Input
-                                    inputProps={{ multiple: false }} 
+                                    inputProps={{ multiple: true }} 
                                     className={classes.input}
                                     style={{ display: 'none' }}
                                     id="raised-button-file"
                                     type="file"
-                                    onChange = {this.props.getFoto}
+                                    onChange = { this.props.getFoto }
                                   />
                                 </IconButton>
                               </Button>

@@ -12,9 +12,10 @@ function mapStateToProps(store: {
   };
 }
 
-class DialogOneButton extends React.Component<{
+class DialogTwoButton extends React.Component<{
 	title: string,
   text: string,
+  labelButtonLeft: string,
   labelButtonRight: string,
   functionLeft: any,
   functionRight: any,
@@ -67,4 +68,4 @@ class DialogOneButton extends React.Component<{
   }
 }
 
-export default connect(mapStateToProps)(DialogOneButton)
+export default connect(mapStateToProps)(DialogTwoButton)

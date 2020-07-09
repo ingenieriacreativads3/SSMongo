@@ -81,7 +81,7 @@ class Catalog extends React.Component<{
         location= { this.props.location }
         match= { this.props.match }
         staticContext= { this.props.staticContext }
-        title={'Items'}
+        title={'Catálogo'}
         columns={[
           { title: 'Nombre', field: 'item.nombre', type: 'string' },
           { title: 'Precio', field: 'item.precio', type: 'string' },
@@ -110,6 +110,14 @@ class Catalog extends React.Component<{
   }
 
   action(row: {
+    item: {
+      _id: string
+    }
+  }) {
+    this.props.history.push("/item/editar/" + row.item._id);
+  }
+
+  delete(row: {
     item: {
       _id: string
     }
@@ -147,6 +155,12 @@ class Catalog extends React.Component<{
     return(
       <div>
         {this.layout(this.state.checked, items)}
+        {/* <TwoButton 
+          title={ 'Nuevo Item' }
+          text={ this.props.itemReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
+        /> */}
       </div>
     );
   }

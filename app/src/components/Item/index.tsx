@@ -316,7 +316,8 @@ export  function EditarItem(props: {
     mostrarPrecio: boolean,
     descripcion: string,
     unidadDeMedidaId: string,
-  }
+  },
+  update: any
 }) {
 
   const classes = useStyles(theme);
@@ -331,6 +332,7 @@ export  function EditarItem(props: {
     footer={ props.footer }
     title={ props.title }
     item={ props.item }
+    update={ props.update }
   />;
 
 }

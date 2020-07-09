@@ -118,16 +118,15 @@ class Nuevo extends React.Component<{
     this.setState({ displayPrice: display })
   }
 
-  getFoto(e: any) {
+  async getFoto(e: any) {
 
     let files: File[] = []
 
     for (var i = 0; i < e.target.files.length; i++) {
-      files.push(e.target.files[i.toString()])
-      files.push(e.target.files['0'])
+      files.push(e.target.files[i])
     }
 
-    this.props.dispatch(fileActions.upload(files))
+    this.props.dispatch(await fileActions.upload(files))
 
     this.setState({ photo: files })
   }
@@ -204,8 +203,6 @@ class Nuevo extends React.Component<{
       pathImage = pathImage + this.props.fileReducer.data.foto
     }
 
-    console.log(pathImage)
-
     return(
       <div>
         <ItemNuevo 
@@ -227,7 +224,6 @@ class Nuevo extends React.Component<{
           text={ this.props.itemReducer.message }
           functionRight={ this.aceptar }
           labelButtonRight={ 'Aceptar' }
-         
         />
       </div>
     );
