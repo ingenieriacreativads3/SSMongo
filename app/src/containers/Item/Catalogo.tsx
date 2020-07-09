@@ -47,10 +47,11 @@ class Catalog extends React.Component<{
   componentWillMount() {
 
     if(
-      !this.props.itemReducer.fetched &&
-      !this.props.itemReducer.fetching
+      this.props.itemReducer.fetched &&
+      !this.props.itemReducer.fetching &&
+      this.props.itemReducer.data.item !== undefined
     ) {
-      this.props.dispatch(itemActions.getCatalogo(this.props.cookies.get('empresaId')))
+      this.props.dispatch(itemActions.reintentar())
     }
 
   }
@@ -107,11 +108,12 @@ class Catalog extends React.Component<{
 
   }
 
-  action(item: {
-    _id: string
+  action(row: {
+    item: {
+      _id: string
+    }
   }) {
-    this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
-    // this.props.dispatch(solicitudDeValidacionActions.resetear())
+    this.props.history.push("/item/editar/" + row.item._id);
   }
 
   drawer() {
@@ -125,27 +127,14 @@ class Catalog extends React.Component<{
 
   render(){
 
-    let items: any[] = [
-      {
-        "item": {
-          "_id": "5ecdb0f7db386b4e1b75e37a",
-          "nombre": "itemC",
-          "precio": "300",
-          "foto": "path/to/foto",
-          "unidad_de_medida_id": "5ecdb0bcdb386b4e1b75e378",
-          "updated_at": "2020-05-27 00:14:47",
-          "created_at": "2020-05-27 00:14:47",
-          "catalogo_id": "5ecdb0f7db386b4e1b75e379",
-          "unidad_de_medida": {
-            "_id": "5ecdb0bcdb386b4e1b75e378",
-            "nombre": "Unidad",
-            "abreviatura": "U",
-            "updated_at": "2020-05-27 00:13:48",
-            "created_at": "2020-05-27 00:13:48"
-          }
-        }
-      }
-    ]
+    let items: any[] = []
+
+    if(
+      !this.props.itemReducer.fetched &&
+      !this.props.itemReducer.fetching
+    ) {
+      this.props.dispatch(itemActions.getCatalogo(this.props.cookies.get('empresaId')))
+    }
 
     if(
       this.props.itemReducer.fetched &&

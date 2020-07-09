@@ -64,12 +64,14 @@ class Editar extends React.Component <{
   drawer:any,
   footer:any,
   title: string,
-  nombre: string,
-  precio: string,
-  foto: string,
-  mostrarPrecio: boolean,
-  descripcion: string,
-  unidadDeMedidaId: string,
+  item: {
+    nombre: string,
+    precio: string,
+    foto: string,
+    mostrarPrecio: boolean,
+    descripcion: string,
+    unidadDeMedidaId: string,
+  }
 }, {}> {
 
 	props: any
@@ -117,11 +119,11 @@ class Editar extends React.Component <{
                       <Grid container spacing={3}>
                         <Grid container spacing={3}>
                           <Grid item lg={4}>
-                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre" value={ this.props.nombre } />
+                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre" value={ this.props.item.nombre } />
                           
                           </Grid>
                           <Grid item lg={4}>
-                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio" type="text" value={ this.props.precio } />
+                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio" type="text" value={ this.props.item.precio } />
 
                           </Grid>
                           <Grid item lg={4}>
@@ -170,7 +172,7 @@ class Editar extends React.Component <{
                         <Grid container spacing={3}> 
                         
                           <Grid item lg={4}>
-                          <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
+                          <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value={this.props.item.descripcion}  />
                           </Grid>
                           <Grid item lg={4}>
                           <Button

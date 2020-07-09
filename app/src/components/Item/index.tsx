@@ -309,12 +309,14 @@ export  function EditarItem(props: {
   drawer:any,
   footer:any,
   title: string,
-  nombre: string,
-  precio: string,
-  foto: string,
-  mostrarPrecio: boolean,
-  descripcion: string,
-  unidadDeMedidaId: string,
+  item: {
+    nombre: string,
+    precio: string,
+    foto: string,
+    mostrarPrecio: boolean,
+    descripcion: string,
+    unidadDeMedidaId: string,
+  }
 }) {
 
   const classes = useStyles(theme);
@@ -328,12 +330,7 @@ export  function EditarItem(props: {
     drawer={ props.drawer }
     footer={ props.footer }
     title={ props.title }
-    nombre={ props.nombre }
-    precio={ props.precio }
-    foto={ props.foto }
-    mostrarPrecio={ props.mostrarPrecio }
-    descripcion={ props.descripcion }
-    unidadDeMedidaId={ props.unidadDeMedidaId }
+    item={ props.item }
   />;
 
 }
@@ -345,12 +342,20 @@ export  function MostrarCatalogo(props: {
   footer:any,
 }) {
 
-	const classes = useStyles(theme);
+  const classes = useStyles(theme);
+
+  let items: any[] = []
+
+  if(props !== undefined) {
+    if(props.items !== undefined) {
+      items = props.items
+    }
+  }
 
   return <div>
     <Catalogo
       classes={classes}
-      items={props.items}
+      items={items}
       getChecked={props.getChecked}
       checked={props.checked}
       footer={props.footer}

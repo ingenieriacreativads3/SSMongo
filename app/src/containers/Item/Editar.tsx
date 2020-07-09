@@ -24,9 +24,7 @@ class Editar extends React.Component<{
   match: any,
   staticContext?: any,
  
-}, {
-  title:string,
-}> {
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -35,31 +33,40 @@ class Editar extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
 		super(props);
-    this.state = {
-      title: '',
-    };
-}
+    this.state = {};
+  }
 
-drawer() {
-  return <Drawer 
-    history={this.props.history}
-    location={this.props.location}
-    match={this.props.match}
-    staticContext={this.props.staticContext}
-  />
-}
+  componentWillMount() {
+    if(
+      this.props.itemReducer.fetched &&
+      !this.props.itemReducer.fetching &&
+      this.props.itemReducer.data.items !== undefined
+    ) {
+      this.props.dispatch(itemActions.reintentar())
+    }
+  }
 
-footer() {
-  return <Footer 
-    history={this.props.history}
-    location={this.props.location}
-    match={this.props.match}
-    staticContext={this.props.staticContext}
-  />
-}
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
 
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
 
   render(){
+
+
 
     if(
       !this.props.itemReducer.fetched &&
@@ -76,12 +83,12 @@ footer() {
       descripcion: string,
       unidadDeMedidaId: string
     } = {
-      nombre: 'nombre',
-      precio: 'precio',
-      foto: 'foto',
+      nombre: '',
+      precio: '',
+      foto: '',
       mostrarPrecio: false,
-      descripcion: 'descripcion',
-      unidadDeMedidaId: 'unidadDeMedidaId',
+      descripcion: '',
+      unidadDeMedidaId: '',
     }
       
     if(this.props.itemReducer !== undefined) {
@@ -111,13 +118,8 @@ footer() {
           drawer={ this.drawer() }
           footer={ this.footer() }
           title={'Editar Item'}
-          nombre={ item.nombre }
-          precio={ item.precio }
-          foto={ item.foto }
-          mostrarPrecio={ item.mostrarPrecio }
-          descripcion={ item.descripcion }
-          unidadDeMedidaId={ item.unidadDeMedidaId }
-         />
+          item={ item }
+        />
       </div>
     );
   }
