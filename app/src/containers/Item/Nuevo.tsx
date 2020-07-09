@@ -74,6 +74,7 @@ class Nuevo extends React.Component<{
 
   componentWillMount() {
 
+    this.props.dispatch(itemActions.reintentar())
     if(
       !this.props.unidadDeMedidaReducer.fetched &&
       !this.props.unidadDeMedidaReducer.fetching
@@ -113,7 +114,7 @@ class Nuevo extends React.Component<{
     this.setState({ descripcion: e.target.value })
   }
 
-  getMostrarPrecio(display: boolean) {
+  getMostrarPrecio(display: any) {
     this.setState({ displayPrice: display })
   }
 
@@ -137,7 +138,7 @@ class Nuevo extends React.Component<{
       this.props.cookies.get('empresaId'),
       this.state.nombre,
       this.state.precio,
-      '5ecdb0bcdb386b4e1b75e378',
+      this.state.idMagnitud,
       this.state.descripcion,
       this.state.displayPrice,
       this.props.fileReducer.data.foto

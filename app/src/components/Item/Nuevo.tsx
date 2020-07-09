@@ -61,7 +61,11 @@ class Nuevo extends React.Component <{
   save: any,
   unidadesDeMedida: any[],
   pathImage: string
-}, {}> {
+}, {
+  item: {
+    mostrarPrecio: boolean
+  }
+}> {
 
   props: any
 	static propTypes: any
@@ -70,7 +74,28 @@ class Nuevo extends React.Component <{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.state = {};
+    this.getMostrarPrecio = this.getMostrarPrecio.bind(this);
+    this.state = {
+      item: {
+        mostrarPrecio: false
+      }
+    };
+  }
+
+  getMostrarPrecio() {
+
+    let mostrarPrecio: boolean = false
+
+    if(!this.state.item.mostrarPrecio) mostrarPrecio = true
+
+    this.setState({
+      item: {
+        mostrarPrecio: mostrarPrecio
+      }
+    })
+
+    this.props.getMostrarPrecio(mostrarPrecio)
+
   }
 
   render(){
@@ -125,8 +150,8 @@ class Nuevo extends React.Component <{
                             <FormControlLabel className={classes.Checkbox}
                               control={
                                 <Checkbox
-                                  // checked = "false"
-                                  onChange={ this.props.getMostrarPrecio }
+                                  checked={ this.state.item.mostrarPrecio }
+                                  onChange={ this.getMostrarPrecio }
                                   style ={{
                                     color: "#d93211",
                                   }}
@@ -145,7 +170,7 @@ class Nuevo extends React.Component <{
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 // value={unidadDeMedida}
-                                  onChange={this.props.getMagnitud}
+                                onChange={this.props.getMagnitud}
                               >
                                 {this.props.unidadesDeMedida.map((unidadDeMedida: {
                                   _id: string,

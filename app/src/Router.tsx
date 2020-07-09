@@ -54,7 +54,7 @@ class App extends React.Component {
 					<Switch>
 						<Route path='/home/inicio'                    render={(props) => <Inicio {...props} cookies={cookies} />} />						
 						<Route path='/home/side'                      component={ AppBar } />
-						<Route path='/home/perfil/:id'         		   render={(props) => <EmpresaPerfil {...props} cookies={cookies}/>} />
+						<Route path='/home/perfil/:id'         		    render={(props) => <EmpresaPerfil {...props} cookies={cookies}/>} />
 						<Route path='/item/nuevo'                     render={(props) => <ItemNuevo {...props} cookies={cookies} />} /> 
 						<Route path='/item/editar/:id'                render={(props) => <ItemEditar {...props} cookies={cookies} />} />
 						<Route path='/compras/pedidos/lista'          render={(props) => <PurchaseRequests {...props} cookies={cookies} />} />
@@ -63,9 +63,9 @@ class App extends React.Component {
 						<Route path='/solicitud/unidadMedida/:id'     component={ ValidarSolicitud } />
 						<Route path='/solicitud/unidadMedida'         component={ SolicitudesUnidadMedida } />
 						<Route path='/home/catalogo'                  render={(props) => <Catalogo { ...props } cookies={cookies} />} /> 
-						<Route path='/registrar' 					  component={ Register } />
-					    <Route path='/item/detalle/:id'     		  render={(props) => <ItemDetalle {...props} />} /> 
-						<Route path='/pedido/nuevo'                    render={(props) => <PedidoNuevo { ...props } cookies={cookies} />} />
+						<Route path='/registrar' 					            component={ Register } />
+					  <Route path='/item/detalle/:id'     		      render={(props) => <ItemDetalle {...props} />} /> 
+						<Route path='/pedido/nuevo'                   render={(props) => <PedidoNuevo { ...props } cookies={cookies} />} />
 						<Route path='/presupuesto/nuevo'              render={(props) => <PresupuestoNuevo { ...props } cookies={cookies} />} />
 						<Route path='/compras/presupuestos/lista'     render={(props) => <PurchasePresupuestos {...props} />} /> 
 						<Route path='/ventas/presupuestos/lista'      render={(props) => <SalePresupuestos {...props} />} /> 

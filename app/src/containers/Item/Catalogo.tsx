@@ -85,6 +85,7 @@ class Catalog extends React.Component<{
         columns={[
           { title: 'Nombre', field: 'item.nombre', type: 'string' },
           { title: 'Precio', field: 'item.precio', type: 'string' },
+          { title: 'Precio Visible', field: 'item.mostrarPrecio', type: 'boolean' },
           { title: 'Unidad', field: 'item.unidad_de_medida.nombre', type: 'string' },
           { title: 'Fecha creación', field: 'item.created_at', type: 'string' },
           { title: 'Fecha actualización', field: 'item.updated_at', type: 'string' },
