@@ -309,19 +309,31 @@ export  function EditarItem(props: {
   drawer:any,
   footer:any,
   title: string,
+  nombre: string,
+  precio: string,
+  foto: string,
+  mostrarPrecio: boolean,
+  descripcion: string,
+  unidadDeMedidaId: string,
 }) {
 
-	const classes = useStyles(theme);
- 
+  const classes = useStyles(theme);
+  
   return <ItemEditar 
-    classes={classes}
-    history={props.history}
-    location={props.location}
-    match={props.match}
-    staticContext={props.staticContext}
-    drawer={props.drawer}
-    footer={props.footer}
-    title={props.title}
+    classes={ classes }
+    history={ props.history }
+    location={ props.location }
+    match={ props.match }
+    staticContext={ props.staticContext }
+    drawer={ props.drawer }
+    footer={ props.footer }
+    title={ props.title }
+    nombre={ props.nombre }
+    precio={ props.precio }
+    foto={ props.foto }
+    mostrarPrecio={ props.mostrarPrecio }
+    descripcion={ props.descripcion }
+    unidadDeMedidaId={ props.unidadDeMedidaId }
   />;
 
 }

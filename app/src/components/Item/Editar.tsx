@@ -57,12 +57,19 @@ function mapStateToProps(store: {}) {
 }
 
 class Editar extends React.Component <{
-
-  // title: string,
-  // nombre: string,
-  // precio: string,
-  // unidad: string,
-
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+  drawer:any,
+  footer:any,
+  title: string,
+  nombre: string,
+  precio: string,
+  foto: string,
+  mostrarPrecio: boolean,
+  descripcion: string,
+  unidadDeMedidaId: string,
 }, {}> {
 
 	props: any
@@ -75,147 +82,148 @@ class Editar extends React.Component <{
     this.state = {};
   }
 
-
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    
+    console.log(this.props)
 
     return(
 
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-       {this.props.drawer}
-					<main className={classes.content}>
-						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" className={classes.container}>
-							<Grid container spacing={3}>
+        {this.props.drawer}
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
 
-                <Grid item lg={12}>
-									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar}>
-                            E
-                          </Avatar>
-                        }
-                        title={this.props.title}
-                        
-                      />
+              <Grid item lg={12}>
+                <Card className={fixedHeightCard}>
+                  <CardHeader 
+                      avatar={
+                        <Avatar aria-label="recipe" className={classes.avatar}>
+                          E
+                        </Avatar>
+                      }
+                      title={this.props.title}
+                      
+                    />
 
-                    <CardContent>
-                      <form className={classes.root}>
+                  <CardContent>
+                    <form className={classes.root}>
+                      <Grid container spacing={3}>
                         <Grid container spacing={3}>
-                          <Grid container spacing={3}>
-                            <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre" defaultValue={this.props.nombre } />
-                            
-                            </Grid>
-                            <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio" type="number" defaultValue={ this.props.precio } />
-
-                            </Grid>
-                            <Grid item lg={4}>
-                              <FormControlLabel className={classes.Checkbox}
-                                  control={
-                                    <Checkbox
-                                      // checked = "false"
-                                      // onChange={this.getMostrarPrecio}
-                                      style ={{
-                                        color: "#d93211",
-                                      }}
-                                    />
-                                  }
-                                  label="Mostrar Precio"
-                                />
-                            </Grid>
-                          </Grid>
-                          <Grid container spacing={3}>
-                            <Grid item lg={6}>
-                              <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label"  className={classes.inputLabel}>Unidad</InputLabel>
-                                <Select
-                                  labelId="demo-simple-select-label"
-                                  id="demo-simple-select"
-                                  defaultValue={this.props.unidad}
-                                  // value={unidadDeMedida}
-                                  // onChange={this.getUnidadDeMedida}
-                                  
-                                >
-                                  <MenuItem value={1}>Unidad</MenuItem>
-                                  <MenuItem value={2}>Kilogramos</MenuItem>
-                                  <MenuItem value={3}>Metros</MenuItem>
-                                  <MenuItem value={4}>Litros</MenuItem>
-                                  <MenuItem value={5}>Horas</MenuItem>
-                                </Select>
-                              </FormControl>
-                            </Grid>
-                            <Grid item lg={6}>
-                              <Link href="/unidadMedida/nuevo"  >
-                                <Button variant="contained" className={classes.Boton}>
-                                  Nueva Unidad
-                                </Button>
-                              </Link>
-                          </Grid>
-                          </Grid>
-                          <Grid container spacing={3}> 
+                          <Grid item lg={4}>
+                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Nombre" value={ this.props.nombre } />
                           
-                            <Grid item lg={4}>
-                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
-                            </Grid>
-                            <Grid item lg={4}>
-                            <Button
-                              variant="contained"
-                              component="label"
-                              className={classes.botonIcono}
-                              
-                            >
-                               Imagen
-                              <InputLabel htmlFor="icon-button-file">
-                                <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-                                  <PhotoCamera />
-                                </IconButton>
-                              </InputLabel>
-                              <Input
-                                type="file"
-                                style={{ display: "none" }}
-                               
-                              />
-                            </Button>
                           </Grid>
+                          <Grid item lg={4}>
+                          <CssTextField className={classes.margin} id="custom-css-standard-input" label="Precio" type="text" value={ this.props.precio } />
+
+                          </Grid>
+                          <Grid item lg={4}>
+                            <FormControlLabel className={classes.Checkbox}
+                                control={
+                                  <Checkbox
+                                    // checked = "false"
+                                    // onChange={this.getMostrarPrecio}
+                                    style ={{
+                                      color: "#d93211",
+                                    }}
+                                  />
+                                }
+                                label="Mostrar Precio"
+                              />
                           </Grid>
                         </Grid>
-                      </form>
-                    </CardContent>
-                    <CardActions>
-                      <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
-                        <Grid item lg={12} >
+                        <Grid container spacing={3}>
+                          <Grid item lg={6}>
+                            <FormControl className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-label"  className={classes.inputLabel}>Unidad</InputLabel>
+                              <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                defaultValue={this.props.unidad}
+                                // value={unidadDeMedida}
+                                // onChange={this.getUnidadDeMedida}
+                                
+                              >
+                                <MenuItem value={1}>Unidad</MenuItem>
+                                <MenuItem value={2}>Kilogramos</MenuItem>
+                                <MenuItem value={3}>Metros</MenuItem>
+                                <MenuItem value={4}>Litros</MenuItem>
+                                <MenuItem value={5}>Horas</MenuItem>
+                              </Select>
+                            </FormControl>
+                          </Grid>
+                          <Grid item lg={6}>
+                            <Link href="/unidadMedida/nuevo"  >
+                              <Button variant="contained" className={classes.Boton}>
+                                Nueva Unidad
+                              </Button>
+                            </Link>
+                        </Grid>
+                        </Grid>
+                        <Grid container spacing={3}> 
+                        
+                          <Grid item lg={4}>
+                          <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10}  className={classes.textTarea} value="Bateria no extraible. Micro SD hasta 512gb. 3GBRAM"  />
+                          </Grid>
+                          <Grid item lg={4}>
                           <Button
                             variant="contained"
-                            color="primary"
-                            size="small"
-                            className={classes.button}
-                            startIcon={<SaveIcon />}
-                            //onClick={() => this.save()}
+                            component="label"
+                            className={classes.botonIcono}
+                            
                           >
-                            Actualizar
+                              Imagen
+                            <InputLabel htmlFor="icon-button-file">
+                              <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
+                                <PhotoCamera />
+                              </IconButton>
+                            </InputLabel>
+                            <Input
+                              type="file"
+                              style={{ display: "none" }}
+                              
+                            />
                           </Button>
-                          </Grid>  
                         </Grid>
-                    </CardActions>
-                    
-									</Card>
-								</Grid>
+                        </Grid>
+                      </Grid>
+                    </form>
+                  </CardContent>
+                  <CardActions>
+                    <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                      <Grid item lg={12} >
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          size="small"
+                          className={classes.button}
+                          startIcon={<SaveIcon />}
+                          //onClick={() => this.save()}
+                        >
+                          Actualizar
+                        </Button>
+                        </Grid>  
+                      </Grid>
+                  </CardActions>
+                  
+                </Card>
+              </Grid>
 
 
-							</Grid>
-						{/* 	<Box pt={4}>
-								<Copyright />
-							</Box> */}
-						</Container>
-            {this.props.footer}
-					</main>
+            </Grid>
+          {/* 	<Box pt={4}>
+              <Copyright />
+            </Box> */}
+          </Container>
+          {this.props.footer}
+        </main>
 
           {/* <div class="content-wrapper">
 

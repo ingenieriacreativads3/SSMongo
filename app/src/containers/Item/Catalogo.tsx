@@ -40,7 +40,7 @@ class Catalog extends React.Component<{
     this.action = this.action.bind(this);
     this.drawer = this.drawer.bind(this);
     this.state = {
-      checked: false
+      checked: true
     };
   }
   
