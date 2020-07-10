@@ -75,7 +75,13 @@ class Editar extends React.Component <{
       nombre: string
     },
   },
-  unidadesDeMedida: any[]
+  unidadesDeMedida: any[],
+  getNombre: any,
+  getPrecio: any,
+  getDescripcion: any,
+  getMagnitud: any,
+  getMostrarPrecio: any,
+  getFoto: any,
 }, {
   item: {
     nombre: string,
@@ -83,8 +89,10 @@ class Editar extends React.Component <{
     descripcion: string,
     unidad_de_medida: {
       _id: string,
-      nombre: string
-    }
+      nombre: string,
+    },
+    foto: string[],
+    mostrarPrecio: boolean
   }
 }> {
 
@@ -99,6 +107,7 @@ class Editar extends React.Component <{
     this.changePrecio = this.changePrecio.bind(this);
     this.changeDescripcion = this.changeDescripcion.bind(this);
     this.changeUnidadDeMedida = this.changeUnidadDeMedida.bind(this);
+    this.changeMostrarPrecio = this.changeMostrarPrecio.bind(this);
     this.state = {
       item: {
         nombre: '',
@@ -107,7 +116,9 @@ class Editar extends React.Component <{
         unidad_de_medida: {
           _id: '',
           nombre: ''
-        }
+        },
+        foto: [],
+        mostrarPrecio: false
       }
     };
   }
@@ -120,27 +131,50 @@ class Editar extends React.Component <{
 
   changeNombre(e: any) {
     this.setState({ item: { ...this.state.item, nombre: e.target.value } })
+    //this.props.getNombre(e.target.value)
   }
 
   changePrecio(e: any) {
     this.setState({ item: { ...this.state.item, precio: e.target.value } })
+    this.props.getPrecio(e.target.value)
   }
 
   changeDescripcion(e: any) {
     this.setState({ item: { ...this.state.item, descripcion: e.target.value } })
+    this.props.getDescripcion(e.target.value)
   }
 
   changeUnidadDeMedida(e: any) {
-    console.log(e)
-    this.setState({ 
-      item: { 
-        ...this.state.item, 
-        unidad_de_medida: {
-          _id: '',
-          nombre: ''
-        }
+
+    this.props.unidadesDeMedida.map((unidadDeMedida: {
+      _id: string,
+      nombre: string
+    }) => {
+      if(e.target.value === unidadDeMedida._id) {
+        this.setState({ 
+          item: { 
+            ...this.state.item, 
+            unidad_de_medida: {
+              _id: unidadDeMedida._id,
+              nombre: unidadDeMedida.nombre
+            }
+          }
+        })
+        this.props.getMagnitud(unidadDeMedida._id)
       }
     })
+
+  }
+
+  changeMostrarPrecio() {
+
+    let mostrarPrecio: boolean = false
+
+    if(!this.state.item.mostrarPrecio) mostrarPrecio = true
+
+    this.setState({ item: { ...this.state.item, mostrarPrecio: mostrarPrecio } })
+    this.props.getMostrarPrecio(mostrarPrecio)
+
   }
 
   render(){
@@ -200,8 +234,8 @@ class Editar extends React.Component <{
                             <FormControlLabel className={classes.Checkbox}
                                 control={
                                   <Checkbox
-                                    // checked = "false"
-                                    // onChange={this.getMostrarPrecio}
+                                    checked={this.state.item.mostrarPrecio}
+                                    onChange={this.changeMostrarPrecio}
                                     style ={{
                                       color: "#d93211",
                                     }}
@@ -270,7 +304,7 @@ class Editar extends React.Component <{
                             </label> 
                           </Grid>
                           <Grid item lg ={4}>
-                            <Avatar alt={this.props.pathImage} src={this.props.pathImage} className={classes.previsualizacion} />
+                            <Avatar alt={this.state.item.foto[0]} src={'http://localhost:8000/' + this.state.item.foto[0]} className={classes.previsualizacion} />
                           </Grid>
                         </Grid>
                       </Grid>

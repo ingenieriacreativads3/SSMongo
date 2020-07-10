@@ -28,7 +28,15 @@ class Editar extends React.Component<{
   match: any,
   staticContext?: any,
  
-}, {}> {
+}, {
+  _id: string,
+	nombre: string,
+	precio: string,
+	descripcion: string,
+	idMagnitud: string,
+	mostrarPrecio: boolean,
+	foto: string[],
+}> {
 
 	props: any
 	static propTypes: any
@@ -38,7 +46,21 @@ class Editar extends React.Component<{
   constructor(props: any) {
     super(props);
     this.update = this.update.bind(this);
-    this.state = {};
+    this.getNombre = this.getNombre.bind(this);
+    this.getPrecio = this.getPrecio.bind(this);
+    this.getDescripcion = this.getDescripcion.bind(this);
+    this.getMagnitud = this.getMagnitud.bind(this);
+    this.getMostrarPrecio = this.getMostrarPrecio.bind(this);
+    this.getFoto = this.getFoto.bind(this);
+    this.state = {
+      _id: '',
+      nombre: '',
+      precio: '',
+      descripcion: '',
+      idMagnitud: '',
+      mostrarPrecio: false,
+      foto: [],
+    };
   }
 
   componentWillMount() {
@@ -80,8 +102,40 @@ class Editar extends React.Component<{
 
   update() {
 
-    
+    this.props.dispatch(itemActions.updateItem(
+      this.state._id,
+      this.state.nombre,
+      this.state.precio,
+      this.state.idMagnitud,
+      this.state.descripcion,
+      this.state.mostrarPrecio,
+      this.state.foto
+    ))
 
+  }
+
+  getNombre(nombre: string) {
+    this.setState({ nombre: nombre })
+  }
+
+  getPrecio(precio: string) {
+    this.setState({ precio: precio })
+  }
+
+  getDescripcion(descripcion: string) {
+    this.setState({ descripcion: descripcion })
+  }
+
+  getMagnitud(idMagnitud: string) {
+    this.setState({ idMagnitud: idMagnitud })
+  }
+
+  getMostrarPrecio(mostrarPrecio: boolean) {
+    this.setState({ mostrarPrecio: mostrarPrecio })
+  }
+
+  getFoto(foto: string[]) {
+    this.setState({ foto: foto })
   }
 
   render(){
@@ -153,8 +207,14 @@ class Editar extends React.Component<{
           footer={ this.footer() }
           title={'Editar Item'}
           item={ item }
-          update={ this.update() }
+          update={ this.update }
           unidadesDeMedida={ unidadesDeMedida }
+          getNombre={ this.getNombre }
+          getPrecio={ this.getPrecio }
+          getDescripcion={ this.getDescripcion }
+          getMagnitud={ this.getMagnitud }
+          getMostrarPrecio={ this.getMostrarPrecio }
+          getFoto={ this.getFoto }
         />
       </div>
     );

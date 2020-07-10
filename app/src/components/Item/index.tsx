@@ -328,7 +328,13 @@ export  function EditarItem(props: {
     },
   },
   update: any,
-  unidadesDeMedida: any[]
+  unidadesDeMedida: any[],
+  getNombre: any,
+  getPrecio: any,
+  getDescripcion: any,
+  getMagnitud: any,
+  getMostrarPrecio: any,
+  getFoto: any,
 }) {
 
   const classes = useStyles(theme);
@@ -345,6 +351,12 @@ export  function EditarItem(props: {
     item={ props.item }
     update={ props.update }
     unidadesDeMedida={ props.unidadesDeMedida }
+    getNombre={ props.getNombre }
+    getPrecio={ props.getPrecio }
+    getDescripcion={ props.getDescripcion }
+    getMagnitud={ props.getMagnitud }
+    getMostrarPrecio={ props.getMostrarPrecio }
+    getFoto={ props.getFoto }
   />;
 
 }

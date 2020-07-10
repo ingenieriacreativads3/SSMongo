@@ -48,25 +48,25 @@ export function setItem(
 }
 
 export function updateItem(
-	idEmpresa: string,	
+	_id: string,	
 	nombre: string,
 	precio: string,
-	idMagnitud: string,
 	descripcion: string,
+	idMagnitud: string,
 	mostrarPrecio: boolean,
-	imagen: string,
+	foto: string[],
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
 	let payload: any = axios.post(url + '/item', {
-		idEmpresa,
+		_id,
 		nombre,
 		precio,
-		idMagnitud,
 		descripcion,
+		idMagnitud,
 		mostrarPrecio,
-		imagen
+		foto
 	})
 	
   return {
