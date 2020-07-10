@@ -118,7 +118,7 @@ class Nuevo extends React.Component<{
     this.setState({ displayPrice: display })
   }
 
-  async getFoto(e: any) {
+  getFoto(e: any) {
 
     let files: File[] = []
 
@@ -126,7 +126,9 @@ class Nuevo extends React.Component<{
       files.push(e.target.files[i])
     }
 
-    this.props.dispatch(await fileActions.upload(files))
+    files.map((file: File) => {
+      this.props.dispatch(fileActions.upload(file))
+    })
 
     this.setState({ photo: files })
   }

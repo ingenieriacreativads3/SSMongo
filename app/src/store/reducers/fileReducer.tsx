@@ -2,7 +2,9 @@ export default function FileReducer (state = {
 
   status: 0,
   message: '',
-  data: {},
+  data: {
+    foto: []
+  },
   fetching: false,
 	fetched: false,
   error: null,
@@ -33,7 +35,11 @@ export default function FileReducer (state = {
 
     }
   
-    case 'UPLOAD_FULFILLED':{
+    case 'UPLOAD_FULFILLED': {
+
+      let fotosAux: string[] = state.data.foto
+
+      fotosAux.push(action.payload.data.data.foto)
       
       return {
         ...state,
@@ -41,7 +47,9 @@ export default function FileReducer (state = {
         fetched: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
-        data: action.payload.data.data
+        data: {
+          foto: fotosAux
+        }
       };
     }
   
