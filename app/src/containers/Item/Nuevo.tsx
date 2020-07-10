@@ -181,11 +181,11 @@ class Nuevo extends React.Component<{
 
     let unidadesDeMedida: any[] = [
       {
-        "_id": "5ecdb0bcdb386b4e1b75e378",
-        "nombre": "fruta1",
-        "abreviatura": "U",
-        "updated_at": "2020-05-27 00:13:48",
-        "created_at": "2020-05-27 00:13:48"
+        '_id': '',
+        'nombre': '',
+        'abreviatura': '',
+        'updated_at': '',
+        'created_at': ''
       }
     ]
 
@@ -196,13 +196,13 @@ class Nuevo extends React.Component<{
       unidadesDeMedida = this.props.unidadDeMedidaReducer.data.unidadesDeMedida
     }
 
-    let pathImage: string = 'http://localhost:8000/'
+    let pathImage: string = ''
 
     if(
       this.props.fileReducer.fetched &&
       this.props.fileReducer.data !== undefined
     ) {
-      pathImage = pathImage + this.props.fileReducer.data.foto
+      pathImage = 'http://localhost:8000/' + this.props.fileReducer.data.foto[0]
     }
 
     return(
@@ -216,7 +216,7 @@ class Nuevo extends React.Component<{
           getMostrarPrecio={ this.getMostrarPrecio }
           getFoto={ this.getFoto }
           save={ this.save }
-          unidadesDeMedida={unidadesDeMedida}
+          unidadesDeMedida={ unidadesDeMedida }
           drawer={ this.drawer() }
           footer={ this.footer() }
           pathImage={ pathImage }

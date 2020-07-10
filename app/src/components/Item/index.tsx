@@ -239,8 +239,8 @@ const useStyles = makeStyles((theme) => ({
   
   previsualizacion:{
     fontSize: '70px',
-    width:'150px',
-    height:'150px',
+    width:'200px',
+    height:'200px',
   },
 
 
@@ -322,9 +322,13 @@ export  function EditarItem(props: {
     foto: string,
     mostrarPrecio: boolean,
     descripcion: string,
-    unidadDeMedidaId: string,
+    unidad_de_medida: {
+      _id: string,
+      nombre: string
+    },
   },
-  update: any
+  update: any,
+  unidadesDeMedida: any[]
 }) {
 
   const classes = useStyles(theme);
@@ -340,6 +344,7 @@ export  function EditarItem(props: {
     title={ props.title }
     item={ props.item }
     update={ props.update }
+    unidadesDeMedida={ props.unidadesDeMedida }
   />;
 
 }

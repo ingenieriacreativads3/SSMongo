@@ -3,17 +3,21 @@ import { connect } from 'react-redux'
 
 import { EditarItem as ItemEditar} from './../../components/Item'
 import * as itemActions from './../../store/actions/item'
+import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import Link from '@material-ui/core/Link';
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
-  itemReducer : any
+  itemReducer: any,
+  unidadDeMedidaReducer: any,
+  fileReducer: any
   login: any
 }) {
   return {
-   
-    itemReducer : store.itemReducer,
+    itemReducer: store.itemReducer,
+    unidadDeMedidaReducer: store.unidadDeMedidaReducer,
+    fileReducer: store.fileReducer,
     login: store.login
   };
 }
@@ -45,6 +49,15 @@ class Editar extends React.Component<{
     ) {
       this.props.dispatch(itemActions.reintentar())
     }
+
+    this.props.dispatch(itemActions.reintentar())
+    if(
+      !this.props.unidadDeMedidaReducer.fetched &&
+      !this.props.unidadDeMedidaReducer.fetching
+    ) {
+      this.props.dispatch(unidadDeMedidaActions.getUnidadesDeMedida())
+    }
+
   }
 
   drawer() {
@@ -73,7 +86,22 @@ class Editar extends React.Component<{
 
   render(){
 
+    let unidadesDeMedida: any[] = [
+      {
+        '_id': '',
+        'nombre': '',
+        'abreviatura': '',
+        'updated_at': '',
+        'created_at': ''
+      }
+    ]
 
+    if(
+      this.props.unidadDeMedidaReducer.fetched &&
+      this.props.unidadDeMedidaReducer.data !== undefined
+    ) {
+      unidadesDeMedida = this.props.unidadDeMedidaReducer.data.unidadesDeMedida
+    }
 
     if(
       !this.props.itemReducer.fetched &&
@@ -88,7 +116,8 @@ class Editar extends React.Component<{
       foto: string,
       mostrarPrecio: boolean,
       descripcion: string,
-      unidadDeMedidaId: string
+      unidadDeMedidaId: string,
+      unidad_de_medida: any
     } = {
       nombre: '',
       precio: '',
@@ -96,6 +125,7 @@ class Editar extends React.Component<{
       mostrarPrecio: false,
       descripcion: '',
       unidadDeMedidaId: '',
+      unidad_de_medida: ''
     }
       
     if(this.props.itemReducer !== undefined) {
@@ -106,11 +136,8 @@ class Editar extends React.Component<{
           if(this.props.itemReducer.data.item.foto !== undefined) item.foto = this.props.itemReducer.data.item.foto
           if(this.props.itemReducer.data.item.mostrarPrecio !== undefined) item.mostrarPrecio = this.props.itemReducer.data.item.mostrarPrecio
           if(this.props.itemReducer.data.item.descrpcion !== undefined) item.descripcion = this.props.itemReducer.data.item.descrpcion
-          if(this.props.itemReducer.data.item.unidad_de_medida) {
-            if(this.props.itemReducer.data.item.unidad_de_medida._id) {
-              item.unidadDeMedidaId = this.props.itemReducer.data.item.unidad_de_medida_id
-            }
-          }
+          if(this.props.itemReducer.data.item.unidad_de_medida._id !== undefined) item.unidadDeMedidaId = this.props.itemReducer.data.item.unidad_de_medida_id
+          if(this.props.itemReducer.data.item.unidad_de_medida) item.unidad_de_medida = this.props.itemReducer.data.item.unidad_de_medida
 				}
 			}
     }
@@ -127,6 +154,7 @@ class Editar extends React.Component<{
           title={'Editar Item'}
           item={ item }
           update={ this.update() }
+          unidadesDeMedida={ unidadesDeMedida }
         />
       </div>
     );

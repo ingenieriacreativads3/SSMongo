@@ -70,11 +70,21 @@ class Editar extends React.Component <{
     foto: string,
     mostrarPrecio: boolean,
     descripcion: string,
-    unidadDeMedidaId: string,
-  }
+    unidad_de_medida: {
+      _id: string,
+      nombre: string
+    },
+  },
+  unidadesDeMedida: any[]
 }, {
   item: {
-    nombre: string
+    nombre: string,
+    precio: string,
+    descripcion: string,
+    unidad_de_medida: {
+      _id: string,
+      nombre: string
+    }
   }
 }> {
 
@@ -85,29 +95,50 @@ class Editar extends React.Component <{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    this.changeNombre = this.changeNombre.bind(this);
+    this.changePrecio = this.changePrecio.bind(this);
+    this.changeDescripcion = this.changeDescripcion.bind(this);
+    this.changeUnidadDeMedida = this.changeUnidadDeMedida.bind(this);
     this.state = {
       item: {
-        nombre: props.item.nombre || 'asd'
+        nombre: '',
+        precio: '',
+        descripcion: '',
+        unidad_de_medida: {
+          _id: '',
+          nombre: ''
+        }
       }
     };
   }
 
   componentWillReceiveProps() {
-    if(this.state.item.nombre !== this.props.item.nombre) {
-      this.setState({
-        item: {
-          nombre: this.props.item.nombre
-        }
-      })
-    }
+
+    this.setState({ item: this.props.item})
+
   }
 
-  handleChange(e: any) {
+  changeNombre(e: any) {
+    this.setState({ item: { ...this.state.item, nombre: e.target.value } })
+  }
 
-    this.setState({
-      item: {
-        nombre: e.target.value
+  changePrecio(e: any) {
+    this.setState({ item: { ...this.state.item, precio: e.target.value } })
+  }
+
+  changeDescripcion(e: any) {
+    this.setState({ item: { ...this.state.item, descripcion: e.target.value } })
+  }
+
+  changeUnidadDeMedida(e: any) {
+    console.log(e)
+    this.setState({ 
+      item: { 
+        ...this.state.item, 
+        unidad_de_medida: {
+          _id: '',
+          nombre: ''
+        }
       }
     })
   }
@@ -149,8 +180,8 @@ class Editar extends React.Component <{
                               className={classes.margin}
                               id="nombre"
                               label="Nombre"
-                              value={this.state.item.nombre}
-                              onChange={this.handleChange}
+                              value={ this.state.item.nombre }
+                              onChange={ this.changeNombre }
                             />
                           
                           </Grid>
@@ -160,7 +191,8 @@ class Editar extends React.Component <{
                               id="custom-css-standard-input"
                               label="Precio"
                               type="text"
-                              value={ this.props.item.precio }
+                              value={ this.state.item.precio }
+                              onChange={ this.changePrecio }
                             />
 
                           </Grid>
@@ -181,21 +213,21 @@ class Editar extends React.Component <{
                         </Grid>
                         <Grid container spacing={3}>
                           <Grid item lg={6}>
-                            <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-label"  className={classes.inputLabel}>Unidad</InputLabel>
+                          <FormControl className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Unidad</InputLabel>
                               <Select
+                            
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                defaultValue={this.props.unidad}
-                                // value={unidadDeMedida}
-                                // onChange={this.getUnidadDeMedida}
-                                
+                                value={this.state.item.unidad_de_medida._id}
+                                onChange={this.changeUnidadDeMedida}
                               >
-                                <MenuItem value={1}>Unidad</MenuItem>
-                                <MenuItem value={2}>Kilogramos</MenuItem>
-                                <MenuItem value={3}>Metros</MenuItem>
-                                <MenuItem value={4}>Litros</MenuItem>
-                                <MenuItem value={5}>Horas</MenuItem>
+                                {this.props.unidadesDeMedida.map((unidadDeMedida: {
+                                  _id: string,
+                                  nombre: string
+                                }) => {
+                                  return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
+                                })}
                               </Select>
                             </FormControl>
                           </Grid>
@@ -215,7 +247,8 @@ class Editar extends React.Component <{
                               rowsMin={10}
                               className={classes.textTarea}
                               placeholder="Descripcion"
-                              onChange={ this.props.getDescripcion }
+                              value={ this.state.item.descripcion }
+                              onChange={ this.changeDescripcion }
                             />
                           </Grid>
                           <Grid item lg={4}>
