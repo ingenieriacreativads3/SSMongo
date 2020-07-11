@@ -185,13 +185,13 @@ class ValidarSolicitud extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-        <MenuLateral></MenuLateral>
+        {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" className={classes.container}>
+						<Container maxWidth="lg"  className={classes.container}>
 							<Grid container spacing={3}>
 
-                <Grid item lg={9}>
+                <Grid item lg={12} >
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
@@ -205,7 +205,7 @@ class ValidarSolicitud extends React.Component {
 
                     <CardContent>
                       <form className={classes.root}>
-                        <Grid container spacing={3}>
+                        <Grid container spacing={3} >
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
                             <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud"  defaultValue="20" className={classes.input} />
@@ -221,7 +221,7 @@ class ValidarSolicitud extends React.Component {
                             </Grid>
                             
                           </Grid>
-                          <Grid container spacing={3}>
+                          <Grid container spacing={3} >
                             
                             <Grid item lg={4}>
                             <CssTextField  id="custom-css-standard-input" label="Unidad"  defaultValue="Metro cuadrado" className={classes.input} />
@@ -270,7 +270,7 @@ class ValidarSolicitud extends React.Component {
                               color='primary'
                               size="small"
                               className={classes.button}
-                              endIcon={<SendIcon></SendIcon>}
+                              // endIcon={<SendIcon></SendIcon>}
                               
                             >
                              Aceptar
@@ -287,10 +287,11 @@ class ValidarSolicitud extends React.Component {
 
 
 							</Grid>
-							<Box pt={4}>
+							{/* <Box pt={4}>
 								<Copyright />
-							</Box>
+							</Box> */}
 						</Container>
+            {this.props.footer}
 					</main>
 
          

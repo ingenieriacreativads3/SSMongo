@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, Button, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
+import MenuLateral from '../DrawerInicio'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -184,13 +185,13 @@ class Nuevo extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar></AppBar>
-
+        {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
-                <Grid item lg={9}>
+                <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
@@ -207,11 +208,11 @@ class Nuevo extends React.Component {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Usuario"  />
+                            <CssTextField className={classes.inputNuevo} disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft"  />
                           
                             </Grid>
                             <Grid item lg={6}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Unidad"  />
+                            <CssTextField className={classes.inputNuevo} id="custom-css-standard-input" label="Unidad"   />
 
                            
                             </Grid>
@@ -219,12 +220,12 @@ class Nuevo extends React.Component {
                           </Grid>
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input"  label="Simbolo"  />
+                            <CssTextField className={classes.inputNuevo} id="custom-css-standard-input"  label="Simbolo"   />
 
                           
                             </Grid>
                             <Grid item lg={6}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input"  label="Magnitud"  />
+                            <CssTextField className={classes.inputNuevo} id="custom-css-standard-input"  label="Magnitud"  />
                   
                             </Grid>
                             
@@ -243,7 +244,7 @@ class Nuevo extends React.Component {
                               variant="contained"
                               color='primary'
                               size="small"
-                              className={classes.button}
+                              className={classes.buttonNuevo}
                               endIcon={<SendIcon></SendIcon>}
                               
                             >
@@ -261,10 +262,11 @@ class Nuevo extends React.Component {
 
 
 							</Grid>
-							<Box pt={4}>
+							{/* <Box pt={4}>
 								<Copyright />
-							</Box>
+							</Box> */}
 						</Container>
+            {this.props.footer}
 					</main>
 
          

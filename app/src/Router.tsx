@@ -6,9 +6,9 @@ import AppBar from './components/AppBar'
 import { ItemNuevo } from './containers/Item'
 import { EditarItem } from './components/Item'
 import { ItemEditar } from './containers/Item'
-import { NuevaUnidadMedida } from './components/UnidadMedida'
-import { ValidarSolicitud } from './components/UnidadMedida'
-import { SolicitudesUnidadMedida } from './components/UnidadMedida'
+//import { NuevaUnidadMedida } from './components/UnidadMedida'
+//import { ValidarSolicitud } from './components/UnidadMedida'
+//import { SolicitudesUnidadMedida } from './components/UnidadMedida'
 import { Catalogo } from './containers/Item'
 import { VerDetalleItem } from './components/Item'
 import { ItemDetalle } from './containers/Item'
@@ -35,8 +35,8 @@ import { ResumenActividad, Reputacion} from './containers/Estadisticas'
 import { VerReputacion } from './components/Estadisticas'
 import Item from './entities/Item';
 import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion'
-//import { PerfilEmpresa } from './components/Perfil'
 import { EmpresaPerfil } from './containers/Perfil'
+import { SolicitudesUnidadMedida, SolicitudDeUnidadDeMedida, NuevaUnidadMedida } from './containers/UnidadMedida'
 
 class App extends React.Component {
 
@@ -59,9 +59,10 @@ class App extends React.Component {
 						<Route path='/item/editar/:id'                render={(props) => <ItemEditar {...props} cookies={cookies} />} />
 						<Route path='/compras/pedidos/lista'          render={(props) => <PurchaseRequests {...props} cookies={cookies} />} />
 						<Route path='/ventas/pedidos/lista'           render={(props) => <SaleRequests {...props} />} /> 
-						<Route path='/unidadMedida/nuevo'             component={ NuevaUnidadMedida } />
-						<Route path='/solicitud/unidadMedida/:id'     component={ ValidarSolicitud } />
-						<Route path='/solicitud/unidadMedida'         component={ SolicitudesUnidadMedida } />
+						<Route path='/unidadMedida/nuevo'            render={(props) => <NuevaUnidadMedida {...props} cookies={cookies} />}/>
+						<Route path='/solicitud/unidadMedida/:id'     render={(props) => <SolicitudDeUnidadDeMedida {...props}  />}  />
+					    {/* <Route path='/solicitud/unidadMedida'         component={ SolicitudesUnidadMedida } />  */}
+						<Route path='/solicitud/unidadMedida'          render={(props) => <SolicitudesUnidadMedida {...props}  />}  />
 						<Route path='/home/catalogo'                  render={(props) => <Catalogo { ...props } cookies={cookies} />} /> 
 						<Route path='/registrar' 					            component={ Register } />
 					  <Route path='/item/detalle/:id'     		      render={(props) => <ItemDetalle {...props} />} /> 

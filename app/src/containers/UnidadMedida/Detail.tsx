@@ -1,0 +1,99 @@
+import React from 'react';
+import { connect } from 'react-redux'
+
+import { ValidarSolicitud as Validacion } from './../../components/UnidadMedida'
+import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
+import { Footer } from './../Footer'
+import { Drawer } from './../Drawer'
+
+function mapStateToProps(store: {
+  unidadDeMedidaReducer: any,
+}) {
+  return {
+    unidadDeMedidaReducer: store.unidadDeMedidaReducer,
+  };
+}
+
+class Detail extends React.Component<{
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any
+}, {
+  rubros: string[]
+}> {
+
+	props: any
+	static propTypes: any
+	static defaultProps: any
+
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      rubros: []
+    };
+  }
+
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+  footer() {
+    return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+  render(){
+
+  
+
+    if(
+      !this.props.unidadDeMedidaReducer.fetched &&
+      !this.props.unidadDeMedidaReducer.fetching
+    ) {
+
+      this.props.dispatch(unidadDeMedidaActions.getById(this.props.match.params.id))
+
+    }
+
+    let title: string = 'Solicitud Unidad de Medida'
+    let _id: string = ''
+    let usuario: string = ''
+    let fecha: string = ''
+    let unidad: string = ''
+    let simbolo: string = ''
+    let magnitud: string = ''
+    
+   
+
+
+
+    return(
+      <div>
+        <Validacion
+          title={title}
+          _id={_id}
+          usuario={usuario}
+          fecha={fecha}
+          unidad={unidad}
+          simbolo={simbolo}
+          magnitud={magnitud}
+          footer={this.footer()}
+          drawer={this.drawer()}
+        />
+      </div>
+    );
+  }
+}
+
+export default connect(mapStateToProps)(Detail)

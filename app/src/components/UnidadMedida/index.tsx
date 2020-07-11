@@ -115,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
+    marginTop:theme.spacing(15),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
@@ -153,23 +154,68 @@ const useStyles = makeStyles((theme) => ({
     marginLeft:theme.spacing(5),
     marginTop:theme.spacing(3),
   },
+  inputNuevo: {
+    marginLeft:theme.spacing(10),
+    marginTop:theme.spacing(3),
+  },
+  buttonNuevo:{
+    marginTop:theme.spacing(25),
+    backgroundColor: '#d93211',
+    color : '#ffffff',
+    '&:hover': {
+      background: "#d93211",
+   },
+  }
 
   
   
 
 }));
 
-export  function NuevaUnidadMedida() {
+export  function NuevaUnidadMedida(props: {
+  getUnidad: any,
+  getMagnitud: any,
+  getSimbolo: any,
+  drawer:any,
+  footer:any,
+}) {
 
 	const classes = useStyles(theme);
-  return <UnidadMedidaNueva classes={ classes } />;
+  return <UnidadMedidaNueva 
+  classes={ classes }
+  getUnidad={ props.getUnidad }
+  getMagnitud={ props.getMagnitud }
+  getSimbolo={ props.getSimbolo } 
+  drawer={props.drawer}
+  footer={props.footer}/>;
 
 }
 
-export  function ValidarSolicitud() {
+export  function ValidarSolicitud(props: {
+  title: string,
+  _id: string,
+  usuario: string,
+  fecha:string,
+  unidad:string,
+  simbolo:string,
+  magnitud:string,
+  drawer:any,
+  footer:any,
+}) {
 
 	const classes = useStyles(theme);
-  return <SolicitudAValidar classes={ classes } />;
+  return <SolicitudAValidar 
+  classes={ classes }
+  title= {props.title}
+  _id= {props._id}
+  usuario= {props.usuario}
+  fecha={props.fecha}
+  unidad={props.unidad}
+  simbolo={props.simbolo}
+  magnitud={props.magnitud}
+  drawer={props.drawer}
+  footer={props.footer}
+   />;
 
 }
 
