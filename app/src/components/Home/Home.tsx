@@ -1,5 +1,5 @@
 import React from 'react';
-import AppBar from '../AppBar'
+import ApBar from '../AppBar'
 import  DrawerInicio  from './../DrawerInicio';
 import clsx from 'clsx'
 import { connect } from 'react-redux'
@@ -17,6 +17,21 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import  slide1  from './img/slide1.jpeg';
+import  slide2  from './img/slide2.jpeg';
+import  slide3  from './img/slide3.jpeg';
+
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PhoneIcon from '@material-ui/icons/Phone';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import HelpIcon from '@material-ui/icons/Help';
+import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import ThumbDown from '@material-ui/icons/ThumbDown';
+import ThumbUp from '@material-ui/icons/ThumbUp';
+
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -32,6 +47,8 @@ function Copyright() {
     </Typography>
   );
 }
+
+
 
 class Home extends React.Component <{
   clasess: any,
@@ -65,14 +82,16 @@ class Home extends React.Component <{
     
     const tutorialSteps = [
       {
-        label: 'San Francisco – Oakland Bay Bridge, United States',
-        imgPath:
-          'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+        
+        imgPath:slide1,
       },
       {
-        label: 'Bird',
-        imgPath:
-          'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+        
+        imgPath:slide2,
+      },
+      {
+        
+        imgPath:slide3,
       },
     ];
 
@@ -96,11 +115,24 @@ class Home extends React.Component <{
       });
     };
 
+    const handleChange = (step: number) => {
+      this.setState({
+        activeStep: step
+      });
+    };
+
+    const a11yProps = (index: number) => {
+      return {
+        id: `scrollable-force-tab-${index}`,
+        'aria-controls': `scrollable-force-tabpanel-${index}`,
+      };
+    }
+
     return(
 
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar></AppBar>
+        <ApBar></ApBar>
         {this.props.drawer}
 					<main className={classes.content}>
           <div className={classes.rootCarousel}>
@@ -110,11 +142,12 @@ class Home extends React.Component <{
             index={this.state.activeStep}
             onChangeIndex={handleStepChange}
             enableMouseEvents
+            
           >
             {tutorialSteps.map((step, index) => (
-              <div key={step.label}>
+              <div>
                 {Math.abs(this.state.activeStep - index) <= 2 ? (
-                  <img className={classes.img} src={step.imgPath} alt={step.label} />
+                  <img className={classes.img} src={step.imgPath}  />
                 ) : null}
               </div>
             ))}
@@ -122,18 +155,20 @@ class Home extends React.Component <{
           <MobileStepper
             steps={maxSteps}
             position="static"
-            variant="text"
+            variant="dots"
             activeStep={this.state.activeStep}
             nextButton={
               <Button size="small" onClick={handleNext} disabled={this.state.activeStep === maxSteps - 1} >
-                Next
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                {/* Next */}
+                {/* {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />} */}
+                {theme.direction === 'rtl' }
               </Button>
             }
             backButton={
               <Button size="small" onClick={handleBack} disabled={this.state.activeStep === 0}>
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                Back
+                {/* {theme.direction === 'rtl' ?  <KeyboardArrowRight /> : <KeyboardArrowLeft /> } */}
+                {theme.direction === 'rtl' }
+                {/* Back */}
               </Button>
             }
           />
@@ -243,12 +278,37 @@ class Home extends React.Component <{
 							
 							
 						</Container>
+            <div className={classes.rootCategorias}>
+          
+            <AppBar position="static" color="default">
+              <Tabs
+                 value={1}
+                 //onChange={handleChange}
+                variant="scrollable"
+                scrollButtons="on"
+                indicatorColor="primary"
+                textColor="primary"
+                aria-label="scrollable force tabs example"
+              >
+                <Tab label="Item One" icon={<PhoneIcon />}  {...a11yProps(0)}  />
+                <Tab label="Item Two" icon={<FavoriteIcon />}  {...a11yProps(1)}  />
+                <Tab label="Item Three" icon={<PersonPinIcon />}  {...a11yProps(2)}  />
+                <Tab label="Item Four" icon={<HelpIcon />}  {...a11yProps(3)}  />
+                <Tab label="Item Five" icon={<ShoppingBasket />}  {...a11yProps(4)} />
+                <Tab label="Item Six" icon={<ThumbDown />}  {...a11yProps(5)}  />
+                <Tab label="Item Seven" icon={<ThumbUp />}  {...a11yProps(6)}  />
+              </Tabs>
+            </AppBar>
+                
+          </div>
             {this.props.footer}
 					</main>
 
           
          
 		 </div>
+
+     
 
     );
   }

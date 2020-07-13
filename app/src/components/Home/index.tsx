@@ -143,9 +143,11 @@ const useStyles = makeStyles((theme) => ({
    },
   },
   rootCarousel: {
-    maxWidth: 1500,
+    //maxWidth: 1500,
+    width:1500,
     flexGrow: 1,
-    padding: theme.spacing(10),
+    
+    paddingTop:theme.spacing(7),
   },
   header: {
     display: 'flex',
@@ -154,13 +156,18 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(4),
     backgroundColor: theme.palette.background.default,
   },
-  img: {
-    height: 255,
-    display: 'block',
-    maxWidth: 400,
-    overflow: 'hidden',
+   img: {
+    
+    width: 1500,
+   
+  
+  }, 
+  rootCategorias:{
+    flexGrow: 1,
     width: '100%',
-  },
+    backgroundColor: theme.palette.background.paper,
+  }
+ 
 }));
 
 export function InitLayout(props: {
