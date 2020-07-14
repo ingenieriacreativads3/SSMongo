@@ -1,5 +1,20 @@
 import axios from 'axios';
 
+export function deleteItem(
+	id:string
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.delete(url + '/item/' + id)
+	
+  return {
+		type: 'DELETE_ITEM',
+		payload: payload
+	}
+
+}
+
 export function setear() {
 
 	return {

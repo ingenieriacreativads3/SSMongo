@@ -40,19 +40,19 @@ class DialogOneButton extends React.Component<{
     const open: boolean = this.props.openDialog
     return(
       <Dialog
-        open={open}
+        open={ open }
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{this.props.title}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{ this.props.title }</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {this.props.text}
+            { this.props.text }
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus className={classes.buttonDialog} onClick={this.functionRight} >
-            {this.props.labelButtonRight}
+          <Button autoFocus className={ classes.buttonDialog } onClick={ this.functionRight } >
+            { this.props.labelButtonRight }
           </Button> 
         </DialogActions>
       </Dialog>

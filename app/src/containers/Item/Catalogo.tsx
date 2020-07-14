@@ -6,7 +6,10 @@ import { MostrarCatalogo as Catalogo} from './../../components/Item'
 import { List } from './../../components/List'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
+import { TwoButton } from './../../components/Dialogs'
+
 import * as itemActions from './../../store/actions/item'
+import * as dialogActions from './../../store/actions/dialog'
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -25,7 +28,8 @@ class Catalog extends React.Component<{
   staticContext?: any,
   cookies: Cookies
 }, {
-  checked: boolean
+  checked: boolean,
+  _id: string
 }> {
 
 	props: any
@@ -39,8 +43,12 @@ class Catalog extends React.Component<{
     this.layout = this.layout.bind(this);
     this.action = this.action.bind(this);
     this.drawer = this.drawer.bind(this);
+    this.openDialog = this.openDialog.bind(this);
+    this.aceptar = this.aceptar.bind(this);
+    this.cancelar = this.cancelar.bind(this);
     this.state = {
-      checked: true
+      checked: true,
+      _id: ''
     };
   }
   
@@ -76,35 +84,40 @@ class Catalog extends React.Component<{
     let isCatalog: boolean = true
 
     if(isTable) {
-      return <List
-        history= { this.props.history }
-        location= { this.props.location }
-        match= { this.props.match }
-        staticContext= { this.props.staticContext }
-        title={'Catálogo'}
-        columns={[
-          { title: 'Nombre', field: 'item.nombre', type: 'string' },
-          { title: 'Precio', field: 'item.precio', type: 'string' },
-          { title: 'Precio Visible', field: 'item.mostrarPrecio', type: 'boolean' },
-          { title: 'Unidad', field: 'item.unidad_de_medida.nombre', type: 'string' },
-          { title: 'Fecha creación', field: 'item.created_at', type: 'string' },
-          { title: 'Fecha actualización', field: 'item.updated_at', type: 'string' },
-        ]}
-        data={ items }
-        action={ this.action }
-        drawer={ this.drawer() }
-        checked={this.state.checked}
-        getChecked={this.getChecked}
-        isCatalog={isCatalog}
-        footer={this.footer()}
-      />
+      return <div>
+        <List
+          history= { this.props.history }
+          location= { this.props.location }
+          match= { this.props.match }
+          staticContext= { this.props.staticContext }
+          title={'Catálogo'}
+          columns={[
+            { title: 'Nombre', field: 'item.nombre', type: 'string' },
+            { title: 'Precio', field: 'item.precio', type: 'string' },
+            { title: 'Precio Visible', field: 'item.mostrarPrecio', type: 'boolean' },
+            { title: 'Unidad', field: 'item.unidad_de_medida.nombre', type: 'string' },
+            { title: 'Fecha creación', field: 'item.created_at', type: 'string' },
+            { title: 'Fecha actualización', field: 'item.updated_at', type: 'string' },
+          ]}
+          data={ items }
+          action={ this.action }
+          drawer={ this.drawer() }
+          checked={ this.state.checked }
+          getChecked={ this.getChecked }
+          isCatalog={ isCatalog }
+          footer={ this.footer() }
+          delete={ this.openDialog }
+        />
+      </div>
     } else {
-      return <Catalogo 
-        items={items}
-        getChecked={this.getChecked}
-        checked={this.state.checked}
-        footer={this.footer()}
-      />  
+      return <div>
+        <Catalogo 
+          items={ items }
+          getChecked={ this.getChecked }
+          checked={ this.state.checked }
+          footer={ this.footer() }
+        />  
+      </div>
     }
 
   }
@@ -117,21 +130,34 @@ class Catalog extends React.Component<{
     this.props.history.push("/item/editar/" + row.item._id);
   }
 
-  delete(row: {
+  openDialog(row: {
     item: {
       _id: string
     }
   }) {
-    this.props.history.push("/item/editar/" + row.item._id);
+    this.props.dispatch(dialogActions.openTwoButton())
+    this.setState({
+      _id: row.item._id
+    });
   }
 
   drawer() {
     return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
+      history={ this.props.history }
+      location={ this.props.location }
+      match={ this.props.match }
+      staticContext={ this.props.staticContext }
     />
+  }
+
+  aceptar() {
+    this.props.dispatch(itemActions.deleteItem(this.state._id))
+    this.props.dispatch(dialogActions.closeTwoButton())
+    this.props.dispatch(itemActions.reintentar())
+  }
+
+  cancelar() {
+    this.props.dispatch(dialogActions.closeTwoButton())
   }
 
   render(){
@@ -155,12 +181,14 @@ class Catalog extends React.Component<{
     return(
       <div>
         {this.layout(this.state.checked, items)}
-        {/* <TwoButton 
-          title={ 'Nuevo Item' }
-          text={ this.props.itemReducer.message }
+        <TwoButton 
+          title={ 'Eliminar Item' }
+          text={ '¿Desea eliminar este Item? ¿Esta seguro? ¿De verdad verdadera?' }
           functionRight={ this.aceptar }
-          labelButtonRight={ 'Aceptar' }
-        /> */}
+          functionLeft={ this.cancelar }
+          labelButtonRight={ 'Eliminar' }
+          labelButtonLeft={ 'Cancelar' }
+        />
       </div>
     );
   }

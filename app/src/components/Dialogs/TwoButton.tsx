@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 
 function mapStateToProps(store: {
   dialogReducer: {
-    openDialog: boolean
+    openDialogTwoButton: boolean
   }
 }) {
   return {
-    openDialog: store.dialogReducer.openDialog
+    openDialog: store.dialogReducer.openDialogTwoButton
   };
 }
 
@@ -43,25 +43,26 @@ class DialogTwoButton extends React.Component<{
 
   render(){
     const classes = this.props.classes
+    const open: boolean = this.props.openDialog
     return(
       <Dialog
-        open={this.props.openDialog}
+        open={ open }
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{this.props.title}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{ this.props.title }</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {this.props.text}
+            { this.props.text }
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <Button autoFocus className={classes.buttonDialog} onClick={this.functionLeft} >
-            {this.props.labelButtonLeft}
-          </Button>
-          <Button autoFocus className={classes.buttonDialog} onClick={this.functionRight} >
-            {this.props.labelButtonRight}
-          </Button>
+        <Button autoFocus className={ classes.buttonDialog } onClick={ this.functionLeft } >
+          { this.props.labelButtonLeft }
+        </Button>
+        <Button autoFocus className={ classes.buttonDialog } onClick={ this.functionRight } >
+          { this.props.labelButtonRight }
+        </Button>
         </DialogActions>
       </Dialog>
     )

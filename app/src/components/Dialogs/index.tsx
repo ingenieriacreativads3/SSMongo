@@ -4,6 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import DialogOneButton from './OneButton'
+import DialogTwoButton from './TwoButton'
 
 const theme = createMuiTheme({
 	palette: {
@@ -53,7 +54,7 @@ export function TwoButton(props: {
   const classes = useStyles(theme);
   
   return <div>
-    <DialogOneButton 
+    <DialogTwoButton 
 			classes={ classes }
 			title={ props.title }
 			text={ props.text }

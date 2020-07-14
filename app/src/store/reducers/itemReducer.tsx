@@ -92,6 +92,32 @@ export default function itemReducer ( state = {
       };
 		}
 
+		case 'DELETE_ITEM_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'DELETE_ITEM_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'DELETE_ITEM_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
 		case 'GET_CATALOGO_PENDING': {
 			return { 
 				...state, 
