@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { EditarItem as ItemEditar} from './../../components/Item'
-import * as itemActions from './../../store/actions/item'
-import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
-import Link from '@material-ui/core/Link';
+import { OneButton } from './../../components/Dialogs'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
+
+import * as itemActions from './../../store/actions/item'
+import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
+import * as dialogActions from './../../store/actions/dialog'
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -52,6 +54,8 @@ class Editar extends React.Component<{
     this.getMagnitud = this.getMagnitud.bind(this);
     this.getMostrarPrecio = this.getMostrarPrecio.bind(this);
     this.getFoto = this.getFoto.bind(this);
+    this.update = this.update.bind(this);
+    this.aceptar = this.aceptar.bind(this);
     this.state = {
       _id: '',
       nombre: '',
@@ -82,6 +86,16 @@ class Editar extends React.Component<{
 
   }
 
+  componentDidUpdate() {
+
+    // if(this.props.itemReducer.fetched) {
+    //   this.props.dispatch(dialogActions.openOneButton())
+    // } else {
+    //   this.props.dispatch(dialogActions.closeOneButton())
+    // }
+
+  }
+
   drawer() {
     return <Drawer 
       history={this.props.history}
@@ -100,17 +114,27 @@ class Editar extends React.Component<{
     />
   }
 
-  update() {
+  update(
+    _id: string,
+    nombre: string,
+    precio: string,
+    idMagnitud: string,
+    descripcion: string,
+    mostrarPrecio: boolean,
+    foto: string[]
+  ) {
 
     this.props.dispatch(itemActions.updateItem(
-      this.state._id,
-      this.state.nombre,
-      this.state.precio,
-      this.state.idMagnitud,
-      this.state.descripcion,
-      this.state.mostrarPrecio,
-      this.state.foto
+      _id,
+      nombre,
+      precio,
+      descripcion,
+      idMagnitud,
+      mostrarPrecio,
+      foto
     ))
+
+    this.props.dispatch(dialogActions.openOneButton())
 
   }
 
@@ -136,6 +160,18 @@ class Editar extends React.Component<{
 
   getFoto(foto: string[]) {
     this.setState({ foto: foto })
+  }
+
+  aceptar() {
+
+    this.props.dispatch(dialogActions.closeOneButton())
+    if(this.props.itemReducer.status !== 200) {
+      this.props.dispatch(itemActions.reintentar())
+    } else {
+      this.props.dispatch(itemActions.setear())
+      this.props.history.push('/home/catalogo')
+    }
+
   }
 
   render(){
@@ -165,6 +201,7 @@ class Editar extends React.Component<{
     }
 
     let item: {
+      _id: string,
       nombre: string,
       precio: string,
       foto: string,
@@ -173,6 +210,7 @@ class Editar extends React.Component<{
       unidadDeMedidaId: string,
       unidad_de_medida: any
     } = {
+      _id: '',
       nombre: '',
       precio: '',
       foto: '',
@@ -184,7 +222,8 @@ class Editar extends React.Component<{
       
     if(this.props.itemReducer !== undefined) {
 			if(this.props.itemReducer.data !== undefined) {
-				if(this.props.itemReducer.data.item !== undefined) {
+				if(this.props.itemReducer.data.item !== undefined && this.props.itemReducer.data.item !== null) {
+          if(this.props.itemReducer.data.item._id !== undefined) item._id = this.props.itemReducer.data.item._id
           if(this.props.itemReducer.data.item.nombre !== undefined) item.nombre = this.props.itemReducer.data.item.nombre
           if(this.props.itemReducer.data.item.precio !== undefined) item.precio = this.props.itemReducer.data.item.precio
           if(this.props.itemReducer.data.item.foto !== undefined) item.foto = this.props.itemReducer.data.item.foto
@@ -207,7 +246,6 @@ class Editar extends React.Component<{
           footer={ this.footer() }
           title={'Editar Item'}
           item={ item }
-          update={ this.update }
           unidadesDeMedida={ unidadesDeMedida }
           getNombre={ this.getNombre }
           getPrecio={ this.getPrecio }
@@ -215,6 +253,13 @@ class Editar extends React.Component<{
           getMagnitud={ this.getMagnitud }
           getMostrarPrecio={ this.getMostrarPrecio }
           getFoto={ this.getFoto }
+          update={ this.update }
+        />
+        <OneButton 
+          title={ 'Editar Item' }
+          text={ this.props.itemReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
         />
       </div>
     );

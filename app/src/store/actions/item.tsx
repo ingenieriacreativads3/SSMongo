@@ -58,8 +58,10 @@ export function updateItem(
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
+
+
 	
-	let payload: any = axios.post(url + '/item', {
+	let payload: any = axios.put(url + '/item', {
 		_id,
 		nombre,
 		precio,
@@ -70,7 +72,7 @@ export function updateItem(
 	})
 	
   return {
-		type: 'SET_ITEM',
+		type: 'UPDATE_ITEM',
 		payload: payload
 	}
 

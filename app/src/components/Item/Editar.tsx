@@ -65,6 +65,7 @@ class Editar extends React.Component <{
   footer:any,
   title: string,
   item: {
+    _id: string,
     nombre: string,
     precio: string,
     foto: string,
@@ -82,8 +83,10 @@ class Editar extends React.Component <{
   getMagnitud: any,
   getMostrarPrecio: any,
   getFoto: any,
+  update: any,
 }, {
   item: {
+    _id: string,
     nombre: string,
     precio: string,
     descripcion: string,
@@ -110,6 +113,7 @@ class Editar extends React.Component <{
     this.changeMostrarPrecio = this.changeMostrarPrecio.bind(this);
     this.state = {
       item: {
+        _id: '',
         nombre: '',
         precio: '',
         descripcion: '',
@@ -136,12 +140,12 @@ class Editar extends React.Component <{
 
   changePrecio(e: any) {
     this.setState({ item: { ...this.state.item, precio: e.target.value } })
-    this.props.getPrecio(e.target.value)
+    // this.props.getPrecio(e.target.value)
   }
 
   changeDescripcion(e: any) {
     this.setState({ item: { ...this.state.item, descripcion: e.target.value } })
-    this.props.getDescripcion(e.target.value)
+    // this.props.getDescripcion(e.target.value)
   }
 
   changeUnidadDeMedida(e: any) {
@@ -160,7 +164,7 @@ class Editar extends React.Component <{
             }
           }
         })
-        this.props.getMagnitud(unidadDeMedida._id)
+        // this.props.getMagnitud(unidadDeMedida._id)
       }
     })
 
@@ -173,7 +177,7 @@ class Editar extends React.Component <{
     if(!this.state.item.mostrarPrecio) mostrarPrecio = true
 
     this.setState({ item: { ...this.state.item, mostrarPrecio: mostrarPrecio } })
-    this.props.getMostrarPrecio(mostrarPrecio)
+    // this.props.getMostrarPrecio(mostrarPrecio)
 
   }
 
@@ -214,6 +218,7 @@ class Editar extends React.Component <{
                               className={classes.margin}
                               id="nombre"
                               label="Nombre"
+                              type="text"
                               value={ this.state.item.nombre }
                               onChange={ this.changeNombre }
                             />
@@ -319,7 +324,15 @@ class Editar extends React.Component <{
                           size="small"
                           className={classes.button}
                           startIcon={<SaveIcon />}
-                          //onClick={() => this.save()}
+                          onClick={() => this.props.update(
+                            this.state.item._id,
+                            this.state.item.nombre,
+                            this.state.item.precio,
+                            this.state.item.unidad_de_medida._id,
+                            this.state.item.descripcion,
+                            this.state.item.mostrarPrecio,
+                            this.state.item.foto
+                          )}
                         >
                           Actualizar
                         </Button>

@@ -6,12 +6,12 @@ import Link from '@material-ui/core/Link';
 
 import { NuevoItem as ItemNuevo} from './../../components/Item'
 import { OneButton } from './../../components/Dialogs'
+import { Footer } from './../Footer'
 
 import * as itemActions from './../../store/actions/item'
 import * as fileActions from './../../store/actions/file'
 import * as dialogActions from './../../store/actions/dialog'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
-import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   itemReducer: any,

@@ -317,6 +317,7 @@ export  function EditarItem(props: {
   footer:any,
   title: string,
   item: {
+    _id: string,
     nombre: string,
     precio: string,
     foto: string,
@@ -327,7 +328,6 @@ export  function EditarItem(props: {
       nombre: string
     },
   },
-  update: any,
   unidadesDeMedida: any[],
   getNombre: any,
   getPrecio: any,
@@ -335,6 +335,7 @@ export  function EditarItem(props: {
   getMagnitud: any,
   getMostrarPrecio: any,
   getFoto: any,
+  update: any,
 }) {
 
   const classes = useStyles(theme);
@@ -349,7 +350,6 @@ export  function EditarItem(props: {
     footer={ props.footer }
     title={ props.title }
     item={ props.item }
-    update={ props.update }
     unidadesDeMedida={ props.unidadesDeMedida }
     getNombre={ props.getNombre }
     getPrecio={ props.getPrecio }
@@ -357,6 +357,7 @@ export  function EditarItem(props: {
     getMagnitud={ props.getMagnitud }
     getMostrarPrecio={ props.getMostrarPrecio }
     getFoto={ props.getFoto }
+    update={ props.update }
   />;
 
 }
