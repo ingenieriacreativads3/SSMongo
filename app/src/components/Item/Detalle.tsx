@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 
 
-import { Container, Grid, Card, Box, Typography,CssBaseline,  Button, CardContent,  CardActions} from '@material-ui/core';
+import { Container, Grid, Card, Box, Divider,Typography,CssBaseline,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -140,18 +140,19 @@ class Detalle extends React.Component <{
                     
                         <Grid container spacing={3} >
                           <Grid item sm={6} xs={12}  >
-                            <Typography gutterBottom variant="h5" component="h2">
+                            <Typography gutterBottom variant="h5" component="h2" style={{paddingTop:30}} >
                                 SAMSUNG GALAXY A20 
                             </Typography>
-                            <Typography variant="subtitle1" component="h2">
-                              $16000
+                            <Typography variant="subtitle1" component="h2" style={{paddingTop:20}}>
+                              $16000 x Unidad
                             </Typography>
-                            <Typography>
-                              <Link href="#" variant="body2" className={classes.Link}>
+                            <Typography style={{paddingTop:20}}>
+                              <Link href="/home/perfil/:id" variant="h5" className={classes.Link}>
                               {"Vendedor: Symsa"}
                               </Link>
                             </Typography>
-                            <Typography gutterBottom variant="h5" component="h2" >
+                            
+                            <Typography gutterBottom variant="h5" component="h2" style={{paddingTop:40}} >
                               Descripción
                             </Typography>
                             <Typography variant="subtitle2" component="h4">
@@ -187,18 +188,18 @@ class Detalle extends React.Component <{
                                 <MobileStepper
                                   steps={maxSteps}
                                   position="static"
-                                  variant="text"
+                                  variant="dots"
                                   activeStep={this.state.activeStep}
                                   nextButton={
                                     <Button size="small" onClick={handleNext} disabled={this.state.activeStep === maxSteps - 1} >
-                                      Next
+                                      
                                       {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                                     </Button>
                                   }
                                   backButton={
                                     <Button size="small" onClick={handleBack} disabled={this.state.activeStep === 0}>
                                       {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                                      Back
+                                      
                                     </Button>
                                   }
                                 />

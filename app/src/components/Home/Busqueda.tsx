@@ -31,7 +31,6 @@ import HelpIcon from '@material-ui/icons/Help';
 import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
-import * as drawerActions from './../../store/actions/drawer'
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -51,7 +50,7 @@ function Copyright() {
 
 
 
-class Home extends React.Component <{
+class Busqueda extends React.Component <{
   clasess: any,
   theme: any
 }, {
@@ -74,10 +73,6 @@ class Home extends React.Component <{
       activeStep: 0
 		};
   }
-
-  // componentWillMount() {
-  //   this.props.dispatch(drawerActions.invisibleDrawer())
-  // }
 
   render(){
 
@@ -138,7 +133,7 @@ class Home extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         <ApBar></ApBar>
-        {/* {this.props.drawer} */}
+        {this.props.drawer}
 					<main className={classes.content}>
           <div className={classes.rootCarousel}>
           
@@ -180,14 +175,10 @@ class Home extends React.Component <{
           </div>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
-            <ListSubheader component="div" id="nested-list-subheader">
-              <Typography className = {classes.title} variant="h4" component="h3" gutterBottom>
-                Basado en tus busquedas
-              </Typography>
-            </ListSubheader>
+           
             <Grid container spacing={3}>
            
-                {/* <SideBarInicio></SideBarInicio> */}
+                <SideBarInicio></SideBarInicio>
                
                 
               <Grid item lg={3}>
@@ -289,59 +280,8 @@ class Home extends React.Component <{
 							
 							
 						</Container>
-            <ListSubheader component="div" id="nested-list-subheader">
-              <Typography className = {classes.nombreEmpresa} variant="h3" component="h3" gutterBottom>
-                Categorias
-              </Typography>
-            </ListSubheader>
-            <div className={classes.rootCategorias}>
             
-                                  
-            <AppBar position="static" color="default">
-              <Tabs
-                 value={""}
-                 //onChange={handleChange}
-                variant="scrollable"
-                scrollButtons="on"
-                aria-label="scrollable force tabs example"
-                className={classes.tabs}
-               
-              >
-                <Tab label="Item One" icon={<PhoneIcon />}  {...a11yProps(0)} />
-                <Tab label="Item Two" icon={<FavoriteIcon />}  {...a11yProps(1)}  />
-                <Tab label="Item Three" icon={<PersonPinIcon />}  {...a11yProps(2)}  />
-                <Tab label="Item Four" icon={<HelpIcon />}  {...a11yProps(3)}  />
-                <Tab label="Item Five" icon={<ShoppingBasket />}  {...a11yProps(4)} />
-                <Tab label="Item Six" icon={<ThumbDown />}  {...a11yProps(5)}  />
-                <Tab label="Item Seven" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Eigth" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Nine" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Ten" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                
-              </Tabs>
-              
-              <Tabs
-                value={""}
-                //onChange={handleChange}
-               variant="scrollable"
-               scrollButtons="on"
-               aria-label="scrollable force tabs example"
-               className={classes.tabs}>
-              <Tab label="Item One" icon={<PhoneIcon />}  {...a11yProps(0)}  />
-                <Tab label="Item Two" icon={<FavoriteIcon />}  {...a11yProps(1)}  />
-                <Tab label="Item Three" icon={<PersonPinIcon />}  {...a11yProps(2)}  />
-                <Tab label="Item Four" icon={<HelpIcon />}  {...a11yProps(3)}  />
-                <Tab label="Item Five" icon={<ShoppingBasket />}  {...a11yProps(4)} />
-                
-                <Tab label="Item Six" icon={<ThumbDown />}  {...a11yProps(5)}  />
-                <Tab label="Item Seven" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Eigth" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Nine" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Ten" icon={<ThumbUp />}  {...a11yProps(6)}  />
-              </Tabs>
-            </AppBar>
-                
-          </div>
+            
             {this.props.footer}
 					</main>
 
@@ -355,4 +295,4 @@ class Home extends React.Component <{
   }
 }
 
-export default Home
+export default Busqueda

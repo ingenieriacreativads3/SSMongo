@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeExport from './Home'
 import Cookies from 'universal-cookie';
+import BusquedaPage from './Busqueda'
 
 export function Inicio(props: {
   
@@ -11,6 +12,23 @@ export function Inicio(props: {
   cookies: any,
 }) {
 	return <HomeExport
+  history={props.history}
+  location={props.location}
+  match={props.match}
+staticContext={props.staticContext}
+cookies={props.cookies}
+  />;
+}
+
+export function Busqueda(props: {
+  
+  history: any,
+	location: any,
+	match: any,
+  staticContext?: any
+  cookies: any,
+}) {
+	return <BusquedaPage
   history={props.history}
   location={props.location}
   match={props.match}

@@ -20,7 +20,7 @@ import { Footer } from './components/Footer'
 import { Presupuestar } from './components/Presupuesto'
 import { Presupuestacion } from './containers/Ventas - Presupuesto'
 import { Renegociacion } from './containers/Ventas - Presupuesto'
-import { Inicio } from './containers/Home'
+import { Inicio, Busqueda } from './containers/Home'
 import { VerDetallePresupuesto } from './components/Presupuesto'
 import { Login } from './containers/Login'
 import Register from './containers/Register'
@@ -52,7 +52,8 @@ class App extends React.Component {
 			<Router>
 				<div>
 					<Switch>
-						<Route path='/home/inicio'                    render={(props) => <Inicio {...props} cookies={cookies} />} />						
+						<Route path='/home/inicio'                    render={(props) => <Inicio {...props} cookies={cookies} />} />		
+						<Route path='/home/busqueda/:id'              render={(props) => <Busqueda {...props} cookies={cookies} />} />								
 						<Route path='/home/side'                      component={ AppBar } />
 						<Route path='/home/perfil/:id'         		    render={(props) => <EmpresaPerfil {...props} cookies={cookies}/>} />
 						<Route path='/item/nuevo'                     render={(props) => <ItemNuevo {...props} cookies={cookies} />} /> 

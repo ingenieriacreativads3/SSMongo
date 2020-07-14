@@ -3,7 +3,7 @@ import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import AppBar from './AppBar'
 
-const drawerWidth = 220;
+const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
 
@@ -92,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	inputRoot: {
 		color: '#ffffff',
+		
 	},
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
@@ -100,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 		transition: theme.transitions.create('width'),
 		width: '100%',
 		[theme.breakpoints.up('md')]: {
-			width: '20ch',
+			width: '50ch',
 		},
 	},
 	sectionDesktop: {

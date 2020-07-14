@@ -4,6 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 import Cookies from 'universal-cookie';
 import Home from './Home'
+import Busqueda from './Busqueda'
 
 //const drawerWidth = 200;
 
@@ -166,6 +167,16 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
+    display: 'flex',
+    height: 300,
+  },
+  tabs:{
+   paddingTop:theme.spacing(5),
+   color:"#d93211",
+   
+  },
+  title:{
+    paddingLeft:theme.spacing(35),
   }
  
 }));
@@ -185,6 +196,35 @@ export function InitLayout(props: {
  
   return <div>
     <Home
+  
+      classes={classes} 
+      theme={useTheme}
+      history={props.history}
+      location={props.location}
+      match={props.match}
+      staticContext={props.staticContext}
+      cookies={props.cookies}
+      drawer={props.drawer}
+      footer={props.footer}
+    />
+  </div>;
+}
+
+export function PaginaBusqueda(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any,
+  cookies: Cookies
+  drawer: any,
+  footer: any,
+
+}) {
+
+	const classes = useStyles(theme);
+ 
+  return <div>
+    <Busqueda
   
       classes={classes} 
       theme={useTheme}

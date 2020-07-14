@@ -3,7 +3,7 @@ import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import Menu from './MenuLateral'
 
-const drawerWidth = 220;
+const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
 
