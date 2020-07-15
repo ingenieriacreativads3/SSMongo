@@ -46,6 +46,7 @@ class Catalog extends React.Component<{
     this.openDialog = this.openDialog.bind(this);
     this.aceptar = this.aceptar.bind(this);
     this.cancelar = this.cancelar.bind(this);
+    this.openDialogCards = this.openDialogCards.bind(this);
     this.state = {
       checked: true,
       _id: ''
@@ -116,6 +117,7 @@ class Catalog extends React.Component<{
           getChecked={ this.getChecked }
           checked={ this.state.checked }
           footer={ this.footer() }
+          delete={ this.openDialogCards }
         />  
       </div>
     }
@@ -138,6 +140,13 @@ class Catalog extends React.Component<{
     this.props.dispatch(dialogActions.openTwoButton())
     this.setState({
       _id: row.item._id
+    });
+  }
+
+  openDialogCards(id: string) {
+    this.props.dispatch(dialogActions.openTwoButton())
+    this.setState({
+      _id: id
     });
   }
 

@@ -45,6 +45,7 @@ class Catalogo extends React.Component <{
   items: any[],
   getChecked: any,
   checked: boolean,
+  delete: any
 }, {}> {
 
 	props: any
@@ -60,8 +61,8 @@ class Catalogo extends React.Component <{
     };
   }
 
-  eliminarItem() {
-    // this.props.dispatch(dialogAction.eliminarItemOpen())
+  eliminarItem(id: string) {
+    this.props.delete(id)
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,7 +130,7 @@ class Catalogo extends React.Component <{
                         component="img"
                         alt={itemAux.item.nombre}
                         height="150"
-                        image={'http://localhost:8000/' + itemAux.item.foto}
+                        image={'http://localhost:8000/' + itemAux.item.foto[0]}
                         title={itemAux.item.nombre}
                       />
                       <CardContent>
@@ -150,7 +151,7 @@ class Catalogo extends React.Component <{
                           <EditIcon />
                         </IconButton>
                       </Link>
-                      <IconButton aria-label="eliminar"className={classes.iconButton} onClick={this.eliminarItem}>
+                      <IconButton aria-label="eliminar"className={classes.iconButton} onClick={() => this.eliminarItem(itemAux.item._id)}>
                         <DeleteIcon />
                       </IconButton>
                       
