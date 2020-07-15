@@ -96,7 +96,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
-                <Grid item lg={9}>
+                <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                       avatar={
@@ -109,21 +109,28 @@ class EvaluacionEmpresa extends React.Component <{}, {
                     />
 
                     <CardContent>
-                      <form className={classes.root}>
-                        <Grid container spacing={3}>
+                     
+                        <Grid container >
+                          <Grid container>
+                              <Grid item lg={12}>
                           
-                        <Grid item lg={12}>
-                        <div className={classes.root}>
-                       
-                          <div>
-                            <Typography variant="subtitle1" gutterBottom className={classes.subtitle}>
-                              Empresa : Symsa
-                            </Typography>
-                            <Typography variant="subtitle1" gutterBottom>
+                        
+                            
+                              <Typography variant="subtitle1" gutterBottom className={classes.subtitle}>
+                                Empresa : Symsa
+                              </Typography>
+                              
+                              </Grid>
+                             </Grid>
+
+                             <Grid container>
+                             <Grid item lg={6}>
+                            <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                               Tiempo de respuesta a los mensajes/consultas
                             </Typography>
                               
-                            <Rating
+                            <Rating 
+                            className={classes.respuestaEncuesta}
                               name="hover-feedback-time"
                               value={this.state.valueTime}
                               precision={1}
@@ -138,13 +145,16 @@ class EvaluacionEmpresa extends React.Component <{}, {
                                 })
                               }}
                             />
-                            { this.state.valueTime !== null && <Box ml={2}>{labels[this.state.hoverTime !== -1 ? this.state.hoverTime : this.state.valueTime]}</Box>}
-                            
-                            <Typography variant="subtitle1" gutterBottom>
+                            { this.state.valueTime !== null && <Box className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverTime !== -1 ? this.state.hoverTime : this.state.valueTime]}</Box>}
+                            </Grid>
+
+                              <Grid item lg={6}>
+                              <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                               Relación precio - calidad
                        </Typography>
                             
-                            <Rating
+                            <Rating 
+                            className={classes.respuestaEncuesta}
                                 name="hover-feedback-price"
                                 value={this.state.valuePrice}
                                 precision={1}
@@ -159,12 +169,18 @@ class EvaluacionEmpresa extends React.Component <{}, {
                                   })
                                 }}
                             />
-                            { this.state.valuePrice !== null && <Box ml={2}>{labels[this.state.hoverPrice !== -1 ? this.state.hoverPrice : this.state.valuePrice]}</Box>}
-                            <Typography variant="subtitle1" gutterBottom>
+                            { this.state.valuePrice !== null && <Box className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverPrice !== -1 ? this.state.hoverPrice : this.state.valuePrice]}</Box>}
+                              </Grid>
+
+                            </Grid>
+                            <Grid container>
+                              <Grid item lg={6}>
+                            <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta} >
                             Disponibilidad de productos y/o servicios
                        </Typography>
                             
                        <Rating
+                       className={classes.respuestaEncuesta}
                           name="hover-feedback-available"
                           value={this.state.valueAvailable}
                           precision={1}
@@ -179,12 +195,14 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             })
                           }}
                         />
-                        { this.state.valueAvailable !== null && <Box ml={2}>{labels[this.state.hoverAvailable !== -1 ? this.state.hoverAvailable : this.state.valueAvailable]}</Box>}
-                            
-                            <Typography variant="subtitle1" gutterBottom>
+                        { this.state.valueAvailable !== null && <Box className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverAvailable !== -1 ? this.state.hoverAvailable : this.state.valueAvailable]}</Box>}
+                            </Grid>
+
+                            <Grid item lg={6}>
+                            <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                             ¿Volvería a operar con esta empresa?
                        </Typography>
-                       <RadioGroup row aria-label="position" name="position" defaultValue="top"  >
+                       <RadioGroup row aria-label="position" name="position" defaultValue="top" className={classes.respuestaEncuesta}  >
                           <FormControlLabel
                             value="SI"
                             control={<Radio className={classes.radioButton} />}
@@ -201,12 +219,13 @@ class EvaluacionEmpresa extends React.Component <{}, {
                           />
                              </RadioGroup>
                           
-                            </div>
-                            </div>
+                          </Grid>
+                          </Grid>
+                            
                             <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
-                            </Grid>
+                            
                         </Grid>
-                      </form>
+                     
                     </CardContent>
                     <CardActions>
 

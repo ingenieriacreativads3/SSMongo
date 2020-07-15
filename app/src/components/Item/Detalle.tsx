@@ -138,7 +138,7 @@ class Detalle extends React.Component <{
                   
                   <CardContent>
                     
-                        <Grid container spacing={3} >
+                        <Grid container  >
                           <Grid item sm={6} xs={12}  >
                             <Typography gutterBottom variant="h5" component="h2" style={{paddingTop:30}} >
                                 SAMSUNG GALAXY A20 
@@ -164,7 +164,7 @@ class Detalle extends React.Component <{
                               
                           </Grid>
                             
-                            <Grid item sm={6} xs={12} spacing={3} container
+                            <Grid item sm={6} 
                                 direction="column"
                                 justify="space-around"
                                 alignItems="center">

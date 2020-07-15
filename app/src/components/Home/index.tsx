@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(20),
     paddingBottom: theme.spacing(4),
   
   },
@@ -168,15 +168,27 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
-    height: 300,
+    height: 150,
   },
   tabs:{
-   paddingTop:theme.spacing(5),
+   paddingTop:theme.spacing(2),
    color:"#d93211",
+   fontSize:20,
+   
    
   },
-  title:{
-    paddingLeft:theme.spacing(35),
+  // title:{
+  //   paddingTop:theme.spacing(35),
+  // },
+  tab:{
+    fontSize:20,
+    color:"#d93211",
+   
+  },
+  iconoCategoria:{
+    fontSize:40,
+    color:"#d93211",
+   
   }
  
 }));

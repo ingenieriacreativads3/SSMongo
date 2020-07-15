@@ -3,7 +3,7 @@ import AppBar from './../AppBar'
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Avatar,  Button, CardContent, FormControlLabel, CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Avatar,  Button, CardContent, FormControlLabel, CardActions,TextareaAutosize, Divider} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Rating from '@material-ui/lab/Rating';
 
@@ -100,7 +100,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
-                <Grid item lg={9}>
+                <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
@@ -114,18 +114,18 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 
                     <CardContent>
                       <form className={classes.root}>
-                        <Grid container spacing={3}>
+                        <Grid container >
+                          <Grid container >
                           
-                        <Grid item lg={12}>
-                        <div className={classes.root}>
+                              <Grid item lg={6}>
                        
-                          <div>
                           
-                        <Typography variant="subtitle1" gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                         Navegabilidad del sitio web
                        </Typography>
                             
                             <Rating
+                             className={classes.respuestaEncuesta}
                               name="hover-feedback-navigability"
                               value={this.state.valueNavigability}
                               precision={1}
@@ -140,13 +140,18 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                                 })
                               }}
                             />
-                            { this.state.valueNavigability !== null && <Box ml={2}>{labels[this.state.hoverNavigability !== -1 ? this.state.hoverNavigability : this.state.valueNavigability]}</Box>}
+                            { this.state.valueNavigability !== null && <Box  className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverNavigability !== -1 ? this.state.hoverNavigability : this.state.valueNavigability]}</Box>}
                             
-                            <Typography variant="subtitle1" gutterBottom>
+                          </Grid>
+
+                              <Grid item lg={6}>
+
+                            <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                             Actualización de la plataforma
                        </Typography>
                             
                             <Rating
+                             className={classes.respuestaEncuesta}
                                 name="hover-feedback-update"
                                 value={this.state.valueUpdate}
                                 precision={1}
@@ -161,52 +166,64 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                                   })
                                 }}
                             />
-                            { this.state.valueUpdate !== null && <Box ml={2}>{labels[this.state.hoverUpdate !== -1 ? this.state.hoverUpdate : this.state.valueUpdate]}</Box>}
-                            <Typography variant="subtitle1" gutterBottom>
-                            Tiempo de respuesta a los mensajes/consultas
-                       </Typography>
+                            { this.state.valueUpdate !== null && <Box  className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverUpdate !== -1 ? this.state.hoverUpdate : this.state.valueUpdate]}</Box>}
                             
-                       <Rating
-                          name="hover-feedback-time"
-                          value={this.state.valueTime}
-                          precision={1}
-                          onChange={(event, newValueTime) => {
-                            this.setState({
-                              valueTime: newValueTime
-                            })
-                          }}
-                          onChangeActive={(event, newHoverTime) => {
-                            this.setState({
-                              hoverTime: newHoverTime
-                            })
-                          }}
-                        />
-                        { this.state.valueTime !== null && <Box ml={2}>{labels[this.state.hoverTime!== -1 ? this.state.hoverTime : this.state.valueTime]}</Box>}
-                            
-                            <Typography variant="subtitle1" gutterBottom>
-                            ¿Recomendaria Suppliers Store?
-                       </Typography>
-                       <RadioGroup row aria-label="position" name="position" defaultValue="top"  >
-                          <FormControlLabel
-                            value="SI"
-                            control={<Radio className={classes.radioButton} />}
-                            label="SI"
-                            labelPlacement="start"
-                           
-                          />
-                          <FormControlLabel
-                            value="NO"
-                            control={<Radio className={classes.radioButton} />}
-                            label="NO"
-                            labelPlacement="start"
-                          
-                          />
-                             </RadioGroup>
-                          
-                            </div>
-                            </div>
-                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
                             </Grid>
+                            
+                            </Grid>
+
+                            <Grid container >
+                                <Grid item lg={6}>
+                                  <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
+                                  Tiempo de respuesta a los mensajes/consultas
+                                  </Typography>
+                                  
+                                  <Rating
+                                   className={classes.respuestaEncuesta}
+                                      name="hover-feedback-time"
+                                      value={this.state.valueTime}
+                                      precision={1}
+                                      onChange={(event, newValueTime) => {
+                                        this.setState({
+                                          valueTime: newValueTime
+                                        })
+                                      }}
+                                      onChangeActive={(event, newHoverTime) => {
+                                        this.setState({
+                                          hoverTime: newHoverTime
+                                        })
+                                      }}
+                                    />
+                              { this.state.valueTime !== null && <Box  className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverTime!== -1 ? this.state.hoverTime : this.state.valueTime]}</Box>}
+                            </Grid>
+
+                            <Grid item lg={6}>
+                                <Typography variant="subtitle1" gutterBottom  className={classes.preguntaEncuesta}>
+                                ¿Recomendaria Suppliers Store?
+                                </Typography>
+
+                                <RadioGroup row aria-label="position" name="position" defaultValue="top"  className={classes.respuestaEncuesta} >
+                                  <FormControlLabel
+                                    value="SI"
+                                    control={<Radio className={classes.radioButton} />}
+                                    label="SI"
+                                    labelPlacement="start"
+                                  
+                                  />
+                                  <FormControlLabel
+                                    value="NO"
+                                    control={<Radio className={classes.radioButton} />}
+                                    label="NO"
+                                    labelPlacement="start"
+                                  
+                                  />
+                                </RadioGroup>
+
+                              </Grid>
+                              </Grid>
+                            
+                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
+                            
                         </Grid>
                       </form>
                     </CardContent>

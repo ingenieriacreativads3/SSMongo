@@ -4,7 +4,7 @@ import  DrawerInicio  from './../DrawerInicio';
 import clsx from 'clsx'
 import { connect } from 'react-redux'
 
-import { Container,  Button, Grid, Card, Box,ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+import { Container, Divider, Button, Grid, Card, Box,ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -179,9 +179,50 @@ class Home extends React.Component <{
           />
           </div>
 						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" className={classes.container}>
+
+            <Container maxWidth="lg" /* className={classes.container} */>
+            {/* <ListSubheader component="div" id="nested-list-subheader">
+              <Typography className = {classes.title} variant="h3" component="h3" gutterBottom>
+                Categorias
+              </Typography>
+            </ListSubheader> */}
+            <div className={classes.rootCategorias}>
+            
+                                  
+            <AppBar position="static" color="default">
+              <Tabs
+                 value={""}
+                 //onChange={handleChange}
+                variant="scrollable"
+                scrollButtons="on"
+                aria-label="scrollable force tabs example"
+                className={classes.tabs}
+               
+              >
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}> <Tab label="Item One" icon={<PhoneIcon  className={classes.iconoCategoria}/> }  {...a11yProps(0)} className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Two" icon={<FavoriteIcon className={classes.iconoCategoria} />}  {...a11yProps(1)}  className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Three" icon={<PersonPinIcon className={classes.iconoCategoria} />}  {...a11yProps(2)}className={classes.tab}  /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Four" icon={<HelpIcon className={classes.iconoCategoria} />}  {...a11yProps(3)} className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Five" icon={<ShoppingBasket className={classes.iconoCategoria} />}  {...a11yProps(4)} className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Six" icon={<ThumbDown className={classes.iconoCategoria} />}  {...a11yProps(5)} className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Seven" icon={<ThumbUp className={classes.iconoCategoria} />}  {...a11yProps(6)} className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Eigth" icon={<ThumbUp className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Nine" icon={<ThumbUp className={classes.iconoCategoria} />}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Ten" icon={<ThumbUp className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                
+              </Tabs>
+              
+              
+            </AppBar>
+                
+          </div>
+          </Container>
+
+
+
+						<Container maxWidth="lg"  className={classes.container} >
             <ListSubheader component="div" id="nested-list-subheader">
-              <Typography className = {classes.title} variant="h4" component="h3" gutterBottom>
+              <Typography  variant="h4" component="h3" gutterBottom>
                 Basado en tus busquedas
               </Typography>
             </ListSubheader>
@@ -289,59 +330,12 @@ class Home extends React.Component <{
 							
 							
 						</Container>
-            <ListSubheader component="div" id="nested-list-subheader">
-              <Typography className = {classes.nombreEmpresa} variant="h3" component="h3" gutterBottom>
-                Categorias
-              </Typography>
-            </ListSubheader>
-            <div className={classes.rootCategorias}>
-            
-                                  
-            <AppBar position="static" color="default">
-              <Tabs
-                 value={""}
-                 //onChange={handleChange}
-                variant="scrollable"
-                scrollButtons="on"
-                aria-label="scrollable force tabs example"
-                className={classes.tabs}
-               
-              >
-                <Tab label="Item One" icon={<PhoneIcon />}  {...a11yProps(0)} />
-                <Tab label="Item Two" icon={<FavoriteIcon />}  {...a11yProps(1)}  />
-                <Tab label="Item Three" icon={<PersonPinIcon />}  {...a11yProps(2)}  />
-                <Tab label="Item Four" icon={<HelpIcon />}  {...a11yProps(3)}  />
-                <Tab label="Item Five" icon={<ShoppingBasket />}  {...a11yProps(4)} />
-                <Tab label="Item Six" icon={<ThumbDown />}  {...a11yProps(5)}  />
-                <Tab label="Item Seven" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Eigth" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Nine" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Ten" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                
-              </Tabs>
               
-              <Tabs
-                value={""}
-                //onChange={handleChange}
-               variant="scrollable"
-               scrollButtons="on"
-               aria-label="scrollable force tabs example"
-               className={classes.tabs}>
-              <Tab label="Item One" icon={<PhoneIcon />}  {...a11yProps(0)}  />
-                <Tab label="Item Two" icon={<FavoriteIcon />}  {...a11yProps(1)}  />
-                <Tab label="Item Three" icon={<PersonPinIcon />}  {...a11yProps(2)}  />
-                <Tab label="Item Four" icon={<HelpIcon />}  {...a11yProps(3)}  />
-                <Tab label="Item Five" icon={<ShoppingBasket />}  {...a11yProps(4)} />
-                
-                <Tab label="Item Six" icon={<ThumbDown />}  {...a11yProps(5)}  />
-                <Tab label="Item Seven" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Eigth" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Nine" icon={<ThumbUp />}  {...a11yProps(6)}  />
-                <Tab label="Item Ten" icon={<ThumbUp />}  {...a11yProps(6)}  />
-              </Tabs>
-            </AppBar>
-                
-          </div>
+
+            
+            
+
+            
             {this.props.footer}
 					</main>
 

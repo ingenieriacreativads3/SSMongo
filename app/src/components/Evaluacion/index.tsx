@@ -144,11 +144,22 @@ const useStyles = makeStyles((theme) => ({
 		},
 		subtitle:{
 			color:'#d93211',
+			marginLeft:theme.spacing(5)
 		},
 
 		textTarea:{
 			width:'270px',
+			marginTop:theme.spacing(5),
+			marginLeft:theme.spacing(5)
 		},
+		preguntaEncuesta:{
+			marginTop:theme.spacing(5),
+			marginLeft:theme.spacing(5)
+		},
+		respuestaEncuesta:{
+			
+			marginLeft:theme.spacing(5)
+		}
 
 })); 
 

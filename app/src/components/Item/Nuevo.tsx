@@ -112,7 +112,7 @@ class Nuevo extends React.Component <{
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3}>
+            <Grid container spacing={1}>
 
               <Grid item lg={12}>
                 <Card className={fixedHeightCard}>
@@ -127,8 +127,8 @@ class Nuevo extends React.Component <{
 
                   <CardContent>
                     <form className={classes.root}>
-                      <Grid container spacing={3}>
-                        <Grid container spacing={3}>
+                      <Grid container >
+                        <Grid container >
                           <Grid item lg={4}>
                             <CssTextField 
                               className={classes.margin}
@@ -161,7 +161,7 @@ class Nuevo extends React.Component <{
                             />
                           </Grid>
                         </Grid>
-                        <Grid container spacing={3}>
+                        <Grid container >
                           <Grid item lg={6}>
                             <FormControl className={classes.formControl}>
                             <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Unidad</InputLabel>
@@ -190,9 +190,9 @@ class Nuevo extends React.Component <{
                           </Grid>
                           
                         </Grid>
-                        <Grid container spacing={3}> 
+                        <Grid container > 
                         
-                          <Grid item lg={4}>
+                          <Grid item lg={4} xs={12}>
                             <TextareaAutosize
                               style={{borderRadius:7}}
                               aria-label="minimum height"
@@ -228,7 +228,7 @@ class Nuevo extends React.Component <{
                     </form>
                   </CardContent>
                   <CardActions>
-                    <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                    <Grid container  direction = 'column' alignItems = 'flex-end'  >
                       <Grid item lg={12} >
                         <Button
                           variant="contained"
