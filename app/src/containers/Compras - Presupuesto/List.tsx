@@ -62,13 +62,10 @@ class PresupuestosCompras extends React.Component<{
 
 		if(
       !this.props.presupuestoReducer.fetched &&
-      !this.props.presupuestoReducer.fetching &&
-      (this.props.login !== undefined) &&
-      (this.props.login.data !== undefined) &&
-      (this.props.login.data.empresa !== undefined)
+      !this.props.presupuestoReducer.fetching
     ) {
 
-			this.props.dispatch(presupuestoActions.getPurchase(this.props.login.data.empresa._id))
+			this.props.dispatch(presupuestoActions.getPurchase(this.props.cookies.get('empresaId')))
 
 		}
 

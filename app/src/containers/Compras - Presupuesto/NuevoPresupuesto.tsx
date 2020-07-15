@@ -15,12 +15,10 @@ import { Footer } from './../Footer'
 function mapStateToProps(store: {
   itemReducer:any,
   presupuestoReducer: any,
-
 }) {
   return {
     itemReducer: store.itemReducer,
     presupuestoReducer: store.presupuestoReducer,
-   
   };
 }
 
@@ -32,8 +30,20 @@ class NuevoPresupuesto extends React.Component<{
   cookies: Cookies
 }, {
     idEmpresaPerteneciente: string,
-    idEmpresaDemandante:string,
-    idItem: string,
+    empresa: {
+      _id: string,
+      nombre: string,
+      email: string
+    }
+    item: {
+      _id: string,
+      nombre: string,
+      precio: string,
+      descripcion: string,
+      idMagnitud: string,
+      mostrarPrecio: boolean,
+      foto: string[],
+    },
     cantidad:string,
 	  comentario : string,
 }> {
@@ -50,18 +60,45 @@ class NuevoPresupuesto extends React.Component<{
     this.save = this.save.bind(this);
     this.aceptar = this.aceptar.bind(this);
     this.state = {
-      idEmpresaPerteneciente: '',
-      idEmpresaDemandante:'',
-      idItem: '',
+      idEmpresaPerteneciente: '5f050fe76e82d7332c28ceb2',
+      empresa: {
+        _id: '',
+        nombre: 'chan',
+        email: 'chan'
+      },
+      item: {
+        _id: '5f0f155d3eff762f0335072b',
+        nombre: '',
+        precio: '',
+        descripcion: '',
+        idMagnitud: '',
+        mostrarPrecio: false,
+        foto: [],
+      },
       cantidad:'',
       comentario : '',
 
     };
   }
 
- 
+  componentWillReceiveProps() {
+    this.setState({
+      empresa: {
+        ...this.state.empresa,
+        _id: this.props.cookies.get('empresaId'),
+      },
+    })
+  }
 
-  
+  componentDidUpdate() {
+
+    if(this.props.presupuestoReducer.fetched) {
+      this.props.dispatch(dialogActions.openOneButton())
+    } else {
+      this.props.dispatch(dialogActions.closeOneButton())
+    }
+
+  }
 
   getCantidadItem(e: any) {
     this.setState({ cantidad: e.target.value })
@@ -71,17 +108,14 @@ class NuevoPresupuesto extends React.Component<{
     this.setState({ comentario: e.target.value })
   }
 
-  
-
   save() {
 
     this.props.dispatch(presupuestoActions.setPresupuesto(
-      this.props.cookies.get('empresaId'),
-      this.state.comentario,
       this.state.idEmpresaPerteneciente,
-      this.state.idItem,
+      this.props.cookies.get('empresaId'),
+      this.state.item._id,
       this.state.cantidad,
-      
+      this.state.comentario,
     ))
 
   }
@@ -89,7 +123,7 @@ class NuevoPresupuesto extends React.Component<{
   aceptar() {
 
     this.props.dispatch(dialogActions.closeOneButton())
-    if(this.props.itemReducer.status !== 200) {
+    if(this.props.presupuestoReducer.status !== 200) {
       this.props.dispatch(presupuestoActions.reintentar())
     } else {
       this.props.dispatch(presupuestoActions.setear())
@@ -116,7 +150,6 @@ class NuevoPresupuesto extends React.Component<{
     />
   }
   
-
   render(){
 
     return(
@@ -124,13 +157,13 @@ class NuevoPresupuesto extends React.Component<{
         <PresupuestoNuevo 
           getCantidadItem={ this.getCantidadItem }
           getComentario={ this.getComentario }
-           save={ this.save }
-           drawer={this.drawer()}
-           footer={this.footer()}
+          save={ this.save }
+          drawer={ this.drawer() }
+          footer={ this.footer() }
         />
         <OneButton 
           title={ 'Nuevo Presupuesto' }
-          text={ this.props.itemReducer.message }
+          text={ this.props.presupuestoReducer.message }
           functionRight={ this.aceptar }
           labelButtonRight={ 'Aceptar' }
         />

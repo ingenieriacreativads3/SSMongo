@@ -42,33 +42,30 @@ export function getPresupuesto(id: string) {
 }
 
 export function setPresupuesto(
-	id: string,	
+	idEmpresaPerteneciente: string,
+	idEmpresaDemandante: string,
+	idItem: string,	
 	cantidad: string,
-	idEmpresaPerteneciente:string,
-	idEmpresaDemandante:string,
-	comentario:string,
-	
+	comentario: string,
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.post(url + '/empresa/solicitarpresupuesto',{
-    empresaPerteneciente: {
-		_id: idEmpresaPerteneciente,
-	},
-	empresaDemandante: {
-		_id: idEmpresaDemandante,
-	},
-    items: {
-			_id: id,
-			cantidad: cantidad,
-			
+	let payload: any = axios.post(url + '/empresa/solicitarpresupuesto', {
+		empresaPerteneciente: {
+			_id: idEmpresaPerteneciente,
 		},
-	comentario : comentario,
+		empresaDemandante: {
+			_id: idEmpresaDemandante,
+		},
+    items: [{
+			_id: idItem,
+			cantidad,
+			
+		}],
+		comentario,
 	})
 
-	console.log(payload)
-	
   return {
 		type: 'SET_NEW_PRESUPUESTO',
 		payload: payload

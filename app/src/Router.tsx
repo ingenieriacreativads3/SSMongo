@@ -69,8 +69,8 @@ class App extends React.Component {
 					  <Route path='/item/detalle/:id'     		      render={(props) => <ItemDetalle {...props} />} /> 
 						<Route path='/pedido/nuevo'                   render={(props) => <PedidoNuevo { ...props } cookies={cookies} />} />
 						<Route path='/presupuesto/nuevo'              render={(props) => <PresupuestoNuevo { ...props } cookies={cookies} />} />
-						<Route path='/compras/presupuestos/lista'     render={(props) => <PurchasePresupuestos {...props} />} /> 
-						<Route path='/ventas/presupuestos/lista'      render={(props) => <SalePresupuestos {...props} />} /> 
+						<Route path='/compras/presupuestos/lista'     render={(props) => <PurchasePresupuestos {...props} cookies={cookies} />} /> 
+						<Route path='/ventas/presupuestos/lista'      render={(props) => <SalePresupuestos {...props} cookies={cookies} />} /> 
 						<Route path='/evaluacion/empresa'             render={(props) => <EvaluacionEmpresa {...props} cookies={cookies} />} /> 
 						<Route path='/evaluacion/suppliersStore'      render={(props) => <EvaluacionPlataforma {...props} cookies={cookies} />} /> 
 						<Route path='/solicitud/validacion'           render={(props) => <SolicitudesValidacion {...props}/>} />

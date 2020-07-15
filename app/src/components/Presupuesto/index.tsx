@@ -152,12 +152,13 @@ export function NuevoPresupuesto(props:{
 
 	const classes = useStyles(theme);
   return <PresupuestoNuevo 
-  classes={classes}
-  getCantidadItem={props.getCantidadItem}
-  getComentario={props.getComentario}
-  save={props.save} 
-  drawer={props.drawer}
-  footer={props.footer}/>;
+    classes={classes}
+    getCantidadItem={props.getCantidadItem}
+    getComentario={props.getComentario}
+    save={props.save} 
+    drawer={props.drawer}
+    footer={props.footer}
+  />;
 
 }
 

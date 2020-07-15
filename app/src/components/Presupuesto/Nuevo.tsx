@@ -49,8 +49,6 @@ function Copyright() {
   );
 }
 
-
-
 class Nuevo extends React.Component  <{
   classes: any,
   getCantidadItem: any,
@@ -176,7 +174,7 @@ class Nuevo extends React.Component  <{
                               size="small"
                               className={classes.button}
                               startIcon={<SendIcon />}
-                            //   onClick={() => this.register()}
+                              onClick={this.props.save}
                             >
                               Enviar
                             </Button>
@@ -207,4 +205,4 @@ class Nuevo extends React.Component  <{
 }
 
 
-export default (Nuevo)
+export default Nuevo

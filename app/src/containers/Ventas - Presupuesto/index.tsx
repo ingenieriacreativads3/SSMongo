@@ -3,18 +3,21 @@ import List from './List'
 import Detail from './Detail'
 import Presupuestar from './Presupuestar'
 import Renegociar from './Renegociar'
+import Cookies from 'universal-cookie';
 
 export function SalePresupuestos(props: {
 	history: any,
 	location: any,
 	match: any,
 	staticContext?: any
-  }) {
-	return <List history={props.history}
+	cookies: Cookies
+}) {
+	return <List
+		history={props.history}
     location={props.location}
     match={props.match}
-    staticContext={props.staticContext}
-	
+		staticContext={props.staticContext}
+		cookies={ props.cookies }
 	/>;
 }
 
@@ -23,12 +26,12 @@ export function DetailSalePresupuesto(props: {
 	location: any,
 	match: any,
 	staticContext?: any
-  }) {
-	return <Detail   history={props.history}
+}) {
+	return <Detail 
+		history={props.history}
     location={props.location}
     match={props.match}
-	staticContext={props.staticContext}
-	
+		staticContext={props.staticContext}
 	/>;
 }
 
@@ -37,13 +40,12 @@ export function Presupuestacion(props: {
 	location: any,
 	match: any,
 	staticContext?: any
-  }) {
+}) {
 	return <Presupuestar   
-	history={props.history}
+		history={props.history}
     location={props.location}
     match={props.match}
-	staticContext={props.staticContext}
-	
+		staticContext={props.staticContext}
 	/>;
 }
 
@@ -52,11 +54,11 @@ export function Renegociacion(props: {
 	location: any,
 	match: any,
 	staticContext?: any
-  }) {
-	return <Renegociar   history={props.history}
+}) {
+	return <Renegociar
+		history={props.history}
     location={props.location}
     match={props.match}
-	staticContext={props.staticContext}
-	
+		staticContext={props.staticContext}
 	/>;
 }
