@@ -7,6 +7,7 @@ import { List } from './../../components/List'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
 import { TwoButton } from './../../components/Dialogs'
+import {AppBar} from './../AppBar'
 
 import * as itemActions from './../../store/actions/item'
 import * as dialogActions from './../../store/actions/dialog'
@@ -108,6 +109,7 @@ class Catalog extends React.Component<{
           isCatalog={ isCatalog }
           footer={ this.footer() }
           delete={ this.openDialog }
+          appBar={this.appBar()}
         />
       </div>
     } else {
@@ -156,6 +158,15 @@ class Catalog extends React.Component<{
       location={ this.props.location }
       match={ this.props.match }
       staticContext={ this.props.staticContext }
+    />
+  }
+
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
     />
   }
 

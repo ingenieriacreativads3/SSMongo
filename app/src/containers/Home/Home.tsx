@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie';
 import { InitLayout as HomeComponent } from './../../components/Home'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -52,6 +53,15 @@ class Home extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
 
   render(){
 
@@ -66,7 +76,8 @@ class Home extends React.Component<{
         staticContext={this.props.staticContext}
         cookies={this.props.cookies}
         drawer={ this.drawer() }
-        footer={ this.footer() } />
+        footer={ this.footer() }
+        appBar={this.appBar()} />
       </div>
     );
   }

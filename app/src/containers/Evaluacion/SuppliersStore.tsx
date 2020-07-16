@@ -11,6 +11,7 @@ import * as evaluacionActions from './../../store/actions/evaluacion'
 import * as dialogActions from './../../store/actions/dialog'
 import DrawerInicio from '../../components/DrawerInicio';
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   evaluacionReducer: any,
@@ -113,6 +114,15 @@ class ValoracionPlataforma extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     return(
@@ -123,6 +133,7 @@ class ValoracionPlataforma extends React.Component<{
           getOpinion={ this.getOpinion }
           save={ this.save }
           footer={ this.footer() } 
+          appBar={this.appBar()}
         />
         <OneButton 
           title={ 'Evaluacion' }

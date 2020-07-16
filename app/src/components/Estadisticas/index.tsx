@@ -113,6 +113,7 @@ export  function VerEstadisticaActividad(props: {
 	staticContext?: any
 	drawer:any,
 	footer:any,
+	appBar:any,
   }) {
 	const classes = useStyles();
 	return <EstadisticaActividad 
@@ -122,7 +123,9 @@ export  function VerEstadisticaActividad(props: {
     match={props.match}
     staticContext={props.staticContext}
     drawer={props.drawer}
-    footer={props.footer} />;
+    footer={props.footer} 
+	appBar={props.appBar}
+	/>;
 }
 
 export  function VerReputacion(props: {
@@ -132,6 +135,7 @@ export  function VerReputacion(props: {
 	staticContext?: any
 	drawer:any,
 	footer:any,
+	appBar:any,
   }) {
 	const classes = useStyles();
 	return <Reputacion 
@@ -141,7 +145,8 @@ export  function VerReputacion(props: {
     match={props.match}
     staticContext={props.staticContext}
     drawer={props.drawer}
-    footer={props.footer} />;
+    footer={props.footer} 
+	appBar={props.appBar}/>;
 }
 
 

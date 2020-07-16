@@ -201,6 +201,7 @@ export function InitLayout(props: {
   cookies: Cookies
   drawer: any,
   footer: any,
+  appBar:any,
 
 }) {
 
@@ -218,6 +219,7 @@ export function InitLayout(props: {
       cookies={props.cookies}
       drawer={props.drawer}
       footer={props.footer}
+      appBar={props.appBar}
     />
   </div>;
 }
@@ -230,6 +232,7 @@ export function PaginaBusqueda(props: {
   cookies: Cookies
   drawer: any,
   footer: any,
+  appBar:any,
 
 }) {
 
@@ -247,6 +250,7 @@ export function PaginaBusqueda(props: {
       cookies={props.cookies}
       drawer={props.drawer}
       footer={props.footer}
+      appBar={props.appBar}
     />
   </div>;
 }

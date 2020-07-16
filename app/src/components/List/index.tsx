@@ -166,6 +166,7 @@ export function List(props: {
   isCatalog?: boolean,
   footer:any,
   delete?: any
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -181,6 +182,7 @@ export function List(props: {
     getChecked={ props.getChecked }
     footer={ props.footer }
     delete={ props.delete }
+    appBar={props.appBar}
   />;
 
 }

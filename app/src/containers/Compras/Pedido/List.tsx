@@ -6,6 +6,7 @@ import { List } from './../../../components/List'
 import * as requestActions from './../../../store/actions/request'
 import { Drawer } from './../../Drawer'
 import { Footer } from './../../Footer'
+import {AppBar} from './../../AppBar'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -62,6 +63,17 @@ class PedidosCompras extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+
+
   render(){
 
     
@@ -100,6 +112,7 @@ class PedidosCompras extends React.Component<{
           action={ this.action }
           drawer={ this.drawer() }
           footer={this.footer()}
+          appBar={this.appBar()}
         />
       </div>
     );

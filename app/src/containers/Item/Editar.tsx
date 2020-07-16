@@ -5,6 +5,7 @@ import { EditarItem as ItemEditar} from './../../components/Item'
 import { OneButton } from './../../components/Dialogs'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 import * as itemActions from './../../store/actions/item'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
@@ -113,6 +114,16 @@ class Editar extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
+
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
 
   update(
     _id: string,
@@ -254,6 +265,7 @@ class Editar extends React.Component<{
           getMostrarPrecio={ this.getMostrarPrecio }
           getFoto={ this.getFoto }
           update={ this.update }
+          appBar={this.appBar()}
         />
         <OneButton 
           title={ 'Editar Item' }

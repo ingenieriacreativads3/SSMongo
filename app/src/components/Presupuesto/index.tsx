@@ -148,6 +148,7 @@ export function NuevoPresupuesto(props:{
   save:any,
   drawer:any,
   footer:any,
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -158,6 +159,7 @@ export function NuevoPresupuesto(props:{
     save={props.save} 
     drawer={props.drawer}
     footer={props.footer}
+    appBar={props.appBar}
   />;
 
 }

@@ -185,6 +185,7 @@ export function NuevoPedido(props:{
   save:any,
   drawer:any,
   footer:any,
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -194,7 +195,8 @@ export function NuevoPedido(props:{
   getComentario={props.getComentario}
   save={props.save}
   drawer={props.drawer}
-  footer={props.footer}/>;
+  footer={props.footer}
+  appBar={props.appBar}/>;
 
 
 }

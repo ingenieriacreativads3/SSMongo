@@ -5,7 +5,7 @@ import { VerDetalleItem as ItemDetalle} from './../../components/Item'
 import * as itemActions from './../../store/actions/item'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
-
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -51,6 +51,16 @@ class Detalle extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
+
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   
 
   render(){
@@ -69,6 +79,7 @@ class Detalle extends React.Component<{
         <ItemDetalle
            drawer={ this.drawer() }
            footer={this.footer()}
+           appBar={this.appBar()}
           // history={this.props.history}
           // location={this.props.location}
           // match={this.props.match}
