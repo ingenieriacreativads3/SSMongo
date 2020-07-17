@@ -140,11 +140,7 @@ class Detail extends React.Component <{
                             <TextField disabled id="standard-required" label="Importe" value={this.props.presupuesto.importe}  className={classes.input}  InputLabelProps={{ shrink: true }}/>
                           </Grid>
                           <Grid item lg={4}>
-<<<<<<< HEAD
-                            <TextField disabled id="standard-required" label="Estado" value={this.props.presupuesto.estado}  className={classes.input}  />
-=======
                           <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
->>>>>>> dfe43217f6e4113716dc49b41febd384530454ac
                           </Grid>
                         </Grid>
                         <CardContent>
