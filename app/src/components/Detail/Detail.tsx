@@ -41,6 +41,48 @@ class Detail extends React.Component <{
     nombre: string,
     precio: string,
     unidad: string
+  },
+  presupuesto: {
+    _id: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+    importe: string,
+    empresa_demandante: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    },
+    empresa_perteneciente: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string
+    },
+    mensajes: [],
+    items: [
+      {
+        _id: string,
+        foto: [],
+        nombre: string,
+        precio: string,
+        descrpcion: string,
+        mostrarPrecio: boolean,
+        unidad_de_medida_id: string,
+        updated_at: string,
+        created_at: string,
+        catalogo_id: string,
+      }
+    ]
   }
 }, {}> {
 
@@ -91,13 +133,13 @@ class Detail extends React.Component <{
                     </CardContent>
                         <Grid container spacing={3}>
                           <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Empresa" value={this.props.empresa}  className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Empresa" value={this.props.presupuesto.empresa_demandante.nombre}  className={classes.input}  />
                           </Grid>
                           <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Importe" value={this.props.importe}  className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Importe" value={this.props.presupuesto.importe}  className={classes.input}  InputLabelProps={{ shrink: true }}/>
                           </Grid>
                           <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Estado" value={this.props.estado}  className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Estado" value={this.props.presupuesto.estado}  className={classes.input}  />
                           </Grid>
                         </Grid>
                         <CardContent>

@@ -142,22 +142,64 @@ export function Detail(props: {
     nombre: string,
     precio: string,
     unidad: string
+  },
+  presupuesto: {
+    _id: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+    importe: string,
+    empresa_demandante: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    },
+    empresa_perteneciente: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string
+    },
+    mensajes: [],
+    items: [
+      {
+        _id: string,
+        foto: [],
+        nombre: string,
+        precio: string,
+        descrpcion: string,
+        mostrarPrecio: boolean,
+        unidad_de_medida_id: string,
+        updated_at: string,
+        created_at: string,
+        catalogo_id: string,
+      }
+    ]
   }
-  
 }) {
 
 	const classes = useStyles(theme);
 	return <DetailExport 
-		classes={classes}
-    title={props.title}
-    subtitle1={props.subtitle1}
-    subtitle2={props.subtitle2}
-		empresa={props.empresa}
-		importe={props.importe}
-		estado={props.estado}
-		cantidad={props.cantidad}
-    item={props.item}
-    drawer={props.drawer}
+		classes={ classes }
+    title={ props.title }
+    subtitle1={ props.subtitle1 }
+    subtitle2={ props.subtitle2 }
+		empresa={ props.empresa }
+		importe={ props.importe }
+		estado={ props.estado }
+		cantidad={ props.cantidad }
+    item={ props.item }
+    drawer={ props.drawer }
+    presupuesto={ props.presupuesto }
 	/>;
 
 }

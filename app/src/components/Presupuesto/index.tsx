@@ -178,22 +178,68 @@ export function VentasPresupuestos() {
 
 export function Presupuestar(props:{
   getCantidadItem: any,
-  //getComentario:any,
+  getComentario:any,
   getImporte:any,
   save:any,
+  cancelar: any
   drawer:any,
   footer:any,
+  presupuesto: {
+    _id: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+    importe: string,
+    empresa_demandante: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    },
+    empresa_perteneciente: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string
+    },
+    mensajes: [],
+    items: [
+      {
+        _id: string,
+        foto: [],
+        nombre: string,
+        precio: string,
+        descrpcion: string,
+        mostrarPrecio: false,
+        unidad_de_medida_id: string,
+        updated_at: string,
+        created_at: string,
+        catalogo_id: string,
+      }
+    ]
+  }
 }) {
 
-	const classes = useStyles(theme);
+  const classes = useStyles(theme);
+  
   return <Presupuestacion 
-  classes={classes} 
-  getCantidadItem={props.getCantidadItem}
-  //getComentario={props.getComentario}
-  getImporte={props.getImporte}
-  save={props.save}
-  drawer={props.drawer}
-  footer={props.footer}
+    classes={ classes }
+    getCantidadItem={ props.getCantidadItem }
+    getComentario={ props.getComentario }
+    getImporte={ props.getImporte }
+    save={ props.save }
+    cancelar={ props.cancelar }
+    drawer={ props.drawer }
+    footer={ props.footer }
+    presupuesto={ props.presupuesto }
   />;
 
 }

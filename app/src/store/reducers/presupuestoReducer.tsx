@@ -23,9 +23,9 @@ export default function presupuestoReducer ( state = {
 			  message: '',
 			  data: {}
 			};
-			  }
+		}
 			  
-			  case 'SETEAR':{
+		case 'SETEAR':{
 			return {
 			  ...state,
 			  fetching: false,
@@ -34,7 +34,7 @@ export default function presupuestoReducer ( state = {
 			  message: '',
 			  data: state.data
 			};
-		  }
+		}
 
 		case 'GET_PURCHASE_PRESUPUESTOS_PENDING': {
 			return { 
@@ -52,6 +52,32 @@ export default function presupuestoReducer ( state = {
 		}
 	
 		case 'GET_PURCHASE_PRESUPUESTOS_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
+		case 'GET_PRESUPUESTO_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'GET_PRESUPUESTO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'GET_PRESUPUESTO_FULFILLED': {
 			return {
         ...state,
         fetching: false,
@@ -111,9 +137,8 @@ export default function presupuestoReducer ( state = {
         status: action.payload.data.status,
         message: action.payload.data.message,
         data: action.payload.data.data
-	  };
-	}
-	
+	  	};
+	 }
 
 		case 'PRESUPUESTAR_PENDING': {
 			return { 
@@ -132,15 +157,40 @@ export default function presupuestoReducer ( state = {
 
 		case 'PRESUPUESTAR_FULFILLED': {
 			return {
-		...state,
-		fetching: false,
-		fetched: true,
-		status: action.payload.data.status,
-		message: action.payload.data.message,
-		data: action.payload.data.data
-	};
-	}
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
+		}
 
+		case 'CANCELAR_PRESUPUESTO_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+
+		case 'CANCELAR_PRESUPUESTO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+
+		case 'CANCELAR_PRESUPUESTO_FULFILLED': {
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: state.data
+			};
+		}
 
 		case 'RENEGOCIAR_PENDING': {
 			return { 
@@ -159,18 +209,22 @@ export default function presupuestoReducer ( state = {
 
 		case 'RENEGOCIAR_FULFILLED': {
 			return {
-		...state,
-		fetching: false,
-		fetched: true,
-		status: action.payload.data.status,
-		message: action.payload.data.message,
-		data: action.payload.data.data
-		};
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
 		}
+
 		case 'E': {
 			throw new Error('Este error se manejo asi!' + ' requestReducer' + 'Reducer.js');
 		}
+
 		default: {break;}
+
 	}
+
 	return state;
 }
