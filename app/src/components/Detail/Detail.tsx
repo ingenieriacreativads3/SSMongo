@@ -41,7 +41,61 @@ class Detail extends React.Component <{
     nombre: string,
     precio: string,
     unidad: string
-  }
+  },
+  presupuesto: {
+    _id: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+    importe: string,
+    empresa_demandante: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    },
+    empresa_perteneciente: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string
+    },
+    mensajes: [],
+    items: [
+      {
+        _id: string,
+        foto: [],
+        nombre: string,
+        precio: string,
+        descrpcion: string,
+        mostrarPrecio: boolean,
+        unidad_de_medida_id: string,
+        updated_at: string,
+        created_at: string,
+        catalogo_id: string,
+      }
+    ]
+  },
+  labelCompany: string,
+  company: {
+    _id: string,
+    nombre: string,
+    cuit: string,
+    usuario: string,
+    email: string,
+    estado: string,
+    updated_at: string,
+    created_at: string
+  },
+  actions: any
 }, {}> {
 
   props: any
@@ -57,6 +111,20 @@ class Detail extends React.Component <{
 
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+
+    let msj: string = ''
+
+    if(
+      this.props.presupuesto !== undefined &&
+      this.props.presupuesto.mensajes !== undefined &&
+      this.props.presupuesto.mensajes.length
+    ) {
+      this.props.presupuesto.mensajes.map((mensaje: {
+        comentario: string
+      }) => {
+        msj = msj + mensaje.comentario
+      })  
+    }
 
     return(
 
@@ -87,18 +155,18 @@ class Detail extends React.Component <{
                       <CardContent>
                         <Typography variant="h5" component="h2">
                            {this.props.subtitle1}
-                           <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{this.props.estado}</Button></span>
+                           <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{this.props.presupuesto.estado}</Button></span>
                         </Typography>
                     </CardContent>
                         <Grid container>
                           <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Empresa" value={this.props.empresa}  className={classes.input}  />
+                            <TextField disabled id="standard-required" label={this.props.labelCompany} value={this.props.company.nombre}  className={classes.input}  />
                           </Grid>
                           <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Importe" value={this.props.importe}  className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Importe" value={this.props.presupuesto.importe}  className={classes.input}  InputLabelProps={{ shrink: true }}/>
                           </Grid>
                           <Grid item lg={4}>
-                          <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
+                          <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
                           </Grid>
                         </Grid>
                         <CardContent>
@@ -107,14 +175,14 @@ class Detail extends React.Component <{
                         </Typography>
                     </CardContent>
                         <Grid container >
-                          <Grid item lg={3}>
-                            <TextField disabled id="standard-required" label="Nombre" value={this.props.item.nombre}  className={classes.input}  />
+                          <Grid item lg={ 3 }>
+                            <TextField disabled id="standard-required" label="Nombre" value={ this.props.presupuesto.items[0].nombre }  className={ classes.input }  />
                           </Grid>
-                          <Grid item lg={3}>
-                            <TextField disabled id="standard-required" label="Precio" value={this.props.item.precio}  className={classes.input}  />
+                          <Grid item lg={ 3 }>
+                            <TextField disabled id="standard-required" label="Precio" value={ this.props.presupuesto.items[0].precio }  className={ classes.input }  />
                           </Grid>
-                          <Grid item lg={3}>
-                            <TextField disabled id="standard-required" label="Cantidad" value={this.props.cantidad}  className={classes.input}  />
+                          <Grid item lg={ 3 }>
+                            <TextField disabled id="standard-required" label="Cantidad" value={ this.props.cantidad }  className={ classes.input }  />
                           </Grid>
                           
                         </Grid>
@@ -131,16 +199,9 @@ class Detail extends React.Component <{
                   <CardActions>
                     <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
                       <Grid item lg={12} >
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          size="small"
-                          className={classes.button}
-                        >
-                          Aceptar
-                        </Button>
-                        </Grid>  
-                      </Grid>
+                        {this.props.actions(classes)}
+                      </Grid>  
+                    </Grid>
                   </CardActions>
                   
                 </Card>

@@ -1,5 +1,45 @@
 import axios from 'axios';
 
+export function confirmarPresupuesto(
+	_id: string,
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/presupuesto/confirmar', {
+		_id
+	})
+
+  return {
+		type: 'CONFIRMAR_PRESUPUESTO',
+		payload: payload
+	}
+
+}
+
+export function cancelarPresupuesto(
+	idPresupuesto: string,
+	idEmpresa: string,	
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/presupuesto/cancelar', {
+		presupuesto: {
+			_id: idPresupuesto,
+		},
+		empresa: {
+			_id: idEmpresa
+		}
+	})
+
+  return {
+		type: 'CANCELAR_PRESUPUESTO',
+		payload: payload
+	}
+
+}
+
 export function getPurchase(id: string) {
 
 	let url: string = 'http://127.0.0.1:8000';
@@ -73,33 +113,28 @@ export function setPresupuesto(
 
 }
 
-export function Presupuestar(
+export function presupuestar(
 	idPresupuesto: string,
-	idItem:string,	
+	idItem: string,	
 	cantidad: string,
-	importe:string,
-	//comentario:string
-	
+	importe: string,
+	comentario: string
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.post(url + '/presupuesto/presupuestar',{
-	
-	presupuesto:{
-		_id:idPresupuesto,
-	},
-    items: {
-			_id: idItem,
-			cantidad: cantidad,
-			
+	let payload: any = axios.post(url + '/presupuesto/presupuestar', {
+		presupuesto: {
+			_id: idPresupuesto,
+			items: [{
+				_id: idItem,
+				cantidad: cantidad,
+			}]
 		},
-	importe : importe,
-	//comentario:comentario,
+		importe,
+		comentario,
 	})
 
-	console.log(payload)
-	
   return {
 		type: 'PRESUPUESTAR',
 		payload: payload

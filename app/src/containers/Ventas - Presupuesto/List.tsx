@@ -35,10 +35,19 @@ class PresupuestosVentas extends React.Component<{
     this.state = {};
   }
 
-   action(item: {
-     _id: string
-   }) {
-    this.props.history.push("/presupuesto/" + item._id);
+  componentWillMount() {
+
+    this.props.dispatch(presupuestoActions.getSale(this.props.cookies.get('empresaId')))
+
+  }
+
+  action(item: {
+    presupuesto: {
+      _id: string
+    }
+  }) {
+    this.props.dispatch(presupuestoActions.reintentar())
+    this.props.history.push("/ventas/presupuesto/" + item.presupuesto._id);
   }
 
   drawer() {
@@ -69,17 +78,6 @@ class PresupuestosVentas extends React.Component<{
   }
 
   render(){
-
-    console.log(this.props.login)
-
-		if(
-      !this.props.presupuestoReducer.fetched &&
-      !this.props.presupuestoReducer.fetching
-    ) {
-
-			this.props.dispatch(presupuestoActions.getSale(this.props.cookies.get('empresaId')))
-
-		}
 
     return(
       <div>

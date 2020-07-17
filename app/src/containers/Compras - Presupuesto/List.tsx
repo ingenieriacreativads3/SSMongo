@@ -35,11 +35,20 @@ class PresupuestosCompras extends React.Component<{
     this.state = {};
   }
 
+  componentWillMount() {
+    
+		this.props.dispatch(presupuestoActions.getPurchase(this.props.cookies.get('empresaId')))
+
+  }
+
   action(item: {
-    _id: string
+    presupuesto: {
+      _id: string
+    }
   }) {
-    this.props.history.push("/presupuesto/" + item._id);
-  } 
+    this.props.dispatch(presupuestoActions.reintentar())
+    this.props.history.push("/compras/presupuesto/" + item.presupuesto._id);
+  }
 
   drawer() {
     return <Drawer 
@@ -69,15 +78,6 @@ class PresupuestosCompras extends React.Component<{
   }
 
   render(){
-
-		if(
-      !this.props.presupuestoReducer.fetched &&
-      !this.props.presupuestoReducer.fetching
-    ) {
-
-			this.props.dispatch(presupuestoActions.getPurchase(this.props.cookies.get('empresaId')))
-
-		}
 
     return(
       <div>

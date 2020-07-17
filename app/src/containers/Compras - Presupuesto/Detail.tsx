@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import { Button  } from '@material-ui/core';
+
+import { OneButton } from './../../components/Dialogs'
 import { Detail as DetailExport } from './../../components/Detail'
 import * as presupuestoActions from './../../store/actions/presupuesto'
+import * as dialogActions from './../../store/actions/dialog'
 import { Drawer } from './../Drawer'
 import {AppBar} from './../AppBar'
 import {Footer} from './../Footer'
@@ -31,7 +35,16 @@ class Detail extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.aceptar = this.aceptar.bind(this);
+    this.cancelar = this.cancelar.bind(this);
+    this.confirmar = this.confirmar.bind(this);
     this.state = {};
+  }
+
+  componentWillMount() {
+
+    this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
+
   }
 
   drawer() {
@@ -60,17 +73,184 @@ class Detail extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
+
+  aceptar() {
+
+    this.props.dispatch(dialogActions.closeOneButton())
+    if(this.props.presupuestoReducer.status !== 200) {
+      this.props.dispatch(presupuestoActions.reintentar())
+    } else {
+      this.props.dispatch(presupuestoActions.setear())
+      this.props.history.push('/compras/presupuestos/lista')
+    }
+
+  }
+
+  cancelar() {
+
+    this.props.dispatch(presupuestoActions.cancelarPresupuesto(
+      this.props.match.params.id,
+      this.props.cookies.get('empresaId'),
+    ))
+    this.props.dispatch(dialogActions.openOneButton())
+
+  }
+
+  confirmar() {
+
+    this.props.dispatch(presupuestoActions.confirmarPresupuesto(
+      this.props.match.params.id,
+    ))
+    this.props.dispatch(dialogActions.openOneButton())
+
+  }
+
+  actions(classes: any) {
+    return <div>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        onClick={this.cancelar}
+      >
+        Cancelar Presupuesto
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        onClick={this.confirmar}
+      >
+        Renegociar presupuesto
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        onClick={this.confirmar}
+      >
+        Confirmar presupuesto
+      </Button>
+    </div>
+  }
  
   render(){
 
-		if(
-      !this.props.presupuestoReducer.fetched &&
-      !this.props.presupuestoReducer.fetching
-    ) {
-
-      this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
-
+		let presupuesto: {
+      _id: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+      importe: string,
+      empresa_demandante: {
+        _id: string,
+        nombre: string,
+        cuit: string,
+        usuario: string,
+        email: string,
+        estado: string,
+        updated_at: string,
+        created_at: string,
+      },
+      empresa_perteneciente: {
+        _id: string,
+        nombre: string,
+        cuit: string,
+        usuario: string,
+        email: string,
+        estado: string,
+        updated_at: string,
+        created_at: string
+      },
+      mensajes: [],
+      items: [
+        {
+          _id: string,
+          foto: [],
+          nombre: string,
+          precio: string,
+          descrpcion: string,
+          mostrarPrecio: boolean,
+          unidad_de_medida_id: string,
+          updated_at: string,
+          created_at: string,
+          catalogo_id: string,
+        }
+      ]
+    } = {
+      _id: '',
+      estado: '',
+      updated_at: '',
+      created_at: '',
+      importe: '',
+      empresa_demandante: {
+        _id: '',
+        nombre: '',
+        cuit: '',
+        usuario: '',
+        email: '',
+        estado: '',
+        updated_at: '',
+        created_at: '',
+      },
+      empresa_perteneciente: {
+        _id: '',
+        nombre: '',
+        cuit: '',
+        usuario: '',
+        email: '',
+        estado: '',
+        updated_at: '',
+        created_at: ''
+      },
+      mensajes: [],
+      items: [
+        {
+          _id: '',
+          foto: [],
+          nombre: '',
+          precio: '',
+          descrpcion: '',
+          mostrarPrecio: false,
+          unidad_de_medida_id: '',
+          updated_at: '',
+          created_at: '',
+          catalogo_id: '',
+        }
+      ]
     }
+
+    let company: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    } = {
+      _id: '',
+      nombre: '',
+      cuit: '',
+      usuario: '',
+      email: '',
+      estado: '',
+      updated_at: '',
+      created_at: '',
+    }
+
+    if(this.props.presupuestoReducer !== undefined) {
+			if(this.props.presupuestoReducer.data !== undefined) {
+				if(this.props.presupuestoReducer.data.presupuesto !== undefined) {
+					presupuesto = { ...this.props.presupuestoReducer.data.presupuesto }
+          company = this.props.presupuestoReducer.data.presupuesto.empresa_perteneciente
+				}
+			}
+		}
     
     let empresa: string = 'nombreEmpresa'
 		let importe: string = 'importe'
@@ -108,17 +288,27 @@ class Detail extends React.Component<{
     return(
       <div>
         <DetailExport
-          title={'Mis compras - Detalle de presupuesto'}
-          subtitle1={'Datos del presupuesto'}
-          subtitle2={'Item solicitado'}
-          empresa={empresa}
-          importe={importe}
-          estado={estado}
-          cantidad={cantidad}
-          item={item}
+          title={ 'Mis compras - Detalle de presupuesto' }
+          subtitle1={ 'Datos del presupuesto' }
+          subtitle2={ 'Item solicitado' }
+          empresa={ empresa } 
+          importe={ importe }
+          estado={ estado }
+          cantidad={ cantidad }
+          item={ item }
           drawer={ this.drawer() }
           appBar={this.appBar()}
           footer={this.footer()}
+          presupuesto={ presupuesto }
+          labelCompany={ 'Empresa demandada' }
+          company={ company }
+          actions={ (classes: any) => this.actions(classes) }
+        />
+        <OneButton 
+          title={ 'Presupuestacion' }
+          text={ this.props.presupuestoReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
         />
       </div>
     );

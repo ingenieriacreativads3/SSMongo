@@ -9,9 +9,7 @@ import MenuLateral from '../Drawer'
 
 import * as PresupuestoAction from './../../store/actions/login'
 
-
 //import * as ItemAction from "../../store/actions/ItemAction";
-import { connect } from 'react-redux'
 
 const CssTextField = withStyles({
   root: {
@@ -49,29 +47,55 @@ function Copyright() {
   );
 }
 
-function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
-}) {
-  return {
-   /*  Item: store.Item,
-    idEmpresa: store.login.data.empresa._id */
-  };
-}
-
 class Presupuestar extends React.Component <{
   classes: any,
   getCantidadItem: any,
-  //getComentario: any,
+  getComentario: any,
   getImporte:any,
   save: any,
-
+  cancelar: any,
+  presupuesto: {
+    _id: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+    importe: string,
+    empresa_demandante: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    },
+    empresa_perteneciente: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string
+    },
+    mensajes: [],
+    items: [
+      {
+        _id: string,
+        foto: [],
+        nombre: string,
+        precio: string,
+        descrpcion: string,
+        mostrarPrecio: false,
+        unidad_de_medida_id: string,
+        updated_at: string,
+        created_at: string,
+        catalogo_id: string,
+      }
+    ]
+  }
 }, {}> {
 
 	props: any
@@ -83,14 +107,36 @@ class Presupuestar extends React.Component <{
     super(props);
     this.state = {};
   }
- 
-  
+
+  componentWillReceiveProps() {
+
+    if(this.props.presupuesto !== undefined) {
+      this.setState({
+        presupuesto: this.props.presupuesto
+      })
+    }
+
+  }
 
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 
+    let msj: string = ''
+
+    if(
+      this.props.presupuesto !== undefined &&
+      this.props.presupuesto.mensajes !== undefined &&
+      this.props.presupuesto.mensajes.length
+    ) {
+      this.props.presupuesto.mensajes.map((mensaje: {
+        comentario: string
+      }) => {
+        msj = msj + mensaje.comentario
+      })  
+    }
+    
     return(
 
       <div className={classes.root}>
@@ -118,75 +164,72 @@ class Presupuestar extends React.Component <{
                       <form className={classes.root}>
                         <Grid container spacing={3}>
                         <CardContent>
-                        <Typography variant="h5" component="h2">
-                           Solicitante
-                        </Typography>
-                    </CardContent>
+                          <Typography variant="h5" component="h2">
+                            Solicitante
+                          </Typography>
+                        </CardContent>
                           <Grid container spacing={3}>
-                          <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Empresa" defaultValue="CorpuSoft" className={classes.input}  />
+                            <Grid item lg={4}>
+                              <TextField disabled id="standard-required" label="Empresa" value={this.props.presupuesto.empresa_demandante.nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Email" defaultValue="corpusoftsa@sa.com.ar" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Email" value={this.props.presupuesto.empresa_demandante.email} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Telefono" defaultValue="35764236987" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Telefono" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Provincia" defaultValue="Cordoba" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Provincia" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Ciudad" defaultValue="San Francisco" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Ciudad" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="CP" defaultValue="2400" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="CP" value="" className={classes.input}  />
                             </Grid>
                             
                           </Grid>
                           <CardContent>
                         <Typography variant="h5" component="h2">
                           Presupuesto solicitado
-                          <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>ESTADO</Button></span>
+                          <span style={{paddingLeft:20}}>
+                            <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{this.props.presupuesto.estado}</Button>
+                          </span>
                         </Typography>
                     </CardContent>
                           <Grid container spacing={3}>
-                           
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Producto" defaultValue="Samsung A20" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Producto" value={this.props.presupuesto.items[0].nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Cantidad" defaultValue="10" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Cantidad" value={'10'} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Unidad" defaultValue="Unidad" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Unidad" value={'unidad'} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Precio" defaultValue="10000" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Precio" value={this.props.presupuesto.items[0].precio} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} defaultValue="Mensaje de presupuesto"  />
+                              <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  />
                             </Grid>
                           </Grid>
                           <CardContent>
-                        <Typography variant="h5" component="h2">
-                          Mi presupuesto
-                        </Typography>
-                    </CardContent>
+                            <Typography variant="h5" component="h2">
+                              Mi presupuesto
+                            </Typography>
+                          </CardContent>
                           <Grid container spacing={3}>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad" onChange={this.props.getCantidadItem}   />
-                            
+                              <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad" type="number" onChange={this.props.getCantidadItem}   />
                             </Grid>
                             <Grid item lg={4}>
-                            <CssTextField className={classes.margin} id="custom-css-standard-input" label="Importe" type="number" onChange={this.props.getImporte}  />
-                      
+                              <CssTextField className={classes.margin} id="custom-css-standard-input" label="Importe" type="number" onChange={this.props.getImporte}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={8} className={classes.textTarea} placeholder="Mensaje"  />
+                              <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={8} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
                             </Grid>
                           </Grid>
-                         
-                            
                         </Grid>
                       </form>
                     </CardContent>
@@ -202,21 +245,29 @@ class Presupuestar extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SendIcon />}
-                            //   onClick={() => this.register()}
+                              onClick={this.props.cancelar}
                             >
-                              Enviar
+                              Cancelar
                             </Button>
+
+                            <Button
+                              variant="contained"
+                              color='primary'
+                              size="small"
+                              className={classes.button}
+                              startIcon={<SendIcon />}
+                              onClick={this.props.save}
+                            >
+                              Aceptar
+                            </Button>
+
+                            
                             
                           </Grid>
                         </Grid>
-                      
-
                     </CardActions>
-                    
 									</Card>
 								</Grid>
-
-
 							</Grid>
 							{/* <Box pt={4}>
 								<Copyright />
@@ -224,8 +275,6 @@ class Presupuestar extends React.Component <{
 						</Container>
             {this.props.footer}
 					</main>
-
-         
 		 </div>
 
     );
@@ -234,4 +283,4 @@ class Presupuestar extends React.Component <{
 
 
 
-export default connect(mapStateToProps)(Presupuestar)
+export default Presupuestar

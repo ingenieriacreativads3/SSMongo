@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import { Button  } from '@material-ui/core';
+
+import { OneButton } from './../../components/Dialogs'
 import { Detail as DetailExport } from './../../components/Detail'
 import * as presupuestoActions from './../../store/actions/presupuesto'
+import * as dialogActions from './../../store/actions/dialog'
 import { Drawer } from './../Drawer'
-import {AppBar} from './../AppBar'
-import {Footer} from './../Footer'
+import { AppBar } from './../AppBar'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -31,7 +35,16 @@ class Detail extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.aceptar = this.aceptar.bind(this);
+    this.cancelar = this.cancelar.bind(this);
+    this.presupuestar = this.presupuestar.bind(this);
     this.state = {};
+  }
+
+  componentWillMount() {
+
+    this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
+
   }
 
   drawer() {
@@ -61,15 +74,170 @@ class Detail extends React.Component<{
     />
   }
 
+  actions(classes: any) {
+    return <div>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        onClick={this.cancelar}
+      >
+        Cancelar Presupuesto
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        onClick={this.presupuestar}
+      >
+        Presupuestar
+      </Button>
+    </div>
+  }
+
+  aceptar() {
+
+    this.props.dispatch(dialogActions.closeOneButton())
+    if(this.props.presupuestoReducer.status !== 200) {
+      this.props.dispatch(presupuestoActions.reintentar())
+    } else {
+      this.props.dispatch(presupuestoActions.setear())
+      this.props.history.push('/ventas/presupuestos/lista')
+    }
+
+  }
+
+  cancelar() {
+
+    this.props.dispatch(presupuestoActions.cancelarPresupuesto(
+      this.props.match.params.id,
+      this.props.cookies.get('empresaId'),
+    ))
+    this.props.dispatch(dialogActions.openOneButton())
+
+  }
+
+  presupuestar() {
+
+    this.props.history.push('/presupuestacion/' + this.props.match.params.id)
+
+  }
+
   render(){
 
-		if(
-      !this.props.presupuestoReducer.fetched &&
-      !this.props.presupuestoReducer.fetching
-    ) {
+    let presupuesto: {
+      _id: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+      importe: string,
+      empresa_demandante: {
+        _id: string,
+        nombre: string,
+        cuit: string,
+        usuario: string,
+        email: string,
+        estado: string,
+        updated_at: string,
+        created_at: string,
+      },
+      empresa_perteneciente: {
+        _id: string,
+        nombre: string,
+        cuit: string,
+        usuario: string,
+        email: string,
+        estado: string,
+        updated_at: string,
+        created_at: string
+      },
+      mensajes: [],
+      items: [
+        {
+          _id: string,
+          foto: [],
+          nombre: string,
+          precio: string,
+          descrpcion: string,
+          mostrarPrecio: boolean,
+          unidad_de_medida_id: string,
+          updated_at: string,
+          created_at: string,
+          catalogo_id: string,
+        }
+      ]
+    } = {
+      _id: '',
+      estado: '',
+      updated_at: '',
+      created_at: '',
+      importe: 'Sin cotizar',
+      empresa_demandante: {
+        _id: '',
+        nombre: '',
+        cuit: '',
+        usuario: '',
+        email: '',
+        estado: '',
+        updated_at: '',
+        created_at: '',
+      },
+      empresa_perteneciente: {
+        _id: '',
+        nombre: '',
+        cuit: '',
+        usuario: '',
+        email: '',
+        estado: '',
+        updated_at: '',
+        created_at: ''
+      },
+      mensajes: [],
+      items: [
+        {
+          _id: '',
+          foto: [],
+          nombre: '',
+          precio: '',
+          descrpcion: '',
+          mostrarPrecio: false,
+          unidad_de_medida_id: '',
+          updated_at: '',
+          created_at: '',
+          catalogo_id: '',
+        }
+      ]
+    }
 
-      this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
+    let company: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    } = {
+      _id: '',
+      nombre: '',
+      cuit: '',
+      usuario: '',
+      email: '',
+      estado: '',
+      updated_at: '',
+      created_at: '',
+    }
 
+    if(this.props.presupuestoReducer !== undefined) {
+			if(this.props.presupuestoReducer.data !== undefined) {
+				if(this.props.presupuestoReducer.data.presupuesto !== undefined) {
+					presupuesto = { ...this.props.presupuestoReducer.data.presupuesto }
+          company = this.props.presupuestoReducer.data.presupuesto.empresa_demandante
+				}
+			}
     }
     
     let empresa: string = 'nombreEmpresa'
@@ -118,6 +286,16 @@ class Detail extends React.Component<{
           drawer={ this.drawer() }
           appBar={this.appBar()}
           footer={this.footer()}
+          presupuesto={ presupuesto }
+          labelCompany={ 'Empresa demandante' }
+          company={ company }
+          actions={ (classes: any) => this.actions(classes) }
+        />
+        <OneButton 
+          title={ 'Presupuestacion' }
+          text={ this.props.presupuestoReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
         />
       </div>
     );

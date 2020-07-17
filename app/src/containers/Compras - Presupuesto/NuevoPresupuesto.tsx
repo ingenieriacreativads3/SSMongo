@@ -128,7 +128,7 @@ class NuevoPresupuesto extends React.Component<{
       this.props.dispatch(presupuestoActions.reintentar())
     } else {
       this.props.dispatch(presupuestoActions.setear())
-      this.props.history.push('/home/inicio')
+      this.props.history.push('/compras/presupuestos/lista')
     }
 
   }

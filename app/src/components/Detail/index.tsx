@@ -110,7 +110,8 @@ const useStyles = makeStyles((theme) => ({
     color : '#ffffff',
     '&:hover': {
       background: "#d93211",
-   },
+    },
+    margin:theme.spacing(2),
   },
   margin:{
     margin:theme.spacing(2),
@@ -146,8 +147,61 @@ export function Detail(props: {
     nombre: string,
     precio: string,
     unidad: string
-  }
-  
+  },
+  presupuesto: {
+    _id: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+    importe: string,
+    empresa_demandante: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    },
+    empresa_perteneciente: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string
+    },
+    mensajes: [],
+    items: [
+      {
+        _id: string,
+        foto: [],
+        nombre: string,
+        precio: string,
+        descrpcion: string,
+        mostrarPrecio: boolean,
+        unidad_de_medida_id: string,
+        updated_at: string,
+        created_at: string,
+        catalogo_id: string,
+      }
+    ]
+  },
+  labelCompany: string,
+  company: {
+    _id: string,
+    nombre: string,
+    cuit: string,
+    usuario: string,
+    email: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+  },
+  actions: any
 }) {
 
 	const classes = useStyles(theme);
@@ -164,6 +218,10 @@ export function Detail(props: {
     drawer={props.drawer}
     appBar={props.appBar}
     footer={props.footer}
+    presupuesto={ props.presupuesto }
+    labelCompany={ props.labelCompany }
+    company={ props.company }
+    actions={ props.actions }
 	/>;
 
 }
