@@ -245,6 +245,7 @@ export  function PerfilPropio(props: {
   staticContext?: any,
   footer:any,
   drawer:any,
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -258,6 +259,7 @@ export  function PerfilPropio(props: {
     staticContext={props.staticContext}
     footer={props.footer}
     drawer={props.drawer}
+    appBar={props.appBar}
      />
   </div>;
 
@@ -271,6 +273,7 @@ export  function PerfilEmpresa(props: {
   staticContext?: any,
   footer:any,
   drawer:any,
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -284,6 +287,7 @@ export  function PerfilEmpresa(props: {
     staticContext={props.staticContext}
     footer={props.footer}
     drawer={props.drawer}
+    appBar={props.appBar}
      />
   </div>;
 

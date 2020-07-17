@@ -10,6 +10,7 @@ import * as dialogActions from './../../store/actions/dialog'
 import * as presupuestoActions from './../../store/actions/presupuesto'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   itemReducer:any,
@@ -120,6 +121,15 @@ class Presupuestacion extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     return(
@@ -131,6 +141,7 @@ class Presupuestacion extends React.Component<{
            save={ this.save }
            drawer={this.drawer()}
            footer={this.footer()}
+           appBar={this.appBar()}
         />
         <OneButton 
           title={ 'Presupuestacion' }

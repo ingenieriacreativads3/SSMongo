@@ -141,6 +141,8 @@ export function ValidarNuevoUsuario(props: {
   listaRubros: string[],
   getRubros: any,
   footer:any,
+  appBar:any,
+  drawer:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -155,6 +157,8 @@ export function ValidarNuevoUsuario(props: {
       listaRubros={props.listaRubros}
       getRubros={props.getRubros}
       footer={props.footer}
+      appBar={props.appBar}
+      drawer={props.drawer}
     />
   </div>
 }

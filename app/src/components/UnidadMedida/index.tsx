@@ -178,6 +178,7 @@ export  function NuevaUnidadMedida(props: {
   getSimbolo: any,
   drawer:any,
   footer:any,
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -187,7 +188,8 @@ export  function NuevaUnidadMedida(props: {
   getMagnitud={ props.getMagnitud }
   getSimbolo={ props.getSimbolo } 
   drawer={props.drawer}
-  footer={props.footer}/>;
+  footer={props.footer}
+  appBar={props.appBar}/>;
 
 }
 
@@ -201,6 +203,7 @@ export  function ValidarSolicitud(props: {
   magnitud:string,
   drawer:any,
   footer:any,
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -215,6 +218,7 @@ export  function ValidarSolicitud(props: {
   magnitud={props.magnitud}
   drawer={props.drawer}
   footer={props.footer}
+  appBar={props.appBar}
    />;
 
 }

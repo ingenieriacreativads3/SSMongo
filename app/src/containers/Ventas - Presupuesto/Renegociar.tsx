@@ -10,6 +10,7 @@ import * as dialogActions from './../../store/actions/dialog'
 import * as presupuestoActions from './../../store/actions/presupuesto'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 
 function mapStateToProps(store: {
@@ -123,6 +124,14 @@ class Renegociacion extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
 
   render(){
 
@@ -135,6 +144,7 @@ class Renegociacion extends React.Component<{
            save={ this.save }
            drawer={this.drawer()}
            footer={this.footer()}
+           appBar={this.appBar()}
         />
         <OneButton 
           title={ 'Renegociacion' }

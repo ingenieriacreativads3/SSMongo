@@ -5,6 +5,7 @@ import { PerfilEmpresa as EmpresaPerfil} from './../../components/Perfil'
 import Link from '@material-ui/core/Link';
 import { Footer } from './../Footer'
 import { InicioDrawer } from './../DrawerInicio'
+import {AppBar} from './../AppBar'
 
 
 function mapStateToProps(store: {
@@ -54,6 +55,14 @@ drawer() {
   />
 }
 
+appBar() {
+  return <AppBar 
+    history={this.props.history}
+    location={this.props.location}
+    match={this.props.match}
+    staticContext={this.props.staticContext}
+  />
+}
   render(){
 
    {
@@ -72,6 +81,7 @@ drawer() {
           staticContext={this.props.staticContext}
           footer={this.footer()}
           drawer={this.drawer()}
+          appBar={this.appBar()}
          
          />
       </div>

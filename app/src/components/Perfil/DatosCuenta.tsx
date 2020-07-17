@@ -165,7 +165,7 @@ class DatosCuenta extends React.Component <{
 
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar></AppBar>
+        {this.props.appBar}
          {this.props.drawer}
         <main className={classes.content}>
 						<div className={classes.appBarSpacer} />

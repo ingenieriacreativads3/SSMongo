@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import { ValidarNuevoUsuario as Validacion } from './../../components/SolicitudValidacion'
 import * as solicitudesActions from './../../store/actions/solicitudDeValidacion'
 import { Footer } from './../Footer'
-
+import {AppBar} from './../AppBar'
+import {Drawer} from './../Drawer'
+ 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
 }) {
@@ -45,6 +47,25 @@ class Detail extends React.Component<{
 
   footer() {
     return <Footer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+  drawer() {
+    return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+
+  appBar() {
+    return <AppBar 
       history={this.props.history}
       location={this.props.location}
       match={this.props.match}
@@ -105,6 +126,8 @@ class Detail extends React.Component<{
           listaRubros={listaRubros}
           getRubros={this.getRubros}
           footer={this.footer()}
+          appBar={this.appBar()}
+          drawer={this.drawer()}
         />
       </div>
     );

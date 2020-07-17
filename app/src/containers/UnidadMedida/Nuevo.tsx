@@ -10,6 +10,7 @@ import { OneButton } from './../../components/Dialogs'
 import * as dialogActions from './../../store/actions/dialog'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
  
@@ -127,6 +128,15 @@ class NuevaSolicitud extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
 
@@ -138,6 +148,7 @@ class NuevaSolicitud extends React.Component<{
           getMagnitud={ this.getMagnitud }
           drawer={ this.drawer() }
           footer={ this.footer() }
+          appBar={this.appBar()}
         />
         <OneButton 
           title={ 'Solicitud Unidad de Medida' }

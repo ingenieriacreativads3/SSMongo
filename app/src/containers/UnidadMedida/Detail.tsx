@@ -5,6 +5,7 @@ import { ValidarSolicitud as Validacion } from './../../components/UnidadMedida'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   unidadDeMedidaReducer: any,
@@ -53,6 +54,15 @@ class Detail extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
   
@@ -90,6 +100,7 @@ class Detail extends React.Component<{
           magnitud={magnitud}
           footer={this.footer()}
           drawer={this.drawer()}
+          appBar={this.appBar()}
         />
       </div>
     );

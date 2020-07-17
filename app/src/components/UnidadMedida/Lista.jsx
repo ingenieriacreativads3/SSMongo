@@ -98,7 +98,7 @@ class Lista extends React.Component {
 			<div className={classes.root}>
 
         <CssBaseline />
-        <AppBar></AppBar>
+       {this.props.appBar}
 		<MenuLateral />
 		<main className={classes.content}>
           <div className={classes.appBarSpacer} />
@@ -150,10 +150,11 @@ class Lista extends React.Component {
 				/>
 				</Grid>
             </Grid>
-            <Box pt={4}>
+           {/*  <Box pt={4}>
               <Copyright />
-            </Box>
+            </Box> */}
 		  </Container>
+		  {this.props.footer}
 		  </main>
 				
 			</div>

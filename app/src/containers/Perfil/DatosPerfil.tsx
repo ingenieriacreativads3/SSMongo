@@ -5,7 +5,7 @@ import { PerfilPropio as Perfil} from './../../components/Perfil'
 import Link from '@material-ui/core/Link';
 import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
-
+import { AppBar } from './../AppBar'
 
 function mapStateToProps(store: {
   
@@ -54,6 +54,15 @@ drawer() {
   />
 }
 
+appBar() {
+  return <AppBar 
+    history={this.props.history}
+    location={this.props.location}
+    match={this.props.match}
+    staticContext={this.props.staticContext}
+  />
+}
+
   render(){
 
    {
@@ -72,6 +81,7 @@ drawer() {
           staticContext={this.props.staticContext}
           footer={this.footer()}
           drawer={this.drawer()}
+          appBar={this.appBar()}
          
          />
       </div>
