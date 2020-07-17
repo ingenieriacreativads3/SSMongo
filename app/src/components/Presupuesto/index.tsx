@@ -186,6 +186,7 @@ export function Presupuestar(props:{
   cancelar: any
   drawer:any,
   footer:any,
+  appBar:any,
   presupuesto: {
     _id: string,
     estado: string,
@@ -242,6 +243,7 @@ export function Presupuestar(props:{
     drawer={ props.drawer }
     footer={ props.footer }
     presupuesto={ props.presupuesto }
+    appBar={props.appBar}
   />;
 
 }

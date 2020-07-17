@@ -181,8 +181,8 @@ class Detail extends React.Component <{
                           <Grid item lg={ 3 }>
                             <TextField disabled id="standard-required" label="Precio" value={ this.props.presupuesto.items[0].precio }  className={ classes.input }  />
                           </Grid>
-                          <Grid item lg={ 3 }>
-                            <TextField disabled id="standard-required" label="Cantidad" value={ this.props.cantidad }  className={ classes.input }  />
+                          <Grid item lg={3}>
+                          <Avatar className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} />
                           </Grid>
                           
                         </Grid>
@@ -190,7 +190,11 @@ class Detail extends React.Component <{
                         <Grid container>
                           <Grid item lg={3}>
                             <TextField disabled id="standard-required" label="Unidad de Medida" value={this.props.item.unidad}  className={classes.input}  />
+                          </Grid> 
+                          <Grid item lg={3}>
+                            <TextField disabled id="standard-required" label="Cantidad" value={ this.props.cantidad }  className={ classes.input }  />
                           </Grid>
+                          
                         </Grid>
                         
                       </Grid>

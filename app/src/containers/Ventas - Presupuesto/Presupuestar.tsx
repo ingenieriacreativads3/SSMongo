@@ -331,6 +331,7 @@ class Presupuestacion extends React.Component<{
           drawer={ this.drawer() }
           footer={ this.footer() }
           presupuesto={ presupuesto }
+          appBar={this.appBar()}
         />
         <OneButton 
           title={ 'Presupuestacion' }

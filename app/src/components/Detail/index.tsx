@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 700,
+    height: 800,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -128,6 +128,14 @@ const useStyles = makeStyles((theme) => ({
     width:'280px',
     marginTop:theme.spacing(2),
   },
+  fotoItem:{
+    fontSize: '70px',
+    width:'100px',
+    height:'100px',
+    marginLeft:theme.spacing(30),
+    
+  },
+
   
 
 }));
