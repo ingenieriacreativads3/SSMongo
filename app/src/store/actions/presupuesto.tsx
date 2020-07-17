@@ -1,5 +1,22 @@
 import axios from 'axios';
 
+export function confirmarPresupuesto(
+	_id: string,
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/presupuesto/confirmar', {
+		_id
+	})
+
+  return {
+		type: 'CONFIRMAR_PRESUPUESTO',
+		payload: payload
+	}
+
+}
+
 export function cancelarPresupuesto(
 	idPresupuesto: string,
 	idEmpresa: string,	

@@ -183,11 +183,7 @@ class Presupuestacion extends React.Component<{
 
   cancelar() {
 
-    this.props.dispatch(presupuestoActions.cancelarPresupuesto(
-      this.props.match.params.id,
-      this.props.cookies.get('empresaId'),
-    ))
-    this.props.dispatch(dialogActions.openOneButton())
+    this.props.history.push('/ventas/presupuesto/' + this.props.match.params.id)
 
   }
 

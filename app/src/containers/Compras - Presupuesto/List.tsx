@@ -41,12 +41,14 @@ class PresupuestosCompras extends React.Component<{
 
   }
 
-  action(presupuesto: {
-    _id: string
+  action(item: {
+    presupuesto: {
+      _id: string
+    }
   }) {
-    console.log(presupuesto)
-    // this.props.history.push("/presupuesto/" + presupuesto._id);
-  } 
+    this.props.dispatch(presupuestoActions.reintentar())
+    this.props.history.push("/compras/presupuesto/" + item.presupuesto._id);
+  }
 
   drawer() {
     return <Drawer 

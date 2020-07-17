@@ -79,10 +79,10 @@ class App extends React.Component {
 						<Route path='/home/perfil'                    render={(props) => <MiPerfil {...props} cookies={cookies} />} />
 						<Route path='/presupuestacion/:id'            render={(props) => <Presupuestacion {...props} cookies={cookies}/>}/>
 						<Route path='/compras/pedido/:id'             render={(props) => <DetailPurchaseRequest {...props}/>}/>
-						<Route path='/compras/presupuesto/:id'        render={(props) => <DetailPurchasePresupuesto {...props}/>}/>
+						<Route path='/compras/presupuesto/:id'        render={(props) => <DetailPurchasePresupuesto {...props} cookies={cookies}/>}/>
 						<Route path='/ventas/pedido/:id'              render={(props) => <DetailSaleRequest {...props}/>}/>
 						<Route path='/ventas/presupuesto/:id'         render={(props) => <DetailSalePresupuesto {...props} cookies={cookies} />}/>
-						<Route path='/home/resumen'               render={(props) => <ResumenActividad {...props} cookies={cookies}/>}/>
+						<Route path='/home/resumen'                   render={(props) => <ResumenActividad {...props} cookies={cookies}/>}/>
 						<Route path='/home/reputacion'                render={(props) => <Reputacion {...props} cookies={cookies}/>}/>
 						<Route path='/'                               render={(props) => <Login { ...props } cookies={cookies} />} /> 
 					

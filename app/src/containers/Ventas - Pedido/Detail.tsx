@@ -66,7 +66,10 @@ class Detail extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
- 
+
+  actions(classes: any) {
+    
+  }
 
   render(){
 
@@ -154,12 +157,31 @@ class Detail extends React.Component<{
       ]
     }
 
+    let company: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    } = {
+      _id: '',
+      nombre: '',
+      cuit: '',
+      usuario: '',
+      email: '',
+      estado: '',
+      updated_at: '',
+      created_at: '',
+    }
+
     if(this.props.presupuestoReducer !== undefined) {
 			if(this.props.presupuestoReducer.data !== undefined) {
 				if(this.props.presupuestoReducer.data.presupuesto !== undefined) {
-					presupuesto = {
-            ...this.props.presupuestoReducer.data.presupuesto
-          }
+					presupuesto = { ...this.props.presupuestoReducer.data.presupuesto }
+          company = this.props.presupuestoReducer.data.presupuesto.empresa_demandante
 				}
 			}
 		}
@@ -212,6 +234,9 @@ class Detail extends React.Component<{
           appBar={this.appBar()}
           footer={this.footer()}
           presupuesto={ presupuesto }
+          labelCompany={ 'Empresa demandante' }
+          company={ company }
+          actions={ (classes: any) => this.actions(classes) }
         />
       </div>
     );

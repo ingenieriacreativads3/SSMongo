@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import { Button  } from '@material-ui/core';
+
+import { OneButton } from './../../components/Dialogs'
 import { Detail as DetailExport } from './../../components/Detail'
 import * as presupuestoActions from './../../store/actions/presupuesto'
+import * as dialogActions from './../../store/actions/dialog'
 import { Drawer } from './../Drawer'
-import {AppBar} from './../AppBar'
-import {Footer} from './../Footer'
+import { AppBar } from './../AppBar'
+import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -31,6 +35,9 @@ class Detail extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.aceptar = this.aceptar.bind(this);
+    this.cancelar = this.cancelar.bind(this);
+    this.presupuestar = this.presupuestar.bind(this);
     this.state = {};
   }
 
@@ -65,6 +72,57 @@ class Detail extends React.Component<{
       match={this.props.match}
       staticContext={this.props.staticContext}
     />
+  }
+
+  actions(classes: any) {
+    return <div>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        onClick={this.cancelar}
+      >
+        Cancelar Presupuesto
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        onClick={this.presupuestar}
+      >
+        Presupuestar
+      </Button>
+    </div>
+  }
+
+  aceptar() {
+
+    this.props.dispatch(dialogActions.closeOneButton())
+    if(this.props.presupuestoReducer.status !== 200) {
+      this.props.dispatch(presupuestoActions.reintentar())
+    } else {
+      this.props.dispatch(presupuestoActions.setear())
+      this.props.history.push('/ventas/presupuestos/lista')
+    }
+
+  }
+
+  cancelar() {
+
+    this.props.dispatch(presupuestoActions.cancelarPresupuesto(
+      this.props.match.params.id,
+      this.props.cookies.get('empresaId'),
+    ))
+    this.props.dispatch(dialogActions.openOneButton())
+
+  }
+
+  presupuestar() {
+
+    this.props.history.push('/presupuestacion/' + this.props.match.params.id)
+
   }
 
   render(){
@@ -153,15 +211,34 @@ class Detail extends React.Component<{
       ]
     }
 
+    let company: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    } = {
+      _id: '',
+      nombre: '',
+      cuit: '',
+      usuario: '',
+      email: '',
+      estado: '',
+      updated_at: '',
+      created_at: '',
+    }
+
     if(this.props.presupuestoReducer !== undefined) {
 			if(this.props.presupuestoReducer.data !== undefined) {
 				if(this.props.presupuestoReducer.data.presupuesto !== undefined) {
-					presupuesto = {
-            ...this.props.presupuestoReducer.data.presupuesto
-          }
+					presupuesto = { ...this.props.presupuestoReducer.data.presupuesto }
+          company = this.props.presupuestoReducer.data.presupuesto.empresa_demandante
 				}
 			}
-		}
+    }
     
     let empresa: string = 'nombreEmpresa'
 		let importe: string = 'importe'
@@ -210,6 +287,15 @@ class Detail extends React.Component<{
           appBar={this.appBar()}
           footer={this.footer()}
           presupuesto={ presupuesto }
+          labelCompany={ 'Empresa demandante' }
+          company={ company }
+          actions={ (classes: any) => this.actions(classes) }
+        />
+        <OneButton 
+          title={ 'Presupuestacion' }
+          text={ this.props.presupuestoReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
         />
       </div>
     );

@@ -65,6 +65,10 @@ class Detail extends React.Component<{
       match={this.props.match}
       staticContext={this.props.staticContext}
     />
+	}
+	
+	actions(classes: any) {
+    
   }
 
   render(){
@@ -151,14 +155,33 @@ class Detail extends React.Component<{
           catalogo_id: '',
         }
       ]
+		}
+		
+		let company: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    } = {
+      _id: '',
+      nombre: '',
+      cuit: '',
+      usuario: '',
+      email: '',
+      estado: '',
+      updated_at: '',
+      created_at: '',
     }
 
     if(this.props.presupuestoReducer !== undefined) {
 			if(this.props.presupuestoReducer.data !== undefined) {
 				if(this.props.presupuestoReducer.data.presupuesto !== undefined) {
-					presupuesto = {
-            ...this.props.presupuestoReducer.data.presupuesto
-          }
+					presupuesto = { ...this.props.presupuestoReducer.data.presupuesto }
+          company = this.props.presupuestoReducer.data.presupuesto.empresa_perteneciente
 				}
 			}
 		}
@@ -202,15 +225,18 @@ class Detail extends React.Component<{
           title={'Mis compras - Detalle de pedido'}
           subtitle1={'Datos del pedido'}
           subtitle2={'Item solicitado'}
-		  empresa={empresa}
-		  importe={importe}
-		  estado={estado}
-		  cantidad={cantidad}
-		  item={item}
-		  drawer={ this.drawer() }
-		  appBar={this.appBar()}
-			footer={this.footer()}
-			presupuesto={ presupuesto }
+					empresa={empresa}
+					importe={importe}
+					estado={estado}
+					cantidad={cantidad}
+					item={item}
+					drawer={ this.drawer() }
+					appBar={this.appBar()}
+					footer={this.footer()}
+					presupuesto={ presupuesto }
+					labelCompany={ 'Empresa demandada' }
+					company={ company }
+					actions={ (classes: any) => this.actions(classes) }
         />
       </div>
     );

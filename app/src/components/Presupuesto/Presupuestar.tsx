@@ -169,30 +169,32 @@ class Presupuestar extends React.Component <{
                           </Typography>
                         </CardContent>
                           <Grid container spacing={3}>
-                          <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Empresa" value={this.props.presupuesto.empresa_demandante.nombre} className={classes.input}  />
+                            <Grid item lg={4}>
+                              <TextField disabled id="standard-required" label="Empresa" value={this.props.presupuesto.empresa_demandante.nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Email" value={this.props.presupuesto.empresa_demandante.email} className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Email" value={this.props.presupuesto.empresa_demandante.email} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Telefono" value="" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Telefono" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Provincia" value="" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Provincia" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Ciudad" value="" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Ciudad" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="CP" value="" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="CP" value="" className={classes.input}  />
                             </Grid>
                             
                           </Grid>
                           <CardContent>
                         <Typography variant="h5" component="h2">
                           Presupuesto solicitado
-                          <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>ESTADO</Button></span>
+                          <span style={{paddingLeft:20}}>
+                            <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{this.props.presupuesto.estado}</Button>
+                          </span>
                         </Typography>
                     </CardContent>
                           <Grid container spacing={3}>
@@ -256,7 +258,7 @@ class Presupuestar extends React.Component <{
                               startIcon={<SendIcon />}
                               onClick={this.props.save}
                             >
-                              Enviar
+                              Aceptar
                             </Button>
 
                             

@@ -218,6 +218,32 @@ export default function presupuestoReducer ( state = {
 			};
 		}
 
+		case 'CONFIRMAR_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+
+		case 'CONFIRMAR_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+
+		case 'CONFIRMAR_FULFILLED': {
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
+		}
+
 		case 'E': {
 			throw new Error('Este error se manejo asi!' + ' requestReducer' + 'Reducer.js');
 		}

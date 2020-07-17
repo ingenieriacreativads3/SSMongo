@@ -110,7 +110,8 @@ const useStyles = makeStyles((theme) => ({
     color : '#ffffff',
     '&:hover': {
       background: "#d93211",
-   },
+    },
+    margin:theme.spacing(2),
   },
   margin:{
     margin:theme.spacing(2),
@@ -188,7 +189,19 @@ export function Detail(props: {
         catalogo_id: string,
       }
     ]
-  }
+  },
+  labelCompany: string,
+  company: {
+    _id: string,
+    nombre: string,
+    cuit: string,
+    usuario: string,
+    email: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+  },
+  actions: any
 }) {
 
 	const classes = useStyles(theme);
@@ -206,6 +219,9 @@ export function Detail(props: {
     appBar={props.appBar}
     footer={props.footer}
     presupuesto={ props.presupuesto }
+    labelCompany={ props.labelCompany }
+    company={ props.company }
+    actions={ props.actions }
 	/>;
 
 }
