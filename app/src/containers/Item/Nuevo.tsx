@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 import { NuevoItem as ItemNuevo} from './../../components/Item'
 import { OneButton } from './../../components/Dialogs'
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 import * as itemActions from './../../store/actions/item'
 import * as fileActions from './../../store/actions/file'
@@ -177,6 +178,16 @@ class Nuevo extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+
   render(){
 
     let unidadesDeMedida: any[] = [
@@ -220,6 +231,7 @@ class Nuevo extends React.Component<{
           drawer={ this.drawer() }
           footer={ this.footer() }
           pathImage={ pathImage }
+          appBar={this.appBar()}
         />
         <OneButton 
           title={ 'Nuevo Item' }

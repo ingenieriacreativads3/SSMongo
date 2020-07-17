@@ -214,7 +214,7 @@ class AppBare extends React.Component<{}, {
 						onClose={handleMenuClose}
 					>
 						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/home/perfil"></Link>Mi perfil</MenuItem>
-						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/"></Link>Cerrar Sesión</MenuItem>
+						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href={this.props.linkCerrarSesion}></Link>Cerrar Sesión</MenuItem>
 					</Menu>
 					
 				</Toolbar>

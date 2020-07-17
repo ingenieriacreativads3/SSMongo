@@ -11,6 +11,7 @@ import * as evaluacionActions from './../../store/actions/evaluacion'
 import * as dialogActions from './../../store/actions/dialog'
 import DrawerInicio from '../../components/DrawerInicio';
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -114,6 +115,15 @@ class ValoracionEmpresa extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
+
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
  
 
   render(){
@@ -125,7 +135,8 @@ class ValoracionEmpresa extends React.Component<{
           getConceptoValoracion={ this.getConceptoValoracion }
           getOpinion={ this.getOpinion }
           save={ this.save }
-          footer={ this.footer() } 
+          footer={ this.footer() }
+          appBar={this.appBar()} 
         />
         <OneButton 
           title={ 'Evaluacion' }

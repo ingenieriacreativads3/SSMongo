@@ -5,7 +5,7 @@ import { List } from './../../components/List'
 import * as presupuestoActions from './../../store/actions/presupuesto'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
-
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -68,6 +68,15 @@ class PresupuestosVentas extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     return(
@@ -95,6 +104,7 @@ class PresupuestosVentas extends React.Component<{
           action={ this.action }
           drawer={ this.drawer() }
           footer={this.footer()}
+          appBar={this.appBar()}
         />
       </div>
     );

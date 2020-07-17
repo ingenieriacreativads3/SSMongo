@@ -192,6 +192,7 @@ class Presupuestar extends React.Component <{
                           <CardContent>
                         <Typography variant="h5" component="h2">
                           Presupuesto solicitado
+                          <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>ESTADO</Button></span>
                         </Typography>
                     </CardContent>
                           <Grid container spacing={3}>

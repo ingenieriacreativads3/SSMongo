@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie';
 import { VerEstadisticaActividad as ResumenActividad } from './../../components/Estadisticas'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
+import { AppBar } from './../AppBar'
 
 function mapStateToProps(store: {
   login: any
@@ -50,6 +51,14 @@ class EstadisticaActividad extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
 
   render(){
 
@@ -63,7 +72,8 @@ class EstadisticaActividad extends React.Component<{
         match={this.props.match}
         staticContext={this.props.staticContext}
         drawer={ this.drawer() }
-        footer={ this.footer() } />
+        footer={ this.footer() } 
+        appBar={ this.appBar() }/>
       </div>
     );
   }

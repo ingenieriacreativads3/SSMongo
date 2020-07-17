@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent,  CardActions} from '@material-ui/core';
+import { Container, Grid,TextField, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextareaAutosize,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 import { connect } from 'react-redux'
@@ -104,8 +104,8 @@ class Detail extends React.Component <{
 
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar />
-        <MenuLateral />
+       {this.props.appBar}
+        {this.props.drawer}
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
@@ -129,9 +129,10 @@ class Detail extends React.Component <{
                       <CardContent>
                         <Typography variant="h5" component="h2">
                            {this.props.subtitle1}
+                           <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{this.props.estado}</Button></span>
                         </Typography>
                     </CardContent>
-                        <Grid container spacing={3}>
+                        <Grid container>
                           <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Empresa" value={this.props.presupuesto.empresa_demandante.nombre}  className={classes.input}  />
                           </Grid>
@@ -139,7 +140,11 @@ class Detail extends React.Component <{
                             <TextField disabled id="standard-required" label="Importe" value={this.props.presupuesto.importe}  className={classes.input}  InputLabelProps={{ shrink: true }}/>
                           </Grid>
                           <Grid item lg={4}>
+<<<<<<< HEAD
                             <TextField disabled id="standard-required" label="Estado" value={this.props.presupuesto.estado}  className={classes.input}  />
+=======
+                          <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
+>>>>>>> dfe43217f6e4113716dc49b41febd384530454ac
                           </Grid>
                         </Grid>
                         <CardContent>
@@ -147,7 +152,7 @@ class Detail extends React.Component <{
                            {this.props.subtitle2}
                         </Typography>
                     </CardContent>
-                        <Grid container spacing={3}>
+                        <Grid container >
                           <Grid item lg={3}>
                             <TextField disabled id="standard-required" label="Nombre" value={this.props.item.nombre}  className={classes.input}  />
                           </Grid>
@@ -157,6 +162,10 @@ class Detail extends React.Component <{
                           <Grid item lg={3}>
                             <TextField disabled id="standard-required" label="Cantidad" value={this.props.cantidad}  className={classes.input}  />
                           </Grid>
+                          
+                        </Grid>
+
+                        <Grid container>
                           <Grid item lg={3}>
                             <TextField disabled id="standard-required" label="Unidad de Medida" value={this.props.item.unidad}  className={classes.input}  />
                           </Grid>
@@ -184,10 +193,11 @@ class Detail extends React.Component <{
               </Grid>
 
             </Grid>
-            <Box pt={4}>
+            {/* <Box pt={4}>
               <Copyright />
-            </Box>
+            </Box> */}
           </Container>
+          {this.props.footer}
         </main>
 		  </div>
 

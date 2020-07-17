@@ -169,6 +169,7 @@ export  function EvaluarEmpresa(props: {
 	getOpinion: any,
 	footer:any,
 	save: any, 
+	appBar:any,
 	
   }) {
 	const classes = useStyles();
@@ -179,7 +180,8 @@ export  function EvaluarEmpresa(props: {
     getConceptoValoracion={ props.getConceptoValoracion }
     getOpinion={ props.getOpinion }
     save={ props.save }
-    footer={props.footer} />;
+    footer={props.footer} 
+	appBar={props.appBar}/>;
 }
 
 
@@ -189,7 +191,7 @@ export  function EvaluarPlataforma(props: {
    getOpinion: any,
    footer:any,
    save: any, 
-   
+   appBar:any,
  }) {
 	const classes = useStyles();
 	return <EvaluacionSuppliersStore 
@@ -198,6 +200,7 @@ export  function EvaluarPlataforma(props: {
     getConceptoValoracion={ props.getConceptoValoracion }
     getOpinion={ props.getOpinion }
     save={ props.save }
-    footer={props.footer} />;
+	footer={props.footer}
+	appBar={props.appBar} />;
 }
 

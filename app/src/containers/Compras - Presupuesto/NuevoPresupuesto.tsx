@@ -11,6 +11,7 @@ import * as presupuestoActions from './../../store/actions/presupuesto'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   itemReducer:any,
@@ -149,6 +150,15 @@ class NuevoPresupuesto extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
+
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
   
   render(){
 
@@ -160,6 +170,7 @@ class NuevoPresupuesto extends React.Component<{
           save={ this.save }
           drawer={ this.drawer() }
           footer={ this.footer() }
+          appBar={this.appBar()}
         />
         <OneButton 
           title={ 'Nuevo Presupuesto' }

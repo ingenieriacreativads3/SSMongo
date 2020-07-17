@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 600,
+    height: 700,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
-    margin:theme.spacing(2),
+    marginTop:theme.spacing(10),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
@@ -124,8 +124,10 @@ const useStyles = makeStyles((theme) => ({
     margin:theme.spacing(2),
   },
   textTarea:{
-    width:'250px',
-  }
+    width:'280px',
+    marginTop:theme.spacing(2),
+  },
+  
 
 }));
 
@@ -138,6 +140,8 @@ export function Detail(props: {
   estado: string,
   cantidad: string,
   drawer:any,
+  appBar:any,
+  footer:any,
   item: {
     nombre: string,
     precio: string,
@@ -189,16 +193,18 @@ export function Detail(props: {
 
 	const classes = useStyles(theme);
 	return <DetailExport 
-		classes={ classes }
-    title={ props.title }
-    subtitle1={ props.subtitle1 }
-    subtitle2={ props.subtitle2 }
-		empresa={ props.empresa }
-		importe={ props.importe }
-		estado={ props.estado }
-		cantidad={ props.cantidad }
-    item={ props.item }
-    drawer={ props.drawer }
+		classes={classes}
+    title={props.title}
+    subtitle1={props.subtitle1}
+    subtitle2={props.subtitle2}
+		empresa={props.empresa}
+		importe={props.importe}
+		estado={props.estado}
+		cantidad={props.cantidad}
+    item={props.item}
+    drawer={props.drawer}
+    appBar={props.appBar}
+    footer={props.footer}
     presupuesto={ props.presupuesto }
 	/>;
 

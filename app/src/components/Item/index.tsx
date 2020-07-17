@@ -259,7 +259,8 @@ export  function NuevoItem(props: {
   unidadesDeMedida: any[]
   drawer:any,
   footer:any,
-  pathImage: string
+  pathImage: string,
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -277,6 +278,7 @@ export  function NuevoItem(props: {
     drawer={props.drawer}
     footer={props.footer}
     pathImage={props.pathImage}
+    appBar={props.appBar}
   />;
 
 }
@@ -288,6 +290,7 @@ export  function VerDetalleItem(props: {
   // staticContext?: any
   drawer:any,
   footer:any,
+  appBar:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -297,7 +300,8 @@ export  function VerDetalleItem(props: {
     classes={classes}
     theme={useTheme}
     drawer={props.drawer}
-    footer={props.footer} />;
+    footer={props.footer}
+    appBar={props.appBar} />;
     
     {/* history={props.history}
     location={props.location}
@@ -315,6 +319,7 @@ export  function EditarItem(props: {
   staticContext?: any
   drawer:any,
   footer:any,
+  appBar:any,
   title: string,
   item: {
     _id: string,
@@ -358,6 +363,7 @@ export  function EditarItem(props: {
     getMostrarPrecio={ props.getMostrarPrecio }
     getFoto={ props.getFoto }
     update={ props.update }
+    appBar={props.appBar}
   />;
 
 }

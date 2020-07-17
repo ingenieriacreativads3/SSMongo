@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { List } from './../../components/List'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
+import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
@@ -59,6 +60,15 @@ class ValidationRequest extends React.Component<{
     />
   }
 
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
   render(){
 
     if(
@@ -95,6 +105,7 @@ class ValidationRequest extends React.Component<{
           action={ this.action }
           drawer={ this.drawer() }
           footer={this.footer()}
+          appBar={this.appBar()}
         />
       </div>
     );

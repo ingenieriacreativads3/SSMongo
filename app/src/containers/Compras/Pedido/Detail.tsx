@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { Detail as DetailExport } from './../../../components/Detail'
 import * as requestActions from './../../../store/actions/request'
 import { Drawer } from './../../Drawer'
-
-
+import {AppBar} from './../../AppBar'
+import {Footer} from './../../Footer'
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -42,6 +42,24 @@ class Detail extends React.Component<{
 
   drawer() {
     return <Drawer 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+  appBar() {
+    return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+    />
+  }
+
+  footer() {
+    return <Footer 
       history={this.props.history}
       location={this.props.location}
       match={this.props.match}
@@ -184,13 +202,15 @@ class Detail extends React.Component<{
           title={'Mis compras - Detalle de pedido'}
           subtitle1={'Datos del pedido'}
           subtitle2={'Item solicitado'}
-					empresa={empresa}
-					importe={importe}
-					estado={estado}
-					cantidad={cantidad}
-					item={item}
-					drawer={ this.drawer() }
-					presupuesto={ presupuesto }
+		  empresa={empresa}
+		  importe={importe}
+		  estado={estado}
+		  cantidad={cantidad}
+		  item={item}
+		  drawer={ this.drawer() }
+		  appBar={this.appBar()}
+			footer={this.footer()}
+			presupuesto={ presupuesto }
         />
       </div>
     );
