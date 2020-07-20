@@ -213,6 +213,9 @@ class Presupuestar extends React.Component <{
                             <Grid item lg={4}>
                               <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  />
                             </Grid>
+                            <Grid item lg={4}>
+                            <Avatar className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} /> 
+                            </Grid>
                           </Grid>
                           <CardContent>
                             <Typography variant="h5" component="h2">

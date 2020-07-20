@@ -130,9 +130,9 @@ const useStyles = makeStyles((theme) => ({
   },
   fotoItem:{
     fontSize: '70px',
-    width:'100px',
-    height:'100px',
-    marginLeft:theme.spacing(30),
+    width:'150px',
+    height:'150px',
+    marginLeft:theme.spacing(2),
     
   },
 

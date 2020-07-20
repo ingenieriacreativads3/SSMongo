@@ -136,6 +136,10 @@ const useStyles = makeStyles((theme) => ({
     width:'250px',
     marginLeft:theme.spacing(2),
     marginTop:theme.spacing(2),
+  },
+  fotoItem:{
+    width:'150px',
+    height:'150px',
   }
 
 }));
