@@ -191,10 +191,13 @@ class Renegociar extends React.Component <{
                         </CardContent>
                           
                           <CardContent>
-                            <Typography variant="h5" component="h2">
-                              Presupuesto
-                            </Typography>
-                          </CardContent>
+                        <Typography variant="h5" component="h2">
+                          Presupuesto
+                          <span style={{paddingLeft:20}}>
+                            <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>estado</Button>
+                          </span>
+                        </Typography>
+                    </CardContent>
                           <Grid container spacing={3}>
                            
                             <Grid item lg={4}>
@@ -211,6 +214,9 @@ class Renegociar extends React.Component <{
                             </Grid>
                             <Grid item lg={4}>
                             <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  />
+                            </Grid>
+                            <Grid item lg={4}>
+                            <Avatar className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} />
                             </Grid>
                           </Grid>
                           <CardContent>
