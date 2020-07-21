@@ -113,7 +113,7 @@ class DetallePresupuesto extends React.Component <{
 
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar />
+        {/* <AppBar /> */}
         <MenuLateral />
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />

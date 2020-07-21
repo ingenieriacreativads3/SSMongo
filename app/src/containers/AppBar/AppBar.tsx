@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import Cookies from 'universal-cookie';
 
 // import { Detail as DetailExport } from './../../../components/Detail'
 // import * as requestActions from './../../../store/actions/request'
@@ -19,7 +20,8 @@ class AppBar extends React.Component<{
   history: any,
   location: any,
   match: any,
-	staticContext?: any,
+  staticContext?: any,
+  cookies: Cookies
 }, {}> {
 
 	props: any
@@ -29,12 +31,17 @@ class AppBar extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
 		super(props);
-		this.linkCerrarSesion = this.linkCerrarSesion.bind(this)
+		this.cerrarSesion = this.cerrarSesion.bind(this)
+		this.miPerfil = this.miPerfil.bind(this)
     this.state = {};
 	}
 	
-	linkCerrarSesion() {
+	cerrarSesion() {
 		this.props.history.push('/')
+  }
+  
+  miPerfil() {
+		this.props.history.push('/home/miperfil/' + this.props.cookies.get('empresaId'))
 	}
 
   render(){
@@ -42,7 +49,8 @@ class AppBar extends React.Component<{
     return(
       <div>
         <PermanetDrawerLeft
-          //linkCerrarSesion={this.linkCerrarSesion}
+          cerrarSesion={ this.cerrarSesion }
+          miPerfil={ this.miPerfil }
         />
       </div>
     );

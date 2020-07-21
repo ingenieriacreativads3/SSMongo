@@ -31,7 +31,10 @@ function mapStateToProps(store: {
   };
 }
 
-class AppBare extends React.Component<{}, {
+class AppBare extends React.Component<{
+	cerrarSesion: any,
+	miPerfil: any
+}, {
 	anchorEl: null | HTMLElement,
 	mobileMoreAnchorEl: null | HTMLElement
 }> {
@@ -72,6 +75,7 @@ class AppBare extends React.Component<{}, {
 				anchorEl: null
 			})
 			handleMobileMenuClose();
+			
 		};
 
 		const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -84,7 +88,15 @@ class AppBare extends React.Component<{}, {
 			this.props.dispatch(drawerAction.open())
 		};
 
-		
+		const cerrarSesion = () => {
+			handleMenuClose()
+			this.props.cerrarSesion()
+		};
+
+		const miPerfil = () => {
+			handleMenuClose()
+			this.props.miPerfil()
+		};
 
 		const menuId = 'primary-search-account-menu';
 	
@@ -213,8 +225,8 @@ class AppBare extends React.Component<{}, {
 						open={isMenuOpen}
 						onClose={handleMenuClose}
 					>
-						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href="/home/perfil"></Link>Mi perfil</MenuItem>
-						<MenuItem onClick={handleMenuClose} className={classes.subtitle}><Link href={this.props.linkCerrarSesion}></Link>Cerrar Sesión</MenuItem>
+						<MenuItem onClick={miPerfil} className={classes.subtitle}><Link href="/home/perfil"></Link>Mi perfil</MenuItem>
+						<MenuItem onClick={cerrarSesion} className={classes.subtitle}><Link href={this.props.linkCerrarSesion}></Link>Cerrar Sesión</MenuItem>
 					</Menu>
 					
 				</Toolbar>

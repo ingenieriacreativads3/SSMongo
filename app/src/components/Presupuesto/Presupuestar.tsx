@@ -84,7 +84,7 @@ class Presupuestar extends React.Component <{
     items: [
       {
         _id: string,
-        foto: [],
+        foto: string[],
         nombre: string,
         precio: string,
         descrpcion: string,
@@ -126,6 +126,7 @@ class Presupuestar extends React.Component <{
     let msj: string = ''
 
     if(
+      this.props.presupuesto !== null &&
       this.props.presupuesto !== undefined &&
       this.props.presupuesto.mensajes !== undefined &&
       this.props.presupuesto.mensajes.length

@@ -109,7 +109,7 @@ class Catalog extends React.Component<{
           isCatalog={ isCatalog }
           footer={ this.footer() }
           delete={ this.openDialog }
-          appBar={this.appBar()}
+          appBar={ this.appBar() }
         />
       </div>
     } else {
@@ -120,6 +120,7 @@ class Catalog extends React.Component<{
           checked={ this.state.checked }
           footer={ this.footer() }
           delete={ this.openDialogCards }
+          appBar={ this.appBar() }
         />  
       </div>
     }

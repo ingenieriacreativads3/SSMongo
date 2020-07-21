@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
+
 import { OneButton } from './../../components/Dialogs'
 import Link from '@material-ui/core/Link';
 
@@ -27,6 +28,7 @@ class Presupuestacion extends React.Component<{
   location: any,
   match: any,
   staticContext?: any,
+  cookies: Cookies
 }, {
   presupuesto: {
     _id: string,
@@ -58,7 +60,7 @@ class Presupuestacion extends React.Component<{
     items: [
       {
         _id: string,
-        foto: [],
+        foto: string[],
         nombre: string,
         precio: string,
         descrpcion: string,
@@ -67,12 +69,38 @@ class Presupuestacion extends React.Component<{
         updated_at: string,
         created_at: string,
         catalogo_id: string,
+        unidad_de_medida: {
+          _id: string,
+          nombre: string,
+          abreviatura: string,
+          updated_at: string,
+          created_at: string,
+        }
       }
     ]
   },
   cantidad: string,
   importe: string,
   comentario: string,
+  item: {
+    _id: string,
+    foto: string[],
+    nombre: string,
+    precio: string,
+    descrpcion: string,
+    mostrarPrecio: boolean,
+    unidad_de_medida_id: string,
+    updated_at: string,
+    created_at: string,
+    catalogo_id: string,
+    unidad_de_medida: {
+      _id: string,
+      nombre: string,
+      abreviatura: string,
+      updated_at: string,
+      created_at: string,
+    }
+  }
 }> {
 
 	props: any
@@ -128,12 +156,38 @@ class Presupuestacion extends React.Component<{
             updated_at: '',
             created_at: '',
             catalogo_id: '',
+            unidad_de_medida: {
+              _id: '',
+              nombre: '',
+              abreviatura: '',
+              updated_at: '',
+              created_at: '',
+            }
           }
         ]
       },
       cantidad:'',
       importe: '',
       comentario : '',
+      item: {
+        _id: '5f0f155d3eff762f0335072b',
+        foto: [],
+        nombre: '',
+        precio: '',
+        descrpcion: '',
+        mostrarPrecio: false,
+        unidad_de_medida_id: '',
+        updated_at: '',
+        created_at: '',
+        catalogo_id: '',
+        unidad_de_medida: {
+          _id: '',
+          nombre: '',
+          abreviatura: '',
+          updated_at: '',
+          created_at: '',
+        }
+      }
     };
   }
 
@@ -148,7 +202,8 @@ class Presupuestacion extends React.Component<{
     if(
       this.props.presupuestoReducer.fetched &&
       !this.props.presupuestoReducer.fetching &&
-      this.state.presupuesto._id === ''
+      this.state.presupuesto._id === '' &&
+      this.props.presupuestoReducer.status === 200
     ) {
       this.setState({
         presupuesto: this.props.presupuestoReducer.data.presupuesto
@@ -173,7 +228,7 @@ class Presupuestacion extends React.Component<{
 
     this.props.dispatch(presupuestoActions.presupuestar(
       this.state.presupuesto._id,
-      this.state.presupuesto.items[0]._id,
+      this.state.item._id,
       this.state.cantidad,
       this.state.importe,
       this.state.comentario,

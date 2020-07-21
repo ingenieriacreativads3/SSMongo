@@ -38,6 +38,7 @@ class Detail extends React.Component<{
     this.aceptar = this.aceptar.bind(this);
     this.cancelar = this.cancelar.bind(this);
     this.confirmar = this.confirmar.bind(this);
+    this.renegociar = this.renegociar.bind(this);
     this.state = {};
   }
 
@@ -76,6 +77,7 @@ class Detail extends React.Component<{
 
   aceptar() {
 
+    this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
     this.props.dispatch(dialogActions.closeOneButton())
     if(this.props.presupuestoReducer.status !== 200) {
       this.props.dispatch(presupuestoActions.reintentar())
@@ -97,11 +99,17 @@ class Detail extends React.Component<{
   }
 
   confirmar() {
-
+    
     this.props.dispatch(presupuestoActions.confirmarPresupuesto(
       this.props.match.params.id,
     ))
     this.props.dispatch(dialogActions.openOneButton())
+
+  }
+
+  renegociar() {
+    
+    this.props.history.push('/renegociacion/' + this.props.match.params.id)
 
   }
 
@@ -121,7 +129,7 @@ class Detail extends React.Component<{
         color="primary"
         size="small"
         className={classes.button}
-        onClick={this.confirmar}
+        onClick={this.renegociar}
       >
         Renegociar presupuesto
       </Button>
@@ -266,24 +274,24 @@ class Detail extends React.Component<{
 			unidad: 'unidadItem'
     }
     
-    if(this.props.presupuestoReducer !== undefined) {
-			if(this.props.presupuestoReducer.data !== undefined) {
-				if(this.props.presupuestoReducer.data.pedido !== undefined) {
-					if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente !== undefined) {
-						if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre !== undefined) {
-							empresa = this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre
-						}
-					}
-					if(this.props.presupuestoReducer.data.pedido.importe) {
-						importe = this.props.presupuestoReducer.data.pedido.importe
-					}
-					if(this.props.presupuestoReducer.data.pedido.estado) {
-						estado = this.props.presupuestoReducer.data.pedido.estado
-					}
+    // if(this.props.presupuestoReducer !== undefined) {
+		// 	if(this.props.presupuestoReducer.data !== undefined) {
+		// 		if(this.props.presupuestoReducer.data.pedido !== undefined) {
+		// 			if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente !== undefined) {
+		// 				if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre !== undefined) {
+		// 					empresa = this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre
+		// 				}
+		// 			}
+		// 			if(this.props.presupuestoReducer.data.pedido.importe) {
+		// 				importe = this.props.presupuestoReducer.data.pedido.importe
+		// 			}
+		// 			if(this.props.presupuestoReducer.data.pedido.estado) {
+		// 				estado = this.props.presupuestoReducer.data.pedido.estado
+		// 			}
 
-				}
-			}
-		}
+		// 		}
+		// 	}
+    // }
 
     return(
       <div>

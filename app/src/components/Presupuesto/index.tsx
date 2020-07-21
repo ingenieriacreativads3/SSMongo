@@ -217,7 +217,7 @@ export function Presupuestar(props:{
     items: [
       {
         _id: string,
-        foto: [],
+        foto: string[],
         nombre: string,
         precio: string,
         descrpcion: string,
@@ -256,18 +256,74 @@ export function Renegociar(props:{
   drawer:any,
   footer:any,
   appBar:any,
+  presupuesto: {
+    _id: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+    importe: string,
+    importe_anterior: string,
+    empresa_demandante: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    },
+    empresa_perteneciente: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string
+    },
+    mensajes: [],
+    items: [
+      {
+        _id: string,
+        foto: string[],
+        nombre: string,
+        precio: string,
+        descrpcion: string,
+        mostrarPrecio: boolean,
+        unidad_de_medida_id: string,
+        updated_at: string,
+        created_at: string,
+        catalogo_id: string,
+      }
+    ]
+  },
+  company: {
+    _id: string,
+    nombre: string,
+    cuit: string,
+    usuario: string,
+    email: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+  }
 }) {
 
 	const classes = useStyles(theme);
   return <Renegociacion 
-  classes={classes} 
-  getCantidadItem={props.getCantidadItem}
-  getComentario={props.getComentario}
-  getPrecioSugerido={props.getPrecioSugerido}
-  save={props.save}
-  drawer={props.drawer}
-  footer={props.footer}
-  appBar={props.appBar}/>;
+    classes={ classes } 
+    getCantidadItem={ props.getCantidadItem }
+    getComentario={ props.getComentario }
+    getPrecioSugerido={ props.getPrecioSugerido }
+    save={ props.save }
+    drawer={ props.drawer }
+    footer={ props.footer }
+    appBar={ props.appBar }
+    presupuesto={ props.presupuesto }
+    company={ props.company }
+  />;
 
 }
 

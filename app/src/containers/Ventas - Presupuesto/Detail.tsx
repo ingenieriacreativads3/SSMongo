@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import Cookies from 'universal-cookie';
 
 import { Button  } from '@material-ui/core';
 
@@ -25,7 +26,8 @@ class Detail extends React.Component<{
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  cookies: Cookies
 }, {}> {
 
 	props: any

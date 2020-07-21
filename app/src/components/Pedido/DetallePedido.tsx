@@ -109,7 +109,7 @@ class DetallePedido extends React.Component <{
 
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar />
+        {/* <AppBar /> */}
         <MenuLateral link={{link: {}}}/>
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />

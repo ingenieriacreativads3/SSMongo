@@ -82,7 +82,7 @@ class Catalogo extends React.Component <{
 
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar></AppBar>
+        { this.props.appBar }
         <MenuLateral></MenuLateral>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />

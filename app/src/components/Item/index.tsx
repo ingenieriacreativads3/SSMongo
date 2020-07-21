@@ -373,7 +373,8 @@ export  function MostrarCatalogo(props: {
   getChecked: any,
   checked: boolean,
   footer:any,
-  delete: any
+  delete: any,
+  appBar: any
 }) {
 
   const classes = useStyles(theme);
@@ -394,6 +395,7 @@ export  function MostrarCatalogo(props: {
       checked={ props.checked }
       footer={ props.footer }
       delete={ props.delete }
+      appBar={ props.appBar }
     />
   </div>;
 

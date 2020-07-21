@@ -72,7 +72,7 @@ class Detail extends React.Component <{
     items: [
       {
         _id: string,
-        foto: [],
+        foto: string[],
         nombre: string,
         precio: string,
         descrpcion: string,

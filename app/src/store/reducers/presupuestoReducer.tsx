@@ -14,6 +14,14 @@ export default function presupuestoReducer ( state = {
 
 	switch (action.type) {
 
+		case 'LIMPIAR':{
+			return {
+			  ...state,
+			  status: 0,
+			  message: '',
+			};
+		}
+
 		case 'REINTENTAR':{
 			return {
 			  ...state,
@@ -156,13 +164,20 @@ export default function presupuestoReducer ( state = {
 		}
 
 		case 'PRESUPUESTAR_FULFILLED': {
+
+			let data: any = state.data
+
+			if(action.payload.data.status === 200) {
+				data = action.payload.data.data
+			}
+
 			return {
 				...state,
 				fetching: false,
 				fetched: true,
 				status: action.payload.data.status,
 				message: action.payload.data.message,
-				data: action.payload.data.data
+				data: data
 			};
 		}
 
@@ -218,14 +233,14 @@ export default function presupuestoReducer ( state = {
 			};
 		}
 
-		case 'CONFIRMAR_PENDING': {
+		case 'CONFIRMAR_PRESUPUESTO_PENDING': {
 			return { 
 				...state, 
 				fetching: true 
 			};
 		}
 
-		case 'CONFIRMAR_REJECTED': {
+		case 'CONFIRMAR_PRESUPUESTO_REJECTED': {
 			return { 
 				...state, 
 				fetching: false, 
@@ -233,7 +248,13 @@ export default function presupuestoReducer ( state = {
 			};
 		}
 
-		case 'CONFIRMAR_FULFILLED': {
+		case 'CONFIRMAR_PRESUPUESTO_FULFILLED': {
+
+			if(action.payload.data.status === 200) {
+				action.payload.data.data.presupuesto.empresa_demandante = action.payload.data.data.pedido.empresa_demandante
+				action.payload.data.data.presupuesto.empresa_perteneciente = action.payload.data.data.pedido.empresa_perteneciente
+			}
+
 			return {
 				...state,
 				fetching: false,

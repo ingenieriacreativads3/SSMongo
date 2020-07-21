@@ -186,7 +186,7 @@ export function Detail(props: {
     items: [
       {
         _id: string,
-        foto: [],
+        foto: string[],
         nombre: string,
         precio: string,
         descrpcion: string,

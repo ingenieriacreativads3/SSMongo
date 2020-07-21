@@ -35,7 +35,6 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -49,29 +48,65 @@ function Copyright() {
   );
 }
 
-function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
-}) {
-  return {
-   /*  Item: store.Item,
-    idEmpresa: store.login.data.empresa._id */
-  };
-}
-
-class Presupuestar extends React.Component <{
+class Renegociar extends React.Component <{
   classes: any,
   getCantidadItem: any,
   getComentario: any,
   getPrecioSugerido:any,
   save: any,
-
+  presupuesto: {
+    _id: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+    importe: string,
+    importe_anterior: string,
+    empresa_demandante: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string,
+    },
+    empresa_perteneciente: {
+      _id: string,
+      nombre: string,
+      cuit: string,
+      usuario: string,
+      email: string,
+      estado: string,
+      updated_at: string,
+      created_at: string
+    },
+    mensajes: [],
+    items: [
+      {
+        _id: string,
+        foto: string[],
+        nombre: string,
+        precio: string,
+        descrpcion: string,
+        mostrarPrecio: boolean,
+        unidad_de_medida_id: string,
+        updated_at: string,
+        created_at: string,
+        catalogo_id: string,
+      }
+    ]
+  },
+  company: {
+    _id: string,
+    nombre: string,
+    cuit: string,
+    usuario: string,
+    email: string,
+    estado: string,
+    updated_at: string,
+    created_at: string,
+  }
 }, {}> {
 
 	props: any
@@ -81,16 +116,27 @@ class Presupuestar extends React.Component <{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    
     this.state = {};
   }
- 
- 
 
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    
+    let msj: string = ''
+
+    if(
+      this.props.presupuesto !== undefined &&
+      this.props.presupuesto.mensajes !== undefined &&
+      this.props.presupuesto.mensajes.length
+    ) {
+      this.props.presupuesto.mensajes.map((mensaje: {
+        comentario: string
+      }) => {
+        msj = msj + mensaje.comentario
+      })  
+    }
 
     return(
 
@@ -119,52 +165,52 @@ class Presupuestar extends React.Component <{
                       <form className={classes.root}>
                         <Grid container spacing={3}>
                         <CardContent>
-                        <Typography variant="h5" component="h2">
-                           Mis datos
-                        </Typography>
-                    </CardContent>
+                          <Typography variant="h5" component="h2">
+                            Datos del presupuesto
+                          </Typography>
                           <Grid container spacing={3}>
-                          <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Empresa" defaultValue="CorpuSoft" className={classes.input}  />
+                            <Grid item lg={4}>
+                              <TextField disabled id="standard-required" label="Empresa demandada" value={this.props.presupuesto.empresa_perteneciente.nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Email" defaultValue="corpusoftsa@sa.com.ar" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Email" value={this.props.presupuesto.empresa_perteneciente.email} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Telefono" defaultValue="35764236987" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Telefono" value="35764236987" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Provincia" defaultValue="Cordoba" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Provincia" value="Cordoba" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Ciudad" defaultValue="San Francisco" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="Ciudad" value="San Francisco" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="CP" defaultValue="2400" className={classes.input}  />
+                              <TextField disabled id="standard-required" label="CP" value="2400" className={classes.input}  />
                             </Grid>
-                            
                           </Grid>
+                        </CardContent>
+                          
                           <CardContent>
-                        <Typography variant="h5" component="h2">
-                          Presupuesto
-                        </Typography>
-                    </CardContent>
+                            <Typography variant="h5" component="h2">
+                              Presupuesto
+                            </Typography>
+                          </CardContent>
                           <Grid container spacing={3}>
                            
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Producto" defaultValue="Samsung A20" className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Producto" value={this.props.presupuesto.items[0].nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Cantidad" defaultValue="10" className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Cantidad" value="cantidad" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Unidad" defaultValue="Unidad" className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Unidad" value="unidadDeMedida" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="Precio" defaultValue="10000" className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Precio" value={this.props.presupuesto.items[0].precio} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                            <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} defaultValue="Mensaje de presupuesto"  />
+                            <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  />
                             </Grid>
                           </Grid>
                           <CardContent>
@@ -202,7 +248,7 @@ class Presupuestar extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SendIcon />}
-                            //   onClick={() => this.register()}
+                              onClick={ this.props.save }
                             >
                               Enviar
                             </Button>
@@ -234,4 +280,4 @@ class Presupuestar extends React.Component <{
 
 
 
-export default connect(mapStateToProps)(Presupuestar)
+export default Renegociar
