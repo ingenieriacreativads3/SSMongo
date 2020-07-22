@@ -150,7 +150,7 @@ class Detail extends React.Component <{
                   />
 
                   <CardContent>
-                    <div className={classes.root}>
+              
                       <Grid container spacing={3}>
                       <CardContent>
                         <Typography variant="h5" component="h2">
@@ -159,13 +159,13 @@ class Detail extends React.Component <{
                         </Typography>
                     </CardContent>
                         <Grid container>
-                          <Grid item lg={4}>
+                          <Grid item lg={4} xs={12}>
                             <TextField disabled id="standard-required" label={this.props.labelCompany} value={this.props.company.nombre}  className={classes.input}  />
                           </Grid>
-                          <Grid item lg={4}>
+                          <Grid item lg={4} xs={12}>
                             <TextField disabled id="standard-required" label="Importe" value={this.props.presupuesto.importe}  className={classes.input}  InputLabelProps={{ shrink: true }}/>
                           </Grid>
-                          <Grid item lg={4}>
+                          <Grid item lg={4}  xs={12}>
                           <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
                           </Grid>
                         </Grid>
@@ -175,11 +175,11 @@ class Detail extends React.Component <{
                         </Typography>
                     </CardContent>
                         <Grid container >
-                          <Grid item xs={12} sm={4}>
-                          <Grid item lg={ 6 }>
+                          <Grid item xs={12} sm={4} >
+                          <Grid item lg={ 6 }  xs={6}>
                             <TextField disabled id="standard-required" label="Nombre" value={ this.props.presupuesto.items[0].nombre }  className={ classes.input }  />
                           </Grid>
-                          <Grid item lg={ 6 }>
+                          <Grid item lg={ 6 }  xs={6}>
                             <TextField disabled id="standard-required" label="Precio" value={ this.props.presupuesto.items[0].precio }  className={ classes.input }  />
                           </Grid>
                          
@@ -189,19 +189,19 @@ class Detail extends React.Component <{
                           
                         </Grid>
 
-                        <Grid item xs={6} sm={4}>
-                        <Grid item lg={6}>
+                        <Grid item xs={12} sm={4}  >
+                        <Grid item lg={6}  xs={12}>
                             <TextField disabled id="standard-required" label="Unidad de Medida" value={this.props.item.unidad}  className={classes.input}  />
                           </Grid> 
                           
-                          <Grid item lg={6}>
+                          <Grid item lg={6}  xs={12}>
                             <TextField disabled id="standard-required" label="Cantidad" value={ this.props.cantidad }  className={ classes.input }  />
                           </Grid>
                         </Grid>
 
-                        <Grid item xs={6} sm={4}>
+                        <Grid item xs={12} sm={4}>
                       
-                        <Grid item lg={3}>
+                        <Grid item lg={3} xs={12}>
                           <Avatar className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} />
                           </Grid> 
                           
@@ -210,7 +210,7 @@ class Detail extends React.Component <{
 
                         </Grid>
                       </Grid>
-                    </div>
+                  
                   </CardContent>
                   <CardActions>
                     <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >

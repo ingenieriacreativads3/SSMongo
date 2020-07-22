@@ -99,10 +99,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 930,
+    height: 1300,
   },
   fixedHeight2: {
-    height: 700,
+    height: 900,
   },
   formControl: {
     margin: theme.spacing(1),
