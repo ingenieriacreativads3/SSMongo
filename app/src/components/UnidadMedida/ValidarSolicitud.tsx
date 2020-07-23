@@ -233,14 +233,6 @@ class ValidarSolicitud extends React.Component {
                            
                             </Grid>
                             <Grid item lg={4}>
-                            <CssTextField  id="custom-css-standard-input" label="Magnitud"  defaultValue="Superficie" className={classes.input} />
-                          
-                            </Grid>
-                            
-                          </Grid>
-                          <Grid container spacing={3}>
-                            
-                            <Grid item lg={12}>
                             <FormControl className={classes.formControl}>
                               <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
                                 <Select
@@ -254,8 +246,9 @@ class ValidarSolicitud extends React.Component {
                                 </Select>
                               </FormControl>
                             </Grid>
+                            
                           </Grid>
-                          
+                         
                         </Grid>
                       </form>
                     </CardContent>

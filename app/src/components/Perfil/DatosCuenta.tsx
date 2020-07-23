@@ -198,15 +198,18 @@ class DatosCuenta extends React.Component <{
                         }
                         
                         title="Mis datos"
+                        
                       
                          
                       />
+                      
 
                       
 
                     <CardContent>
                         <Typography variant="h5" component="h2">
                           Datos de cuenta
+                          
                         </Typography>
                     </CardContent>
 
@@ -465,6 +468,7 @@ class DatosCuenta extends React.Component <{
                               }}
                             />
                             </Grid>
+                            <Grid item lg={4}>
                             <Button
                               variant="contained"
                               component="label"
@@ -481,6 +485,10 @@ class DatosCuenta extends React.Component <{
                                 style={{ display: "none" }}
                               />
                             </Button>
+                            </Grid>
+                           <Grid item lg={4}>
+                          <Avatar className={classes.fotoLogo} alt={this.props.pathImage}  src={this.props.pathImage} />
+                          </Grid>
                           </Grid>
                          
                         </Grid>

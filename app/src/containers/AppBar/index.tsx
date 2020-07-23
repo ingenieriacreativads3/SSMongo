@@ -7,13 +7,13 @@ export function AppBar(props: {
   location: any,
   match: any,
   staticContext?: any,
-  // cookies: Cookies
+   cookies: Cookies
 }) {
 	return <AppBarExport
     history={props.history}
     location={props.location}
     match={props.match}
     staticContext={props.staticContext}
-    cookies={new Cookies}
+    cookies={props.cookies}
   />;
 }

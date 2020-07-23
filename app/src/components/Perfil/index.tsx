@@ -139,7 +139,8 @@ const useStyles = makeStyles((theme) => ({
     height:'40px',
     backgroundColor: '#ffffff',
     outline:'none',
-    margin: theme.spacing(5),
+    marginTop: theme.spacing(2),
+    marginLeft:theme.spacing(2),
   },
 
   iconButton:{
@@ -195,7 +196,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   datos:{
-    marginBottom:theme.spacing(10),
+    //marginBottom:theme.spacing(10),
     marginRight:theme.spacing(20),
   },
   textTarea:{
@@ -232,6 +233,10 @@ const useStyles = makeStyles((theme) => ({
       background: "#d93211",
    },
   },
+  fotoLogo:{
+    width:100,
+    height:100
+  }
 
   
 }));

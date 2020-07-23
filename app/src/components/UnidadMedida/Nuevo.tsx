@@ -205,29 +205,26 @@ class Nuevo extends React.Component {
 
                     <CardContent>
                       <form className={classes.root}>
-                        <Grid container spacing={3}>
-                          <Grid container spacing={3}>
-                            <Grid item lg={6}>
+                        <Grid container >
+                          <Grid container >
+                            <Grid item lg={6} xs={12}>
                             <CssTextField className={classes.inputNuevo} disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft"  />
                           
                             </Grid>
-                            <Grid item lg={6}>
+                            <Grid item lg={6}  xs={12}>
                             <CssTextField className={classes.inputNuevo} id="custom-css-standard-input" label="Unidad"   />
 
                            
                             </Grid>
                             
                           </Grid>
-                          <Grid container spacing={3}>
-                            <Grid item lg={6}>
+                          <Grid container >
+                            <Grid item lg={6}  xs={12}>
                             <CssTextField className={classes.inputNuevo} id="custom-css-standard-input"  label="Simbolo"   />
 
                           
                             </Grid>
-                            <Grid item lg={6}>
-                            <CssTextField className={classes.inputNuevo} id="custom-css-standard-input"  label="Magnitud"  />
-                  
-                            </Grid>
+                            
                             
                           </Grid>
                           
@@ -236,9 +233,9 @@ class Nuevo extends React.Component {
                     </CardContent>
                     <CardActions>
 
-                        <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                        <Grid container  direction = 'column' alignItems = 'flex-end'  >
 
-                          <Grid item lg={12} >
+                          <Grid item lg={12} xs={12}>
 
                             <Button
                               variant="contained"

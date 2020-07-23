@@ -7,7 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 
-import { Container, Box, Typography, Avatar} from '@material-ui/core';
+import {Grid, Container, Box, Typography, Avatar} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 
@@ -67,41 +67,50 @@ class Footer extends React.Component {
 
     return(
 
-      <footer className={classes.footer}>
+      <footer className={classes.footer} >
       <Container maxWidth="lg">
-        
-      <Box display="flex" p={1} >
-      <Box p={1} >
-      <Typography variant="h5" align='left' gutterBottom>
-      Sobre Nosotros
-       </Typography>
-        <Typography variant="h6" align='left' gutterBottom>
-        En esta plataforma podras encontrar de manera rápida y sencilla a tus proveedores. 
-       Registrate, Ingresá y comenzá a hacer tus pedidos. 
-       </Typography>
-      
-       <Avatar  src={logo} className={classes.avatar} ></Avatar>
-       
-       </Box>
-       <Box  p={1}  >
-       <Typography variant="h5" align='left' gutterBottom>
-             ¿Por qué elegirnos?
-       </Typography>
-        <Typography variant="h6" align='left'  gutterBottom>
-       <VerifiedUserIcon fontSize="large" style={{ color: '#d93211' }} />
-       Todas las empresas de esta plataforma, son legalmente verificadas
-       </Typography>
-       <Typography variant="h6" align='left' gutterBottom>
-       <ShoppingCartIcon fontSize="large" style={{ color: '#d93211' }} />
-       Amplia oferta de productos y servicios
-       </Typography>
-      <Typography variant="h6" align='left' gutterBottom>
-       <EqualizerIcon fontSize="large" style={{ color: '#d93211' }} />
-       Perfil personalizado, con estadísticas acerca de tus negocios en la plataforma
-       </Typography>
-       </Box>
-      </Box>
-       
+        <Grid container >
+          {/* <Box display="flex" p={1} > */}
+          <Grid container lg={6} sm={6}>
+            <Grid item lg={12}>
+            {/* <Box p={1} > */}
+            <Typography variant="h5" align='left' gutterBottom>
+            Sobre Nosotros
+            </Typography>
+              <Typography variant="h6" align='left' gutterBottom>
+              En esta plataforma podras encontrar de manera rápida y sencilla a tus proveedores. 
+            Registrate, Ingresá y comenzá a hacer tus pedidos. 
+            </Typography>
+            
+            <Avatar  src={logo} className={classes.avatar} ></Avatar>
+            
+            {/* </Box> */}
+            </Grid>
+          </Grid>
+
+       {/* <Box  p={1}  > */}
+       <Grid container lg={6} sm={6} spacing={1}>
+            <Grid item lg={12} >
+              <Typography variant="h5" align='left' gutterBottom>
+                    ¿Por qué elegirnos?
+              </Typography>
+                <Typography variant="h6" align='left'  gutterBottom>
+              <VerifiedUserIcon fontSize="large" style={{ color: '#d93211' }} />
+              Todas las empresas de esta plataforma, son legalmente verificadas
+              </Typography>
+              <Typography variant="h6" align='left' gutterBottom>
+              <ShoppingCartIcon fontSize="large" style={{ color: '#d93211' }} />
+              Amplia oferta de productos y servicios
+              </Typography>
+              <Typography variant="h6" align='left' gutterBottom>
+              <EqualizerIcon fontSize="large" style={{ color: '#d93211' }} />
+              Perfil personalizado, con estadísticas acerca de tus negocios en la plataforma
+              </Typography>
+              </Grid>
+          </Grid>
+       {/* </Box> */}
+      {/* </Box> */}
+       </Grid>
       </Container>
     </footer>
      

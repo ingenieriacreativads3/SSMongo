@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 500,
+    height: 400,
   },
   formControl: {
    
@@ -159,7 +159,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop:theme.spacing(3),
   },
   buttonNuevo:{
-    marginTop:theme.spacing(25),
+    //marginTop:theme.spacing(25),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
