@@ -89,8 +89,8 @@ class Footer extends React.Component {
           </Grid>
 
        {/* <Box  p={1}  > */}
-       <Grid container lg={6} sm={6} spacing={1}>
-            <Grid item lg={12} >
+       <Grid container lg={6} xs={12} >
+            <Grid item lg={12} xs={12} >
               <Typography variant="h5" align='left' gutterBottom>
                     ¿Por qué elegirnos?
               </Typography>

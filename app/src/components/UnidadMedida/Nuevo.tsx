@@ -178,7 +178,7 @@ class Nuevo extends React.Component {
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight2);
 
     return(
 
@@ -191,7 +191,7 @@ class Nuevo extends React.Component {
 						<Container maxWidth="lg" className={classes.container}>
 							<Grid container spacing={3}>
 
-                <Grid item lg={12}>
+                <Grid item lg={9}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
@@ -207,26 +207,22 @@ class Nuevo extends React.Component {
                       <form className={classes.root}>
                         <Grid container >
                           <Grid container >
-                            <Grid item lg={6} xs={12}>
+                            {/* <Grid item lg={6} xs={12}>
                             <CssTextField className={classes.inputNuevo} disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft"  />
                           
-                            </Grid>
+                            </Grid> */}
                             <Grid item lg={6}  xs={12}>
                             <CssTextField className={classes.inputNuevo} id="custom-css-standard-input" label="Unidad"   />
 
                            
                             </Grid>
-                            
-                          </Grid>
-                          <Grid container >
                             <Grid item lg={6}  xs={12}>
                             <CssTextField className={classes.inputNuevo} id="custom-css-standard-input"  label="Simbolo"   />
 
                           
                             </Grid>
-                            
-                            
                           </Grid>
+                         
                           
                         </Grid>
                       </form>

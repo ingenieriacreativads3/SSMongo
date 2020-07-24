@@ -151,7 +151,7 @@ class Detail extends React.Component <{
 
                   <CardContent>
               
-                      <Grid container spacing={3}>
+                      <Grid container >
                       <CardContent>
                         <Typography variant="h5" component="h2">
                            {this.props.subtitle1}
@@ -190,11 +190,11 @@ class Detail extends React.Component <{
                         </Grid>
 
                         <Grid item xs={12} sm={4}  >
-                        <Grid item lg={6}  xs={12}>
+                        <Grid item lg={6}  xs={6}>
                             <TextField disabled id="standard-required" label="Unidad de Medida" value={this.props.item.unidad}  className={classes.input}  />
                           </Grid> 
                           
-                          <Grid item lg={6}  xs={12}>
+                          <Grid item lg={6}  xs={6}>
                             <TextField disabled id="standard-required" label="Cantidad" value={ this.props.cantidad }  className={ classes.input }  />
                           </Grid>
                         </Grid>
@@ -213,7 +213,7 @@ class Detail extends React.Component <{
                   
                   </CardContent>
                   <CardActions>
-                    <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                    <Grid container  direction = 'column' alignItems = 'flex-end'  >
                       <Grid item lg={12} >
                         {this.props.actions(classes)}
                       </Grid>  

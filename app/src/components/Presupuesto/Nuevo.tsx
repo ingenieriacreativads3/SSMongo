@@ -99,7 +99,7 @@ class Nuevo extends React.Component  <{
 
                     <CardContent>
                       <form className={classes.root}>
-                        <Grid container spacing={3}>
+                        <Grid container>
                         <CardContent>
                         <Typography variant="h5" component="h2">
                           Mis datos
@@ -132,7 +132,7 @@ class Nuevo extends React.Component  <{
                           Datos de presupuesto
                         </Typography>
                        </CardContent>
-                          <Grid container spacing={3}>
+                          <Grid container >
                           <Grid item lg={4} xs={6}>
                             <TextField disabled id="standard-required" label="Nombre" defaultValue="Samsung A20" className={classes.input}  />
                             </Grid>
@@ -152,17 +152,14 @@ class Nuevo extends React.Component  <{
 
                             
                           </Grid>
-                          <Grid container spacing={3}>
-                          
-                            
-                          </Grid>
+                         
                             
                         </Grid>
                       </form>
                     </CardContent>
                     <CardActions>
 
-                        <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                        <Grid container direction = 'column' alignItems = 'flex-end'  >
 
                           <Grid item lg={12} xs={12}>
 
