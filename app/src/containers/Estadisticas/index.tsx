@@ -9,7 +9,7 @@ export function ResumenActividad(props: {
 	location: any,
 	match: any,
   staticContext?: any
-  cookies: any,
+  cookies: Cookies,
 }) {
 	return <EstadisticaActividad
   history={props.history}

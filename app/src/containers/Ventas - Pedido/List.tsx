@@ -95,8 +95,8 @@ class PedidosVentas extends React.Component<{
           columns={[
             { title: 'Comprador', field: 'pedido.empresa_demandante.nombre', type: 'string' },
             { title: 'Importe', field: 'pedido.importe', type: 'numeric' },
-            { title: 'Fecha Creación', field: 'pedido.created_at', type: 'date' },
-            { title: 'Fecha Actualización', field: 'pedido.updated_at', type: 'date' },
+            { title: 'Fecha', field: 'pedido.created_at', type: 'date' },
+            { title: 'Producto', field: 'pedido.items[0]', type: 'date' },
 
             {
               title: 'Estado',

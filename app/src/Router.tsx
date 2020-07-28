@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 import AppBar from './components/AppBar'
@@ -38,10 +38,56 @@ import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion
 import { EmpresaPerfil } from './containers/Perfil'
 import { SolicitudesUnidadMedida, SolicitudDeUnidadDeMedida, NuevaUnidadMedida } from './containers/UnidadMedida'
 
-class App extends React.Component {
+class App extends React.Component <{}, {}> {
 
 	constructor(props: any) {
 		super(props)
+	}
+
+	// privateRout(props: { children: any, ...rest: any }) {
+	// 	return (
+	// 		<Route
+	// 			{...props.rest}
+	// 			render={({ location }) =>
+	// 				fakeAuth.isAuthenticated ? (
+	// 					props.children
+	// 				) : (
+	// 					<Redirect
+	// 						to={{
+	// 							pathname: "/login",
+	// 							state: { from: location }
+	// 						}}
+	// 					/>
+	// 				)
+	// 			}
+	// 		/>
+	// 	);
+	// }
+
+	login(props: { path: any, cookies: Cookies, render: any }) {
+
+		props.cookies.remove('empresaId')
+		console.log(props.cookies.get('empresaId'))
+		return <Route path='/' render={(propsAux) => <Login {...propsAux} cookies={props.cookies}/>}/>
+
+	}
+
+	enEspera(props: { path: any, cookies: Cookies, render: any }) {
+
+		let isAuth: boolean = false
+
+		console.log(props.cookies.get('empresaId'))
+
+		if(props.cookies.get('empresaId') !== undefined) {
+			isAuth = true
+		}
+
+		if(isAuth) {
+			return <Route path={ props.path } render={ props.render }/>
+		} else {
+			return <Route path='/' render={(propsAux) => <Login {...propsAux} cookies={props.cookies}/>}/>
+		}
+
 	}
 
 	render() {
@@ -52,14 +98,13 @@ class App extends React.Component {
 			<Router>
 				<div>
 					<Switch>
-						<Route path='/home/inicio'                    render={(props) => <Inicio {...props} cookies={cookies} />} />		
+						
 						<Route path='/home/busqueda/:id'              render={(props) => <Busqueda {...props} cookies={cookies} />} />								
 						<Route path='/home/side'                      component={ AppBar } />
 						<Route path='/home/perfil/:id'         		    render={(props) => <EmpresaPerfil {...props} cookies={cookies}/>} />
 						<Route path='/item/nuevo'                     render={(props) => <ItemNuevo {...props} cookies={cookies} />} /> 
 						<Route path='/item/editar/:id'                render={(props) => <ItemEditar {...props} cookies={cookies} />} />
 						<Route path='/compras/pedidos/lista'          render={(props) => <PurchaseRequests {...props} cookies={cookies} />} />
-						<Route path='/ventas/pedidos/lista'           render={(props) => <SaleRequests {...props} />} /> 
 						<Route path='/unidadMedida/nuevo'            render={(props) => <NuevaUnidadMedida {...props} cookies={cookies} />}/>
 						<Route path='/solicitud/unidadMedida/:id'     render={(props) => <SolicitudDeUnidadDeMedida {...props}  />}  />
 					    {/* <Route path='/solicitud/unidadMedida'         component={ SolicitudesUnidadMedida } />  */}
@@ -70,7 +115,6 @@ class App extends React.Component {
 						<Route path='/pedido/nuevo'                   render={(props) => <PedidoNuevo { ...props } cookies={cookies} />} />
 						<Route path='/presupuesto/nuevo'              render={(props) => <PresupuestoNuevo { ...props } cookies={cookies} />} />
 						<Route path='/compras/presupuestos/lista'     render={(props) => <PurchasePresupuestos {...props} cookies={cookies} />} /> 
-						<Route path='/ventas/presupuestos/lista'      render={(props) => <SalePresupuestos {...props} cookies={cookies} />} /> 
 						<Route path='/evaluacion/empresa'             render={(props) => <EvaluacionEmpresa {...props} cookies={cookies} />} /> 
 						<Route path='/evaluacion/suppliersStore'      render={(props) => <EvaluacionPlataforma {...props} cookies={cookies} />} /> 
 						<Route path='/solicitud/validacion'           render={(props) => <SolicitudesValidacion {...props}/>} />
@@ -80,11 +124,17 @@ class App extends React.Component {
 						<Route path='/presupuestacion/:id'            render={(props) => <Presupuestacion {...props} cookies={cookies}/>}/>
 						<Route path='/compras/pedido/:id'             render={(props) => <DetailPurchaseRequest {...props}/>}/>
 						<Route path='/compras/presupuesto/:id'        render={(props) => <DetailPurchasePresupuesto {...props} cookies={cookies}/>}/>
-						<Route path='/ventas/pedido/:id'              render={(props) => <DetailSaleRequest {...props}/>}/>
-						<Route path='/ventas/presupuesto/:id'         render={(props) => <DetailSalePresupuesto {...props} cookies={cookies} />}/>
 						<Route path='/home/resumen'                   render={(props) => <ResumenActividad {...props} cookies={cookies}/>}/>
 						<Route path='/home/reputacion'                render={(props) => <Reputacion {...props} cookies={cookies}/>}/>
-						<Route path='/'                               render={(props) => <Login { ...props } cookies={cookies} />} /> 
+
+
+						<Route path='/ventas/presupuesto/:id'         render={(props) => <DetailSalePresupuesto {...props} cookies={cookies} />}/>
+						<Route path='/ventas/presupuestos/lista'      render={(props) => <SalePresupuestos {...props} cookies={cookies} />} /> 
+						<Route path='/ventas/pedido/:id'              render={(props) => <DetailSaleRequest {...props}/>}/>
+						<Route path='/ventas/pedidos/lista'           render={(props) => <SaleRequests {...props} />} /> 
+
+						<this.enEspera path='/home/inicio' cookies={cookies} render={(props: any) => <Inicio { ...props } cookies={cookies} />}/>
+						<this.login path='/' cookies={cookies} render={(props: any) => <Login { ...props } cookies={cookies} />}/>
 					
 					</Switch>
 				</div>

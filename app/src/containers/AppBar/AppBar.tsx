@@ -37,6 +37,7 @@ class AppBar extends React.Component<{
 	}
 	
 	cerrarSesion() {
+    this.props.cookies.remove('empresaId')
 		this.props.history.push('/')
   }
   
