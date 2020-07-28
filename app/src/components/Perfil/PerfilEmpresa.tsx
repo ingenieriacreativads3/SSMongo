@@ -151,27 +151,35 @@ class PerfilEmpresa extends React.Component <{
                                   
                             <img src={foto} className = {classes.img}></img> 
 
-                            <Box className={classes.datos} >
+                            {/* <Box className={classes.datos} > */}
+                            <Grid container >
+                            <Grid item lg={12} xs={12} >
                         <Typography variant="h5"   gutterBottom>
                             <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
                             Construccion
                         </Typography>
+                        </Grid>
+                        <Grid item lg={12} xs={12}>
                         <Typography variant="h5"   gutterBottom>
                             <LocationOnIcon fontSize="large" style={{ color: '#d93211' }} />
                             San Francisco - Cordoba
                         </Typography>
+                        </Grid>
+                        <Grid item lg={12} xs={12}>
                         <Typography variant="h5"   gutterBottom>
                             <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
                             35644225394
                         </Typography>
-                        </Box>
+                        </Grid>
+                        </Grid>
+                        {/* </Box> */}
 
                         </Grid>
-                         <Grid  item xs={6} sm={6} container
+                         <Grid  item xs={12} sm={6} container
                                 direction="column"
                                 justify="space-around"
                                 alignItems="center">
-                          <Box  className={classes.formularioContacto} border={2} borderRadius={16} borderColor="#7f7f7f">
+                          <Box  className={classes.formularioContacto} flexGrow={3} border={2} borderRadius={16} borderColor="#7f7f7f">
                          <Typography className={classes.titulo}  variant="h4" component="h3" gutterBottom>
                               Contactanos
                           </Typography> 

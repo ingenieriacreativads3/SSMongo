@@ -95,7 +95,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 500,
+    height: 400,
+  },
+  fixedHeight2:{
+    height:250,
   },
   formControl: {
    
@@ -115,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
-    marginTop:theme.spacing(15),
+    marginTop:theme.spacing(20),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
@@ -154,12 +157,12 @@ const useStyles = makeStyles((theme) => ({
     marginLeft:theme.spacing(5),
     marginTop:theme.spacing(3),
   },
-  inputNuevo: {
-    marginLeft:theme.spacing(10),
-    marginTop:theme.spacing(3),
-  },
+  // inputNuevo: {
+  //   marginLeft:theme.spacing(10),
+  //   marginTop:theme.spacing(3),
+  // },
   buttonNuevo:{
-    marginTop:theme.spacing(25),
+    //marginTop:theme.spacing(25),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {

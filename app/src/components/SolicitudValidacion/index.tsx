@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 400,
+    height: 680,
   },
   formControl: {
     margin: theme.spacing(2),

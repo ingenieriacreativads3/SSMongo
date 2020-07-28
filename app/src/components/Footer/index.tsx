@@ -18,10 +18,10 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   
   footer: {
-    
     marginTop: theme.spacing(60),
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+      
   },
   avatar: {
     marginLeft: theme.spacing(15),

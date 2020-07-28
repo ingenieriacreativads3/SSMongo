@@ -189,9 +189,9 @@ class ValidarSolicitud extends React.Component {
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg"  className={classes.container}>
-							<Grid container spacing={3}>
+							<Grid container >
 
-                <Grid item lg={12} >
+                <Grid item lg={12} xs={12} >
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
@@ -205,42 +205,31 @@ class ValidarSolicitud extends React.Component {
 
                     <CardContent>
                       <form className={classes.root}>
-                        <Grid container spacing={3} >
-                          <Grid container spacing={3}>
-                            <Grid item lg={4}>
+                        <Grid container spacing={10} >
+                          <Grid container >
+                            <Grid item lg={4} xs={6}>
                             <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud"  defaultValue="20" className={classes.input} />
                             
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                             <CssTextField disabled id="custom-css-standard-input" label="Fecha"  defaultValue="03/04/2020" className={classes.input} />
                             
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={12}>
                             <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
                            
                             </Grid>
-                            
-                          </Grid>
-                          <Grid container spacing={3} >
-                            
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={12}>
                             <CssTextField  id="custom-css-standard-input" label="Unidad"  defaultValue="Metro cuadrado" className={classes.input} />
                             
                             </Grid>
-                            <Grid item lg={4}>
+
+                            <Grid item lg={4} xs={12}>
                             <CssTextField  id="custom-css-standard-input" label="Simbolo"  defaultValue="M2" className={classes.input} />
 
                            
                             </Grid>
-                            <Grid item lg={4}>
-                            <CssTextField  id="custom-css-standard-input" label="Magnitud"  defaultValue="Superficie" className={classes.input} />
-                          
-                            </Grid>
-                            
-                          </Grid>
-                          <Grid container spacing={3}>
-                            
-                            <Grid item lg={12}>
+                            <Grid item lg={4} xs={12}>
                             <FormControl className={classes.formControl}>
                               <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
                                 <Select
@@ -254,8 +243,11 @@ class ValidarSolicitud extends React.Component {
                                 </Select>
                               </FormControl>
                             </Grid>
+
+
                           </Grid>
                           
+                         
                         </Grid>
                       </form>
                     </CardContent>

@@ -120,6 +120,7 @@ class ValoracionPlataforma extends React.Component<{
       location={this.props.location}
       match={this.props.match}
       staticContext={this.props.staticContext}
+      cookies={this.props.cookies}
     />
   }
 

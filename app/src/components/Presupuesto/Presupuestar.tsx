@@ -147,9 +147,9 @@ class Presupuestar extends React.Component <{
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
-							<Grid container spacing={3}>
+							<Grid container >
 
-                <Grid item lg={12}>
+                <Grid item lg={12} xs={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
                         avatar={
@@ -163,29 +163,29 @@ class Presupuestar extends React.Component <{
 
                     <CardContent>
                       <form className={classes.root}>
-                        <Grid container spacing={3}>
+                        <Grid container>
                         <CardContent>
                           <Typography variant="h5" component="h2">
                             Solicitante
                           </Typography>
                         </CardContent>
-                          <Grid container spacing={3}>
-                            <Grid item lg={4}>
+                          <Grid container >
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Empresa" value={this.props.presupuesto.empresa_demandante.nombre} className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Email" value={this.props.presupuesto.empresa_demandante.email} className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Telefono" value="" className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Provincia" value="" className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Ciudad" value="" className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="CP" value="" className={classes.input}  />
                             </Grid>
                             
@@ -198,23 +198,23 @@ class Presupuestar extends React.Component <{
                           </span>
                         </Typography>
                     </CardContent>
-                          <Grid container spacing={3}>
-                            <Grid item lg={4}>
+                          <Grid container >
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Producto" value={this.props.presupuesto.items[0].nombre} className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Cantidad" value={'10'} className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Unidad" value={'unidad'} className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <TextField disabled id="standard-required" label="Precio" value={this.props.presupuesto.items[0].precio} className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={12}>
                               <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={12}> 
                             <Avatar className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} /> 
                             </Grid>
                           </Grid>
@@ -223,14 +223,14 @@ class Presupuestar extends React.Component <{
                               Mi presupuesto
                             </Typography>
                           </CardContent>
-                          <Grid container spacing={3}>
-                            <Grid item lg={4}>
+                          <Grid container >
+                            <Grid item lg={4} xs={6}>
                               <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad" type="number" onChange={this.props.getCantidadItem}   />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                               <CssTextField className={classes.margin} id="custom-css-standard-input" label="Importe" type="number" onChange={this.props.getImporte}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={12}>
                               <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={8} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
                             </Grid>
                           </Grid>
@@ -239,16 +239,16 @@ class Presupuestar extends React.Component <{
                     </CardContent>
                     <CardActions>
 
-                        <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                        <Grid container  direction = 'column' alignItems = 'flex-end'  >
 
-                          <Grid item lg={12} >
+                          <Grid item lg={12} xs={12}>
 
                             <Button
                               variant="contained"
                               color='primary'
                               size="small"
                               className={classes.button}
-                              startIcon={<SendIcon />}
+                              //startIcon={<SendIcon />}
                               onClick={this.props.cancelar}
                             >
                               Cancelar
@@ -259,7 +259,7 @@ class Presupuestar extends React.Component <{
                               color='primary'
                               size="small"
                               className={classes.button}
-                              startIcon={<SendIcon />}
+                              //startIcon={<SendIcon />}
                               onClick={this.props.save}
                             >
                               Aceptar

@@ -99,7 +99,7 @@ class Nuevo extends React.Component <{
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
-							<Grid container spacing={3}>
+							<Grid container >
 
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
@@ -118,13 +118,13 @@ class Nuevo extends React.Component <{
 
                       <form className={classes.root}>
                       
-                        <Grid container spacing={3}>
+                        <Grid container >
                         <CardContent>
                         <Typography variant="h5" component="h2">
                           Mis datos
                         </Typography>
                     </CardContent>
-                          <Grid container spacing={3}>
+                          <Grid container >
                             
                             <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Empresa" defaultValue="CorpuSoft" className={classes.input}  />
@@ -138,9 +138,7 @@ class Nuevo extends React.Component <{
                             <TextField disabled id="standard-required" label="Domicilio" defaultValue="Bv.Roca 1500" className={classes.input}  />
                           
                             </Grid>
-                          </Grid>
-                          <Grid container spacing={3}>
-                          <Grid item lg={4}>
+                            <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="CP" defaultValue="2400" className={classes.input}  />
                            
                             </Grid>
@@ -155,39 +153,39 @@ class Nuevo extends React.Component <{
                             
                             </Grid>
                           </Grid>
-                          <Grid container spacing={3}>
+                          <Grid container>
                           <Grid item lg={4}>
                             <TextField disabled id="standard-required" label="Telefono" defaultValue="3512469439" className={classes.input}  />
                            
                             </Grid>
-                            
                           </Grid>
+                         
                           <CardContent>
                         <Typography variant="h5" component="h2">
                           Datos de pedido
                         </Typography>
                     </CardContent>
-                          <Grid container spacing={3}>
-                          <Grid item lg={4}>
+                          <Grid container >
+                          <Grid item lg={4} xs={6}>
                             <TextField disabled id="standard-required" label="Nombre" defaultValue="Samsung A20" className={classes.input}  />
                           
                             </Grid>
                          
 
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                             <TextField disabled id="standard-required" label="Precio" defaultValue="10000" className={classes.input}  />
                             </Grid>
 
 
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                             <TextField disabled id="standard-required" label="Unidad" defaultValue="Unidad" className={classes.input}  />
 
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                           <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad"   type="number" onChange={this.props.getCantidadItem}/>
                             
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={12}>
                             <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
                             </Grid>
                           </Grid>
@@ -197,7 +195,7 @@ class Nuevo extends React.Component <{
                     </CardContent>
                     <CardActions>
 
-                        <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                        <Grid container  direction = 'column' alignItems = 'flex-end'  >
 
                           <Grid item lg={12} >
 

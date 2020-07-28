@@ -99,10 +99,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 930,
+    height: 1300,
   },
   fixedHeight2: {
-    height: 700,
+    height: 850,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -115,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
-    margin:theme.spacing(2),
+    marginRight:theme.spacing(2),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
@@ -134,8 +134,8 @@ const useStyles = makeStyles((theme) => ({
   },
   textTarea:{
     width:'250px',
-    marginLeft:theme.spacing(2),
-    marginTop:theme.spacing(2),
+    // marginLeft:theme.spacing(2),
+    // marginTop:theme.spacing(2),
   },
   fotoItem:{
     width:'150px',

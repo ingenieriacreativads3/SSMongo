@@ -131,7 +131,7 @@ class Validacion extends React.Component <{
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
-							<Grid container spacing={3}>
+							<Grid container >
 
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
@@ -147,15 +147,19 @@ class Validacion extends React.Component <{
 
                     <CardContent>
                       <form className={classes.root}>
-                        <Grid container spacing={3}>
-                          <Grid container spacing={3}>
-                            <Grid item lg={4}>
+                        <Grid container >
+                          <Grid container >
+                            <Grid item lg={4} xs={12}>
                               <TextField disabled id="standard-required" label="ID Solicitud" value={this.props._id} className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={12}>
                               <TextField disabled id="standard-required" label="Empresa" value={this.props.nombre}  className={classes.input}  />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={12}>
+                            <TextField disabled id="standard-required" label="CUIT" value={this.props.cuit}  className={classes.input}  />
+                            </Grid>
+
+                            <Grid item lg={4} xs={6}>
                               <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" style={{textDecoration: 'none'}} target="_blank" >
                                 <Button
                                 type="button"
@@ -168,15 +172,9 @@ class Validacion extends React.Component <{
                                 </Button>
                               </Link>
                             </Grid>
+
                             
-                          </Grid>
-                          
-                          <Grid container spacing={3}>
-                         
-                            <Grid item lg={4}>
-                            <TextField disabled id="standard-required" label="CUIT" value={this.props.cuit}  className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} xs={6}>
                             
                             <Link href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do" style={{textDecoration: 'none'}} target="_blank" >
                               <Button
@@ -195,8 +193,10 @@ class Validacion extends React.Component <{
                           </Grid>
                             
                           </Grid>
-                          <Grid container spacing={3}>
-                            <Grid item lg={6}>
+                          
+                         
+                          <Grid container>
+                            <Grid item lg={6} xs={12}>
                               <FormControl className={classes.formControl}>
                               <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
                                 <Select
@@ -215,7 +215,7 @@ class Validacion extends React.Component <{
                                 </Select>
                               </FormControl>
                             </Grid>
-                            <Grid item lg={6}>
+                            <Grid item lg={6} xs={12}>
                               <FormControl className={classes.formControl}>
                                 <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Rubro</InputLabel>
                                 <Select
@@ -249,7 +249,7 @@ class Validacion extends React.Component <{
                       </form>
                     </CardContent>
                     <CardActions>
-                      <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                      <Grid container  direction = 'column' alignItems = 'flex-end'  >
                         <Grid item lg={12} >
                           <Button
                             variant="contained"
