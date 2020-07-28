@@ -6,7 +6,7 @@ import Link from '@material-ui/core/Link';
 import { Footer } from './../Footer'
 import { InicioDrawer } from './../DrawerInicio'
 import {AppBar} from './../AppBar'
-
+import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
   
@@ -24,7 +24,7 @@ class Empresa extends React.Component<{
   location: any,
   match: any,
   staticContext?: any,
- 
+  cookies: Cookies
 }, {}> {
 
 	props: any

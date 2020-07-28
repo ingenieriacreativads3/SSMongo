@@ -7,6 +7,7 @@ import { List } from './../../components/List'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
+import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
@@ -20,7 +21,8 @@ class ValidationRequest extends React.Component<{
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  cookies: Cookies
 }, {}> {
 
 	props: any

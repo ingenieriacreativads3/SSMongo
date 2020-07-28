@@ -1,11 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Container, Grid, Card, Box, Avatar,List, ListItemAvatar,ListItemText,Divider, CardActions, Button, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
+import { Container, Grid, Card, Avatar,List, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import MenuLateral from './../Drawer';
-import * as drawerActions from './../../store/actions/drawer'
-import AppBar from './../AppBar'
+
 import {
   Chart,
   PieSeries,

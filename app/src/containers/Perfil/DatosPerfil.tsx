@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
 import { AppBar } from './../AppBar'
+import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
   
@@ -23,6 +24,7 @@ class DatosPerfil extends React.Component<{
   location: any,
   match: any,
   staticContext?: any,
+  cookies: Cookies
  
 }, {}> {
 

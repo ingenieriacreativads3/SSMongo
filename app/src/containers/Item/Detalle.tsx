@@ -6,6 +6,7 @@ import * as itemActions from './../../store/actions/item'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
+import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -21,7 +22,8 @@ class Detalle extends React.Component<{
   history: any,
   location: any,
   match: any,
-	staticContext?: any,
+  staticContext?: any,
+  cookies: Cookies,
 }, {}> {
 
 	props: any

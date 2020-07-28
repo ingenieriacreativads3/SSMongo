@@ -6,6 +6,7 @@ import * as requestActions from './../../store/actions/request'
 import { Drawer } from './../Drawer'
 import {AppBar} from './../AppBar'
 import {Footer} from './../Footer'
+import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
   requestReducer: any,
@@ -21,7 +22,8 @@ class Detail extends React.Component<{
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  cookies: Cookies,
 }, {}> {
 
 	props: any

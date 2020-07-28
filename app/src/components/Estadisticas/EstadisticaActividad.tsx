@@ -3,13 +3,9 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { Container, Grid, Card, Box, Avatar, CardActions,  CardHeader, ListItemIcon, Typography, CssBaseline,  CardContent, CardMedia} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import MenuLateral from './../Drawer';
 import AttachMoney from '@material-ui/icons/AttachMoney';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
-import * as drawerActions from './../../store/actions/drawer'
-import AppBar from './../AppBar'
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import Paper from '@material-ui/core/Paper';
 import {
   Chart,
   PieSeries,

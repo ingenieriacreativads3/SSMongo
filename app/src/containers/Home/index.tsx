@@ -9,7 +9,7 @@ export function Inicio(props: {
 	location: any,
 	match: any,
   staticContext?: any
-  cookies: any,
+  cookies: Cookies,
 }) {
 	return <HomeExport
   history={props.history}
@@ -26,7 +26,7 @@ export function Busqueda(props: {
 	location: any,
 	match: any,
   staticContext?: any
-  cookies: any,
+  cookies: Cookies,
 }) {
 	return <BusquedaPage
   history={props.history}

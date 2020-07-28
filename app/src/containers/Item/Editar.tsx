@@ -10,6 +10,7 @@ import {AppBar} from './../AppBar'
 import * as itemActions from './../../store/actions/item'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import * as dialogActions from './../../store/actions/dialog'
+import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -30,7 +31,7 @@ class Editar extends React.Component<{
   location: any,
   match: any,
   staticContext?: any,
- 
+  cookies: Cookies
 }, {
   _id: string,
 	nombre: string,

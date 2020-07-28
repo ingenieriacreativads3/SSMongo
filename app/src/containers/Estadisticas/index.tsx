@@ -26,7 +26,7 @@ export function Reputacion(props: {
       location: any,
       match: any,
     staticContext?: any
-    cookies: any,
+    cookies: Cookies,
   }) {
       return <OpinionUsuarios
     history={props.history}

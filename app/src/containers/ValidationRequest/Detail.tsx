@@ -6,6 +6,7 @@ import * as solicitudesActions from './../../store/actions/solicitudDeValidacion
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 import {Drawer} from './../Drawer'
+import Cookies from 'universal-cookie';
  
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
@@ -19,7 +20,8 @@ class Detail extends React.Component<{
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  cookies: Cookies,
 }, {
   rubros: string[]
 }> {

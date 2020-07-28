@@ -6,6 +6,7 @@ import * as presupuestoActions from './../../store/actions/presupuesto'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
+import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
@@ -21,7 +22,8 @@ class PresupuestosVentas extends React.Component<{
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  cookies: Cookies,
 }, {}> {
 
 	props: any

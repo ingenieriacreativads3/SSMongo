@@ -26,13 +26,15 @@ export function ItemDetalle(props: {
   history: any,
   location: any,
   match: any,
-  staticContext?: any
+  staticContext?: any,
+  cookies: Cookies
 }) {
 	return <DetalleItem
     history={props.history}
     location={props.location}
     match={props.match}
     staticContext={props.staticContext}
+    cookies={props.cookies}
   />;
 }
 

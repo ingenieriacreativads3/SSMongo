@@ -8,13 +8,15 @@ export function SolicitudesUnidadMedida(props: {
 	history: any,
 	location: any,
 	match: any,
-	staticContext?: any
+	staticContext?: any,
+	cookies: Cookies,
 }) {
 	return <List 
 		history={props.history}
     location={props.location}
     match={props.match}
-    staticContext={props.staticContext}
+	staticContext={props.staticContext}
+	cookies={props.cookies}
 	/>;
 }
 
@@ -22,13 +24,15 @@ export function SolicitudDeUnidadDeMedida(props: {
 	history: any,
 	location: any,
 	match: any,
-	staticContext?: any
+	staticContext?: any,
+	cookies: Cookies,
 }) {
 	return <Detail 
 		history={props.history}
     location={props.location}
     match={props.match}
-    staticContext={props.staticContext}
+	staticContext={props.staticContext}
+	cookies={props.cookies}
 	/>;
 }
 
