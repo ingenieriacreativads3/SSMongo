@@ -33,15 +33,6 @@ class Detail extends React.Component <{
   title: string,
   subtitle1:string,
   subtitle2:string,
-  empresa: string,
-  importe: string,
-  estado: string,
-  cantidad: string,
-  item: {
-    nombre: string,
-    precio: string,
-    unidad: string
-  },
   presupuesto: {
     _id: string,
     estado: string,
@@ -71,19 +62,141 @@ class Detail extends React.Component <{
     mensajes: [],
     items: [
       {
-        _id: string,
-        foto: string[],
-        nombre: string,
-        precio: string,
-        descrpcion: string,
-        mostrarPrecio: boolean,
-        unidad_de_medida_id: string,
-        updated_at: string,
-        created_at: string,
-        catalogo_id: string,
+        "item": {
+          "_id": string,
+          "foto": string[],
+          "nombre": string,
+          "precio": string,
+          "descrpcion": string,
+          "mostrarPrecio": boolean,
+          "unidad_de_medida_id": string,
+          "updated_at": string,
+          "created_at": string,
+          "catalogo_id": string,
+          "unidad_de_medida": {
+            "_id": string,
+            "nombre": string,
+            "abreviatura": string,
+            "updated_at": string,
+            "created_at": string,
+            }
+        },
+        "unidadDeMedida": {
+          "_id": string,
+          "nombre": string,
+          "abreviatura": string,
+          "updated_at": string,
+          "created_at": string,
+        },
+        "cantidad": number
       }
     ]
-  },
+  }|null,
+  pedido: {
+    "_id": string,
+    "empresa_perteneciente_id": string,
+    "empresa_demandante_id": string,
+    "importe": string,
+    "estado": string,
+    "presupuesto_id": string,
+    "updated_at": string,
+    "created_at": string,
+    "mensajes": [],
+    "items": [
+      {
+        "item": {
+          "_id": string,
+          "foto": string[],
+          "nombre": string,
+          "precio": string,
+          "descrpcion": string,
+          "mostrarPrecio": boolean,
+          "unidad_de_medida_id": string,
+          "updated_at": string,
+          "created_at": string,
+          "catalogo_id": string,
+          "unidad_de_medida": {
+            "_id": string,
+            "nombre": string,
+            "abreviatura": string,
+            "updated_at": string,
+            "created_at": string,
+          }
+        },
+        "unidadDeMedida": {
+          "_id": string,
+          "nombre": string,
+          "abreviatura": string,
+          "updated_at": string,
+          "created_at": string,
+        },
+        "cantidad": number
+      }
+    ],
+    "empresa_demandante": {
+      "_id": string,
+      "nombre": string,
+      "cuit": string,
+      "usuario": string,
+      "clave": string,
+      "email": string,
+      "estado": string,
+      "updated_at": string,
+      "created_at": string,
+    },
+    "empresa_perteneciente": {
+      "_id": string,
+      "nombre": string,
+      "cuit": string,
+      "usuario": string,
+      "clave": string,
+      "email": string,
+      "estado": string,
+      "updated_at": string,
+      "created_at": string,
+    },
+    "presupuesto": {
+      "_id": string,
+      "idEmpresaPerteneciente": string,
+      "idEmpresaDemandante": string,
+      "estado": string,
+      "updated_at": string,
+      "created_at": string,
+      "importe": string,
+      "items": [
+        {
+          "item": {
+            "_id": string,
+            "foto": string[],
+            "nombre": string,
+            "precio": string,
+            "descrpcion": string,
+            "mostrarPrecio": boolean,
+            "unidad_de_medida_id": string,
+            "updated_at": string,
+            "created_at": string,
+            "catalogo_id": string,
+            "unidad_de_medida": {
+              "_id": string,
+              "nombre": string,
+              "abreviatura": string,
+              "updated_at": string,
+              "created_at": string,
+            }
+          },
+          "unidadDeMedida": {
+            "_id": string,
+            "nombre": string,
+            "abreviatura": string,
+            "updated_at": string,
+            "created_at": string,
+          },
+          "cantidad": number
+        }
+      ],
+      "mensajes": []
+    }
+  }|null,
   labelCompany: string,
   company: {
     _id: string,
@@ -114,18 +227,69 @@ class Detail extends React.Component <{
 
     let msj: string = ''
 
-    if(
-      this.props.presupuesto !== undefined &&
-      this.props.presupuesto.mensajes !== undefined &&
-      this.props.presupuesto.mensajes.length
-    ) {
-      this.props.presupuesto.mensajes.map((mensaje: {
-        comentario: string
-      }) => {
-        msj = msj + mensaje.comentario
-      })  
+    if(this.props.presupuesto !== null) {
+      if(
+        this.props.presupuesto !== undefined &&
+        this.props.presupuesto.mensajes !== undefined &&
+        this.props.presupuesto.mensajes.length
+      ) {
+        this.props.presupuesto.mensajes.map((mensaje: {
+          comentario: string
+        }) => {
+          msj = msj + mensaje.comentario
+        })  
+      }
     }
 
+    if(this.props.pedido !== null) {
+      if(
+        this.props.pedido.presupuesto !== undefined &&
+        this.props.pedido.presupuesto.mensajes !== undefined &&
+        this.props.pedido.presupuesto.mensajes.length
+      ) {
+        this.props.pedido.presupuesto.mensajes.map((mensaje: {
+          comentario: string
+        }) => {
+          msj = msj + mensaje.comentario
+        })
+        this.props.pedido.mensajes.map((mensaje: {
+          comentario: string
+        }) => {
+          msj = msj + mensaje.comentario
+        })
+      }
+    }
+
+    
+
+    let estado: string = ''
+    let importe: string = ''
+    let itemNombre: string = ''
+    let itemPrecio: string = ''
+    let unidad: string = ''
+    let cantidad: string = ''
+    let imagen: string = ''
+    
+    if(this.props.pedido !== null) {
+      estado = this.props.pedido.estado
+      importe = this.props.pedido.importe
+      itemNombre = this.props.pedido.items[0].item.nombre
+      itemPrecio = this.props.pedido.items[0].item.precio
+      unidad = this.props.pedido.items[0].unidadDeMedida.nombre
+      cantidad = this.props.pedido.items[0].cantidad
+      imagen = 'http://localhost:8000/' + this.props.pedido.items[0].item.foto[0]
+    }
+
+    if(this.props.presupuesto !== null) {
+      estado = this.props.presupuesto.estado
+      importe = this.props.presupuesto.importe
+      itemNombre = this.props.presupuesto.items[0].item.nombre
+      itemPrecio = this.props.presupuesto.items[0].item.precio
+      unidad = this.props.presupuesto.items[0].unidadDeMedida.nombre
+      cantidad = this.props.presupuesto.items[0].cantidad
+      imagen = 'http://localhost:8000/' + this.props.presupuesto.items[0].item.foto[0]
+    }
+    
     return(
 
       <div className={classes.root}>
@@ -155,18 +319,18 @@ class Detail extends React.Component <{
                       <CardContent>
                         <Typography variant="h5" component="h2">
                            {this.props.subtitle1}
-                           <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{this.props.presupuesto.estado}</Button></span>
+                           <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{ estado }</Button></span>
                         </Typography>
                     </CardContent>
                         <Grid container>
                           <Grid item lg={4} xs={12}>
-                            <TextField disabled id="standard-required" label={this.props.labelCompany} value={this.props.company.nombre}  className={classes.input}  />
+                            <TextField disabled id="standard-required" label={ this.props.labelCompany } value={ this.props.company.nombre }  className={classes.input}  />
                           </Grid>
                           <Grid item lg={4} xs={12}>
-                            <TextField disabled id="standard-required" label="Importe" value={this.props.presupuesto.importe}  className={classes.input}  InputLabelProps={{ shrink: true }}/>
+                            <TextField disabled id="standard-required" label="Importe" value={ importe }  className={classes.input}  InputLabelProps={{ shrink: true }}/>
                           </Grid>
                           <Grid item lg={4}  xs={12}>
-                          <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
+                            <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
                           </Grid>
                         </Grid>
                         <CardContent>
@@ -177,10 +341,10 @@ class Detail extends React.Component <{
                         <Grid container >
                           <Grid item xs={12} sm={4} >
                           <Grid item lg={ 6 }  xs={6}>
-                            <TextField disabled id="standard-required" label="Nombre" value={ this.props.presupuesto.items[0].nombre }  className={ classes.input }  />
+                            <TextField disabled id="standard-required" label="Nombre" value={ itemNombre }  className={ classes.input }  />
                           </Grid>
                           <Grid item lg={ 6 }  xs={6}>
-                            <TextField disabled id="standard-required" label="Precio" value={ this.props.presupuesto.items[0].precio }  className={ classes.input }  />
+                            <TextField disabled id="standard-required" label="Precio" value={ itemPrecio }  className={ classes.input }  />
                           </Grid>
                          
                           
@@ -191,18 +355,18 @@ class Detail extends React.Component <{
 
                         <Grid item xs={12} sm={4}  >
                         <Grid item lg={6}  xs={6}>
-                            <TextField disabled id="standard-required" label="Unidad de Medida" value={this.props.item.unidad}  className={classes.input}  />
+                            <TextField disabled id="standard-required" label="Unidad de Medida" value={ unidad }  className={classes.input}  />
                           </Grid> 
                           
                           <Grid item lg={6}  xs={6}>
-                            <TextField disabled id="standard-required" label="Cantidad" value={ this.props.cantidad }  className={ classes.input }  />
+                            <TextField disabled id="standard-required" label="Cantidad" value={ cantidad }  className={ classes.input }  />
                           </Grid>
                         </Grid>
 
                         <Grid item xs={12} sm={4}>
                       
                         <Grid item lg={3} xs={12}>
-                          <Avatar className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} />
+                          <Avatar className={classes.fotoItem} alt={imagen}  src={imagen} />
                           </Grid> 
                           
                           

@@ -1,12 +1,54 @@
 import axios from 'axios';
 
-export function getPurchase(id?: string) {
+export function enviarPedido(
+	idPedido: string,
+	idEmpresa: string,	
+) {
 
 	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/pedido/enviar', {
+		pedido : {
+			_id : idPedido
+		},
+		empresaEnviadora : {
+			_id : idEmpresa
+		}
+	})
 
-	let idAux = ''
+  return {
+		type: 'ENVIAR_PEDIDO',
+		payload: payload
+	}
 
-	if(id) idAux = id
+}
+
+export function cancelarPedido(
+	idPedido: string,
+	idEmpresa: string,	
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/pedido/cancelar', {
+		pedido: {
+			_id: idPedido,
+		},
+		empresaCanceladora: {
+			_id: idEmpresa
+		}
+	})
+
+  return {
+		type: 'CANCELAR_PEDIDO',
+		payload: payload
+	}
+
+}
+
+export function getPurchase(id: string) {
+
+	let url: string = 'http://127.0.0.1:8000';
 	
 	let payload: any = axios.get(url + '/empresa/' + id + '/pedidossolicitados')
 

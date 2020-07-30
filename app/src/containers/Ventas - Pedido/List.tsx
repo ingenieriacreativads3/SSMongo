@@ -37,10 +37,18 @@ class PedidosVentas extends React.Component<{
     this.state = {};
   }
 
-   action(item: {
-     _id: string
-   }) {
-    this.props.history.push("/pedido/" + item._id);
+  componentWillMount() {
+
+    this.props.dispatch(requestActions.getSale(this.props.cookies.get('empresaId')))
+
+  }
+
+  action(aux: {
+    pedido: {
+      _id: string
+    }
+  }) {
+    this.props.history.push("/ventas/pedido/" + aux.pedido._id);
   } 
 
   drawer() {
@@ -73,8 +81,6 @@ class PedidosVentas extends React.Component<{
 
   render(){
 
-    console.log(this.props.login)
-
 		if(
       !this.props.requestReducer.fetched &&
       !this.props.requestReducer.fetching &&
@@ -99,12 +105,12 @@ class PedidosVentas extends React.Component<{
             { title: 'Comprador', field: 'pedido.empresa_demandante.nombre', type: 'string' },
             { title: 'Importe', field: 'pedido.importe', type: 'numeric' },
             { title: 'Fecha', field: 'pedido.created_at', type: 'date' },
-            { title: 'Producto', field: 'pedido.items[0]', type: 'date' },
-
+            { title: 'Producto', field: 'pedido.items[0].item.nombre', type: 'string' },
+            { title: 'Cantidad', field: 'pedido.items[0].cantidad', type: 'numeric' },
             {
               title: 'Estado',
               field: 'pedido.estado',
-              lookup: { 'En espera': 'En espera', 'Cancelado': 'Cancelado','Enviado':'Enviado', 'Finalizado':'Finalizado' },
+              lookup: { 'En espera': 'En espera', 'Cancelado': 'Cancelado', 'Enviado': 'Enviado', 'Finalizado': 'Finalizado' },
             },
             
           ]}

@@ -53,7 +53,6 @@ export function getPurchase(id: string) {
 
 }
 
-
 export function getSale(id: string) {
 
 	let url: string = 'http://127.0.0.1:8000';

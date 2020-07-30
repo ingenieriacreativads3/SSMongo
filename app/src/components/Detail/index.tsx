@@ -144,18 +144,9 @@ export function Detail(props: {
   title: string,
   subtitle1:string,
   subtitle2:string,
-  empresa: string,
-  importe: string,
-  estado: string,
-  cantidad: string,
   drawer:any,
   appBar:any,
   footer:any,
-  item: {
-    nombre: string,
-    precio: string,
-    unidad: string
-  },
   presupuesto: {
     _id: string,
     estado: string,
@@ -185,19 +176,141 @@ export function Detail(props: {
     mensajes: [],
     items: [
       {
-        _id: string,
-        foto: string[],
-        nombre: string,
-        precio: string,
-        descrpcion: string,
-        mostrarPrecio: boolean,
-        unidad_de_medida_id: string,
-        updated_at: string,
-        created_at: string,
-        catalogo_id: string,
+        "item": {
+          "_id": string,
+          "foto": string[],
+          "nombre": string,
+          "precio": string,
+          "descrpcion": string,
+          "mostrarPrecio": boolean,
+          "unidad_de_medida_id": string,
+          "updated_at": string,
+          "created_at": string,
+          "catalogo_id": string,
+          "unidad_de_medida": {
+            "_id": string,
+            "nombre": string,
+            "abreviatura": string,
+            "updated_at": string,
+            "created_at": string,
+            }
+        },
+        "unidadDeMedida": {
+          "_id": string,
+          "nombre": string,
+          "abreviatura": string,
+          "updated_at": string,
+          "created_at": string,
+        },
+        "cantidad": number
       }
     ]
-  },
+  }|null,
+  pedido: {
+    "_id": string,
+    "empresa_perteneciente_id": string,
+    "empresa_demandante_id": string,
+    "importe": string,
+    "estado": string,
+    "presupuesto_id": string,
+    "updated_at": string,
+    "created_at": string,
+    "mensajes": [],
+    "items": [
+      {
+        "item": {
+          "_id": string,
+          "foto": string[],
+          "nombre": string,
+          "precio": string,
+          "descrpcion": string,
+          "mostrarPrecio": boolean,
+          "unidad_de_medida_id": string,
+          "updated_at": string,
+          "created_at": string,
+          "catalogo_id": string,
+          "unidad_de_medida": {
+            "_id": string,
+            "nombre": string,
+            "abreviatura": string,
+            "updated_at": string,
+            "created_at": string,
+          }
+        },
+        "unidadDeMedida": {
+          "_id": string,
+          "nombre": string,
+          "abreviatura": string,
+          "updated_at": string,
+          "created_at": string,
+        },
+        "cantidad": number
+      }
+    ],
+    "empresa_demandante": {
+      "_id": string,
+      "nombre": string,
+      "cuit": string,
+      "usuario": string,
+      "clave": string,
+      "email": string,
+      "estado": string,
+      "updated_at": string,
+      "created_at": string,
+    },
+    "empresa_perteneciente": {
+      "_id": string,
+      "nombre": string,
+      "cuit": string,
+      "usuario": string,
+      "clave": string,
+      "email": string,
+      "estado": string,
+      "updated_at": string,
+      "created_at": string,
+    },
+    "presupuesto": {
+      "_id": string,
+      "idEmpresaPerteneciente": string,
+      "idEmpresaDemandante": string,
+      "estado": string,
+      "updated_at": string,
+      "created_at": string,
+      "importe": string,
+      "items": [
+        {
+          "item": {
+            "_id": string,
+            "foto": string[],
+            "nombre": string,
+            "precio": string,
+            "descrpcion": string,
+            "mostrarPrecio": boolean,
+            "unidad_de_medida_id": string,
+            "updated_at": string,
+            "created_at": string,
+            "catalogo_id": string,
+            "unidad_de_medida": {
+              "_id": string,
+              "nombre": string,
+              "abreviatura": string,
+              "updated_at": string,
+              "created_at": string,
+            }
+          },
+          "unidadDeMedida": {
+            "_id": string,
+            "nombre": string,
+            "abreviatura": string,
+            "updated_at": string,
+            "created_at": string,
+          },
+          "cantidad": number
+        }
+      ],
+      "mensajes": []
+    }
+  }|null,
   labelCompany: string,
   company: {
     _id: string,
@@ -214,19 +327,15 @@ export function Detail(props: {
 
 	const classes = useStyles(theme);
 	return <DetailExport 
-		classes={classes}
-    title={props.title}
-    subtitle1={props.subtitle1}
-    subtitle2={props.subtitle2}
-		empresa={props.empresa}
-		importe={props.importe}
-		estado={props.estado}
-		cantidad={props.cantidad}
-    item={props.item}
-    drawer={props.drawer}
-    appBar={props.appBar}
-    footer={props.footer}
+		classes={ classes }
+    title={ props.title }
+    subtitle1={ props.subtitle1 }
+    subtitle2={ props.subtitle2 }
+    drawer={ props.drawer }
+    appBar={ props.appBar }
+    footer={ props.footer }
     presupuesto={ props.presupuesto }
+    pedido={ props.pedido }
     labelCompany={ props.labelCompany }
     company={ props.company }
     actions={ props.actions }

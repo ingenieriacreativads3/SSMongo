@@ -179,16 +179,33 @@ class Detail extends React.Component<{
       mensajes: [],
       items: [
         {
-          _id: string,
-          foto: [],
-          nombre: string,
-          precio: string,
-          descrpcion: string,
-          mostrarPrecio: boolean,
-          unidad_de_medida_id: string,
-          updated_at: string,
-          created_at: string,
-          catalogo_id: string,
+          "item": {
+            "_id": string,
+            "foto": string[],
+            "nombre": string,
+            "precio": string,
+            "descrpcion": string,
+            "mostrarPrecio": boolean,
+            "unidad_de_medida_id": string,
+            "updated_at": string,
+            "created_at": string,
+            "catalogo_id": string,
+            "unidad_de_medida": {
+              "_id": string,
+              "nombre": string,
+              "abreviatura": string,
+              "updated_at": string,
+              "created_at": string,
+              }
+          },
+          "unidadDeMedida": {
+            "_id": string,
+            "nombre": string,
+            "abreviatura": string,
+            "updated_at": string,
+            "created_at": string,
+          },
+          "cantidad": number
         }
       ]
     } = {
@@ -196,7 +213,7 @@ class Detail extends React.Component<{
       estado: '',
       updated_at: '',
       created_at: '',
-      importe: '',
+      importe: 'Sin cotizar',
       empresa_demandante: {
         _id: '',
         nombre: '',
@@ -220,16 +237,33 @@ class Detail extends React.Component<{
       mensajes: [],
       items: [
         {
-          _id: '',
-          foto: [],
-          nombre: '',
-          precio: '',
-          descrpcion: '',
-          mostrarPrecio: false,
-          unidad_de_medida_id: '',
-          updated_at: '',
-          created_at: '',
-          catalogo_id: '',
+          "item": {
+            "_id": '',
+            "foto": [''],
+            "nombre": '',
+            "precio": '',
+            "descrpcion": '',
+            "mostrarPrecio": false,
+            "unidad_de_medida_id": '',
+            "updated_at": '',
+            "created_at": '',
+            "catalogo_id": '',
+            "unidad_de_medida": {
+              "_id": '',
+              "nombre": '',
+              "abreviatura": '',
+              "updated_at": '',
+              "created_at": '',
+              }
+          },
+          "unidadDeMedida": {
+            "_id": '',
+            "nombre": '',
+            "abreviatura": '',
+            "updated_at": '',
+            "created_at": '',
+          },
+          "cantidad": 0
         }
       ]
     }
@@ -302,15 +336,11 @@ class Detail extends React.Component<{
           title={ 'Mis compras - Detalle de presupuesto' }
           subtitle1={ 'Datos del presupuesto' }
           subtitle2={ 'Item solicitado' }
-          empresa={ empresa } 
-          importe={ importe }
-          estado={ estado }
-          cantidad={ cantidad }
-          item={ item }
           drawer={ this.drawer() }
           appBar={this.appBar()}
           footer={this.footer()}
           presupuesto={ presupuesto }
+          pedido={ null }
           labelCompany={ 'Empresa demandada' }
           company={ company }
           actions={ (classes: any) => this.actions(classes) }

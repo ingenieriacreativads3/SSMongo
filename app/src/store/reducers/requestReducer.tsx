@@ -14,6 +14,36 @@ export default function requestReducer ( state = {
 
 	switch (action.type) {
 
+		case 'LIMPIAR':{
+			return {
+			  ...state,
+			  status: 0,
+			  message: '',
+			};
+		}
+
+		case 'REINTENTAR':{
+			return {
+			  ...state,
+			  fetching: false,
+			  fetched: false,
+			  status: 0,
+			  message: '',
+			  data: {}
+			};
+		}
+			  
+		case 'SETEAR':{
+			return {
+			  ...state,
+			  fetching: false,
+			  fetched: false,
+			  status: 200,
+			  message: '',
+			  data: state.data
+			};
+		}
+
 		case 'GET_PURCHASE_REQUESTS_PENDING': {
 			return { 
 				...state, 
@@ -115,8 +145,60 @@ export default function requestReducer ( state = {
         status: action.payload.data.status,
         message: action.payload.data.message,
         data: action.payload.data.data
-	  };
-	}
+	  	};
+		}
+
+		case 'CANCELAR_PEDIDO_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'CANCELAR_PEDIDO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'CANCELAR_PEDIDO_FULFILLED': {
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: state.data
+			};
+		}
+
+		case 'ENVIAR_PEDIDO_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'ENVIAR_PEDIDO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'ENVIAR_PEDIDO_FULFILLED': {
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: state.data
+			};
+		}
 	
 		case 'E': {
 			throw new Error('Este error se manejo asi!' + ' requestReducer' + 'Reducer.js');

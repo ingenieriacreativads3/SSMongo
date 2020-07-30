@@ -9,13 +9,13 @@ export function SaleRequests(props: {
 	match: any,
 	staticContext?: any
 	cookies: Cookies,
-  }) {
+}) {
 	return <List 
-	history={props.history}
-    location={props.location}
-    match={props.match}
-    staticContext={props.staticContext}
-	cookies={props.cookies}
+		history={ props.history }
+    location={ props.location }
+    match={ props.match }
+    staticContext={ props.staticContext }
+		cookies={ props.cookies }
 	/>;
 }
 
@@ -25,12 +25,12 @@ export function DetailSaleRequest(props: {
 	match: any,
 	staticContext?: any,
 	cookies: Cookies,
-  }) {
-	return <Detail  history={props.history}
-    location={props.location}
-    match={props.match}
-	staticContext={props.staticContext}
-	cookies={props.cookies}
-	
+}) {
+	return <Detail
+		history={ props.history }
+    location={ props.location }
+    match={ props.match }
+		staticContext={ props.staticContext }
+		cookies={ props.cookies }
 	/>;
 }
