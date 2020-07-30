@@ -5,7 +5,7 @@ import { Button  } from '@material-ui/core';
 
 import { Detail as DetailExport } from './../../../components/Detail'
 import * as requestActions from './../../../store/actions/request'
-import * as dialogActions from './../../store/actions/dialog'
+import * as dialogActions from './../../../store/actions/dialog'
 import { Drawer } from './../../Drawer'
 import {AppBar} from './../../AppBar'
 import {Footer} from './../../Footer'
