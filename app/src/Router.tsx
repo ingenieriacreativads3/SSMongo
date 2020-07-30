@@ -37,6 +37,7 @@ import Item from './entities/Item';
 import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion'
 import { EmpresaPerfil } from './containers/Perfil'
 import { SolicitudesUnidadMedida, SolicitudDeUnidadDeMedida, NuevaUnidadMedida } from './containers/UnidadMedida'
+import { NoAutenticado } from './containers/No Autenticado'
 
 class App extends React.Component <{}, {}> {
 
@@ -156,7 +157,7 @@ class App extends React.Component <{}, {}> {
 						<this.enEspera path='/home/reputacion'        cookies={cookies} render={(props:any) => <Reputacion {...props} cookies={cookies}/>}/>
 						<Route path='/home/inicio' 			  		 render={(props) => <Inicio { ...props } cookies={cookies} />}/>
 						
-						
+						<Route path='/Unauthorized'         		 render={(props) => <NoAutenticado {...props} />} />
 						<Route path='/registrar' 					            component={ Register } />
 						<this.login path='/' cookies={cookies} render={(props: any) => <Login { ...props } cookies={cookies} />}/>
 					
