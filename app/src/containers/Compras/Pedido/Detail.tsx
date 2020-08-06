@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Button  } from '@material-ui/core';
 
+import { OneButton } from './../../../components/Dialogs'
 import { Detail as DetailExport } from './../../../components/Detail'
 import * as requestActions from './../../../store/actions/request'
 import * as dialogActions from './../../../store/actions/dialog'
@@ -97,14 +98,14 @@ class Detail extends React.Component<{
       this.props.dispatch(requestActions.reintentar())
     } else {
       this.props.dispatch(requestActions.setear())
-      this.props.history.push('/ventas/pedidos/lista')
+      this.props.history.push('/compras/pedidos/lista')
     }
 
   }
 
   finalizar() {
 
-    this.props.dispatch(requestActions.cancelarPedido(
+    this.props.dispatch(requestActions.finalizarPedido(
       this.props.match.params.id,
       this.props.cookies.get('empresaId'),
     ))
@@ -367,6 +368,12 @@ class Detail extends React.Component<{
 					labelCompany={ 'Empresa demandada' }
 					company={ company }
 					actions={ (classes: any) => this.actions(classes) }
+        />
+        <OneButton 
+          title={ 'Pedido' }
+          text={ this.props.requestReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
         />
       </div>
     );

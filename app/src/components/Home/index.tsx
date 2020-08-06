@@ -202,14 +202,33 @@ export function InitLayout(props: {
   drawer: any,
   footer: any,
   appBar:any,
-
+  items: [
+    {
+      "_id": string,
+      "foto": string[],
+      "nombre": string,
+      "precio": string,
+      "descrpcion": string,
+      "mostrarPrecio": boolean,
+      "unidad_de_medida_id": string,
+      "updated_at": string,
+      "created_at": string,
+      "catalogo_id": string,
+      "unidad_de_medida": {
+        "_id": string,
+        "nombre": string,
+        "abreviatura": string,
+        "updated_at": string,
+        "created_at": string,
+      }
+    }
+  ]
 }) {
 
 	const classes = useStyles(theme);
  
   return <div>
     <Home
-  
       classes={classes} 
       theme={useTheme}
       history={props.history}
@@ -220,6 +239,7 @@ export function InitLayout(props: {
       drawer={props.drawer}
       footer={props.footer}
       appBar={props.appBar}
+      items={ props.items }
     />
   </div>;
 }

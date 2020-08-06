@@ -77,8 +77,6 @@ class App extends React.Component <{}, {}> {
 
 		let isAuth: boolean = false
 
-		console.log(props.cookies.get('empresaId'))
-
 		if(props.cookies.get('empresaId') !== undefined) {
 			isAuth = true
 		}
@@ -114,8 +112,8 @@ class App extends React.Component <{}, {}> {
 						<this.enEspera path='/unidadMedida/nuevo'        cookies={cookies}    render={(props:any) => <NuevaUnidadMedida {...props} cookies={cookies} />}/>
 					  
 						
-						<this.enEspera path='/presupuesto/nuevo'          cookies={cookies}    render={(props:any) => <PresupuestoNuevo { ...props } cookies={cookies} />} />
-						<this.enEspera path='/pedido/nuevo'                cookies={cookies}   render={(props:any) => <PedidoNuevo { ...props } cookies={cookies} />} />
+						<this.enEspera path='/presupuesto/nuevo/:id'          cookies={cookies}    render={(props:any) => <PresupuestoNuevo { ...props } cookies={cookies} />} />
+						<this.enEspera path='/pedido/nuevo/:id'                cookies={cookies}   render={(props:any) => <PedidoNuevo { ...props } cookies={cookies} />} />
 						
 						<this.enEspera path='/evaluacion/suppliersStore'   cookies={cookies}   render={(props:any) => <EvaluacionPlataforma {...props} cookies={cookies} />} /> 
 						<this.enEspera path='/evaluacion/empresa'          cookies={cookies}   render={(props:any) => <EvaluacionEmpresa {...props} cookies={cookies} />} /> 

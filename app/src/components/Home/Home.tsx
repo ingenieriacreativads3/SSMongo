@@ -53,7 +53,28 @@ function Copyright() {
 
 class Home extends React.Component <{
   clasess: any,
-  theme: any
+  theme: any,
+  items: [
+    {
+      "_id": string,
+      "foto": string[],
+      "nombre": string,
+      "precio": string,
+      "descrpcion": string,
+      "mostrarPrecio": boolean,
+      "unidad_de_medida_id": string,
+      "updated_at": string,
+      "created_at": string,
+      "catalogo_id": string,
+      "unidad_de_medida": {
+        "_id": string,
+        "nombre": string,
+        "abreviatura": string,
+        "updated_at": string,
+        "created_at": string,
+      }
+    }
+  ]
 }, {
 
   valueFilter: number | null,
@@ -74,10 +95,6 @@ class Home extends React.Component <{
       activeStep: 0
 		};
   }
-
-  // componentWillMount() {
-  //   this.props.dispatch(drawerActions.invisibleDrawer())
-  // }
 
   render(){
 
@@ -221,130 +238,75 @@ class Home extends React.Component <{
 
 
 						<Container maxWidth="lg"  className={classes.container} >
-            <ListSubheader component="div" id="nested-list-subheader">
-              <Typography  variant="h4" component="h3" gutterBottom>
-                Basado en tus busquedas
-              </Typography>
-            </ListSubheader>
-            <Grid container spacing={3}>
-           
-                {/* <SideBarInicio></SideBarInicio> */}
-               
+              <ListSubheader component="div" id="nested-list-subheader">
+                <Typography  variant="h4" component="h3" gutterBottom>
+                  Basado en tus busquedas
+                </Typography>
+              </ListSubheader>
+              <Grid container spacing={3}>
+            
+                  {/* <SideBarInicio></SideBarInicio> */}
                 
-              <Grid item lg={3}>
+                  {
+                    this.props.items.map((item: {
+                      "_id": string,
+                      "foto": string[],
+                      "nombre": string,
+                      "precio": string,
+                      "descrpcion": string,
+                      "mostrarPrecio": boolean,
+                      "unidad_de_medida_id": string,
+                      "updated_at": string,
+                      "created_at": string,
+                      "catalogo_id": string,
+                      "unidad_de_medida": {
+                        "_id": string,
+                        "nombre": string,
+                        "abreviatura": string,
+                        "updated_at": string,
+                        "created_at": string,
+                      }
+                    }) => {
+                      return <div>
+                        <Grid item lg={3}>
+                          <Card className={fixedHeightCardCatalog}>
+                            <CardActionArea>
+                              <CardMedia
+                                component="img"
+                                alt={item.nombre}
+                                height="140"
+                                image={'http://localhost:8000/' + item.foto[0]}
+                                title={item.nombre}
+                              />
+                              <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                  {item.nombre}
+                                </Typography>
+                                <Typography variant="subtitle1" component="h2">
+                                  ${item.precio} x {item.unidad_de_medida.nombre}
+                                </Typography>
+                              </CardContent>
+                            </CardActionArea>
+                            <CardActions >
+                              <Link to={'/item/detalle/' + item._id}>
+                                <IconButton aria-label="ver" className={classes.iconButton}> 
+                                  <VisibilityIcon style={{ fontSize: 40 }}  />
+                                </IconButton>
+                              </Link>
+                            </CardActions>
+                          </Card>
+                        </Grid>
+                      </div>
+                    })
+                  }
               
-                <Card className={fixedHeightCardCatalog}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Samsung A20"
-                      height="140"
-                      image={foto}
-                      title="Samsung A20"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        asdasd
-                      </Typography>
-                      <Typography variant="subtitle1" component="h2">
-                        $16000
-                      </Typography>
-                    
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions >
-                  <Link to="/item/detalle/:id">
-                    <IconButton aria-label="ver" className={classes.iconButton}> 
-                      <VisibilityIcon style={{ fontSize: 40 }}  />
-                    </IconButton>
-                    </Link>
-                  
-                    
-                  </CardActions>
-                  </Card>
-                </Grid>
-                <Grid item lg={3}>
-                <Card className={fixedHeightCardCatalog}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Samsung A20"
-                      height="140"
-                      image={foto}
-                      title="Samsung A20"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        asdasd
-                      </Typography>
-                      <Typography variant="subtitle1" component="h2">
-                        $16000
-                      </Typography>
-                    
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions >
-                  <Link to="/item/detalle/:id">
-                    <IconButton aria-label="ver" className={classes.iconButton}> 
-                      <VisibilityIcon style={{ fontSize: 40 }}  />
-                    </IconButton>
-                    </Link>
-                  
-                    
-                  </CardActions>
-                  </Card>
-                </Grid>
-                <Grid item lg={3}>
-                <Card className={fixedHeightCardCatalog}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Samsung A20"
-                      height="140"
-                      image={foto}
-                      title="Samsung A20"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        asdasd
-                      </Typography>
-                      <Typography variant="subtitle1" component="h2">
-                        $16000
-                      </Typography>
-                    
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions >
-                  <Link to="/item/detalle/:id">
-                    <IconButton aria-label="ver" className={classes.iconButton}> 
-                      <VisibilityIcon style={{ fontSize: 40 }}  />
-                    </IconButton>
-                    </Link>
-                  
-                    
-                  </CardActions>
-                  </Card>
-                </Grid>
-
               </Grid>
 							
 							
 						</Container>
-              
-
-            
-            
-
-            
             {this.props.footer}
 					</main>
-
-          
-         
-		 </div>
-
-     
-
+		  </div>
     );
   }
 }

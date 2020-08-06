@@ -291,17 +291,57 @@ export  function VerDetalleItem(props: {
   drawer:any,
   footer:any,
   appBar:any,
+  actions: any,
+  item: {
+    "_id": string,
+    "foto": string[],
+    "nombre": string,
+    "precio": string,
+    "descrpcion": string,
+    "mostrarPrecio": boolean,
+    "unidad_de_medida_id": string,
+    "updated_at": string,
+    "created_at": string,
+    "catalogo_id": string,
+    "unidad_de_medida": {
+      "_id": string,
+      "nombre": string,
+      "abreviatura": string,
+      "updated_at": string,
+      "created_at": string,
+    },
+    "catalogo": {
+      "_id": string,
+      "empresa_id": string,
+      "updated_at": string,
+      "created_at": string,
+      "empresa": {
+        "_id": string,
+        "nombre": string,
+        "cuit": string,
+        "usuario": string,
+        "clave": string,
+        "email": string,
+        "estado": string,
+        "updated_at": string,
+        "created_at": string,
+      }
+    }
+  }
 }) {
 
 	const classes = useStyles(theme);
 
   return <div>
     <DetalleItem 
-    classes={classes}
-    theme={useTheme}
-    drawer={props.drawer}
-    footer={props.footer}
-    appBar={props.appBar} />;
+      classes={classes}
+      theme={useTheme}
+      drawer={props.drawer}
+      footer={props.footer}
+      appBar={props.appBar}
+      actions={props.actions}
+      item={props.item}
+    />;
     
     {/* history={props.history}
     location={props.location}

@@ -1,0 +1,14 @@
+{
+  "title": "Material demo",
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "description": "https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/lists/VirtualizedList.js",
+  "dependencies": {
+    "react-window": "latest",
+    "react-dom": "latest",
+    "react": "latest",
+    "prop-types": "latest",
+    "@material-ui/core": "latest"
+  }
+}

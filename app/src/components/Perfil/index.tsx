@@ -251,20 +251,38 @@ export  function PerfilPropio(props: {
   footer:any,
   drawer:any,
   appBar:any,
+  empresa: {
+    "_id": string,
+    "nombre": string,
+    "cuit": string,
+    "usuario": string,
+    "email": string,
+    "estado": string,
+    "updated_at": string,
+    "created_at": string,
+    "domicilioLegal": string,
+    "localidad": string,
+    "logo": string,
+    "mostrar_perfil": boolean,
+    "provincia": string,
+    "telefono": string,
+    "clave": string,
+  }
 }) {
 
 	const classes = useStyles(theme);
  
   return <div>
     <DatosCuenta 
-    classes={classes}
-    history={props.history}
-    location={props.location}
-    match={props.match}
-    staticContext={props.staticContext}
-    footer={props.footer}
-    drawer={props.drawer}
-    appBar={props.appBar}
+      classes={classes}
+      history={props.history}
+      location={props.location}
+      match={props.match}
+      staticContext={props.staticContext}
+      footer={props.footer}
+      drawer={props.drawer}
+      appBar={props.appBar}
+      empresa={props.empresa}
      />
   </div>;
 

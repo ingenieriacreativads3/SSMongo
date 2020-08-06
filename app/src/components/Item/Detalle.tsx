@@ -53,12 +53,46 @@ function mapStateToProps(store: {
 
 class Detalle extends React.Component <{
   clasess: any,
-  theme: any
+  theme: any,
+  actions: any,
+  item: {
+    "_id": string,
+    "foto": string[],
+    "nombre": string,
+    "precio": string,
+    "descrpcion": string,
+    "mostrarPrecio": boolean,
+    "unidad_de_medida_id": string,
+    "updated_at": string,
+    "created_at": string,
+    "catalogo_id": string,
+    "unidad_de_medida": {
+      "_id": string,
+      "nombre": string,
+      "abreviatura": string,
+      "updated_at": string,
+      "created_at": string,
+    },
+    "catalogo": {
+      "_id": string,
+      "empresa_id": string,
+      "updated_at": string,
+      "created_at": string,
+      "empresa": {
+        "_id": string,
+        "nombre": string,
+        "cuit": string,
+        "usuario": string,
+        "clave": string,
+        "email": string,
+        "estado": string,
+        "updated_at": string,
+        "created_at": string,
+      }
+    }
+  }
 }, {
-
-
   activeStep: number
-  
 }>  {
 
 	props: any
@@ -70,37 +104,25 @@ class Detalle extends React.Component <{
     super(props);
     this.state = {
       activeStep: 0
-      /* Item: {
-        nombre: '',
-        precio: '',
-        foto: '',
-        descripcion: '',
-        caracteristicas: '',
-        unidadDeMedida: '',
-        mostrarPrecio: false
-      } */
     };
   }
-
-  
 
   render(){
 
     const classes = this.props.classes
     const theme = this.props.theme
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    const tutorialSteps = [
-      {
-        label: 'San Francisco – Oakland Bay Bridge, United States',
-        imgPath:
-          'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-      },
-      {
-        label: 'Bird',
-        imgPath:
-          'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-      },
-    ];
+    const tutorialSteps: {
+      label: string,
+      imgPath: string
+    }[] = [];
+
+    this.props.item.foto.map((img: string) => {
+      tutorialSteps.push({
+        label: '',
+        imgPath: 'http://localhost:8000/' + img
+      })
+    })
 
     const maxSteps = tutorialSteps.length;
 
@@ -140,14 +162,14 @@ class Detalle extends React.Component <{
                         <Grid container  >
                           <Grid item sm={6} xs={12}  >
                             <Typography gutterBottom variant="h5" component="h2" style={{paddingTop:30}} >
-                                SAMSUNG GALAXY A20 
+                              {this.props.item.nombre}
                             </Typography>
                             <Typography variant="subtitle1" component="h2" style={{paddingTop:20}}>
-                              $16000 x Unidad
+                              ${this.props.item.precio} x {this.props.item.unidad_de_medida.nombre}
                             </Typography>
                             <Typography style={{paddingTop:20}}>
-                              <Link href="/home/perfil/:id" variant="h5" className={classes.Link}>
-                              {"Vendedor: Symsa"}
+                              <Link href={'/home/perfil/' + this.props.item.catalogo.empresa._id} variant="h5" className={classes.Link}>
+                                { 'Vendedor: ' + this.props.item.catalogo.empresa.nombre}
                               </Link>
                             </Typography>
                             
@@ -155,7 +177,7 @@ class Detalle extends React.Component <{
                               Descripción
                             </Typography>
                             <Typography variant="subtitle2" component="h4">
-                              El Samsung Galaxy A20 completa la gama Galaxy Ax entre el Galaxy A10 y el Galaxy A30. Con una pantalla Infinity-V HD+ de 6.4 pulgadas, el Galaxy A20 está potenciado por un procesador Exynos 7884 de ocho núcleos, con 3GB de memoria RAM y 32GB de almacenamiento interno. La cámara principal del Galaxy A20 es dual de 13 MP + 5 MP y la cámara para selfies es de 8 megapixels. Completando sus características, el Galaxy A20 tiene una gran batería de 4000 mAh con carga rápida, lector de huellas, y corre Android 9.0 Pie.
+                              {this.props.item.descrpcion}
                             </Typography>
                             
                               
@@ -204,48 +226,15 @@ class Detalle extends React.Component <{
                                 />
                               </div>
 
-                                   {/*  <img src={foto} className = {classes.img}></img> */}
-                            
+                              {this.props.actions(classes)}
 
-                                  <div>
-                                    <Link href="/pedido/nuevo" style={{textDecoration: 'none'}} >
-                                      <Button
-                                      type="button"
-                                      
-                                      variant="contained"
-                                      className={classes.Boton}
-                                      // onClick={this.ingresar}
-                                      >
-                                      Solicitar pedido
-                                      </Button>
-                                    </Link>
-                                  <Link href="/presupuesto/nuevo" style={{textDecoration: 'none'}} >
-                                    <Button
-                                    type="button"
-                                    
-                                    variant="contained"
-                                    className={classes.Boton}
-                                    // onClick={this.ingresar}
-                                    >
-                                    Solicitar presupuesto
-                                    </Button>
-                                  </Link>
-                                  </div>
-                                  
-                                
-                                
                           </Grid>
                           
                         </Grid>
-                        
-                    
                   </CardContent>
-
-                
                   
                 </Card>
               </Grid>
-
 
             </Grid>
             {/* <Box pt={4}>

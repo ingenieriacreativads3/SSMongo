@@ -1,5 +1,28 @@
 import axios from 'axios';
 
+export function finalizarPedido(
+	idPedido: string,
+	idEmpresa: string,	
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/pedido/finalizar', {
+		pedido : {
+			_id : idPedido
+		},
+		empresaFinalizadora : {
+			_id : idEmpresa
+		}
+	})
+
+  return {
+		type: 'FINALIZAR_PEDIDO',
+		payload: payload
+	}
+
+}
+
 export function enviarPedido(
 	idPedido: string,
 	idEmpresa: string,	
@@ -86,38 +109,35 @@ export function getRequest(id: string) {
 }
 
 export function setRequest(
-	id: string,	
+	idItem: string,	
 	cantidad: string,
 	idEmpresaPerteneciente:string,
 	idEmpresaDemandante:string,
 	comentario:string,
-	
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.post(url + '/pedido',{
-    empresaPerteneciente: {
-		_id: idEmpresaPerteneciente,
-	},
-	empresaDemandante: {
-		_id: idEmpresaDemandante,
-	},
-    items: {
-			_id: id,
-			cantidad: cantidad,
-			
+	let payload: any = axios.post(url + '/pedido', {
+		empresaPerteneciente: {
+			_id: idEmpresaPerteneciente,
 		},
-	comentario : comentario,
+		empresaDemandante: {
+			_id: idEmpresaDemandante,
+		},
+    items: [
+			{
+				_id: idItem,
+				cantidad: cantidad,
+			}
+		],
+		comentario : comentario,
 	})
 
-	console.log(payload)
-	
   return {
 		type: 'SET_NEW_PEDIDO',
 		payload: payload
 	}
-
 }
 
 export function setear() {

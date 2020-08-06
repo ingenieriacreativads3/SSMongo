@@ -375,39 +375,6 @@ class Detail extends React.Component<{
 			}
 		}
     
-    let empresa: string = 'nombreEmpresa'
-		let importe: string = 'importe'
-		let estado: string = 'estado'
-		let cantidad: string = 'cantidad'
-		let item: {
-			nombre: string,
-			precio: string,
-			unidad: string
-		} = {
-			nombre: 'nombreItem',
-			precio: 'precioItem',
-			unidad: 'unidadItem'
-    }
-    
-    if(this.props.requestReducer !== undefined) {
-			if(this.props.requestReducer.data !== undefined) {
-				if(this.props.requestReducer.data.pedido !== undefined) {
-					if(this.props.requestReducer.data.pedido.empresa_perteneciente !== undefined) {
-						if(this.props.requestReducer.data.pedido.empresa_perteneciente.nombre !== undefined) {
-							empresa = this.props.requestReducer.data.pedido.empresa_perteneciente.nombre
-						}
-					}
-					if(this.props.requestReducer.data.pedido.importe) {
-						importe = this.props.requestReducer.data.pedido.importe
-					}
-					if(this.props.requestReducer.data.pedido.estado) {
-						estado = this.props.requestReducer.data.pedido.estado
-					}
-
-				}
-			}
-		}
-
     return(
       <div>
         <DetailExport

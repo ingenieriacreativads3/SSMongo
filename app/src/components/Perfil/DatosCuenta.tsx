@@ -6,7 +6,6 @@ import SaveIcon from '@material-ui/icons/Save';
 
 import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-import * as registerActions  from './../../store/actions/register'
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
 
@@ -31,10 +30,8 @@ function Copyright() {
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
-  registerReducer:{}
 }) {
   return {
-    empresa: store.registerReducer,
     ubicacionReducer: store.ubicacionReducer
   };
 }
@@ -44,21 +41,44 @@ class DatosCuenta extends React.Component <{
   location: any,
   match: any,
   staticContext?: any,
- 
-
-
+  empresa: {
+    "_id": string,
+    "nombre": string,
+    "cuit": string,
+    "usuario": string,
+    "email": string,
+    "estado": string,
+    "updated_at": string,
+    "created_at": string,
+    "domicilioLegal": string,
+    "localidad": string,
+    "logo": string,
+    "mostrar_perfil": boolean,
+    "provincia": string,
+    "telefono": string,
+    "clave": string,
+  }
 }, {
   provincia: string,
   municipio: string,
   empresa: {
-  _id: string,
-  nombre: string,
-  cuit: string,
-  usuario: string,
-  clave: string,
-  email:string,
-  
-}}>  {
+    "_id": string,
+    "nombre": string,
+    "cuit": string,
+    "usuario": string,
+    "email": string,
+    "estado": string,
+    "updated_at": string,
+    "created_at": string,
+    "domicilioLegal": string,
+    "localidad": string,
+    "logo": string,
+    "mostrar_perfil": boolean,
+    "provincia": string,
+    "telefono": string,
+    "clave": string,
+  }
+}>  {
 
 	props: any
 	static propTypes: any
@@ -73,23 +93,38 @@ class DatosCuenta extends React.Component <{
       provincia: '',
       municipio: '',
       empresa: {
-        _id: '',
-        nombre: '',
-        cuit: '',
-        usuario: '',
-        clave: '',
-        email:''
-    
-        
+        "_id": '',
+        "nombre": '',
+        "cuit": '',
+        "usuario": '',
+        "email": '',
+        "estado": '',
+        "updated_at": '',
+        "created_at": '',
+        "domicilioLegal": '',
+        "localidad": '',
+        "logo": '',
+        "mostrar_perfil": false,
+        "provincia": '',
+        "telefono": '',
+        "clave": '',
       }
     };
   }
 
- 
+  componentWillReceiveProps() {
+
+    if(!this.props.ubicacionReducer.fetched) this.setState({ empresa: this.props.empresa})
+    if(
+      this.props.ubicacionReducer.municipios.length === 0 &&
+      !this.props.ubicacionReducer.fetching
+    ) {
+      this.props.dispatch(ubicacionActions.getMunicipiosByName(this.props.empresa.provincia))
+    }
+
+  }
 
   componentWillMount() {
-
-    this.props.dispatch(registerActions.getEmpresa(this.props.match.params.id))
 
     if(
       !this.props.ubicacionReducer.fetched &&
@@ -101,31 +136,37 @@ class DatosCuenta extends React.Component <{
   }
 
   handleChangeProvincia(e: any) {
-    this.setState({
-      provincia: e.target.value
-    });
-
-    if(
-      this.props.ubicacionReducer.provincias !== undefined
-    ) {
-      this.props.ubicacionReducer.provincias.map((provincia: {
-        nombre: string,
-        id: string
-      }) => {
-        if(e.target.value == provincia.nombre) {
-          this.props.dispatch(ubicacionActions.getMunicipios(provincia.id))
-        }
-      })
-    }
-
+    this.setState({ empresa: { ...this.state.empresa, provincia: e.target.value } })
+    this.props.dispatch(ubicacionActions.getMunicipiosByName(e.target.value))
   }
 
   handleChangeMunicipio(e: any) {
-    this.setState({
-      municipio: e.target.value
-    });
+    this.setState({ empresa: { ...this.state.empresa, localidad: e.target.value } })
   }
 
+  changeUsuario(e: any) {
+    this.setState({ empresa: { ...this.state.empresa, usuario: e.target.value } })
+  }
+
+  changeEmail(e: any) {
+    this.setState({ empresa: { ...this.state.empresa, email: e.target.value } })
+  }
+
+  changeClave(e: any) {
+    this.setState({ empresa: { ...this.state.empresa, clave: e.target.value } })
+  }
+
+  changeCUIT(e: any) {
+    this.setState({ empresa: { ...this.state.empresa, cuit: e.target.value } })
+  }
+
+  changeDomicilio(e: any) {
+    this.setState({ empresa: { ...this.state.empresa, domicilioLegal: e.target.value } })
+  }
+
+  changeTelefono(e: any) {
+    this.setState({ empresa: { ...this.state.empresa, telefono: e.target.value } })
+  }
 
   render(){
 
@@ -228,7 +269,8 @@ class DatosCuenta extends React.Component <{
                               className={classes.textField}
                               label="Usuario"
                               variant="outlined"
-                              defaultValue= "CorpuSA"
+                              value={ this.state.empresa.usuario }
+                              onChange={ this.changeUsuario }
                               id="mui-theme-provider-outlined-input"
                               InputLabelProps={{
                                 classes: {
@@ -249,9 +291,10 @@ class DatosCuenta extends React.Component <{
                             </Grid>
                             <Grid item lg={4}>
                             <TextField
-                            className={classes.textField}
-                            variant="outlined"
-                              defaultValue= "corpu@sa.com.ar"
+                              className={classes.textField}
+                              variant="outlined"
+                              value={this.state.empresa.email}
+                              onChange={ this.changeEmail }
                               label="Email"
                               type="email"
                               InputLabelProps={{
@@ -273,8 +316,9 @@ class DatosCuenta extends React.Component <{
                             <Grid item lg={4}>
                             <TextField
                               className={classes.textField}
-                            variant="outlined"
-                              defaultValue= "micontraseña"
+                              variant="outlined"
+                              value={ this.state.empresa.clave }
+                              onChange={ this.changeClave }
                               label="Contraseña"
                               type="text"
                               InputLabelProps={{
@@ -304,9 +348,10 @@ class DatosCuenta extends React.Component <{
                           <Grid item lg={4}>
                             <TextField
                               className={classes.textField}
-                            variant="outlined"
-                            disabled
-                              defaultValue= "30236547815"
+                              variant="outlined"
+                              disabled
+                              value={ this.state.empresa.cuit }
+                              onChange={ this.changeCUIT }
                               label="CUIT"
                               type="text"
                               InputLabelProps={{
@@ -324,35 +369,13 @@ class DatosCuenta extends React.Component <{
                               }}
                             />
                             </Grid>
-                            <Grid item lg={4}>
-                            <TextField
-                              className={classes.textField}
-                            variant="outlined"
                             
-                              defaultValue= "CorpuSoft"
-                              label="Nombre"
-                              type="text"
-                              InputLabelProps={{
-                                classes: {
-                                  root: classes.cssLabel,
-                                  focused: classes.cssFocused,
-                                },
-                              }}
-                              InputProps={{
-                                classes: {
-                                  root: classes.cssOutlinedInput,
-                                  focused: classes.cssFocused,
-                                  notchedOutline: classes.notchedOutline,
-                                },
-                              }}
-                            />
-                            </Grid>
                             <Grid item lg={4}>
                             <TextField
                               className={classes.textField}
-                            variant="outlined"
-                            disabled
-                              defaultValue= "CorpuSoft SA"
+                              variant="outlined"
+                              disabled
+                              value={ this.state.empresa.nombre }
                               label="Razón social"
                               type="text"
                               InputLabelProps={{
@@ -378,8 +401,9 @@ class DatosCuenta extends React.Component <{
                           <Grid item lg={4}>
                             <TextField
                             
-                            variant="outlined"
-                              defaultValue= "Bv. Roca 1200"
+                              variant="outlined"
+                              value={ this.state.empresa.domicilioLegal }
+                              onChange={ this.changeDomicilio }
                               label="Domicilio"
                               type="text"
                               className={classes.textField}
@@ -406,7 +430,7 @@ class DatosCuenta extends React.Component <{
                                 id="demo-simple-select-outlined"
                                 className={classes.select}
                                 label="Provincia"
-                                value={this.state.provincia} 
+                                value={this.state.empresa.provincia} 
                                 onChange={this.handleChangeProvincia}
                               >
                                 {provincias.map((provincia: {
@@ -427,9 +451,8 @@ class DatosCuenta extends React.Component <{
                                 id="demo-simple-select-outlined"
                                 className={classes.select}
                                 label="Ciudad"
-                                value={this.state.municipio} 
+                                value={this.state.empresa.localidad} 
                                 onChange={this.handleChangeMunicipio}
-                                defaultValue={1}
                               >
                                 {municipios.map((municipio: {
                                   nombre: string,
@@ -449,8 +472,9 @@ class DatosCuenta extends React.Component <{
                           <Grid item lg={4}>
                             <TextField
                               className={classes.textField}
-                            variant="outlined"
-                              defaultValue= "03564421589"
+                              variant="outlined"
+                              value={ this.state.empresa.telefono }
+                              onChange={ this.changeTelefono }
                               label="Teléfono"
                               type="number"
                               InputLabelProps={{
@@ -469,26 +493,26 @@ class DatosCuenta extends React.Component <{
                             />
                             </Grid>
                             <Grid item lg={4}>
-                            <Button
-                              variant="contained"
-                              component="label"
-                              className={classes.botonIcono}
-                            >
-                              Logo
-                              <InputLabel htmlFor="icon-button-file">
-                                <IconButton color="primary"  aria-label="upload picture" component="span" className={classes.iconButton}>
-                                  <PhotoCamera />
-                                </IconButton>
-                              </InputLabel>
-                              <Input
-                                type="file"
-                                style={{ display: "none" }}
-                              />
-                            </Button>
+                              <Button
+                                variant="contained"
+                                component="label"
+                                className={classes.botonIcono}
+                              >
+                                Logo
+                                <InputLabel htmlFor="icon-button-file">
+                                  <IconButton color="primary"  aria-label="upload picture" component="span" className={classes.iconButton}>
+                                    <PhotoCamera />
+                                  </IconButton>
+                                </InputLabel>
+                                <Input
+                                  type="file"
+                                  style={{ display: "none" }}
+                                />
+                              </Button>
                             </Grid>
-                           <Grid item lg={4}>
-                          <Avatar className={classes.fotoLogo} alt={this.props.pathImage}  src={this.props.pathImage} />
-                          </Grid>
+                            <Grid item lg={4}>
+                              <Avatar className={classes.fotoLogo} alt={'http://localhost:8000/' + this.state.empresa.logo}  src={'http://localhost:8000/' + this.state.empresa.logo} />
+                            </Grid>
                           </Grid>
                          
                         </Grid>
