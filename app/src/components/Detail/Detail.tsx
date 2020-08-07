@@ -4,6 +4,11 @@ import clsx from 'clsx'
 
 import { Container, Grid,TextField, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextareaAutosize,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
+import { FixedSizeList } from 'react-window';
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import PropTypes from "prop-types";
 
 import { connect } from 'react-redux'
 import MenuLateral from '../Drawer';
@@ -28,6 +33,41 @@ function mapStateToProps(store: {
     requestReducer: store.requestReducer
   };
 }
+
+function renderRow(props:any) {
+  const { index, style } = props;
+
+  return (
+    <ListItem button style={style} key={index}>
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        </ListItemAvatar>
+        <ListItemText
+          primary="Brunch this weekend?"
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                //className={classes.inline}
+                color="textPrimary"
+              >
+                Ali Connors
+              </Typography>
+              {" — I'll be in your neighborhood doing errands this…"}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+    </ListItem>
+  );
+}
+
+renderRow.propTypes = {
+  index: PropTypes.number.isRequired,
+  style: PropTypes.object.isRequired
+};
 
 class Detail extends React.Component <{
   title: string,
@@ -330,7 +370,10 @@ class Detail extends React.Component <{
                             <TextField disabled id="standard-required" label="Importe" value={ importe }  className={classes.input}  InputLabelProps={{ shrink: true }}/>
                           </Grid>
                           <Grid item lg={4}  xs={12}>
-                            <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  />
+                          <FixedSizeList height={200} width={370} itemSize={100} itemCount={3}>
+                            {renderRow}
+                          </FixedSizeList>
+                            {/* <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  /> */}
                           </Grid>
                         </Grid>
                         <CardContent>
