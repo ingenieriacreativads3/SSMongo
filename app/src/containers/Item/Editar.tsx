@@ -70,6 +70,7 @@ class Editar extends React.Component<{
   }
 
   componentWillMount() {
+    
     if(
       this.props.itemReducer.fetched &&
       !this.props.itemReducer.fetching &&

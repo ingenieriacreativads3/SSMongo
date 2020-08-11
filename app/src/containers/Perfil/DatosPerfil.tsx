@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 
 
 import * as empresaActions from '../../store/actions/empresa'
+import * as fileActions from './../../store/actions/file'
+import * as dialogActions from './../../store/actions/dialog'
 import { PerfilPropio as Perfil} from './../../components/Perfil'
+import { OneButton } from './../../components/Dialogs'
 import Link from '@material-ui/core/Link';
 import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
@@ -13,10 +16,12 @@ import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
   empresaReducer: any,
+  fileReducer: any,
   login: any
 }) {
   return {
     empresaReducer: store.empresaReducer,
+    fileReducer: store.fileReducer,
     login: store.login
   };
 }
@@ -27,7 +32,16 @@ class DatosPerfil extends React.Component<{
   match: any,
   staticContext?: any,
   cookies: Cookies
- }, {}> {
+}, {
+  usuario: string,
+  email: string,
+  pass: string,
+  domicilio: string,
+  provincia: string,
+  localidad: string,
+  telefono: string
+  photo: File[]
+}> {
 
 	props: any
 	static propTypes: any
@@ -35,13 +49,34 @@ class DatosPerfil extends React.Component<{
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
-		super(props);
-    this.state = {};
+    super(props);
+    this.update = this.update.bind(this);
+    this.aceptar = this.aceptar.bind(this);
+    this.state = {
+      usuario: '',
+      email: '',
+      pass: '',
+      domicilio: '',
+      provincia: '',
+      localidad: '',
+      telefono: '',
+      photo: []
+    };
   }
 
   componentWillMount() {
 
     this.props.dispatch(empresaActions.getEmpresa(this.props.match.params.id))
+
+  }
+
+  componentDidUpdate() {
+
+    if(this.props.empresaReducer.fetched) {
+      this.props.dispatch(dialogActions.openOneButton())
+    } else {
+      this.props.dispatch(dialogActions.closeOneButton())
+    }
 
   }
 
@@ -71,6 +106,48 @@ class DatosPerfil extends React.Component<{
       staticContext={this.props.staticContext}
       cookies={this.props.cookies}
     />
+  }
+
+  update(
+    id: string,
+    nombre: string,
+    usuario: string,
+    email: string,
+    logo: string,
+    password: string,
+    telefono: string,
+    provincia: string,
+    localidad: string,
+    visible: boolean,
+    domicilio: string,
+  ) {
+
+    this.props.dispatch(empresaActions.updateEmpresa(
+      id,
+      nombre,
+      usuario,
+      email,
+      logo,
+      password,
+      telefono,
+      provincia,
+      localidad,
+      visible,
+      domicilio
+    ))
+
+  }
+
+  aceptar() {
+
+    this.props.dispatch(dialogActions.closeOneButton())
+    if(this.props.empresaReducer.status !== 200) {
+      this.props.dispatch(empresaActions.reintentar())
+    } else {
+      this.props.dispatch(empresaActions.setear())
+      this.props.history.push('/home/inicio')
+    }
+
   }
 
   render(){
@@ -116,7 +193,6 @@ class DatosPerfil extends React.Component<{
 				}
 			}
 		}
-  
 
     return(
       <div>
@@ -129,7 +205,14 @@ class DatosPerfil extends React.Component<{
           drawer={this.drawer()}
           appBar={this.appBar()}
           empresa={empresa}
+          update={this.update}
          />
+         <OneButton 
+          title={ 'Editar Item' }
+          text={ this.props.empresaReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
+        />
       </div>
     );
   }

@@ -134,8 +134,6 @@ class Detail extends React.Component<{
 
   render(){
 
-    console.log(this.props.requestReducer)
-
 		let pedido: {
       "_id": string,
       "empresa_perteneciente_id": string,

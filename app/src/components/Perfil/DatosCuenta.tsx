@@ -8,6 +8,7 @@ import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHea
 import MaterialLink from '@material-ui/core/Link';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
+import * as fileActions from './../../store/actions/file'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
@@ -30,9 +31,11 @@ function Copyright() {
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
+  fileReducer: any
 }) {
   return {
-    ubicacionReducer: store.ubicacionReducer
+    ubicacionReducer: store.ubicacionReducer,
+    fileReducer: store.fileReducer
   };
 }
 
@@ -41,6 +44,7 @@ class DatosCuenta extends React.Component <{
   location: any,
   match: any,
   staticContext?: any,
+  update: any,
   empresa: {
     "_id": string,
     "nombre": string,
@@ -61,6 +65,7 @@ class DatosCuenta extends React.Component <{
 }, {
   provincia: string,
   municipio: string,
+  photo: File[],
   empresa: {
     "_id": string,
     "nombre": string,
@@ -83,15 +88,23 @@ class DatosCuenta extends React.Component <{
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
  
   constructor(props: any) {
     super(props);
     this.handleChangeProvincia = this.handleChangeProvincia.bind(this);
     this.handleChangeMunicipio = this.handleChangeMunicipio.bind(this);
+    this.changeUsuario = this.changeUsuario.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+    this.changeClave = this.changeClave.bind(this);
+    this.changeCUIT = this.changeCUIT.bind(this);
+    this.changeDomicilio = this.changeDomicilio.bind(this);
+    this.changeTelefono = this.changeTelefono.bind(this);
+    this.getFoto = this.getFoto.bind(this);
+    this.changeMostrarPerfil = this.changeMostrarPerfil.bind(this);
     this.state = {
       provincia: '',
       municipio: '',
+      photo: [],
       empresa: {
         "_id": '',
         "nombre": '',
@@ -168,6 +181,31 @@ class DatosCuenta extends React.Component <{
     this.setState({ empresa: { ...this.state.empresa, telefono: e.target.value } })
   }
 
+  getFoto(e: any) {
+
+    let files: File[] = []
+
+    for (var i = 0; i < e.target.files.length; i++) {
+      files.push(e.target.files[i])
+    }
+
+    files.map((file: File) => {
+      this.props.dispatch(fileActions.upload(file))
+    })
+
+    this.setState({ photo: files })
+  }
+
+  changeMostrarPerfil() {
+
+    let mostrar_perfil: boolean = false
+
+    if(!this.state.empresa.mostrar_perfil) mostrar_perfil = true
+
+    this.setState({ empresa: { ...this.state.empresa, mostrar_perfil: mostrar_perfil } })
+
+  }
+
   render(){
 
 		const classes = this.props.classes
@@ -229,6 +267,8 @@ class DatosCuenta extends React.Component <{
                                 
                           control={
                             <Checkbox
+                              checked={this.state.empresa.mostrar_perfil}
+                              onChange={this.changeMostrarPerfil}
                               style ={{
                                 color: "#d93211",
                               }}
@@ -313,14 +353,14 @@ class DatosCuenta extends React.Component <{
                             />
                               
                             </Grid>
-                            <Grid item lg={4}>
+                            {/* <Grid item lg={4}>
                             <TextField
                               className={classes.textField}
                               variant="outlined"
                               value={ this.state.empresa.clave }
                               onChange={ this.changeClave }
                               label="Contraseña"
-                              type="text"
+                              type="password"
                               InputLabelProps={{
                                 classes: {
                                   root: classes.cssLabel,
@@ -336,7 +376,7 @@ class DatosCuenta extends React.Component <{
                               }}
                             />
                            
-                          </Grid>
+                          </Grid> */}
                           </Grid>
                         
                           <CardContent>
@@ -493,22 +533,22 @@ class DatosCuenta extends React.Component <{
                             />
                             </Grid>
                             <Grid item lg={4}>
-                              <Button
-                                variant="contained"
-                                component="label"
-                                className={classes.botonIcono}
-                              >
-                                Logo
-                                <InputLabel htmlFor="icon-button-file">
-                                  <IconButton color="primary"  aria-label="upload picture" component="span" className={classes.iconButton}>
+                              <label htmlFor="raised-button-file">
+                                <Button variant="contained" component="label" className={classes.botonIcono}>
+                                  Logo
+                                  <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
                                     <PhotoCamera />
+                                    <Input
+                                      inputProps={{ multiple: true }} 
+                                      className={classes.input}
+                                      style={{ display: 'none' }}
+                                      id="raised-button-file"
+                                      type="file"
+                                      onChange = { this.getFoto }
+                                    />
                                   </IconButton>
-                                </InputLabel>
-                                <Input
-                                  type="file"
-                                  style={{ display: "none" }}
-                                />
-                              </Button>
+                                </Button>
+                              </label> 
                             </Grid>
                             <Grid item lg={4}>
                               <Avatar className={classes.fotoLogo} alt={'http://localhost:8000/' + this.state.empresa.logo}  src={'http://localhost:8000/' + this.state.empresa.logo} />
@@ -530,7 +570,19 @@ class DatosCuenta extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
-                              
+                              onClick={() => this.props.update(
+                                this.state.empresa._id,
+                                this.state.empresa.nombre,
+                                this.state.empresa.usuario,
+                                this.state.empresa.email,
+                                this.props.fileReducer.data.foto[0],
+                                this.state.empresa.clave,
+                                this.state.empresa.telefono,
+                                this.state.empresa.provincia,
+                                this.state.empresa.localidad,
+                                this.state.empresa.mostrar_perfil,
+                                this.state.empresa.domicilioLegal,
+                              )}
                             >
                               Guardar
                             </Button>

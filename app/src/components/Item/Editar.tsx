@@ -177,7 +177,6 @@ class Editar extends React.Component <{
     if(!this.state.item.mostrarPrecio) mostrarPrecio = true
 
     this.setState({ item: { ...this.state.item, mostrarPrecio: mostrarPrecio } })
-    // this.props.getMostrarPrecio(mostrarPrecio)
 
   }
 

@@ -251,6 +251,7 @@ export  function PerfilPropio(props: {
   footer:any,
   drawer:any,
   appBar:any,
+  update: any,
   empresa: {
     "_id": string,
     "nombre": string,
@@ -283,6 +284,7 @@ export  function PerfilPropio(props: {
       drawer={props.drawer}
       appBar={props.appBar}
       empresa={props.empresa}
+      update={props.update}
      />
   </div>;
 
