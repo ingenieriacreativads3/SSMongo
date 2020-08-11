@@ -127,7 +127,7 @@ class DatosCuenta extends React.Component <{
 
   componentWillReceiveProps() {
 
-    if(!this.props.ubicacionReducer.fetched) this.setState({ empresa: this.props.empresa})
+    this.setState({ empresa: this.props.empresa})
     if(
       this.props.ubicacionReducer.municipios.length === 0 &&
       !this.props.ubicacionReducer.fetching

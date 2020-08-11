@@ -43,6 +43,10 @@ class AppBar extends React.Component<{
   
   miPerfil() {
 		this.props.history.push('/home/miperfil/' + this.props.cookies.get('empresaId'))
+  }
+  
+  cambiarPassword() {
+		this.props.history.push('/home/cambiar-password/' + this.props.cookies.get('empresaId'))
 	}
 
   render(){

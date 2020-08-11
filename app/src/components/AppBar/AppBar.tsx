@@ -33,7 +33,8 @@ function mapStateToProps(store: {
 
 class AppBare extends React.Component<{
 	cerrarSesion: any,
-	miPerfil: any
+	miPerfil: any,
+	cambiarPassword: any
 }, {
 	anchorEl: null | HTMLElement,
 	mobileMoreAnchorEl: null | HTMLElement
@@ -96,6 +97,11 @@ class AppBare extends React.Component<{
 		const miPerfil = () => {
 			handleMenuClose()
 			this.props.miPerfil()
+		};
+
+		const cambiarPassword = () => {
+			handleMenuClose()
+			this.props.cambiarPassword()
 		};
 
 		const menuId = 'primary-search-account-menu';
@@ -225,8 +231,9 @@ class AppBare extends React.Component<{
 						open={isMenuOpen}
 						onClose={handleMenuClose}
 					>
-						<MenuItem onClick={miPerfil} className={classes.subtitle}><Link href="/home/perfil"></Link>Mi perfil</MenuItem>
-						<MenuItem onClick={cerrarSesion} className={classes.subtitle}><Link href={this.props.linkCerrarSesion}></Link>Cerrar Sesión</MenuItem>
+						<MenuItem onClick={miPerfil} className={classes.subtitle}>Mi perfil</MenuItem>
+						<MenuItem onClick={cerrarSesion} className={classes.subtitle}>Cerrar Sesión</MenuItem>
+						<MenuItem onClick={cambiarPassword} className={classes.subtitle}>Cambiar contraseña</MenuItem>
 					</Menu>
 					
 				</Toolbar>

@@ -34,40 +34,7 @@ function mapStateToProps(store: {
   };
 }
 
-function renderRow(props:any) {
-  const { index, style } = props;
 
-  return (
-    <ListItem button style={style} key={index}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                //className={classes.inline}
-                color="textPrimary"
-              >
-                Ali Connors
-              </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-    </ListItem>
-  );
-}
-
-renderRow.propTypes = {
-  index: PropTypes.number.isRequired,
-  style: PropTypes.object.isRequired
-};
 
 class Detail extends React.Component <{
   title: string,
@@ -257,15 +224,16 @@ class Detail extends React.Component <{
   
   constructor(props: any) {
     super(props);
+		this.renderRow = this.renderRow.bind(this)
     this.state = {};
   }
-  
-  render(){
 
-		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+  renderRow(props:any) {
+    const { index, style } = props;
 
-    let msj: string = ''
+    let msj: any[] = []
+    let empresa_demandante: any = {}
+    let empresa_perteneciente: any = {}
 
     if(this.props.presupuesto !== null) {
       if(
@@ -273,10 +241,100 @@ class Detail extends React.Component <{
         this.props.presupuesto.mensajes !== undefined &&
         this.props.presupuesto.mensajes.length
       ) {
-        this.props.presupuesto.mensajes.map((mensaje: {
-          comentario: string
-        }) => {
-          msj = msj + mensaje.comentario
+        this.props.presupuesto.mensajes.map((mensaje: any) => {
+          msj.push(mensaje)
+        })
+        empresa_perteneciente = this.props.presupuesto.empresa_perteneciente
+        empresa_demandante = this.props.presupuesto.empresa_demandante
+      }
+    }
+
+    if(this.props.pedido !== null) {
+      if(
+        this.props.pedido.presupuesto !== undefined &&
+        this.props.pedido.presupuesto.mensajes !== undefined &&
+        this.props.pedido.presupuesto.mensajes.length
+      ) {
+        this.props.pedido.mensajes.map((mensaje: any) => {
+          msj.push(mensaje)
+        })
+        empresa_perteneciente = this.props.pedido.empresa_perteneciente
+        empresa_demandante = this.props.pedido.empresa_demandante
+      }
+    }
+  
+    let empresa: any = {}
+
+    if(
+      empresa_perteneciente !== undefined &&
+      empresa_perteneciente._id !== undefined &&
+      empresa_perteneciente._id == msj[index].empresa_id
+    ) {
+      empresa = empresa_perteneciente
+    }
+
+    if(
+      empresa_demandante !== undefined &&
+      empresa_demandante._id !== undefined &&
+      empresa_demandante._id == msj[index].empresa_id
+    ) {
+      empresa = empresa_demandante
+    }
+
+    let src: string = 'http://localhost:8000/'
+    let nombre: string = ''
+
+    if(
+      empresa !== undefined
+    ) {
+      if(empresa.logo !== undefined) src = src + empresa.logo
+      if(empresa.nombre !== undefined) nombre = empresa.nombre
+    }
+
+    msj.reverse()
+
+  
+    return (
+      <ListItem button style={style} key={index}>
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar alt={nombre} src={src} />
+          </ListItemAvatar>
+          <ListItemText
+            secondary={
+              <React.Fragment>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  //className={classes.inline}
+                  color="textPrimary"
+                >
+                  {nombre}
+                </Typography>
+                {" — " + msj[index].comentario}
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+      </ListItem>
+    );
+  }
+  
+  render(){
+
+		const classes = this.props.classes
+    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+
+    let msj: any[] = []
+
+    if(this.props.presupuesto !== null) {
+      if(
+        this.props.presupuesto !== undefined &&
+        this.props.presupuesto.mensajes !== undefined &&
+        this.props.presupuesto.mensajes.length
+      ) {
+        this.props.presupuesto.mensajes.map((mensaje: any) => {
+          msj.push(mensaje)
         })  
       }
     }
@@ -287,20 +345,11 @@ class Detail extends React.Component <{
         this.props.pedido.presupuesto.mensajes !== undefined &&
         this.props.pedido.presupuesto.mensajes.length
       ) {
-        this.props.pedido.presupuesto.mensajes.map((mensaje: {
-          comentario: string
-        }) => {
-          msj = msj + mensaje.comentario
-        })
-        this.props.pedido.mensajes.map((mensaje: {
-          comentario: string
-        }) => {
-          msj = msj + mensaje.comentario
+        this.props.pedido.mensajes.map((mensaje: any) => {
+          msj.push(mensaje)
         })
       }
     }
-
-    
 
     let estado: string = ''
     let importe: string = ''
@@ -370,8 +419,8 @@ class Detail extends React.Component <{
                             <TextField disabled id="standard-required" label="Importe" value={ importe }  className={classes.input}  InputLabelProps={{ shrink: true }}/>
                           </Grid>
                           <Grid item lg={4}  xs={12}>
-                          <FixedSizeList height={200} width={370} itemSize={100} itemCount={3}>
-                            {renderRow}
+                          <FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
+                            {this.renderRow}
                           </FixedSizeList>
                             {/* <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  /> */}
                           </Grid>
