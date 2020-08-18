@@ -255,6 +255,14 @@ const useStylesChangePass = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   textField: {
+    "&:after": {
+      // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
+      borderColor: '#d93211 !important',
+    },
+    "&.Mui-focused": {
+      color: '#d93211',
+      
+    },
     width: '25ch',
   },
 }));

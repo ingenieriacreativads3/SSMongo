@@ -5,7 +5,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
+import { createMuiTheme } from '@material-ui/core/styles';
 import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, InputAdornment} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
@@ -117,20 +117,28 @@ class CambiarContraseña extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    const theme = createMuiTheme({
+      palette: {
+        //primary: orange,
+        secondary: {
+          main: '#ffba00',
+        },
+      },
+    });
 
 
     
 
     return(
 
-      <div className={classes.root}>
+      <div className={classes.root} style={{ display: 'flex',flexWrap: 'wrap'}}>
         <CssBaseline />
         {this.props.appBar}
          {this.props.drawer}
-        <main className={classes.content}>
+        <main className={classes.content} style={{ flexGrow: 1, height: '100vh', overflow: 'auto'}} >
             <div className={classes.appBarSpacer} />
-            <Container maxWidth="lg" className={classes.container}>
+            <Container maxWidth="lg" style={{ paddingTop:'100px', paddingBottom: '100px'}} className={classes.container}>
                 <Grid container spacing={3}>
 
                 <Grid item lg={9}>
@@ -139,8 +147,8 @@ class CambiarContraseña extends React.Component <{
                     <CardHeader 
                     
                         avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            D
+                          <Avatar aria-label="recipe" style={{ color:"#ffffff",backgroundColor:'#d93211'}} className={classes.avatar} >
+                            C
                           </Avatar>
                         }
                         title="Cambiar contraseña"
@@ -148,18 +156,19 @@ class CambiarContraseña extends React.Component <{
                       />
                       
                     <CardContent>
-                      <form className={classes.root}>
-                        {/* <Grid container spacing={3}>
+                      <form className={classes.root} style={{ display: 'flex',flexWrap: 'wrap'}}>
+                         <Grid container spacing={3}>
                         
                         <Grid container spacing={3}>
-                        <Grid item lg={4}> */}
+                        <Grid item lg={4}> 
                               
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                          <InputLabel htmlFor="standard-adornment-password">Contraseña Actual</InputLabel>
+                          <InputLabel className={classes.textField} htmlFor="standard-adornment-password">Contraseña Actual</InputLabel>
                           <Input
                             id="standard-adornment-password"
                             type={this.state.showOldPassword ? 'text' : 'password'}
                             value={this.state.oldPassword}
+                            className={classes.textField}
                             onChange={this.handleChangeOldPassword}
                             endAdornment={
                               <InputAdornment position="end">
@@ -174,10 +183,12 @@ class CambiarContraseña extends React.Component <{
                             }
                           />
                         </FormControl>
-
+                        </Grid>
+                        <Grid item lg={4}> 
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                          <InputLabel htmlFor="standard-adornment-password">Nueva Contraseña</InputLabel>
+                          <InputLabel className={classes.textField} htmlFor="standard-adornment-password">Nueva Contraseña</InputLabel>
                           <Input
+                          className={classes.textField}
                             id="standard-adornment-password"
                             type={this.state.showNewPassword ? 'text' : 'password'}
                             value={this.state.newPassword}
@@ -195,10 +206,12 @@ class CambiarContraseña extends React.Component <{
                             }
                           />
                         </FormControl>
-
+                        </Grid>
+                        <Grid item lg={4}> 
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                          <InputLabel htmlFor="standard-adornment-password">Repetir Contraseña</InputLabel>
+                          <InputLabel className={classes.textField}  htmlFor="standard-adornment-password">Repetir Contraseña</InputLabel>
                           <Input
+                          className={classes.textField}
                             id="standard-adornment-password"
                             type={this.state.showNewPasswordCopy ? 'text' : 'password'}
                             value={this.state.newPasswordCopy}
@@ -217,12 +230,12 @@ class CambiarContraseña extends React.Component <{
                           />
                         </FormControl>
                             
-                          {/* </Grid>
+                          </Grid>
                         
                           
                          
                         </Grid>
-                        </Grid> */}
+                        </Grid>
                       </form>
                     </CardContent>
                     <CardActions>
@@ -232,6 +245,7 @@ class CambiarContraseña extends React.Component <{
                           <Grid item lg={12} >
 
                             <Button
+                              style= {{backgroundColor: '#d93211'}}
                               variant="contained"
                               color='primary'
                               size="small"
