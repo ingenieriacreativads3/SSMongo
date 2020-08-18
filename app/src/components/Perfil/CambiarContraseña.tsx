@@ -3,8 +3,10 @@ import AppBar from './../AppBar'
 import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, InputAdornment} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
@@ -42,15 +44,16 @@ class CambiarContraseña extends React.Component <{
   location: any,
   match: any,
   staticContext?: any,
-  update: any,
-  empresa: {
-    "clave": string,
-  }
 }, {
-  
   empresa: {
     "clave": string,
-  }
+  },
+  showOldPassword: boolean,
+  showNewPassword: boolean,
+  showNewPasswordCopy: boolean,
+  oldPassword: string,
+  newPassword: string,
+  newPasswordCopy: string
 }>  {
 
 	props: any
@@ -59,20 +62,57 @@ class CambiarContraseña extends React.Component <{
  
   constructor(props: any) {
     super(props);
-    //this.changeUsuario = this.changeUsuario.bind(this);
-    
+    this.handleClickShowOldPassword = this.handleClickShowOldPassword.bind(this);
+    this.handleClickShowNewPassword = this.handleClickShowNewPassword.bind(this);
+    this.handleClickShowNewPasswordCopy = this.handleClickShowNewPasswordCopy.bind(this);
+    this.handleChangeOldPassword = this.handleChangeOldPassword.bind(this);
+    this.handleChangeNewPassword = this.handleChangeNewPassword.bind(this);
+    this.handleChangeNewPasswordCopy = this.handleChangeNewPasswordCopy.bind(this);
+    this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
     this.state = {
       empresa: {
         "clave": '',
-      }
+      },
+      showOldPassword: false,
+      showNewPassword: false,
+      showNewPasswordCopy: false,
+      oldPassword: '',
+      newPassword: '',
+      newPasswordCopy: ''
     };
   }
 
+  // changeClave(e: any) {
+  //   this.setState({ empresa: { ...this.state.empresa, clave: e.target.value } })
+  // }
 
-  changeClave(e: any) {
-    this.setState({ empresa: { ...this.state.empresa, clave: e.target.value } })
+  handleClickShowOldPassword(e: any) {
+    this.setState({ showOldPassword: !this.state.showOldPassword })
   }
 
+  handleClickShowNewPassword(e: any) {
+    this.setState({ showNewPassword: !this.state.showNewPassword })
+  }
+
+  handleClickShowNewPasswordCopy(e: any) {
+    this.setState({ showNewPasswordCopy: !this.state.showNewPasswordCopy })
+  }
+
+  handleChangeOldPassword(e: any) {
+    this.setState({ oldPassword: e.target.value })
+  }
+
+  handleChangeNewPassword(e: any) {
+    this.setState({ newPassword: e.target.value })
+  }
+
+  handleChangeNewPasswordCopy(e: any) {
+    this.setState({ newPasswordCopy: e.target.value })
+  }
+
+  handleMouseDownPassword(e: any) {
+    e.preventDefault();
+  };
 
   render(){
 
@@ -114,71 +154,68 @@ class CambiarContraseña extends React.Component <{
                         <Grid container spacing={3}>
                         <Grid item lg={4}> */}
                               
-                              <TextField
-                                className={classes.textField}
-                                label="Contraseña actual"
-                                variant="outlined"
-                                //value={ this.state.empresa.usuario }
-                                //onChange={ this.changeUsuario }
-                                id="mui-theme-provider-outlined-input"
-                                InputLabelProps={{
-                                  classes: {
-                                    root: classes.cssLabel,
-                                    focused: classes.cssFocused,
-                                  },
-                                }}
-                                InputProps={{
-                                  classes: {
-                                    root: classes.cssOutlinedInput,
-                                    focused: classes.cssFocused,
-                                    notchedOutline: classes.notchedOutline,
-                                  },
-                                }}
-                              />
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                          <InputLabel htmlFor="standard-adornment-password">Contraseña Actual</InputLabel>
+                          <Input
+                            id="standard-adornment-password"
+                            type={this.state.showOldPassword ? 'text' : 'password'}
+                            value={this.state.oldPassword}
+                            onChange={this.handleChangeOldPassword}
+                            endAdornment={
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={this.handleClickShowOldPassword}
+                                  onMouseDown={this.handleMouseDownPassword}
+                                >
+                                  {this.state.showOldPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                              </InputAdornment>
+                            }
+                          />
+                        </FormControl>
 
-                            <TextField
-                                className={classes.textField}
-                                label="Nueva Contraseña"
-                                variant="outlined"
-                                //value={ this.state.empresa.usuario }
-                                //onChange={ this.changeUsuario }
-                                id="mui-theme-provider-outlined-input"
-                                InputLabelProps={{
-                                  classes: {
-                                    root: classes.cssLabel,
-                                    focused: classes.cssFocused,
-                                  },
-                                }}
-                                InputProps={{
-                                  classes: {
-                                    root: classes.cssOutlinedInput,
-                                    focused: classes.cssFocused,
-                                    notchedOutline: classes.notchedOutline,
-                                  },
-                                }}
-                              />
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                          <InputLabel htmlFor="standard-adornment-password">Nueva Contraseña</InputLabel>
+                          <Input
+                            id="standard-adornment-password"
+                            type={this.state.showNewPassword ? 'text' : 'password'}
+                            value={this.state.newPassword}
+                            onChange={this.handleChangeNewPassword}
+                            endAdornment={
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={this.handleClickShowNewPassword}
+                                  onMouseDown={this.handleMouseDownPassword}
+                                >
+                                  {this.state.showNewPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                              </InputAdornment>
+                            }
+                          />
+                        </FormControl>
 
-                            <TextField
-                                className={classes.textField}
-                                label="Repita Nueva Contraseña"
-                                variant="outlined"
-                                //value={ this.state.empresa.usuario }
-                                //onChange={ this.changeUsuario }
-                                id="mui-theme-provider-outlined-input"
-                                InputLabelProps={{
-                                  classes: {
-                                    root: classes.cssLabel,
-                                    focused: classes.cssFocused,
-                                  },
-                                }}
-                                InputProps={{
-                                  classes: {
-                                    root: classes.cssOutlinedInput,
-                                    focused: classes.cssFocused,
-                                    notchedOutline: classes.notchedOutline,
-                                  },
-                                }}
-                              />
+                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                          <InputLabel htmlFor="standard-adornment-password">Repetir Contraseña</InputLabel>
+                          <Input
+                            id="standard-adornment-password"
+                            type={this.state.showNewPasswordCopy ? 'text' : 'password'}
+                            value={this.state.newPasswordCopy}
+                            onChange={this.handleChangeNewPasswordCopy}
+                            endAdornment={
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={this.handleClickShowNewPasswordCopy}
+                                  onMouseDown={this.handleMouseDownPassword}
+                                >
+                                  {this.state.showNewPasswordCopy ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                              </InputAdornment>
+                            }
+                          />
+                        </FormControl>
                             
                           {/* </Grid>
                         
@@ -200,9 +237,9 @@ class CambiarContraseña extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
-                              onClick={() => this.props.update(
-                                this.state.empresa.clave,
-                              )}
+                              // onClick={() => this.props.update(
+                              //   this.state.empresa.clave,
+                              // )}
                             >
                               Guardar
                             </Button>

@@ -1,11 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import DatosCuenta from './DatosCuenta'
 import Perfil from './PerfilEmpresa'
-import CambiarContraseña from './CambiarContraseña'
+import CambiarContraseñaExport from './CambiarContraseña'
 
 const drawerWidth = 200;
 
@@ -21,6 +21,7 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    flexWrap: 'wrap'
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -242,6 +243,49 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
+const useStylesChangePass = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: '25ch',
+  },
+}));
+
+export  function CambiarContraseña(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any,
+  footer:any,
+  drawer:any,
+  appBar:any,
+}) {
+
+	const classes = useStylesChangePass(theme);
+ 
+  return <div>
+    <CambiarContraseñaExport 
+      classes={classes}
+      history={props.history}
+      location={props.location}
+      match={props.match}
+      staticContext={props.staticContext}
+      footer={props.footer}
+      drawer={props.drawer}
+      appBar={props.appBar}
+     />
+  </div>;
+
+}
+
 
 
 export  function PerfilPropio(props: {
@@ -318,38 +362,3 @@ export  function PerfilEmpresa(props: {
   </div>;
 
 }
-
-export  function CambioContraseña(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  footer:any,
-  drawer:any,
-  appBar:any,
-  update: any,
-  empresa: {
-    "clave": string,
-  }
-}) {
-
-	const classes = useStyles(theme);
- 
-  return <div>
-    <CambiarContraseña 
-      classes={classes}
-      history={props.history}
-      location={props.location}
-      match={props.match}
-      staticContext={props.staticContext}
-      footer={props.footer}
-      drawer={props.drawer}
-      appBar={props.appBar}
-      empresa={props.empresa}
-      update={props.update}
-     />
-  </div>;
-
-}
-
-

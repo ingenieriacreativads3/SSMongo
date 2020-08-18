@@ -33,6 +33,7 @@ class AppBar extends React.Component<{
 		super(props);
 		this.cerrarSesion = this.cerrarSesion.bind(this)
 		this.miPerfil = this.miPerfil.bind(this)
+		this.cambiarPassword = this.cambiarPassword.bind(this)
     this.state = {};
 	}
 	
@@ -56,6 +57,7 @@ class AppBar extends React.Component<{
         <PermanetDrawerLeft
           cerrarSesion={ this.cerrarSesion }
           miPerfil={ this.miPerfil }
+          cambiarPassword={ this.cambiarPassword }
         />
       </div>
     );

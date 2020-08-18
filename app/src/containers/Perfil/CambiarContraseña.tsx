@@ -10,7 +10,7 @@ import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
 import { AppBar } from './../AppBar'
 import Cookies from 'universal-cookie';
-import CambioContraseña from '../../components/Perfil/CambiarContraseña';
+import { CambiarContraseña as ChangePassword} from './../../components/Perfil'
 
 function mapStateToProps(store: {
   empresaReducer: any,
@@ -46,11 +46,11 @@ class CambiarContraseña extends React.Component<{
     };
   }
 
-//   componentWillMount() {
+  componentWillMount() {
 
-//     this.props.dispatch(empresaActions.getEmpresa(this.props.match.params.id))
+    this.props.dispatch(empresaActions.getEmpresa(this.props.match.params.id))
 
-//   }
+  }
 
   componentDidUpdate() {
 
@@ -123,14 +123,14 @@ class CambiarContraseña extends React.Component<{
     if(this.props.empresaReducer !== undefined) {
 			if(this.props.empresaReducer.data !== undefined) {
 				if(this.props.empresaReducer.data.empresa !== undefined) {
-          empresa = { ...this.props.empresaReducer.data.empresa }
+          // empresa = { ...this.props.empresaReducer.data.empresa }
 				}
 			}
 		}
 
     return(
       <div>
-        <CambiarContraseña 
+        <ChangePassword 
           history={this.props.history}
           location={this.props.location}
           match={this.props.match}
