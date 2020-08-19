@@ -212,12 +212,22 @@ class Nuevo extends React.Component {
                           
                             </Grid> */}
                             <Grid item lg={6}  xs={12}>
-                            <CssTextField className={classes.inputNuevo} id="custom-css-standard-input" label="Unidad"   />
+                              <CssTextField
+                                className={classes.inputNuevo}
+                                id="custom-css-standard-input"
+                                label="Unidad"
+                                onChange={ this.props.getUnidad }
+                              />
 
                            
                             </Grid>
                             <Grid item lg={6}  xs={12}>
-                            <CssTextField className={classes.inputNuevo} id="custom-css-standard-input"  label="Simbolo"   />
+                              <CssTextField
+                                className={classes.inputNuevo}
+                                id="custom-css-standard-input"
+                                label="Simbolo"
+                                onChange={ this.props.getSimbolo }
+                              />
 
                           
                             </Grid>
@@ -238,8 +248,8 @@ class Nuevo extends React.Component {
                               color='primary'
                               size="small"
                               className={classes.buttonNuevo}
-                              endIcon={<SendIcon></SendIcon>}
-                              
+                              endIcon={<SendIcon />}
+                              onClick={ this.props.save }
                             >
                              Enviar
                             </Button>

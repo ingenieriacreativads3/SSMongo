@@ -177,8 +177,8 @@ const useStyles = makeStyles((theme) => ({
 
 export  function NuevaUnidadMedida(props: {
   getUnidad: any,
-  getMagnitud: any,
   getSimbolo: any,
+  save: any,
   drawer:any,
   footer:any,
   appBar:any,
@@ -186,13 +186,14 @@ export  function NuevaUnidadMedida(props: {
 
 	const classes = useStyles(theme);
   return <UnidadMedidaNueva 
-  classes={ classes }
-  getUnidad={ props.getUnidad }
-  getMagnitud={ props.getMagnitud }
-  getSimbolo={ props.getSimbolo } 
-  drawer={props.drawer}
-  footer={props.footer}
-  appBar={props.appBar}/>;
+    classes={ classes }
+    getUnidad={ props.getUnidad }
+    getSimbolo={ props.getSimbolo }
+    save={ props.save }
+    drawer={props.drawer}
+    footer={props.footer}
+    appBar={props.appBar}
+  />;
 
 }
 

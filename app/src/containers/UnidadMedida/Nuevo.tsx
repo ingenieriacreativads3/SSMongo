@@ -32,11 +32,8 @@ class NuevaSolicitud extends React.Component<{
   staticContext?: any,
   cookies: Cookies
 }, {
-  idEmpresa: string,
 	unidad: string,
-  magnitud: string,
   simbolo : string,
- 
 }> {
 
 	props: any
@@ -47,19 +44,14 @@ class NuevaSolicitud extends React.Component<{
   constructor(props: any) {
     super(props);
     this.getUnidad = this.getUnidad.bind(this);
-    this.getMagnitud = this.getMagnitud.bind(this);
     this.getSimbolo = this.getSimbolo.bind(this);
     this.save = this.save.bind(this);
     this.aceptar = this.aceptar.bind(this);
     this.state = {
-      idEmpresa: '',
       unidad: '',
-      magnitud: '',
       simbolo: '',
     };
   }
-
-  
 
   componentDidUpdate() {
 
@@ -71,30 +63,20 @@ class NuevaSolicitud extends React.Component<{
 
   }
 
-  
-
   getSimbolo(e: any) {
     this.setState({ simbolo: e.target.value })
-  }
-
-  getMagnitud(e: any) {
-    this.setState({ magnitud: e.target.value })
   }
 
   getUnidad(e: any) {
     this.setState({ unidad: e.target.value })
   }
 
-  
-
   save() {
 
     this.props.dispatch(unidadDeMedidaActions.setSolicitud(
       this.props.cookies.get('empresaId'),
       this.state.unidad,
-      this.state.magnitud,
-      this.state.simbolo,
-     
+      this.state.simbolo
     ))
 
   }
@@ -102,11 +84,11 @@ class NuevaSolicitud extends React.Component<{
   aceptar() {
 
     this.props.dispatch(dialogActions.closeOneButton())
-    if(this.props.itemReducer.status !== 200) {
+    if(this.props.unidadDeMedidaReducer.status !== 200) {
       this.props.dispatch(unidadDeMedidaActions.reintentar())
     } else {
       this.props.dispatch(unidadDeMedidaActions.setear())
-      this.props.history.push('/home/item/nuevo')
+      this.props.history.push('/item/nuevo')
     }
 
   }
@@ -147,7 +129,7 @@ class NuevaSolicitud extends React.Component<{
         <NuevaSolicitudUnidad 
           getUnidad={ this.getUnidad }
           getSimbolo={ this.getSimbolo }
-          getMagnitud={ this.getMagnitud }
+          save={ this.save }
           drawer={ this.drawer() }
           footer={ this.footer() }
           appBar={this.appBar()}
