@@ -21,7 +21,6 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap'
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -115,7 +114,15 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   textField:{
-    margin: theme.spacing(2),
+    "&:after": {
+      // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
+      borderColor: '#d93211 !important',
+    },
+    "&.Mui-focused": {
+      color: '#d93211',
+      
+    },
+    width: '25ch',
   },
 
   button: {
@@ -238,15 +245,6 @@ const useStyles = makeStyles((theme) => ({
   fotoLogo:{
     width:100,
     height:100
-  }
-
-  
-}));
-
-const useStylesChangePass = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
   },
   margin: {
     margin: theme.spacing(1),
@@ -254,17 +252,7 @@ const useStylesChangePass = makeStyles((theme) => ({
   withoutLabel: {
     marginTop: theme.spacing(3),
   },
-  textField: {
-    "&:after": {
-      // changes the bottom textbox border when clicked/focused.  thought it would be the same with input label
-      borderColor: '#d93211 !important',
-    },
-    "&.Mui-focused": {
-      color: '#d93211',
-      
-    },
-    width: '25ch',
-  },
+  
 }));
 
 export  function CambiarContraseña(props: {
@@ -277,7 +265,7 @@ export  function CambiarContraseña(props: {
   appBar:any,
 }) {
 
-	const classes = useStylesChangePass(theme);
+	const classes = useStyles(theme);
  
   return <div>
     <CambiarContraseñaExport 

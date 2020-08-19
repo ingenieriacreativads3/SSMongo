@@ -40,6 +40,7 @@ function mapStateToProps(store: {
 }
 
 class CambiarContraseña extends React.Component <{
+  classes: any,
   history: any,
   location: any,
   match: any,
@@ -132,13 +133,13 @@ class CambiarContraseña extends React.Component <{
 
     return(
 
-      <div className={classes.root} style={{ display: 'flex',flexWrap: 'wrap'}}>
+      <div className={classes.root} >
         <CssBaseline />
         {this.props.appBar}
          {this.props.drawer}
-        <main className={classes.content} style={{ flexGrow: 1, height: '100vh', overflow: 'auto'}} >
+        <main className={classes.content}  >
             <div className={classes.appBarSpacer} />
-            <Container maxWidth="lg" style={{ paddingTop:'100px', paddingBottom: '100px'}} className={classes.container}>
+            <Container maxWidth="lg" className={classes.container}>
                 <Grid container spacing={3}>
 
                 <Grid item lg={9}>
@@ -147,7 +148,7 @@ class CambiarContraseña extends React.Component <{
                     <CardHeader 
                     
                         avatar={
-                          <Avatar aria-label="recipe" style={{ color:"#ffffff",backgroundColor:'#d93211'}} className={classes.avatar} >
+                          <Avatar aria-label="recipe" className={classes.avatar} >
                             C
                           </Avatar>
                         }
@@ -156,7 +157,7 @@ class CambiarContraseña extends React.Component <{
                       />
                       
                     <CardContent>
-                      <form className={classes.root} style={{ display: 'flex',flexWrap: 'wrap'}}>
+                      <form className={classes.root} >
                          <Grid container spacing={3}>
                         
                         <Grid container spacing={3}>
@@ -245,7 +246,6 @@ class CambiarContraseña extends React.Component <{
                           <Grid item lg={12} >
 
                             <Button
-                              style= {{backgroundColor: '#d93211'}}
                               variant="contained"
                               color='primary'
                               size="small"

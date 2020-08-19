@@ -43,9 +43,7 @@ export function getById(id: string) {
 export function setSolicitud(
 	idEmpresa: string,	
 	unidad: string,
-	magnitud: string,
 	simbolo: string,
-	
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
@@ -55,10 +53,9 @@ export function setSolicitud(
 			_id: idEmpresa,
 		},
 		solicitudDeUnidadDeMedida:{
-			unidad: unidad,
-			magnitud:magnitud,
-			abreviatura:simbolo,
-		},
+			magnitud: unidad,
+			abreviatura: simbolo,
+		}
 	})
 
 	return {
