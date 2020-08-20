@@ -194,7 +194,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   nombreEmpresa: {
-    color:'#f48c13'
+    color:'#7f7f7f'
+  },
+
+  titleProductos: {
+    paddingTop:theme.spacing(2),
+    fontSize:'25px',
+    //fontWeight:'bold',
   },
 
   datos:{
@@ -238,6 +244,9 @@ const useStyles = makeStyles((theme) => ({
   fotoLogo:{
     width:100,
     height:100
+  },
+  item:{
+    paddingLeft:theme.spacing(10)
   }
 
   
