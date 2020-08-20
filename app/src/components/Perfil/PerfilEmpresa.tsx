@@ -5,7 +5,7 @@ import { Link} from "react-router-dom";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
-import { Container, Grid, TextareaAutosize,Divider, CardActionArea, CardMedia, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { Container, Grid, TextareaAutosize,Divider, ListSubheader, CardActionArea, CardMedia, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import * as registerActions  from './../../store/actions/register'
 import  foto  from './../Login/img/logo.png'
@@ -72,21 +72,45 @@ class PerfilEmpresa extends React.Component <{
   location: any,
   match: any,
   staticContext?: any,
- 
-
-
+  empresa: {
+    "_id": string,
+    "nombre": string,
+    "cuit": string,
+    "usuario": string,
+    "email": string,
+    "estado": string,
+    "updated_at": string,
+    "created_at": string,
+    "domicilioLegal": string,
+    "localidad": string,
+    "logo": string,
+    "mostrar_perfil": boolean,
+    "provincia": string,
+    "telefono": string,
+    "clave": string,
+  }
 }, {
   provincia: string,
   municipio: string,
   empresa: {
-  _id: string,
-  nombre: string,
-  cuit: string,
-  usuario: string,
-  clave: string,
-  email:string,
+    "_id": string,
+    "nombre": string,
+    "cuit": string,
+    "usuario": string,
+    "email": string,
+    "estado": string,
+    "updated_at": string,
+    "created_at": string,
+    "domicilioLegal": string,
+    "localidad": string,
+    "logo": string,
+    "mostrar_perfil": boolean,
+    "provincia": string,
+    "telefono": string,
+    "clave": string,
+  }
   
-}}>  {
+}>  {
 
 	props: any
 	static propTypes: any
@@ -99,14 +123,21 @@ class PerfilEmpresa extends React.Component <{
       provincia: '',
       municipio: '',
       empresa: {
-        _id: '',
-        nombre: '',
-        cuit: '',
-        usuario: '',
-        clave: '',
-        email:''
-    
-        
+        "_id": '',
+        "nombre": '',
+        "cuit": '',
+        "usuario": '',
+        "email": '',
+        "estado": '',
+        "updated_at": '',
+        "created_at": '',
+        "domicilioLegal": '',
+        "localidad": '',
+        "logo": '',
+        "mostrar_perfil": false,
+        "provincia": '',
+        "telefono": '',
+        "clave": '',
       }
     };
   }
@@ -152,21 +183,21 @@ class PerfilEmpresa extends React.Component <{
                             <img src={foto} className = {classes.img}></img> 
 
                             {/* <Box className={classes.datos} > */}
-                            <Grid container >
-                            <Grid item lg={12} xs={12} >
-                        <Typography variant="h5"   gutterBottom>
+                            <Grid container>
+                            <Grid item lg={12} xs={12}  >
+                        <Typography variant="h5" className={classes.item} gutterBottom>
                             <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
                             Construccion
                         </Typography>
                         </Grid>
                         <Grid item lg={12} xs={12}>
-                        <Typography variant="h5"   gutterBottom>
+                        <Typography variant="h5"  className={classes.item} gutterBottom>
                             <LocationOnIcon fontSize="large" style={{ color: '#d93211' }} />
                             San Francisco - Cordoba
                         </Typography>
                         </Grid>
                         <Grid item lg={12} xs={12}>
-                        <Typography variant="h5"   gutterBottom>
+                        <Typography variant="h5"className={classes.item}   gutterBottom>
                             <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
                             35644225394
                         </Typography>
@@ -189,7 +220,7 @@ class PerfilEmpresa extends React.Component <{
                               className={classes.datoContacto}
                             variant="outlined"
                             disabled
-                              defaultValue= "CorpuSoft"
+                            value={ this.state.empresa.usuario }
                               label="Nombre"
                               type="text"
                               InputLabelProps={{
@@ -211,7 +242,7 @@ class PerfilEmpresa extends React.Component <{
                             className={classes.datoContacto}
                             variant="outlined"
                             disabled
-                              defaultValue= "corpu@sa.com.ar"
+                            value={this.state.empresa.email}
                               label="Email"
                               type="email"
                               InputLabelProps={{
@@ -255,11 +286,13 @@ class PerfilEmpresa extends React.Component <{
                                 direction="column"
                                 justify="space-around"
                                 alignItems="center">
-                        <Typography variant="h5" align='left'  gutterBottom>
+                        <ListSubheader  className={classes.titleProductos}  >
                                     
                             Nuestros Productos
-                        </Typography>
+                        </ListSubheader> 
+                        <hr></hr>
                         </Grid>
+                       
                         <Grid item xs={6} sm={3}>
                         <Card className={fixedHeightCardCatalog}>
                           <CardActionArea>

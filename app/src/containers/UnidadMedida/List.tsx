@@ -36,10 +36,8 @@ class ListaSolicitudes extends React.Component<{
     this.state = {};
   }
 
-  action(item: {
-    _id: string
-  }) {
-    this.props.history.push("/solicitud/unidadMedida/:id" + item._id);
+  action(item: {_id: string }) {
+    this.props.history.push("/solicitud/unidadMedida/" + item._id);
     this.props.dispatch(unidadDeMedidaActions.resetear())
   }
 
@@ -51,7 +49,6 @@ class ListaSolicitudes extends React.Component<{
       staticContext={this.props.staticContext}
     />
   }
-
   
   footer() {
     return <Footer 
@@ -62,7 +59,6 @@ class ListaSolicitudes extends React.Component<{
     />
   }
 
-
   appBar() {
     return <AppBar 
       history={this.props.history}
@@ -72,7 +68,6 @@ class ListaSolicitudes extends React.Component<{
       cookies={this.props.cookies}
     />
   }
-
 
   render(){
 
@@ -95,18 +90,17 @@ class ListaSolicitudes extends React.Component<{
           title={'Solicitudes Unidad de Medida'}
           columns={[
             { title: 'Empresa', field: '', type: 'string' },
-            { title: 'Unidad', field: '', type: 'string' },
-            { title: 'Fecha actualización', field: 'updated_at', type: 'string' },
-            { title: 'Fecha creación', field: 'created_at', type: 'string' },
-            
+            { title: 'Magnitud', field: 'magnitud', type: 'string' },
+            { title: 'Abreviatura', field: 'abreviatura', type: 'string' },
             {
               title: 'Estado',
               field: 'estado',
               lookup: { 'Resuelta': 'Resuelta', 'No resuelta': 'No Resuelta' },
             },
-            
+            { title: 'Fecha creación', field: 'created_at', type: 'string' },
+            { title: 'Fecha actualización', field: 'updated_at', type: 'string' },
           ]}
-          data={ this.props.unidadDeMedidaReducer.data.solicitudesDeUnidadesDeMedida }
+          data={ this.props.unidadDeMedidaReducer.data.SolicitudesDeUnidadDeMedida }
           action={ this.action }
           drawer={ this.drawer() }
           footer={this.footer()}
