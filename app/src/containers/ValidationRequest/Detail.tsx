@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { ValidarNuevoUsuario as Validacion } from './../../components/SolicitudValidacion'
 import * as solicitudesActions from './../../store/actions/solicitudDeValidacion'
+import * as empresaActions from './../../store/actions/empresa'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 import {Drawer} from './../Drawer'
@@ -10,9 +11,11 @@ import Cookies from 'universal-cookie';
  
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
+  empresaReducer: any
 }) {
   return {
     solicitudDeValidacionReducer: store.solicitudDeValidacionReducer,
+    empresaReducer: store.empresaReducer
   };
 }
 
@@ -23,7 +26,12 @@ class Detail extends React.Component<{
   staticContext?: any,
   cookies: Cookies,
 }, {
-  rubros: string[]
+  rubros: {
+    _id: string,
+    nombreRubro: string,
+    updated_at: string,
+    created_at: string,
+  }[]
 }> {
 
 	props: any
@@ -39,10 +47,28 @@ class Detail extends React.Component<{
     };
   }
 
-  getRubros(rubros: string[]) {
+  componentWillMount() {
+    this.props.dispatch(empresaActions.getEmpresaRubros())
+  }
+
+  getRubros(rubro: {
+    _id: string,
+    nombreRubro: string,
+    updated_at: string,
+    created_at: string,
+  }) {
+
+    let rubrosAux: {
+      _id: string,
+      nombreRubro: string,
+      updated_at: string,
+      created_at: string,
+    }[] = this.state.rubros
+
+    rubrosAux.push(rubro)
 
     this.setState({
-      rubros: rubros
+      rubros: rubrosAux
     })
 
   }
@@ -78,8 +104,6 @@ class Detail extends React.Component<{
 
   render(){
 
-    console.log(this.props.solicitudDeValidacionReducer)
-
     if(
       !this.props.solicitudDeValidacionReducer.fetched &&
       !this.props.solicitudDeValidacionReducer.fetching
@@ -108,15 +132,28 @@ class Detail extends React.Component<{
 
 
 
-    let listaRubros: string[] = [
-      'Metalurgica',
-      'Panaderia',
-      'Desarrollador de Software',
-      'Etc'
+    let listaRubros: {
+      _id: string,
+      nombreRubro: string,
+      updated_at: string,
+      created_at: string,
+    }[] = [
+      {
+        _id: '',
+        nombreRubro: '',
+        updated_at: '',
+        created_at: '',
+      }
     ]
 
-    
-  
+    if(
+      this.props.empresaReducer.fetched &&
+      this.props.empresaReducer.data !== undefined
+    ) {
+      listaRubros = this.props.empresaReducer.data.rubros
+    }
+
+    console.log(this.state.rubros)
 
     return(
       <div>
@@ -125,7 +162,7 @@ class Detail extends React.Component<{
           _id={_id}
           nombre={nombre}
           cuit={cuit}
-          rubros={this.props.rubros}
+          rubros={this.state.rubros}
           listaRubros={listaRubros}
           getRubros={this.getRubros}
           footer={this.footer()}

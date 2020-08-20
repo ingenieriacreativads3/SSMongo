@@ -259,20 +259,6 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-const useStylesChangePass = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  
-}));
-
 export  function CambiarContraseña(props: {
   history: any,
   location: any,

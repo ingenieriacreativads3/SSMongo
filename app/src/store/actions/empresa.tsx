@@ -1,5 +1,18 @@
 import axios from 'axios';
 
+export function getEmpresaRubros(){
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.get(url + '/rubros')
+        
+	return {
+		type: 'GET_EMPRESA_RUBROS',
+		payload: payload
+	}
+
+}
+
 export function getEmpresa(id: string){
 
 	let url: string = 'http://127.0.0.1:8000';

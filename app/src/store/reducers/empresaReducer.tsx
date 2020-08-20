@@ -59,7 +59,33 @@ export default function empresaReducer ( state = {
 			return {
         ...state,
         fetching: false,
-        fetched: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
+		case 'GET_EMPRESA_RUBROS_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'GET_EMPRESA_RUBROS_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'GET_EMPRESA_RUBROS_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
         data: action.payload.data.data

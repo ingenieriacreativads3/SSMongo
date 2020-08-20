@@ -38,8 +38,18 @@ class Validacion extends React.Component <{
   _id: string,
   nombre: string,
   cuit: string,
-  rubros: string[],
-  listaRubros: string[],
+  rubros: {
+    _id: string,
+    nombreRubro: string,
+    updated_at: string,
+    created_at: string,
+  }[],
+  listaRubros: {
+    _id: string,
+    nombreRubro: string,
+    updated_at: string,
+    created_at: string,
+  }[],
   getRubros: any
 },  {}> {
 
@@ -66,8 +76,41 @@ class Validacion extends React.Component <{
   //   this.props.dispatch(SolicitudDeValidacionActions.getById(this.props.match.params.id))
   // }
 
-  handleChange(event: React.ChangeEvent<{ value: unknown }>) {
-    this.props.getRubros(event.target.value as string[])
+  handleChange(e: any) {
+    console.log(e.target.value)
+
+    let rubroSeleccionado: string = ''
+
+    e.target.value.map((value: any) => {
+      if(value.nombreRubro === undefined) {
+        rubroSeleccionado = value
+      }
+    })
+
+    let rubroAux: {
+      _id: string,
+      nombreRubro: string,
+      updated_at: string,
+      created_at: string,
+    } = {
+      _id: '',
+      nombreRubro: '',
+      updated_at: '',
+      created_at: '',
+    }
+
+    this.props.listaRubros.map((rubro: {
+      _id: string,
+      nombreRubro: string,
+      updated_at: string,
+      created_at: string,
+    }) => {
+      if(rubroSeleccionado === rubro.nombreRubro) {
+        rubroAux = rubro
+      }
+    })
+
+    this.props.getRubros(rubroAux)
   };
   
   render(){
@@ -75,15 +118,18 @@ class Validacion extends React.Component <{
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 
-    let listaRubros: string[] = [
-      'Lista de Rubros'
-    ];
+    let listaRubros: string[] = []
 
-    let rubros: string[] = [
-      'Rubros Seleccionados'
-    ]
+    let rubros: string[] = []
 
-    if(this.props.listaRubros) listaRubros = this.props.listaRubros
+    if(this.props.listaRubros && this.props.listaRubros.length > 0) {
+      this.props.listaRubros.map((rubro: {
+        nombreRubro: string
+      }) => {
+        rubros.push(rubro.nombreRubro)
+      })
+    }
+
     if(this.props.rubros) rubros = this.props.rubros
 
     const ITEM_HEIGHT = 48;
@@ -149,9 +195,6 @@ class Validacion extends React.Component <{
                       <form className={classes.root}>
                         <Grid container >
                           <Grid container >
-                            <Grid item lg={4} xs={12}>
-                              <TextField disabled id="standard-required" label="ID Solicitud" value={this.props._id} className={classes.input}  />
-                            </Grid>
                             <Grid item lg={4} xs={12}>
                               <TextField disabled id="standard-required" label="Empresa" value={this.props.nombre}  className={classes.input}  />
                             </Grid>
@@ -225,21 +268,36 @@ class Validacion extends React.Component <{
                                   value={rubros}
                                   onChange={this.handleChange}
                                   input={<Input id="select-multiple-chip" />}
-                                  renderValue={(selected) => (
+                                  renderValue={(selected: any) => (
                                     <div className={classes.chips}>
-                                      {(selected as string[]).map((value) => (
-                                        <Chip key={value} label={value} className={classes.chip} />
-                                      ))}
+                                      {
+                                        selected.map((rubro: {
+                                          _id: string,
+                                          nombreRubro: string,
+                                          updated_at: string,
+                                          created_at: string,
+                                        }) => {
+                                          console.log(selected)
+                                          return <Chip key={rubro._id} label={rubro.nombreRubro} className={classes.chip} />
+                                        })
+                                      }
                                     </div>
                                   )}
                                   MenuProps={MenuProps}
                                 >
-                                  {listaRubros.map((name) => (
-                                    <MenuItem key={name} value={name}>
-                                      <Checkbox checked={rubros.indexOf(name) > -1} />
-                                      <ListItemText primary={name} />
-                                    </MenuItem>
-                                  ))}
+                                  {
+                                    this.props.listaRubros.map((rubro: {
+                                      _id: string,
+                                      nombreRubro: string,
+                                      updated_at: string,
+                                      created_at: string
+                                    }) => {
+                                      return <MenuItem key={rubro._id} value={rubro.nombreRubro}>
+                                        <Checkbox checked={true} />
+                                        <ListItemText primary={rubro.nombreRubro} />
+                                      </MenuItem>
+                                    })
+                                  }
                                 </Select>
                               </FormControl>
                             </Grid>
