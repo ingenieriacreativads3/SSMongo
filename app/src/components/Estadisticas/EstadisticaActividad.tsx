@@ -12,6 +12,15 @@ import {
   Title,
 } from '@devexpress/dx-react-chart-material-ui';
 
+import PieChart, {
+  Series,
+  Label,
+  Connector,
+  SmallValuesGrouping,
+  Legend,
+  Export
+} from 'devextreme-react/pie-chart';
+
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
@@ -22,6 +31,35 @@ const data = [
  
 ];
 
+const dataSource = [{
+    estado: 'En espera',
+    percent: 55.5
+  }, {
+    estado: 'Cancelado',
+    percent: 20.8
+  }, {
+    estado: 'Confirmado',
+    percent: 4.6
+  }, {
+    estado: 'Presupuestado',
+    percent: 19.1
+  },
+]
+
+const dataSource2 = [{
+  estado: 'En Espera',
+  percent: 55.5
+}, {
+  estado: 'Cancelado',
+  percent: 20.8
+}, {
+  estado: 'Finalizado',
+  percent: 4.6
+}, {
+  estado: 'Enviado',
+  percent: 19.1
+},
+]
 //import * as ItemAction from "../../store/actions/ItemAction";
 
 function Copyright() {
@@ -61,7 +99,9 @@ class EstadisticasActividad extends React.Component <{}, {
 	static propTypes: any
 	static defaultProps: any
 
-
+  formatLabel(arg:any) {
+    return `${arg.argumentText}: ${arg.valueText}%`;
+  }
   
  
 
@@ -181,7 +221,26 @@ class EstadisticasActividad extends React.Component <{}, {
                           <Grid container spacing={3}>
                             <Grid item lg={6}>
                             
-                            <Chart
+                            <PieChart
+                              id="pie"
+                              dataSource={dataSource}
+                              palette="Bright"
+                              title="Mis presupuestos"
+                            >
+                              <Series
+                                argumentField="estado"
+                                valueField="percent"
+                              >
+                                <Label visible={true} customizeText={this.formatLabel} format="fixedPoint">
+                                  <Connector visible={true} width={0.5} />
+                                </Label>
+                                <SmallValuesGrouping threshold={4.5} mode="smallValueThreshold" />
+                              </Series>
+                              <Legend horizontalAlignment="center" verticalAlignment="bottom" />
+                              <Export enabled={true} />
+                            </PieChart>
+
+                            {/* <Chart
                                   data={data}
                                   
                                 >
@@ -194,28 +253,33 @@ class EstadisticasActividad extends React.Component <{}, {
                                   />
                                   <Animation />
                                 </Chart>
-                            
+                             */}
                             
                             
                             
                             </Grid>
 
-                            <Grid item lg={6} className={classes.grafico}>
-                             
-                                <Chart
-                                  data={data}
-                                  
-                                >
-                                  <PieSeries
-                                    valueField="area"
-                                    argumentField="country"
-                                  />
-                                  <Title
-                                    text="Mis pedidos"
-                                  />
-                                  <Animation />
-                                </Chart>
-                            
+                            <Grid item lg={6} >
+                            <PieChart
+                              id="pie"
+                              dataSource={dataSource2}
+                              palette="Bright"
+                              title="Mis pedidos"
+                            >
+                              <Series
+                                argumentField="estado"
+                                valueField="percent"
+                              >
+                                <Label visible={true} customizeText={this.formatLabel} format="fixedPoint">
+                                  <Connector visible={true} width={0.5} />
+                                </Label>
+                                <SmallValuesGrouping threshold={4.5} mode="smallValueThreshold" />
+                              </Series>
+                              <Legend horizontalAlignment="center" verticalAlignment="bottom" />
+                              <Export enabled={true} />
+                            </PieChart>
+
+                               
                             </Grid>
 
                             

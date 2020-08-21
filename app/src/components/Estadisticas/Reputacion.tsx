@@ -1,14 +1,23 @@
 import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Container, Grid, Card, Avatar,List, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
+import { Container, Grid, Card, Avatar,List, ListSubheader, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
-
+import { FixedSizeList } from 'react-window';
 import {
   Chart,
   PieSeries,
   Title,
 } from '@devexpress/dx-react-chart-material-ui';
+
+import PieChart, {
+    Legend,
+    Series,
+    Export,
+    Label,
+    SmallValuesGrouping,
+    Connector
+  } from 'devextreme-react/pie-chart';
 
 import { Animation } from '@devexpress/dx-react-chart';
 
@@ -28,6 +37,34 @@ const data1 = [
   
 ];
 
+
+const dataSource = [{
+        rating: 'Excelente',
+        percent: 55.5
+    }, {
+        rating: 'Muy Bueno',
+        percent: 20.8
+    }, {
+        rating: 'Malo',
+        percent: 2.6
+    }, {
+        rating: 'Bueno',
+        percent: 19.1
+    },{
+        rating: 'Muy Malo',
+        percent: 2.0
+    },
+]
+
+
+const dataSource2 = [{
+    rating: 'SI',
+    percent: 70,
+}, {
+    rating: 'NO',
+    percent: 30
+},
+]
 //import * as ItemAction from "../../store/actions/ItemAction";
 
 function Copyright() {
@@ -69,13 +106,46 @@ class Reputacion extends React.Component <{}, {
 
 
   
+    customizeLabel(point:any) {
+        return `${point.argumentText }: ${ point.valueText }%`;
+      }
+
+      renderRow(props:any) {
+        const { index, style } = props;
+      
+        return (
+          <ListItem button style={style} key={index}>
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              </ListItemAvatar>
+              <ListItemText
+                primary="Brunch this weekend?"
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      //className={classes.inline}
+                      color="textPrimary"
+                    >
+                      Ali Connors
+                    </Typography>
+                    {" — I'll be in your neighborhood doing errands this…"}
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+          </ListItem>
+        );
+      }
 
 
   render(){
 
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-
+   
    
     return(
 
@@ -106,43 +176,52 @@ class Reputacion extends React.Component <{}, {
                           <Grid container spacing={3}>
                             
                             <Grid item lg={6}>
-                           
-                            
-                                <Chart
-                                data={data}
+                            <PieChart
+                                id="pie"
+                                type="doughnut"
+                                title="Tiempo de respuesta a los mensajes/consultas"
+                                palette="Soft Pastel"
+                                dataSource={dataSource}
+                            >
+                                <Series argumentField="rating" valueField="percent">
+                                <SmallValuesGrouping mode="topN" topCount={3} />
+                                <Label
+                                    visible={true}
+                                    format="fixedPoint"
+                                    customizeText={this.customizeLabel}
                                 >
-                                <PieSeries
-                                    valueField="val"
-                                    argumentField="region"
-                                    innerRadius={0.6}
-                                />
-                                <Title
-                                    text="Tiempo de respuesta a los mensajes/consultas"
-                                />
-                                <Animation />
-                                </Chart>
-                           
+                                    <Connector visible={true} width={1} />
+                                </Label>
+                                </Series>
+                                <Export enabled={true} />
+                                <Legend horizontalAlignment="center" verticalAlignment="bottom" />
+                            </PieChart>
+                            
+    
                               
                             </Grid>
                             
                             <Grid item lg={6} >
-                           
-                        
-                                <Chart
-                                data={data}
-                                
+                            <PieChart
+                                id="pie"
+                                type="doughnut"
+                                title="Relacion precio - calidad"
+                                palette="Soft Pastel"
+                                dataSource={dataSource}
+                            >
+                                <Series argumentField="rating" valueField="percent">
+                                <SmallValuesGrouping mode="topN" topCount={3} />
+                                <Label
+                                    visible={true}
+                                    format="fixedPoint"
+                                    customizeText={this.customizeLabel}
                                 >
-                                <PieSeries
-                                    valueField="val"
-                                    argumentField="region"
-                                    innerRadius={0.6}
-                                />
-                                <Title
-                                    text="Relación precio - calidad"
-                                />
-                                <Animation />
-                                </Chart>
-                          
+                                    <Connector visible={true} width={1} />
+                                </Label>
+                                </Series>
+                                <Export enabled={true} />
+                                <Legend horizontalAlignment="center" verticalAlignment="bottom" />
+                            </PieChart>
                                 
                             </Grid>
                        
@@ -153,113 +232,64 @@ class Reputacion extends React.Component <{}, {
                             <Grid container spacing={3}>
                                 <Grid item lg={6} >
                             
-                                    <Chart
-                                    data={data}
-                                    
-                                    >
-                                    <PieSeries
-                                        valueField="val"
-                                        argumentField="region"
-                                        innerRadius={0.6}
-                                    />
-                                    <Title
-                                        text=" Disponibilidad de productos y/o servicios"
-                                    />
-                                    <Animation />
-                                    </Chart>
-                                
-                                    
+                                <PieChart
+                                id="pie"
+                                type="doughnut"
+                                title="Disponibilidad de productos y/o servicios"
+                                palette="Soft Pastel"
+                                dataSource={dataSource}
+                            >
+                                <Series argumentField="rating" valueField="percent">
+                                <SmallValuesGrouping mode="topN" topCount={3} />
+                                <Label
+                                    visible={true}
+                                    format="fixedPoint"
+                                    customizeText={this.customizeLabel}
+                                >
+                                    <Connector visible={true} width={1} />
+                                </Label>
+                                </Series>
+                                <Export enabled={true} />
+                                <Legend horizontalAlignment="center" verticalAlignment="bottom" />
+                            </PieChart>
+                                                                    
                                 </Grid>
                                 <Grid item lg={6} >
                             
-                                    <Chart
-                                    data={data1}
-                                    
-                                    >
-                                    <PieSeries
-                                        valueField="val"
-                                        argumentField="region"
-                                        innerRadius={0.6}
-                                    />
-                                    <Title
-                                        text="¿Volvería a operar con esta empresa?"
-                                    />
-                                    <Animation />
-                                    </Chart>
+                                <PieChart
+                                id="pie"
+                                type="doughnut"
+                                title="Volveria a operar con esta empresa?"
+                                palette="Soft Pastel"
+                                dataSource={dataSource2}
+                            >
+                                <Series argumentField="rating" valueField="percent">
+                                <SmallValuesGrouping mode="topN" topCount={3} />
+                                <Label
+                                    visible={true}
+                                    format="fixedPoint"
+                                    customizeText={this.customizeLabel}
+                                >
+                                    <Connector visible={true} width={1} />
+                                </Label>
+                                </Series>
+                                <Export enabled={true} />
+                                <Legend horizontalAlignment="center" verticalAlignment="bottom" />
+                            </PieChart>
                                 
                                     
                                 </Grid>
                             </Grid>
 
                                 <Grid container spacing={3}>
+                                <ListSubheader  className={classes.subtitle}  >
+                                    
+                                    Comentarios
+                                </ListSubheader> 
                                 <Grid item lg={12} >
-                                <List className={classes.list}>
-                                    <ListItem alignItems="flex-start">
-                                    <ListItemAvatar>
-                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary="Brunch this weekend?"
-                                        secondary={
-                                        <React.Fragment>
-                                            <Typography
-                                            component="span"
-                                            variant="body2"
-                                            className={classes.inline}
-                                            color="textPrimary"
-                                            >
-                                            Ali Connors
-                                            </Typography>
-                                            {" — I'll be in your neighborhood doing errands this…"}
-                                        </React.Fragment>
-                                        }
-                                    />
-                                    </ListItem>
-                                    <Divider variant="inset" component="li" />
-                                    <ListItem alignItems="flex-start">
-                                    <ListItemAvatar>
-                                        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary="Summer BBQ"
-                                        secondary={
-                                        <React.Fragment>
-                                            <Typography
-                                            component="span"
-                                            variant="body2"
-                                            className={classes.inline}
-                                            color="textPrimary"
-                                            >
-                                            to Scott, Alex, Jennifer
-                                            </Typography>
-                                            {" — Wish I could come, but I'm out of town this…"}
-                                        </React.Fragment>
-                                        }
-                                    />
-                                    </ListItem>
-                                    <Divider variant="inset" component="li" />
-                                    <ListItem alignItems="flex-start">
-                                    <ListItemAvatar>
-                                        <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary="Oui Oui"
-                                        secondary={
-                                        <React.Fragment>
-                                            <Typography
-                                            component="span"
-                                            variant="body2"
-                                            className={classes.inline}
-                                            color="textPrimary"
-                                            >
-                                            Sandra Adams
-                                            </Typography>
-                                            {' — Do you have Paris recommendations? Have you ever…'}
-                                        </React.Fragment>
-                                        }
-                                    />
-                                    </ListItem>
-                                </List>
+                                <FixedSizeList style={{marginLeft:'60px'}} height={260} width={420} itemSize={100} itemCount={8}>
+                                {this.renderRow}
+                            </FixedSizeList>
                                 </Grid>
                                 </Grid>
                                

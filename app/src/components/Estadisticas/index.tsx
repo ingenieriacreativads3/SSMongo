@@ -98,8 +98,15 @@ const useStyles = makeStyles((theme) => ({
 		width:'300px',
 		height:'auto',
 		
-		
 	  },
+	  subtitle:{
+		  fontSize:22,
+		  marginLeft:'50px',
+		  marginTop:'20px',
+		  fontWeight:'bold',
+		  color:"#232323",
+		  fontFamily: 'Segoe UI Light',
+	  }
 	 
 	  
 	
