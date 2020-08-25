@@ -9,13 +9,20 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import logo from "./img/logo.png";
+import {IconButton, InputAdornment, FormControl, InputLabel, OutlinedInput} from '@material-ui/core'
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import clsx from 'clsx'
+
 
 class Login extends React.Component<{
   classes: any,
   getPass: any,
   getUser: any,
   login: any,
-  handleKeyPress: any
+  handleKeyPress: any,
+  showPassword: boolean,
+  Password: string,
 }, {}> {
 
 	props: any
@@ -26,13 +33,25 @@ class Login extends React.Component<{
   constructor(props: any) {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
+    this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
     this.state = {
-    };
+      showPassword: false,
+     };
   }
 
   handleKeyPress(e: any) {
     this.props.handleKeyPress(e.key)
   }
+
+  handleClickShowPassword(e: any) {
+    //this.setState({ showPassword: !this.state.showPassword})
+  }
+
+  handleMouseDownPassword(e: any) {
+    e.preventDefault();
+  };
+
 
   render(){
 
@@ -70,7 +89,31 @@ class Login extends React.Component<{
               onChange={ this.props.getUser }
               onKeyPress={ this.handleKeyPress }
             />
-            <TextField
+             <FormControl className={classes.inputPass}  variant="outlined">
+          <InputLabel className={classes.inputLabel} htmlFor="outlined-adornment-password">Contraseña*</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type="password"
+            className={classes.inputPass}
+            style={{width:397}}
+            onChange={ this.props.getPass }
+            onKeyPress={this.handleKeyPress}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                  onMouseDown={this.handleMouseDownPassword}
+                  edge="end"
+                >
+              {/*   { this.state.showPassword ?  <Visibility /> : <VisibilityOff />} */}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={90}
+          />
+        </FormControl>
+            {/* <TextField
               variant="outlined"
               margin="normal"
               required
@@ -80,6 +123,17 @@ class Login extends React.Component<{
               type="password"
               id="password"
               autoComplete="current-password"
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                    onMouseDown={this.handleMouseDownPassword}
+                  >
+                    {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
               InputLabelProps={{
                 classes: {
                   root: classes.cssLabel,
@@ -95,7 +149,7 @@ class Login extends React.Component<{
               }}
               onChange={ this.props.getPass }
               onKeyPress={this.handleKeyPress}
-            />
+            /> */}
             <FormControlLabel
               control={<Checkbox value="remember" style ={{
                   color: "#d93211",
