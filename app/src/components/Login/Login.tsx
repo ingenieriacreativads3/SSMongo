@@ -23,7 +23,9 @@ class Login extends React.Component<{
   handleKeyPress: any,
   showPassword: boolean,
   Password: string,
-}, {}> {
+}, {
+  showPassword: boolean
+}> {
 
 	props: any
 	static propTypes: any
@@ -45,7 +47,7 @@ class Login extends React.Component<{
   }
 
   handleClickShowPassword(e: any) {
-    //this.setState({ showPassword: !this.state.showPassword})
+    this.setState({ showPassword: !this.state.showPassword})
   }
 
   handleMouseDownPassword(e: any) {
@@ -89,14 +91,14 @@ class Login extends React.Component<{
               onChange={ this.props.getUser }
               onKeyPress={ this.handleKeyPress }
             />
-             <TextField
+            <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
               name="password"
               label="Contraseña"
-              type="password"
+              type={this.state.showPassword ? 'text' : 'password'}
               id="password"
               autoComplete="current-password"
               InputProps={{
@@ -114,7 +116,7 @@ class Login extends React.Component<{
                     onClick={this.handleClickShowPassword}
                     onMouseDown={this.handleMouseDownPassword}
                     >
-                      {"hola" ? <Visibility /> : <VisibilityOff />}
+                      { this.state.showPassword ? <Visibility /> : <VisibilityOff /> }
                     </IconButton>
                   </InputAdornment>
                 )

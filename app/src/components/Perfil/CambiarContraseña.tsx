@@ -8,6 +8,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, InputAdornment} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
 import * as fileActions from './../../store/actions/file'
@@ -54,7 +55,8 @@ class CambiarContraseña extends React.Component <{
   showNewPasswordCopy: boolean,
   oldPassword: string,
   newPassword: string,
-  newPasswordCopy: string
+  newPasswordCopy: string,
+  diferentPass: boolean
 }>  {
 
 	props: any
@@ -79,7 +81,8 @@ class CambiarContraseña extends React.Component <{
       showNewPasswordCopy: false,
       oldPassword: '',
       newPassword: '',
-      newPasswordCopy: ''
+      newPasswordCopy: '',
+      diferentPass: false
     };
   }
 
@@ -108,6 +111,13 @@ class CambiarContraseña extends React.Component <{
   }
 
   handleChangeNewPasswordCopy(e: any) {
+
+    if(e.target.value !== this.state.newPassword) {
+      this.setState({ diferentPass: true })
+    } else {
+      this.setState({ diferentPass: false })
+    }
+
     this.setState({ newPasswordCopy: e.target.value })
   }
 
@@ -212,7 +222,7 @@ class CambiarContraseña extends React.Component <{
                         <FormControl className={clsx(classes.margin, classes.textField)}>
                           <InputLabel className={classes.textField}  htmlFor="standard-adornment-password">Repetir Contraseña</InputLabel>
                           <Input
-                          className={classes.textField}
+                            className={classes.textField}
                             id="standard-adornment-password"
                             type={this.state.showNewPasswordCopy ? 'text' : 'password'}
                             value={this.state.newPasswordCopy}
@@ -229,6 +239,7 @@ class CambiarContraseña extends React.Component <{
                               </InputAdornment>
                             }
                           />
+                          { this.state.diferentPass ? <FormHelperText id="component-error-text" children='Error' /> : <div></div> }
                         </FormControl>
                             
                           </Grid>
@@ -251,6 +262,7 @@ class CambiarContraseña extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
+                              disabled={ this.state.diferentPass ? true : false }
                               // onClick={() => this.props.update(
                               //   this.state.empresa.clave,
                               // )}

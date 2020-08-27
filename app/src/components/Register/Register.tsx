@@ -22,7 +22,9 @@ class Register extends React.Component<{
   getEmail: any,
   getPass: any,
   register: any
-}, {}> {
+}, {
+  showPassword: boolean
+}> {
 
 	props: any
 	static propTypes: any
@@ -40,7 +42,7 @@ class Register extends React.Component<{
 
 
   handleClickShowPassword(e: any) {
-    //this.setState({ showPassword: !this.state.showPassword})
+    this.setState({ showPassword: !this.state.showPassword})
   }
 
   handleMouseDownPassword(e: any) {
@@ -173,7 +175,7 @@ class Register extends React.Component<{
                 name="contraseña"
                 label="Contraseña"
                 id="contraseña"
-                type="password"
+                type={this.state.showPassword ? 'text' : 'password'}
                 InputProps={{
                   classes: {
                     root: classes.cssOutlinedInput,
@@ -189,7 +191,7 @@ class Register extends React.Component<{
                       onClick={this.handleClickShowPassword}
                       onMouseDown={this.handleMouseDownPassword}
                       >
-                        {"hola" ? <Visibility /> : <VisibilityOff />}
+                        { this.state.showPassword ? <Visibility /> : <VisibilityOff /> }
                       </IconButton>
                     </InputAdornment>
                   )

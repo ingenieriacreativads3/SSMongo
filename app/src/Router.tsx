@@ -6,6 +6,7 @@ import AppBar from './components/AppBar'
 import { ItemNuevo } from './containers/Item'
 import { EditarItem } from './components/Item'
 import { ItemEditar } from './containers/Item'
+
 //import { NuevaUnidadMedida } from './components/UnidadMedida'
 //import { ValidarSolicitud } from './components/UnidadMedida'
 //import { SolicitudesUnidadMedida } from './components/UnidadMedida'
@@ -76,6 +77,8 @@ class App extends React.Component <{}, {}> {
 	enEspera(props: { path: any, cookies: Cookies, render: any }) {
 
 		let isAuth: boolean = false
+
+		console.log(props.cookies.get('empresaId'))
 
 		if(props.cookies.get('empresaId') !== undefined) {
 			isAuth = true
