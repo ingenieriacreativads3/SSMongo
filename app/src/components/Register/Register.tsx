@@ -8,10 +8,11 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import logo from './../Login/img/logo.png'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import InputLabel from '@material-ui/core/InputLabel'
-import IconButton from '@material-ui/core/IconButton'
 import Input from '@material-ui/core/Input'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import {IconButton, InputAdornment, FormControl, InputLabel, OutlinedInput} from '@material-ui/core'
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 class Register extends React.Component<{
   classes: any,
@@ -30,8 +31,21 @@ class Register extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.state = {};
+    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
+    this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
+    this.state = {
+      showPassword: false,
+    };
   }
+
+
+  handleClickShowPassword(e: any) {
+    //this.setState({ showPassword: !this.state.showPassword})
+  }
+
+  handleMouseDownPassword(e: any) {
+    e.preventDefault();
+  };
 
   render(){
 
@@ -160,21 +174,33 @@ class Register extends React.Component<{
                 label="Contraseña"
                 id="contraseña"
                 type="password"
-                
-                InputLabelProps={{
-                  classes: {
-                    root: classes.cssLabel,
-                    focused: classes.cssFocused,
-                  },
-                }}
                 InputProps={{
                   classes: {
                     root: classes.cssOutlinedInput,
                     focused: classes.cssFocused,
                     notchedOutline: classes.notchedOutline,
                   },
-                 
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton 
+                      disableRipple={true} 
+                      size="small"
+                      aria-label="toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                      onMouseDown={this.handleMouseDownPassword}
+                      >
+                        {"hola" ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
                 }}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                  },
+                }}
+                
                 onChange={ this.props.getPass }
               />
             </Grid>

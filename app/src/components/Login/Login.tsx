@@ -89,31 +89,7 @@ class Login extends React.Component<{
               onChange={ this.props.getUser }
               onKeyPress={ this.handleKeyPress }
             />
-             <FormControl className={classes.inputPass}  variant="outlined">
-          <InputLabel className={classes.inputLabel} htmlFor="outlined-adornment-password">Contraseña*</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type="password"
-            className={classes.inputPass}
-            style={{width:397}}
-            onChange={ this.props.getPass }
-            onKeyPress={this.handleKeyPress}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                  onMouseDown={this.handleMouseDownPassword}
-                  edge="end"
-                >
-              {/*   { this.state.showPassword ?  <Visibility /> : <VisibilityOff />} */}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={90}
-          />
-        </FormControl>
-            {/* <TextField
+             <TextField
               variant="outlined"
               margin="normal"
               required
@@ -123,33 +99,36 @@ class Login extends React.Component<{
               type="password"
               id="password"
               autoComplete="current-password"
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={this.handleClickShowPassword}
-                    onMouseDown={this.handleMouseDownPassword}
-                  >
-                    {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              InputLabelProps={{
-                classes: {
-                  root: classes.cssLabel,
-                  focused: classes.cssFocused,
-                },
-              }}
               InputProps={{
                 classes: {
                   root: classes.cssOutlinedInput,
                   focused: classes.cssFocused,
                   notchedOutline: classes.notchedOutline,
                 },
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton 
+                    disableRipple={true} 
+                    size="small"
+                    aria-label="toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                    onMouseDown={this.handleMouseDownPassword}
+                    >
+                      {"hola" ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                )
               }}
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                },
+              }}
+             
               onChange={ this.props.getPass }
               onKeyPress={this.handleKeyPress}
-            /> */}
+            /> 
             <FormControlLabel
               control={<Checkbox value="remember" style ={{
                   color: "#d93211",
