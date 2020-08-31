@@ -263,9 +263,10 @@ class CambiarContraseña extends React.Component <{
                               className={classes.button}
                               startIcon={<SaveIcon />}
                               disabled={ this.state.diferentPass ? true : false }
-                              // onClick={() => this.props.update(
-                              //   this.state.empresa.clave,
-                              // )}
+                              onClick={() => this.props.update(
+                                this.state.oldPassword,
+                                this.state.newPasswordCopy
+                              )}
                             >
                               Guardar
                             </Button>

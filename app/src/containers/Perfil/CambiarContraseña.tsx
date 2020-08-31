@@ -46,12 +46,6 @@ class CambiarContraseña extends React.Component<{
     };
   }
 
-  componentWillMount() {
-
-    this.props.dispatch(empresaActions.getEmpresa(this.props.match.params.id))
-
-  }
-
   componentDidUpdate() {
 
     if(this.props.empresaReducer.fetched) {
@@ -90,13 +84,13 @@ class CambiarContraseña extends React.Component<{
     />
   }
 
-  update(
-    password: string,
-    ) {
+  update(oldPassword: string, newPassword: string) {
 
-    // this.props.dispatch(empresaActions.updateContraseña(
-    //   password,
-    //  ))
+    this.props.dispatch(empresaActions.changePassword(
+      this.props.cookies.get('empresaId'),
+      oldPassword,
+      newPassword
+    ))
 
   }
 
@@ -114,20 +108,6 @@ class CambiarContraseña extends React.Component<{
 
   render(){
 
-    let empresa: {
-     "clave": string,
-    } = {
-     "clave": ''
-    }
-
-    if(this.props.empresaReducer !== undefined) {
-			if(this.props.empresaReducer.data !== undefined) {
-				if(this.props.empresaReducer.data.empresa !== undefined) {
-          // empresa = { ...this.props.empresaReducer.data.empresa }
-				}
-			}
-		}
-
     return(
       <div>
         <ChangePassword 
@@ -138,15 +118,14 @@ class CambiarContraseña extends React.Component<{
           footer={this.footer()}
           drawer={this.drawer()}
           appBar={this.appBar()}
-        //   empresa={empresa}
-        //   update={this.update}
+          update={this.update}
          />
-         {/* <OneButton 
+         <OneButton 
           title={ 'Cambiar Contraseña' }
           text={  this.props.empresaReducer.message  }
           functionRight={ this.aceptar }
           labelButtonRight={ 'Aceptar' }
-        /> */}
+        />
       </div>
     );
   }

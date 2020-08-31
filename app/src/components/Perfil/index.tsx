@@ -267,6 +267,7 @@ export  function CambiarContraseña(props: {
   footer:any,
   drawer:any,
   appBar:any,
+  update:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -281,6 +282,7 @@ export  function CambiarContraseña(props: {
       footer={props.footer}
       drawer={props.drawer}
       appBar={props.appBar}
+      update={props.update}
      />
   </div>;
 

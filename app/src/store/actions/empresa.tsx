@@ -1,5 +1,26 @@
 import axios from 'axios';
 
+export function changePassword(
+	idEmpresa: string,	
+	oldPassword: string,
+	newPassword: string
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.put(url + '/empresa/password', {
+		idEmpresa,
+		'old-password': oldPassword,
+		'new-password': newPassword
+	})
+	
+  return {
+		type: 'CHANGE_PASSWORD',
+		payload: payload
+	}
+
+}
+
 export function getEmpresaRubros(){
 
 	let url: string = 'http://127.0.0.1:8000';
