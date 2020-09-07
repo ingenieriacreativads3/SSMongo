@@ -34,6 +34,26 @@ import ThumbUp from '@material-ui/icons/ThumbUp';
 import * as drawerActions from './../../store/actions/drawer'
 
 import * as itemActions from './../../store/actions/item'
+import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
+import LocalDiningIcon from '@material-ui/icons/LocalDining';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import LocalPrintshopIcon from '@material-ui/icons/LocalPrintshop';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import EvStationIcon from '@material-ui/icons/EvStation';
+import HotelIcon from '@material-ui/icons/Hotel';
+import StorefrontIcon from '@material-ui/icons/Storefront';
+import BuildIcon from '@material-ui/icons/Build';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import RoomServiceIcon from '@material-ui/icons/RoomService';
+import SchoolIcon from '@material-ui/icons/School';
+import WorkIcon from '@material-ui/icons/Work';
+import FilterHdrIcon from '@material-ui/icons/FilterHdr';
+import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
+import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import LayersIcon from '@material-ui/icons/Layers';
+import AppsIcon from '@material-ui/icons/Apps';
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -233,17 +253,26 @@ class Home extends React.Component <{
                 className={classes.tabs}
                
               >
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}> <Tab label="Item One" icon={<PhoneIcon  className={classes.iconoCategoria}/> }  {...a11yProps(0)} className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Two" icon={<FavoriteIcon className={classes.iconoCategoria} />}  {...a11yProps(1)}  className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Three" icon={<PersonPinIcon className={classes.iconoCategoria} />}  {...a11yProps(2)}className={classes.tab}  /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Four" icon={<HelpIcon className={classes.iconoCategoria} />}  {...a11yProps(3)} className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Five" icon={<ShoppingBasket className={classes.iconoCategoria} />}  {...a11yProps(4)} className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Six" icon={<ThumbDown className={classes.iconoCategoria} />}  {...a11yProps(5)} className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Seven" icon={<ThumbUp className={classes.iconoCategoria} />}  {...a11yProps(6)} className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Eigth" icon={<ThumbUp className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Nine" icon={<ThumbUp className={classes.iconoCategoria} />}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Item Ten" icon={<ThumbUp className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Agricultura, Ganaderia, SilviCultura" icon={<LocalFloristIcon  className={classes.iconoCategoria}/> }  {...a11yProps(0)} className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Pesca, Servicios, Conexos" icon={<FavoriteIcon className={classes.iconoCategoria} />}  {...a11yProps(1)}  className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Explotacion, Minas, Canteras" icon={<FilterHdrIcon className={classes.iconoCategoria} />}  {...a11yProps(2)}className={classes.tab}  /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Alimentos, Bebidas, Tabaco" icon={<LocalDiningIcon className={classes.iconoCategoria} />}  {...a11yProps(3)} className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Textiles, Cuero" icon={<BusinessCenterIcon className={classes.iconoCategoria} />}  {...a11yProps(4)} className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Imprenta, Editoriales" icon={<LocalPrintshopIcon className={classes.iconoCategoria} />}  {...a11yProps(5)} className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Derivados de petroleo, quimicos" icon={<EvStationIcon className={classes.iconoCategoria} />}  {...a11yProps(6)} className={classes.tab} /></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Metales" icon={<LayersIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Transporte" icon={<EmojiTransportationIcon className={classes.iconoCategoria} />}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Maquinarias, Equipos" icon={<ThumbUp className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Otras industrias" icon={<LocationCityIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Electricidad, Agua, Gas" icon={<EmojiObjectsIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Construccion" icon={<BuildIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Comercio mayorista/minorista" icon={<StorefrontIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Hoteles, Restaurantes" icon={<HotelIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Transportes, Comunicaciones" icon={<LocalPhoneIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Actividades inmobiliarias, empresariales, alquiler" icon={<WorkIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Administracion publica" icon={<AccountBalanceIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Servicios sociales, Enseñanza, Salud" icon={<SchoolIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Otras actividades" icon={<AppsIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
               </Tabs>
               
               

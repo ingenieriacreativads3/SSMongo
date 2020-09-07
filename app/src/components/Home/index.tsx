@@ -181,12 +181,12 @@ const useStyles = makeStyles((theme) => ({
   //   paddingTop:theme.spacing(35),
   // },
   tab:{
-    fontSize:20,
+    fontSize:13,
     color:"#d93211",
    
   },
   iconoCategoria:{
-    fontSize:40,
+    fontSize:25,
     color:"#d93211",
    
   }
