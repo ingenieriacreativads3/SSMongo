@@ -1,5 +1,28 @@
 import axios from 'axios';
 
+export function agregarBusqueda(
+	idEmpresa: string,	
+	idItem: string,
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/agregarbusqueda', {
+		empresa: {
+			_id: idEmpresa
+		},
+		item: {
+			_id: idItem
+		}
+	})
+	
+  return {
+		type: 'AGREGAR_BUSQUEDA',
+		payload: payload
+	}
+
+}
+
 export function deleteItem(
 	id:string
 ) {

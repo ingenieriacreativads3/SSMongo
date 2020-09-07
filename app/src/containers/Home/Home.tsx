@@ -1,19 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
+import { Link } from "react-router-dom";
+
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import { IconButton } from '@material-ui/core';
+
 
 import { InitLayout as HomeComponent } from './../../components/Home'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 
+import * as itemActions from './../../store/actions/item'
+
 function mapStateToProps(store: {
   requestReducer: any,
-  login: any
+  login: any,
+  itemReducer: any
 }) {
   return {
     requestReducer: store.requestReducer,
-    login: store.login
+    login: store.login,
+    itemReducer: store.itemReducer
   };
 }
 
@@ -31,8 +40,13 @@ class Home extends React.Component<{
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
-		super(props);
+    super(props);
+    this.action = this.action.bind(this);
     this.state = {};
+  }
+
+  componentWillMount() {
+    this.props.dispatch(itemActions.reintentar())
   }
   
   drawer() {
@@ -63,78 +77,78 @@ class Home extends React.Component<{
     />
   }
 
+  action(idItem: string) {
+    console.log(this.props.cookies.get('empresaId'))
+    console.log(idItem)
+    this.props.dispatch(itemActions.reintentar())
+    this.props.dispatch(itemActions.agregarBusqueda(
+      this.props.cookies.get('empresaId'),
+      idItem
+    ))
+  }
 
   render(){
 
     let items: [
       {
-        "_id": string,
-        "foto": string[],
-        "nombre": string,
-        "precio": string,
-        "descrpcion": string,
-        "mostrarPrecio": boolean,
-        "unidad_de_medida_id": string,
-        "updated_at": string,
-        "created_at": string,
-        "catalogo_id": string,
-        "unidad_de_medida": {
+        'item': {
           "_id": string,
+          "foto": string[],
           "nombre": string,
-          "abreviatura": string,
+          "precio": string,
+          "descrpcion": string,
+          "mostrarPrecio": boolean,
+          "unidad_de_medida_id": string,
           "updated_at": string,
           "created_at": string,
+          "catalogo_id": string,
+          "unidad_de_medida": {
+            "_id": string,
+            "nombre": string,
+            "abreviatura": string,
+            "updated_at": string,
+            "created_at": string,
+          }
         }
       }
     ] = [
       {
-        "_id": "5f0f155d3eff762f0335072b",
-        "foto": [
-            "images/5f0f155d64a4d.jpeg",
-            "images/5f0f155d64a4d.jpeg",
-            "images/5f0f155d64a4d.jpeg",
-            "images/5f0f155d64a4d.jpeg"
-        ],
-        "nombre": "chan",
-        "precio": "123",
-        "descrpcion": "Este item no tiene descripciónasdasdasdasd",
-        "mostrarPrecio": false,
-        "unidad_de_medida_id": "5ecdb255db386b4e1b75e37c",
-        "updated_at": "2020-08-04 23:39:29",
-        "created_at": "2020-07-15 14:40:29",
-        "catalogo_id": "5f0515a46e82d7332c28ceb4",
-        "unidad_de_medida": {
-            "_id": "5ecdb255db386b4e1b75e37c",
-            "nombre": "Galeones2",
-            "abreviatura": "GAL2",
-            "updated_at": "2020-05-27 00:20:37",
-            "created_at": "2020-05-27 00:20:37"
+        item: {
+          "_id": '',
+          "foto": [],
+          "nombre": '',
+          "precio": '',
+          "descrpcion": '',
+          "mostrarPrecio": false,
+          "unidad_de_medida_id": '',
+          "updated_at": '',
+          "created_at": '',
+          "catalogo_id": '',
+          "unidad_de_medida": {
+            "_id": '',
+            "nombre": '',
+            "abreviatura": '',
+            "updated_at": '',
+            "created_at": '',
+          }
         }
       }
     ]
-    // ] = [
-    //   {
-    //     "_id": '',
-    //     "foto": [],
-    //     "nombre": '',
-    //     "precio": '',
-    //     "descrpcion": '',
-    //     "mostrarPrecio": false,
-    //     "unidad_de_medida_id": '',
-    //     "updated_at": '',
-    //     "created_at": '',
-    //     "catalogo_id": '',
-    //     "unidad_de_medida": {
-    //       "_id": '',
-    //       "nombre": '',
-    //       "abreviatura": '',
-    //       "updated_at": '',
-    //       "created_at": '',
-    //     }
-    //   }
-    // ]
 
-    // console.log(localStorage.getItem('empresaId'))
+    if(
+      !this.props.itemReducer.fetched &&
+      !this.props.itemReducer.fetching
+    ) {
+      this.props.dispatch(itemActions.getCatalogo(this.props.cookies.get('empresaId')))
+    }
+
+    if(
+      this.props.itemReducer.fetched &&
+      this.props.itemReducer.data !== undefined &&
+      this.props.itemReducer.data.items !== undefined
+    ) {
+      items = this.props.itemReducer.data.items
+    }
 
     return(
       <div>
@@ -146,7 +160,8 @@ class Home extends React.Component<{
           cookies={this.props.cookies}
           drawer={ this.drawer() }
           footer={ this.footer() }
-          appBar={this.appBar()}
+          appBar={ this.appBar() }
+          action={ this.action }
           items={items}
         />
       </div>

@@ -202,24 +202,27 @@ export function InitLayout(props: {
   drawer: any,
   footer: any,
   appBar:any,
+  action: any,
   items: [
     {
-      "_id": string,
-      "foto": string[],
-      "nombre": string,
-      "precio": string,
-      "descrpcion": string,
-      "mostrarPrecio": boolean,
-      "unidad_de_medida_id": string,
-      "updated_at": string,
-      "created_at": string,
-      "catalogo_id": string,
-      "unidad_de_medida": {
+      item: {
         "_id": string,
+        "foto": string[],
         "nombre": string,
-        "abreviatura": string,
+        "precio": string,
+        "descrpcion": string,
+        "mostrarPrecio": boolean,
+        "unidad_de_medida_id": string,
         "updated_at": string,
         "created_at": string,
+        "catalogo_id": string,
+        "unidad_de_medida": {
+          "_id": string,
+          "nombre": string,
+          "abreviatura": string,
+          "updated_at": string,
+          "created_at": string,
+        }
       }
     }
   ]
@@ -239,6 +242,7 @@ export function InitLayout(props: {
       drawer={props.drawer}
       footer={props.footer}
       appBar={props.appBar}
+      action={ props.action }
       items={ props.items }
     />
   </div>;

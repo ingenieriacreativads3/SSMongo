@@ -144,6 +144,32 @@ export default function itemReducer ( state = {
       };
 		}
 
+		case 'AGREGAR_BUSQUEDA_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'AGREGAR_BUSQUEDA_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'AGREGAR_BUSQUEDA_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
 		case 'REINTENTAR':{
       return {
         ...state,

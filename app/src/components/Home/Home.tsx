@@ -33,6 +33,8 @@ import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import * as drawerActions from './../../store/actions/drawer'
 
+import * as itemActions from './../../store/actions/item'
+
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -54,24 +56,27 @@ function Copyright() {
 class Home extends React.Component <{
   clasess: any,
   theme: any,
+  action: any,
   items: [
     {
-      "_id": string,
-      "foto": string[],
-      "nombre": string,
-      "precio": string,
-      "descrpcion": string,
-      "mostrarPrecio": boolean,
-      "unidad_de_medida_id": string,
-      "updated_at": string,
-      "created_at": string,
-      "catalogo_id": string,
-      "unidad_de_medida": {
+      item: {
         "_id": string,
+        "foto": string[],
         "nombre": string,
-        "abreviatura": string,
+        "precio": string,
+        "descrpcion": string,
+        "mostrarPrecio": boolean,
+        "unidad_de_medida_id": string,
         "updated_at": string,
         "created_at": string,
+        "catalogo_id": string,
+        "unidad_de_medida": {
+          "_id": string,
+          "nombre": string,
+          "abreviatura": string,
+          "updated_at": string,
+          "created_at": string,
+        }
       }
     }
   ]
@@ -94,6 +99,18 @@ class Home extends React.Component <{
       hoverFilter: -1,
       activeStep: 0
 		};
+  }
+
+  action(_id: string, classes: any) {
+    return <Link to={'/item/detalle/' + _id}>
+      <IconButton 
+        aria-label="ver" 
+        className={classes.iconButton} 
+        onClick={ () => this.props.action(_id) }
+      > 
+        <VisibilityIcon style={{ fontSize: 40 }}  />
+      </IconButton>
+    </Link>
   }
 
   render(){
@@ -248,51 +265,63 @@ class Home extends React.Component <{
                   {/* <SideBarInicio></SideBarInicio> */}
                 
                   {
-                    this.props.items.map((item: {
-                      "_id": string,
-                      "foto": string[],
-                      "nombre": string,
-                      "precio": string,
-                      "descrpcion": string,
-                      "mostrarPrecio": boolean,
-                      "unidad_de_medida_id": string,
-                      "updated_at": string,
-                      "created_at": string,
-                      "catalogo_id": string,
-                      "unidad_de_medida": {
+                    this.props.items.map((asd: {
+                      item: {
                         "_id": string,
+                        "foto": string[],
                         "nombre": string,
-                        "abreviatura": string,
+                        "precio": string,
+                        "descrpcion": string,
+                        "mostrarPrecio": boolean,
+                        "unidad_de_medida_id": string,
                         "updated_at": string,
                         "created_at": string,
+                        "catalogo_id": string,
+                        "unidad_de_medida": {
+                          "_id": string,
+                          "nombre": string,
+                          "abreviatura": string,
+                          "updated_at": string,
+                          "created_at": string,
+                        }
                       }
                     }) => {
+
+                      // let fotos: string[] = ['']
+
+                      // if(item.foto !== undefined && item.foto.length > 0) {
+                      //   fotos = item.foto
+                      // }
+
+                      // let unidadDeMedidaNombre: string = ''
+
+                      
+                      // if(item.unidad_de_medida !== undefined) {
+                      //   unidadDeMedidaNombre = item.unidad_de_medida.nombre
+                      // }
+
                       return <div>
                         <Grid item lg={3}>
                           <Card className={fixedHeightCardCatalog}>
                             <CardActionArea>
                               <CardMedia
                                 component="img"
-                                alt={item.nombre}
+                                alt={asd.item.nombre}
                                 height="140"
-                                image={'http://localhost:8000/' + item.foto[0]}
-                                title={item.nombre}
+                                image={'http://localhost:8000/' + asd.item.foto[0]}
+                                title={asd.item.nombre}
                               />
                               <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                  {item.nombre}
+                                  {asd.item.nombre}
                                 </Typography>
                                 <Typography variant="subtitle1" component="h2">
-                                  ${item.precio} x {item.unidad_de_medida.nombre}
+                                  ${asd.item.precio} x {asd.item.unidad_de_medida.nombre}
                                 </Typography>
                               </CardContent>
                             </CardActionArea>
                             <CardActions >
-                              <Link to={'/item/detalle/' + item._id}>
-                                <IconButton aria-label="ver" className={classes.iconButton}> 
-                                  <VisibilityIcon style={{ fontSize: 40 }}  />
-                                </IconButton>
-                              </Link>
+                              { this.action(asd.item._id, classes) }
                             </CardActions>
                           </Card>
                         </Grid>

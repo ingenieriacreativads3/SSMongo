@@ -39,6 +39,10 @@ class Detalle extends React.Component<{
     this.solicitarPedido = this.solicitarPedido.bind(this);
     this.state = {};
   }
+
+  componentWillMount() {
+    this.props.dispatch(itemActions.reintentar())
+  }
   
   drawer() {
     return <InicioDrawer 
