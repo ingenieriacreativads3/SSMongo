@@ -9,7 +9,7 @@ import { ItemEditar } from './containers/Item'
 
 //import { NuevaUnidadMedida } from './components/UnidadMedida'
 //import { ValidarSolicitud } from './components/UnidadMedida'
-//import { SolicitudesUnidadMedida } from './components/UnidadMedida'
+// import { ChatRoom } from './components/Mensajes'
 import { Catalogo } from './containers/Item'
 import { VerDetalleItem } from './components/Item'
 import { ItemDetalle } from './containers/Item'
@@ -39,6 +39,7 @@ import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion
 import { EmpresaPerfil, CambiarContraseña } from './containers/Perfil'
 import { SolicitudesUnidadMedida, SolicitudDeUnidadDeMedida, NuevaUnidadMedida } from './containers/UnidadMedida'
 import { NoAutenticado } from './containers/No Autenticado'
+import { Chat } from './containers/Mensajes'
 
 class App extends React.Component <{}, {}> {
 
@@ -105,13 +106,6 @@ class App extends React.Component <{}, {}> {
 						<Route path='/home/side'                      component={ AppBar } />
 						
 						
-						
-						
-						
-						
-					    {/* <Route path='/solicitud/unidadMedida'         component={ SolicitudesUnidadMedida } />  */}
-						
-						
 						<this.enEspera path='/unidadMedida/nuevo'        cookies={cookies}    render={(props:any) => <NuevaUnidadMedida {...props} cookies={cookies} />}/>
 					  
 						
@@ -159,6 +153,8 @@ class App extends React.Component <{}, {}> {
 						<this.enEspera path='/home/reputacion'           cookies={cookies} render={(props:any) => <Reputacion {...props} cookies={cookies}/>}/>
 						<Route path='/home/inicio' 			  		           render={(props) => <Inicio { ...props } cookies={cookies} />}/>
 						
+						<Route path='/mensajes'     	 	 render={(props) => <Chat {...props} cookies={cookies}/>} /> 
+
 						<Route path='/Unauthorized'         		 render={(props) => <NoAutenticado {...props} />} />
 						<Route path='/registrar' 					            component={ Register } />
 						<this.login path='/' cookies={cookies} render={(props: any) => <Login { ...props } cookies={cookies} />}/>
