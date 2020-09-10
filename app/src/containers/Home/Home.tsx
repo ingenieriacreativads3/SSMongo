@@ -139,7 +139,7 @@ class Home extends React.Component<{
       !this.props.itemReducer.fetched &&
       !this.props.itemReducer.fetching
     ) {
-      this.props.dispatch(itemActions.getCatalogo(this.props.cookies.get('empresaId')))
+      this.props.dispatch(itemActions.getTrendingItems(this.props.cookies.get('empresaId'), 4))
     }
 
     if(
@@ -147,7 +147,7 @@ class Home extends React.Component<{
       this.props.itemReducer.data !== undefined &&
       this.props.itemReducer.data.items !== undefined
     ) {
-      items = this.props.itemReducer.data.items
+      items = this.props.itemReducer.data.trendingItems
     }
 
     return(
