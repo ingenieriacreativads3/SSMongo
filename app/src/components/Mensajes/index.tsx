@@ -203,6 +203,10 @@ export  function ChatRoom(props: {
   footer:any,
   drawer:any,
   appBar:any,
+  mensajes:any[],
+  getMessage: any,
+  sendMessage:any,
+  nuevoMensaje:string,
 }) {
 
 	const classes = useStyles(theme);
@@ -217,6 +221,10 @@ export  function ChatRoom(props: {
       footer={props.footer}
       drawer={props.drawer}
       appBar={props.appBar}
+      mensajes={props.mensajes}
+      getMessage={props.getMessage}
+      sendMessage={props.sendMessage}
+      nuevoMensaje={props.nuevoMensaje}
      />
   </div>;
 

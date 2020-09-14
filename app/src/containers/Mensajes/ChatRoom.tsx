@@ -22,6 +22,7 @@ function mapStateToProps(store: {
   };
 }
 
+ 
 class Mensajes extends React.Component<{
   history: any,
   location: any,
@@ -29,6 +30,8 @@ class Mensajes extends React.Component<{
   staticContext?: any,
   cookies: Cookies
 }, {
+  mensajes: any [],
+  nuevoMensaje:string,
 }> {
 
 	props: any
@@ -38,9 +41,40 @@ class Mensajes extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.getMessage = this.getMessage.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
+    this.state={
+      mensajes:["mensaje1", "mensaje2"],
+      nuevoMensaje: '',
+    };
   }
 
+
+  getMessage(e: any) {
+    debugger;
+
+    this.setState({ nuevoMensaje: e.target.value})
+  }
+
+  sendMessage() {
+
+    let mensaje = this.state.mensajes;
+
+    mensaje.push(this.state.nuevoMensaje);
+
+     this.setState({
+         mensajes:mensaje,
+         nuevoMensaje:''
+        })
+
+
   
+  
+        
+      }
+
+  
+
 
   footer() {
     return <Footer 
@@ -86,7 +120,10 @@ class Mensajes extends React.Component<{
           footer={this.footer()}
           drawer={this.drawer()}
           appBar={this.appBar()}
-         
+          mensajes = {this.state.mensajes}
+          getMessage={ this.getMessage }
+          sendMessage={this.sendMessage}
+          nuevoMensaje={this.state.nuevoMensaje}
          />
         
       </div>

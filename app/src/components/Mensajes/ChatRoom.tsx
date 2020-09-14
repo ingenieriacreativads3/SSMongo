@@ -58,6 +58,8 @@ function Copyright() {
   );
 }
 
+
+
 function mapStateToProps(store: {
   
 }) {
@@ -73,7 +75,7 @@ class ChatRoom extends React.Component <{
   match: any,
   staticContext?: any,
 }, {
- 
+
 }>  {
 
 	props: any
@@ -82,9 +84,7 @@ class ChatRoom extends React.Component <{
  
   constructor(props: any) {
     super(props);
-    this.state={
-        messages:["a",'b'],
-    }
+   
   }
 
  
@@ -116,15 +116,15 @@ class ChatRoom extends React.Component <{
             <Grid container component={Paper} className={classes.chatSection}>
            
            <Grid item xs={12}>
-               <List className={classes.messageArea}>
-                   
-                   <ListItem key="1">
+               {/* <List className={classes.messageArea}> */}
+                   {this.props.mensajes.map((msj:any)=>{
+                     return  <ListItem>
                        <Grid container>
                            
                       
                            <Grid item xs={12}>
                            
-                               <ListItemText  primary="Hey, Iam Good! What about you ?"></ListItemText>
+                               <ListItemText  primary={msj}></ListItemText>
                            </Grid>
                            
                            <Grid item xs={12}>
@@ -132,26 +132,20 @@ class ChatRoom extends React.Component <{
                            </Grid>
                            
                        </Grid>
-                   </ListItem>
-                   <ListItem key="2">
-                       <Grid container>
-                           <Grid item xs={12}>
-                               <ListItemText  primary="Cool. i am good, let's catch up!"></ListItemText>
-                           </Grid>
-                           <Grid item xs={12}>
-                               <ListItemText  secondary="SuppliersStore"></ListItemText>
-                           </Grid>
-                       </Grid>
-                   </ListItem>
-               </List>
-               <Divider />
+                   </ListItem>    
+                  
+                   })}
+
+                  <Divider/>
+                {/* </List> */}
+           
                <Grid container style={{padding: '20px'}}>
                    <Grid item xs={11}>
                        
-                       <CssTextField id="outlined-basic-email" label="Escriba su mensaje" fullWidth />
+                       <CssTextField id="outlined-basic-email" label="Escriba su mensaje" fullWidth value={this.props.nuevoMensaje} onChange={this.props.getMessage} />
                    </Grid>
                    <Grid xs={1} >
-                       <Fab className={classes.buttonEnviar} color="primary" aria-label="add"><SendIcon /></Fab>
+                       <Fab className={classes.buttonEnviar} color="primary" aria-label="add"><SendIcon onClick={this.props.sendMessage}  /></Fab>
                    </Grid>
                </Grid>
            </Grid>
