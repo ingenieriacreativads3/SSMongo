@@ -191,7 +191,14 @@ const useStyles = makeStyles((theme) => ({
       background: "#d93211",
    },
   },
- 
+  chatSection: {
+    width: '100%',
+    height: '80vh'
+  },
+  messageArea: {
+    height: '70vh',
+    overflowY: 'auto'
+  }
   
 }));
 

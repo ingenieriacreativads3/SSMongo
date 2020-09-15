@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
-import { IconButton, Badge } from '@material-ui/core';
+import { IconButton, Badge, ListItem, ListItemAvatar, Avatar,ListItemText, Divider, Typography, Box, List, Popover } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -15,7 +15,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputBase from '@material-ui/core/InputBase';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import { FixedSizeList } from 'react-window';
 
 import * as drawerAction from './../../store/actions/drawer'
 
@@ -38,6 +38,7 @@ class AppBare extends React.Component<{
 }, {
 	anchorEl: null | HTMLElement,
 	mobileMoreAnchorEl: null | HTMLElement
+	mensajes: null | HTMLElement,
 }> {
 
 	props: any
@@ -48,9 +49,12 @@ class AppBare extends React.Component<{
 		super(props);
 		this.state = {
 			anchorEl: null,
-			mobileMoreAnchorEl: null
+			mobileMoreAnchorEl: null,
+			mensajes:null,
 		};
 	}
+
+
 
 	render(){
 
@@ -58,13 +62,14 @@ class AppBare extends React.Component<{
 		
 		const isMenuOpen = Boolean(this.state.anchorEl);
 		const isMobileMenuOpen = Boolean(this.state.mobileMoreAnchorEl);
+		const isMessageOpen = Boolean(this.state.anchorEl);
 
 		const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
 			this.setState({
 				anchorEl: event.currentTarget
 			})
 		};
-		
+
 		const handleMobileMenuClose = () => {
 			this.setState({
 				mobileMoreAnchorEl: null
@@ -192,7 +197,7 @@ class AppBare extends React.Component<{
 						open={isMobileMenuOpen}
 						onClose={handleMobileMenuClose}
 					>
-						<MenuItem>
+						<MenuItem >
 							<IconButton aria-label="show 4 new mails" color="inherit">
 								<Badge badgeContent={4} color="secondary">
 									<MailIcon />
@@ -235,6 +240,61 @@ class AppBare extends React.Component<{
 						<MenuItem onClick={cerrarSesion} className={classes.subtitle}>Cerrar Sesión</MenuItem>
 						<MenuItem onClick={cambiarPassword} className={classes.subtitle}>Cambiar contraseña</MenuItem>
 					</Menu>
+
+					{/* <Menu
+						anchorEl={this.state.mensajes}
+						anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+						id={menuId}
+						keepMounted
+						transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+						open={isMessageOpen}
+						onClose={handleMenuClose}
+					>
+						<Popover
+							disableScrollLock
+							id={menuId}
+							open={isMenuOpen}
+							anchorEl={this.state.anchorEl}
+							anchorOrigin={{
+							vertical: "bottom",
+							horizontal: "left",
+							}}
+							transformOrigin={{
+							vertical: "top",
+							horizontal: "right",
+							}}
+							classes={{ paper: classes.popoverPaper }}
+							// onClose={handleClickAway}
+						>
+							<AppBar position="static" color="inherit" className={classes.noShadow}>
+							<Box pt={1} pl={2} pb={1} pr={1}>
+							<Typography >
+								<Link href={'/mensajes'} variant="subtitle1" className={classes.link}>
+								{ 'Ver mensajes ' }
+								</Link>
+							</Typography>
+							
+							</Box>
+							<Divider className={classes.divider} />
+							</AppBar>
+							<List dense className={classes.tabContainer}>
+							<ListItem>
+								<ListItemAvatar>
+								
+									<Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
+								
+								</ListItemAvatar>
+								<ListItemText
+								primary={"Este es un nuevo mensaje"}
+								secondary={"15:00 PM"}
+								/>
+							</ListItem>
+							
+							</List>
+     				 </Popover>
+
+					</Menu> */}
+					
 					
 				</Toolbar>
 			</AppBar>
