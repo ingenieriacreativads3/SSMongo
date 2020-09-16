@@ -54,6 +54,19 @@ class AppBare extends React.Component<{
 		};
 	}
 
+	renderRow(){
+		return <ListItem>
+		<ListItemAvatar>
+		
+			<Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
+		
+		</ListItemAvatar>
+		<ListItemText
+		primary={"Este es un nuevo mensaje"}
+		secondary={"15:00 PM"}
+		/>
+	</ListItem>
+	}
 
 
 	render(){
@@ -241,7 +254,7 @@ class AppBare extends React.Component<{
 						<MenuItem onClick={cambiarPassword} className={classes.subtitle}>Cambiar contraseña</MenuItem>
 					</Menu>
 
-					{/* <Menu
+					 {/* <Menu
 						anchorEl={this.state.mensajes}
 						anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 						id={menuId}
@@ -250,24 +263,8 @@ class AppBare extends React.Component<{
 						open={isMessageOpen}
 						onClose={handleMenuClose}
 					>
-						<Popover
-							disableScrollLock
-							id={menuId}
-							open={isMenuOpen}
-							anchorEl={this.state.anchorEl}
-							anchorOrigin={{
-							vertical: "bottom",
-							horizontal: "left",
-							}}
-							transformOrigin={{
-							vertical: "top",
-							horizontal: "right",
-							}}
-							classes={{ paper: classes.popoverPaper }}
-							// onClose={handleClickAway}
-						>
-							<AppBar position="static" color="inherit" className={classes.noShadow}>
-							<Box pt={1} pl={2} pb={1} pr={1}>
+						
+						<Box pt={1} pl={2} pb={1} pr={1}>
 							<Typography >
 								<Link href={'/mensajes'} variant="subtitle1" className={classes.link}>
 								{ 'Ver mensajes ' }
@@ -276,25 +273,14 @@ class AppBare extends React.Component<{
 							
 							</Box>
 							<Divider className={classes.divider} />
-							</AppBar>
-							<List dense className={classes.tabContainer}>
-							<ListItem>
-								<ListItemAvatar>
-								
-									<Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
-								
-								</ListItemAvatar>
-								<ListItemText
-								primary={"Este es un nuevo mensaje"}
-								secondary={"15:00 PM"}
-								/>
-							</ListItem>
 							
-							</List>
-     				 </Popover>
+						<FixedSizeList height={200} width={370} itemSize={10} itemCount={3}>
+						
+							 {this.renderRow} 
+						</FixedSizeList>
 
-					</Menu> */}
-					
+					</Menu>  */}
+					 
 					
 				</Toolbar>
 			</AppBar>

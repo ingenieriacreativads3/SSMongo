@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import clsx from 'clsx'
-import { IconButton, Typography, Badge, Button } from '@material-ui/core';
+import { IconButton, Typography, Badge, Button, Collapse, List } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,7 +19,10 @@ import Link from '@material-ui/core/Link';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import StarIcon from '@material-ui/icons/Star';
 import BarChartIcon from '@material-ui/icons/BarChart';
-
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import StarBorder from '@material-ui/icons/StarBorder';
 import * as drawerAction from './../../store/actions/drawer';
 
 function mapStateToProps(store: {
@@ -36,7 +39,8 @@ class MenuLateral extends React.Component<{
 	link?: any
 }, {
 	anchorEl: null | HTMLElement,
-	mobileMoreAnchorEl: null | HTMLElement
+	mobileMoreAnchorEl: null | HTMLElement,
+	openItemMenu: boolean,
 }> {
 
 	props: any
@@ -47,9 +51,15 @@ class MenuLateral extends React.Component<{
 		super(props);
 		this.state = {
 			anchorEl: null,
-			mobileMoreAnchorEl: null
+			mobileMoreAnchorEl: null,
+			openItemMenu:false,
 		};
 	}
+
+	handleClick(e: any) {
+		this.setState({ openItemMenu: !this.state.openItemMenu })
+	  }
+	
 
 	render(){
 
@@ -98,7 +108,32 @@ class MenuLateral extends React.Component<{
 					</Link>
 
 					<Divider/>
-					<ListSubheader inset className={classes.subtitle}>Mis compras</ListSubheader>
+
+					{/* <ListItem  className={classes.subtitle}  button onClick={this.handleClick}>
+						<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Mis compras" />
+						{this.state.openItemMenu ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+					<Collapse in={this.state.openItemMenu} timeout="auto" unmountOnExit>
+						<List component="div" disablePadding>
+							<Link href="/compras/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+									<AttachMoney className={classes.icon}/>
+								</ListItemIcon>
+									<ListItemText primary="Presupuestos" />
+								</ListItem>
+							</Link>
+							<Link href="/compras/pedidos/lista" className={classes.link} style={{textDecoration: 'none'}}>
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+									<ShoppingCart className={classes.icon} />
+								</ListItemIcon>
+									<ListItemText primary="Pedidos" />
+								</ListItem>
+							</Link>
+						</List>
+					</Collapse> */}
+					 <ListSubheader inset className={classes.subtitle}>Mis compras</ListSubheader>
 					<Link  href="/compras/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>
 						<ListItemIcon>
@@ -116,7 +151,7 @@ class MenuLateral extends React.Component<{
 						<ListItemText primary="Pedidos" />
 					</ListItem>
 					</Link>
-					<Divider/>
+					<Divider/> 
 					<ListSubheader inset className={classes.subtitle}>Mis ventas</ListSubheader>
 					<Link href="/ventas/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
 					<ListItem button>

@@ -103,28 +103,29 @@ class ChatRoom extends React.Component <{
     );
   }
 
-  renderMessage() {
-    //const { index, style } = props;
-    {this.props.mensajes.map((msj:any)=>{
-      return <div> <ListItem>
-                  <Grid container>
+  // renderMessage() {
+  //   //const { index, style } = props;
+  //  let msj = this.props.mensajes;
+   
+  //     return <div> <ListItem>
+  //                 <Grid container>
                       
                 
-                      <Grid item xs={12}>
+  //                     <Grid item xs={12}>
                       
-                          <ListItemText  primary={msj}></ListItemText>
-                      </Grid>
+  //                         <ListItemText  primary={msj}></ListItemText>
+  //                     </Grid>
                       
-                      <Grid item xs={12}>
-                          <ListItemText  secondary="SuppliersStore"></ListItemText>
-                      </Grid>
+  //                     <Grid item xs={12}>
+  //                         <ListItemText  secondary="SuppliersStore"></ListItemText>
+  //                     </Grid>
                       
-                  </Grid>
-              </ListItem>    
-          <Divider></Divider></div>
-    })}
+  //                 </Grid>
+  //             </ListItem>    
+  //         <Divider></Divider></div>
+    
   
-  }
+  // }
 
  
   render(){
@@ -181,9 +182,10 @@ class ChatRoom extends React.Component <{
                 </FixedSizeList>
             </Grid>
             <Grid item xs={9}>
-                <List className={classes.messageArea} >
+                <List className={classes.messageArea} > 
+              
                  {/* {this.renderMessage} */}
-                 {this.props.mensajes.map((msj:any)=>{
+                  {this.props.mensajes.map((msj:any)=>{
                     return <div> <ListItem>
                                 <Grid container>
                                     
@@ -200,7 +202,7 @@ class ChatRoom extends React.Component <{
                                 </Grid>
                             </ListItem>    
                         <Divider></Divider></div>
-                  })}
+                  })} 
                 </List>
                 
                 <Grid container style={{padding: '20px', width:'960px'}}>
