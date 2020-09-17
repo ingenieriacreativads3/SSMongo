@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	drawerPaper: {
     position: 'relative',
-    whiteSpace: 'nowrap',
+	whiteSpace: 'nowrap',
+	height: 750,
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,

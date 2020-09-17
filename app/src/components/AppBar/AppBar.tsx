@@ -75,11 +75,17 @@ class AppBare extends React.Component<{
 		
 		const isMenuOpen = Boolean(this.state.anchorEl);
 		const isMobileMenuOpen = Boolean(this.state.mobileMoreAnchorEl);
-		const isMessageOpen = Boolean(this.state.anchorEl);
+		const isMessageOpen = Boolean(this.state.mensajes);
 
 		const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
 			this.setState({
 				anchorEl: event.currentTarget
+			})
+		};
+
+		const handleMessageMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+			this.setState({
+				mensajes: event.currentTarget
 			})
 		};
 
@@ -94,6 +100,14 @@ class AppBare extends React.Component<{
 				anchorEl: null
 			})
 			handleMobileMenuClose();
+			
+		};
+
+		const handleMessageMenuClose = () => {
+			this.setState({
+				mensajes: null
+			})
+			//handleMobileMenuClose();
 			
 		};
 
@@ -168,7 +182,8 @@ class AppBare extends React.Component<{
 					</div>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
-						<IconButton aria-label="show 4 new mails" color="inherit" >
+						<IconButton aria-label="show 4 new mails" color="inherit"
+						onClick={handleMessageMenuOpen} >
 							<Badge badgeContent={4}  color="secondary">
 								<MailIcon className={classes.menuButton}/>
 							</Badge>
@@ -210,7 +225,7 @@ class AppBare extends React.Component<{
 						open={isMobileMenuOpen}
 						onClose={handleMobileMenuClose}
 					>
-						<MenuItem >
+						<MenuItem onClick={handleMessageMenuOpen}>
 							<IconButton aria-label="show 4 new mails" color="inherit">
 								<Badge badgeContent={4} color="secondary">
 									<MailIcon />
@@ -254,14 +269,14 @@ class AppBare extends React.Component<{
 						<MenuItem onClick={cambiarPassword} className={classes.subtitle}>Cambiar contraseña</MenuItem>
 					</Menu>
 
-					 {/* <Menu
+					  <Menu
 						anchorEl={this.state.mensajes}
 						anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 						id={menuId}
 						keepMounted
 						transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 						open={isMessageOpen}
-						onClose={handleMenuClose}
+						onClose={handleMessageMenuClose}
 					>
 						
 						<Box pt={1} pl={2} pb={1} pr={1}>
@@ -279,7 +294,7 @@ class AppBare extends React.Component<{
 							 {this.renderRow} 
 						</FixedSizeList>
 
-					</Menu>  */}
+					</Menu>  
 					 
 					
 				</Toolbar>
