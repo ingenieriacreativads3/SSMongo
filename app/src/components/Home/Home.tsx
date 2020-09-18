@@ -73,6 +73,7 @@ function Copyright() {
 
 
 
+
 class Home extends React.Component <{
   clasess: any,
   theme: any,
@@ -134,6 +135,10 @@ class Home extends React.Component <{
       </IconButton>
     </Link>
   }
+
+  // componentWillMount() {
+  //   this.props.dispatch(drawerActions.invisibleDrawer())
+  // }
 
   render(){
 

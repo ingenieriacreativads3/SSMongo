@@ -19,6 +19,7 @@ import { FixedSizeList } from 'react-window';
 
 import * as drawerAction from './../../store/actions/drawer'
 
+
 function mapStateToProps(store: {
   drawerReducer: {
 		open: boolean,
@@ -118,7 +119,15 @@ class AppBare extends React.Component<{
 		};
 
 		const handleDrawerOpen = () => {
-			this.props.dispatch(drawerAction.open())
+			if(this.props.open == false)
+			{
+				this.props.dispatch(drawerAction.open())
+			}
+			else
+			{
+				this.props.dispatch(drawerAction.close())
+			}
+			
 		};
 
 		const cerrarSesion = () => {

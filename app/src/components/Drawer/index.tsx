@@ -12,9 +12,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 	avatar: {
 		// margin: theme.spacing(1),
-		fontSize: '5px',
-		width: 'auto',
+		//fontSize: '80px',
+		width: '200px',
 		height: 'auto',
+		marginTop:'15px',
+		marginLeft:'7px'
+		//paddingLeft:theme.spacing(2),
+		//paddingTop:theme.spacing(3)
 	},
 	subtitle:{
 	color:'#d93211',
@@ -73,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
+    //padding: '0 8px',
     ...theme.mixins.toolbar,
   },
 	

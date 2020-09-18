@@ -40,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
   fixedHeightCAtalog:{
     height:330,
     width:250,
+    marginLeft:'20px',
+    marginTop:'20px'
   },
   
   card: {
