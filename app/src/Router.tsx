@@ -70,7 +70,6 @@ class App extends React.Component <{}, {}> {
 	login(props: { path: any, cookies: Cookies, render: any }) {
 
 		props.cookies.remove('empresaId')
-		console.log(props.cookies.get('empresaId'))
 		return <Route path='/' render={(propsAux) => <Login {...propsAux} cookies={props.cookies}/>}/>
 
 	}

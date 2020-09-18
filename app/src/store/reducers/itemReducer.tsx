@@ -189,7 +189,7 @@ export default function itemReducer ( state = {
 			return {
         ...state,
         fetching: false,
-        fetched: false,
+        fetched: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
         data: action.payload.data.data

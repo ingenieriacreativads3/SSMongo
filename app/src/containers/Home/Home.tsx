@@ -89,7 +89,9 @@ class Home extends React.Component<{
 
   render(){
 
-    let items: [
+    let items: any[] = []
+
+    let itemsTrending: [
       {
         'item': {
           "_id": string,
@@ -109,7 +111,8 @@ class Home extends React.Component<{
             "updated_at": string,
             "created_at": string,
           }
-        }
+        },
+        cantidad: number
       }
     ] = [
       {
@@ -131,7 +134,8 @@ class Home extends React.Component<{
             "updated_at": '',
             "created_at": '',
           }
-        }
+        },
+        cantidad: 0
       }
     ]
 
@@ -147,7 +151,8 @@ class Home extends React.Component<{
       this.props.itemReducer.data !== undefined &&
       this.props.itemReducer.data.items !== undefined
     ) {
-      items = this.props.itemReducer.data.trendingItems
+      itemsTrending = this.props.itemReducer.data.trendingItems
+      items = this.props.itemReducer.data.items[0]
     }
 
     return(
@@ -162,7 +167,8 @@ class Home extends React.Component<{
           footer={ this.footer() }
           appBar={ this.appBar() }
           action={ this.action }
-          items={items}
+          items={ items }
+          itemsTrending={ itemsTrending }
         />
       </div>
     );

@@ -13,6 +13,7 @@ import unidadDeMedidaReducer from './unidadDeMedidaReducer'
 import ubicacionReducer from './ubicacionReducer'
 import fileReducer from './fileReducer'
 import empresaReducer from './empresaReducer'
+import actividadEconomicaReducer from './actividadEconomicaReducer'
 
 export default combineReducers({
     apiWork,
@@ -27,5 +28,6 @@ export default combineReducers({
     unidadDeMedidaReducer,
     ubicacionReducer,
     fileReducer,
-    empresaReducer
+    empresaReducer,
+    actividadEconomicaReducer
 })

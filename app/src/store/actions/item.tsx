@@ -7,7 +7,7 @@ export function getTrendingItems(
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.delete(url + '/busquedapersonalizada/' + idEmpresa + '/cantidad/' + cantidad)
+	let payload: any = axios.get(url + '/busquedapersonalizada/' + idEmpresa + '/cantidad/' + cantidad)
 	
   return {
 		type: 'GET_TRENDING_ITEMS',

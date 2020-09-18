@@ -77,7 +77,7 @@ class Home extends React.Component <{
   clasess: any,
   theme: any,
   action: any,
-  items: [
+  itemsTrending: [
     {
       item: {
         "_id": string,
@@ -97,9 +97,11 @@ class Home extends React.Component <{
           "updated_at": string,
           "created_at": string,
         }
-      }
+      },
+      cantidad: number
     }
-  ]
+  ],
+  items: any[]
 }, {
 
   valueFilter: number | null,
@@ -294,7 +296,63 @@ class Home extends React.Component <{
                   {/* <SideBarInicio></SideBarInicio> */}
                 
                   {
-                    this.props.items.map((asd: {
+                    this.props.items.map((asd: any[]) => {
+
+                      // let fotos: string[] = ['']
+
+                      // if(item.foto !== undefined && item.foto.length > 0) {
+                      //   fotos = item.foto
+                      // }
+
+                      // let unidadDeMedidaNombre: string = ''
+
+                      
+                      // if(item.unidad_de_medida !== undefined) {
+                      //   unidadDeMedidaNombre = item.unidad_de_medida.nombre
+                      // }
+
+                      return <div>
+                        <Grid item lg={3}>
+                          <Card className={fixedHeightCardCatalog}>
+                            <CardActionArea>
+                              <CardMedia
+                                component="img"
+                                alt={asd[0].nombre}
+                                height="140"
+                                image={'http://localhost:8000/' + asd[0].foto[0]}
+                                title={asd[0].nombre}
+                              />
+                              <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                  {asd[0].nombre}
+                                </Typography>
+                                <Typography variant="subtitle1" component="h2">
+                                  ${asd[0].precio} x unidad de medida (mirar issue)
+                                </Typography>
+                              </CardContent>
+                            </CardActionArea>
+                            <CardActions >
+                              { this.action(asd[0]._id, classes) }
+                            </CardActions>
+                          </Card>
+                        </Grid>
+                      </div>
+                    })
+                  }
+              
+              </Grid>
+
+              <ListSubheader component="div" id="nested-list-subheader">
+                <Typography  variant="h4" component="h3" gutterBottom>
+                  Los más buscados
+                </Typography>
+              </ListSubheader>
+              <Grid container spacing={3}>
+            
+                  {/* <SideBarInicio></SideBarInicio> */}
+                
+                  {
+                    this.props.itemsTrending.map((asd: {
                       item: {
                         "_id": string,
                         "foto": string[],
@@ -313,7 +371,8 @@ class Home extends React.Component <{
                           "updated_at": string,
                           "created_at": string,
                         }
-                      }
+                      },
+                      cantidad: number
                     }) => {
 
                       // let fotos: string[] = ['']
@@ -345,7 +404,7 @@ class Home extends React.Component <{
                                   {asd.item.nombre}
                                 </Typography>
                                 <Typography variant="subtitle1" component="h2">
-                                  ${asd.item.precio} x {asd.item.unidad_de_medida.nombre}
+                                  ${asd.item.precio} x unidad de medida (mirar issue)
                                 </Typography>
                               </CardContent>
                             </CardActionArea>

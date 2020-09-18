@@ -203,7 +203,7 @@ export function InitLayout(props: {
   footer: any,
   appBar:any,
   action: any,
-  items: [
+  itemsTrending: [
     {
       item: {
         "_id": string,
@@ -223,9 +223,11 @@ export function InitLayout(props: {
           "updated_at": string,
           "created_at": string,
         }
-      }
+      },
+      "cantidad": number
     }
-  ]
+  ],
+  items: any[]
 }) {
 
 	const classes = useStyles(theme);
@@ -244,6 +246,7 @@ export function InitLayout(props: {
       appBar={props.appBar}
       action={ props.action }
       items={ props.items }
+      itemsTrending={ props.itemsTrending }
     />
   </div>;
 }
