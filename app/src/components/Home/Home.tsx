@@ -71,6 +71,11 @@ function Copyright() {
   );
 }
 
+function mapStateToProps() {
+  return {
+  };
+}
+
 
 
 
@@ -136,9 +141,9 @@ class Home extends React.Component <{
     </Link>
   }
 
-  // componentWillMount() {
-  //   this.props.dispatch(drawerActions.invisibleDrawer())
-  // }
+  componentWillMount() {
+    this.props.dispatch(drawerActions.invisibleDrawer())
+  }
 
   render(){
 
@@ -433,4 +438,4 @@ class Home extends React.Component <{
   }
 }
 
-export default Home
+export default  connect(mapStateToProps) (Home)

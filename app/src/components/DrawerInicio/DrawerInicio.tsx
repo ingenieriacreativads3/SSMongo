@@ -9,7 +9,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import AddIcon from '@material-ui/icons/Add'
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer, IconButton} from '@material-ui/core';
+import {Avatar, List,Collapse, FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer, IconButton} from '@material-ui/core';
 import * as drawerAction from './../../store/actions/drawer';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
@@ -17,8 +17,12 @@ import LocationCityOutlinedIcon from '@material-ui/icons/LocationCityOutlined';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import RoomIcon from '@material-ui/icons/Room';
 import Rating from '@material-ui/lab/Rating';
-
+import  logoLetras  from './../Login/img/logoLetras.png'
 import * as ubicacionActions from './../../store/actions/ubicacion'
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Link from '@material-ui/core/Link';
+
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
@@ -38,7 +42,9 @@ class DrawerInicio extends React.Component<{}, {
 	valueFilter: number | null,
 	hoverFilter: any,
 	provincia: string,
-  	municipio: string
+	municipio: string,
+	openCategorias: boolean,  
+	openFiltros:boolean,
 }> {
 
 	props: any
@@ -47,6 +53,8 @@ class DrawerInicio extends React.Component<{}, {
 
 	constructor(props: any) {
 		super(props);
+		this.handleClickCategorias = this.handleClickCategorias.bind(this);
+		this.handleClickFiltros = this.handleClickFiltros.bind(this);
 		this.handleChangeProvincia = this.handleChangeProvincia.bind(this);
 		this.handleChangeMunicipio = this.handleChangeMunicipio.bind(this);
 		this.state = {
@@ -55,7 +63,9 @@ class DrawerInicio extends React.Component<{}, {
 			valueFilter: 2,
 			hoverFilter: -1,
 			provincia: '',
-			municipio: ''
+			municipio: '',
+			openCategorias: false,
+			openFiltros: false,
 		};
 	}
 
@@ -96,6 +106,16 @@ class DrawerInicio extends React.Component<{}, {
 		this.setState({
 		  municipio: e.target.value
 		});
+	  }
+
+	  handleClickCategorias(e: any) {
+		debugger;
+		this.setState({ openCategorias: !this.state.openCategorias })
+	  }
+
+	  handleClickFiltros(e: any) {
+		debugger;
+		this.setState({ openFiltros: !this.state.openFiltros })
 	  }
 
 
@@ -153,43 +173,205 @@ class DrawerInicio extends React.Component<{}, {
 					}}
 					open={this.props.open}
 				>
+					 <div className={classes.toolbar} >
+						<Avatar src={logoLetras} className={classes.avatar} ></Avatar>
+					</div> 
 					
-					<div className={classes.toolbarIcon}>
-						<IconButton onClick={handleDrawerClose}>
-							<ChevronLeftIcon />
-						</IconButton>
-					</div>
 					<Divider />
 					
-					 <ListSubheader inset className={classes.subtitle}>Categorias</ListSubheader>
-					
-					<ListItem button>
+					<ListItem  className={classes.subtitle}  button onClick={this.handleClickCategorias}>
+						<ListItemText  className={classes.subtitle} primary="Categorias" />
+						{this.state.openCategorias ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+					<Collapse in={this.state.openCategorias} timeout="auto" unmountOnExit>
+						<List component="div" disablePadding>
+							
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Agricultura, ganadería, caza, silvicultura y pesca" />
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Explotación de minas y canteras" />
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Industria manufacturera" />
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Suministro de electricidad, gas, vapor y aire acondicionado" />
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Suministro de agua, cloacas, gestión de residuos y recuperación de materiales y saneamiento público" />
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Construcción" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Servicio de transporte y almacenamiento" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Servicios de alojamiento y servicios de comida" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Información y comunicaciones" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Intermediación Financiera y servicios de seguros" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Servicios inmobiliarios" />
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Servicios profesionales, científicos y técnicos" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Actividades administrativas y servicios de apoyo" />
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Administración Pública, defensa y seguridad social obligatoria" />
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Enseñanza" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Industria manufacturera" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Salud humana y servicios sociales" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Servicios artísticos, culturales, deportivos y de esparcimiento" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Servicios de asociaciones y servicios personales" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Servicios de hogares privados que contratan servicio doméstico" />
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<BuildOutlinedIcon className={classes.iconButton} />
+								</ListItemIcon>
+									<ListItemText primary="Servicios de organizaciones y órganos extraterritoriales" />
+								</ListItem>
+
+
+							
+						</List>
+					</Collapse> 
+
+					<ListItem  className={classes.subtitle}  button onClick={this.handleClickFiltros}>
+						<ListItemText  className={classes.subtitle} primary="Filtros" />
+						{this.state.openFiltros ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+					<Collapse in={this.state.openFiltros} timeout="auto" unmountOnExit>
+						<List component="div" disablePadding>
+							
+						<ListItem >
 						<ListItemIcon>
-							<BuildOutlinedIcon className={classes.iconButton} />
+							<RoomIcon className={classes.iconButton} />	
 						</ListItemIcon>
-						<ListItemText primary="Construccion" />
-                	</ListItem>
-					<ListItem button>
-						<ListItemIcon>
-							<LocationCityOutlinedIcon className={classes.iconButton} />
-						</ListItemIcon>
-						<ListItemText primary="Industria manufacturera" />
-                	</ListItem>
-					<ListItem button>
-						<ListItemIcon>
-							<StorefrontIcon className={classes.iconButton} />
-						</ListItemIcon>
-						<ListItemText primary="Comercio" />
-                	</ListItem>
-					
-					
-					<Divider/>
-					<ListSubheader inset className={classes.subtitle}>Filtros</ListSubheader>
-					<ListItem >
-						<ListItemIcon>
-							<RoomIcon className={classes.iconButton} />						</ListItemIcon>
 						<ListItemText primary="Ubicacion" />
                 	</ListItem>
+
 					<ListItem >
 					<FormControl variant="outlined" className={classes.formControl}>
 						<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
@@ -210,6 +392,8 @@ class DrawerInicio extends React.Component<{}, {
 							</Select>
 					</FormControl>
                     </ListItem>
+
+
 					<ListItem >
 					<FormControl variant="outlined"  className={classes.formControl}>
                           
@@ -233,7 +417,8 @@ class DrawerInicio extends React.Component<{}, {
 						</FormControl>
                  	</ListItem>
 
-						<ListItem>
+
+					 <ListItem>
 							<ListItemIcon>
 								<StarHalfIcon className={classes.iconButton} />
 							</ListItemIcon>
@@ -257,10 +442,13 @@ class DrawerInicio extends React.Component<{}, {
 								}}
 							/>
 						</ListItem>
-                      <Button variant="contained"  className={classes.Boton}>
-                      Aplicar Filtro
-                    </Button>
-                
+
+						<Button variant="contained"  className={classes.Boton}>
+						Aplicar Filtro
+						</Button>
+							
+						</List>
+					</Collapse> 
 
 				</Drawer>
 						

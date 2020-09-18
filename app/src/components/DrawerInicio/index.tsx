@@ -11,10 +11,10 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 	},
 	avatar: {
-		// margin: theme.spacing(1),
-		fontSize: '5px',
-		width: 'auto',
+		width: '200px',
 		height: 'auto',
+		marginTop:'15px',
+		marginLeft:'7px'
 	},
 	subtitle:{
 	color:'#d93211',
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 	drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
+    height: 750,
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
