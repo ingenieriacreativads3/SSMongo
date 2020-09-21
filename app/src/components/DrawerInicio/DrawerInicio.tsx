@@ -9,7 +9,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import AddIcon from '@material-ui/icons/Add'
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {Avatar, List,Collapse, FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer, IconButton} from '@material-ui/core';
+import {Avatar, List,Collapse, FormControlLabel, Checkbox,  FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer, IconButton} from '@material-ui/core';
 import * as drawerAction from './../../store/actions/drawer';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
@@ -178,7 +178,18 @@ class DrawerInicio extends React.Component<{}, {
 					</div> 
 					
 					<Divider />
+
+					<ListItem  className={classes.subtitle}  button onClick={this.handleClickFiltros}>
+						<ListItemText  className={classes.subtitle} primary="Filtros" />
+						{this.state.openFiltros ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+
 					
+
+
+					
+					<Collapse in={this.state.openFiltros} timeout="auto" unmountOnExit>
+
 					<ListItem  className={classes.subtitle}  button onClick={this.handleClickCategorias}>
 						<ListItemText  className={classes.subtitle} primary="Categorias" />
 						{this.state.openCategorias ? <ExpandLess /> : <ExpandMore />}
@@ -187,170 +198,330 @@ class DrawerInicio extends React.Component<{}, {
 						<List component="div" disablePadding>
 							
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Agricultura, ganadería, caza, silvicultura y pesca" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Agricultura, ganadería"
+							  /> 
+								{/* 	<ListItemText  primary="Agricultura, ganadería, caza, silvicultura y pesca"  /> */}
 								</ListItem>
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Explotación de minas y canteras" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Explotación de minas"
+							  /> 
+									{/* <ListItemText primary="Explotación de minas y canteras" /> */}
 								</ListItem>
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Industria manufacturera" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Industria manufacturera"
+							  /> 
+									{/* <ListItemText primary="Industria manufacturera" /> */}
 								</ListItem>
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Suministro de electricidad, gas, vapor y aire acondicionado" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Sum.de electricidad, gas"
+							  /> 
+									{/* <ListItemText primary="Suministro de electricidad, gas, vapor y aire acondicionado" /> */}
 								</ListItem>
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Suministro de agua, cloacas, gestión de residuos y recuperación de materiales y saneamiento público" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Sum. de agua"
+							  /> 
+								{/* 	<ListItemText primary="Suministro de agua, cloacas, gestión de residuos y recuperación de materiales y saneamiento público" /> */}
 								</ListItem>
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Construcción" />
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas" />
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Servicio de transporte y almacenamiento" />
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Servicios de alojamiento y servicios de comida" />
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Información y comunicaciones" />
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Intermediación Financiera y servicios de seguros" />
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Servicios inmobiliarios" />
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Servicios profesionales, científicos y técnicos" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Construcción"
+							  /> 
+									{/* <ListItemText primary="Construcción" /> */}
 								</ListItem>
 
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Actividades administrativas y servicios de apoyo" />
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Administración Pública, defensa y seguridad social obligatoria" />
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Enseñanza" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Comercio"
+							  /> 
+									{/* <ListItemText primary="Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas" /> */}
 								</ListItem>
 
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Industria manufacturera" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Serv. de transporte"
+							  /> 
+									{/* <ListItemText primary="Servicio de transporte y almacenamiento" /> */}
 								</ListItem>
 
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Salud humana y servicios sociales" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Serv. de alojamiento"
+							  /> 
+									{/* <ListItemText primary="Servicios de alojamiento y servicios de comida" /> */}
 								</ListItem>
 
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Servicios artísticos, culturales, deportivos y de esparcimiento" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Comunicaciones"
+							  /> 
+								{/* 	<ListItemText primary="Información y comunicaciones" /> */}
 								</ListItem>
 
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Servicios de asociaciones y servicios personales" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Serv. de seguros"
+							  /> 
+								{/* 	<ListItemText primary="Intermediación Financiera y servicios de seguros" /> */}
 								</ListItem>
 
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Servicios de hogares privados que contratan servicio doméstico" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Serv. inmobiliarios"
+							  /> 
+									{/* <ListItemText primary="Servicios inmobiliarios" /> */}
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Serv. profesionales"
+							  /> 
+									{/* <ListItemText primary="Servicios profesionales, científicos y técnicos" /> */}
 								</ListItem>
 
 
 								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BuildOutlinedIcon className={classes.iconButton} />
-								</ListItemIcon>
-									<ListItemText primary="Servicios de organizaciones y órganos extraterritoriales" />
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Activ. administrativas"
+							  /> 
+									{/* <ListItemText primary="Actividades administrativas y servicios de apoyo" /> */}
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Administración Pública"
+							  /> 
+								{/* 	<ListItemText primary="Administración Pública, defensa y seguridad social obligatoria" /> */}
+								</ListItem>
+
+								<ListItem button className={classes.nested}>
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Enseñanza"
+							  /> 
+									{/* <ListItemText primary="Enseñanza" /> */}
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Salud humana"
+							  /> 
+									{/* <ListItemText primary="Salud humana y servicios sociales" /> */}
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Ser.culturales,deportivos"
+							  /> 
+									{/* <ListItemText primary="Servicios artísticos, culturales, deportivos y de esparcimiento" /> */}
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Serv. de asociaciones"
+							  /> 
+									{/* <ListItemText primary="Servicios de asociaciones y servicios personales" /> */}
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Serv. hogares privados"
+							  /> 
+									{/* <ListItemText primary="Servicios de hogares privados que contratan servicio doméstico" /> */}
+								</ListItem>
+
+
+								<ListItem button className={classes.nested}>
+								<FormControlLabel
+                                
+								control={
+								  <Checkbox
+									style ={{
+									  color: "#d93211",
+									}}
+								  />
+								}
+								label="Serv. de organizaciones"
+							  /> 
+									{/* <ListItemText primary="Servicios de organizaciones y órganos extraterritoriales" /> */}
 								</ListItem>
 
 
@@ -358,11 +529,7 @@ class DrawerInicio extends React.Component<{}, {
 						</List>
 					</Collapse> 
 
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickFiltros}>
-						<ListItemText  className={classes.subtitle} primary="Filtros" />
-						{this.state.openFiltros ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
-					<Collapse in={this.state.openFiltros} timeout="auto" unmountOnExit>
+
 						<List component="div" disablePadding>
 							
 						<ListItem >
@@ -449,6 +616,9 @@ class DrawerInicio extends React.Component<{}, {
 							
 						</List>
 					</Collapse> 
+					
+					
+					
 
 				</Drawer>
 						
