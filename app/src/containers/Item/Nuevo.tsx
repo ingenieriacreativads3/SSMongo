@@ -13,16 +13,19 @@ import * as itemActions from './../../store/actions/item'
 import * as fileActions from './../../store/actions/file'
 import * as dialogActions from './../../store/actions/dialog'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
+import * as errorActions from './../../store/actions/error'
 
 function mapStateToProps(store: {
   itemReducer: any,
   unidadDeMedidaReducer: any,
-  fileReducer: any
+  fileReducer: any,
+  errorReducer:any,
 }) {
   return {
     itemReducer: store.itemReducer,
     unidadDeMedidaReducer: store.unidadDeMedidaReducer,
-    fileReducer: store.fileReducer
+    fileReducer: store.fileReducer,
+    errorReducer: store.errorReducer
   };
 }
 
@@ -134,9 +137,32 @@ class Nuevo extends React.Component<{
     this.setState({ photo: files })
   }
 
-  save() {
+  validacion=() => {
+    debugger;
+    let formIsValid = true;
 
-    this.props.dispatch(itemActions.setItem(
+    let elements:any = document.getElementById("formItem");
+
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+     
+        let error = {[element.id]:element.validationMessage}
+        this.props.dispatch(errorActions.setError(error)); 
+      
+        formIsValid = false;
+        return formIsValid;
+      }
+      
+    }
+    
+  }
+
+  save() {
+    debugger;
+    if(this.validacion()){
+       this.props.dispatch(itemActions.setItem(
       this.props.cookies.get('empresaId'),
       this.state.nombre,
       this.state.precio,
@@ -145,6 +171,8 @@ class Nuevo extends React.Component<{
       this.state.displayPrice,
       this.props.fileReducer.data.foto
     ))
+  }
+   
 
   }
 
@@ -190,6 +218,10 @@ class Nuevo extends React.Component<{
 
 
   render(){
+    debugger;
+    console.log(this.props.errorReducer.errors);
+
+    let errores: any[] = []
 
     let unidadesDeMedida: any[] = [
       {
@@ -206,6 +238,14 @@ class Nuevo extends React.Component<{
       this.props.unidadDeMedidaReducer.data !== undefined
     ) {
       unidadesDeMedida = this.props.unidadDeMedidaReducer.data.unidadesDeMedida
+    }
+
+    if(
+     
+      this.props.errorReducer.errors !== undefined
+    ) {
+      debugger;
+      errores = this.props.errorReducer.data.errors;
     }
 
     let pathImage: string = ''
@@ -233,6 +273,7 @@ class Nuevo extends React.Component<{
           footer={ this.footer() }
           pathImage={ pathImage }
           appBar={this.appBar()}
+          errors={this.props.errorReducer.errors}
         />
         <OneButton 
           title={ 'Nuevo Item' }

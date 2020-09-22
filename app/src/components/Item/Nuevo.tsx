@@ -103,6 +103,7 @@ class Nuevo extends React.Component <{
 		const classes = this.props.classes
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 
+    console.log(this.props.errors)
     return(
 
       <div className={classes.root}>
@@ -126,15 +127,19 @@ class Nuevo extends React.Component <{
                     />
 
                   <CardContent>
-                    <form className={classes.root}>
+                    <form id='formItem' className={classes.root}>
                       <Grid container >
                         <Grid container >
                           <Grid item lg={4}>
                             <CssTextField 
                               className={classes.margin}
-                              id="custom-css-standard-input"
+                              id="Nombre"
                               label="Nombre"
-                              onChange={ this.props.getNombre } 
+                              onChange={ this.props.getNombre }
+                              required={true}
+                              error={this.props.errors.Nombre != null ? true : false}
+                              helperText={this.props.errors.Nombre != null ? this.props.errors.Nombre : ""}
+
                             />
                           </Grid>
                           <Grid item lg={4}>
