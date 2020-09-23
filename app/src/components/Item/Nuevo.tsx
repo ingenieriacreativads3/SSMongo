@@ -49,6 +49,8 @@ function Copyright() {
   );
 }
 
+
+
 class Nuevo extends React.Component <{
   classes: any,
   getNombre: any,
@@ -102,7 +104,7 @@ class Nuevo extends React.Component <{
 
 		const classes = this.props.classes
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-
+    debugger;
     console.log(this.props.errors)
     return(
 
@@ -242,6 +244,7 @@ class Nuevo extends React.Component <{
                           className={classes.button}
                           startIcon={<SaveIcon />}
                           onClick={ this.props.save }
+                          disabled={ !this.props.formValido   }
                         >
                           Guardar
                         </Button>

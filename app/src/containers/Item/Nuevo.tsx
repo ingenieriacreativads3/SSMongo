@@ -20,6 +20,7 @@ function mapStateToProps(store: {
   unidadDeMedidaReducer: any,
   fileReducer: any,
   errorReducer:any,
+
 }) {
   return {
     itemReducer: store.itemReducer,
@@ -44,7 +45,8 @@ class Nuevo extends React.Component<{
   caracteristicas: string,
   descripcion: string,
   displayPrice: boolean,
-  photo: File[]
+  photo: File[],
+  formValid:boolean,
 }> {
 
 	props: any
@@ -72,7 +74,8 @@ class Nuevo extends React.Component<{
       caracteristicas: '',
       descripcion: '',
       displayPrice: false,
-      photo: []
+      photo: [],
+      formValid:true,
     };
   }
 
@@ -100,6 +103,8 @@ class Nuevo extends React.Component<{
 
   getNombre(e: any) {
     this.setState({ nombre: e.target.value })
+    this.props.dispatch(errorActions.setError(e.target.value))
+    this.setState({formValid:true});
   }
 
   getPrecio(e: any) {
@@ -140,23 +145,24 @@ class Nuevo extends React.Component<{
   validacion=() => {
     debugger;
     let formIsValid = true;
-
+    let errores=[];
     let elements:any = document.getElementById("formItem");
 
     for (let i = 0, element; element = elements[i++];) {
 
        if(!element.checkValidity())
       {
-     
-        let error = {[element.id]:element.validationMessage}
-        this.props.dispatch(errorActions.setError(error)); 
-      
+
+        errores[element.id]=element.validationMessage;
         formIsValid = false;
-        return formIsValid;
+      
+        this.setState({formValid:formIsValid})
+        
       }
       
     }
-    
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
   }
 
   save() {
@@ -239,14 +245,11 @@ class Nuevo extends React.Component<{
     ) {
       unidadesDeMedida = this.props.unidadDeMedidaReducer.data.unidadesDeMedida
     }
-
-    if(
+ debugger;
      
-      this.props.errorReducer.errors !== undefined
-    ) {
-      debugger;
-      errores = this.props.errorReducer.data.errors;
-    }
+   
+      errores = this.props.errorReducer.errors;
+    
 
     let pathImage: string = ''
 
@@ -258,6 +261,7 @@ class Nuevo extends React.Component<{
     }
 
     return(
+      console.log(errores),
       <div>
         <ItemNuevo 
           getNombre={ this.getNombre }
@@ -273,7 +277,8 @@ class Nuevo extends React.Component<{
           footer={ this.footer() }
           pathImage={ pathImage }
           appBar={this.appBar()}
-          errors={this.props.errorReducer.errors}
+          errors={errores}
+          formValido = {this.state.formValid}
         />
         <OneButton 
           title={ 'Nuevo Item' }

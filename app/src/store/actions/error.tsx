@@ -17,3 +17,10 @@ export function setError(err:any) {
     }
      
 }
+
+export function editErrors(field:any){
+    return{
+            type: 'EDIT_ERRORS',
+            payload: field,
+    }
+  }

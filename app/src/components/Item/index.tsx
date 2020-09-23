@@ -261,7 +261,8 @@ export  function NuevoItem(props: {
   footer:any,
   pathImage: string,
   appBar:any,
-  errors: any[]
+  errors: any[],
+  formValido:boolean,
 }) {
 
 	const classes = useStyles(theme);
@@ -281,6 +282,7 @@ export  function NuevoItem(props: {
     pathImage={props.pathImage}
     appBar={props.appBar}
     errors={props.errors}
+    formValido={props.formValido}
   />;
 
 }
