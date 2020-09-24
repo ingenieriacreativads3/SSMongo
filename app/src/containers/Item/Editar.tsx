@@ -11,18 +11,21 @@ import * as itemActions from './../../store/actions/item'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import * as dialogActions from './../../store/actions/dialog'
 import Cookies from 'universal-cookie';
+import * as errorActions from './../../store/actions/error'
 
 function mapStateToProps(store: {
   itemReducer: any,
   unidadDeMedidaReducer: any,
   fileReducer: any
-  login: any
+  login: any,
+  errorReducer:any,
 }) {
   return {
     itemReducer: store.itemReducer,
     unidadDeMedidaReducer: store.unidadDeMedidaReducer,
     fileReducer: store.fileReducer,
-    login: store.login
+    login: store.login,
+    errorReducer:store.errorReducer,
   };
 }
 
@@ -39,7 +42,10 @@ class Editar extends React.Component<{
 	descripcion: string,
 	idMagnitud: string,
 	mostrarPrecio: boolean,
-	foto: string[],
+  foto: string[],
+  formValid:boolean,
+  unidadSeleccionada: boolean,
+
 }> {
 
 	props: any
@@ -66,6 +72,8 @@ class Editar extends React.Component<{
       idMagnitud: '',
       mostrarPrecio: false,
       foto: [],
+      formValid:true,
+      unidadSeleccionada:true,
     };
   }
 
@@ -138,6 +146,9 @@ class Editar extends React.Component<{
     foto: string[]
   ) {
 
+    if(this.validacion()){
+
+   
     this.props.dispatch(itemActions.updateItem(
       _id,
       nombre,
@@ -150,22 +161,30 @@ class Editar extends React.Component<{
 
     this.props.dispatch(dialogActions.openOneButton())
 
-  }
-
+    }
+ }
   getNombre(nombre: string) {
+    debugger;
     this.setState({ nombre: nombre })
+    this.props.dispatch(errorActions.setError(this.state.nombre))
+    this.setState({formValid:true});
   }
 
   getPrecio(precio: string) {
     this.setState({ precio: precio })
+    this.props.dispatch(errorActions.setError(this.state.precio))
+    this.setState({formValid:true});
   }
 
   getDescripcion(descripcion: string) {
     this.setState({ descripcion: descripcion })
+    
   }
 
   getMagnitud(idMagnitud: string) {
     this.setState({ idMagnitud: idMagnitud })
+    this.setState({unidadSeleccionada:true});
+    this.setState({formValid:true});
   }
 
   getMostrarPrecio(mostrarPrecio: boolean) {
@@ -174,6 +193,38 @@ class Editar extends React.Component<{
 
   getFoto(foto: string[]) {
     this.setState({ foto: foto })
+  }
+
+  validacion=() => {
+    debugger;
+    let formIsValid = true;
+    let errores=[];
+    let elements:any = document.getElementById("formEditItem");
+
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        formIsValid = false;
+      
+        this.setState({formValid:formIsValid})
+        
+      }
+      
+    }
+
+    if(this.state.idMagnitud == "")
+    {
+      this.setState({unidadSeleccionada:false});
+      formIsValid = false;
+      
+      this.setState({formValid:formIsValid})
+    }
+
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
   }
 
   aceptar() {
@@ -249,6 +300,9 @@ class Editar extends React.Component<{
 			}
     }
 
+    let errores: any[] = []
+    errores = this.props.errorReducer.errors;
+
     return(
       <div>
         <ItemEditar 
@@ -269,6 +323,9 @@ class Editar extends React.Component<{
           getFoto={ this.getFoto }
           update={ this.update }
           appBar={this.appBar()}
+          errors={errores}
+          formValido = {this.state.formValid}
+          unidadSeleccionada = {this.state.unidadSeleccionada}
         />
         <OneButton 
           title={ 'Editar Item' }

@@ -5,9 +5,10 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField, Avatar, IconButton, Button, FormHelperText, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
+import * as errorActions from './../../store/actions/error'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
@@ -209,28 +210,35 @@ class Editar extends React.Component <{
                     />
 
                   <CardContent>
-                    <form className={classes.root}>
+                    <form id='formEditItem' className={classes.root}>
                       <Grid container spacing={3}>
                         <Grid container spacing={3}>
                           <Grid item lg={4}>
                             <CssTextField
                               className={classes.margin}
-                              id="nombre"
+                              id="Nombre"
                               label="Nombre"
                               type="text"
                               value={ this.state.item.nombre }
                               onChange={ this.changeNombre }
+                              required={true}
+                              error={this.props.errors.Nombre != null ? true : false}
+                              helperText={this.props.errors.Nombre != null ? this.props.errors.Nombre : ""}
                             />
                           
                           </Grid>
                           <Grid item lg={4}>
                             <CssTextField
                               className={classes.margin}
-                              id="custom-css-standard-input"
+                              id="Precio"
                               label="Precio"
                               type="text"
                               value={ this.state.item.precio }
                               onChange={ this.changePrecio }
+                              required={true}
+                              error={this.props.errors.Precio != null ? true : false}
+                              helperText={this.props.errors.Precio != null ? this.props.errors.Precio : ""}
+                              inputProps={{min:1}}
                             />
 
                           </Grid>
@@ -251,12 +259,12 @@ class Editar extends React.Component <{
                         </Grid>
                         <Grid container spacing={3}>
                           <Grid item lg={6}>
-                          <FormControl className={classes.formControl}>
+                          <FormControl className={classes.formControl} error={!this.props.unidadSeleccionada}>
                             <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Unidad</InputLabel>
                               <Select
                             
                                 labelId="demo-simple-select-label"
-                                id="demo-simple-select"
+                                id="Unidad"
                                 value={this.state.item.unidad_de_medida._id}
                                 onChange={this.changeUnidadDeMedida}
                               >
@@ -267,6 +275,7 @@ class Editar extends React.Component <{
                                   return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
                                 })}
                               </Select>
+                              {!this.props.unidadSeleccionada && <FormHelperText error={true} >Selecciona una unidad</FormHelperText>}
                             </FormControl>
                           </Grid>
                           <Grid item lg={6}>
@@ -287,6 +296,7 @@ class Editar extends React.Component <{
                               placeholder="Descripcion"
                               value={ this.state.item.descripcion }
                               onChange={ this.changeDescripcion }
+                              id="Descripcion"
                             />
                           </Grid>
                           <Grid item lg={4}>
@@ -299,7 +309,7 @@ class Editar extends React.Component <{
                                     inputProps={{ multiple: false }} 
                                     className={classes.input}
                                     style={{ display: 'none' }}
-                                    id="raised-button-file"
+                                    id="Imagen"
                                     type="file"
                                     onChange = {this.props.getFoto}
                                   />
@@ -323,6 +333,7 @@ class Editar extends React.Component <{
                           size="small"
                           className={classes.button}
                           startIcon={<SaveIcon />}
+                          disabled={ !this.props.formValido }
                           onClick={() => this.props.update(
                             this.state.item._id,
                             this.state.item.nombre,

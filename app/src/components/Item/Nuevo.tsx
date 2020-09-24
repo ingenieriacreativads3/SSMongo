@@ -5,7 +5,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader,FormHelperText, Avatar, TextField, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -105,7 +105,7 @@ class Nuevo extends React.Component <{
 		const classes = this.props.classes
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
     debugger;
-    console.log(this.props.errors)
+    console.log(this.props.unidadSeleccionada)
     return(
 
       <div className={classes.root}>
@@ -147,10 +147,15 @@ class Nuevo extends React.Component <{
                           <Grid item lg={4}>
                             <CssTextField
                               className={classes.margin}
-                              id="custom-css-standard-input"
+                              id="Precio"
                               label="Precio"
                               type="number"
                               onChange={ this.props.getPrecio }
+                              required={true}
+                              error={this.props.errors.Precio != null ? true : false}
+                              helperText={this.props.errors.Precio != null ? this.props.errors.Precio : ""}
+                              inputProps={{min:1}}
+
                             />
                           </Grid>
                           <Grid item lg={4}>
@@ -170,15 +175,21 @@ class Nuevo extends React.Component <{
                         </Grid>
                         <Grid container >
                           <Grid item lg={6}>
-                            <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Unidad</InputLabel>
+                            <FormControl className={classes.formControl}
+                             id="Unidad" 
+                             error={!this.props.unidadSeleccionada}
+                            >
+                            <InputLabel id="Unidad" className={classes.inputLabel}>Unidad</InputLabel>
                               <Select
                             
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
+                                labelId="Unidad"
+                                id="Unidad"
                                 // value={unidadDeMedida}
                                 onChange={this.props.getMagnitud}
-                              >
+                               
+                               
+                              > 
+                              
                                 {this.props.unidadesDeMedida.map((unidadDeMedida: {
                                   _id: string,
                                   nombre: string
@@ -186,6 +197,7 @@ class Nuevo extends React.Component <{
                                   return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
                                 })}
                               </Select>
+                              {!this.props.unidadSeleccionada && <FormHelperText error={true} >Selecciona una unidad</FormHelperText>}
                             </FormControl>
                           </Grid>
                           <Grid item lg={6}>
@@ -207,6 +219,7 @@ class Nuevo extends React.Component <{
                               className={classes.textTarea}
                               placeholder="Descripcion"
                               onChange={ this.props.getDescripcion }
+                              id="Descripcion"
                             />
                           </Grid>
                           <Grid item lg={4}>
@@ -219,7 +232,7 @@ class Nuevo extends React.Component <{
                                     inputProps={{ multiple: true }} 
                                     className={classes.input}
                                     style={{ display: 'none' }}
-                                    id="raised-button-file"
+                                    id="Imagen"
                                     type="file"
                                     onChange = { this.props.getFoto }
                                   />

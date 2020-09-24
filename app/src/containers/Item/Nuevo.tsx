@@ -47,6 +47,7 @@ class Nuevo extends React.Component<{
   displayPrice: boolean,
   photo: File[],
   formValid:boolean,
+  unidadSeleccionada: boolean,
 }> {
 
 	props: any
@@ -76,6 +77,7 @@ class Nuevo extends React.Component<{
       displayPrice: false,
       photo: [],
       formValid:true,
+      unidadSeleccionada:true,
     };
   }
 
@@ -109,10 +111,14 @@ class Nuevo extends React.Component<{
 
   getPrecio(e: any) {
     this.setState({ precio: e.target.value })
+    this.props.dispatch(errorActions.setError(e.target.value))
+    this.setState({formValid:true});
   }
 
   getMagnitud(e: any) {
     this.setState({ idMagnitud: e.target.value })
+    this.setState({unidadSeleccionada:true});
+    this.setState({formValid:true});
   }
 
   getCaracteristicas(e: any) {
@@ -160,6 +166,14 @@ class Nuevo extends React.Component<{
         
       }
       
+    }
+
+    if(this.state.idMagnitud == "")
+    {
+      this.setState({unidadSeleccionada:false});
+      formIsValid = false;
+      
+      this.setState({formValid:formIsValid})
     }
      this.props.dispatch(errorActions.setError(errores)); 
      return formIsValid;
@@ -279,6 +293,7 @@ class Nuevo extends React.Component<{
           appBar={this.appBar()}
           errors={errores}
           formValido = {this.state.formValid}
+          unidadSeleccionada = {this.state.unidadSeleccionada}
         />
         <OneButton 
           title={ 'Nuevo Item' }
