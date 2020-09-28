@@ -13,16 +13,19 @@ import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 
 import * as itemActions from './../../store/actions/item'
+import * as actividadEconomicaActions from './../../store/actions/actividadEconomica'
 
 function mapStateToProps(store: {
   requestReducer: any,
   login: any,
-  itemReducer: any
+  itemReducer: any,
+  actividadEconomicaReducer: any
 }) {
   return {
     requestReducer: store.requestReducer,
     login: store.login,
-    itemReducer: store.itemReducer
+    itemReducer: store.itemReducer,
+    actividadEconomicaReducer: store.actividadEconomicaReducer
   };
 }
 
@@ -47,6 +50,8 @@ class Home extends React.Component<{
 
   componentWillMount() {
     this.props.dispatch(itemActions.reintentar())
+    this.props.dispatch(actividadEconomicaActions.getActividadesEconomicas())
+    this.props.dispatch(actividadEconomicaActions.getIconosRubros())
   }
   
   drawer() {
@@ -169,6 +174,8 @@ class Home extends React.Component<{
           action={ this.action }
           items={ items }
           itemsTrending={ itemsTrending }
+          actividadesEconomicas={ this.props.actividadEconomicaReducer.data.actividad }
+          iconos={ [] }
         />
       </div>
     );

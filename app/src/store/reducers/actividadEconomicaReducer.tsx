@@ -21,7 +21,24 @@ export default function actividadEconomicaReducer ( state = {
         fetched: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
-        data: action.payload.data.data
+        data: {
+          ...state.data,
+          actividad: action.payload.data.data
+        }
+      };
+    }
+    
+    case 'GET_ICONOS_RUBROS': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: {
+          ...state.data,
+          icono: action.payload.data.data
+        }
       };
 		}
 

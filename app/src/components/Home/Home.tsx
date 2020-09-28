@@ -51,12 +51,94 @@ import WorkIcon from '@material-ui/icons/Work';
 import FilterHdrIcon from '@material-ui/icons/FilterHdr';
 import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
+import OpacityIcon from '@material-ui/icons/Opacity';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import HomeIcon from '@material-ui/icons/Home';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
+import BrushIcon from '@material-ui/icons/Brush';
+import LaptopIcon from '@material-ui/icons/Laptop';
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import RoomIcon from '@material-ui/icons/Room';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import LayersIcon from '@material-ui/icons/Layers';
 import AppsIcon from '@material-ui/icons/Apps';
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+function Icon(letter: string, props: any) {
+  switch (letter) {
+    case "A":
+      return <LocalFloristIcon {...props}/>
+      break;
+      case "B":
+      return <FilterHdrIcon {...props}/>
+      break;
+      case "C":
+      return <LocationCityIcon {...props}/>
+      break;
+      case "D":
+      return <EmojiObjectsIcon {...props}/>
+      break;
+      case "E":
+      return <OpacityIcon {...props}/>
+      break;
+      case "F":
+      return <BuildIcon {...props}/>
+      break;
+      case "G":
+      return <StorefrontIcon {...props}/>
+      break;
+      case "H":
+      return <EmojiTransportationIcon {...props}/>
+      break;
+      case "I":
+      return <HotelIcon {...props}/>
+      break;
+      case "J":
+      return <LocalPhoneIcon {...props}/>
+      break;
+      case "K":
+      return <MonetizationOnIcon {...props}/>
+      break;
+      case "L":
+      return <HomeIcon {...props}/>
+      break;
+      case "M":
+      return <BusinessCenterIcon {...props}/>
+      break;
+      case "N":
+      return <AttachFileIcon {...props}/>
+      break;
+      case "O":
+      return <AccountBalanceIcon {...props}/>
+      break;
+      case "P":
+      return <MenuBookIcon {...props}/>
+      break;
+      case "Q":
+      return <LocalHospitalIcon {...props}/>
+      break;
+      case "R":
+      return <BrushIcon {...props}/>
+      break;
+      case "S":
+      return <LaptopIcon {...props}/>
+      break;
+      case "T":
+      return <HomeWorkIcon {...props}/>
+      break;
+      case "U":
+      return <RoomIcon {...props}/>
+      break;
+
+  
+    default:
+      break;
+  }
+}
 
 function Copyright() {
   return (
@@ -83,6 +165,8 @@ class Home extends React.Component <{
   clasess: any,
   theme: any,
   action: any,
+  actividadesEconomicas: any[],
+  iconos: any[],
   itemsTrending: [
     {
       item: {
@@ -146,6 +230,12 @@ class Home extends React.Component <{
   }
 
   render(){
+
+    let act: any[] = []
+
+    if (this.props.actividadesEconomicas !== undefined && this.props.actividadesEconomicas.length > 0) {
+      act = this.props.actividadesEconomicas
+    }
 
     const classes = this.props.classes
     const theme = this.props.theme
@@ -263,37 +353,24 @@ class Home extends React.Component <{
                 scrollButtons="on"
                 aria-label="scrollable force tabs example"
                 className={classes.tabs}
-               
               >
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Agricultura, Ganaderia, SilviCultura" icon={<LocalFloristIcon  className={classes.iconoCategoria}/> }  {...a11yProps(0)} className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Pesca, Servicios, Conexos" icon={<FavoriteIcon className={classes.iconoCategoria} />}  {...a11yProps(1)}  className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Explotacion, Minas, Canteras" icon={<FilterHdrIcon className={classes.iconoCategoria} />}  {...a11yProps(2)}className={classes.tab}  /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Alimentos, Bebidas, Tabaco" icon={<LocalDiningIcon className={classes.iconoCategoria} />}  {...a11yProps(3)} className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Textiles, Cuero" icon={<BusinessCenterIcon className={classes.iconoCategoria} />}  {...a11yProps(4)} className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Imprenta, Editoriales" icon={<LocalPrintshopIcon className={classes.iconoCategoria} />}  {...a11yProps(5)} className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Derivados de petroleo, quimicos" icon={<EvStationIcon className={classes.iconoCategoria} />}  {...a11yProps(6)} className={classes.tab} /></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Metales" icon={<LayersIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Transporte" icon={<EmojiTransportationIcon className={classes.iconoCategoria} />}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Maquinarias, Equipos" icon={<ThumbUp className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Otras industrias" icon={<LocationCityIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Electricidad, Agua, Gas" icon={<EmojiObjectsIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Construccion" icon={<BuildIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Comercio mayorista/minorista" icon={<StorefrontIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Hoteles, Restaurantes" icon={<HotelIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Transportes, Comunicaciones" icon={<LocalPhoneIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Actividades inmobiliarias, empresariales, alquiler" icon={<WorkIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Administracion publica" icon={<AccountBalanceIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Servicios sociales, Enseñanza, Salud" icon={<SchoolIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
-                <Link to="/home/busqueda/:id" style={{textDecoration:'none'}}><Tab label="Otras actividades" icon={<AppsIcon className={classes.iconoCategoria}/>}  {...a11yProps(6)}  className={classes.tab}/></Link>
+                {
+                  act.map((actividad: any, key: number) => {
+                    return <Link 
+                      to="/home/busqueda/:id" 
+                      style={{textDecoration:'none'}}>
+                        <Tab label={actividad.nombre} 
+                          icon={ Icon(actividad.letra, classes.iconoCategoria) }
+                          { ...a11yProps(key) } 
+                          className={classes.tab}
+                        />
+                      </Link>
+                  })
+                }
               </Tabs>
-              
-              
             </AppBar>
-                
           </div>
           </Container>
-
-
 
 						<Container maxWidth="lg"  className={classes.container} >
               <ListSubheader component="div" id="nested-list-subheader">

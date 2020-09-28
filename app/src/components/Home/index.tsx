@@ -205,6 +205,8 @@ export function InitLayout(props: {
   footer: any,
   appBar:any,
   action: any,
+  actividadesEconomicas: any[],
+  iconos: any[],
   itemsTrending: [
     {
       item: {
@@ -249,6 +251,9 @@ export function InitLayout(props: {
       action={ props.action }
       items={ props.items }
       itemsTrending={ props.itemsTrending }
+      actividadesEconomicas={ props.actividadesEconomicas }
+      iconos={ props.iconos }
+      
     />
   </div>;
 }

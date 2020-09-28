@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { ValidarNuevoUsuario as Validacion } from './../../components/SolicitudValidacion'
 import * as solicitudesActions from './../../store/actions/solicitudDeValidacion'
 import * as empresaActions from './../../store/actions/empresa'
+import * as actividadEconomicaActions from './../../store/actions/actividadEconomica'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 import {Drawer} from './../Drawer'
@@ -11,11 +12,13 @@ import Cookies from 'universal-cookie';
  
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
-  empresaReducer: any
+  empresaReducer: any,
+  actividadEconomicaReducer: any
 }) {
   return {
     solicitudDeValidacionReducer: store.solicitudDeValidacionReducer,
-    empresaReducer: store.empresaReducer
+    empresaReducer: store.empresaReducer,
+    actividadEconomicaReducer: store.actividadEconomicaReducer
   };
 }
 
@@ -49,6 +52,7 @@ class Detail extends React.Component<{
 
   componentWillMount() {
     this.props.dispatch(empresaActions.getEmpresaRubros())
+    this.props.dispatch(actividadEconomicaActions.getActividadesEconomicas())
   }
 
   getRubros(rubro: {
@@ -147,13 +151,11 @@ class Detail extends React.Component<{
     ]
 
     if(
-      this.props.empresaReducer.fetched &&
-      this.props.empresaReducer.data !== undefined
+      this.props.actividadEconomicaReducer.fetched &&
+      this.props.actividadEconomicaReducer.data !== undefined
     ) {
-      listaRubros = this.props.empresaReducer.data.rubros
+      listaRubros = this.props.actividadEconomicaReducer.data.actividad
     }
-
-    console.log(this.state.rubros)
 
     return(
       <div>

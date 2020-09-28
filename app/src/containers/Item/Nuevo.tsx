@@ -149,7 +149,6 @@ class Nuevo extends React.Component<{
   }
 
   validacion=() => {
-    debugger;
     let formIsValid = true;
     let errores=[];
     let elements:any = document.getElementById("formItem");
@@ -180,7 +179,6 @@ class Nuevo extends React.Component<{
   }
 
   save() {
-    debugger;
     if(this.validacion()){
        this.props.dispatch(itemActions.setItem(
       this.props.cookies.get('empresaId'),
@@ -238,7 +236,6 @@ class Nuevo extends React.Component<{
 
 
   render(){
-    debugger;
     console.log(this.props.errorReducer.errors);
 
     let errores: any[] = []
@@ -259,7 +256,6 @@ class Nuevo extends React.Component<{
     ) {
       unidadesDeMedida = this.props.unidadDeMedidaReducer.data.unidadesDeMedida
     }
- debugger;
      
    
       errores = this.props.errorReducer.errors;

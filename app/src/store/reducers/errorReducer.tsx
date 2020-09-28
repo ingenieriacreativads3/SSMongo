@@ -9,7 +9,6 @@ export default function ErrorReducer (state = {
       payload: any
   }) {
   
-    debugger;
     switch (action.type) {
       
         case 'SET_ERRORS': {

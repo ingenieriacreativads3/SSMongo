@@ -109,12 +109,10 @@ class DrawerInicio extends React.Component<{}, {
 	  }
 
 	  handleClickCategorias(e: any) {
-		debugger;
 		this.setState({ openCategorias: !this.state.openCategorias })
 	  }
 
 	  handleClickFiltros(e: any) {
-		debugger;
 		this.setState({ openFiltros: !this.state.openFiltros })
 	  }
 

@@ -164,7 +164,6 @@ class Editar extends React.Component<{
     }
  }
   getNombre(nombre: string) {
-    debugger;
     this.setState({ nombre: nombre })
     this.props.dispatch(errorActions.setError(this.state.nombre))
     this.setState({formValid:true});
@@ -196,7 +195,6 @@ class Editar extends React.Component<{
   }
 
   validacion=() => {
-    debugger;
     let formIsValid = true;
     let errores=[];
     let elements:any = document.getElementById("formEditItem");

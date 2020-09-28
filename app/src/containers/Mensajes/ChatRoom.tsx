@@ -51,7 +51,6 @@ class Mensajes extends React.Component<{
 
 
   getMessage(e: any) {
-    debugger;
 
     this.setState({ nuevoMensaje: e.target.value})
   }

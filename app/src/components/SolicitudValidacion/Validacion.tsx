@@ -77,35 +77,28 @@ class Validacion extends React.Component <{
   // }
 
   handleChange(e: any) {
-    console.log(e.target.value)
 
     let rubroSeleccionado: string = ''
 
     e.target.value.map((value: any) => {
-      if(value.nombreRubro === undefined) {
+      if(value.nombre === undefined) {
         rubroSeleccionado = value
       }
     })
 
     let rubroAux: {
-      _id: string,
-      nombreRubro: string,
-      updated_at: string,
-      created_at: string,
+      letra: string,
+      nombre: string,
     } = {
-      _id: '',
-      nombreRubro: '',
-      updated_at: '',
-      created_at: '',
+      letra: '',
+      nombre: '',
     }
 
     this.props.listaRubros.map((rubro: {
-      _id: string,
-      nombreRubro: string,
-      updated_at: string,
-      created_at: string,
+      letra: string,
+      nombre: string,
     }) => {
-      if(rubroSeleccionado === rubro.nombreRubro) {
+      if(rubroSeleccionado === rubro.nombre) {
         rubroAux = rubro
       }
     })
@@ -124,9 +117,9 @@ class Validacion extends React.Component <{
 
     if(this.props.listaRubros && this.props.listaRubros.length > 0) {
       this.props.listaRubros.map((rubro: {
-        nombreRubro: string
+        nombre: string
       }) => {
-        rubros.push(rubro.nombreRubro)
+        rubros.push(rubro.nombre)
       })
     }
 
@@ -272,13 +265,10 @@ class Validacion extends React.Component <{
                                     <div className={classes.chips}>
                                       {
                                         selected.map((rubro: {
-                                          _id: string,
-                                          nombreRubro: string,
-                                          updated_at: string,
-                                          created_at: string,
+                                          letra: string,
+                                          nombre: string,
                                         }) => {
-                                          console.log(selected)
-                                          return <Chip key={rubro._id} label={rubro.nombreRubro} className={classes.chip} />
+                                          return <Chip key={rubro.letra} label={rubro.nombre} className={classes.chip} />
                                         })
                                       }
                                     </div>
@@ -287,14 +277,16 @@ class Validacion extends React.Component <{
                                 >
                                   {
                                     this.props.listaRubros.map((rubro: {
-                                      _id: string,
-                                      nombreRubro: string,
-                                      updated_at: string,
-                                      created_at: string
+                                      letra: string,
+                                      nombre: string,
                                     }) => {
-                                      return <MenuItem key={rubro._id} value={rubro.nombreRubro}>
-                                        <Checkbox checked={true} />
-                                        <ListItemText primary={rubro.nombreRubro} />
+                                      let exist= false
+                                      rubros.map((item: string) => {
+                                        if(item == rubro.nombre) exist = true
+                                      })
+                                      return <MenuItem key={rubro.letra} value={rubro.nombre}>
+                                        <Checkbox checked={exist} />
+                                        <ListItemText primary={rubro.nombre} />
                                       </MenuItem>
                                     })
                                   }

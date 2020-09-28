@@ -71,27 +71,22 @@ class MenuLateral extends React.Component<{
 	}
 
 	handleClickCompras(e: any) {
-		debugger;
 		this.setState({ openItemMenuCompras: !this.state.openItemMenuCompras })
 	  }
 
 	  handleClickVentas(e: any) {
-		debugger;
 		this.setState({ openItemMenuVentas: !this.state.openItemMenuVentas })
 	  }
 
 	  handleClickEstadisticas(e: any) {
-		debugger;
 		this.setState({ openItemMenuEstadisticas: !this.state.openItemMenuEstadisticas })
 	  }
 
 	  handleClickSolicitudes(e: any) {
-		debugger;
 		this.setState({ openItemMenuSolicitudes: !this.state.openItemMenuSolicitudes })
 	  }
 
 	  handleClickCatalogo(e: any) {
-		debugger;
 		this.setState({ openItemMenuCatalogo: !this.state.openItemMenuCatalogo })
 	  }
 
