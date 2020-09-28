@@ -72,7 +72,8 @@ export function IniciarSesion(props: {
   getPass: any,
   getUser: any,
   login: any,
-  handleKeyPress: any
+  handleKeyPress: any,
+  errors:any,
 }) {
 
   const classes = useStyles(theme);
@@ -84,6 +85,7 @@ export function IniciarSesion(props: {
       getUser={ props.getUser }
       login={ props.login }
       handleKeyPress={ props.handleKeyPress }
+      errors={props.errors}
     />
   </div>;
 

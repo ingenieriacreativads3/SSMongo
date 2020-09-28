@@ -430,7 +430,7 @@ class Home extends React.Component <{
               </Grid>
 
               <ListSubheader component="div" id="nested-list-subheader">
-                <Typography  variant="h4" component="h3" gutterBottom>
+                <Typography style={{paddingTop:'30px'}} variant="h4" component="h3" gutterBottom>
                   Los más buscados
                 </Typography>
               </ListSubheader>

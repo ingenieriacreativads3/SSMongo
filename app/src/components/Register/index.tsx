@@ -82,7 +82,8 @@ export  function Registrar(props: {
   getUser: any,
   getEmail: any,
   getPass: any,
-  register: any
+  register: any,
+  errors:any,
 }) {
 
   const classes = useStyles(theme);
@@ -96,6 +97,8 @@ export  function Registrar(props: {
       getEmail={ props.getEmail }
       getPass={ props.getPass }
       register={ props.register }
+      errors={props.errors}
+    
     />
   </div>;
   

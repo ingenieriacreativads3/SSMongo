@@ -204,7 +204,7 @@ class Nuevo extends React.Component {
                       />
 
                     <CardContent>
-                      <form className={classes.root}>
+                      <form  id="formUnidadMedidaNuevo" className={classes.root}>
                         <Grid container >
                           <Grid container >
                             {/* <Grid item lg={6} xs={12}>
@@ -214,9 +214,12 @@ class Nuevo extends React.Component {
                             <Grid item lg={6}  xs={12}>
                               <CssTextField
                                 className={classes.inputNuevo}
-                                id="custom-css-standard-input"
+                                id="Unidad"
                                 label="Unidad"
                                 onChange={ this.props.getUnidad }
+                                required={true}
+                                error={this.props.errors.Unidad != null ? true : false}
+                                helperText={this.props.errors.Unidad != null ? this.props.errors.Unidad : ""}
                               />
 
                            
@@ -224,9 +227,12 @@ class Nuevo extends React.Component {
                             <Grid item lg={6}  xs={12}>
                               <CssTextField
                                 className={classes.inputNuevo}
-                                id="custom-css-standard-input"
+                                id="Simbolo"
                                 label="Simbolo"
                                 onChange={ this.props.getSimbolo }
+                                required={true}
+                                error={this.props.errors.Simbolo != null ? true : false}
+                                helperText={this.props.errors.Simbolo != null ? this.props.errors.Simbolo : ""}
                               />
 
                           
@@ -250,6 +256,7 @@ class Nuevo extends React.Component {
                               className={classes.buttonNuevo}
                               endIcon={<SendIcon />}
                               onClick={ this.props.save }
+                              disabled={ !this.props.formValid }
                             >
                              Enviar
                             </Button>

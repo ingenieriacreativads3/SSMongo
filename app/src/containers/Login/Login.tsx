@@ -9,11 +9,17 @@ import { OneButton } from './../../components/Dialogs'
 import { IniciarSesion as LoginComponent } from './../../components/Login'
 import Cookies from 'universal-cookie';
 
+
+import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
+
 function mapStateToProps(store: {
   login: any,
+  errorReducer:any,
 }) {
   return {
     login: store.login,
+    errorReducer: store.errorReducer
   };
 }
 
@@ -26,6 +32,7 @@ class Login extends React.Component<{
 }, {
   user: string,
   pass: string,
+  formValid:boolean,
 }> {
 
 	props: any
@@ -43,6 +50,7 @@ class Login extends React.Component<{
     this.state = {
       user: '',
       pass: '',
+      formValid:true,
     };
   }
 
@@ -65,24 +73,62 @@ class Login extends React.Component<{
   }
 
   getUser(e: any) {
-
+    let state = store.getState();
     this.setState({
       user: e.target.value
     })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+      if(state.errorReducer.errors.length == 0)
+      {
+        this.setState({formValid:true});
+      }
 
   }
 
   getPass(e: any) {
-
+    let state = store.getState();
     this.setState({
       pass: e.target.value
     })
 
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
+  }
+
+  validacion=() => {
+    let formIsValid = true;
+    let errores=[];
+    let elements:any = document.getElementById("formLogin");
+
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+        this.setState({formValid:formIsValid})
+      
+        
+      }
+      
+    }
+
+   
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
   }
 
   login() {
 
-    this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
+    if(this.validacion()){
+          this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
+
+    }
 
   }
 
@@ -101,6 +147,8 @@ class Login extends React.Component<{
 
   render(){
 
+    let errores: any[] = []
+    errores = this.props.errorReducer.errors;
     return(
       <div>
         <LoginComponent 
@@ -108,6 +156,7 @@ class Login extends React.Component<{
           getUser={ this.getUser }
           login={ this.login }
           handleKeyPress={ this.handleKeyPress }
+          errors={errores}
         />
         <OneButton 
           title={ 'Error de ingreso' }

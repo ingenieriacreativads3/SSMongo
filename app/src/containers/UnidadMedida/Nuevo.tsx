@@ -12,15 +12,20 @@ import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 
+import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
+
 
 function mapStateToProps(store: {
  
   unidadDeMedidaReducer: any,
+  errorReducer:any,
  
 }) {
   return {
     
     unidadDeMedidaReducer: store.unidadDeMedidaReducer,
+    errorReducer: store.errorReducer
 
   };
 }
@@ -34,6 +39,7 @@ class NuevaSolicitud extends React.Component<{
 }, {
 	unidad: string,
   simbolo : string,
+  formValid:boolean,
 }> {
 
 	props: any
@@ -50,6 +56,7 @@ class NuevaSolicitud extends React.Component<{
     this.state = {
       unidad: '',
       simbolo: '',
+      formValid:true,
     };
   }
 
@@ -64,20 +71,61 @@ class NuevaSolicitud extends React.Component<{
   }
 
   getSimbolo(e: any) {
+    let state = store.getState();
     this.setState({ simbolo: e.target.value })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+      if(state.errorReducer.errors.length == 0)
+      {
+        this.setState({formValid:true});
+      }
   }
 
   getUnidad(e: any) {
+    let state = store.getState();
     this.setState({ unidad: e.target.value })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
+
+  }
+
+  validacion=() => {
+    let formIsValid = true;
+    let errores=[];
+    let elements:any = document.getElementById("formUnidadMedidaNuevo");
+
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+        this.setState({formValid:formIsValid})
+      
+        
+      }
+      
+    }
+
+   
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
   }
 
   save() {
 
-    this.props.dispatch(unidadDeMedidaActions.setSolicitud(
+    if(this.validacion()){
+      this.props.dispatch(unidadDeMedidaActions.setSolicitud(
       this.props.cookies.get('empresaId'),
       this.state.unidad,
       this.state.simbolo
     ))
+  }
+    
 
   }
 
@@ -122,7 +170,8 @@ class NuevaSolicitud extends React.Component<{
   }
 
   render(){
-
+    let errores: any[] = []
+    errores = this.props.errorReducer.errors;
 
     return(
       <div>
@@ -133,6 +182,8 @@ class NuevaSolicitud extends React.Component<{
           drawer={ this.drawer() }
           footer={ this.footer() }
           appBar={this.appBar()}
+          errors={errores}
+          formValid={this.state.formValid}
         />
         <OneButton 
           title={ 'Solicitud Unidad de Medida' }

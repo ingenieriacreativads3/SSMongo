@@ -138,7 +138,9 @@ class Nuevo extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    
+    console.log(this.props.errors.CantidadPedido);
 
     return(
 
@@ -166,7 +168,7 @@ class Nuevo extends React.Component <{
                     <CardContent>
 
 
-                      <form className={classes.root}>
+                      <form id="formNuevoPedido" className={classes.root}>
                       
                         <Grid container >
                         <CardContent>
@@ -177,24 +179,24 @@ class Nuevo extends React.Component <{
                           <Grid container >
                             
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="Empresa" value={this.props.empresa.nombre} className={classes.input}  />
+                              <TextField disabled id="Empresa" label="Empresa" value={this.props.empresa.nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="Email" value={this.props.empresa.email} className={classes.input}  />
+                              <TextField disabled id="Email" label="Email" value={this.props.empresa.email} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="Domicilio" value={this.props.empresa.domicilioLegal} className={classes.input}  />
+                              <TextField disabled id="Domicilio" label="Domicilio" value={this.props.empresa.domicilioLegal} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="Provincia" value={this.props.empresa.provincia} className={classes.input}  />
+                              <TextField disabled id="Provincia" label="Provincia" value={this.props.empresa.provincia} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="Ciudad" value={this.props.empresa.localidad} className={classes.input}  />
+                              <TextField disabled id="Ciudad" label="Ciudad" value={this.props.empresa.localidad} className={classes.input}  />
                             </Grid>
                           </Grid>
                           <Grid container>
                             <Grid item lg={4}>
-                              <TextField disabled id="standard-required" label="Telefono" value={this.props.empresa.telefono} className={classes.input}  />
+                              <TextField disabled id="Telefono" label="Telefono" value={this.props.empresa.telefono} className={classes.input}  />
                             </Grid>
                           </Grid>
                           
@@ -205,19 +207,23 @@ class Nuevo extends React.Component <{
                           </CardContent>
                           <Grid container >
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Nombre" value={this.props.item.nombre} className={classes.input}  />
+                              <TextField disabled id="Nombre" label="Nombre" value={this.props.item.nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Precio" value={this.props.item.precio} className={classes.input}  />
+                              <TextField disabled id="Precio" label="Precio" value={this.props.item.precio} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Unidad" value={this.props.item.unidad_de_medida.nombre} className={classes.input}  />
+                              <TextField disabled id="Unidad" label="Unidad" value={this.props.item.unidad_de_medida.nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad" type="number" onChange={this.props.getCantidadItem}/>
+                              <CssTextField className={classes.margin} id="CantidadPedido" label="Cantidad" type="number" onChange={this.props.getCantidadItem} 
+                              required={true}
+                              error={this.props.errors.CantidadPedido != null ? true : false}
+                              helperText={this.props.errors.CantidadPedido != null ? this.props.errors.CantidadPedido : ""}
+                              inputProps={{min:1}}/>
                             </Grid>
                             <Grid item lg={4} xs={12}>
-                              <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
+                              <TextareaAutosize style={{borderRadius:7}}  aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
                             </Grid>
                           </Grid>
                             
@@ -237,6 +243,7 @@ class Nuevo extends React.Component <{
                               className={classes.button}
                               startIcon={<SendIcon />}
                               onClick={() => this.props.save(this.props.item._id, this.props.item.catalogo.empresa._id)}
+                              disabled={ !this.props.formValido   }
                             >
                               Enviar
                             </Button>

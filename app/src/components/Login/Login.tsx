@@ -64,11 +64,11 @@ class Login extends React.Component<{
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar   src={logo} className={classes.avatar}  />
-          <form className={classes.form} noValidate >
+          <form id="formLogin" className={classes.form} noValidate >
             <TextField
               variant="outlined"
               margin="normal"
-              required
+              required={true}
               fullWidth
               id="usuario"
               label="Usuario"
@@ -90,11 +90,13 @@ class Login extends React.Component<{
               }}
               onChange={ this.props.getUser }
               onKeyPress={ this.handleKeyPress }
+              error={this.props.errors.usuario != null ? true : false}
+              helperText={this.props.errors.usuario != null ? this.props.errors.usuario : ""}
             />
             <TextField
               variant="outlined"
               margin="normal"
-              required
+              required={true}
               fullWidth
               name="password"
               label="Contraseña"
@@ -130,6 +132,8 @@ class Login extends React.Component<{
              
               onChange={ this.props.getPass }
               onKeyPress={this.handleKeyPress}
+              error={this.props.errors.password != null ? true : false}
+              helperText={this.props.errors.password != null ? this.props.errors.password : ""}
             /> 
             <FormControlLabel
               control={<Checkbox value="remember" style ={{

@@ -14,6 +14,8 @@ import * as fileActions from './../../store/actions/file'
 import * as dialogActions from './../../store/actions/dialog'
 import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
+
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -104,21 +106,36 @@ class Nuevo extends React.Component<{
   }
 
   getNombre(e: any) {
-    this.setState({ nombre: e.target.value })
-    this.props.dispatch(errorActions.setError(e.target.value))
-    this.setState({formValid:true});
+    let state = store.getState();
+    this.setState({ nombre: e.target.value }) 
+     this.props.dispatch(errorActions.editErrors(e.target.id))
+      if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+      {
+        this.setState({formValid:true});
+      }
+     
   }
 
   getPrecio(e: any) {
+    let state = store.getState();
     this.setState({ precio: e.target.value })
-    this.props.dispatch(errorActions.setError(e.target.value))
-    this.setState({formValid:true});
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    {
+      this.setState({formValid:true});
+    }
+   
   }
 
   getMagnitud(e: any) {
+    let state = store.getState();
     this.setState({ idMagnitud: e.target.value })
     this.setState({unidadSeleccionada:true});
-    this.setState({formValid:true});
+    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    {
+      this.setState({formValid:true});
+    }
+    
   }
 
   getCaracteristicas(e: any) {
@@ -159,9 +176,10 @@ class Nuevo extends React.Component<{
       {
 
         errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
         formIsValid = false;
-      
         this.setState({formValid:formIsValid})
+      
         
       }
       

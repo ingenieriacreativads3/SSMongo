@@ -153,6 +153,8 @@ export function NuevoPresupuesto(props:{
   drawer:any,
   footer:any,
   appBar:any,
+  errors:any,
+  formValido:boolean,
   item: {
     "_id": string,
     "foto": string[],
@@ -219,6 +221,9 @@ export function NuevoPresupuesto(props:{
     appBar={props.appBar}
     item={ props.item }
     empresa={ props.empresa }
+    errors={props.errors}
+    formValido={props.formValido}
+
   />;
 
 }

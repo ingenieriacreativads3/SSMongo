@@ -10,11 +10,16 @@ import { connect } from 'react-redux'
 import { OneButton } from './../../components/Dialogs'
 import { Registrar as RegisterComponent } from './../../components/Register'
 
+import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
+
 function mapStateToProps(store: {
   registerReducer: any,
+  errorReducer:any,
 }) {
   return {
     register: store.registerReducer,
+    errorReducer: store.errorReducer
   };
 }
 
@@ -23,7 +28,9 @@ class Register extends React.Component<{}, {
 	CUIT: string,
 	user: string,
 	email: string,
-	pass: string,
+  pass: string,
+  formValid:boolean,
+ 
 }> {
 
 	props: any
@@ -46,7 +53,9 @@ class Register extends React.Component<{}, {
 			CUIT: '',
 			user: '',
 			email: '',
-			pass: '',
+      pass: '',
+      formValid:true,
+     
     };
   }
 
@@ -61,54 +70,107 @@ class Register extends React.Component<{}, {
 	}
 	
 	getFantasyName(e: any) {
-
+    let state = store.getState();
 		this.setState({
 			fantasyName: e.target.value
-		})
+    })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
 
 	}
 
 	getCUIT(e: any) {
-
+    let state = store.getState();
 		this.setState({
 			CUIT: e.target.value
 		})
-
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
 	}
 	
 	getUser(e: any) {
-
+    let state = store.getState();
     this.setState({
       user: e.target.value
     })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
 
 	}
 	
 	getEmail(e: any) {
-
+    let state = store.getState();
     this.setState({
       email: e.target.value
     })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
 
   }
 
   getPass(e: any) {
-
+    let state = store.getState();
     this.setState({
       pass: e.target.value
     })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
 
+  }
+
+  validacion=() => {
+    let formIsValid = true;
+    let errores=[];
+    let elements:any = document.getElementById("formRegistro");
+
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+        this.setState({formValid:formIsValid})
+      
+        
+      }
+      
+    }
+
+    
+   
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
   }
 
   register() {
 
-    this.props.dispatch(registerActions.registrar(
+    if(this.validacion()){
+       this.props.dispatch(registerActions.registrar(
 			this.state.fantasyName,
 			this.state.CUIT,
 			this.state.user,
 			this.state.email,
 			this.state.pass
 		))
+  }
+   
 
   }
 
@@ -125,6 +187,8 @@ class Register extends React.Component<{}, {
 	}
 
   render(){
+    let errores: any[] = []
+    errores = this.props.errorReducer.errors;
 
     return(
       <div>
@@ -134,7 +198,9 @@ class Register extends React.Component<{}, {
 					getUser={ this.getUser }
 					getEmail={ this.getEmail }
 					getPass={ this.getPass }
-					register={ this.register }
+          register={ this.register }
+          errors={errores}
+         
         />
         <OneButton 
           title={ '' }
