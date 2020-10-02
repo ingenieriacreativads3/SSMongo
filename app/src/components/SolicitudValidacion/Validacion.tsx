@@ -44,14 +44,16 @@ class Validacion extends React.Component <{
     updated_at: string,
     created_at: string,
   }[],
-  listaRubros: {
-    _id: string,
-    nombreRubro: string,
-    updated_at: string,
-    created_at: string,
-  }[],
-  getRubros: any
-},  {}> {
+  listaRubros: any[],
+  listaGrupos: any[],
+  listaActividades: any[],
+  getRubros: any,
+  removeRubro: any,
+  removeGrupo: any,
+  removeActividad: any,
+},  {
+  rubros: any[]
+}> {
 
   props: any
 	static propTypes: any
@@ -69,6 +71,7 @@ class Validacion extends React.Component <{
       //     cuit: ''
       //   }
       // }
+      rubros: []
     };
   }
 
@@ -103,8 +106,33 @@ class Validacion extends React.Component <{
       }
     })
 
+    let listAux = this.state.rubros
+    listAux.push(rubroAux)
+
+    this.setState({
+      rubros: listAux
+    })
+
     this.props.getRubros(rubroAux)
   };
+
+  onClickRubro = (rubro: string) => {
+
+    this.props.removeRubro(rubro)
+
+  }
+
+  onClickGrupo = (grupo: string) => {
+
+    this.props.removeGrupo(grupo)
+
+  }
+
+  onClickActividad = (actividad: string) => {
+
+    this.props.removeActividad(actividad)
+
+  }
   
   render(){
 
@@ -113,17 +141,13 @@ class Validacion extends React.Component <{
 
     let listaRubros: string[] = []
 
-    let rubros: string[] = []
-
-    if(this.props.listaRubros && this.props.listaRubros.length > 0) {
-      this.props.listaRubros.map((rubro: {
-        nombre: string
-      }) => {
-        rubros.push(rubro.nombre)
-      })
-    }
+    let rubros: any[] = []
+    let grupos: any[] = []
+    let actividades: any = []
 
     if(this.props.rubros) rubros = this.props.rubros
+    if(this.props.grupos) grupos = this.props.grupos
+    if(this.props.actividades) actividades = this.props.actividades
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -253,13 +277,13 @@ class Validacion extends React.Component <{
                             </Grid>
                             <Grid item lg={6} xs={12}>
                               <FormControl className={classes.formControl}>
-                                <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Rubro</InputLabel>
+                                <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Sección</InputLabel>
                                 <Select
                                   labelId="demo-mutiple-chip-label"
                                   id="demo-mutiple-chip"
                                   multiple
                                   value={rubros}
-                                  onChange={this.handleChange}
+                                  // onChange={this.handleChange}
                                   input={<Input id="select-multiple-chip" />}
                                   renderValue={(selected: any) => (
                                     <div className={classes.chips}>
@@ -281,12 +305,107 @@ class Validacion extends React.Component <{
                                       nombre: string,
                                     }) => {
                                       let exist= false
-                                      rubros.map((item: string) => {
-                                        if(item == rubro.nombre) exist = true
+                                      rubros.map((item: {
+                                        nombre: string
+                                      }) => {
+                                        if(item.nombre == rubro.nombre) exist = true
                                       })
-                                      return <MenuItem key={rubro.letra} value={rubro.nombre}>
+
+                                      return <MenuItem onClick={ () => this.onClickRubro(rubro.letra) } key={rubro.letra} value={rubro.nombre}>
                                         <Checkbox checked={exist} />
-                                        <ListItemText primary={rubro.nombre} />
+                                        <ListItemText  primary={rubro.nombre} />
+                                      </MenuItem>
+                                    })
+                                  }
+                                </Select>
+                              </FormControl>
+                            </Grid>
+
+                            <Grid item lg={6} xs={12}>
+                              <FormControl className={classes.formControl}>
+                                <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Grupo</InputLabel>
+                                <Select
+                                  labelId="demo-mutiple-chip-label"
+                                  id="demo-mutiple-chip"
+                                  multiple
+                                  value={grupos}
+                                  // onChange={this.handleChange}
+                                  input={<Input id="select-multiple-chip" />}
+                                  renderValue={(selected: any) => (
+                                    <div className={classes.chips}>
+                                      {
+                                        selected.map((grupo: {
+                                          number: string,
+                                          nombre: string,
+                                        }) => {
+                                          return <Chip key={grupo.number} label={grupo.nombre} className={classes.chip} />
+                                        })
+                                      }
+                                    </div>
+                                  )}
+                                  MenuProps={MenuProps}
+                                >
+                                  {
+                                    this.props.listaGrupos.map((grupo: {
+                                      number: string,
+                                      nombre: string,
+                                    }) => {
+                                      let exist= false
+                                      grupos.map((item: {
+                                        nombre: string
+                                      }) => {
+                                        if(item.nombre == grupo.nombre) exist = true
+                                      })
+
+                                      return <MenuItem onClick={ () => this.onClickGrupo(grupo.number) } key={grupo.number} value={grupo.nombre}>
+                                        <Checkbox checked={exist} />
+                                        <ListItemText  primary={grupo.nombre} />
+                                      </MenuItem>
+                                    })
+                                  }
+                                </Select>
+                              </FormControl>
+                            </Grid>
+
+                            <Grid item lg={6} xs={12}>
+                              <FormControl className={classes.formControl}>
+                                <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Actividad</InputLabel>
+                                <Select
+                                  labelId="demo-mutiple-chip-label"
+                                  id="demo-mutiple-chip"
+                                  multiple
+                                  value={actividades}
+                                  // onChange={this.handleChange}
+                                  input={<Input id="select-multiple-chip" />}
+                                  renderValue={(selected: any) => (
+                                    <div className={classes.chips}>
+                                      {
+                                        selected.map((actividad: {
+                                          number: string,
+                                          name: string,
+                                        }) => {
+                                          return <Chip key={actividad.number} label={actividad.name} className={classes.chip} />
+                                        })
+                                      }
+                                    </div>
+                                  )}
+                                  MenuProps={MenuProps}
+                                >
+                                  {
+                                    this.props.listaActividades.map((actividad: {
+                                      number: string,
+                                      name: string,
+                                    }) => {
+                                      let exist= false
+                                      actividades.map((item: {
+                                        name: string
+                                      }) => {
+                                        if(item.name == actividad.name) exist = true
+                                      })
+
+                                      return <MenuItem onClick={ () => this.onClickActividad(actividad.number) } key={actividad.number} value={actividad.name}>
+                                        <Checkbox checked={exist} />
+                                        <ListItemText primary={actividad.name} />
                                       </MenuItem>
                                     })
                                   }

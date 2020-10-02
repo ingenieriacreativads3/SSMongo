@@ -137,19 +137,16 @@ export function ValidarNuevoUsuario(props: {
   _id: string,
   nombre: string,
   cuit:string,
-  rubros: {
-    _id: string,
-    nombreRubro: string,
-    updated_at: string,
-    created_at: string,
-  }[],
-  listaRubros: {
-    _id: string,
-    nombreRubro: string,
-    updated_at: string,
-    created_at: string,
-  }[],
+  rubros: any[],
+  grupos: any[],
+  actividades: any[],
+  listaRubros: any[],
+  listaGrupos: any[],
+  listaActividades: any[],
   getRubros: any,
+  removeRubro: any,
+  removeGrupo: any,
+  removeActividad: any,
   footer:any,
   appBar:any,
   drawer:any,
@@ -158,17 +155,24 @@ export function ValidarNuevoUsuario(props: {
 	const classes = useStyles(theme);
   return <div>
     <Validacion
-      classes={classes} 
-      title={props.title}
-      _id={props._id}
-      nombre={props.nombre}
-      cuit={props.cuit}
-      rubros={props.rubros}
-      listaRubros={props.listaRubros}
-      getRubros={props.getRubros}
-      footer={props.footer}
-      appBar={props.appBar}
-      drawer={props.drawer}
+      classes={ classes } 
+      title={ props.title }
+      _id={ props._id }
+      nombre={ props.nombre }
+      cuit={ props.cuit }
+      rubros={ props.rubros }
+      grupos={ props.grupos }
+      actividades={ props.actividades }
+      listaRubros={ props.listaRubros }
+      listaGrupos={ props.listaGrupos }
+      listaActividades={ props.listaActividades }
+      getRubros={ props.getRubros }
+      removeRubro={ props.removeRubro }
+      removeGrupo={ props.removeGrupo }
+      removeActividad={ props.removeActividad }
+      footer={ props.footer }
+      appBar={ props.appBar }
+      drawer={ props.drawer }
     />
   </div>
 }

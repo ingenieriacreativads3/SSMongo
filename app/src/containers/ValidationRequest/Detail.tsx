@@ -9,6 +9,7 @@ import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 import {Drawer} from './../Drawer'
 import Cookies from 'universal-cookie';
+import { ArgumentAxis } from '@devexpress/dx-react-chart';
  
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
@@ -29,12 +30,11 @@ class Detail extends React.Component<{
   staticContext?: any,
   cookies: Cookies,
 }, {
-  rubros: {
-    _id: string,
-    nombreRubro: string,
-    updated_at: string,
-    created_at: string,
-  }[]
+  rubros: any[],
+  grupos: any[],
+  actividades: any[],
+  listaGrupos: any[],
+  listaActividades: any[],
 }> {
 
 	props: any
@@ -46,7 +46,11 @@ class Detail extends React.Component<{
     super(props);
     this.getRubros = this.getRubros.bind(this);
     this.state = {
-      rubros: []
+      rubros: [],
+      grupos: [],
+      actividades: [],
+      listaGrupos: [],
+      listaActividades: []
     };
   }
 
@@ -73,6 +77,188 @@ class Detail extends React.Component<{
 
     this.setState({
       rubros: rubrosAux
+    })
+
+  }
+
+  removeRubro = (rubro: string) => {
+
+    let listaRubros: any[] = []
+
+    if(
+      this.props.actividadEconomicaReducer.fetched &&
+      this.props.actividadEconomicaReducer.data !== undefined
+    ) {
+      listaRubros = this.props.actividadEconomicaReducer.data.actividad
+    }
+
+    let listAux: any[] = []
+    let exist: boolean = false
+
+    this.state.rubros.map((item: any) => {
+      if(item.letra == rubro) {
+        exist = true
+      }
+    })
+
+    if(exist) {
+      this.state.rubros.map((item: any) => {
+        if(item.letra != rubro) {
+          listAux.push(item)
+        }
+      })
+    } else {
+      listAux = this.state.rubros
+      listaRubros.map((item: {
+        letra: string
+      }) => {
+        if(item.letra == rubro) {
+          listAux.push(item)
+        }
+      })
+    }
+
+    let gruposAux: any[] = []
+
+    listAux.map((item: any) => {
+      listaRubros.map((itemAux: any) => {
+        if(item.nombre == itemAux.nombre) {
+          gruposAux = gruposAux.concat(itemAux.items)
+        }
+      })
+    })
+
+    this.setState({
+      rubros: listAux,
+      listaGrupos: gruposAux
+    })
+
+  }
+
+  removeGrupo = (grupo: string) => {
+
+    
+
+    let listaRubros: any[] = []
+
+    if(
+      this.props.actividadEconomicaReducer.fetched &&
+      this.props.actividadEconomicaReducer.data !== undefined
+    ) {
+      listaRubros = this.props.actividadEconomicaReducer.data.actividad
+    }
+
+    let listGroupsAux: any[] = []
+
+    listaRubros.map((aux: any) => {
+      this.state.rubros.map((item: any) => {
+        if(item.letra == aux.letra) {
+          listGroupsAux = listGroupsAux.concat(aux.items)
+        }
+      })
+    })
+
+    let listAux: any[] = []
+    let exist: boolean = false
+
+    this.state.grupos.map((item: any) => {
+      if(item.number == grupo) {
+        exist = true
+      }
+    })
+
+    if(exist) {
+      this.state.grupos.map((item: any) => {
+        if(item.number != grupo) {
+          listAux.push(item)
+        }
+      })
+    } else {
+      listAux = this.state.grupos
+      listGroupsAux.map((item: any) => {
+        if(item.number == grupo) {
+          listAux.push(item)
+        }
+      })
+    }
+
+    let actividadesAux: any[] = []
+
+    listAux.map((item: any) => {
+      listGroupsAux.map((itemAux: any) => {
+        if(item.number == itemAux.number) {
+          actividadesAux = actividadesAux.concat(itemAux.items)
+        }
+      })
+    })
+
+    console.log(actividadesAux)
+
+    this.setState({
+      grupos: listAux,
+      listaActividades: actividadesAux
+    })
+
+  }
+
+  removeActividad = (actividad: string) => {
+
+    let listaRubros: any[] = []
+
+    if(
+      this.props.actividadEconomicaReducer.fetched &&
+      this.props.actividadEconomicaReducer.data !== undefined
+    ) {
+      listaRubros = this.props.actividadEconomicaReducer.data.actividad
+    }
+
+    let listGroupsAux: any[] = []
+
+    listaRubros.map((item: any) => {
+      this.state.rubros.map((itemAux: any) => {
+        if(item.letra == itemAux.letra) {
+          listGroupsAux = listGroupsAux.concat(item.items)
+        }
+      })
+    })
+
+    let listActividadesAux: any[] = []
+
+    listGroupsAux.map((item: any) => {
+      this.state.grupos.map((itemAux: any) => {
+        if(item.number == itemAux.number) {
+          listActividadesAux = listActividadesAux.concat(item.items)
+        }
+      })
+    })
+
+    let listAux: any[] = []
+    let exist: boolean = false
+
+    this.state.actividades.map((item:any) => {
+      if(item.number == actividad) {
+        exist = true
+      }
+    })
+
+    if(exist) {
+      this.state.actividades.map((item: any) => {
+        if(item.number != actividad) {
+          listAux.push(item)
+        }
+      })
+    } else {
+      listAux = this.state.actividades
+      listActividadesAux.map((item: any) => {
+        if(item.number == actividad) {
+          listAux.push(item)
+        }
+      })
+    }
+
+
+    this.setState({
+      actividades: listAux
     })
 
   }
@@ -160,16 +346,23 @@ class Detail extends React.Component<{
     return(
       <div>
         <Validacion
-          title={title}
-          _id={_id}
-          nombre={nombre}
-          cuit={cuit}
-          rubros={this.state.rubros}
-          listaRubros={listaRubros}
-          getRubros={this.getRubros}
-          footer={this.footer()}
-          appBar={this.appBar()}
-          drawer={this.drawer()}
+          title={ title }
+          _id={ _id }
+          nombre={ nombre }
+          cuit={ cuit }
+          rubros={ this.state.rubros }
+          grupos={ this.state.grupos }
+          actividades={ this.state.actividades }
+          listaRubros={ listaRubros }
+          listaGrupos={ this.state.listaGrupos }
+          listaActividades={ this.state.listaActividades }
+          getRubros={ this.getRubros }
+          removeRubro={ this.removeRubro }
+          removeGrupo={ this.removeGrupo }
+          removeActividad={ this.removeActividad }
+          footer={ this.footer() }
+          appBar={ this.appBar() }
+          drawer={ this.drawer() }
         />
       </div>
     );
