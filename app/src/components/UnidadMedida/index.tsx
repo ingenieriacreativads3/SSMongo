@@ -182,6 +182,8 @@ export  function NuevaUnidadMedida(props: {
   drawer:any,
   footer:any,
   appBar:any,
+  errors:any
+  formValid:boolean,
 }) {
 
 	const classes = useStyles(theme);
@@ -193,6 +195,8 @@ export  function NuevaUnidadMedida(props: {
     drawer={props.drawer}
     footer={props.footer}
     appBar={props.appBar}
+    errors={props.errors}
+    formValid={props.formValid}
   />;
 
 }

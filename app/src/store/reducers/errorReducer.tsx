@@ -8,7 +8,7 @@ export default function ErrorReducer (state = {
       type: string,
       payload: any
   }) {
-  
+   
     switch (action.type) {
       
         case 'SET_ERRORS': {
@@ -20,15 +20,17 @@ export default function ErrorReducer (state = {
 		}
 
     
-      case 'EDIT_ERROR': {
+      case 'EDIT_ERRORS': {
         Object.keys(state.errors).forEach(function(key:any) {
                       console.log(state.errors[key]);
                       if (key.toUpperCase() == action.payload.toUpperCase()) {
                           delete state.errors[key]
+                          state.errors.length -=1;
                       }
                       
                   })
         return { 
+          errors: state.errors,
           
         };
   

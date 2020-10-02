@@ -135,12 +135,15 @@ class Editar extends React.Component <{
   }
 
   changeNombre(e: any) {
+    debugger;
     this.setState({ item: { ...this.state.item, nombre: e.target.value } })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
     //this.props.getNombre(e.target.value)
   }
 
   changePrecio(e: any) {
     this.setState({ item: { ...this.state.item, precio: e.target.value } })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
     // this.props.getPrecio(e.target.value)
   }
 

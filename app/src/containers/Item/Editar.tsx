@@ -12,6 +12,7 @@ import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import * as dialogActions from './../../store/actions/dialog'
 import Cookies from 'universal-cookie';
 import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
 
 function mapStateToProps(store: {
   itemReducer: any,
@@ -163,16 +164,25 @@ class Editar extends React.Component<{
 
     }
  }
-  getNombre(nombre: string) {
-    this.setState({ nombre: nombre })
-    this.props.dispatch(errorActions.setError(this.state.nombre))
-    this.setState({formValid:true});
+  getNombre(nombre: any) {
+    debugger;
+    let state = store.getState();
+    this.setState({ nombre:nombre })
+    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    {
+      this.setState({formValid:true});
+    }
+    
   }
 
   getPrecio(precio: string) {
+    let state = store.getState();
     this.setState({ precio: precio })
-    this.props.dispatch(errorActions.setError(this.state.precio))
-    this.setState({formValid:true});
+    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    {
+      this.setState({formValid:true});
+    }
+   
   }
 
   getDescripcion(descripcion: string) {
@@ -181,9 +191,13 @@ class Editar extends React.Component<{
   }
 
   getMagnitud(idMagnitud: string) {
+    let state = store.getState();
     this.setState({ idMagnitud: idMagnitud })
     this.setState({unidadSeleccionada:true});
-    this.setState({formValid:true});
+    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    {
+      this.setState({formValid:true});
+    }
   }
 
   getMostrarPrecio(mostrarPrecio: boolean) {
@@ -205,6 +219,7 @@ class Editar extends React.Component<{
       {
 
         errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
         formIsValid = false;
       
         this.setState({formValid:formIsValid})

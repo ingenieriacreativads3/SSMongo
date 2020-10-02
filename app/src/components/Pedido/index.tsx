@@ -186,6 +186,8 @@ export function NuevoPedido(props:{
   drawer:any,
   footer:any,
   appBar:any,
+  errors:any,
+  formValido:any,
   item: {
     "_id": string,
     "foto": string[],
@@ -254,5 +256,7 @@ export function NuevoPedido(props:{
     appBar={props.appBar}
     item={props.item}
     empresa={props.empresa}
+    errors={props.errors}
+    formValido={props.formValido}
   />;
 }

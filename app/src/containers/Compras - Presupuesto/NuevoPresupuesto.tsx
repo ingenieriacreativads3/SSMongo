@@ -15,16 +15,20 @@ import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 
+import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
 
 function mapStateToProps(store: {
   itemReducer:any,
   empresaReducer: any,
   presupuestoReducer: any,
+  errorReducer:any,
 }) {
   return {
     itemReducer: store.itemReducer,
     empresaReducer: store.empresaReducer,
     presupuestoReducer: store.presupuestoReducer,
+    errorReducer: store.errorReducer
   };
 }
 
@@ -35,6 +39,7 @@ class NuevoPresupuesto extends React.Component<{
   staticContext?: any,
   cookies: Cookies
 }, {
+    formValid:boolean,
     idEmpresaPerteneciente: string,
     empresa: {
       _id: string,
@@ -66,6 +71,7 @@ class NuevoPresupuesto extends React.Component<{
     this.save = this.save.bind(this);
     this.aceptar = this.aceptar.bind(this);
     this.state = {
+      formValid:true,
       idEmpresaPerteneciente: '5f050fe76e82d7332c28ceb2',
       empresa: {
         _id: '',
@@ -114,16 +120,47 @@ class NuevoPresupuesto extends React.Component<{
   }
 
   getCantidadItem(e: any) {
+    let state = store.getState();
     this.setState({ cantidad: e.target.value })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+      if(state.errorReducer.errors.length == 0)
+      {
+        this.setState({formValid:true});
+      }
   }
 
   getComentario(e: any) {
     this.setState({ comentario: e.target.value })
   }
 
-  save(idEmpresaPerteneciente: string, idItem: string) {
+  validacion=() => {
+    let formIsValid = true;
+    let errores=[];
+    let elements:any = document.getElementById("formNuevoPresupuesto");
 
-    this.props.dispatch(presupuestoActions.setPresupuesto(
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+        this.setState({formValid:formIsValid})
+      
+        
+      }
+      
+    }
+
+   
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
+  }
+
+  save(idEmpresaPerteneciente: string, idItem: string) {
+    if(this.validacion()){
+       this.props.dispatch(presupuestoActions.setPresupuesto(
       idEmpresaPerteneciente,
       this.props.cookies.get('empresaId'),
       idItem,
@@ -131,6 +168,8 @@ class NuevoPresupuesto extends React.Component<{
       this.state.comentario,
     ))
 
+    }
+   
   }
 
   aceptar() {
@@ -295,6 +334,10 @@ class NuevoPresupuesto extends React.Component<{
       empresa = this.props.empresaReducer.data.empresa
     }
 
+    let errores: any[] = []
+    errores = this.props.errorReducer.errors;
+
+
     return(
       <div>
         <PresupuestoNuevo 
@@ -306,6 +349,8 @@ class NuevoPresupuesto extends React.Component<{
           appBar={this.appBar()}
           item={item}
           empresa={empresa}
+          errors={errores}
+          formValido = {this.state.formValid}
         />
         <OneButton 
           title={ 'Nuevo Presupuesto' }
