@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid, TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, Checkbox, CardActions, ListItemText} from '@material-ui/core';
+import { Container, Grid, Divider, TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, Checkbox, CardActions, ListItemText} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -199,15 +199,20 @@ class Validacion extends React.Component <{
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                          S
-                        </Avatar>
-                      }
-                      title={this.props.title}
+
+                      // avatar={
+                      //   <Avatar aria-label="recipe" className={classes.avatar}>
+                      //     S
+                      //   </Avatar>
+                      // }
+                      // title={this.props.title}
                       
                     />
-
+                     <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontWeight="fontWeightBold" fontSize={22}>
+                {this.props.title}</Box>
+              </Typography>
+<Divider className={classes.divider} />
                     <CardContent>
                       <form className={classes.root}>
                         <Grid container >

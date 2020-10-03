@@ -13,13 +13,18 @@ import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 
+import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
+
 function mapStateToProps(store: {
   itemReducer:any,
   presupuestoReducer: any,
+  errorReducer:any,
 }) {
   return {
     itemReducer:store.itemReducer,
     presupuestoReducer: store.presupuestoReducer,
+    errorReducer: store.errorReducer,
   };
 }
 
@@ -79,6 +84,7 @@ class Presupuestacion extends React.Component<{
       }
     ]
   },
+  formValid:boolean,
   cantidad: string,
   importe: string,
   comentario: string,
@@ -99,7 +105,7 @@ class Presupuestacion extends React.Component<{
       abreviatura: string,
       updated_at: string,
       created_at: string,
-    }
+    },
   }
 }> {
 
@@ -117,6 +123,7 @@ class Presupuestacion extends React.Component<{
     this.cancelar = this.cancelar.bind(this);
     this.aceptar = this.aceptar.bind(this);
     this.state = {
+      formValid:true,
       presupuesto: {
         _id: '',
         estado: '',
@@ -187,7 +194,7 @@ class Presupuestacion extends React.Component<{
           updated_at: '',
           created_at: '',
         }
-      }
+      },
     };
   }
 
@@ -213,20 +220,33 @@ class Presupuestacion extends React.Component<{
   }
 
   getCantidadItem(e: any) {
+    let state = store.getState();
     this.setState({ cantidad: e.target.value })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
   }
   
   getImporte(e: any) {
+    let state = store.getState();
     this.setState({ importe: e.target.value })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
   }
 
   getComentario(e: any) {
+    let state = store.getState();
     this.setState({ comentario: e.target.value })
   }
   
   save() {
-
-    this.props.dispatch(presupuestoActions.presupuestar(
+    if(this.validacion()){
+      this.props.dispatch(presupuestoActions.presupuestar(
       this.state.presupuesto._id,
       this.state.item._id,
       this.state.cantidad,
@@ -234,6 +254,8 @@ class Presupuestacion extends React.Component<{
       this.state.comentario,
     ))
     this.props.dispatch(dialogActions.openOneButton())
+    }
+    
 
   }
 
@@ -243,15 +265,42 @@ class Presupuestacion extends React.Component<{
 
   }
 
-  aceptar() {
+  validacion=() => {
+    debugger;
+    let formIsValid = true;
+    let errores=[];
+    let elements:any = document.getElementById("presupuestarForm");
 
-    this.props.dispatch(dialogActions.closeOneButton())
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+        this.setState({formValid:formIsValid})
+      
+        
+      }
+      
+    }
+
+    
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
+  }
+
+  aceptar() {
+      this.props.dispatch(dialogActions.closeOneButton())
     if(this.props.presupuestoReducer.status !== 200) {
       this.props.dispatch(presupuestoActions.reintentar())
     } else {
       this.props.dispatch(presupuestoActions.setear())
       this.props.history.push('/ventas/presupuestos/lista')
     }
+    
+    
 
   }
 
@@ -376,6 +425,9 @@ class Presupuestacion extends React.Component<{
       presupuesto = this.props.presupuestoReducer.data.presupuesto
     }
 
+    let errores: any[] = []
+    errores = this.props.errorReducer.errors;
+
     return(
       <div>
         <PresupuestarExport 
@@ -388,6 +440,8 @@ class Presupuestacion extends React.Component<{
           footer={ this.footer() }
           presupuesto={ presupuesto }
           appBar={this.appBar()}
+          errors={errores}
+          formValid={this.state.formValid}
         />
         <OneButton 
           title={ 'Presupuestacion' }

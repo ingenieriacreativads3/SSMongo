@@ -12,16 +12,18 @@ import * as presupuestoActions from './../../store/actions/presupuesto'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
-
+import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
 
 function mapStateToProps(store: {
   itemReducer:any,
   presupuestoReducer: any,
-
+  errorReducer:any,
 }) {
   return {
     itemReducer: store.itemReducer,
     presupuestoReducer: store.presupuestoReducer,
+    errorReducer: store.errorReducer,
    
   };
 }
@@ -38,6 +40,7 @@ class Renegociacion extends React.Component<{
     idItem: string,
     cantidad:string,
     precioSugerido:string,
+    formValid:boolean,
 	comentario : string,
 }> {
 
@@ -60,6 +63,7 @@ class Renegociacion extends React.Component<{
       comentario : '',
       precioSugerido: '',
       idEmpresaReoferente:'',
+      formValid:true,
     };
   }
 
@@ -73,7 +77,13 @@ class Renegociacion extends React.Component<{
   }
 
   getCantidadItem(e: any) {
+    let state = store.getState();
     this.setState({ cantidad: e.target.value })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
   }
 
   getComentario(e: any) {
@@ -81,12 +91,45 @@ class Renegociacion extends React.Component<{
   }
 
   getPrecioSugerido(e: any) {
+    let state = store.getState();
     this.setState({ precioSugerido: e.target.value })
+    this.props.dispatch(errorActions.editErrors(e.target.id))
+    if(state.errorReducer.errors.length == 0)
+    {
+      this.setState({formValid:true});
+    }
   }
 
-  save() {
+  validacion=() => {
+    debugger;
+    let formIsValid = true;
+    let errores=[];
+    let elements:any = document.getElementById("renegociarForm");
 
-    this.props.dispatch(presupuestoActions.renegociar(
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+        this.setState({formValid:formIsValid})
+      
+        
+      }
+      
+    }
+
+    
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
+  }
+
+
+  save() {
+    if(this.validacion()){
+      this.props.dispatch(presupuestoActions.renegociar(
       this.props.match.params.id,
       '5f0f155d3eff762f0335072b',
       this.state.cantidad,
@@ -95,6 +138,8 @@ class Renegociacion extends React.Component<{
       this.state.comentario,
     ))
     this.props.dispatch(dialogActions.openOneButton())
+    }
+    
 
   }
 
@@ -254,6 +299,9 @@ class Renegociacion extends React.Component<{
 			}
     }
 
+    let errores: any[] = []
+    errores = this.props.errorReducer.errors;
+
     return(
       <div>
         <RenegociarExport 
@@ -266,6 +314,8 @@ class Renegociacion extends React.Component<{
           appBar={ this.appBar() }
           presupuesto={ presupuesto }
           company={ company }
+          errors={errores}
+          formValid={this.state.formValid}
         />
         <OneButton 
           title={ 'Renegociacion' }

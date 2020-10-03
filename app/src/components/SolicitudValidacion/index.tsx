@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 680,
+    height: 500,
   },
   formControl: {
     margin: theme.spacing(2),
     minWidth: 170,
-    maxWidth: 300,
+    maxWidth: 370,
     '& .MuiInput-underline:after': {
       borderBottomColor: '#d93211',
     },
@@ -109,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
    
     "&.Mui-focused": {
       color: '#d93211',
+      
     },
   },
 

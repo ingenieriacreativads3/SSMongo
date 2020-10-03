@@ -251,7 +251,7 @@ class Presupuestar extends React.Component <{
                       />
 
                     <CardContent>
-                      <form className={classes.root}>
+                      <form id="presupuestarForm" className={classes.root}>
                         <Grid container>
                         <CardContent>
                           <Typography variant="h5" component="h2">
@@ -260,22 +260,22 @@ class Presupuestar extends React.Component <{
                         </CardContent>
                           <Grid container >
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Empresa" value={this.props.presupuesto.empresa_demandante.nombre} className={classes.input}  />
+                              <TextField disabled id="Empresa" label="Empresa" value={this.props.presupuesto.empresa_demandante.nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Email" value={this.props.presupuesto.empresa_demandante.email} className={classes.input}  />
+                              <TextField disabled id="Email" label="Email" value={this.props.presupuesto.empresa_demandante.email} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Telefono" value="" className={classes.input}  />
+                              <TextField disabled id="Telefono" label="Telefono" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Provincia" value="" className={classes.input}  />
+                              <TextField disabled id="Provincia" label="Provincia" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Ciudad" value="" className={classes.input}  />
+                              <TextField disabled id="Ciudad" label="Ciudad" value="" className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="CP" value="" className={classes.input}  />
+                              <TextField disabled id="CP" label="CP" value="" className={classes.input}  />
                             </Grid>
                             
                           </Grid>
@@ -289,16 +289,16 @@ class Presupuestar extends React.Component <{
                     </CardContent>
                           <Grid container >
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Producto" value={this.props.presupuesto.items[0].nombre} className={classes.input}  />
+                              <TextField disabled id="ProductoSolicitado" label="Producto" value={this.props.presupuesto.items[0].nombre} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Cantidad" value={'10'} className={classes.input}  />
+                              <TextField disabled id="CantidadSolicitada" label="Cantidad" value={'10'} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Unidad" value={'unidad'} className={classes.input}  />
+                              <TextField disabled id="UnidadSolicitada" label="Unidad" value={'unidad'} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <TextField disabled id="standard-required" label="Precio" value={this.props.presupuesto.items[0].precio} className={classes.input}  />
+                              <TextField disabled id="PrecioSolicitado" label="Precio" value={this.props.presupuesto.items[0].precio} className={classes.input}  />
                             </Grid>
                             <Grid item lg={4} xs={12}>
                             <FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
@@ -317,10 +317,29 @@ class Presupuestar extends React.Component <{
                           </CardContent>
                           <Grid container >
                             <Grid item lg={4} xs={6}>
-                              <CssTextField className={classes.margin} id="custom-css-standard-input" label="Cantidad" type="number" onChange={this.props.getCantidadItem}   />
+                              <CssTextField 
+                              className={classes.margin} 
+                              id="Cantidad" 
+                              label="Cantidad" 
+                              type="number" 
+                              onChange={this.props.getCantidadItem}
+                              required={true}
+                              error={this.props.errors.Cantidad != null ? true : false}
+                              helperText={this.props.errors.Cantidad != null ? this.props.errors.Cantidad : ""}
+                              inputProps={{min:1}}   
+                                 />
                             </Grid>
                             <Grid item lg={4} xs={6}>
-                              <CssTextField className={classes.margin} id="custom-css-standard-input" label="Importe" type="number" onChange={this.props.getImporte}  />
+                              <CssTextField 
+                              className={classes.margin} 
+                              id="Importe" 
+                              label="Importe" 
+                              type="number" 
+                              onChange={this.props.getImporte} 
+                              required={true}
+                              error={this.props.errors.Importe != null ? true : false}
+                              helperText={this.props.errors.Importe != null ? this.props.errors.Importe : ""}
+                              inputProps={{min:1}}  />
                             </Grid>
                             <Grid item lg={4} xs={12}>
                             
@@ -354,6 +373,7 @@ class Presupuestar extends React.Component <{
                               className={classes.button}
                               //startIcon={<SendIcon />}
                               onClick={this.props.save}
+                              disabled={ !this.props.formValid}
                             >
                               Aceptar
                             </Button>
