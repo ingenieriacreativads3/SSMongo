@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Container, Grid, Card, Avatar,List, ListSubheader, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
+import { Container, Grid,Box, Card, Avatar,List, ListSubheader, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import { FixedSizeList } from 'react-window';
 import {
@@ -161,15 +161,19 @@ class Reputacion extends React.Component <{}, {
                         <Grid item lg={12}>
                             <Card className={fixedHeightCard}>
                                 <CardHeader 
-                                    avatar={
-                                    <Avatar aria-label="recipe" className={classes.avatar} >
-                                        R
-                                    </Avatar>
-                                    }
-                                    title="Mi Reputacion"
+                                    // avatar={
+                                    // <Avatar aria-label="recipe" className={classes.avatar} >
+                                    //     R
+                                    // </Avatar>
+                                    // }
+                                    // title="Mi Reputacion"
                                     
                                 />
-
+ <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {"Mi Reputacion"}</Box>
+              </Typography>
+<Divider className={classes.divider} />
                                 <CardContent>
                       
                         <Grid container spacing={3}>

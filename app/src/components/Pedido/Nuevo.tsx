@@ -4,7 +4,7 @@ import SendIcon from '@material-ui/icons/Send';
 import AppBar from '../../components/AppBar'
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, Button, CardContent,CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Grid,Divider, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, Button, CardContent,CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 import MenuLateral from './../DrawerInicio'
@@ -156,17 +156,21 @@ class Nuevo extends React.Component <{
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            N
-                          </Avatar>
-                        }
-                        title="Nuevo Pedido"
+                        // avatar={
+                        //   <Avatar aria-label="recipe" className={classes.avatar} >
+                        //     N
+                        //   </Avatar>
+                        // }
+                        // title="Nuevo Pedido"
                         
                       />
 
                     <CardContent>
-
+                    <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {'Nuevo Pedido'}</Box>
+              </Typography>
+<Divider className={classes.divider} />
 
                       <form id="formNuevoPedido" className={classes.root}>
                       

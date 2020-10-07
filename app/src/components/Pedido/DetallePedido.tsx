@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent,  CardActions} from '@material-ui/core';
+import { Container, Grid,TextField, Divider, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 
@@ -119,14 +119,19 @@ class DetallePedido extends React.Component <{
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                          D
-                        </Avatar>
-                      }
-                      title="Detalle Pedido"
+                      // avatar={
+                      //   <Avatar aria-label="recipe" className={classes.avatar}>
+                      //     D
+                      //   </Avatar>
+                      // }
+                      // title="Detalle Pedido"
                       
                     />
+                     <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {'Detalle de pedido'}</Box>
+              </Typography>
+<Divider className={classes.divider} />
 
                     <CardContent>
                       <form className={classes.root}>

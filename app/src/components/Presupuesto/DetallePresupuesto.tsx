@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, FormControl, InputLabel, Select, MenuItem, CardActions, TextareaAutosize} from '@material-ui/core';
+import { Container, Grid,TextField,Divider, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, FormControl, InputLabel, Select, MenuItem, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 import menuLateral from '../Drawer'
@@ -123,14 +123,19 @@ class DetallePresupuesto extends React.Component <{
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                          D
-                        </Avatar>
-                      }
-                      title="Detalle Presupuesto"
+                      // avatar={
+                      //   <Avatar aria-label="recipe" className={classes.avatar}>
+                      //     D
+                      //   </Avatar>
+                      // }
+                      // title="Detalle Presupuesto"
                       
                     />
+                     <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {'Detalle de presupuesto'}</Box>
+              </Typography>
+<Divider className={classes.divider} />
 
                     <CardContent>
                       <form className={classes.root}>

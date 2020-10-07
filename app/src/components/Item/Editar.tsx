@@ -5,7 +5,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField, Avatar, IconButton, Button, FormHelperText, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
+import { Container,Divider, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField, Avatar, IconButton, Button, FormHelperText, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 import * as errorActions from './../../store/actions/error'
@@ -203,15 +203,19 @@ class Editar extends React.Component <{
               <Grid item lg={12}>
                 <Card className={fixedHeightCard}>
                   <CardHeader 
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                          E
-                        </Avatar>
-                      }
-                      title={this.props.title}
+                      // avatar={
+                      //   <Avatar aria-label="recipe" className={classes.avatar}>
+                      //     E
+                      //   </Avatar>
+                      // }
+                      // title={this.props.title}
                       
                     />
-
+              <Typography component="div" >
+                              <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                              {this.props.title}</Box>
+                            </Typography>
+              <Divider className={classes.divider} />
                   <CardContent>
                     <form id='formEditItem' className={classes.root}>
                       <Grid container spacing={3}>
@@ -283,7 +287,7 @@ class Editar extends React.Component <{
                           </Grid>
                           <Grid item lg={6}>
                             <Link href="/unidadMedida/nuevo"  >
-                              <Button variant="contained" className={classes.Boton}>
+                              <Button variant="outlined" className={classes.Boton}>
                                 Nueva Unidad
                               </Button>
                             </Link>
@@ -291,15 +295,15 @@ class Editar extends React.Component <{
                         </Grid>
                         <Grid container spacing={3}> 
                           <Grid item lg={4}>
-                            <TextareaAutosize
-                              style={{borderRadius:7}}
-                              aria-label="minimum height"
-                              rowsMin={10}
-                              className={classes.textTarea}
-                              placeholder="Descripcion"
-                              value={ this.state.item.descripcion }
-                              onChange={ this.changeDescripcion }
+                          <CssTextField 
+                              className={classes.margin}
                               id="Descripcion"
+                              label="Descripcion"
+                              onChange={ this.props.getDescripcion }
+                              multiline
+                              rows={4}
+                              fullWidth
+
                             />
                           </Grid>
                           <Grid item lg={4}>

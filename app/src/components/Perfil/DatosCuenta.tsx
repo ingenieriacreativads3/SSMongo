@@ -4,12 +4,14 @@ import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { Container, FormHelperText, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
 import * as fileActions from './../../store/actions/file'
-
+import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
+import * as empresaActions from './../../store/actions/empresa'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -31,11 +33,13 @@ function Copyright() {
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
-  fileReducer: any
+  fileReducer: any,
+  errorReducer:any,
 }) {
   return {
     ubicacionReducer: store.ubicacionReducer,
-    fileReducer: store.fileReducer
+    fileReducer: store.fileReducer,
+    errorReducer: store.errorReducer
   };
 }
 
@@ -63,10 +67,14 @@ class DatosCuenta extends React.Component <{
     "clave": string,
   }
 }, {
+  formValid:boolean,
+  localidadSeleccionada:boolean,
+  provinciaSeleccionada:boolean,
   provincia: string,
   municipio: string,
   photo: File[],
-  empresa: {
+  errors:any[],
+    empresa: {
     "_id": string,
     "nombre": string,
     "cuit": string,
@@ -102,6 +110,10 @@ class DatosCuenta extends React.Component <{
     this.getFoto = this.getFoto.bind(this);
     this.changeMostrarPerfil = this.changeMostrarPerfil.bind(this);
     this.state = {
+      localidadSeleccionada:true,
+      provinciaSeleccionada:true,
+      formValid:true,
+      errors:[],
       provincia: '',
       municipio: '',
       photo: [],
@@ -149,24 +161,44 @@ class DatosCuenta extends React.Component <{
   }
 
   handleChangeProvincia(e: any) {
+    debugger;
+    let state = store.getState();
     this.setState({ empresa: { ...this.state.empresa, provincia: e.target.value } })
     this.props.dispatch(ubicacionActions.getMunicipiosByName(e.target.value))
+    if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
+    {
+      this.setState({formValid:true});
+    }
   }
 
   handleChangeMunicipio(e: any) {
+    let state = store.getState();
     this.setState({ empresa: { ...this.state.empresa, localidad: e.target.value } })
+    if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
+    {
+      this.setState({formValid:true});
+    }
   }
 
   changeUsuario(e: any) {
+    debugger;
     this.setState({ empresa: { ...this.state.empresa, usuario: e.target.value } })
+     //this.props.dispatch(errorActions.editErrors(e.target.id))
+    // if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
+    // {
+    //   this.setState({formValid:true});
+    // }
   }
 
   changeEmail(e: any) {
     this.setState({ empresa: { ...this.state.empresa, email: e.target.value } })
+    
   }
 
   changeClave(e: any) {
+    let state = store.getState();
     this.setState({ empresa: { ...this.state.empresa, clave: e.target.value } })
+    
   }
 
   changeCUIT(e: any) {
@@ -206,8 +238,13 @@ class DatosCuenta extends React.Component <{
 
   }
 
-  render(){
+  
+  
 
+  
+
+  render(){
+       
 		const classes = this.props.classes
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 
@@ -241,6 +278,9 @@ class DatosCuenta extends React.Component <{
     }
 
     return(
+      
+
+    
 
       <div className={classes.root}>
         <CssBaseline />
@@ -298,7 +338,7 @@ class DatosCuenta extends React.Component <{
 
 
                     <CardContent>
-                      <form className={classes.root}>
+                      <form id="miPerfilForm" className={classes.root}>
                         <Grid container spacing={3}>
                         
                         <Grid container spacing={3}>
@@ -311,7 +351,7 @@ class DatosCuenta extends React.Component <{
                               variant="outlined"
                               value={ this.state.empresa.usuario }
                               onChange={ this.changeUsuario }
-                              id="mui-theme-provider-outlined-input"
+                              id="Usuario"
                               InputLabelProps={{
                                 classes: {
                                   root: classes.cssLabel,
@@ -325,6 +365,9 @@ class DatosCuenta extends React.Component <{
                                   notchedOutline: classes.notchedOutline,
                                 },
                               }}
+                              required={true}
+                              error={this.props.errors.Usuario != null ? true : false}
+                              helperText={this.props.errors.Usuario != null ? this.props.errors.Usuario : ""}
                             />
                             
                               
@@ -337,6 +380,7 @@ class DatosCuenta extends React.Component <{
                               onChange={ this.changeEmail }
                               label="Email"
                               type="email"
+                              id="Email"
                               InputLabelProps={{
                                 classes: {
                                   root: classes.cssLabel,
@@ -350,33 +394,12 @@ class DatosCuenta extends React.Component <{
                                   notchedOutline: classes.notchedOutline,
                                 },
                               }}
+                              required={true}
+                              error={this.props.errors.Email != null ? true : false}
+                              helperText={this.props.errors.Email != null ? this.props.errors.Email : ""}
                             />
                               
                             </Grid>
-                            {/* <Grid item lg={4}>
-                            <TextField
-                              className={classes.textField}
-                              variant="outlined"
-                              value={ this.state.empresa.clave }
-                              onChange={ this.changeClave }
-                              label="Contraseña"
-                              type="password"
-                              InputLabelProps={{
-                                classes: {
-                                  root: classes.cssLabel,
-                                  focused: classes.cssFocused,
-                                },
-                              }}
-                              InputProps={{
-                                classes: {
-                                  root: classes.cssOutlinedInput,
-                                  focused: classes.cssFocused,
-                                  notchedOutline: classes.notchedOutline,
-                                },
-                              }}
-                            />
-                           
-                          </Grid> */}
                           </Grid>
                         
                           <CardContent>
@@ -463,7 +486,10 @@ class DatosCuenta extends React.Component <{
                             />
                             </Grid>
                             <Grid item lg={4}>
-                            <FormControl variant="outlined" className={classes.formControl}>
+                            <FormControl 
+                            variant="outlined" 
+                            className={classes.formControl}
+                            error={!this.props.provinciaSeleccionada}>
                               <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
                               <Select
                                 labelId="demo-simple-select-outlined-label"
@@ -480,11 +506,14 @@ class DatosCuenta extends React.Component <{
                                   return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
                                 })}
                               </Select>
+                              {!this.props.provinciaSeleccionada && <FormHelperText error={true} >Selecciona una Provincia</FormHelperText>}
                             </FormControl>
                             </Grid>
                             <Grid item lg={4}>
-                            <FormControl variant="outlined"  className={classes.formControl}>
-                          
+                            <FormControl 
+                            variant="outlined"  
+                            className={classes.formControl}
+                            error={!this.props.localidadSeleccionada}>
                               <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
                               <Select
                                 labelId="demo-simple-select-outlined-label"
@@ -501,6 +530,7 @@ class DatosCuenta extends React.Component <{
                                   return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
                                 })}
                               </Select>
+                              {!this.props.localidadSeleccionada && <FormHelperText error={true} >Selecciona una Localidad</FormHelperText>}
                             </FormControl>
                            
                             </Grid>
@@ -570,6 +600,7 @@ class DatosCuenta extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
+                              disabled={ !this.state.formValid}
                               onClick={() => this.props.update(
                                 this.state.empresa._id,
                                 this.state.empresa.nombre,

@@ -13,16 +13,21 @@ import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
 import { AppBar } from './../AppBar'
 import Cookies from 'universal-cookie';
+import * as errorActions from './../../store/actions/error'
+import store from './../../store/index'
+import ErrorReducer from '../../store/reducers/errorReducer';
 
 function mapStateToProps(store: {
   empresaReducer: any,
   fileReducer: any,
-  login: any
+  login: any,
+  errorReducer:any,
 }) {
   return {
     empresaReducer: store.empresaReducer,
     fileReducer: store.fileReducer,
-    login: store.login
+    login: store.login,
+    errorReducer:store.errorReducer,
   };
 }
 
@@ -40,7 +45,10 @@ class DatosPerfil extends React.Component<{
   provincia: string,
   localidad: string,
   telefono: string
-  photo: File[]
+  photo: File[],
+  formValid:boolean,
+  localidadSeleccionada:boolean,
+  provinciaSeleccionada:boolean,
 }> {
 
 	props: any
@@ -60,7 +68,10 @@ class DatosPerfil extends React.Component<{
       provincia: '',
       localidad: '',
       telefono: '',
-      photo: []
+      photo: [],
+      localidadSeleccionada:true,
+      provinciaSeleccionada:true,
+      formValid:true,
     };
   }
 
@@ -108,6 +119,45 @@ class DatosPerfil extends React.Component<{
     />
   }
 
+  validacion=() => {
+    debugger;
+    let formIsValid = true;
+    let errores=[];
+    let elements:any = document.getElementById("miPerfilForm");
+
+    for (let i = 0, element; element = elements[i++];) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+        this.setState({formValid:formIsValid})
+      
+        
+      }
+      
+    }
+
+    if(this.state.localidad == '')
+    {
+      this.setState({localidadSeleccionada:false})
+      this.setState({formValid:false})
+    }
+
+    if(this.state.provincia == '')
+    {
+      this.setState({provinciaSeleccionada:false})
+      this.setState({formValid:false})
+    }
+
+    
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
+  }
+
+
   update(
     id: string,
     nombre: string,
@@ -121,8 +171,8 @@ class DatosPerfil extends React.Component<{
     visible: boolean,
     domicilio: string,
   ) {
-
-    this.props.dispatch(empresaActions.updateEmpresa(
+    if(this.validacion()){
+       this.props.dispatch(empresaActions.updateEmpresa(
       id,
       nombre,
       usuario,
@@ -135,6 +185,8 @@ class DatosPerfil extends React.Component<{
       visible,
       domicilio
     ))
+    }
+   
 
   }
 
@@ -192,7 +244,11 @@ class DatosPerfil extends React.Component<{
           empresa = { ...this.props.empresaReducer.data.empresa }
 				}
 			}
-		}
+    }
+    
+    let errores: any[] = []
+    errores = this.props.errorReducer.errors;
+
 
     return(
       <div>
@@ -206,6 +262,10 @@ class DatosPerfil extends React.Component<{
           appBar={this.appBar()}
           empresa={empresa}
           update={this.update}
+          errors={errores}
+          formValid={this.state.formValid}
+          localidadSeleccionada={this.state.localidadSeleccionada}
+          provinciaSeleccionada={this.state.provinciaSeleccionada}
          />
          <OneButton 
           title={ 'Editar Item' }

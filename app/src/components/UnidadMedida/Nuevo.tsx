@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, Button, CardContent, CardActions} from '@material-ui/core';
+import { Container, Grid, Card, Box,Divider, Typography, TextField, CssBaseline, CardHeader, Avatar, Button, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import MenuLateral from '../DrawerInicio'
 
@@ -194,14 +194,19 @@ class Nuevo extends React.Component {
                 <Grid item lg={9}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            N
-                          </Avatar>
-                        }
-                        title="Nueva Unidad de Medida"
+                        // avatar={
+                        //   <Avatar aria-label="recipe" className={classes.avatar} >
+                        //     N
+                        //   </Avatar>
+                        // }
+                        // title="Nueva Unidad de Medida"
                         
                       />
+                       <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {"Nueva Unidad de Medida"}</Box>
+              </Typography>
+<Divider className={classes.divider} />
 
                     <CardContent>
                       <form  id="formUnidadMedidaNuevo" className={classes.root}>

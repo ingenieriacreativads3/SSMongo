@@ -9,7 +9,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import AddIcon from '@material-ui/icons/Add'
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {Avatar, List,Collapse, FormControlLabel, Checkbox,  FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer, IconButton} from '@material-ui/core';
+import {Avatar, List,Collapse, FormControlLabel,Typography, Checkbox,  FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer, IconButton} from '@material-ui/core';
 import * as drawerAction from './../../store/actions/drawer';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
@@ -172,7 +172,10 @@ class DrawerInicio extends React.Component<{}, {
 					open={this.props.open}
 				>
 					 <div className={classes.toolbar} >
-						<Avatar src={logoLetras} className={classes.avatar} ></Avatar>
+					 <Typography style={{color:'#d93211', marginTop: '15px', marginLeft:'25px', fontStyle:'italic'}} variant="h5"  gutterBottom>
+						Suppliers Store
+					</Typography>
+						{/* <Avatar src={logoLetras} className={classes.avatar} ></Avatar> */}
 					</div> 
 					
 					<Divider />

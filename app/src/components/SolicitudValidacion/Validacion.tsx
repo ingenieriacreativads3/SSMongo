@@ -209,7 +209,7 @@ class Validacion extends React.Component <{
                       
                     />
                      <Typography component="div" >
-                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontWeight="fontWeightBold" fontSize={22}>
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
                 {this.props.title}</Box>
               </Typography>
 <Divider className={classes.divider} />
@@ -229,7 +229,7 @@ class Validacion extends React.Component <{
                                 <Button
                                 type="button"
                                 
-                                variant="contained"
+                                variant="outlined"
                                 className={classes.Boton}
                                 // onClick={this.ingresar}
                                 >
@@ -245,7 +245,7 @@ class Validacion extends React.Component <{
                               <Button
                               type="button"
                               
-                              variant="contained"
+                              variant="outlined"
                               className={classes.Boton}
                               // onClick={this.ingresar}
                               >
@@ -326,7 +326,7 @@ class Validacion extends React.Component <{
                               </FormControl>
                             </Grid>
 
-                            <Grid item lg={6} xs={12}>
+                            <Grid item lg={4} xs={12}>
                               <FormControl className={classes.formControl}>
                                 <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Grupo</InputLabel>
                                 <Select
@@ -372,7 +372,7 @@ class Validacion extends React.Component <{
                               </FormControl>
                             </Grid>
 
-                            <Grid item lg={6} xs={12}>
+                            <Grid item lg={4} xs={12}>
                               <FormControl className={classes.formControl}>
                                 <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Actividad</InputLabel>
                                 <Select
@@ -417,13 +417,28 @@ class Validacion extends React.Component <{
                                 </Select>
                               </FormControl>
                             </Grid>
+
+
+                            <Grid item lg={4} xs={12}>
+                            <Button
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            className={classes.button}
+                            // startIcon={<SaveIcon />}
+                          >
+                            Aceptar
+                          </Button>
+                            </Grid>
+
+                            
                            
                         </Grid>
                         </Grid>
                       </form>
                     </CardContent>
                     <CardActions>
-                      <Grid container  direction = 'column' alignItems = 'flex-end'  >
+                      {/* <Grid container  direction = 'column' alignItems = 'flex-end'  >
                         <Grid item lg={12} >
                           <Button
                             variant="contained"
@@ -435,7 +450,7 @@ class Validacion extends React.Component <{
                             Aceptar
                           </Button>
                           </Grid>  
-                        </Grid>
+                        </Grid> */}
                     </CardActions>
                     
 									</Card>

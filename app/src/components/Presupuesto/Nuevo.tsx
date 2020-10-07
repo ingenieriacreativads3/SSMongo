@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
-import {TextField, Container, Grid, Card, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent,  CardActions,TextareaAutosize} from '@material-ui/core';
+import {TextField, Container,Divider,Box, Grid, Card, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent,  CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -135,14 +135,20 @@ class Nuevo extends React.Component  <{
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            N
-                          </Avatar>
-                        }
-                        title="Nuevo Presupuesto"
+                        // avatar={
+                        //   <Avatar aria-label="recipe" className={classes.avatar} >
+                        //     N
+                        //   </Avatar>
+                        // }
+                        // title="Nuevo Presupuesto"
                         
                       />
+
+<Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {"Nuevo Presupuesto"}</Box>
+              </Typography>
+<Divider className={classes.divider} />
 
                     <CardContent>
                       <form id="formNuevoPresupuesto" className={classes.root}>

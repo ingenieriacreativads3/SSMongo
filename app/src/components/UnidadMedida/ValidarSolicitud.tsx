@@ -3,7 +3,7 @@ import AppBar from '../AppBar'
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import { withStyles } from '@material-ui/core/styles';
-import {TextField, Container, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
+import {TextField, Container,Divider, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 import MenuLateral from '../Drawer'
@@ -194,15 +194,19 @@ class ValidarSolicitud extends React.Component {
                 <Grid item lg={12} xs={12} >
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            S
-                          </Avatar>
-                        }
-                        title="Solicitud Unidad de Medida"
+                        // avatar={
+                        //   <Avatar aria-label="recipe" className={classes.avatar} >
+                        //     S
+                        //   </Avatar>
+                        // }
+                        // title="Solicitud Unidad de Medida"
                         
                       />
-
+ <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {"Solicitud Unidad de Medida"}</Box>
+              </Typography>
+<Divider className={classes.divider} />
                     <CardContent>
                       <form className={classes.root}>
                         <Grid container spacing={10} >

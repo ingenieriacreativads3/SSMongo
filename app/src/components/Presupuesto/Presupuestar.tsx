@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx'
-import {TextField, ListItem, ListItemAvatar, ListItemText, Container, Grid, Card,  Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, CardActions,TextareaAutosize} from '@material-ui/core';
+import {TextField, ListItem, Box, Divider,ListItemAvatar, ListItemText, Container, Grid, Card,  Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import { FixedSizeList } from 'react-window';
@@ -241,15 +241,19 @@ class Presupuestar extends React.Component <{
                 <Grid item lg={12} xs={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            P
-                          </Avatar>
-                        }
-                        title="Presupuestacion"
+                        // avatar={
+                        //   <Avatar aria-label="recipe" className={classes.avatar} >
+                        //     P
+                        //   </Avatar>
+                        // }
+                        // title="Presupuestacion"
                         
                       />
-
+                     <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {"Presupuestacion"}</Box>
+              </Typography>
+<Divider className={classes.divider} />
                     <CardContent>
                       <form id="presupuestarForm" className={classes.root}>
                         <Grid container>

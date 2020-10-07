@@ -112,11 +112,11 @@ const useStyles = makeStyles((theme) => ({
   },
   Boton: {
     margin: theme.spacing(3),
-    backgroundColor: '#d93211',
-    color : '#ffffff',
-    '&:hover': {
-      background: "#d93211",
-   },
+    //backgroundColor: '#d93211',
+    color : '#d93211',
+  //   '&:hover': {
+  //     background: "#d93211",
+  //  },
   },
  
   buttonDialog:{
@@ -156,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
     
     backgroundColor: '#ffffff',
     outline:'none',
-    margin: theme.spacing(5),
+    margin: theme.spacing(8),
   },
 
   margin:{

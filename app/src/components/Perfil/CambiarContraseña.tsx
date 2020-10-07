@@ -6,7 +6,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { Container, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, InputAdornment} from '@material-ui/core';
+import { Container, Grid, Card, Divider, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, InputAdornment} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
@@ -157,15 +157,19 @@ class CambiarContraseña extends React.Component <{
                 <Card className={fixedHeightCard}>
                     <CardHeader 
                     
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            C
-                          </Avatar>
-                        }
-                        title="Cambiar contraseña"
+                        // avatar={
+                        //   <Avatar aria-label="recipe" className={classes.avatar} >
+                        //     C
+                        //   </Avatar>
+                        // }
+                        // title="Cambiar contraseña"
                         
                       />
-                      
+                       <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {"Modificar contraseña"}</Box>
+              </Typography>
+<Divider className={classes.divider} />
                     <CardContent>
                       <form className={classes.root} >
                          <Grid container spacing={3}>

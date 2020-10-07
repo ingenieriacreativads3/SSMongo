@@ -111,7 +111,10 @@ class MenuLateral extends React.Component<{
 					open={this.props.open}
 				>
 					 <div className={classes.toolbar} >
-						<Avatar src={logoLetras} className={classes.avatar} ></Avatar>
+					 <Typography style={{color:'#d93211', marginTop: '15px', marginLeft:'25px', fontStyle:'italic'}} variant="h5"  gutterBottom>
+						Suppliers Store
+					</Typography>
+						{/* <Avatar src={logoLetras} className={classes.avatar} ></Avatar> */}
 					</div> 
 					{/* <div className={classes.toolbarIcon}>
 						<IconButton onClick={handleDrawerClose}>
@@ -213,12 +216,12 @@ class MenuLateral extends React.Component<{
 									<ListItemText primary="Mi resumen" />
 								</ListItem>
 							</Link>
-							<Link href="/ventas/pedidos/lista" className={classes.link} style={{textDecoration: 'none'}}>
+							<Link href="/home/reputacion" className={classes.link} style={{textDecoration: 'none'}}>
 								<ListItem button className={classes.nested}>
 								<ListItemIcon>
 								<StarIcon className={classes.icon}/>
 								</ListItemIcon>
-									<ListItemText primary="Pedidos" />
+									<ListItemText primary="Reputacion" />
 								</ListItem>
 							</Link>
 						</List>

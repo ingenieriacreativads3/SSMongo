@@ -123,6 +123,8 @@ const useStyles = makeStyles((theme) => ({
       
     },
     width: '25ch',
+    marginLeft:'10px',
+    marginTop:'15px',
   },
 
   button: {
@@ -299,6 +301,10 @@ export  function PerfilPropio(props: {
   drawer:any,
   appBar:any,
   update: any,
+  errors:any,
+  formValid:boolean,
+  localidadSeleccionada:boolean,
+  provinciaSeleccionada:boolean,
   empresa: {
     "_id": string,
     "nombre": string,
@@ -332,6 +338,10 @@ export  function PerfilPropio(props: {
       appBar={props.appBar}
       empresa={props.empresa}
       update={props.update}
+      errors={props.errors}
+      formValid={props.formValid}
+      localidadSeleccionada={props.localidadSeleccionada}
+      provinciaSeleccionada={props.provinciaSeleccionada}
      />
   </div>;
 
