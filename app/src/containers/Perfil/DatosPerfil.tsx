@@ -119,43 +119,43 @@ class DatosPerfil extends React.Component<{
     />
   }
 
-  validacion=() => {
-    debugger;
-    let formIsValid = true;
-    let errores=[];
-    let elements:any = document.getElementById("miPerfilForm");
+  // validacion=() => {
+  //   debugger;
+  //   let formIsValid = true;
+  //   let errores=[];
+  //   let elements:any = document.getElementById("miPerfilForm");
 
-    for (let i = 0, element; element = elements[i++];) {
+  //   for (let i = 0, element; element = elements[i++];) {
 
-       if(!element.checkValidity())
-      {
+  //      if(!element.checkValidity())
+  //     {
 
-        errores[element.id]=element.validationMessage;
-        errores.length = errores.length + 1;
-        formIsValid = false;
-        this.setState({formValid:formIsValid})
+  //       errores[element.id]=element.validationMessage;
+  //       errores.length = errores.length + 1;
+  //       formIsValid = false;
+  //       this.setState({formValid:formIsValid})
       
         
-      }
+  //     }
       
-    }
+  //   }
 
-    if(this.state.localidad == '')
-    {
-      this.setState({localidadSeleccionada:false})
-      this.setState({formValid:false})
-    }
+  //   if(this.state.localidad == '')
+  //   {
+  //     this.setState({localidadSeleccionada:false})
+  //     this.setState({formValid:false})
+  //   }
 
-    if(this.state.provincia == '')
-    {
-      this.setState({provinciaSeleccionada:false})
-      this.setState({formValid:false})
-    }
+  //   if(this.state.provincia == '')
+  //   {
+  //     this.setState({provinciaSeleccionada:false})
+  //     this.setState({formValid:false})
+  //   }
 
     
-     this.props.dispatch(errorActions.setError(errores)); 
-     return formIsValid;
-  }
+  //    this.props.dispatch(errorActions.setError(errores)); 
+  //    return formIsValid;
+  // }
 
 
   update(
@@ -171,7 +171,7 @@ class DatosPerfil extends React.Component<{
     visible: boolean,
     domicilio: string,
   ) {
-    if(this.validacion()){
+    // if(this.validacion())
        this.props.dispatch(empresaActions.updateEmpresa(
       id,
       nombre,
@@ -185,7 +185,7 @@ class DatosPerfil extends React.Component<{
       visible,
       domicilio
     ))
-    }
+    
    
 
   }

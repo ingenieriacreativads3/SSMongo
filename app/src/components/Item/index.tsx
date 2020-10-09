@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
   fixedHeightCAtalog:{
   },
   formControl: {
-    margin: theme.spacing(2),
+    //margin: theme.spacing(2),
     minWidth: 150,
     '& .MuiInput-underline:after': {
       borderBottomColor: '#d93211',
@@ -111,7 +111,8 @@ const useStyles = makeStyles((theme) => ({
    },
   },
   Boton: {
-    margin: theme.spacing(3),
+    marginTop: theme.spacing(2),
+    marginLeft:theme.spacing(4),
     //backgroundColor: '#d93211',
     color : '#d93211',
   //   '&:hover': {
@@ -141,6 +142,7 @@ const useStyles = makeStyles((theme) => ({
     display:'flex'
   }, */
   input:{
+    display:'none',
     margin:theme.spacing(1),
     "&.Mui-focused": {
       color: '#d93211'
@@ -160,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   margin:{
-    margin:theme.spacing(2),
+    marginTop:theme.spacing(2),
   },
   textTarea:{
     margin:theme.spacing(2),
@@ -168,7 +170,9 @@ const useStyles = makeStyles((theme) => ({
 
   },
   Checkbox:{
-    margin:theme.spacing(3),
+    marginTop: theme.spacing(2),
+    marginLeft:theme.spacing(4),
+    //margin:theme.spacing(3),
   },
   search: {
 		position: 'relative',

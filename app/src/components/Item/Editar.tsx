@@ -5,7 +5,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container,Divider, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField, Avatar, IconButton, Button, FormHelperText, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
+import { Container,Divider, Paper, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField, Avatar, IconButton, Button, FormHelperText, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 import * as errorActions from './../../store/actions/error'
@@ -197,175 +197,162 @@ class Editar extends React.Component <{
         {this.props.drawer}
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3}>
+          <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
 
-              <Grid item lg={12}>
-                <Card className={fixedHeightCard}>
-                  <CardHeader 
-                      // avatar={
-                      //   <Avatar aria-label="recipe" className={classes.avatar}>
-                      //     E
-                      //   </Avatar>
-                      // }
-                      // title={this.props.title}
-                      
-                    />
-              <Typography component="div" >
-                              <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
-                              {this.props.title}</Box>
-                            </Typography>
-              <Divider className={classes.divider} />
-                  <CardContent>
-                    <form id='formEditItem' className={classes.root}>
-                      <Grid container spacing={3}>
-                        <Grid container spacing={3}>
-                          <Grid item lg={4}>
-                            <CssTextField
-                              className={classes.margin}
-                              id="Nombre"
-                              label="Nombre"
-                              type="text"
-                              value={ this.state.item.nombre }
-                              onChange={ this.changeNombre }
-                              required={true}
-                              error={this.props.errors.Nombre != null ? true : false}
-                              helperText={this.props.errors.Nombre != null ? this.props.errors.Nombre : ""}
-                            />
-                          
-                          </Grid>
-                          <Grid item lg={4}>
-                            <CssTextField
-                              className={classes.margin}
-                              id="Precio"
-                              label="Precio"
-                              type="text"
-                              value={ this.state.item.precio }
-                              onChange={ this.changePrecio }
-                              required={true}
-                              error={this.props.errors.Precio != null ? true : false}
-                              helperText={this.props.errors.Precio != null ? this.props.errors.Precio : ""}
-                              inputProps={{min:1}}
-                            />
+        >
+        <Paper style={{ padding: 20, margin:50}}>
+        <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {this.props.title}</Box>
+              </Typography>
+<Divider className={classes.divider} />
+          <FormControl>
+          <form id="formEditItem">
+        <Grid container spacing={3} alignContent="center">
+          <Grid item xs={12} sm={6}>
+          <CssTextField 
+            className={classes.margin}
+            id="Nombre"
+            label="Nombre"
+            value={ this.state.item.nombre }
+            onChange={ this.changeNombre }
+            required={true}
+            error={this.props.errors.Nombre != null ? true : false}
+            helperText={this.props.errors.Nombre != null ? this.props.errors.Nombre : ""}
+            fullWidth
+          />
+          </Grid>
 
-                          </Grid>
-                          <Grid item lg={4}>
-                            <FormControlLabel className={classes.Checkbox}
-                                control={
-                                  <Checkbox
-                                    checked={this.state.item.mostrarPrecio}
-                                    onChange={this.changeMostrarPrecio}
-                                    style ={{
-                                      color: "#d93211",
-                                    }}
-                                  />
-                                }
-                                label="Mostrar Precio"
-                              />
-                          </Grid>
-                        </Grid>
-                        <Grid container spacing={3}>
-                          <Grid item lg={6}>
-                          <FormControl className={classes.formControl} error={!this.props.unidadSeleccionada}>
-                            <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Unidad</InputLabel>
-                              <Select
-                            
-                                labelId="demo-simple-select-label"
-                                id="Unidad"
-                                value={this.state.item.unidad_de_medida._id}
-                                onChange={this.changeUnidadDeMedida}
-                              >
-                                {this.props.unidadesDeMedida.map((unidadDeMedida: {
-                                  _id: string,
-                                  nombre: string
-                                }) => {
-                                  return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
-                                })}
-                              </Select>
-                              {!this.props.unidadSeleccionada && <FormHelperText error={true} >Selecciona una unidad</FormHelperText>}
-                            </FormControl>
-                          </Grid>
-                          <Grid item lg={6}>
-                            <Link href="/unidadMedida/nuevo"  >
-                              <Button variant="outlined" className={classes.Boton}>
-                                Nueva Unidad
-                              </Button>
-                            </Link>
-                          </Grid>
-                        </Grid>
-                        <Grid container spacing={3}> 
-                          <Grid item lg={4}>
-                          <CssTextField 
-                              className={classes.margin}
-                              id="Descripcion"
-                              label="Descripcion"
-                              onChange={ this.props.getDescripcion }
-                              multiline
-                              rows={4}
-                              fullWidth
+          <Grid item xs={12} sm={6}>
+          <CssTextField
+          className={classes.margin}
+          id="Precio"
+          label="Precio"
+          type="number"
+          value={ this.state.item.precio }
+          onChange={ this.changePrecio }
+          required={true}
+          error={this.props.errors.Precio != null ? true : false}
+          helperText={this.props.errors.Precio != null ? this.props.errors.Precio : ""}
+          inputProps={{min:1}}
+          fullWidth
 
-                            />
-                          </Grid>
-                          <Grid item lg={4}>
-                            <label htmlFor="raised-button-file">
-                              <Button variant="contained" component="label" className={classes.botonIcono}>
-                                Imagen
-                                <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-                                  <PhotoCamera />
-                                  <Input
-                                    inputProps={{ multiple: false }} 
-                                    className={classes.input}
-                                    style={{ display: 'none' }}
-                                    id="Imagen"
-                                    type="file"
-                                    onChange = {this.props.getFoto}
-                                  />
-                                </IconButton>
-                              </Button>
-                            </label> 
-                          </Grid>
-                          <Grid item lg ={4}>
-                            <Avatar alt={this.state.item.foto[0]} src={'http://localhost:8000/' + this.state.item.foto[0]} className={classes.previsualizacion} />
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </form>
-                  </CardContent>
-                  <CardActions>
-                    <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
-                      <Grid item lg={12} >
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          size="small"
-                          className={classes.button}
-                          startIcon={<SaveIcon />}
-                          disabled={ !this.props.formValido }
-                          onClick={() => this.props.update(
-                            this.state.item._id,
-                            this.state.item.nombre,
-                            this.state.item.precio,
-                            this.state.item.unidad_de_medida._id,
-                            this.state.item.descripcion,
-                            this.state.item.mostrarPrecio,
-                            this.state.item.foto
-                          )}
-                        >
-                          Actualizar
-                        </Button>
-                        </Grid>  
-                      </Grid>
-                  </CardActions>
-                  
-                </Card>
-              </Grid>
+        />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+          <FormControl fullWidth className={classes.formControl} error={!this.props.unidadSeleccionada}>
+            <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Unidad</InputLabel>
+              <Select
+            
+                labelId="demo-simple-select-label"
+                id="Unidad"
+                value={this.state.item.unidad_de_medida._id}
+                onChange={this.changeUnidadDeMedida}
+              >
+                {this.props.unidadesDeMedida.map((unidadDeMedida: {
+                  _id: string,
+                  nombre: string
+                }) => {
+                  return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
+                })}
+              </Select>
+              {!this.props.unidadSeleccionada && <FormHelperText error={true} >Selecciona una unidad</FormHelperText>}
+            </FormControl>
+          </Grid>
 
+          <Grid item xs={12} sm={4}>
+          <Link href="/unidadMedida/nuevo" style={{textDecoration: 'none'}} >
+            <Button variant="outlined" className={classes.Boton}>
+              Solicitar Nueva Unidad
+            </Button>
+          </Link>
+          </Grid>
 
+          <Grid item xs={12} sm={4}>
+          <FormControlLabel className={classes.Checkbox}
+            control={
+              <Checkbox
+                checked={this.state.item.mostrarPrecio}
+                onChange={this.changeMostrarPrecio}
+                style ={{
+                  color: "#d93211",
+                }}
+              />
+            }
+            label="Mostrar Precio"
+          />
+          </Grid>
+
+          <Grid item xs={12} sm={12}>
+            <CssTextField 
+                className={classes.margin}
+                id="Descripcion"
+                label="Descripcion"
+                onChange={ this.props.getDescripcion }
+                multiline
+                rows={4}
+                fullWidth
+
+              />
+              {/* <TextareaAutosize
+                style={{borderRadius:7}}
+                aria-label="minimum height"
+                rowsMin={10}
+                className={classes.textTarea}
+                placeholder="Descripcion"
+                onChange={ this.props.getDescripcion }
+                id="Descripcion"
+              /> */}
             </Grid>
-          	{/* <Box pt={4}>
-              <Copyright />
-            </Box> */}
-          </Container>
+            <Grid item xs={12} sm={12}>
+            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" multiple   onChange = { this.props.getFoto } />
+          <label htmlFor="icon-button-file">
+            <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
+              <PhotoCamera />
+            </IconButton>
+          </label>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <img alt={this.state.item.foto[0]} src={'http://localhost:8000/' + this.state.item.foto[0]} className={classes.previsualizacion} ></img>
+              {/* <Avatar className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} /> */}
+            </Grid>
+           
+          
+        </Grid>
+        </form>
+            <div style={{ width: "100%",  marginTop:"1rem" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                className={classes.button}
+                startIcon={<SaveIcon />}
+                disabled={ !this.props.formValido }
+                onClick={() => this.props.update(
+                  this.state.item._id,
+                  this.state.item.nombre,
+                  this.state.item.precio,
+                  this.state.item.unidad_de_medida._id,
+                  this.state.item.descripcion,
+                  this.state.item.mostrarPrecio,
+                  this.state.item.foto
+                )}
+              >
+                Actualizar
+              </Button>
+              </Box>
+              
+            
+            </div>
+          </FormControl>
+        </Paper>
+        </Grid>
           {this.props.footer}
         </main>
 		  </div>

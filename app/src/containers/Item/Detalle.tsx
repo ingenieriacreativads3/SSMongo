@@ -75,8 +75,8 @@ class Detalle extends React.Component<{
   actions(classes: any) {
     return <div>
       <Button
-        variant="contained"
-        color="primary"
+        variant="outlined"
+        //color="primary"
         size="small"
         className={classes.Boton}
         onClick={this.solicitarPedido}
@@ -84,8 +84,8 @@ class Detalle extends React.Component<{
         Solicitar pedido
       </Button>
       <Button
-        variant="contained"
-        color="primary"
+        variant="outlined"
+        //color="primary"
         size="small"
         className={classes.Boton}
         onClick={this.solicitarPresupuesto}

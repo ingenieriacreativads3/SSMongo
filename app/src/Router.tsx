@@ -139,13 +139,13 @@ class App extends React.Component <{}, {}> {
 						
 						
 						<Route path='/item/detalle/:id'     	 	 render={(props) => <ItemDetalle {...props} cookies={cookies}/>} /> 
-						<this.enEspera path='/item/editar/:id'        cookies={cookies}   render={(props:any) => <ItemEditar {...props} cookies={cookies} />} />
-						<this.enEspera path='/item/nuevo'              cookies={cookies}       render={(props:any) => <ItemNuevo {...props} cookies={cookies} />} /> 
+						<Route path='/item/editar/:id'           render={(props) => <ItemEditar {...props} cookies={cookies} />} />
+						<Route path='/item/nuevo'                  render={(props) => <ItemNuevo {...props} cookies={cookies} />} /> 
 
 
 						<Route path='/home/busqueda/:id'            render={(props) => <Busqueda {...props} cookies={cookies} />} />	
 						<Route path='/home/perfil/:id'         		 render={(props) => <EmpresaPerfil {...props} cookies={cookies}/>} />
-						<this.enEspera path='/home/miperfil/:id'         cookies={cookies} render={(props:any) => <MiPerfil {...props} cookies={cookies} />} />
+						<Route path='/home/miperfil/:id'          render={(props) => <MiPerfil {...props} cookies={cookies} />} />
 						<this.enEspera path='/home/cambiar-password/:id'   cookies={cookies} render={(props:any) => <CambiarContraseña {...props} cookies={cookies}/>}/> 
 						<this.enEspera path='/home/resumen'              cookies={cookies} render={(props:any) => <ResumenActividad {...props} cookies={cookies}/>}/>
 						<this.enEspera path='/home/catalogo'             cookies={cookies} render={(props:any) => <Catalogo { ...props } cookies={cookies} />} /> 

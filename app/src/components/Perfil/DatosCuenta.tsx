@@ -165,19 +165,19 @@ class DatosCuenta extends React.Component <{
     let state = store.getState();
     this.setState({ empresa: { ...this.state.empresa, provincia: e.target.value } })
     this.props.dispatch(ubicacionActions.getMunicipiosByName(e.target.value))
-    if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
-    {
-      this.setState({formValid:true});
-    }
+    // if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
+    // {
+    //   this.setState({formValid:true});
+    // }
   }
 
   handleChangeMunicipio(e: any) {
     let state = store.getState();
     this.setState({ empresa: { ...this.state.empresa, localidad: e.target.value } })
-    if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
-    {
-      this.setState({formValid:true});
-    }
+    // if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
+    // {
+    //   this.setState({formValid:true});
+    // }
   }
 
   changeUsuario(e: any) {
@@ -365,9 +365,9 @@ class DatosCuenta extends React.Component <{
                                   notchedOutline: classes.notchedOutline,
                                 },
                               }}
-                              required={true}
-                              error={this.props.errors.Usuario != null ? true : false}
-                              helperText={this.props.errors.Usuario != null ? this.props.errors.Usuario : ""}
+                              // required={true}
+                              // error={this.props.errors.Usuario != null ? true : false}
+                              // helperText={this.props.errors.Usuario != null ? this.props.errors.Usuario : ""}
                             />
                             
                               
@@ -394,9 +394,9 @@ class DatosCuenta extends React.Component <{
                                   notchedOutline: classes.notchedOutline,
                                 },
                               }}
-                              required={true}
-                              error={this.props.errors.Email != null ? true : false}
-                              helperText={this.props.errors.Email != null ? this.props.errors.Email : ""}
+                              // required={true}
+                              // error={this.props.errors.Email != null ? true : false}
+                              // helperText={this.props.errors.Email != null ? this.props.errors.Email : ""}
                             />
                               
                             </Grid>
@@ -489,7 +489,7 @@ class DatosCuenta extends React.Component <{
                             <FormControl 
                             variant="outlined" 
                             className={classes.formControl}
-                            error={!this.props.provinciaSeleccionada}>
+                            /* error={!this.props.provinciaSeleccionada} */>
                               <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
                               <Select
                                 labelId="demo-simple-select-outlined-label"
@@ -506,14 +506,14 @@ class DatosCuenta extends React.Component <{
                                   return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
                                 })}
                               </Select>
-                              {!this.props.provinciaSeleccionada && <FormHelperText error={true} >Selecciona una Provincia</FormHelperText>}
+                             {/*  {!this.props.provinciaSeleccionada && <FormHelperText error={true} >Selecciona una Provincia</FormHelperText>} */}
                             </FormControl>
                             </Grid>
                             <Grid item lg={4}>
                             <FormControl 
                             variant="outlined"  
                             className={classes.formControl}
-                            error={!this.props.localidadSeleccionada}>
+                            /* error={!this.props.localidadSeleccionada} */>
                               <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
                               <Select
                                 labelId="demo-simple-select-outlined-label"
@@ -530,7 +530,7 @@ class DatosCuenta extends React.Component <{
                                   return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
                                 })}
                               </Select>
-                              {!this.props.localidadSeleccionada && <FormHelperText error={true} >Selecciona una Localidad</FormHelperText>}
+                              {/* {!this.props.localidadSeleccionada && <FormHelperText error={true} >Selecciona una Localidad</FormHelperText>} */}
                             </FormControl>
                            
                             </Grid>
@@ -600,7 +600,7 @@ class DatosCuenta extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
-                              disabled={ !this.state.formValid}
+                              // disabled={ !this.state.formValid}
                               onClick={() => this.props.update(
                                 this.state.empresa._id,
                                 this.state.empresa.nombre,

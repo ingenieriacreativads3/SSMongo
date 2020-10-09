@@ -5,7 +5,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Divider, Grid, Card, Box, Typography, CssBaseline, CardHeader,FormHelperText, Avatar, TextField, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
+import { Container, Divider, Grid,Paper, Card, Box, Typography, CssBaseline, CardHeader,FormHelperText, Avatar, TextField, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -113,180 +113,175 @@ class Nuevo extends React.Component <{
         {this.props.drawer}
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={1}>
+          <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
 
-              <Grid item lg={12}>
-                <Card className={fixedHeightCard}>
-                  <CardHeader 
-                  
-                      // avatar={
-                      //   <Avatar aria-label="recipe" className={classes.avatar} >
-                      //     N
-                      //   </Avatar>
-                      // }
-                      // title="Nuevo Item"
-                    />
-                      <Typography component="div" >
+        >
+        <Paper style={{ padding: 20, margin:50}}>
+        <Typography component="div" >
                 <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
                 {"Nuevo Item"}</Box>
               </Typography>
 <Divider className={classes.divider} />
+          <FormControl>
+          <form id="formItem">
+        <Grid container spacing={3} alignContent="center">
+          <Grid item xs={12} sm={6}>
+          <CssTextField 
+            className={classes.margin}
+            id="Nombre"
+            label="Nombre"
+            onChange={ this.props.getNombre }
+            required={true}
+            error={this.props.errors.Nombre != null ? true : false}
+            helperText={this.props.errors.Nombre != null ? this.props.errors.Nombre : ""}
+            fullWidth
+          />
+          </Grid>
 
-                  <CardContent>
-                    <form id='formItem' className={classes.root}>
-                      <Grid container >
-                        <Grid container >
-                          <Grid item lg={4}>
-                            <CssTextField 
-                              className={classes.margin}
-                              id="Nombre"
-                              label="Nombre"
-                              onChange={ this.props.getNombre }
-                              required={true}
-                              error={this.props.errors.Nombre != null ? true : false}
-                              helperText={this.props.errors.Nombre != null ? this.props.errors.Nombre : ""}
+          <Grid item xs={12} sm={6}>
+          <CssTextField
+          className={classes.margin}
+          id="Precio"
+          label="Precio"
+          type="number"
+          onChange={ this.props.getPrecio }
+          required={true}
+          error={this.props.errors.Precio != null ? true : false}
+          helperText={this.props.errors.Precio != null ? this.props.errors.Precio : ""}
+          inputProps={{min:1}}
+          fullWidth
 
-                            />
-                          </Grid>
-                          <Grid item lg={4}>
-                            <CssTextField
-                              className={classes.margin}
-                              id="Precio"
-                              label="Precio"
-                              type="number"
-                              onChange={ this.props.getPrecio }
-                              required={true}
-                              error={this.props.errors.Precio != null ? true : false}
-                              helperText={this.props.errors.Precio != null ? this.props.errors.Precio : ""}
-                              inputProps={{min:1}}
-                              
+        />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <FormControl className={classes.formControl}
+              id="Unidad" 
+              error={!this.props.unidadSeleccionada}
+              fullWidth
+            >
+            <InputLabel id="Unidad" className={classes.inputLabel}>Unidad</InputLabel>
+              <Select
+            
+                labelId="Unidad"
+                id="Unidad"
+                // value={unidadDeMedida}
+                onChange={this.props.getMagnitud}
+                fullWidth
+                
+              > 
+              
+                {this.props.unidadesDeMedida.map((unidadDeMedida: {
+                  _id: string,
+                  nombre: string
+                }) => {
+                  return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
+                })}
+              </Select>
+              {!this.props.unidadSeleccionada && <FormHelperText error={true} >Selecciona una unidad</FormHelperText>}
+            </FormControl>
+          </Grid>
 
-                            />
-                          </Grid>
-                          <Grid item lg={4}>
-                            <FormControlLabel className={classes.Checkbox}
-                              control={
-                                <Checkbox
-                                  checked={ this.state.item.mostrarPrecio }
-                                  onChange={ this.getMostrarPrecio }
-                                  style ={{
-                                    color: "#d93211",
-                                  }}
-                                />
-                              }
-                              label="Mostrar Precio"
-                            />
-                          </Grid>
-                        </Grid>
-                        <Grid container >
-                          <Grid item lg={6}>
-                            <FormControl className={classes.formControl}
-                             id="Unidad" 
-                             error={!this.props.unidadSeleccionada}
-                            >
-                            <InputLabel id="Unidad" className={classes.inputLabel}>Unidad</InputLabel>
-                              <Select
-                            
-                                labelId="Unidad"
-                                id="Unidad"
-                                // value={unidadDeMedida}
-                                onChange={this.props.getMagnitud}
-                               
-                               
-                              > 
-                              
-                                {this.props.unidadesDeMedida.map((unidadDeMedida: {
-                                  _id: string,
-                                  nombre: string
-                                }) => {
-                                  return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
-                                })}
-                              </Select>
-                              {!this.props.unidadSeleccionada && <FormHelperText error={true} >Selecciona una unidad</FormHelperText>}
-                            </FormControl>
-                          </Grid>
-                          <Grid item lg={6}>
-                          <Link href="/unidadMedida/nuevo" style={{textDecoration: 'none'}} >
-                            <Button variant="outlined" className={classes.Boton}>
-                              Nueva Unidad
-                            </Button>
-                          </Link>
-                          </Grid>
-                          
-                        </Grid>
-                        <Grid container > 
-                        
-                          <Grid item lg={4} xs={12}>
-                          <CssTextField 
-                              className={classes.margin}
-                              id="Descripcion"
-                              label="Descripcion"
-                              onChange={ this.props.getDescripcion }
-                              multiline
-                              rows={4}
-                              fullWidth
+          <Grid item xs={12} sm={4}>
+          <Link href="/unidadMedida/nuevo" style={{textDecoration: 'none'}} >
+            <Button variant="outlined" className={classes.Boton}>
+              Solicitar Nueva Unidad
+            </Button>
+          </Link>
+          </Grid>
 
-                            />
-                            {/* <TextareaAutosize
-                              style={{borderRadius:7}}
-                              aria-label="minimum height"
-                              rowsMin={10}
-                              className={classes.textTarea}
-                              placeholder="Descripcion"
-                              onChange={ this.props.getDescripcion }
-                              id="Descripcion"
-                            /> */}
-                          </Grid>
-                          <Grid item lg={4}>
-                            <label htmlFor="raised-button-file">
-                              <Button variant="contained" component="label" className={classes.botonIcono}>
-                                Imagen
-                                <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-                                  <PhotoCamera />
-                                  <Input
-                                    inputProps={{ multiple: true }} 
-                                    className={classes.input}
-                                    style={{ display: 'none' }}
-                                    id="Imagen"
-                                    type="file"
-                                    onChange = { this.props.getFoto }
-                                  />
-                                </IconButton>
-                              </Button>
-                            </label> 
-                          </Grid>
-                          <Grid item lg ={4}>
-                            <Avatar className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} />
-                          </Grid>
-                        </Grid> 
-                      </Grid>
-                    </form>
-                  </CardContent>
-                  <CardActions>
-                    <Grid container  direction = 'column' alignItems = 'flex-end'  >
-                      <Grid item lg={12} >
-                        <Button
-                          variant="contained"
-                          color='primary'
-                          size="small"
-                          className={classes.button}
-                          startIcon={<SaveIcon />}
-                          onClick={ this.props.save }
-                          disabled={ !this.props.formValido   }
-                        >
-                          Guardar
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </CardActions>
-                </Card>
-              </Grid>
+          <Grid item xs={12} sm={4}>
+          <FormControlLabel className={classes.Checkbox}
+            control={
+              <Checkbox
+                checked={ this.state.item.mostrarPrecio }
+                onChange={ this.getMostrarPrecio }
+                style ={{
+                  color: "#d93211",
+                }}
+              />
+            }
+            label="Mostrar Precio"
+          />
+          </Grid>
+
+          <Grid item xs={12} sm={12}>
+            <CssTextField 
+                className={classes.margin}
+                id="Descripcion"
+                label="Descripcion"
+                onChange={ this.props.getDescripcion }
+                multiline
+                rows={4}
+                fullWidth
+
+              />
+              {/* <TextareaAutosize
+                style={{borderRadius:7}}
+                aria-label="minimum height"
+                rowsMin={10}
+                className={classes.textTarea}
+                placeholder="Descripcion"
+                onChange={ this.props.getDescripcion }
+                id="Descripcion"
+              /> */}
             </Grid>
-            {/* <Box pt={4}>
-              <Copyright />
-            </Box> */}
-          </Container>
+            <Grid item xs={12} sm={12}>
+            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" multiple   onChange = { this.props.getFoto } />
+          <label htmlFor="icon-button-file">
+            <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
+              <PhotoCamera />
+            </IconButton>
+          </label>
+              {/* <label htmlFor="raised-button-file">
+                <Button variant="contained" component="label" className={classes.botonIcono}>
+                  Imagen
+                  <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
+                    <PhotoCamera />
+                    <Input
+                      inputProps={{ multiple: true }} 
+                      className={classes.input}
+                      style={{ display: 'none' }}
+                      id="Imagen"
+                      type="file"
+                      onChange = { this.props.getFoto }
+                    />
+                  </IconButton>
+                </Button>
+              </label>  */}
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <img className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} ></img>
+              {/* <Avatar className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} /> */}
+            </Grid>
+           
+          
+        </Grid>
+        </form>
+            <div style={{ width: "100%",  marginTop:"1rem" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              <Button
+                variant="contained"
+                color='primary'
+                size="small"
+                className={classes.button}
+                startIcon={<SaveIcon />}
+                onClick={ this.props.save }
+                disabled={ !this.props.formValido   }
+              >
+                Guardar
+              </Button>
+              </Box>
+              
+            
+            </div>
+          </FormControl>
+        </Paper>
+        </Grid>
           {this.props.footer}
         </main>
       </div>

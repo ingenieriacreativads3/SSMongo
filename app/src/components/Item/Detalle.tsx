@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 
 
-import { Container, Grid, Card,Typography,CssBaseline,  Button, CardContent} from '@material-ui/core';
+import { Container,Box, Grid, Card,Typography,CssBaseline,  Button, CardContent} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -225,9 +225,9 @@ class Detalle extends React.Component <{
                                   }
                                 />
                               </div>
-
+                              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
                               {this.props.actions(classes)}
-
+                              </Box>
                           </Grid>
                           
                         </Grid>
