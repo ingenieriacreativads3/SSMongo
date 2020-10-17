@@ -8,6 +8,7 @@ import Rating from '@material-ui/lab/Rating';
 
 import Radio from '@material-ui/core/Radio';
 import * as drawerActions from './../../store/actions/drawer'
+import * as evaluateAction from './../../store/actions/evaluacion'
 import AppBar from './../AppBar'
 import MenuLateral from '../DrawerInicio'
 
@@ -28,18 +29,10 @@ function Copyright() {
 }
 
 function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
+    evaluacionReducer : any
 }) {
   return {
-    Item: store.Item,
-    // idEmpresa: store.login.data.empresa._id
+      evaluacionReducer : store.evaluacionReducer
   };
 }
 
@@ -60,17 +53,47 @@ class EvaluacionEmpresa extends React.Component <{}, {
 		super(props);
 		this.state = {
 			valueTime: 2,
-      hoverTime: -1,
-      valuePrice: 2,
-      hoverPrice: -1,
-      valueAvailable: 2,
-      hoverAvailable: -1,
+          hoverTime: -1,
+          valuePrice: 2,
+          hoverPrice: -1,
+          valueAvailable: 2,
+          hoverAvailable: -1,
 		};
   }
   
   componentWillMount() {
     this.props.dispatch(drawerActions.invisibleDrawer())
   }
+
+    evaluate = () => {
+	    this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+            this.props.cookies.get('empresaId'),
+            this.props.match.params.id,
+            this.state.valueTime,
+            "tiempoRespuesta",
+            "Yes",
+            true
+        ))
+
+        this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+            this.props.cookies.get('empresaId'),
+            this.props.match.params.id,
+            this.state.valuePrice,
+            "relacionPrecioCalidad",
+            "Oh my god",
+            true
+        ))
+
+        // this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+        //     this.props.cookies.get('empresaId'),
+        //     this.props.match.params.id,
+        //     this.state.valueAvailable,
+        //     "disponibilidad",
+        //     "This is good",
+        //     true
+        // ))
+
+    }
 
   render(){
 
@@ -239,7 +262,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
                               size="small"
                               className={classes.button}
                               startIcon={<SendIcon />}
-                            //   onClick={() => this.register()}
+                              onClick={() => this.evaluate()}
                             >
                               Enviar
                             </Button>

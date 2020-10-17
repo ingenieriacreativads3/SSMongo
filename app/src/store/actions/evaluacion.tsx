@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import config from './config'
 export function setear() {
 
 	return {
@@ -21,21 +21,20 @@ export function reintentar() {
 export function setEvaluacionEmpresa(
 	empresaCriticaId: string,	
 	empresaCriticadaId: string,
-	numeroValoracion:number,
+	numeroValoracion:number | null,
 	conceptoValoracion:string,
 	opinion:string,
-	
+	rebuy: boolean,
 ) {
-
-	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.post(url + '/empresa/valorar',{
+	let payload: any = axios.post(config.url + '/empresa/valorar',{
     
     empresaCriticaId: empresaCriticaId,
     empresaCriticadaId: empresaCriticadaId,
     numeroValoracion: numeroValoracion,
     conceptoValoracion: conceptoValoracion,
     opinion: opinion,
+	rebuy: rebuy
 	})
 
 	console.log(payload)
@@ -54,10 +53,8 @@ export function setEvaluacionPlataforma(
 	opinion:string,
 	
 ) {
-
-	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.post(url + '/falta el endpoint',{
+	let payload: any = axios.post(config.url + '/falta el endpoint',{
     
     empresaCriticaId: empresaCriticaId,
     numeroValoracion: numeroValoracion,

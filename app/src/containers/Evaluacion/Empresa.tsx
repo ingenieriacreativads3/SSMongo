@@ -84,15 +84,6 @@ class ValoracionEmpresa extends React.Component<{
 
   save() {
 
-    this.props.dispatch(evaluacionActions.setEvaluacionEmpresa(
-      this.props.cookies.get('empresaId'),
-      this.state.empresaCriticadaId,
-      this.state.numeroValoracion,
-      this.state.conceptoValoracion,
-      this.state.opinion,
-     
-    ))
-
   }
 
   aceptar() {
