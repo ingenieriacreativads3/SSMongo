@@ -161,15 +161,15 @@ class Register extends React.Component<{}, {
 
   register() {
 
-    if(this.validacion()){
-       this.props.dispatch(registerActions.registrar(
-			this.state.fantasyName,
-			this.state.CUIT,
-			this.state.user,
-			this.state.email,
-			this.state.pass
-		))
-  }
+      this.props.dispatch(registerActions.registrar(
+          this.state.fantasyName,
+          this.state.CUIT,
+          this.state.user,
+          this.state.email,
+          this.state.pass
+      ))
+      // if(this.validacion()){
+  // }
    
 
   }

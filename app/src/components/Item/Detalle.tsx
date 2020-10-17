@@ -120,7 +120,7 @@ class Detalle extends React.Component <{
     this.props.item.foto.map((img: string) => {
       tutorialSteps.push({
         label: '',
-        imgPath: 'http://localhost:8000/' + img
+        imgPath: 'http://127.0.0.1:8000/' + img
       })
     })
 

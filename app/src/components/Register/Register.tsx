@@ -85,8 +85,8 @@ class Register extends React.Component<{
                   },
                 }}
                 onChange={ this.props.getFantasyName }
-                error={this.props.errors.empresa != null ? true : false}
-              helperText={this.props.errors.empresa != null ? this.props.errors.empresa : ""}
+              //   error={this.props.errors.empresa != null ? true : false}
+              // helperText={this.props.errors.empresa != null ? this.props.errors.empresa : ""}
               />
             </Grid>
             
@@ -116,8 +116,8 @@ class Register extends React.Component<{
                 }}
                 onChange={ this.props.getCUIT }
                 inputProps={{minLength:11, maxLength:11, pattern:"[0-9]"}}
-                error={this.props.errors.cuit != null ? true : false}
-                helperText={this.props.errors.cuit != null ? this.props.errors.cuit : "" }
+                // error={this.props.errors.cuit != null ? true : false}
+                // helperText={this.props.errors.cuit != null ? this.props.errors.cuit : "" }
               
               />
             </Grid>
@@ -145,8 +145,8 @@ class Register extends React.Component<{
                  
                 }}
                 onChange={ this.props.getUser }
-                error={this.props.errors.usuario != null ? true : false}
-                helperText={this.props.errors.usuario != null ? this.props.errors.usuario : ""}
+                // error={this.props.errors.usuario != null ? true : false}
+                // helperText={this.props.errors.usuario != null ? this.props.errors.usuario : ""}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -174,8 +174,8 @@ class Register extends React.Component<{
                  
                 }}
                 onChange={ this.props.getEmail }
-                error={this.props.errors.email != null ? true : false}
-                helperText={this.props.errors.email != null ? this.props.errors.email : ""}
+                // error={this.props.errors.email != null ? true : false}
+                // helperText={this.props.errors.email != null ? this.props.errors.email : ""}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -215,8 +215,8 @@ class Register extends React.Component<{
                 }}
                 
                 onChange={ this.props.getPass }
-                error={this.props.errors.contraseña != null ? true : false}
-                helperText={this.props.errors.contraseña != null ? this.props.errors.contraseña : ""}
+                // error={this.props.errors.contraseña != null ? true : false}
+                // helperText={this.props.errors.contraseña != null ? this.props.errors.contraseña : ""}
               />
             </Grid>
             
