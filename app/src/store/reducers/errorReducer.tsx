@@ -21,7 +21,7 @@ export default function ErrorReducer (state = {
 
     
       case 'EDIT_ERRORS': {
-        debugger;
+        // debugger;
         Object.keys(state.errors).forEach(function(key:any) {
                       console.log(state.errors[key]);
                       if (key.toUpperCase() == action.payload.toUpperCase()) {
