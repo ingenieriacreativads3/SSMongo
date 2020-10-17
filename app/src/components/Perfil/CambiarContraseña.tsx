@@ -175,10 +175,10 @@ class CambiarContraseña extends React.Component <{
                          <Grid container spacing={3}>
                         
                         <Grid container spacing={3}>
-                        <Grid item lg={4}> 
+                        <Grid item xs={12} sm={4}> 
                               
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                          <InputLabel className={classes.textField} htmlFor="standard-adornment-password">Contraseña Actual</InputLabel>
+                          <InputLabel className={classes.inputLabel} htmlFor="standard-adornment-password">Contraseña Actual</InputLabel>
                           <Input
                             id="standard-adornment-password"
                             type={this.state.showOldPassword ? 'text' : 'password'}
@@ -199,9 +199,9 @@ class CambiarContraseña extends React.Component <{
                           />
                         </FormControl>
                         </Grid>
-                        <Grid item lg={4}> 
+                        <Grid item xs={12} sm={4}> 
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                          <InputLabel className={classes.textField} htmlFor="standard-adornment-password">Nueva Contraseña</InputLabel>
+                          <InputLabel className={classes.inputLabel}  htmlFor="standard-adornment-password">Nueva Contraseña</InputLabel>
                           <Input
                           className={classes.textField}
                             id="standard-adornment-password"
@@ -222,9 +222,9 @@ class CambiarContraseña extends React.Component <{
                           />
                         </FormControl>
                         </Grid>
-                        <Grid item lg={4}> 
+                        <Grid item xs={12} sm={4}> 
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                          <InputLabel className={classes.textField}  htmlFor="standard-adornment-password">Repetir Contraseña</InputLabel>
+                          <InputLabel className={classes.inputLabel}   htmlFor="standard-adornment-password">Repetir Contraseña</InputLabel>
                           <Input
                             className={classes.textField}
                             id="standard-adornment-password"

@@ -400,28 +400,30 @@ class Home extends React.Component <{
 
                       return <div>
                         <Grid item lg={3}>
-                          <Card className={fixedHeightCardCatalog}>
+                        <Link to={`/item/detalle/`+ asd[0]._id} style={{textDecoration:'none'}}>
+                          <Card style={{height:'90%'}} onClick={ () => this.props.action(asd[0]._id)} className={fixedHeightCardCatalog}>
                             <CardActionArea>
                               <CardMedia
                                 component="img"
                                 alt={asd[0].nombre}
-                                height="140"
+                                height="250"
                                 image={'http://localhost:8000/' + asd[0].foto[0]}
-                                title={asd[0].nombre}
+                                //title={asd[0].nombre}
                               />
                               <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
+                                <Typography gutterBottom variant="h6" component="h2"  >
                                   {asd[0].nombre}
                                 </Typography>
-                                <Typography variant="subtitle1" component="h2">
-                                  ${asd[0].precio} x unidad de medida (mirar issue)
+                                <Typography style={{color:"#d93211"}}  gutterBottom variant="h5">
+                                  ${asd[0].precio} {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad (MIRAR ISSUE)</Typography>}
                                 </Typography>
                               </CardContent>
                             </CardActionArea>
-                            <CardActions >
+                            {/* <CardActions >
                               { this.action(asd[0]._id, classes) }
-                            </CardActions>
+                            </CardActions> */}
                           </Card>
+                          </Link>
                         </Grid>
                       </div>
                     })
@@ -477,28 +479,30 @@ class Home extends React.Component <{
 
                       return <div>
                         <Grid item lg={3}>
-                          <Card className={fixedHeightCardCatalog}>
-                            <CardActionArea>
+                        <Link to={`/item/detalle/`+ asd.item._id} style={{textDecoration:'none'}}>
+                          <Card style={{height:'90%'}} onClick={ () => this.props.action(asd.item._id)} className={fixedHeightCardCatalog}>
+                           
                               <CardMedia
                                 component="img"
                                 alt={asd.item.nombre}
-                                height="140"
+                                height="250"
                                 image={'http://localhost:8000/' + asd.item.foto[0]}
-                                title={asd.item.nombre}
+                                //title={asd.item.nombre}
                               />
                               <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
+                                <Typography gutterBottom variant="h6" component="h2" >
                                   {asd.item.nombre}
                                 </Typography>
-                                <Typography variant="subtitle1" component="h2">
-                                  ${asd.item.precio} x unidad de medida (mirar issue)
+                                <Typography  style={{color:"#d93211"}}  gutterBottom variant="h5">
+                                  ${asd.item.precio}  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>} 
                                 </Typography>
                               </CardContent>
-                            </CardActionArea>
-                            <CardActions >
+                            
+                            {/* <CardActions >
                               { this.action(asd.item._id, classes) }
-                            </CardActions>
+                            </CardActions> */}
                           </Card>
+                          </Link>
                         </Grid>
                       </div>
                     })
