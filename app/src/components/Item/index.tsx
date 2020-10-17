@@ -217,7 +217,7 @@ const useStyles = makeStyles((theme) => ({
   rootCarousel: {
     maxWidth: 1500,
     flexGrow: 1,
-    padding: theme.spacing(10),
+    
   },
   header: {
     display: 'flex',
@@ -228,9 +228,9 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     height: 255,
-    display: 'block',
+    //display: 'block',
     maxWidth: 400,
-    overflow: 'hidden',
+    //overflow: 'hidden',
     width: '100%',
   },
 

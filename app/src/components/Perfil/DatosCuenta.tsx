@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, FormHelperText, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { Container, Divider, FormHelperText, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
@@ -294,57 +294,37 @@ class DatosCuenta extends React.Component <{
                 <Grid item lg={12}>
                   
 									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                    
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            D
-                          </Avatar>
-                        }
-
-                        action={
-                          <FormControlLabel
-                                
-                          control={
-                            <Checkbox
-                              checked={this.state.empresa.mostrar_perfil}
-                              onChange={this.changeMostrarPerfil}
-                              style ={{
-                                color: "#d93211",
-                              }}
-                            />
-                          }
-                          label="Mostrar Perfil"
-                        /> 
-                        }
-                        
-                        title="Mis datos"
-                        
+                      <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {"Mi perfil"}</Box>
+              </Typography>
+                <Divider className={classes.divider} />
                       
-                         
-                      />
-                      
-
-                      
-
-                    <CardContent>
-                        <Typography variant="h5" component="h2">
-                          Datos de cuenta
-                          
-                        </Typography>
-                    </CardContent>
-
-                       
-
 
                     <CardContent>
                       <form id="miPerfilForm" className={classes.root}>
                         <Grid container spacing={3}>
                         
                         <Grid container spacing={3}>
-                            
-                            <Grid item lg={4}>
-                              
+                        <div style={{ width: "100%",  marginTop:"1rem" }}>
+                          <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+                          <FormControlLabel className={classes.Checkbox}
+                            control={
+                              <Checkbox
+                                checked={this.state.empresa.mostrar_perfil}
+                                onChange={this.changeMostrarPerfil}
+                                style ={{
+                                  color: "#d93211",
+                                }}
+                              />
+                            }
+                            label="Mostrar Perfil"
+                          />
+                          </Box>
+                          
+                        
+                        </div>
+                            <Grid item xs={12} sm={4}>
                             <TextField
                               className={classes.textField}
                               label="Usuario"
@@ -372,7 +352,7 @@ class DatosCuenta extends React.Component <{
                             
                               
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item xs={12} sm={4}>
                             <TextField
                               className={classes.textField}
                               variant="outlined"
@@ -400,15 +380,8 @@ class DatosCuenta extends React.Component <{
                             />
                               
                             </Grid>
-                          </Grid>
-                        
-                          <CardContent>
-                        <Typography variant="h5" component="h2">
-                          Datos de empresa
-                        </Typography>
-                    </CardContent>
-                          <Grid container spacing={3}>
-                          <Grid item lg={4}>
+                          
+                          <Grid item xs={12} sm={4}>
                             <TextField
                               className={classes.textField}
                               variant="outlined"
@@ -433,7 +406,7 @@ class DatosCuenta extends React.Component <{
                             />
                             </Grid>
                             
-                            <Grid item lg={4}>
+                            <Grid item xs={12} sm={4}>
                             <TextField
                               className={classes.textField}
                               variant="outlined"
@@ -456,12 +429,8 @@ class DatosCuenta extends React.Component <{
                               }}
                             />
                             </Grid>
-                            
-                            
-                          </Grid>
                           
-                          <Grid container spacing={3}>
-                          <Grid item lg={4}>
+                          <Grid item xs={12} sm={4}>
                             <TextField
                             
                               variant="outlined"
@@ -485,7 +454,7 @@ class DatosCuenta extends React.Component <{
                               }}
                             />
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item xs={12} sm={4}>
                             <FormControl 
                             variant="outlined" 
                             className={classes.formControl}
@@ -509,7 +478,7 @@ class DatosCuenta extends React.Component <{
                              {/*  {!this.props.provinciaSeleccionada && <FormHelperText error={true} >Selecciona una Provincia</FormHelperText>} */}
                             </FormControl>
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item xs={12} sm={4}>
                             <FormControl 
                             variant="outlined"  
                             className={classes.formControl}
@@ -535,11 +504,7 @@ class DatosCuenta extends React.Component <{
                            
                             </Grid>
                             
-                            
-                          </Grid>
-
-                          <Grid container spacing={3}>
-                          <Grid item lg={4}>
+                          <Grid item xs={12} sm={4}>
                             <TextField
                               className={classes.textField}
                               variant="outlined"
@@ -562,8 +527,14 @@ class DatosCuenta extends React.Component <{
                               }}
                             />
                             </Grid>
-                            <Grid item lg={4}>
-                              <label htmlFor="raised-button-file">
+                            <Grid item xs={12} sm={6}>
+                            <input accept="image/*" className={classes.input} id="icon-button-file" type="file"  onChange = { this.getFoto } />
+                            <label htmlFor="icon-button-file">
+                              <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
+                                <PhotoCamera />
+                              </IconButton>
+                            </label>
+                              {/* <label htmlFor="raised-button-file">
                                 <Button variant="contained" component="label" className={classes.botonIcono}>
                                   Logo
                                   <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
@@ -578,10 +549,11 @@ class DatosCuenta extends React.Component <{
                                     />
                                   </IconButton>
                                 </Button>
-                              </label> 
+                              </label>  */}
                             </Grid>
-                            <Grid item lg={4}>
-                              <Avatar className={classes.fotoLogo} alt={'http://localhost:8000/' + this.state.empresa.logo}  src={'http://localhost:8000/' + this.state.empresa.logo} />
+                            <Grid item xs={12} sm={4}>
+                            <img className={classes.fotoLogo}   src={'http://localhost:8000/' + this.state.empresa.logo} ></img>
+                              {/* <Avatar className={classes.fotoLogo} alt={'http://localhost:8000/' + this.state.empresa.logo}  src={'http://localhost:8000/' + this.state.empresa.logo} /> */}
                             </Grid>
                           </Grid>
                          

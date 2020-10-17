@@ -100,7 +100,8 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(2),
-    minWidth: 225,
+    width:'30ch',
+    //minWidth: 225,
     '& .MuiOutlinedInput-root': {
       '&.Mui-focused fieldset': {
         borderColor: '#d93211',
@@ -122,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
       color: '#d93211',
       
     },
-    width: '25ch',
+    width: '30ch',
     marginLeft:'10px',
     marginTop:'15px',
   },
@@ -155,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   iconButton:{
-    
+    marginLeft:theme.spacing(2),
     color:'#d93211',
     '&:hover': {
       color: "#d93211",
@@ -174,6 +175,10 @@ const useStyles = makeStyles((theme) => ({
     '&$cssFocused $notchedOutline': {
       borderColor: `#d93211 !important`,
     }
+  },
+
+  input:{
+    display:'none'
   },
 
   cssFocused: {color:`#d93211 !important`},
@@ -207,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   titleProductos: {
-    paddingTop:theme.spacing(2),
+    paddingTop:theme.spacing(10),
     fontSize:'25px',
     //fontWeight:'bold',
   },
@@ -232,8 +237,8 @@ const useStyles = makeStyles((theme) => ({
 
   },
   formularioContacto:{
-    marginTop:theme.spacing(10),
-    marginLeft:theme.spacing(7),
+    //marginTop:theme.spacing(10),
+    //marginLeft:theme.spacing(7),
     width:'500px',
   },
   titulo:{
@@ -251,12 +256,15 @@ const useStyles = makeStyles((theme) => ({
    },
   },
   fotoLogo:{
-    width:100,
-    height:100
+    width:'200px',
+    height:'200px',
   },
-  item:{
-    paddingLeft:theme.spacing(10)
-  }
+  cardProducto: {
+    height: '100%',
+    width:'70%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
 
   
 }));

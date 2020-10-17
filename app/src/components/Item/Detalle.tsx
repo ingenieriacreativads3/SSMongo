@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 
 
-import { Container,Box, Grid, Card,Typography,CssBaseline,  Button, CardContent} from '@material-ui/core';
+import { Container,Box, Grid, Paper, FormControl,Divider, Card,Typography,CssBaseline, Tab, Tabs,  Button, CardContent} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import Link from '@material-ui/core/Link';
 
@@ -92,7 +92,8 @@ class Detalle extends React.Component <{
     }
   }
 }, {
-  activeStep: number
+  activeStep: number,
+  value:number,
 }>  {
 
 	props: any
@@ -103,7 +104,8 @@ class Detalle extends React.Component <{
   constructor(props: any) {
     super(props);
     this.state = {
-      activeStep: 0
+      activeStep: 0,
+      value:0,
     };
   }
 
@@ -120,7 +122,7 @@ class Detalle extends React.Component <{
     this.props.item.foto.map((img: string) => {
       tutorialSteps.push({
         label: '',
-        imgPath: 'http://127.0.0.1:8000/' + img
+        imgPath: 'http://localhost:8000/' + img 
       })
     })
 
@@ -144,6 +146,10 @@ class Detalle extends React.Component <{
       });
     };
 
+    const handleChangeTabs = (event:any, value:number) => {
+      this.setState({value: value});
+    };
+
     return(
 
       <div className={classes.root}>
@@ -151,96 +157,114 @@ class Detalle extends React.Component <{
         {this.props.appBar}
         {this.props.drawer}
         <main className={classes.content}>
-          <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3}>
+        <div className={classes.appBarSpacer} />
+          <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
 
-              <Grid item xs={12}  >
-                <Card className={fixedHeightCard}>
-                  
-                  <CardContent>
+        >
+        <Paper style={{ padding: 20, margin:50}}>
+        
+          <FormControl>
+          <Grid container spacing={3} alignContent="center">
+            <Grid container
+                direction="row"
+                justify="flex-start"
+                alignItems="center" xs={12} sm={6} >
+
+                  <Grid  style={{marginLeft:'20px'}}>
                     
-                        <Grid container  >
-                          <Grid item sm={6} xs={12}  >
-                            <Typography gutterBottom variant="h5" component="h2" style={{paddingTop:30}} >
-                              {this.props.item.nombre}
-                            </Typography>
-                            <Typography variant="subtitle1" component="h2" style={{paddingTop:20}}>
-                              ${this.props.item.precio} x {this.props.item.unidad_de_medida.nombre}
-                            </Typography>
-                            <Typography style={{paddingTop:20}}>
-                              <Link href={'/home/perfil/' + this.props.item.catalogo.empresa._id} variant="h5" className={classes.Link}>
-                                { 'Vendedor: ' + this.props.item.catalogo.empresa.nombre}
-                              </Link>
-                            </Typography>
-                            
-                            <Typography gutterBottom variant="h5" component="h2" style={{paddingTop:40}} >
-                              Descripción
-                            </Typography>
-                            <Typography variant="subtitle2" component="h4">
-                              {this.props.item.descrpcion}
-                            </Typography>
-                            
-                              
-                            
-                              
-                          </Grid>
-                            
-                            <Grid item sm={6} 
-                                direction="column"
-                                justify="space-around"
-                                alignItems="center">
-                      
-                              <div className={classes.rootCarousel}>
-          
-                                <AutoPlaySwipeableViews
-                                  axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                                  index={this.state.activeStep}
-                                  onChangeIndex={handleStepChange}
-                                  enableMouseEvents
+                      <Typography gutterBottom variant="h4"  style={{marginTop:'20px'}}>
+                        { this.props.item.nombre }
+                      </Typography>
+                      <Typography gutterBottom variant="h5"  style={{marginTop:'20px'}}>
+                        ${ this.props.item.precio} x { this.props.item.unidad_de_medida.nombre }
+                      </Typography>
+                      <Typography style={{marginTop:'20px'}}>
+                        <Link href={'/home/perfil/' + this.props.item.catalogo.empresa._id} variant="h5" className={classes.Link}>
+                          { 'Vendedor:' + this.props.item.catalogo.empresa.nombre }
+                        </Link>
+                      </Typography>
+                         
+                        <div >
+                          <Box  >
+                            <Grid container alignItems="center">
+                              <Grid item style={{ flexGrow: 1, marginTop:'25px' }}>
+                                <Tabs
+                                  value={this.state.value}
+                                  onChange={handleChangeTabs}
+                                  style={{color:"#d93211"}}
+                                  
                                 >
-                                  {tutorialSteps.map((step, index) => (
-                                    <div key={step.label}>
-                                      {Math.abs(this.state.activeStep - index) <= 2 ? (
-                                        <img className={classes.img} src={step.imgPath} alt={step.label} />
-                                      ) : null}
-                                    </div>
-                                  ))}
-                                </AutoPlaySwipeableViews>
-                                <MobileStepper
-                                  steps={maxSteps}
-                                  position="static"
-                                  variant="dots"
-                                  activeStep={this.state.activeStep}
-                                  nextButton={
-                                    <Button size="small" onClick={handleNext} disabled={this.state.activeStep === maxSteps - 1} >
-                                      
-                                      {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                                    </Button>
-                                  }
-                                  backButton={
-                                    <Button size="small" onClick={handleBack} disabled={this.state.activeStep === 0}>
-                                      {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                                      
-                                    </Button>
-                                  }
-                                />
-                              </div>
-                              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
-                              {this.props.actions(classes)}
-                              </Box>
-                          </Grid>
-                          
-                        </Grid>
-                  </CardContent>
-                  
-                </Card>
-              </Grid>
-
+                                  <Tab label="Descripción" />
+                                </Tabs>
+                                {this.state.value === 0 && 
+                                <p>{this.props.item.descrpcion}</p>}
+                              </Grid>
+                            </Grid>
+                          </Box>
+                      </div>
+                  </Grid>
+            
+                                  
             </Grid>
-            {/* <Box pt={4}>
-              <Copyright />
-            </Box> */}
-          </Container>
+          
+              <Grid container
+                  direction="row"
+                  justify="center"
+                  alignItems="center" xs={12} sm={6} >
+
+                <Grid>
+                <div className={classes.rootCarousel}>
+          
+                    <AutoPlaySwipeableViews
+                      axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                      index={this.state.activeStep}
+                      onChangeIndex={handleStepChange}
+                      enableMouseEvents
+                    >
+                      {tutorialSteps.map((step, index) => (
+                        <div key={step.label}>
+                          {Math.abs(this.state.activeStep - index) <= 2 ? (
+                            <img className={classes.img} src={ step.imgPath } alt={step.label} />
+                          ) : null}
+                        </div>
+                      ))}
+                    </AutoPlaySwipeableViews>
+                    <MobileStepper
+                      steps={maxSteps}
+                      position="static"
+                      variant="dots"
+                      activeStep={this.state.activeStep}
+                      nextButton={
+                        <Button size="small" onClick={handleNext} disabled={this.state.activeStep === maxSteps - 1} >
+                          
+                          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                        </Button>
+                      }
+                      backButton={
+                        <Button size="small" onClick={handleBack} disabled={this.state.activeStep === 0}>
+                          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                          
+                        </Button>
+                      }
+                    />
+                  </div>
+
+                <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+                {this.props.actions(classes)}
+                </Box>
+                </Grid>
+               
+              </Grid>
+          </Grid>
+        </FormControl>
+        </Paper>
+         </Grid>
+         
         {this.props.footer}
         </main>
 

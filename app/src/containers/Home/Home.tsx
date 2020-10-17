@@ -83,6 +83,7 @@ class Home extends React.Component<{
   }
 
   action(idItem: string) {
+    debugger;
     console.log(this.props.cookies.get('empresaId'))
     console.log(idItem)
     this.props.dispatch(itemActions.reintentar())

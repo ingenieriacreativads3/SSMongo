@@ -5,7 +5,7 @@ import { Link} from "react-router-dom";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
-import { Container, Grid, TextareaAutosize,Divider, ListSubheader, CardActionArea, CardMedia, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { Container, Grid, Paper, TextareaAutosize,Divider, ListSubheader, CardActionArea, CardMedia, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import * as registerActions  from './../../store/actions/register'
 import  foto  from './../Login/img/logo.png'
@@ -166,271 +166,160 @@ class PerfilEmpresa extends React.Component <{
          {this.props.drawer}
         <main className={classes.content}>
             <div className={classes.appBarSpacer} />
-            <Container maxWidth="lg" className={classes.container}>
-                <Grid container spacing={3}>
-                
-                  <Grid item xs={12}>
-                    <Card className={fixedHeightCard}>
-                      <Grid container spacing={3} >
-                        <Grid item xs={12} sm={6} container
-                                direction="column"
-                                justify="space-around"
-                                alignItems="center">
-                          <Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
-                              Suppliers Store
-                          </Typography>
-                                  
-                            <img src={foto} className = {classes.img}></img> 
+            <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
 
-                            {/* <Box className={classes.datos} > */}
-                            <Grid container>
-                            <Grid item lg={12} xs={12}  >
-                        <Typography variant="h5" className={classes.item} gutterBottom>
-                            <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
-                            Construccion
-                        </Typography>
-                        </Grid>
-                        <Grid item lg={12} xs={12}>
-                        <Typography variant="h5"  className={classes.item} gutterBottom>
-                            <LocationOnIcon fontSize="large" style={{ color: '#d93211' }} />
-                            San Francisco - Cordoba
-                        </Typography>
-                        </Grid>
-                        <Grid item lg={12} xs={12}>
-                        <Typography variant="h5"className={classes.item}   gutterBottom>
-                            <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
-                            35644225394
-                        </Typography>
-                        </Grid>
-                        </Grid>
-                        {/* </Box> */}
-
-                        </Grid>
-                         <Grid  item xs={12} sm={6} container
-                                direction="column"
-                                justify="space-around"
-                                alignItems="center">
-                          <Box  className={classes.formularioContacto} flexGrow={3} border={2} borderRadius={16} borderColor="#7f7f7f">
-                         <Typography className={classes.titulo}  variant="h4" component="h3" gutterBottom>
-                              Contactanos
-                          </Typography> 
-
-                          
-                          <TextField
-                              className={classes.datoContacto}
-                            variant="outlined"
-                            disabled
-                            value={ this.state.empresa.usuario }
-                              label="Nombre"
-                              type="text"
-                              InputLabelProps={{
-                                classes: {
-                                  root: classes.cssLabel,
-                                  focused: classes.cssFocused,
-                                },
-                              }}
-                              InputProps={{
-                                classes: {
-                                  root: classes.cssOutlinedInput,
-                                  focused: classes.cssFocused,
-                                  notchedOutline: classes.notchedOutline,
-                                },
-                              }}
-                            />       
-
-                          <TextField
-                            className={classes.datoContacto}
-                            variant="outlined"
-                            disabled
-                            value={this.state.empresa.email}
-                              label="Email"
-                              type="email"
-                              InputLabelProps={{
-                                classes: {
-                                  root: classes.cssLabel,
-                                  focused: classes.cssFocused,
-                                },
-                              }}
-                              InputProps={{
-                                classes: {
-                                  root: classes.cssOutlinedInput,
-                                  focused: classes.cssFocused,
-                                  notchedOutline: classes.notchedOutline,
-                                },
-                              }}
-                            />
-
-                            <TextareaAutosize  style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  onChange={this.props.getComentario} />
-
-                            <Button
-                              variant="contained"
-                              color='primary'
-                              size="small"
-                              className={classes.buttonEnviar}
-                              startIcon={<SendIcon />}
-                            //   onClick={() => this.register()}
-                            >
-                              Enviar
-                            </Button>
-
-                            </Box>
-
-                            
-                        </Grid> 
-
-                       
-                      
-                        
-
-                        <Grid item xs={12} container
-                                direction="column"
-                                justify="space-around"
-                                alignItems="center">
-                        <ListSubheader  className={classes.titleProductos}  >
-                                    
-                            Nuestros Productos
-                        </ListSubheader> 
-                        <hr></hr>
-                        </Grid>
-                       
-                        <Grid item xs={6} sm={3}>
-                        <Card className={fixedHeightCardCatalog}>
-                          <CardActionArea>
-                            <CardMedia
-                              component="img"
-                              alt="Samsung A20"
-                              height="140"
-                              image={foto}
-                              title="Samsung A20"
-                            />
-                            <CardContent>
-                              <Typography gutterBottom variant="h5" component="h2">
-                                asdasd
-                              </Typography>
-                              <Typography variant="subtitle1" component="h2">
-                                $16000
-                              </Typography>
-                            
-                            </CardContent>
-                          </CardActionArea>
-                          <CardActions >
-                          <Link to="/item/detalle/:id">
-                            <IconButton aria-label="ver" className={classes.iconButton}> 
-                              <VisibilityIcon style={{ fontSize: 40 }}  />
-                            </IconButton>
-                            </Link>
-                          
-                            
-                          </CardActions>
-                        </Card>
-                        </Grid>
-                        <Grid item xs={6} sm={3}>
-                        <Card className={fixedHeightCardCatalog}>
-                          <CardActionArea>
-                            <CardMedia
-                              component="img"
-                              alt="Samsung A20"
-                              height="140"
-                              image={foto}
-                              title="Samsung A20"
-                            />
-                            <CardContent>
-                              <Typography gutterBottom variant="h5" component="h2">
-                                asdasd
-                              </Typography>
-                              <Typography variant="subtitle1" component="h2">
-                                $16000
-                              </Typography>
-                            
-                            </CardContent>
-                          </CardActionArea>
-                          <CardActions >
-                          <Link to="/item/detalle/:id">
-                            <IconButton aria-label="ver" className={classes.iconButton}> 
-                              <VisibilityIcon style={{ fontSize: 40 }}  />
-                            </IconButton>
-                            </Link>
-                          
-                            
-                          </CardActions>
-                        </Card>
-                        </Grid>
-                        <Grid item xs={6} sm={3}>
-                        <Card className={fixedHeightCardCatalog}>
-                          <CardActionArea>
-                            <CardMedia
-                              component="img"
-                              alt="Samsung A20"
-                              height="140"
-                              image={foto}
-                              title="Samsung A20"
-                            />
-                            <CardContent>
-                              <Typography gutterBottom variant="h5" component="h2">
-                                asdasd
-                              </Typography>
-                              <Typography variant="subtitle1" component="h2">
-                                $16000
-                              </Typography>
-                            
-                            </CardContent>
-                          </CardActionArea>
-                          <CardActions >
-                          <Link to="/item/detalle/:id">
-                            <IconButton aria-label="ver" className={classes.iconButton}> 
-                              <VisibilityIcon style={{ fontSize: 40 }}  />
-                            </IconButton>
-                            </Link>
-                          
-                            
-                          </CardActions>
-                        </Card>
-                        </Grid>
-                        <Grid item xs={6} sm={3}>
-                        <Card className={fixedHeightCardCatalog}>
-                          <CardActionArea>
-                            <CardMedia
-                              component="img"
-                              alt="Samsung A20"
-                              height="140"
-                              image={foto}
-                              title="Samsung A20"
-                            />
-                            <CardContent>
-                              <Typography gutterBottom variant="h5" component="h2">
-                                asdasd
-                              </Typography>
-                              <Typography variant="subtitle1" component="h2">
-                                $16000
-                              </Typography>
-                            
-                            </CardContent>
-                          </CardActionArea>
-                          <CardActions >
-                          <Link to="/item/detalle/:id">
-                            <IconButton aria-label="ver" className={classes.iconButton}> 
-                              <VisibilityIcon style={{ fontSize: 40 }}  />
-                            </IconButton>
-                            </Link>
-                          
-                            
-                          </CardActions>
-                        </Card>
-                        </Grid>
-            
-                    
-                   
-									
-								
-                </Grid>
-                </Card>
-                </Grid>
-							</Grid>
-							{/* <Box pt={4}>
-								<Copyright />
-							</Box> */}
+        >
+        <Paper style={{ padding: 20, margin:50}}>
+          <FormControl>
+          <form id="formItem">
+        <Grid container spacing={3} >
+          <Grid container
+          direction="row"
+          justify="space-evenly"
+          alignItems="flex-start" xs={12} sm={6}>
+          <Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
+              Suppliers Store
+          </Typography>
+           <Box>      
+            <img src={foto} className = {classes.img}></img> 
+          
+              <Typography variant="h5" className={classes.item} gutterBottom>
+                  <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
+                  Construccion
+              </Typography>
+              
              
-						</Container>
+              <Typography variant="h5"  className={classes.item} gutterBottom>
+                  <LocationOnIcon fontSize="large" style={{ color: '#d93211' }} />
+                  San Francisco - Cordoba
+              </Typography>
+              
+              
+              <Typography variant="h5"className={classes.item}   gutterBottom>
+                  <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
+                  35644225394
+              </Typography>
+           
+        </Box>
+          </Grid>
+          <Grid container direction="row"
+          justify="center"
+          alignItems="flex-start" xs={12} sm={6}>
+          <Box   className={classes.formularioContacto}  border={2} borderRadius={16} borderColor="#7f7f7f">
+            <Typography className={classes.titulo}  variant="h4" component="h3" gutterBottom>
+                Contactanos
+            </Typography> 
+            <TextField
+              className={classes.datoContacto}
+            variant="outlined"
+            disabled
+            value={ this.state.empresa.usuario }
+              label="Nombre"
+              type="text"
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                },
+              }}
+              InputProps={{
+                classes: {
+                  root: classes.cssOutlinedInput,
+                  focused: classes.cssFocused,
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
+            />       
+
+          <TextField
+            className={classes.datoContacto}
+            variant="outlined"
+            disabled
+            value={this.state.empresa.email}
+              label="Email"
+              type="email"
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                },
+              }}
+              InputProps={{
+                classes: {
+                  root: classes.cssOutlinedInput,
+                  focused: classes.cssFocused,
+                  notchedOutline: classes.notchedOutline,
+                },
+              }}
+            />
+
+            <TextareaAutosize  style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea}  onChange={this.props.getComentario} />
+
+            <Button
+              variant="contained"
+              color='primary'
+              size="small"
+              className={classes.buttonEnviar}
+              startIcon={<SendIcon />}
+            //   onClick={() => this.register()}
+            >
+              Enviar
+            </Button>
+          </Box>
+          </Grid>
+        </Grid>
+        
+          <Grid item xs={12} sm={12} container
+                direction="column"
+                justify="space-around"
+                alignItems="center">
+          
+            <ListSubheader  className={classes.titleProductos}>
+              <Divider></Divider>       
+              Nuestros Productos
+            </ListSubheader> 
+          </Grid>
+          
+
+          <Grid item xs={12} sm={3}>
+          <Link to="/item/detalle/:id" style={{textDecoration:'none'}}>
+            <Card className={classes.cardProducto} >
+                <CardMedia
+                  component="img"
+                  alt="Samsung A20"
+                  height="140"
+                  image={foto}
+                  title="Samsung A20"
+                  //className={classes.cardMedia}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" >
+                    asdasd
+                  </Typography>
+                 
+                  <Typography gutterBottom variant="h5" component="h2">
+                    $16000  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>}
+                  
+                  </Typography>
+                   
+                </CardContent>
+            </Card>
+            </Link>
+            </Grid>
+            
+
+            
+
+        </form>
+          </FormControl>
+        
+        </Paper>  
+        </Grid>
             {this.props.footer}
 					</main>
 
