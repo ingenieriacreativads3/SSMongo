@@ -2,30 +2,15 @@ import React from 'react';
 import clsx from 'clsx'
 
 import SendIcon from '@material-ui/icons/Send';
-import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Avatar,  Button, CardContent,FormControlLabel, CardActions,TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Grid, Card, Divider, Box, Typography, CssBaseline, RadioGroup, CardHeader, Button, CardContent,FormControlLabel, CardActions,TextareaAutosize} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 
 import Radio from '@material-ui/core/Radio';
 import * as drawerActions from './../../store/actions/drawer'
-import AppBar from './../AppBar'
-import MenuLateral from '../DrawerInicio'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},
@@ -99,15 +84,15 @@ class EvaluacionEmpresa extends React.Component <{}, {
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar} >
-                          E
-                        </Avatar>
-                      }
+                      // avatar={
+                      //   <Avatar aria-label="recipe" className={classes.avatar} >
+                      //     E
+                      //   </Avatar>
+                      // }
                       title="¡Gracias por elegirnos! Tu opinión es importante para nosotros"
                         
                     />
-
+                <Divider></Divider>
                     <CardContent>
                      
                         <Grid container >

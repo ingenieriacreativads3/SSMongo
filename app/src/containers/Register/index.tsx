@@ -161,7 +161,7 @@ class Register extends React.Component<{}, {
 
   register() {
 
-    if(this.validacion()){
+    // if(this.validacion()){
        this.props.dispatch(registerActions.registrar(
 			this.state.fantasyName,
 			this.state.CUIT,
@@ -169,7 +169,7 @@ class Register extends React.Component<{}, {
 			this.state.email,
 			this.state.pass
 		))
-  }
+  // }
    
 
   }

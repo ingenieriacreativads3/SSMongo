@@ -98,12 +98,12 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
   },
-  fixedHeight: {
-    height: 1300,
-  },
-  fixedHeight2: {
-    height: 850,
-  },
+  // fixedHeight: {
+  //   height: 1300,
+  // },
+  // fixedHeight2: {
+  //   height: 850,
+  // },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,

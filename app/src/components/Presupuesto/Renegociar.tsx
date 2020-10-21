@@ -1,8 +1,7 @@
 import React from 'react';
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
-import {TextField,  ListItem, ListItemAvatar, Box, Divider, ListItemText, Container, Grid, Card, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent,CardActions,TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {TextField,  ListItem, Paper, FormControl, ListItemAvatar, Box, Divider, ListItemText, Grid, Typography, CssBaseline, Avatar,  Button, TextareaAutosize} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { FixedSizeList } from 'react-window';
 
@@ -10,7 +9,7 @@ import { FixedSizeList } from 'react-window';
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
-import { connect } from 'react-redux'
+
 
 const CssTextField = withStyles({
   root: {
@@ -34,18 +33,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 class Renegociar extends React.Component <{
   classes: any,
@@ -159,7 +147,7 @@ class Renegociar extends React.Component <{
     if(
       empresa_perteneciente !== undefined &&
       empresa_perteneciente._id !== undefined &&
-      empresa_perteneciente._id == msj[index].empresa_id
+      empresa_perteneciente._id === msj[index].empresa_id
     ) {
       empresa = empresa_perteneciente
     }
@@ -167,7 +155,7 @@ class Renegociar extends React.Component <{
     if(
       empresa_demandante !== undefined &&
       empresa_demandante._id !== undefined &&
-      empresa_demandante._id == msj[index].empresa_id
+      empresa_demandante._id === msj[index].empresa_id
     ) {
       empresa = empresa_demandante
     }
@@ -214,8 +202,6 @@ class Renegociar extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    
     let msj: string = ''
 
     if(
@@ -238,161 +224,141 @@ class Renegociar extends React.Component <{
           {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" className={classes.container}>
-							<Grid container spacing={5}>
-
-                <Grid item lg={12} xs={12}>
-									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                        // avatar={
-                        //   <Avatar aria-label="recipe" className={classes.avatar} >
-                        //     R
-                        //   </Avatar>
-                        // }
-                        // title="Renegociacion"
-                        
-                      />
-                       <Typography component="div" >
+            <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+        <Paper style={{ padding: 20, margin:50}}>
+        <Typography component="div" >
                 <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
-                {"Renegociacion"}</Box>
+                {"Nuevo Item"}
+                </Box>
               </Typography>
-<Divider className={classes.divider} />
+            <Divider className={classes.divider} />
+          <FormControl>
+          <form id="renegociarForm">
+            <Grid container spacing={3}>
+              <Grid container xs={12} sm={12}>
+                <Grid item xs={12} sm={12}>
+                <Typography style={{marginTop:'20px', marginLeft:'15px'}} variant="h5" component="h2">
+                  Datos del vendedor
+                </Typography>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Empresa" label="Empresa demandada" value={this.props.presupuesto.empresa_perteneciente.nombre} className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Email" label="Email" value={this.props.presupuesto.empresa_perteneciente.email} className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Telefono" label="Telefono" value="35764236987" className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Provincia" label="Provincia" value="Cordoba" className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Ciudad" label="Ciudad" value="San Francisco" className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="CP" label="CP" value="2400" className={classes.input}  />
+                </Grid>
+              </Grid>
 
-                    <CardContent>
-                    <form id="renegociarForm" className={classes.root}>
-                        <Grid container>
-                        <CardContent>
-                          <Typography variant="h5" component="h2">
-                            Datos del presupuesto
-                          </Typography>
-                          <Grid container spacing={1}>
-                            <Grid item lg={4} xs={12}>
-                              <TextField disabled id="Empresa" label="Empresa demandada" value={this.props.presupuesto.empresa_perteneciente.nombre} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                              <TextField disabled id="Email" label="Email" value={this.props.presupuesto.empresa_perteneciente.email} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={12} >
-                              <TextField disabled id="Telefono" label="Telefono" value="35764236987" className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                              <TextField disabled id="Provincia" label="Provincia" value="Cordoba" className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                              <TextField disabled id="Ciudad" label="Ciudad" value="San Francisco" className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                              <TextField disabled id="CP" label="CP" value="2400" className={classes.input}  />
-                            </Grid>
-                          </Grid>
-                        </CardContent>
-                          
-                          <CardContent>
-                        <Typography variant="h5" component="h2">
-                          Presupuesto
-                          <span style={{paddingLeft:20}}>
-                            <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>estado</Button>
-                          </span>
-                        </Typography>
-                    </CardContent>
-                          <Grid container  >
-                           
-                            <Grid item lg={4} xs={6}>
-                            <TextField disabled id="ProductoSolicitado" label="Producto" value={this.props.presupuesto.items[0].nombre} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                            <TextField disabled id="CantidadSolicitada" label="Cantidad" value="cantidad" className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                            <TextField disabled id="UnidadSolicitada" label="Unidad" value="unidadDeMedida" className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                            <TextField disabled id="PrecioSolicitado" label="Precio" value={this.props.presupuesto.items[0].precio} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
-                            {this.renderRow}
-                          </FixedSizeList>
-                            {/* <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  /> */}
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <Avatar className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} />
-                            </Grid>
-                          </Grid>
-                          <CardContent>
-                        <Typography variant="h5" component="h2">
-                          Renegociacion
-                        </Typography>
-                    </CardContent>
-                          <Grid container >
-                            <Grid item lg={4} xs={6}>
-                            <CssTextField 
-                            className={classes.margin} 
-                            id="Cantidad" 
-                            label="Cantidad" 
-                            type="number" 
-                            onChange={this.props.getCantidadItem}
-                            required={true}
-                            error={this.props.errors.Cantidad != null ? true : false}
-                            helperText={this.props.errors.Cantidad != null ? this.props.errors.Cantidad : ""}
-                            inputProps={{min:1}}   />
-                            
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                            <CssTextField 
-                            className={classes.margin} 
-                            id="Importe" 
-                            label="Importe sugerido" 
-                            type="number" 
-                            onChange={this.props.getPrecioSugerido}
-                            required={true}
-                            error={this.props.errors.Importe != null ? true : false}
-                            helperText={this.props.errors.Importe != null ? this.props.errors.Importe : ""}
-                            inputProps={{min:1}}     />
-                      
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={8} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
-                            </Grid>
-                          </Grid>
-                         
-                            
-                        </Grid>
-                    </form>
-                    </CardContent>
-                    <CardActions>
-
-                        <Grid container  direction = 'column' alignItems = 'flex-end'  >
-
-                          <Grid item lg={12} >
-
-                            <Button
-                              variant="contained"
-                              color='primary'
-                              size="small"
-                              className={classes.button}
-                              startIcon={<SendIcon />}
-                              onClick={ this.props.save }
-                              disabled={ !this.props.formValid}
-                            >
-                              Enviar
-                            </Button>
-                            
-                          </Grid>
-                        </Grid>
-                      
-
-                    </CardActions>
-                    
-									</Card>
-								</Grid>
+              <Grid container xs={12} sm={12}>
+              <Grid item xs={12} sm={12}>
+                <Typography style={{marginTop:'20px', marginLeft:'15px'}} variant="h5" component="h2">
+                  Presupuesto
+                </Typography>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="ProductoSolicitado" label="Producto" value={this.props.presupuesto.items[0].nombre} className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="CantidadSolicitada" label="Cantidad" value="cantidad" className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="UnidadSolicitada" label="Unidad" value="unidadDeMedida" className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="PrecioSolicitado" label="Precio" value={this.props.presupuesto.items[0].precio} className={classes.input}  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
+                  {this.renderRow}
+                </FixedSizeList>
+                {/* <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  /> */}
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                <img className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} />
+                </Grid>
+                
+              </Grid>
 
 
-							</Grid>
-							{/* <Box pt={4}>
-								<Copyright />
-							</Box> */}
-						</Container>
+              <Grid container xs={12} sm={12}>
+              <Grid item xs={12} sm={12}>
+                <Typography style={{marginTop:'20px', marginLeft:'15px'}} variant="h5" component="h2">
+                Renegociación
+                </Typography>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={12} sm={4}>
+              <CssTextField 
+                className={classes.margin} 
+                id="Cantidad" 
+                label="Cantidad" 
+                type="number" 
+                onChange={this.props.getCantidadItem}
+                required={true}
+                error={this.props.errors.Cantidad != null ? true : false}
+                helperText={this.props.errors.Cantidad != null ? this.props.errors.Cantidad : ""}
+                inputProps={{min:1}}   />
+              </Grid>
+
+              <Grid item xs={12} sm={4}>
+              <CssTextField 
+                className={classes.margin} 
+                id="Importe" 
+                label="Importe sugerido" 
+                type="number" 
+                onChange={this.props.getPrecioSugerido}
+                required={true}
+                error={this.props.errors.Importe != null ? true : false}
+                helperText={this.props.errors.Importe != null ? this.props.errors.Importe : ""}
+                inputProps={{min:1}}     />
+              </Grid>
+
+              <Grid item xs={12} sm={4}>
+              <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={8} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
+              </Grid>
+
+            </Grid>
+            </form>
+            <div style={{ width: "100%",  marginTop:"1rem" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              <Button
+                variant="contained"
+                color='primary'
+                size="small"
+                className={classes.button}
+                startIcon={<SendIcon />}
+                onClick={ this.props.save }
+                disabled={ !this.props.formValid}
+              >
+                Enviar
+              </Button>
+              </Box>
+              
+            
+            </div>
+          </FormControl>
+          </Paper>
+          </Grid>
+          
             {this.props.footer}
 					</main>
 

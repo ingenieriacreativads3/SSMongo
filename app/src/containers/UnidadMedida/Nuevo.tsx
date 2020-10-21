@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
 import { Drawer } from './../Drawer'
-import Link from '@material-ui/core/Link';
-
 import { NuevaUnidadMedida as NuevaSolicitudUnidad} from './../../components/UnidadMedida'
 import { OneButton } from './../../components/Dialogs'
 
@@ -74,7 +72,7 @@ class NuevaSolicitud extends React.Component<{
     let state = store.getState();
     this.setState({ simbolo: e.target.value })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-      if(state.errorReducer.errors.length == 0)
+      if(state.errorReducer.errors.length === 0)
       {
         this.setState({formValid:true});
       }
@@ -84,7 +82,7 @@ class NuevaSolicitud extends React.Component<{
     let state = store.getState();
     this.setState({ unidad: e.target.value })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }

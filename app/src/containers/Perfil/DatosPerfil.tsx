@@ -1,21 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
-
-
-
 import * as empresaActions from '../../store/actions/empresa'
-import * as fileActions from './../../store/actions/file'
 import * as dialogActions from './../../store/actions/dialog'
 import { PerfilPropio as Perfil} from './../../components/Perfil'
 import { OneButton } from './../../components/Dialogs'
-import Link from '@material-ui/core/Link';
 import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
 import { AppBar } from './../AppBar'
 import Cookies from 'universal-cookie';
-import * as errorActions from './../../store/actions/error'
-import store from './../../store/index'
-import ErrorReducer from '../../store/reducers/errorReducer';
+
 
 function mapStateToProps(store: {
   empresaReducer: any,

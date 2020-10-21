@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
 
 import { OneButton } from './../../components/Dialogs'
-import Link from '@material-ui/core/Link';
-
 import { Presupuestar as PresupuestarExport} from './../../components/Presupuesto'
 import * as dialogActions from './../../store/actions/dialog'
 
@@ -223,7 +221,7 @@ class Presupuestacion extends React.Component<{
     let state = store.getState();
     this.setState({ cantidad: e.target.value })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }
@@ -233,14 +231,13 @@ class Presupuestacion extends React.Component<{
     let state = store.getState();
     this.setState({ importe: e.target.value })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }
   }
 
   getComentario(e: any) {
-    let state = store.getState();
     this.setState({ comentario: e.target.value })
   }
   

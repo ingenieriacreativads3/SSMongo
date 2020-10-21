@@ -3,7 +3,7 @@ import AppBar from '../AppBar'
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import { withStyles } from '@material-ui/core/styles';
-import {TextField, Container,Divider, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
+import {TextField, Container,Divider, Grid, Card, Paper, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 import MenuLateral from '../Drawer'
@@ -188,105 +188,79 @@ class ValidarSolicitud extends React.Component {
         {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg"  className={classes.container}>
-							<Grid container >
-
-                <Grid item lg={12} xs={12} >
-									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                        // avatar={
-                        //   <Avatar aria-label="recipe" className={classes.avatar} >
-                        //     S
-                        //   </Avatar>
-                        // }
-                        // title="Solicitud Unidad de Medida"
-                        
-                      />
- <Typography component="div" >
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+            >
+            <Paper style={{ padding: 20, margin:50}}>
+              <Typography component="div" >
                 <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
-                {"Solicitud Unidad de Medida"}</Box>
+                {'Solicitud Unidad de Medida'}
+                </Box>
               </Typography>
-<Divider className={classes.divider} />
-                    <CardContent>
-                      <form className={classes.root}>
-                        <Grid container spacing={10} >
-                          <Grid container >
-                            <Grid item lg={4} xs={6}>
-                            <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud"  defaultValue="20" className={classes.input} />
-                            
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                            <CssTextField disabled id="custom-css-standard-input" label="Fecha"  defaultValue="03/04/2020" className={classes.input} />
-                            
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
-                           
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <CssTextField  id="custom-css-standard-input" label="Unidad"  defaultValue="Metro cuadrado" className={classes.input} />
-                            
-                            </Grid>
+              <Divider className={classes.divider} />
+            <FormControl>
+            <form >
+            <Grid container spacing={3}>
+              <Grid container xs={12} sm={12}>
+                <Grid item xs={12} sm={4}>
+                <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud"  defaultValue="20" className={classes.input} />
+                </Grid>
 
-                            <Grid item lg={4} xs={12}>
-                            <CssTextField  id="custom-css-standard-input" label="Simbolo"  defaultValue="M2" className={classes.input} />
+                <Grid item xs={12} sm={4}>
+                <CssTextField disabled id="custom-css-standard-input" label="Fecha"  defaultValue="03/04/2020" className={classes.input} />
+                </Grid>
 
-                           
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
-                                <Select
-                                  labelId="demo-simple-select-label"
-                                  id="demo-simple-select"
-                                  defaultValue={1}
-                                >
-                                  <MenuItem value={1}>No resuelta</MenuItem>
-                                  <MenuItem value={2}>Resuelta</MenuItem>
-                                  
-                                </Select>
-                              </FormControl>
-                            </Grid>
+                <Grid item xs={12} sm={4}>
+                <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
+                </Grid>
 
+                <Grid item xs={12} sm={4}>
+                <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
+                </Grid>
 
-                          </Grid>
-                          
-                         
-                        </Grid>
-                      </form>
-                    </CardContent>
-                    <CardActions>
+                <Grid item xs={12} sm={4}>
+                <CssTextField  id="custom-css-standard-input" label="Unidad"  defaultValue="Metro cuadrado" className={classes.input} />
+                </Grid>
 
-                        <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
-
-                          <Grid item lg={12} >
-
-                            <Button
-                              variant="contained"
-                              color='primary'
-                              size="small"
-                              className={classes.button}
-                              // endIcon={<SendIcon></SendIcon>}
-                              
-                            >
-                             Aceptar
-                            </Button>
-                            
-                          </Grid>
-                        </Grid>
+                <Grid item xs={12} sm={4}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      defaultValue={1}
+                    >
+                      <MenuItem value={1}>No resuelta</MenuItem>
+                      <MenuItem value={2}>Resuelta</MenuItem>
                       
+                    </Select>
+                  </FormControl>
+                </Grid>
+              </Grid>
+            </Grid>
+            </form>
 
-                    </CardActions>
-                    
-									</Card>
-								</Grid>
-
-
-							</Grid>
-							{/* <Box pt={4}>
-								<Copyright />
-							</Box> */}
-						</Container>
+            <div style={{ width: "100%",  marginTop:"1rem" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              <Button
+                variant="contained"
+                color='primary'
+                size="small"
+                className={classes.button}
+                // endIcon={<SendIcon></SendIcon>}
+                
+              >
+                Aceptar
+              </Button>
+              </Box>
+            </div>
+            </FormControl>
+            </Paper>
+            </Grid>
             {this.props.footer}
 					</main>
 

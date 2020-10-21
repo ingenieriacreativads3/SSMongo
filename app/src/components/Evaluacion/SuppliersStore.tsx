@@ -103,15 +103,15 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
                     <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            E
-                          </Avatar>
-                        }
+                        // avatar={
+                        //   <Avatar aria-label="recipe" className={classes.avatar} >
+                        //     E
+                        //   </Avatar>
+                        // }
                         title="Tu opinión es importante para mejorar nuestra plataforma web"
                         
                       />
-
+                <Divider></Divider>
                     <CardContent>
                       <form className={classes.root}>
                         <Grid container >

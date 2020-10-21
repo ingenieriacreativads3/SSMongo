@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
 import { Drawer } from './../Drawer'
-import Link from '@material-ui/core/Link';
-
 import { NuevoItem as ItemNuevo} from './../../components/Item'
 import { OneButton } from './../../components/Dialogs'
 import { Footer } from './../Footer'
@@ -109,7 +107,7 @@ class Nuevo extends React.Component<{
     let state = store.getState();
     this.setState({ nombre: e.target.value }) 
      this.props.dispatch(errorActions.editErrors(e.target.id))
-      if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+      if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
       {
         this.setState({formValid:true});
       }
@@ -120,7 +118,7 @@ class Nuevo extends React.Component<{
     let state = store.getState();
     this.setState({ precio: e.target.value })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
     {
       this.setState({formValid:true});
     }
@@ -131,7 +129,7 @@ class Nuevo extends React.Component<{
     let state = store.getState();
     this.setState({ idMagnitud: e.target.value })
     this.setState({unidadSeleccionada:true});
-    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
     {
       this.setState({formValid:true});
     }
@@ -185,7 +183,7 @@ class Nuevo extends React.Component<{
       
     }
 
-    if(this.state.idMagnitud == "")
+    if(this.state.idMagnitud === "")
     {
       this.setState({unidadSeleccionada:false});
       formIsValid = false;

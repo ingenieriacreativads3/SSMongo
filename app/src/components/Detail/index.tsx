@@ -105,13 +105,13 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 300
   },
   button: {
-    marginTop:theme.spacing(10),
+    marginTop:theme.spacing(2),
     backgroundColor: '#d93211',
     color : '#ffffff',
     '&:hover': {
       background: "#d93211",
     },
-    margin:theme.spacing(2),
+    marginLeft:theme.spacing(2),
   },
   margin:{
     margin:theme.spacing(2),

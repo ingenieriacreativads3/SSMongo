@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextareaAutosize,  Button, CardContent,  CardActions} from '@material-ui/core';
+import { Container, Grid,TextField, Paper, Divider, FormControl, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextareaAutosize,  Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import { FixedSizeList } from 'react-window';
 import ListItem from "@material-ui/core/ListItem";
@@ -387,103 +387,91 @@ class Detail extends React.Component <{
         {this.props.drawer}
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
+          <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+            >
+          <Paper style={{ padding: 20, margin:50}}>
+              <Typography component="div" >
+                <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
+                {this.props.title}
+                </Box>
+              </Typography>
+              <Divider className={classes.divider} />
+            <FormControl>
+            <form>
             <Grid container spacing={3}>
+              <Grid container xs={12} sm={12}>
+                <Grid item xs={12} sm={12}>
+                <Typography style={{marginTop:'20px', marginLeft:'15px'}} variant="h5" component="h2">
+                {this.props.subtitle1}
+                <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{ estado }</Button></span>
+                </Typography>
+                </Grid>
+                
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="standard-required" label={ this.props.labelCompany } value={ this.props.company.nombre }  className={classes.input}  />
+                </Grid>
 
-              <Grid item lg={12}>
-                <Card className={fixedHeightCard}>
-                  <CardHeader 
-                    avatar={
-                      <Avatar aria-label="recipe" className={classes.avatar}>
-                        D
-                      </Avatar>
-                    }
-                    title={this.props.title}
-                    
-                  />
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="standard-required" label="Importe" value={ importe }  className={classes.input}  InputLabelProps={{ shrink: true }}/>
+                </Grid>
 
-                  <CardContent>
-              
-                      <Grid container >
-                      <CardContent>
-                        <Typography variant="h5" component="h2">
-                           {this.props.subtitle1}
-                           <span style={{paddingLeft:20}}> <Button variant="outlined" style={{color:'#ffba00', borderColor:'#ffba00'}}>{ estado }</Button></span>
-                        </Typography>
-                    </CardContent>
-                        <Grid container>
-                          <Grid item lg={4} xs={12}>
-                            <TextField disabled id="standard-required" label={ this.props.labelCompany } value={ this.props.company.nombre }  className={classes.input}  />
-                          </Grid>
-                          <Grid item lg={4} xs={12}>
-                            <TextField disabled id="standard-required" label="Importe" value={ importe }  className={classes.input}  InputLabelProps={{ shrink: true }}/>
-                          </Grid>
-                          <Grid item lg={4}  xs={12}>
-                          <FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
-                            {this.renderRow}
-                          </FixedSizeList>
-                            {/* <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  /> */}
-                          </Grid>
-                        </Grid>
-                        <CardContent>
-                        <Typography variant="h5" component="h2">
-                           {this.props.subtitle2}
-                        </Typography>
-                    </CardContent>
-                        <Grid container >
-                          <Grid item xs={12} sm={4} >
-                          <Grid item lg={ 6 }  xs={6}>
-                            <TextField disabled id="standard-required" label="Nombre" value={ itemNombre }  className={ classes.input }  />
-                          </Grid>
-                          <Grid item lg={ 6 }  xs={6}>
-                            <TextField disabled id="standard-required" label="Precio" value={ itemPrecio }  className={ classes.input }  />
-                          </Grid>
-                         
-                          
+                <Grid item xs={12} sm={4}>
+                <FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
+                {this.renderRow}
+              </FixedSizeList>
+                {/* <TextareaAutosize disabled style={{borderRadius:7}} value={msj} aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje"  /> */}
+                </Grid>
+              </Grid>
 
-                         
-                          
-                        </Grid>
 
-                        <Grid item xs={12} sm={4}  >
-                        <Grid item lg={6}  xs={6}>
-                            <TextField disabled id="standard-required" label="Unidad de Medida" value={ unidad }  className={classes.input}  />
-                          </Grid> 
-                          
-                          <Grid item lg={6}  xs={6}>
-                            <TextField disabled id="standard-required" label="Cantidad" value={ cantidad }  className={ classes.input }  />
-                          </Grid>
-                        </Grid>
+              <Grid container xs={12} sm={12}>
+              <Grid item xs={12} sm={12}>
+                <Typography style={{marginLeft:'15px'}} variant="h5" component="h2">
+                {this.props.subtitle2}
+                </Typography>
+                </Grid>
 
-                        <Grid item xs={12} sm={4}>
-                      
-                        <Grid item lg={3} xs={12}>
-                          <Avatar className={classes.fotoItem} alt={imagen}  src={imagen} />
-                          </Grid> 
-                          
-                          
-                        </Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="standard-required" label="Nombre" value={ itemNombre }  className={ classes.input }  />
+                </Grid>
 
-                        </Grid>
-                      </Grid>
-                  
-                  </CardContent>
-                  <CardActions>
-                    <Grid container  direction = 'column' alignItems = 'flex-end'  >
-                      <Grid item lg={12} >
-                        {this.props.actions(classes)}
-                      </Grid>  
-                    </Grid>
-                  </CardActions>
-                  
-                </Card>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="standard-required" label="Precio" value={ itemPrecio }  className={ classes.input }  />
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="standard-required" label="Unidad de Medida" value={ unidad }  className={classes.input}  />
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="standard-required" label="Cantidad" value={ cantidad }  className={ classes.input }  />
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                <img className={classes.fotoItem}   src={imagen} />
+                </Grid>
+
               </Grid>
 
             </Grid>
-            {/* <Box pt={4}>
-              <Copyright />
-            </Box> */}
-          </Container>
+            </form>
+
+
+            <div style={{ width: "100%" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              {this.props.actions(classes)}
+              </Box>
+            </div>
+
+
+            </FormControl>
+            </Paper>
+            </Grid>
           {this.props.footer}
         </main>
 		  </div>
