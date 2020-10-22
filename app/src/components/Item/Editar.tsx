@@ -1,19 +1,16 @@
 import React from 'react';
-import AppBar from '../AppBar'
-import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container,Divider, Paper, Grid, Card, Box, Typography, CssBaseline, CardHeader, TextField, Avatar, IconButton, Button, FormHelperText, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Divider, Paper, Grid, Card, Box, Typography, CssBaseline,  TextField, IconButton, Button, FormHelperText,  FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import * as errorActions from './../../store/actions/error'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
+
 
 
 const CssTextField = withStyles({
@@ -38,18 +35,6 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {}) {
   return {
@@ -187,7 +172,7 @@ class Editar extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+  
 
     return(
 

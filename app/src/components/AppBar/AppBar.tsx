@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
 import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
-import { IconButton, Badge, ListItem, ListItemAvatar, Avatar,ListItemText, Divider, Typography, Box, List, Popover } from '@material-ui/core';
+import { IconButton, Badge, ListItem, ListItemAvatar, Avatar,ListItemText, Divider, Typography, Box } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -119,7 +118,7 @@ class AppBare extends React.Component<{
 		};
 
 		const handleDrawerOpen = () => {
-			if(this.props.open == false)
+			if(this.props.open === false)
 			{
 				this.props.dispatch(drawerAction.open())
 			}

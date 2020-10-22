@@ -1,7 +1,5 @@
 import React from 'react';
-import clsx from 'clsx'
-import {TextField, ListItem, Box,Paper, FormControl, Divider,ListItemAvatar, ListItemText, Container, Grid, Card,  Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, CardActions,TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {TextField, ListItem, Box,Paper, FormControl, Divider,ListItemAvatar, ListItemText, Grid,Typography, CssBaseline,  Avatar,  Button,TextareaAutosize} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { FixedSizeList } from 'react-window';
 
@@ -30,18 +28,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 class Presupuestar extends React.Component <{
   classes: any,
@@ -210,9 +196,7 @@ class Presupuestar extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-
-    let msj: string = ''
+      let msj: string = ''
 
     if(
       this.props.presupuesto !== null &&

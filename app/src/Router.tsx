@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 import AppBar from './components/AppBar'
@@ -17,12 +17,9 @@ import { PedidoNuevo } from './containers/Compras/Pedido'
 import { PresupuestoNuevo } from './containers/Compras - Presupuesto'
 import { SolicitudDeValidacion } from './containers/ValidationRequest'
 import { MiPerfil } from './containers/Perfil'
-import { Footer } from './components/Footer'
-import { Presupuestar } from './components/Presupuesto'
 import { Presupuestacion } from './containers/Ventas - Presupuesto'
 import { Renegociacion } from './containers/Ventas - Presupuesto'
 import { Inicio, Busqueda } from './containers/Home'
-import { VerDetallePresupuesto } from './components/Presupuesto'
 import { Login } from './containers/Login'
 import Register from './containers/Register'
 import { SolicitudesValidacion } from './containers/ValidationRequest'
@@ -30,11 +27,7 @@ import { PurchaseRequests, DetailPurchaseRequest }  from './containers/Compras/P
 import { SaleRequests, DetailSaleRequest } from './containers/Ventas - Pedido'
 import { PurchasePresupuestos, DetailPurchasePresupuesto } from './containers/Compras - Presupuesto'
 import { SalePresupuestos, DetailSalePresupuesto } from './containers/Ventas - Presupuesto'
-import { Renegociar } from './components/Presupuesto'
-import { VerEstadisticaActividad } from './components/Estadisticas'
 import { ResumenActividad, Reputacion} from './containers/Estadisticas'
-import { VerReputacion } from './components/Estadisticas'
-import Item from './entities/Item';
 import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion'
 import { EmpresaPerfil, CambiarContraseña } from './containers/Perfil'
 import { SolicitudesUnidadMedida, SolicitudDeUnidadDeMedida, NuevaUnidadMedida } from './containers/UnidadMedida'

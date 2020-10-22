@@ -1,12 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
-import { Link } from "react-router-dom";
-
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import { IconButton } from '@material-ui/core';
-
-
 import { InitLayout as HomeComponent } from './../../components/Home'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'

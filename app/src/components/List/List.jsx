@@ -1,10 +1,8 @@
 import React from 'react'
-import AppBar from '../AppBar'
 import { AntSwitch } from './index'
 
 import MaterialTable from 'material-table'
-import { Container, Grid, CssBaseline, Box, Typography } from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Grid, CssBaseline, Typography } from '@material-ui/core';
 
 import { forwardRef } from 'react';
 
@@ -46,18 +44,6 @@ const tableIcons = {
   VisibilityIcon: forwardRef((props, ref) => <VisibilityIcon {...props} ref={ref} />),
 };
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 class List extends React.Component {
 

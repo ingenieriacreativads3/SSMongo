@@ -1,24 +1,12 @@
 import React from 'react';
-import AppBar from './../AppBar'
-import clsx from 'clsx'
 import { Link} from "react-router-dom";
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
-import { Container, Grid, Paper, TextareaAutosize,Divider, ListSubheader, CardActionArea, CardMedia, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
-import * as registerActions  from './../../store/actions/register'
+import { Grid, Paper, TextareaAutosize,Divider, ListSubheader, CardMedia, Card, Box, Typography, TextField, CssBaseline, Button, CardContent,  FormControl} from '@material-ui/core';
 import  foto  from './../Login/img/logo.png'
-import * as ubicacionActions from './../../store/actions/ubicacion'
 import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-//import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-import MenuLateral from '../DrawerInicio';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import SendIcon from '@material-ui/icons/Send';
 
 
@@ -44,18 +32,6 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
@@ -155,8 +131,6 @@ class PerfilEmpresa extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-        const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
 
     return(
 

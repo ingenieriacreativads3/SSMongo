@@ -1,16 +1,10 @@
 import React from 'react';
-import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Container, Grid, Card, Divider, Paper, FormControl, Box, Avatar, CardActions,  CardHeader, ListItemIcon, Typography, CssBaseline,  CardContent, CardMedia} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Grid, Card, Divider, Paper, FormControl, Box, ListItemIcon, Typography, CssBaseline,  CardContent, CardMedia} from '@material-ui/core';
 import AttachMoney from '@material-ui/icons/AttachMoney';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import {
-  Chart,
-  PieSeries,
-  Title,
-} from '@devexpress/dx-react-chart-material-ui';
+
 
 import PieChart, {
   Series,
@@ -21,15 +15,7 @@ import PieChart, {
   Export
 } from 'devextreme-react/pie-chart';
 
-import { Animation } from '@devexpress/dx-react-chart';
 
-const data = [
-  { country: 'Russia', area: 12 },
-  { country: 'Canada', area: 7 },
-  { country: 'USA', area: 7 },
-  { country: 'China', area: 7 },
- 
-];
 
 const dataSource = [{
     estado: 'En espera',
@@ -61,19 +47,6 @@ const dataSource2 = [{
 },
 ]
 //import * as ItemAction from "../../store/actions/ItemAction";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},
@@ -108,9 +81,7 @@ class EstadisticasActividad extends React.Component <{}, {
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-
-   
+ 
     return(
 
       <div className={classes.root}>

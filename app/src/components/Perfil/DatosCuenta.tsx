@@ -1,35 +1,15 @@
 import React from 'react';
-import AppBar from './../AppBar'
 import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Divider, FormHelperText, Grid, Card, Box, Typography, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Divider,Grid, Card, Box, Typography, TextField, CssBaseline,  IconButton, Button, CardContent, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
 import * as fileActions from './../../store/actions/file'
-import * as errorActions from './../../store/actions/error'
 import store from './../../store/index'
-import * as empresaActions from './../../store/actions/empresa'
-
-//import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
@@ -162,7 +142,6 @@ class DatosCuenta extends React.Component <{
 
   handleChangeProvincia(e: any) {
     debugger;
-    let state = store.getState();
     this.setState({ empresa: { ...this.state.empresa, provincia: e.target.value } })
     this.props.dispatch(ubicacionActions.getMunicipiosByName(e.target.value))
     // if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
@@ -172,7 +151,6 @@ class DatosCuenta extends React.Component <{
   }
 
   handleChangeMunicipio(e: any) {
-    let state = store.getState();
     this.setState({ empresa: { ...this.state.empresa, localidad: e.target.value } })
     // if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
     // {
@@ -196,7 +174,7 @@ class DatosCuenta extends React.Component <{
   }
 
   changeClave(e: any) {
-    let state = store.getState();
+    //let state = store.getState();
     this.setState({ empresa: { ...this.state.empresa, clave: e.target.value } })
     
   }

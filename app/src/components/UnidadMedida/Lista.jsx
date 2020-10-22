@@ -1,11 +1,9 @@
 import React from 'react'
-import AppBar from '../AppBar'
 import { connect } from 'react-redux'
 
 import MenuLateral from '../Drawer'
 import MaterialTable from 'material-table'
-import {Container, Grid, Box, Typography, CssBaseline } from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {Container, Grid, CssBaseline } from '@material-ui/core';
 import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -23,7 +21,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import TableContainer from '@material-ui/core/TableContainer';
+
 
 
 const tableIcons = {
@@ -54,18 +52,7 @@ function mapStateToProps(store) {
 }
 
 
-function Copyright() {
-	return (
-	  <Typography variant="body2" color="textSecondary" align="center">
-		{'Copyright © '}
-		<MaterialLink color="inherit" href="https://material-ui.com/">
-		  Your Website
-		</MaterialLink>{' '}
-		{new Date().getFullYear()}
-		{'.'}
-	  </Typography>
-	);
-  }
+
 
 class Lista extends React.Component {
 

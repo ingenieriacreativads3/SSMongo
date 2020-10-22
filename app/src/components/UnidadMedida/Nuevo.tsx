@@ -1,12 +1,9 @@
 import React from 'react';
-import AppBar from './../AppBar'
-import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Paper, FormControl, Card, Box,Divider, Typography, TextField, CssBaseline, CardHeader, Avatar, Button, CardContent, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
-import MenuLateral from '../DrawerInicio'
+import {  Grid, Paper, FormControl,  Box,Divider, Typography, TextField, CssBaseline, Button} from '@material-ui/core';
+
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -34,18 +31,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},
@@ -178,7 +163,6 @@ class Nuevo extends React.Component {
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight2);
 
     return(
 

@@ -1,29 +1,14 @@
 import React from 'react';
-import AppBar from '../AppBar'
 import clsx from 'clsx'
-import SendIcon from '@material-ui/icons/Send';
 import { withStyles } from '@material-ui/core/styles';
-import {TextField, Container,Divider, Grid, Card, Paper, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {TextField, Divider, Grid,  Paper, Box, Typography, CssBaseline, Button, FormControl, InputLabel, Select, MenuItem} from '@material-ui/core';
 
-import MenuLateral from '../Drawer'
+
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const CssTextField = withStyles({
   root: {
@@ -178,8 +163,7 @@ class ValidarSolicitud extends React.Component {
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-
+		
     return(
 
       <div className={classes.root}>

@@ -1,14 +1,9 @@
 import React from 'react';
-import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import {TextField,  ListItem, Paper, FormControl, ListItemAvatar, Box, Divider, ListItemText, Grid, Typography, CssBaseline, Avatar,  Button, TextareaAutosize} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { FixedSizeList } from 'react-window';
 
-
-
-
-//import * as ItemAction from "../../store/actions/ItemAction";
 
 
 const CssTextField = withStyles({

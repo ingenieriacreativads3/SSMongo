@@ -1,5 +1,4 @@
 import React from 'react'
-import clsx from 'clsx'
 import logo from './../Login/img/logo.png';
 
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
@@ -7,30 +6,11 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 
-import {Grid, Container, Box, Typography, Avatar} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {Grid, Typography, Avatar} from '@material-ui/core';
 
 
-
-
-
-
-//import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},
@@ -63,8 +43,6 @@ class Footer extends React.Component {
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-
     return(
 
       <footer className={classes.footer} >

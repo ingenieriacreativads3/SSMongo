@@ -1,34 +1,15 @@
 import React from 'react';
-import AppBar from './../AppBar'
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Avatar,  Button, CardContent, FormControlLabel, CardActions,TextareaAutosize, Divider} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Button, CardContent, FormControlLabel, CardActions,TextareaAutosize, Divider} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
-
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
-import * as Login from './../../store/actions/login'
 import Radio from '@material-ui/core/Radio';
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 import MenuLateral from '../DrawerInicio';
 import * as drawerActions from './../../store/actions/drawer'
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},

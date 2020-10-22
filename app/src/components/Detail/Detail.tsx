@@ -1,30 +1,13 @@
 import React from 'react';
-import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField, Paper, Divider, FormControl, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextareaAutosize,  Button, CardContent,  CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {  Grid,TextField, Paper, Divider, FormControl, Box, Typography, CssBaseline,  Avatar,   Button} from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import PropTypes from "prop-types";
 
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
   requestReducer: {}

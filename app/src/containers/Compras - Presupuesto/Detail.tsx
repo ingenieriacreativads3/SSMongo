@@ -297,10 +297,10 @@ class Detail extends React.Component<{
 			}
 		}
     
-    let empresa: string = 'nombreEmpresa'
-		let importe: string = 'importe'
-		let estado: string = 'estado'
-		let cantidad: string = 'cantidad'
+    // let empresa: string = 'nombreEmpresa'
+		// let importe: string = 'importe'
+		// let estado: string = 'estado'
+		// let cantidad: string = 'cantidad'
 		let item: {
 			nombre: string,
 			precio: string,

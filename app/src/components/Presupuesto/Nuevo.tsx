@@ -1,8 +1,6 @@
 import React from 'react';
-import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import {TextField, Paper,FormControl, Divider,Box, Grid, Typography, CssBaseline, Button, TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 
 

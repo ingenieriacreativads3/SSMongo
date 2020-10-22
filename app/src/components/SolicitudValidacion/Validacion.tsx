@@ -1,28 +1,13 @@
 import React from 'react';
-import AppBar from '../AppBar'
-import clsx from 'clsx'
 
-import { Container, Grid, Divider, Paper, TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, Checkbox, CardActions, ListItemText} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+
+import { Grid, Divider, Paper, TextField, Box, Typography,Chip, CssBaseline,  Button,  Input, FormControl, InputLabel, Select, MenuItem, Checkbox,  ListItemText} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
 
-import * as SolicitudDeValidacionActions from './../../store/actions/solicitudDeValidacion'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: {}
@@ -137,9 +122,6 @@ class Validacion extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-
-    let listaRubros: string[] = []
 
     let rubros: any[] = []
     let grupos: any[] = []

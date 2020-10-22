@@ -1,6 +1,5 @@
 import React from 'react';
-import clsx from 'clsx'
-import { createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { Container, Grid,ListItem, ListItemIcon, ListItemText, Paper, List, Divider, TextField, CssBaseline, Avatar} from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
@@ -57,10 +56,7 @@ class ChatRoom extends React.Component <{
 	static propTypes: any
 	static defaultProps: any
  
-  constructor(props: any) {
-    super(props);
-   
-  }
+  
 
   renderRow(props:any) {
     return (
@@ -101,15 +97,7 @@ class ChatRoom extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    const theme = createMuiTheme({
-      palette: {
-        //primary: orange,
-        secondary: {
-          main: '#ffba00',
-        },
-      },
-    });
+    
 
 
     

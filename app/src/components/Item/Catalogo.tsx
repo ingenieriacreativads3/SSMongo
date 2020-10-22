@@ -1,9 +1,7 @@
 import React from 'react';
-import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Grid, Card,  Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Link} from "react-router-dom";
@@ -11,25 +9,12 @@ import MenuLateral from '../Drawer'
 
 import { AntSwitch } from './index'
 
-import foto from './../Login/img/photo2.png'
-import foto1 from './../Login/img/logo.png'
 
-import * as dialogAction from './../../store/actions/dialog'
+
 
 import { connect } from 'react-redux'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 function mapStateToProps(store: {
   dialogReducer: {
