@@ -1,11 +1,11 @@
 export default function evaluacionReducer ( state = {
 
-	status: 0,
+  status: 0,
   message: '',
   data: {},
   fetching: false,
-	fetched: false,
-	error: null,
+  fetched: false,
+  error: null,
 	
 }, action: {
 	type: string,

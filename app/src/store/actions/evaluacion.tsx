@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import config from './config'
 export function setear() {
 
 	return {
@@ -19,27 +19,26 @@ export function reintentar() {
 }
 
 export function setEvaluacionEmpresa(
-	empresaCriticaId: string,	
+	empresaCriticaId: string,
 	empresaCriticadaId: string,
-	numeroValoracion:number,
+	numeroValoracion:number | null,
 	conceptoValoracion:string,
 	opinion:string,
-	
+	rebuy: boolean,
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/empresa/valorar',{
-    
+	let payload: any = axios.post(config.url + '/empresa/valorar',{
+
     empresaCriticaId: empresaCriticaId,
     empresaCriticadaId: empresaCriticadaId,
     numeroValoracion: numeroValoracion,
     conceptoValoracion: conceptoValoracion,
     opinion: opinion,
+	rebuy: rebuy
 	})
 
 	console.log(payload)
-	
+
   return {
 		type: 'SET_EVALUACION_EMPRESA',
 		payload: payload
@@ -48,25 +47,23 @@ export function setEvaluacionEmpresa(
 }
 
 export function setEvaluacionPlataforma(
-	empresaCriticaId: string,	
-	numeroValoracion:number,
-	conceptoValoracion:string,
-	opinion:string,
-	
+	navegabilidad: string,
+	tiempoRespuesta:number | null,
+	recomienda:boolean,
+	mensaje:string,
+
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/falta el endpoint',{
-    
-    empresaCriticaId: empresaCriticaId,
-    numeroValoracion: numeroValoracion,
-    conceptoValoracion: conceptoValoracion,
-    opinion: opinion,
+	let payload: any = axios.post(config.url + '/plataforma/valorar',{
+
+		navegabilidad: navegabilidad,
+		tiempoRespuesta: tiempoRespuesta,
+		recomienda: recomienda,
+		mensaje: mensaje,
 	})
 
 	console.log(payload)
-	
+
   return {
 		type: 'SET_EVALUACION_PLATAFORMA',
 		payload: payload

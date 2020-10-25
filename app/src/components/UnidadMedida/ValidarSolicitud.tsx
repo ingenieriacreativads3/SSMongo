@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { withStyles } from '@material-ui/core/styles';
 import {TextField, Divider, Grid,  Paper, Box, Typography, CssBaseline, Button, FormControl, InputLabel, Select, MenuItem} from '@material-ui/core';
 
-
+import * as unidadDeMedidaAction from './../../store/actions/unidadDeMedida'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -32,19 +32,27 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
+// function mapStateToProps(store: {
+// 	Item: {},
+// 	login: {
+// 		data: {
+// 			empresa: {
+// 				_id: string
+// 			}
+// 		}
+// 	}
+// }) {
+//   return {
+//     Item: store.Item,
+//     //idEmpresa: store.login.data.empresa._id
+//   };
+// }
+
 function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
+  unidadDeMedidaReducer : any
 }) {
   return {
-    Item: store.Item,
-    //idEmpresa: store.login.data.empresa._id
+    unidadDeMedidaReducer : store.unidadDeMedidaReducer
   };
 }
 
@@ -77,7 +85,7 @@ class ValidarSolicitud extends React.Component {
       } */
     };
   }
-/* 
+/*
   onSubmit() {
     this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
   }
@@ -160,10 +168,28 @@ class ValidarSolicitud extends React.Component {
   } */
 
 
+  sendValidation = () => {
+    this.props.dispatch(unidadDeMedidaAction.setSolicitud(
+        this.props.match.params.id,
+        "GAL",
+        "Galeones"
+    ))
+
+    // this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+    //     this.props.cookies.get('empresaId'),
+    //     this.props.match.params.id,
+    //     this.state.valueAvailable,
+    //     "disponibilidad",
+    //     "This is good",
+    //     true
+    // ))
+
+  }
+
   render(){
 
 		const classes = this.props.classes
-		
+
     return(
 
       <div className={classes.root}>
@@ -220,7 +246,7 @@ class ValidarSolicitud extends React.Component {
                     >
                       <MenuItem value={1}>No resuelta</MenuItem>
                       <MenuItem value={2}>Resuelta</MenuItem>
-                      
+
                     </Select>
                   </FormControl>
                 </Grid>
@@ -236,7 +262,7 @@ class ValidarSolicitud extends React.Component {
                 size="small"
                 className={classes.button}
                 // endIcon={<SendIcon></SendIcon>}
-                
+
               >
                 Aceptar
               </Button>
@@ -248,7 +274,7 @@ class ValidarSolicitud extends React.Component {
             {this.props.footer}
 					</main>
 
-         
+
 		 </div>
 
     );

@@ -7,24 +7,19 @@ import Rating from '@material-ui/lab/Rating';
 
 import Radio from '@material-ui/core/Radio';
 import * as drawerActions from './../../store/actions/drawer'
+import * as evaluateAction from './../../store/actions/evaluacion'
+import AppBar from './../AppBar'
+import MenuLateral from '../DrawerInicio'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
 
 function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
+    evaluacionReducer : any
 }) {
   return {
-    Item: store.Item,
-    // idEmpresa: store.login.data.empresa._id
+      evaluacionReducer : store.evaluacionReducer
   };
 }
 
@@ -45,17 +40,47 @@ class EvaluacionEmpresa extends React.Component <{}, {
 		super(props);
 		this.state = {
 			valueTime: 2,
-      hoverTime: -1,
-      valuePrice: 2,
-      hoverPrice: -1,
-      valueAvailable: 2,
-      hoverAvailable: -1,
+          hoverTime: -1,
+          valuePrice: 2,
+          hoverPrice: -1,
+          valueAvailable: 2,
+          hoverAvailable: -1,
 		};
   }
-  
+
   componentWillMount() {
     this.props.dispatch(drawerActions.invisibleDrawer())
   }
+
+    evaluate = () => {
+	    this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+            this.props.cookies.get('empresaId'),
+            this.props.match.params.id,
+            this.state.valueTime,
+            "tiempoRespuesta",
+            "Yes",
+            true
+        ))
+
+        this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+            this.props.cookies.get('empresaId'),
+            this.props.match.params.id,
+            this.state.valuePrice,
+            "relacionPrecioCalidad",
+            "Oh my god",
+            true
+        ))
+
+        // this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+        //     this.props.cookies.get('empresaId'),
+        //     this.props.match.params.id,
+        //     this.state.valueAvailable,
+        //     "disponibilidad",
+        //     "This is good",
+        //     true
+        // ))
+
+    }
 
   render(){
 
@@ -75,7 +100,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
       <div className={classes.root}>
         <CssBaseline />
         {this.props.appBar}
-       
+
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -83,28 +108,28 @@ class EvaluacionEmpresa extends React.Component <{}, {
 
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
-                    <CardHeader 
+                    <CardHeader
                       // avatar={
                       //   <Avatar aria-label="recipe" className={classes.avatar} >
                       //     E
                       //   </Avatar>
                       // }
                       title="¡Gracias por elegirnos! Tu opinión es importante para nosotros"
-                        
+
                     />
                 <Divider></Divider>
                     <CardContent>
-                     
+
                         <Grid container >
                           <Grid container>
                               <Grid item lg={12}>
-                          
-                        
-                            
+
+
+
                               <Typography variant="subtitle1" gutterBottom className={classes.subtitle}>
                                 Empresa : Symsa
                               </Typography>
-                              
+
                               </Grid>
                              </Grid>
 
@@ -113,8 +138,8 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                               Tiempo de respuesta a los mensajes/consultas
                             </Typography>
-                              
-                            <Rating 
+
+                            <Rating
                             className={classes.respuestaEncuesta}
                               name="hover-feedback-time"
                               value={this.state.valueTime}
@@ -137,8 +162,8 @@ class EvaluacionEmpresa extends React.Component <{}, {
                               <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                               Relación precio - calidad
                        </Typography>
-                            
-                            <Rating 
+
+                            <Rating
                             className={classes.respuestaEncuesta}
                                 name="hover-feedback-price"
                                 value={this.state.valuePrice}
@@ -163,7 +188,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta} >
                             Disponibilidad de productos y/o servicios
                        </Typography>
-                            
+
                        <Rating
                        className={classes.respuestaEncuesta}
                           name="hover-feedback-available"
@@ -193,24 +218,24 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             control={<Radio className={classes.radioButton} />}
                             label="SI"
                             labelPlacement="start"
-                           
+
                           />
                           <FormControlLabel
                             value="NO"
                             control={<Radio className={classes.radioButton} />}
                             label="NO"
                             labelPlacement="start"
-                          
+
                           />
                              </RadioGroup>
-                          
+
                           </Grid>
                           </Grid>
-                            
+
                             <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
-                            
+
                         </Grid>
-                     
+
                     </CardContent>
                     <CardActions>
 
@@ -224,17 +249,17 @@ class EvaluacionEmpresa extends React.Component <{}, {
                               size="small"
                               className={classes.button}
                               startIcon={<SendIcon />}
-                            //   onClick={() => this.register()}
+                              onClick={() => this.evaluate()}
                             >
                               Enviar
                             </Button>
-                            
+
                           </Grid>
                         </Grid>
-                      
+
 
                     </CardActions>
-                    
+
 									</Card>
 								</Grid>
 
@@ -247,7 +272,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
             {this.props.footer}
 					</main>
 
-         
+
 		 </div>
 
     );
