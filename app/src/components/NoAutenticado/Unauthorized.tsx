@@ -1,6 +1,5 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import logo from "./../Login/img/logo.png";
 import Typography from '@material-ui/core/Typography'

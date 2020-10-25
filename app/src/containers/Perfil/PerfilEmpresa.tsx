@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import * as registerActions from '../../store/actions/register'
 import { PerfilEmpresa as EmpresaPerfil} from './../../components/Perfil'
-import Link from '@material-ui/core/Link';
 import { Footer } from './../Footer'
 import { InicioDrawer } from './../DrawerInicio'
 import {AppBar} from './../AppBar'

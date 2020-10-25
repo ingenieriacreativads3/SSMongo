@@ -1,50 +1,41 @@
 import React from 'react';
-import AppBar from './../AppBar'
 import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 
-import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Avatar,  Button, CardContent, FormControlLabel, CardActions,TextareaAutosize, Divider} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Button, CardContent, FormControlLabel, CardActions,TextareaAutosize, Divider} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
-
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
-import * as Login from './../../store/actions/login'
 import Radio from '@material-ui/core/Radio';
+import * as evaluateAction from './../../store/actions/evaluacion'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 import MenuLateral from '../DrawerInicio';
 import * as drawerActions from './../../store/actions/drawer'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function mapStateToProps(store: {
+// 	Item: {},
+// 	login: {
+// 		data: {
+// 			empresa: {
+// 				_id: string
+// 			}
+// 		}
+// 	}
+// }) {
+//   return {
+//     Item: store.Item,
+//     // idEmpresa: store.login.data.empresa._id
+//   };
+// }
 
 function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
+    evaluacionReducer : any
 }) {
-  return {
-    Item: store.Item,
-    // idEmpresa: store.login.data.empresa._id
-  };
+    return {
+        evaluacionReducer : store.evaluacionReducer
+    };
 }
+
 
 class EvaluacionSuppliersStore extends React.Component <{}, {
   valueTime: number | null,
@@ -75,6 +66,24 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
     this.props.dispatch(drawerActions.invisibleDrawer())
   }
 
+    evaluate = () => {
+        this.props.dispatch(evaluateAction.setEvaluacionPlataforma(
+            this.props.match.params.id,
+            this.state.valueTime,
+            true,
+            "Esta copadisima"
+        ))
+
+        // this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+        //     this.props.cookies.get('empresaId'),
+        //     this.props.match.params.id,
+        //     this.state.valueAvailable,
+        //     "disponibilidad",
+        //     "This is good",
+        //     true
+        // ))
+
+    }
 
   render(){
 
@@ -102,28 +111,28 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                        avatar={
-                          <Avatar aria-label="recipe" className={classes.avatar} >
-                            E
-                          </Avatar>
-                        }
+                    <CardHeader
+                        // avatar={
+                        //   <Avatar aria-label="recipe" className={classes.avatar} >
+                        //     E
+                        //   </Avatar>
+                        // }
                         title="Tu opinión es importante para mejorar nuestra plataforma web"
-                        
-                      />
 
+                      />
+                <Divider></Divider>
                     <CardContent>
                       <form className={classes.root}>
                         <Grid container >
                           <Grid container >
-                          
+
                               <Grid item lg={6}>
-                       
-                          
+
+
                         <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                         Navegabilidad del sitio web
                        </Typography>
-                            
+
                             <Rating
                              className={classes.respuestaEncuesta}
                               name="hover-feedback-navigability"
@@ -141,7 +150,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                               }}
                             />
                             { this.state.valueNavigability !== null && <Box  className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverNavigability !== -1 ? this.state.hoverNavigability : this.state.valueNavigability]}</Box>}
-                            
+
                           </Grid>
 
                               <Grid item lg={6}>
@@ -149,7 +158,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                             <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                             Actualización de la plataforma
                        </Typography>
-                            
+
                             <Rating
                              className={classes.respuestaEncuesta}
                                 name="hover-feedback-update"
@@ -167,9 +176,9 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                                 }}
                             />
                             { this.state.valueUpdate !== null && <Box  className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverUpdate !== -1 ? this.state.hoverUpdate : this.state.valueUpdate]}</Box>}
-                            
+
                             </Grid>
-                            
+
                             </Grid>
 
                             <Grid container >
@@ -177,7 +186,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                                   <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                                   Tiempo de respuesta a los mensajes/consultas
                                   </Typography>
-                                  
+
                                   <Rating
                                    className={classes.respuestaEncuesta}
                                       name="hover-feedback-time"
@@ -208,22 +217,22 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                                     control={<Radio className={classes.radioButton} />}
                                     label="SI"
                                     labelPlacement="start"
-                                  
+
                                   />
                                   <FormControlLabel
                                     value="NO"
                                     control={<Radio className={classes.radioButton} />}
                                     label="NO"
                                     labelPlacement="start"
-                                  
+
                                   />
                                 </RadioGroup>
 
                               </Grid>
                               </Grid>
-                            
+
                             <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
-                            
+
                         </Grid>
                       </form>
                     </CardContent>
@@ -243,13 +252,13 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                             >
                               Enviar
                             </Button>
-                            
+
                           </Grid>
                         </Grid>
-                      
+
 
                     </CardActions>
-                    
+
 									</Card>
 								</Grid>
 
@@ -258,12 +267,12 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 							{/* <Box pt={4}>
 								<Copyright />
 							</Box> */}
-              
+
 						</Container>
             {this.props.footer}
 					</main>
 
-         
+
 		 </div>
 
     );

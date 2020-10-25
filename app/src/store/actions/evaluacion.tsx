@@ -19,16 +19,16 @@ export function reintentar() {
 }
 
 export function setEvaluacionEmpresa(
-	empresaCriticaId: string,	
+	empresaCriticaId: string,
 	empresaCriticadaId: string,
 	numeroValoracion:number | null,
 	conceptoValoracion:string,
 	opinion:string,
 	rebuy: boolean,
 ) {
-	
+
 	let payload: any = axios.post(config.url + '/empresa/valorar',{
-    
+
     empresaCriticaId: empresaCriticaId,
     empresaCriticadaId: empresaCriticadaId,
     numeroValoracion: numeroValoracion,
@@ -38,7 +38,7 @@ export function setEvaluacionEmpresa(
 	})
 
 	console.log(payload)
-	
+
   return {
 		type: 'SET_EVALUACION_EMPRESA',
 		payload: payload
@@ -47,23 +47,23 @@ export function setEvaluacionEmpresa(
 }
 
 export function setEvaluacionPlataforma(
-	empresaCriticaId: string,	
-	numeroValoracion:number,
-	conceptoValoracion:string,
-	opinion:string,
-	
+	navegabilidad: string,
+	tiempoRespuesta:number | null,
+	recomienda:boolean,
+	mensaje:string,
+
 ) {
-	
-	let payload: any = axios.post(config.url + '/falta el endpoint',{
-    
-    empresaCriticaId: empresaCriticaId,
-    numeroValoracion: numeroValoracion,
-    conceptoValoracion: conceptoValoracion,
-    opinion: opinion,
+
+	let payload: any = axios.post(config.url + '/plataforma/valorar',{
+
+		navegabilidad: navegabilidad,
+		tiempoRespuesta: tiempoRespuesta,
+		recomienda: recomienda,
+		mensaje: mensaje,
 	})
 
 	console.log(payload)
-	
+
   return {
 		type: 'SET_EVALUACION_PLATAFORMA',
 		payload: payload

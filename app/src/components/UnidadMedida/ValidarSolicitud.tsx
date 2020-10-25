@@ -1,29 +1,14 @@
 import React from 'react';
-import AppBar from '../AppBar'
 import clsx from 'clsx'
-import SendIcon from '@material-ui/icons/Send';
 import { withStyles } from '@material-ui/core/styles';
-import {TextField, Container,Divider, Grid, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {TextField, Divider, Grid,  Paper, Box, Typography, CssBaseline, Button, FormControl, InputLabel, Select, MenuItem} from '@material-ui/core';
 
-import MenuLateral from '../Drawer'
+import * as unidadDeMedidaAction from './../../store/actions/unidadDeMedida'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const CssTextField = withStyles({
   root: {
@@ -47,19 +32,27 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
+// function mapStateToProps(store: {
+// 	Item: {},
+// 	login: {
+// 		data: {
+// 			empresa: {
+// 				_id: string
+// 			}
+// 		}
+// 	}
+// }) {
+//   return {
+//     Item: store.Item,
+//     //idEmpresa: store.login.data.empresa._id
+//   };
+// }
+
 function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
+  unidadDeMedidaReducer : any
 }) {
   return {
-    Item: store.Item,
-    //idEmpresa: store.login.data.empresa._id
+    unidadDeMedidaReducer : store.unidadDeMedidaReducer
   };
 }
 
@@ -92,7 +85,7 @@ class ValidarSolicitud extends React.Component {
       } */
     };
   }
-/* 
+/*
   onSubmit() {
     this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
   }
@@ -175,10 +168,27 @@ class ValidarSolicitud extends React.Component {
   } */
 
 
+  sendValidation = () => {
+    this.props.dispatch(unidadDeMedidaAction.setSolicitud(
+        this.props.match.params.id,
+        "GAL",
+        "Galeones"
+    ))
+
+    // this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+    //     this.props.cookies.get('empresaId'),
+    //     this.props.match.params.id,
+    //     this.state.valueAvailable,
+    //     "disponibilidad",
+    //     "This is good",
+    //     true
+    // ))
+
+  }
+
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 
     return(
 
@@ -188,109 +198,83 @@ class ValidarSolicitud extends React.Component {
         {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg"  className={classes.container}>
-							<Grid container >
-
-                <Grid item lg={12} xs={12} >
-									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                        // avatar={
-                        //   <Avatar aria-label="recipe" className={classes.avatar} >
-                        //     S
-                        //   </Avatar>
-                        // }
-                        // title="Solicitud Unidad de Medida"
-                        
-                      />
- <Typography component="div" >
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+            >
+            <Paper style={{ padding: 20, margin:50}}>
+              <Typography component="div" >
                 <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
-                {"Solicitud Unidad de Medida"}</Box>
+                {'Solicitud Unidad de Medida'}
+                </Box>
               </Typography>
-<Divider className={classes.divider} />
-                    <CardContent>
-                      <form className={classes.root}>
-                        <Grid container spacing={10} >
-                          <Grid container >
-                            <Grid item lg={4} xs={6}>
-                            <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud"  defaultValue="20" className={classes.input} />
-                            
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                            <CssTextField disabled id="custom-css-standard-input" label="Fecha"  defaultValue="03/04/2020" className={classes.input} />
-                            
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
-                           
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <CssTextField  id="custom-css-standard-input" label="Unidad"  defaultValue="Metro cuadrado" className={classes.input} />
-                            
-                            </Grid>
+              <Divider className={classes.divider} />
+            <FormControl>
+            <form >
+            <Grid container spacing={3}>
+              <Grid container xs={12} sm={12}>
+                <Grid item xs={12} sm={4}>
+                <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud"  defaultValue="20" className={classes.input} />
+                </Grid>
 
-                            <Grid item lg={4} xs={12}>
-                            <CssTextField  id="custom-css-standard-input" label="Simbolo"  defaultValue="M2" className={classes.input} />
+                <Grid item xs={12} sm={4}>
+                <CssTextField disabled id="custom-css-standard-input" label="Fecha"  defaultValue="03/04/2020" className={classes.input} />
+                </Grid>
 
-                           
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
-                                <Select
-                                  labelId="demo-simple-select-label"
-                                  id="demo-simple-select"
-                                  defaultValue={1}
-                                >
-                                  <MenuItem value={1}>No resuelta</MenuItem>
-                                  <MenuItem value={2}>Resuelta</MenuItem>
-                                  
-                                </Select>
-                              </FormControl>
-                            </Grid>
+                <Grid item xs={12} sm={4}>
+                <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
+                </Grid>
 
+                <Grid item xs={12} sm={4}>
+                <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
+                </Grid>
 
-                          </Grid>
-                          
-                         
-                        </Grid>
-                      </form>
-                    </CardContent>
-                    <CardActions>
+                <Grid item xs={12} sm={4}>
+                <CssTextField  id="custom-css-standard-input" label="Unidad"  defaultValue="Metro cuadrado" className={classes.input} />
+                </Grid>
 
-                        <Grid container spacing={3} direction = 'column' alignItems = 'flex-end'  >
+                <Grid item xs={12} sm={4}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      defaultValue={1}
+                    >
+                      <MenuItem value={1}>No resuelta</MenuItem>
+                      <MenuItem value={2}>Resuelta</MenuItem>
 
-                          <Grid item lg={12} >
+                    </Select>
+                  </FormControl>
+                </Grid>
+              </Grid>
+            </Grid>
+            </form>
 
-                            <Button
-                              variant="contained"
-                              color='primary'
-                              size="small"
-                              className={classes.button}
-                              // endIcon={<SendIcon></SendIcon>}
-                              
-                            >
-                             Aceptar
-                            </Button>
-                            
-                          </Grid>
-                        </Grid>
-                      
+            <div style={{ width: "100%",  marginTop:"1rem" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              <Button
+                variant="contained"
+                color='primary'
+                size="small"
+                className={classes.button}
+                // endIcon={<SendIcon></SendIcon>}
 
-                    </CardActions>
-                    
-									</Card>
-								</Grid>
-
-
-							</Grid>
-							{/* <Box pt={4}>
-								<Copyright />
-							</Box> */}
-						</Container>
+              >
+                Aceptar
+              </Button>
+              </Box>
+            </div>
+            </FormControl>
+            </Paper>
+            </Grid>
             {this.props.footer}
 					</main>
 
-         
+
 		 </div>
 
     );

@@ -1,18 +1,7 @@
 import React from 'react'
-import clsx from 'clsx'
-
-
-
-import { Container,Box, Grid, Paper, FormControl,Divider, Card,Typography,CssBaseline, Tab, Tabs,  Button, CardContent} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {Box, Grid, Paper, FormControl,Typography,CssBaseline, Tab, Tabs,  Button} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
-
-
-
-
-//import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-
 import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
@@ -22,18 +11,6 @@ import { autoPlay } from 'react-swipeable-views-utils';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},
@@ -113,7 +90,6 @@ class Detalle extends React.Component <{
 
     const classes = this.props.classes
     const theme = this.props.theme
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
     const tutorialSteps: {
       label: string,
       imgPath: string

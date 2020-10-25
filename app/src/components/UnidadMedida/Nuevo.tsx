@@ -1,12 +1,9 @@
 import React from 'react';
-import AppBar from './../AppBar'
-import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid, Card, Box,Divider, Typography, TextField, CssBaseline, CardHeader, Avatar, Button, CardContent, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
-import MenuLateral from '../DrawerInicio'
+import {  Grid, Paper, FormControl,  Box,Divider, Typography, TextField, CssBaseline, Button} from '@material-ui/core';
+
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -34,18 +31,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},
@@ -178,7 +163,6 @@ class Nuevo extends React.Component {
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight2);
 
     return(
 
@@ -188,99 +172,68 @@ class Nuevo extends React.Component {
         {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" className={classes.container}>
-							<Grid container spacing={3}>
-
-                <Grid item lg={9}>
-									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                        // avatar={
-                        //   <Avatar aria-label="recipe" className={classes.avatar} >
-                        //     N
-                        //   </Avatar>
-                        // }
-                        // title="Nueva Unidad de Medida"
-                        
-                      />
-                       <Typography component="div" >
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+            >
+              <Paper style={{ padding: 20, margin:50}}>
+              <Typography component="div" >
                 <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
-                {"Nueva Unidad de Medida"}</Box>
+                {'Nueva Unidad de Medida'}
+                </Box>
               </Typography>
-<Divider className={classes.divider} />
+              <Divider className={classes.divider} />
+            <FormControl>
+            <form id="formUnidadMedidaNuevo">
+            <Grid container spacing={3}>
+              
+                <Grid item xs={12} sm={6}>
+                <CssTextField
+                  className={classes.inputNuevo}
+                  id="Unidad"
+                  label="Unidad"
+                  onChange={ this.props.getUnidad }
+                  required={true}
+                  error={this.props.errors.Unidad != null ? true : false}
+                  helperText={this.props.errors.Unidad != null ? this.props.errors.Unidad : ""}
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <CssTextField
+                    className={classes.inputNuevo}
+                    id="Simbolo"
+                    label="Simbolo"
+                    onChange={ this.props.getSimbolo }
+                    required={true}
+                    error={this.props.errors.Simbolo != null ? true : false}
+                    helperText={this.props.errors.Simbolo != null ? this.props.errors.Simbolo : ""}
+                  />
+                </Grid>
+              
+            </Grid>
+            </form>
 
-                    <CardContent>
-                      <form  id="formUnidadMedidaNuevo" className={classes.root}>
-                        <Grid container >
-                          <Grid container >
-                            {/* <Grid item lg={6} xs={12}>
-                            <CssTextField className={classes.inputNuevo} disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft"  />
-                          
-                            </Grid> */}
-                            <Grid item lg={6}  xs={12}>
-                              <CssTextField
-                                className={classes.inputNuevo}
-                                id="Unidad"
-                                label="Unidad"
-                                onChange={ this.props.getUnidad }
-                                required={true}
-                                error={this.props.errors.Unidad != null ? true : false}
-                                helperText={this.props.errors.Unidad != null ? this.props.errors.Unidad : ""}
-                              />
-
-                           
-                            </Grid>
-                            <Grid item lg={6}  xs={12}>
-                              <CssTextField
-                                className={classes.inputNuevo}
-                                id="Simbolo"
-                                label="Simbolo"
-                                onChange={ this.props.getSimbolo }
-                                required={true}
-                                error={this.props.errors.Simbolo != null ? true : false}
-                                helperText={this.props.errors.Simbolo != null ? this.props.errors.Simbolo : ""}
-                              />
-
-                          
-                            </Grid>
-                          </Grid>
-                         
-                          
-                        </Grid>
-                      </form>
-                    </CardContent>
-                    <CardActions>
-
-                        <Grid container  direction = 'column' alignItems = 'flex-end'  >
-
-                          <Grid item lg={12} xs={12}>
-
-                            <Button
-                              variant="contained"
-                              color='primary'
-                              size="small"
-                              className={classes.buttonNuevo}
-                              endIcon={<SendIcon />}
-                              onClick={ this.props.save }
-                              disabled={ !this.props.formValid }
-                            >
-                             Enviar
-                            </Button>
-                            
-                          </Grid>
-                        </Grid>
-                      
-
-                    </CardActions>
-                    
-									</Card>
-								</Grid>
-
-
-							</Grid>
-							{/* <Box pt={4}>
-								<Copyright />
-							</Box> */}
-						</Container>
+            <div style={{ width: "100%",  marginTop:"1rem" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              <Button
+                variant="contained"
+                color='primary'
+                size="small"
+                className={classes.buttonNuevo}
+                endIcon={<SendIcon />}
+                onClick={ this.props.save }
+                disabled={ !this.props.formValid }
+              >
+                Enviar
+              </Button>
+              </Box>
+            </div>
+            </FormControl>
+            </Paper>
+            </Grid>
             {this.props.footer}
 					</main>
 

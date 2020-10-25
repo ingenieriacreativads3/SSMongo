@@ -1,28 +1,13 @@
 import React from 'react';
-import AppBar from '../AppBar'
-import clsx from 'clsx'
 
-import { Container, Grid, Divider, TextField, Card, Box, Typography,Chip, CssBaseline, CardHeader, Avatar,  Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, Checkbox, CardActions, ListItemText} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+
+import { Grid, Divider, Paper, TextField, Box, Typography,Chip, CssBaseline,  Button,  Input, FormControl, InputLabel, Select, MenuItem, Checkbox,  ListItemText} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
 
-import * as SolicitudDeValidacionActions from './../../store/actions/solicitudDeValidacion'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: {}
@@ -137,9 +122,6 @@ class Validacion extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-
-    let listaRubros: string[] = []
 
     let rubros: any[] = []
     let grupos: any[] = []
@@ -193,275 +175,241 @@ class Validacion extends React.Component <{
         {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" className={classes.container}>
-							<Grid container >
-
-                <Grid item lg={12}>
-									<Card className={fixedHeightCard}>
-                    <CardHeader 
-
-                      // avatar={
-                      //   <Avatar aria-label="recipe" className={classes.avatar}>
-                      //     S
-                      //   </Avatar>
-                      // }
-                      // title={this.props.title}
-                      
-                    />
-                     <Typography component="div" >
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+            >
+            <Paper style={{ padding: 20, margin:50}}>
+              <Typography component="div" >
                 <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
-                {this.props.title}</Box>
+                {this.props.title}
+                </Box>
               </Typography>
-<Divider className={classes.divider} />
-                    <CardContent>
-                      <form className={classes.root}>
-                        <Grid container >
-                          <Grid container >
-                            <Grid item lg={4} xs={12}>
-                              <TextField disabled id="standard-required" label="Empresa" value={this.props.nombre}  className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                            <TextField disabled id="standard-required" label="CUIT" value={this.props.cuit}  className={classes.input}  />
-                            </Grid>
+              <Divider className={classes.divider} />
+            <FormControl>
+            <form >
+            <Grid container spacing={3}>
+              <Grid container xs={12} sm={12}>
+                <Grid item xs={12} sm={3}>
+                <TextField disabled id="standard-required" label="Empresa" value={this.props.nombre}  className={classes.input}  />
+                </Grid>
 
-                            <Grid item lg={4} xs={6}>
-                              <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" style={{textDecoration: 'none'}} target="_blank" >
-                                <Button
-                                type="button"
-                                
-                                variant="outlined"
-                                className={classes.Boton}
-                                // onClick={this.ingresar}
-                                >
-                                Validar CUIT
-                                </Button>
-                              </Link>
-                            </Grid>
+                <Grid item xs={12} sm={3}>
+                <TextField disabled id="standard-required" label="CUIT" value={this.props.cuit}  className={classes.input}  />
+                </Grid>
 
-                            
-                            <Grid item lg={4} xs={6}>
-                            
-                            <Link href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do" style={{textDecoration: 'none'}} target="_blank" >
-                              <Button
-                              type="button"
-                              
-                              variant="outlined"
-                              className={classes.Boton}
-                              // onClick={this.ingresar}
-                              >
-                              Verificar rubro
-                              </Button>
-                            </Link>
-                            
-                            
-                              
-                          </Grid>
-                            
-                          </Grid>
-                          
-                         
-                          <Grid container>
-                            <Grid item lg={6} xs={12}>
-                              <FormControl className={classes.formControl}>
-                              <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
-                                <Select
-                                  labelId="demo-simple-select-label"
-                                  id="demo-simple-select"
-                                  defaultValue={1}
-                                  // value={unidadDeMedida}
-                                  // onChange={this.getUnidadDeMedida}
-                                  
-                                >
-                                  <MenuItem value={1}>No Validada</MenuItem>
-                                  <MenuItem value={2}>Validada</MenuItem>
-                                  <MenuItem value={3}>Autenticada</MenuItem>
-                                  <MenuItem value={4}>No Autenticada</MenuItem>
-                                 
-                                </Select>
-                              </FormControl>
-                            </Grid>
-                            <Grid item lg={6} xs={12}>
-                              <FormControl className={classes.formControl}>
-                                <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Sección</InputLabel>
-                                <Select
-                                  labelId="demo-mutiple-chip-label"
-                                  id="demo-mutiple-chip"
-                                  multiple
-                                  value={rubros}
-                                  // onChange={this.handleChange}
-                                  input={<Input id="select-multiple-chip" />}
-                                  renderValue={(selected: any) => (
-                                    <div className={classes.chips}>
-                                      {
-                                        selected.map((rubro: {
-                                          letra: string,
-                                          nombre: string,
-                                        }) => {
-                                          return <Chip key={rubro.letra} label={rubro.nombre} className={classes.chip} />
-                                        })
-                                      }
-                                    </div>
-                                  )}
-                                  MenuProps={MenuProps}
-                                >
-                                  {
-                                    this.props.listaRubros.map((rubro: {
-                                      letra: string,
-                                      nombre: string,
-                                    }) => {
-                                      let exist= false
-                                      rubros.map((item: {
-                                        nombre: string
-                                      }) => {
-                                        if(item.nombre == rubro.nombre) exist = true
-                                      })
+                <Grid item xs={12} sm={3}>
+                <Link href="https://www.argentina.gob.ar/justicia/registro-nacional-sociedades" style={{textDecoration: 'none'}} target="_blank" >
+                  <Button
+                  type="button"
+                  
+                  variant="outlined"
+                  className={classes.Boton}
+                  // onClick={this.ingresar}
+                  >
+                  Validar CUIT
+                  </Button>
+                </Link>
+                </Grid>
 
-                                      return <MenuItem onClick={ () => this.onClickRubro(rubro.letra) } key={rubro.letra} value={rubro.nombre}>
-                                        <Checkbox checked={exist} />
-                                        <ListItemText  primary={rubro.nombre} />
-                                      </MenuItem>
-                                    })
-                                  }
-                                </Select>
-                              </FormControl>
-                            </Grid>
+                <Grid item xs={12} sm={3}>
+                <Link href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do" style={{textDecoration: 'none'}} target="_blank" >
+                  <Button
+                  type="button"
+                  
+                  variant="outlined"
+                  className={classes.Boton}
+                  // onClick={this.ingresar}
+                  >
+                  Verificar rubro
+                  </Button>
+                </Link>
+                </Grid>
 
-                            <Grid item lg={4} xs={12}>
-                              <FormControl className={classes.formControl}>
-                                <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Grupo</InputLabel>
-                                <Select
-                                  labelId="demo-mutiple-chip-label"
-                                  id="demo-mutiple-chip"
-                                  multiple
-                                  value={grupos}
-                                  // onChange={this.handleChange}
-                                  input={<Input id="select-multiple-chip" />}
-                                  renderValue={(selected: any) => (
-                                    <div className={classes.chips}>
-                                      {
-                                        selected.map((grupo: {
-                                          number: string,
-                                          nombre: string,
-                                        }) => {
-                                          return <Chip key={grupo.number} label={grupo.nombre} className={classes.chip} />
-                                        })
-                                      }
-                                    </div>
-                                  )}
-                                  MenuProps={MenuProps}
-                                >
-                                  {
-                                    this.props.listaGrupos.map((grupo: {
-                                      number: string,
-                                      nombre: string,
-                                    }) => {
-                                      let exist= false
-                                      grupos.map((item: {
-                                        nombre: string
-                                      }) => {
-                                        if(item.nombre == grupo.nombre) exist = true
-                                      })
+              </Grid>
 
-                                      return <MenuItem onClick={ () => this.onClickGrupo(grupo.number) } key={grupo.number} value={grupo.nombre}>
-                                        <Checkbox checked={exist} />
-                                        <ListItemText  primary={grupo.nombre} />
-                                      </MenuItem>
-                                    })
-                                  }
-                                </Select>
-                              </FormControl>
-                            </Grid>
+              <Grid container xs={12} sm={12}>
+                <Grid item xs={12} sm={6}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      defaultValue={1}
+                      // value={unidadDeMedida}
+                      // onChange={this.getUnidadDeMedida}
+                      
+                    >
+                      <MenuItem value={1}>No Validada</MenuItem>
+                      <MenuItem value={2}>Validada</MenuItem>
+                      <MenuItem value={3}>Autenticada</MenuItem>
+                      <MenuItem value={4}>No Autenticada</MenuItem>
+                      
+                    </Select>
+                  </FormControl>
+                </Grid>
 
-                            <Grid item lg={4} xs={12}>
-                              <FormControl className={classes.formControl}>
-                                <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Actividad</InputLabel>
-                                <Select
-                                  labelId="demo-mutiple-chip-label"
-                                  id="demo-mutiple-chip"
-                                  multiple
-                                  value={actividades}
-                                  // onChange={this.handleChange}
-                                  input={<Input id="select-multiple-chip" />}
-                                  renderValue={(selected: any) => (
-                                    <div className={classes.chips}>
-                                      {
-                                        selected.map((actividad: {
-                                          number: string,
-                                          name: string,
-                                        }) => {
-                                          return <Chip key={actividad.number} label={actividad.name} className={classes.chip} />
-                                        })
-                                      }
-                                    </div>
-                                  )}
-                                  MenuProps={MenuProps}
-                                >
-                                  {
-                                    this.props.listaActividades.map((actividad: {
-                                      number: string,
-                                      name: string,
-                                    }) => {
-                                      let exist= false
-                                      actividades.map((item: {
-                                        name: string
-                                      }) => {
-                                        if(item.name == actividad.name) exist = true
-                                      })
+                <Grid item xs={12} sm={6}>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-mutiple-chip-label"  className={classes.inputLabel}>Sección</InputLabel>
+                    <Select
+                      labelId="demo-mutiple-chip-label"
+                      id="demo-mutiple-chip"
+                      multiple
+                      value={rubros}
+                      fullWidth = {true}
+                      // onChange={this.handleChange}
+                      input={<Input id="select-multiple-chip" />}
+                      renderValue={(selected: any) => (
+                        <div className={classes.chips}>
+                          {
+                            selected.map((rubro: {
+                              letra: string,
+                              nombre: string,
+                            }) => {
+                              return <Chip key={rubro.letra} label={rubro.nombre} className={classes.chip} />
+                            })
+                          }
+                        </div>
+                      )}
+                      MenuProps={MenuProps}
+                    >
+                      {
+                        this.props.listaRubros.map((rubro: {
+                          letra: string,
+                          nombre: string,
+                        }) => {
+                          let exist= false
+                          rubros.map((item: {
+                            nombre: string
+                          }) => {
+                            if(item.nombre == rubro.nombre) exist = true
+                          })
 
-                                      return <MenuItem onClick={ () => this.onClickActividad(actividad.number) } key={actividad.number} value={actividad.name}>
-                                        <Checkbox checked={exist} />
-                                        <ListItemText primary={actividad.name} />
-                                      </MenuItem>
-                                    })
-                                  }
-                                </Select>
-                              </FormControl>
-                            </Grid>
+                          return <MenuItem onClick={ () => this.onClickRubro(rubro.letra) } key={rubro.letra} value={rubro.nombre}>
+                            <Checkbox checked={exist} />
+                            <ListItemText  primary={rubro.nombre} />
+                          </MenuItem>
+                        })
+                      }
+                    </Select>
+                  </FormControl>
+                </Grid>
 
+                <Grid item xs={12} sm={6}>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Grupo</InputLabel>
+                    <Select
+                      labelId="demo-mutiple-chip-label"
+                      id="demo-mutiple-chip"
+                      multiple
+                      value={grupos}
+                      // onChange={this.handleChange}
+                      input={<Input id="select-multiple-chip" />}
+                      renderValue={(selected: any) => (
+                        <div className={classes.chips}>
+                          {
+                            selected.map((grupo: {
+                              number: string,
+                              nombre: string,
+                            }) => {
+                              return <Chip key={grupo.number} label={grupo.nombre} className={classes.chip} />
+                            })
+                          }
+                        </div>
+                      )}
+                      MenuProps={MenuProps}
+                    >
+                      {
+                        this.props.listaGrupos.map((grupo: {
+                          number: string,
+                          nombre: string,
+                        }) => {
+                          let exist= false
+                          grupos.map((item: {
+                            nombre: string
+                          }) => {
+                            if(item.nombre == grupo.nombre) exist = true
+                          })
 
-                            <Grid item lg={4} xs={12}>
-                            <Button
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            className={classes.button}
-                            // startIcon={<SaveIcon />}
-                          >
-                            Aceptar
-                          </Button>
-                            </Grid>
+                          return <MenuItem onClick={ () => this.onClickGrupo(grupo.number) } key={grupo.number} value={grupo.nombre}>
+                            <Checkbox checked={exist} />
+                            <ListItemText  primary={grupo.nombre} />
+                          </MenuItem>
+                        })
+                      }
+                    </Select>
+                  </FormControl>
+                </Grid>
 
-                            
-                           
-                        </Grid>
-                        </Grid>
-                      </form>
-                    </CardContent>
-                    <CardActions>
-                      {/* <Grid container  direction = 'column' alignItems = 'flex-end'  >
-                        <Grid item lg={12} >
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            className={classes.button}
-                            // startIcon={<SaveIcon />}
-                          >
-                            Aceptar
-                          </Button>
-                          </Grid>  
-                        </Grid> */}
-                    </CardActions>
-                    
-									</Card>
-								</Grid>
+                <Grid item xs={12} sm={6}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Actividad</InputLabel>
+                  <Select
+                    labelId="demo-mutiple-chip-label"
+                    id="demo-mutiple-chip"
+                    multiple
+                    value={actividades}
+                    // onChange={this.handleChange}
+                    input={<Input id="select-multiple-chip" />}
+                    renderValue={(selected: any) => (
+                      <div className={classes.chips}>
+                        {
+                          selected.map((actividad: {
+                            number: string,
+                            name: string,
+                          }) => {
+                            return <Chip key={actividad.number} label={actividad.name} className={classes.chip} />
+                          })
+                        }
+                      </div>
+                    )}
+                    MenuProps={MenuProps}
+                  >
+                    {
+                      this.props.listaActividades.map((actividad: {
+                        number: string,
+                        name: string,
+                      }) => {
+                        let exist= false
+                        actividades.map((item: {
+                          name: string
+                        }) => {
+                          if(item.name == actividad.name) exist = true
+                        })
 
+                        return <MenuItem onClick={ () => this.onClickActividad(actividad.number) } key={actividad.number} value={actividad.name}>
+                          <Checkbox checked={exist} />
+                          <ListItemText primary={actividad.name} />
+                        </MenuItem>
+                      })
+                    }
+                  </Select>
+                </FormControl>
+                </Grid>
+              </Grid>
+            </Grid>
+            </form>
 
-							</Grid>
-							{/* <Box pt={4}>
-								<Copyright />
-							</Box> */}
-						</Container>
+            <div style={{ width: "100%",  marginTop:"1rem" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                className={classes.button}
+                // startIcon={<SaveIcon />}
+              >
+                Aceptar
+              </Button>
+              </Box>
+            </div>
+            </FormControl>
+            </Paper>
+            </Grid>
             {this.props.footer}
 					</main>
 

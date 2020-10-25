@@ -1,13 +1,10 @@
 import React from 'react';
-import clsx from 'clsx'
 import SendIcon from '@material-ui/icons/Send';
-import AppBar from '../../components/AppBar'
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Grid,Divider, Card, Box, Typography, CssBaseline, CardHeader, Avatar, TextField, Button, CardContent,CardActions,TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Grid,Divider, Paper, FormControl, Box, Typography, CssBaseline, TextField, Button, TextareaAutosize} from '@material-ui/core';
 
-import MenuLateral from './../DrawerInicio'
+
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -35,19 +32,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},
@@ -138,8 +122,6 @@ class Nuevo extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    
     console.log(this.props.errors.CantidadPedido);
 
     return(
@@ -150,123 +132,107 @@ class Nuevo extends React.Component <{
         {this.props.drawer}
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" className={classes.container}>
-							<Grid container >
-
-                <Grid item lg={12}>
-									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                        // avatar={
-                        //   <Avatar aria-label="recipe" className={classes.avatar} >
-                        //     N
-                        //   </Avatar>
-                        // }
-                        // title="Nuevo Pedido"
-                        
-                      />
-
-                    <CardContent>
-                    <Typography component="div" >
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+            >
+            <Paper style={{ padding: 20, margin:50}}>
+              <Typography component="div" >
                 <Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"  fontStyle='italic'  fontWeight="fontWeightBold" fontSize={22}>
-                {'Nuevo Pedido'}</Box>
+                {'Nuevo Pedido'}
+                </Box>
               </Typography>
-<Divider className={classes.divider} />
+              <Divider className={classes.divider} />
+            <FormControl>
+            <form id="formNuevoPedido">
+            <Grid container spacing={3}>
+              <Grid container xs={12} sm={12}>
+                <Grid item xs={12} sm={12}>
+                  <Typography style={{marginTop:'20px', marginLeft:'15px'}} variant="h5" component="h2">
+                    Mis datos
+                    </Typography>
+                </Grid>
 
-                      <form id="formNuevoPedido" className={classes.root}>
-                      
-                        <Grid container >
-                        <CardContent>
-                        <Typography variant="h5" component="h2">
-                          Mis datos
-                        </Typography>
-                    </CardContent>
-                          <Grid container >
-                            
-                            <Grid item lg={4}>
-                              <TextField disabled id="Empresa" label="Empresa" value={this.props.empresa.nombre} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
-                              <TextField disabled id="Email" label="Email" value={this.props.empresa.email} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
-                              <TextField disabled id="Domicilio" label="Domicilio" value={this.props.empresa.domicilioLegal} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
-                              <TextField disabled id="Provincia" label="Provincia" value={this.props.empresa.provincia} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4}>
-                              <TextField disabled id="Ciudad" label="Ciudad" value={this.props.empresa.localidad} className={classes.input}  />
-                            </Grid>
-                          </Grid>
-                          <Grid container>
-                            <Grid item lg={4}>
-                              <TextField disabled id="Telefono" label="Telefono" value={this.props.empresa.telefono} className={classes.input}  />
-                            </Grid>
-                          </Grid>
-                          
-                          <CardContent>
-                            <Typography variant="h5" component="h2">
-                              Datos de pedido
-                            </Typography>
-                          </CardContent>
-                          <Grid container >
-                            <Grid item lg={4} xs={6}>
-                              <TextField disabled id="Nombre" label="Nombre" value={this.props.item.nombre} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                              <TextField disabled id="Precio" label="Precio" value={this.props.item.precio} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                              <TextField disabled id="Unidad" label="Unidad" value={this.props.item.unidad_de_medida.nombre} className={classes.input}  />
-                            </Grid>
-                            <Grid item lg={4} xs={6}>
-                              <CssTextField className={classes.margin} id="CantidadPedido" label="Cantidad" type="number" onChange={this.props.getCantidadItem} 
-                              required={true}
-                              error={this.props.errors.CantidadPedido != null ? true : false}
-                              helperText={this.props.errors.CantidadPedido != null ? this.props.errors.CantidadPedido : ""}
-                              inputProps={{min:1}}/>
-                            </Grid>
-                            <Grid item lg={4} xs={12}>
-                              <TextareaAutosize style={{borderRadius:7}}  aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
-                            </Grid>
-                          </Grid>
-                            
-                        </Grid>
-                      </form>
-                    </CardContent>
-                    <CardActions>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Empresa" label="Empresa" value={this.props.empresa.nombre} className={classes.input}  />
+                </Grid>
 
-                        <Grid container  direction='column' alignItems='flex-end'>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Email" label="Email" value={this.props.empresa.email} className={classes.input}  />
+                </Grid>
 
-                          <Grid item lg={12} >
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Domicilio" label="Domicilio" value={this.props.empresa.domicilioLegal} className={classes.input}  />
+                </Grid>
 
-                            <Button
-                              variant="contained"
-                              color='primary'
-                              size="small"
-                              className={classes.button}
-                              startIcon={<SendIcon />}
-                              onClick={() => this.props.save(this.props.item._id, this.props.item.catalogo.empresa._id)}
-                              disabled={ !this.props.formValido   }
-                            >
-                              Enviar
-                            </Button>
-                            
-                          </Grid>
-                        </Grid>
-                      
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Provincia" label="Provincia" value={this.props.empresa.provincia} className={classes.input}  />
+                </Grid>
 
-                    </CardActions>
-                    
-									</Card>
-								</Grid>
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Ciudad" label="Ciudad" value={this.props.empresa.localidad} className={classes.input}  />
+                </Grid>
 
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Telefono" label="Telefono" value={this.props.empresa.telefono}/>
+                </Grid>
+              </Grid>
 
-							</Grid>
-							{/* <Box pt={4}>
-								<Copyright />
-							</Box> */}
-						</Container>
+              <Grid container xs={12} sm={12}>
+              <Grid item xs={12} sm={12}>
+                  <Typography style={{marginTop:'20px', marginLeft:'15px'}} variant="h5" component="h2">
+                  Datos de pedido
+                    </Typography>
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Nombre" label="Nombre" value={this.props.item.nombre} className={classes.input}  />
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Precio" label="Precio" value={this.props.item.precio} className={classes.input}  />
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                <TextField disabled id="Unidad" label="Unidad" value={this.props.item.unidad_de_medida.nombre} className={classes.input}  />
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                <CssTextField className={classes.margin} id="CantidadPedido" label="Cantidad" type="number" onChange={this.props.getCantidadItem} 
+                  required={true}
+                  error={this.props.errors.CantidadPedido != null ? true : false}
+                  helperText={this.props.errors.CantidadPedido != null ? this.props.errors.CantidadPedido : ""}
+                  inputProps={{min:1}}/>
+                </Grid>
+
+                <Grid item xs={12} sm={4}>
+                <TextareaAutosize style={{borderRadius:7}}  aria-label="minimum height" rowsMin={10} className={classes.textTarea} placeholder="Mensaje" onChange={this.props.getComentario}  />
+                </Grid>
+              </Grid>
+            </Grid>
+            </form>
+
+            <div style={{ width: "100%",  marginTop:"1rem" }}>
+              <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
+              <Button
+                variant="contained"
+                color='primary'
+                size="small"
+                className={classes.button}
+                startIcon={<SendIcon />}
+                onClick={() => this.props.save(this.props.item._id, this.props.item.catalogo.empresa._id)}
+                disabled={ !this.props.formValido   }
+              >
+                Enviar
+              </Button>
+              </Box>
+            </div>
+            </FormControl>
+            </Paper>
+            </Grid>
             {this.props.footer}
 					</main>
 

@@ -1,26 +1,15 @@
 import React from 'react';
-import AppBar from './../AppBar'
-import clsx from 'clsx'
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import SaveIcon from '@material-ui/icons/Save';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { createMuiTheme, withStyles } from '@material-ui/core/styles';
-import { Container, Grid, Card, Box, Typography, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Paper, List, Divider, TextField, CssBaseline, CardHeader, Avatar, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions, InputAdornment} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import { withStyles } from '@material-ui/core/styles';
+import { Container, Grid,ListItem, ListItemIcon, ListItemText, Paper, List, Divider, TextField, CssBaseline, Avatar} from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
 import { FixedSizeList } from 'react-window';
 
 
-import * as ubicacionActions from './../../store/actions/ubicacion'
-import * as fileActions from './../../store/actions/file'
-
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
+
 
 
 const CssTextField = withStyles({
@@ -44,24 +33,6 @@ const CssTextField = withStyles({
       },
     },
   })(TextField);
-  
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-
-
-
 
 function mapStateToProps(store: {
   
@@ -85,14 +56,9 @@ class ChatRoom extends React.Component <{
 	static propTypes: any
 	static defaultProps: any
  
-  constructor(props: any) {
-    super(props);
-   
-  }
+  
 
   renderRow(props:any) {
-    const { index, style } = props;
-  
     return (
       <ListItem button key="Alice">
         <ListItemIcon>
@@ -131,15 +97,7 @@ class ChatRoom extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    const theme = createMuiTheme({
-      palette: {
-        //primary: orange,
-        secondary: {
-          main: '#ffba00',
-        },
-      },
-    });
+    
 
 
     

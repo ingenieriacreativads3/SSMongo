@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
-import { InicioDrawer } from './../DrawerInicio'
-import Link from '@material-ui/core/Link';
+
 
 import { EvaluarEmpresa as EvaluacionEmpresa} from './../../components/Evaluacion'
 import { OneButton } from './../../components/Dialogs'
 
 import * as evaluacionActions from './../../store/actions/evaluacion'
 import * as dialogActions from './../../store/actions/dialog'
-import DrawerInicio from '../../components/DrawerInicio';
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 

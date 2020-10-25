@@ -1,29 +1,14 @@
 import React from 'react';
-import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField,Divider, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent, FormControl, InputLabel, Select, MenuItem, CardActions, TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
-import Link from '@material-ui/core/Link';
-import menuLateral from '../Drawer'
+import { Container, Grid,TextField,Divider, Card, Box, Typography, CssBaseline, CardHeader, Button, CardContent, FormControl, InputLabel, Select, MenuItem, CardActions} from '@material-ui/core';
+
 
 import { connect } from 'react-redux'
 import MenuLateral from '../Drawer';
 
 import * as presupuestoActions  from './../../store/actions/presupuesto'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
   presupuestoReducer: {}
@@ -74,11 +59,11 @@ class DetallePresupuesto extends React.Component <{
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 
-    let presupuesto = {
-        _id: '',
-        empresa_perteneciente_id: '',
-        importe: '',
-    }
+    // let presupuesto = {
+    //     _id: '',
+    //     empresa_perteneciente_id: '',
+    //     importe: '',
+    // }
 
     // if(
     //   this.props.solicitudDeValidacionReducer.status === 200
@@ -202,9 +187,7 @@ class DetallePresupuesto extends React.Component <{
 
 
 							</Grid>
-							<Box pt={4}>
-								<Copyright />
-							</Box>
+							
 						</Container>
 					</main>
 

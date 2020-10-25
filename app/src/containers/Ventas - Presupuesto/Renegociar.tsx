@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Cookies from 'universal-cookie';
 
 import { OneButton } from './../../components/Dialogs'
-import Link from '@material-ui/core/Link';
 
 import { Renegociar as RenegociarExport} from './../../components/Presupuesto'
 import * as dialogActions from './../../store/actions/dialog'
@@ -80,7 +79,7 @@ class Renegociacion extends React.Component<{
     let state = store.getState();
     this.setState({ cantidad: e.target.value })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }
@@ -94,7 +93,7 @@ class Renegociacion extends React.Component<{
     let state = store.getState();
     this.setState({ precioSugerido: e.target.value })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }

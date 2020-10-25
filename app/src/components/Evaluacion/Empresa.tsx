@@ -2,8 +2,7 @@ import React from 'react';
 import clsx from 'clsx'
 
 import SendIcon from '@material-ui/icons/Send';
-import { Container, Grid, Card, Box, Typography, CssBaseline, RadioGroup, CardHeader, Avatar,  Button, CardContent,FormControlLabel, CardActions,TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Grid, Card, Divider, Box, Typography, CssBaseline, RadioGroup, CardHeader, Button, CardContent,FormControlLabel, CardActions,TextareaAutosize} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 
 import Radio from '@material-ui/core/Radio';
@@ -15,18 +14,6 @@ import MenuLateral from '../DrawerInicio'
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
     evaluacionReducer : any
@@ -60,7 +47,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
           hoverAvailable: -1,
 		};
   }
-  
+
   componentWillMount() {
     this.props.dispatch(drawerActions.invisibleDrawer())
   }
@@ -113,7 +100,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
       <div className={classes.root}>
         <CssBaseline />
         {this.props.appBar}
-       
+
 					<main className={classes.content}>
 						<div className={classes.appBarSpacer} />
 						<Container maxWidth="lg" className={classes.container}>
@@ -121,28 +108,28 @@ class EvaluacionEmpresa extends React.Component <{}, {
 
                 <Grid item lg={12}>
 									<Card className={fixedHeightCard}>
-                    <CardHeader 
-                      avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar} >
-                          E
-                        </Avatar>
-                      }
+                    <CardHeader
+                      // avatar={
+                      //   <Avatar aria-label="recipe" className={classes.avatar} >
+                      //     E
+                      //   </Avatar>
+                      // }
                       title="¡Gracias por elegirnos! Tu opinión es importante para nosotros"
-                        
-                    />
 
+                    />
+                <Divider></Divider>
                     <CardContent>
-                     
+
                         <Grid container >
                           <Grid container>
                               <Grid item lg={12}>
-                          
-                        
-                            
+
+
+
                               <Typography variant="subtitle1" gutterBottom className={classes.subtitle}>
                                 Empresa : Symsa
                               </Typography>
-                              
+
                               </Grid>
                              </Grid>
 
@@ -151,8 +138,8 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                               Tiempo de respuesta a los mensajes/consultas
                             </Typography>
-                              
-                            <Rating 
+
+                            <Rating
                             className={classes.respuestaEncuesta}
                               name="hover-feedback-time"
                               value={this.state.valueTime}
@@ -175,8 +162,8 @@ class EvaluacionEmpresa extends React.Component <{}, {
                               <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
                               Relación precio - calidad
                        </Typography>
-                            
-                            <Rating 
+
+                            <Rating
                             className={classes.respuestaEncuesta}
                                 name="hover-feedback-price"
                                 value={this.state.valuePrice}
@@ -201,7 +188,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             <Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta} >
                             Disponibilidad de productos y/o servicios
                        </Typography>
-                            
+
                        <Rating
                        className={classes.respuestaEncuesta}
                           name="hover-feedback-available"
@@ -231,24 +218,24 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             control={<Radio className={classes.radioButton} />}
                             label="SI"
                             labelPlacement="start"
-                           
+
                           />
                           <FormControlLabel
                             value="NO"
                             control={<Radio className={classes.radioButton} />}
                             label="NO"
                             labelPlacement="start"
-                          
+
                           />
                              </RadioGroup>
-                          
+
                           </Grid>
                           </Grid>
-                            
+
                             <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
-                            
+
                         </Grid>
-                     
+
                     </CardContent>
                     <CardActions>
 
@@ -266,13 +253,13 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             >
                               Enviar
                             </Button>
-                            
+
                           </Grid>
                         </Grid>
-                      
+
 
                     </CardActions>
-                    
+
 									</Card>
 								</Grid>
 
@@ -285,7 +272,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
             {this.props.footer}
 					</main>
 
-         
+
 		 </div>
 
     );

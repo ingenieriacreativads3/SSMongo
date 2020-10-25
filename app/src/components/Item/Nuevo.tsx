@@ -1,18 +1,11 @@
 import React from 'react';
-import AppBar from './../AppBar'
-import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Container, Divider, Grid,Paper, Card, Box, Typography, CssBaseline, CardHeader,FormHelperText, Avatar, TextField, IconButton, Button, CardContent, Input, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions,TextareaAutosize} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import {  Divider, Grid,Paper,Box, Typography, CssBaseline,FormHelperText, TextField, IconButton, Button, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 
-import * as Login from './../../store/actions/login'
-
-import { connect } from 'react-redux'
-import MenuLateral from '../Drawer';
 
 const CssTextField = withStyles({
   root: {
@@ -36,18 +29,6 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 
 
@@ -103,8 +84,7 @@ class Nuevo extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
-    console.log(this.props.unidadSeleccionada)
+	    console.log(this.props.unidadSeleccionada)
     return(
 
       <div className={classes.root}>

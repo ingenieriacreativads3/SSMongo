@@ -1,14 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Container, Grid,Box, Card, Avatar,List, ListSubheader, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Grid,Box, Card, Tabs, Tab, Avatar, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,  CardContent} from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
-import {
-  Chart,
-  PieSeries,
-  Title,
-} from '@devexpress/dx-react-chart-material-ui';
+
 
 import PieChart, {
     Legend,
@@ -19,23 +14,9 @@ import PieChart, {
     Connector
   } from 'devextreme-react/pie-chart';
 
-import { Animation } from '@devexpress/dx-react-chart';
 
-const data = [
-    { region: 'Asia', val: 4119626293 },
-    { region: 'Africa', val: 1012956064 },
-    { region: 'Northern America', val: 344124520 },
-    { region: 'Latin America and the Caribbean', val: 590946440 },
-    { region: 'Europe', val: 727082222 },
-  
- 
-];
 
-const data1 = [
-    { region: 'Asia', val: 4119626293 },
-    { region: 'Africa', val: 1012956064 },
-  
-];
+
 
 
 const dataSource = [{
@@ -67,18 +48,6 @@ const dataSource2 = [{
 ]
 //import * as ItemAction from "../../store/actions/ItemAction";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
 	Item: {},
@@ -97,13 +66,19 @@ function mapStateToProps(store: {
 }
 
 class Reputacion extends React.Component <{}, {
-
+  value:number,
 }> {
 
 	props: any
 	static propTypes: any
 	static defaultProps: any
 
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      value:0,
+    };
+  }
 
   
     customizeLabel(point:any) {
@@ -146,6 +121,9 @@ class Reputacion extends React.Component <{}, {
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
    
+    const handleChangeTabs = (event:any, value:number) => {
+      this.setState({value: value});
+    };
    
     return(
 
@@ -179,7 +157,7 @@ class Reputacion extends React.Component <{}, {
                         <Grid container spacing={3}>
                           <Grid container spacing={3}>
                             
-                            <Grid item lg={6}>
+                            <Grid item xs={12} sm={6}>
                             <PieChart
                                 id="pie"
                                 type="doughnut"
@@ -205,7 +183,7 @@ class Reputacion extends React.Component <{}, {
                               
                             </Grid>
                             
-                            <Grid item lg={6} >
+                            <Grid item xs={12} sm={6} >
                             <PieChart
                                 id="pie"
                                 type="doughnut"
@@ -234,7 +212,7 @@ class Reputacion extends React.Component <{}, {
                             
                           </Grid>
                             <Grid container spacing={3}>
-                                <Grid item lg={6} >
+                                <Grid item xs={12} sm={6}>
                             
                                 <PieChart
                                 id="pie"
@@ -258,7 +236,7 @@ class Reputacion extends React.Component <{}, {
                             </PieChart>
                                                                     
                                 </Grid>
-                                <Grid item lg={6} >
+                                <Grid xs={12} sm={6} >
                             
                                 <PieChart
                                 id="pie"
@@ -285,7 +263,28 @@ class Reputacion extends React.Component <{}, {
                                 </Grid>
                             </Grid>
 
-                                <Grid container spacing={3}>
+                            <div >
+                          <Box  >
+                            <Grid container alignItems="center">
+                              <Grid xs={12} sm={12} item style={{ flexGrow: 1, marginTop:'25px' }}>
+                                <Tabs
+                                  value={this.state.value}
+                                  onChange={handleChangeTabs}
+                                  style={{color:"#d93211", marginLeft:'20px'}}
+                                  
+                                >
+                                  <Tab label="Comentarios" />
+                                </Tabs>
+                                {this.state.value === 0 && 
+                                <FixedSizeList  height={260} width={500} itemSize={100} itemCount={8}>
+                                {this.renderRow}
+                            </FixedSizeList>}
+                              </Grid>
+                            </Grid>
+                          </Box>
+                      </div>
+
+                                {/* <Grid container spacing={3}>
                                 <ListSubheader  className={classes.subtitle}  >
                                     
                                     Comentarios
@@ -295,7 +294,7 @@ class Reputacion extends React.Component <{}, {
                                 {this.renderRow}
                             </FixedSizeList>
                                 </Grid>
-                                </Grid>
+                                </Grid> */}
                                
                             </Grid>
                       

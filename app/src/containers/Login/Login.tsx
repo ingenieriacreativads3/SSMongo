@@ -78,7 +78,7 @@ class Login extends React.Component<{
       user: e.target.value
     })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-      if(state.errorReducer.errors.length == 0)
+      if(state.errorReducer.errors.length === 0)
       {
         this.setState({formValid:true});
       }
@@ -92,7 +92,7 @@ class Login extends React.Component<{
     })
 
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }

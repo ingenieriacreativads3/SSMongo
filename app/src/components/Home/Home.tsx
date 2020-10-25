@@ -1,20 +1,15 @@
-import React from 'react';
-import ApBar from '../AppBar'
-import  DrawerInicio  from './../DrawerInicio';
+import React from 'react'
 import clsx from 'clsx'
 import { connect } from 'react-redux'
 
-import { Container, Divider, Button, Grid, Card, Box,ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+import { Container, Button, Grid, Card, Box,ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import  foto  from '../Login/img/photo2.png';
-import { Footer } from '../Footer'
-import { SideBarInicio } from '../SideBarInicio'
+
+
 
 import MobileStepper from '@material-ui/core/MobileStepper';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import  slide1  from './img/slide1.jpeg';
@@ -24,30 +19,14 @@ import  slide3  from './img/slide3.jpeg';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
 import * as drawerActions from './../../store/actions/drawer'
-
-import * as itemActions from './../../store/actions/item'
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
-import LocalDiningIcon from '@material-ui/icons/LocalDining';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
-import LocalPrintshopIcon from '@material-ui/icons/LocalPrintshop';
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
-import EvStationIcon from '@material-ui/icons/EvStation';
 import HotelIcon from '@material-ui/icons/Hotel';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import BuildIcon from '@material-ui/icons/Build';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import RoomServiceIcon from '@material-ui/icons/RoomService';
-import SchoolIcon from '@material-ui/icons/School';
-import WorkIcon from '@material-ui/icons/Work';
 import FilterHdrIcon from '@material-ui/icons/FilterHdr';
 import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
@@ -62,8 +41,7 @@ import LaptopIcon from '@material-ui/icons/Laptop';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import RoomIcon from '@material-ui/icons/Room';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import LayersIcon from '@material-ui/icons/Layers';
-import AppsIcon from '@material-ui/icons/Apps';
+
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -140,18 +118,6 @@ function Icon(letter: string, props: any) {
   }
 }
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps() {
   return {

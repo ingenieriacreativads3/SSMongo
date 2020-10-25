@@ -1,8 +1,7 @@
 import React from 'react';
-import AppBar from '../AppBar'
 import clsx from 'clsx'
 
-import { Container, Grid,TextField, Divider, Card, Box, Typography, CssBaseline, CardHeader, Avatar,  Button, CardContent,  CardActions} from '@material-ui/core';
+import { Container, Grid,TextField, Divider, Card, Box, Typography, CssBaseline, CardHeader, Button, CardContent,  CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 
 
@@ -73,11 +72,11 @@ class DetallePedido extends React.Component <{
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 
-    let pedido = {
-        _id: '',
-        empresa_perteneciente_id: '',
-        importe: '',
-    }
+    // let pedido = {
+    //     _id: '',
+    //     empresa_perteneciente_id: '',
+    //     importe: '',
+    // }
 
     // if(
     //   this.props.solicitudDeValidacionReducer.status === 200
@@ -87,7 +86,7 @@ class DetallePedido extends React.Component <{
     //   })
     // }
 
-    let _id: string = ''
+    // let _id: string = ''
     let empresaPerteneciente: string = ''
     let importe: string = ''
     let estado: string = ''

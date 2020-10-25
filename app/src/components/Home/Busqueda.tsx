@@ -1,52 +1,26 @@
 import React from 'react';
-import ApBar from '../AppBar'
-import  DrawerInicio  from './../DrawerInicio';
 import clsx from 'clsx'
-import { connect } from 'react-redux'
 
-import { Container,  Button, Grid, Card, Box,ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+
+import { Container,  Button, Grid, Card,  Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import  foto  from '../Login/img/photo2.png';
-import { Footer } from '../Footer'
 import { SideBarInicio } from '../SideBarInicio'
 
 import MobileStepper from '@material-ui/core/MobileStepper';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import  slide1  from './img/slide1.jpeg';
 import  slide2  from './img/slide2.jpeg';
 import  slide3  from './img/slide3.jpeg';
 
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 
 
