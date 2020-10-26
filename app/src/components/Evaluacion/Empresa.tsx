@@ -29,7 +29,9 @@ class EvaluacionEmpresa extends React.Component <{}, {
   valuePrice: number | null,
   hoverPrice: any,
   valueAvailable: number | null,
-	hoverAvailable: any,
+  hoverAvailable: any,
+  comentario: string,
+  rebuy:boolean,
 }> {
 
 	props: any
@@ -39,12 +41,14 @@ class EvaluacionEmpresa extends React.Component <{}, {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			valueTime: 2,
+			    valueTime: 2,
           hoverTime: -1,
           valuePrice: 2,
           hoverPrice: -1,
           valueAvailable: 2,
           hoverAvailable: -1,
+          comentario: '',
+          rebuy:false,
 		};
   }
 
@@ -52,14 +56,27 @@ class EvaluacionEmpresa extends React.Component <{}, {
     this.props.dispatch(drawerActions.invisibleDrawer())
   }
 
+    getComentario = (e: any) => {
+      this.setState({comentario: e.target.value});
+    }
+
+    handleChange = (e:any) =>{
+      if(e.target.value == "SI"){
+        this.setState({rebuy: true});
+      }else{
+        this.setState({rebuy: false});
+      }
+    }
+
+
     evaluate = () => {
 	    this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
             this.props.cookies.get('empresaId'),
             this.props.match.params.id,
             this.state.valueTime,
             "tiempoRespuesta",
-            "Yes",
-            true
+            this.state.comentario,
+            this.state.rebuy,
         ))
 
         this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
@@ -67,18 +84,18 @@ class EvaluacionEmpresa extends React.Component <{}, {
             this.props.match.params.id,
             this.state.valuePrice,
             "relacionPrecioCalidad",
-            "Oh my god",
-            true
+            this.state.comentario,
+            this.state.rebuy,
         ))
 
-        // this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
-        //     this.props.cookies.get('empresaId'),
-        //     this.props.match.params.id,
-        //     this.state.valueAvailable,
-        //     "disponibilidad",
-        //     "This is good",
-        //     true
-        // ))
+        this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+            this.props.cookies.get('empresaId'),
+            this.props.match.params.id,
+            this.state.valueAvailable,
+            "disponibilidad",
+            this.state.comentario,
+            this.state.rebuy,
+        ))
 
     }
 
@@ -218,13 +235,14 @@ class EvaluacionEmpresa extends React.Component <{}, {
                             control={<Radio className={classes.radioButton} />}
                             label="SI"
                             labelPlacement="start"
-
+                            onChange={this.handleChange}
                           />
                           <FormControlLabel
                             value="NO"
                             control={<Radio className={classes.radioButton} />}
                             label="NO"
                             labelPlacement="start"
+                            onChange={this.handleChange}
 
                           />
                              </RadioGroup>
@@ -232,7 +250,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
                           </Grid>
                           </Grid>
 
-                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
+                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} onChange={this.getComentario} />
 
                         </Grid>
 

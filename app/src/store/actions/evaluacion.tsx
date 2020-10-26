@@ -47,7 +47,7 @@ export function setEvaluacionEmpresa(
 }
 
 export function setEvaluacionPlataforma(
-	navegabilidad: string,
+	navegabilidad: number | null,
 	tiempoRespuesta:number | null,
 	recomienda:boolean,
 	mensaje:string,

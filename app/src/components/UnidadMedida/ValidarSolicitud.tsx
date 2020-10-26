@@ -32,21 +32,6 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-// function mapStateToProps(store: {
-// 	Item: {},
-// 	login: {
-// 		data: {
-// 			empresa: {
-// 				_id: string
-// 			}
-// 		}
-// 	}
-// }) {
-//   return {
-//     Item: store.Item,
-//     //idEmpresa: store.login.data.empresa._id
-//   };
-// }
 
 function mapStateToProps(store: {
   unidadDeMedidaReducer : any
@@ -56,134 +41,48 @@ function mapStateToProps(store: {
   };
 }
 
-class ValidarSolicitud extends React.Component {
+class ValidarSolicitud extends React.Component <{}, {
+
+  
+    magnitud: string,
+    abreviatura: string,
+  
+}> {
 
 	props: any
 	static propTypes: any
 	static defaultProps: any
 
-  // eslint-disable-next-line no-useless-constructor
+ 
   constructor(props: any) {
     super(props);
-/*     this.onSubmit = this.onSubmit.bind(this);
-    this.getNombre = this.getNombre.bind(this);
-    this.getPrecio = this.getPrecio.bind(this);
-    this.getFoto = this.getFoto.bind(this);
-    this.getDescripcion = this.getDescripcion.bind(this);
-    this.getCaracteristicas = this.getCaracteristicas.bind(this);
-    this.getUnidadDeMedida = this.getUnidadDeMedida.bind(this);
-    this.getMostrarPrecio = this.getMostrarPrecio.bind(this); */
     this.state = {
-      /* Item: {
-        nombre: '',
-        precio: '',
-        foto: '',
-        descripcion: '',
-        caracteristicas: '',
-        unidadDeMedida: '',
-        mostrarPrecio: false
-      } */
+      
+        magnitud: '',
+        abreviatura: '',
+       
     };
   }
-/*
-  onSubmit() {
-    this.props.dispatch(ItemAction.nuevo(this.props.idEmpresa, this.state.Item));
+
+
+
+  getUnidad = (e:any) => {
+    this.setState({magnitud : e.target.value});
   }
 
-  getNombre(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        nombre: e.target.value
-      }
-    });
-
+  getSimbolo = (e:any) => {
+    this.setState({abreviatura : e.target.value});
   }
-
-  getPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        precio: e.target.value
-      }
-    });
-
-  }
-
-  getFoto(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        foto: e.target.value
-      }
-    });
-
-  }
-
-  getDescripcion(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        descripcion: e.target.value
-      }
-    });
-
-  }
-
-  getCaracteristicas(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        caracteristicas: e.target.value
-      }
-    });
-
-  }
-
-  getUnidadDeMedida(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        unidadDeMedida: e.target.value
-      }
-    });
-
-  }
-
-  getMostrarPrecio(e) {
-
-    this.setState({
-      Item: {
-        ...this.state.Item,
-        mostrarPrecio: e.target.value
-      }
-    });
-
-  } */
-
 
   sendValidation = () => {
     this.props.dispatch(unidadDeMedidaAction.setSolicitud(
         this.props.match.params.id,
-        "GAL",
-        "Galeones"
+        this.state.magnitud,
+        this.state.abreviatura,
+        
     ))
 
-    // this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
-    //     this.props.cookies.get('empresaId'),
-    //     this.props.match.params.id,
-    //     this.state.valueAvailable,
-    //     "disponibilidad",
-    //     "This is good",
-    //     true
-    // ))
-
+   
   }
 
   render(){
@@ -217,23 +116,24 @@ class ValidarSolicitud extends React.Component {
             <Grid container spacing={3}>
               <Grid container xs={12} sm={12}>
                 <Grid item xs={12} sm={4}>
-                <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud"  defaultValue="20" className={classes.input} />
+                <CssTextField disabled id="custom-css-standard-input" label="Nro. Solicitud" value={this.props._id} className={classes.input} />
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                <CssTextField disabled id="custom-css-standard-input" label="Fecha"  defaultValue="03/04/2020" className={classes.input} />
+                <CssTextField disabled id="custom-css-standard-input" label="Fecha"  value={this.props.fecha} className={classes.input} />
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
+                <CssTextField disabled id="custom-css-standard-input" label="Usuario"  value={this.props.usuario} className={classes.input} />
+                </Grid>
+
+
+                <Grid item xs={12} sm={4}>
+                <CssTextField  id="unidad" label="Unidad"  value={this.props.unidad} className={classes.input} onChange={this.getUnidad} />
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                <CssTextField disabled id="custom-css-standard-input" label="Usuario"  defaultValue="CorpuSoft" className={classes.input} />
-                </Grid>
-
-                <Grid item xs={12} sm={4}>
-                <CssTextField  id="custom-css-standard-input" label="Unidad"  defaultValue="Metro cuadrado" className={classes.input} />
+                <CssTextField  id="simbolo" label="Simbolo"  value={this.props.simbolo} className={classes.input} onChange={this.getSimbolo}  />
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
@@ -262,7 +162,7 @@ class ValidarSolicitud extends React.Component {
                 size="small"
                 className={classes.button}
                 // endIcon={<SendIcon></SendIcon>}
-
+                onClick={() => this.sendValidation()}
               >
                 Aceptar
               </Button>

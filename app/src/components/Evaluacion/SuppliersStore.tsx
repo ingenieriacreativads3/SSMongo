@@ -40,10 +40,12 @@ function mapStateToProps(store: {
 class EvaluacionSuppliersStore extends React.Component <{}, {
   valueTime: number | null,
   hoverTime: any,
-  valueNavigability: number | null,
+  valueNavigability:  number | null,
   hoverNavigability: any,
   valueUpdate: number | null,
-	hoverUpdate: any,
+  hoverUpdate: any,
+  recomend: boolean,
+  mensaje:string,
 }> {
 
 	props: any
@@ -59,6 +61,8 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
       hoverNavigability: -1,
       valueUpdate: 2,
       hoverUpdate: -1,
+      recomend:false,
+      mensaje: ''
 		};
 	}
 
@@ -66,23 +70,27 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
     this.props.dispatch(drawerActions.invisibleDrawer())
   }
 
+  handleChange = (e:any) =>{
+    if(e.target.value == "SI"){
+      this.setState({recomend: true});
+    }else{
+      this.setState({recomend: false});
+    }
+  }
+
+  getMensaje = (e:any) => {
+    this.setState({mensaje: e.target.value});
+  }
+
     evaluate = () => {
         this.props.dispatch(evaluateAction.setEvaluacionPlataforma(
-            this.props.match.params.id,
+            this.state.valueNavigability,
             this.state.valueTime,
-            true,
-            "Esta copadisima"
-        ))
+            this.state.recomend,
+            this.state.mensaje,
+        ));
 
-        // this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
-        //     this.props.cookies.get('empresaId'),
-        //     this.props.match.params.id,
-        //     this.state.valueAvailable,
-        //     "disponibilidad",
-        //     "This is good",
-        //     true
-        // ))
-
+       
     }
 
   render(){
@@ -217,6 +225,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                                     control={<Radio className={classes.radioButton} />}
                                     label="SI"
                                     labelPlacement="start"
+                                    onChange={this.handleChange}
 
                                   />
                                   <FormControlLabel
@@ -224,14 +233,14 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                                     control={<Radio className={classes.radioButton} />}
                                     label="NO"
                                     labelPlacement="start"
-
+                                    onChange={this.handleChange}
                                   />
                                 </RadioGroup>
 
                               </Grid>
                               </Grid>
 
-                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} />
+                            <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} onChange={this.getMensaje} />
 
                         </Grid>
                       </form>
@@ -248,7 +257,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
                               size="small"
                               className={classes.button}
                               startIcon={<SendIcon />}
-                            //   onClick={() => this.register()}
+                              onClick={() => this.evaluate()}
                             >
                               Enviar
                             </Button>

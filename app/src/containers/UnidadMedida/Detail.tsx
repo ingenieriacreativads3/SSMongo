@@ -85,7 +85,7 @@ class Detail extends React.Component<{
     let fecha: string = ''
     let unidad: string = ''
     let simbolo: string = ''
-    let magnitud: string = ''
+  
     
    
 
@@ -100,7 +100,6 @@ class Detail extends React.Component<{
           fecha={fecha}
           unidad={unidad}
           simbolo={simbolo}
-          magnitud={magnitud}
           footer={this.footer()}
           drawer={this.drawer()}
           appBar={this.appBar()}

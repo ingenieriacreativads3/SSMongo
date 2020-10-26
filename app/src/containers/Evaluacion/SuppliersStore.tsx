@@ -84,7 +84,8 @@ class ValoracionPlataforma extends React.Component<{
     this.props.dispatch(evaluacionActions.setEvaluacionPlataforma(
       this.props.cookies.get('empresaId'),
       this.state.numeroValoracion,
-      this.state.conceptoValoracion,
+     true,
+      //this.state.conceptoValoracion,
       this.state.opinion,
      
     ))

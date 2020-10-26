@@ -208,7 +208,6 @@ export  function ValidarSolicitud(props: {
   fecha:string,
   unidad:string,
   simbolo:string,
-  magnitud:string,
   drawer:any,
   footer:any,
   appBar:any,
@@ -223,7 +222,6 @@ export  function ValidarSolicitud(props: {
   fecha={props.fecha}
   unidad={props.unidad}
   simbolo={props.simbolo}
-  magnitud={props.magnitud}
   drawer={props.drawer}
   footer={props.footer}
   appBar={props.appBar}
