@@ -76,7 +76,8 @@ class ValidarSolicitud extends React.Component <{}, {
 
   sendValidation = () => {
     this.props.dispatch(unidadDeMedidaAction.setSolicitud(
-        this.props.match.params.id,
+        //this.props.match.params.id,
+        this.props._id,
         this.state.magnitud,
         this.state.abreviatura,
         
