@@ -92,7 +92,7 @@ export default function SolicitudesDeValidacionReducer ( state = {
 		}
 	
 		case 'E': {
-			throw new Error('Este error se manejo asi!' + ' SolicitudesDeValidacion' + 'Reducer.js');
+			throw new Error('Este error se manejo asi!  SolicitudesDeValidacion Reducer.js');
 		}
 		default: {break;}
 	}

@@ -9,7 +9,7 @@ import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 import {Drawer} from './../Drawer'
 import Cookies from 'universal-cookie';
-import { ArgumentAxis } from '@devexpress/dx-react-chart';
+
  
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: any,
@@ -37,9 +37,9 @@ class Detail extends React.Component<{
   listaActividades: any[],
 }> {
 
-	props: any
-	static propTypes: any
-	static defaultProps: any
+  props: any
+  static propTypes: any
+  static defaultProps: any
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
@@ -95,26 +95,30 @@ class Detail extends React.Component<{
     let listAux: any[] = []
     let exist: boolean = false
 
+    
     this.state.rubros.map((item: any) => {
-      if(item.letra == rubro) {
-        exist = true
+      if(item.letra === rubro) {
+        exist = true;
       }
+      return exist;
     })
 
     if(exist) {
       this.state.rubros.map((item: any) => {
-        if(item.letra != rubro) {
-          listAux.push(item)
+        if(item.letra !== rubro) {
+          listAux.push(item);
         }
+        return listAux;
       })
     } else {
       listAux = this.state.rubros
       listaRubros.map((item: {
         letra: string
       }) => {
-        if(item.letra == rubro) {
+        if(item.letra === rubro) {
           listAux.push(item)
         }
+        return listAux;
       })
     }
 
@@ -122,10 +126,12 @@ class Detail extends React.Component<{
 
     listAux.map((item: any) => {
       listaRubros.map((itemAux: any) => {
-        if(item.nombre == itemAux.nombre) {
+        if(item.nombre === itemAux.nombre) {
           gruposAux = gruposAux.concat(itemAux.items)
         }
+        return gruposAux;
       })
+      return gruposAux;
     })
 
     this.setState({
@@ -152,33 +158,38 @@ class Detail extends React.Component<{
 
     listaRubros.map((aux: any) => {
       this.state.rubros.map((item: any) => {
-        if(item.letra == aux.letra) {
+        if(item.letra === aux.letra) {
           listGroupsAux = listGroupsAux.concat(aux.items)
         }
-      })
+        return listGroupsAux;
+      }) 
+      return listGroupsAux;
     })
 
     let listAux: any[] = []
     let exist: boolean = false
 
     this.state.grupos.map((item: any) => {
-      if(item.number == grupo) {
+      if(item.number === grupo) {
         exist = true
       }
+      return exist;
     })
 
     if(exist) {
       this.state.grupos.map((item: any) => {
-        if(item.number != grupo) {
+        if(item.number !== grupo) {
           listAux.push(item)
         }
+        return listAux;
       })
     } else {
       listAux = this.state.grupos
       listGroupsAux.map((item: any) => {
-        if(item.number == grupo) {
+        if(item.number === grupo) {
           listAux.push(item)
         }
+        return listAux;
       })
     }
 
@@ -186,10 +197,12 @@ class Detail extends React.Component<{
 
     listAux.map((item: any) => {
       listGroupsAux.map((itemAux: any) => {
-        if(item.number == itemAux.number) {
+        if(item.number === itemAux.number) {
           actividadesAux = actividadesAux.concat(itemAux.items)
         }
+        return actividadesAux;
       })
+      return actividadesAux;
     })
 
     console.log(actividadesAux)
@@ -216,43 +229,50 @@ class Detail extends React.Component<{
 
     listaRubros.map((item: any) => {
       this.state.rubros.map((itemAux: any) => {
-        if(item.letra == itemAux.letra) {
+        if(item.letra === itemAux.letra) {
           listGroupsAux = listGroupsAux.concat(item.items)
         }
+        return listGroupsAux;
       })
+       return listGroupsAux;
     })
 
     let listActividadesAux: any[] = []
 
     listGroupsAux.map((item: any) => {
       this.state.grupos.map((itemAux: any) => {
-        if(item.number == itemAux.number) {
+        if(item.number === itemAux.number) {
           listActividadesAux = listActividadesAux.concat(item.items)
         }
+        return listActividadesAux;
       })
+      return listActividadesAux;
     })
 
     let listAux: any[] = []
     let exist: boolean = false
 
     this.state.actividades.map((item:any) => {
-      if(item.number == actividad) {
+      if(item.number === actividad) {
         exist = true
       }
+      return exist;
     })
 
     if(exist) {
       this.state.actividades.map((item: any) => {
-        if(item.number != actividad) {
+        if(item.number !== actividad) {
           listAux.push(item)
         }
+        return listAux;
       })
     } else {
       listAux = this.state.actividades
       listActividadesAux.map((item: any) => {
-        if(item.number == actividad) {
+        if(item.number === actividad) {
           listAux.push(item)
         }
+        return listAux;
       })
     }
 

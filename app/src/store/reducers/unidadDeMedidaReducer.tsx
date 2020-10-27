@@ -141,7 +141,7 @@ export default function unidadDeMedidaReducer ( state = {
     }
 	
 		case 'E': {
-			throw new Error('Este error se manejo asi!' + ' unidadDeMedidaReducer' + 'Reducer.js');
+			throw new Error('Este error se manejo asi! unidadDeMedidaReducer Reducer.js');
 		}
 		default: {break;}
 	}

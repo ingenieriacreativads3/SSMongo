@@ -4,14 +4,9 @@ import Cookies from 'universal-cookie';
 
 import AppBar from './components/AppBar'
 import { ItemNuevo } from './containers/Item'
-import { EditarItem } from './components/Item'
 import { ItemEditar } from './containers/Item'
 
-//import { NuevaUnidadMedida } from './components/UnidadMedida'
-//import { ValidarSolicitud } from './components/UnidadMedida'
-// import { ChatRoom } from './components/Mensajes'
 import { Catalogo } from './containers/Item'
-import { VerDetalleItem } from './components/Item'
 import { ItemDetalle } from './containers/Item'
 import { PedidoNuevo } from './containers/Compras/Pedido'
 import { PresupuestoNuevo } from './containers/Compras - Presupuesto'
@@ -36,9 +31,7 @@ import { Chat } from './containers/Mensajes'
 
 class App extends React.Component <{}, {}> {
 
-	constructor(props: any) {
-		super(props)
-	}
+	
 
 	// privateRout(props: { children: any, ...rest: any }) {
 	// 	return (

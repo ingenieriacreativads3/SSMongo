@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link} from "react-router-dom";
-import { withStyles } from '@material-ui/core/styles';
 import { Grid, Paper, TextareaAutosize,Divider, ListSubheader, CardMedia, Card, Box, Typography, TextField, CssBaseline, Button, CardContent,  FormControl} from '@material-ui/core';
 import  foto  from './../Login/img/logo.png'
 import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
@@ -10,27 +9,7 @@ import { connect } from 'react-redux'
 import SendIcon from '@material-ui/icons/Send';
 
 
-const CssTextField = withStyles({
-  root: {
-    '& label.Mui-focused': {
-      color: '#d93211',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#d93211',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#d93211',
-      },
-      '&:hover fieldset': {
-        borderColor: '#d93211',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#d93211',
-      },
-    },
-  },
-})(TextField);
+
 
 
 function mapStateToProps(store: {

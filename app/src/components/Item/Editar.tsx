@@ -3,7 +3,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Divider, Paper, Grid, Card, Box, Typography, CssBaseline,  TextField, IconButton, Button, FormHelperText,  FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox} from '@material-ui/core';
+import { Divider, Paper, Grid, Box, Typography, CssBaseline,  TextField, IconButton, Button, FormHelperText,  FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import * as errorActions from './../../store/actions/error'
 

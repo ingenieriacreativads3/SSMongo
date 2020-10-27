@@ -1,13 +1,12 @@
 import React from 'react';
-import * as loginAction from './../../store/actions/login'
-import * as dialogAction from './../../store/actions/dialog'
+
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
 
-import { OneButton } from './../../components/Dialogs'
+
 import { NoAutorizado as NoAutenticado } from './../../components/NoAutenticado'
-import Cookies from 'universal-cookie';
+
 
 function mapStateToProps(store: {
   login: any,
@@ -33,11 +32,7 @@ class Unauthorized extends React.Component<{
 	static defaultProps: any
 
   // eslint-disable-next-line no-useless-constructor
-  constructor(props: any) {
-    super(props);
-    
-    
-  }
+  
 
 
   render(){

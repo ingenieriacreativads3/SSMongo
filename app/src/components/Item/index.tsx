@@ -8,7 +8,7 @@ import ItemNuevo from './Nuevo'
 import ItemEditar from './Editar'
 import Catalogo from './Catalogo'
 import DetalleItem from './Detalle'
-import Cookies from 'universal-cookie';
+
 
 export const AntSwitch = withStyles((theme: Theme) =>
   createStyles({
@@ -46,7 +46,7 @@ export const AntSwitch = withStyles((theme: Theme) =>
   }),
 )(Switch);
 
-const drawerWidth = 200;
+
 
 const theme = createMuiTheme({
 	palette: {

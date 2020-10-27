@@ -8,8 +8,7 @@ import Rating from '@material-ui/lab/Rating';
 import Radio from '@material-ui/core/Radio';
 import * as drawerActions from './../../store/actions/drawer'
 import * as evaluateAction from './../../store/actions/evaluacion'
-import AppBar from './../AppBar'
-import MenuLateral from '../DrawerInicio'
+
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -61,7 +60,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
     }
 
     handleChange = (e:any) =>{
-      if(e.target.value == "SI"){
+      if(e.target.value === "SI"){
         this.setState({rebuy: true});
       }else{
         this.setState({rebuy: false});

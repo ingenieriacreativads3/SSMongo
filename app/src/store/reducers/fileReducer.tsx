@@ -54,7 +54,7 @@ export default function FileReducer (state = {
     }
   
     case 'E': {
-      throw new Error('Este error se manejo asi!' + ' file' + 'Reducer.js');
+      throw new Error('Este error se manejo asi!  file Reducer.js');
     }
 
     default: { break; }

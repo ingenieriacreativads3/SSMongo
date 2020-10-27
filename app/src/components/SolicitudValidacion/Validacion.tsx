@@ -70,7 +70,7 @@ class Validacion extends React.Component <{
 
     e.target.value.map((value: any) => {
       if(value.nombre === undefined) {
-        rubroSeleccionado = value
+        rubroSeleccionado = value;
       }
     })
 
@@ -286,7 +286,7 @@ class Validacion extends React.Component <{
                           rubros.map((item: {
                             nombre: string
                           }) => {
-                            if(item.nombre == rubro.nombre) exist = true
+                            if(item.nombre === rubro.nombre) exist = true
                           })
 
                           return <MenuItem onClick={ () => this.onClickRubro(rubro.letra) } key={rubro.letra} value={rubro.nombre}>
@@ -332,7 +332,7 @@ class Validacion extends React.Component <{
                           grupos.map((item: {
                             nombre: string
                           }) => {
-                            if(item.nombre == grupo.nombre) exist = true
+                            if(item.nombre === grupo.nombre) exist = true
                           })
 
                           return <MenuItem onClick={ () => this.onClickGrupo(grupo.number) } key={grupo.number} value={grupo.nombre}>
@@ -378,7 +378,7 @@ class Validacion extends React.Component <{
                         actividades.map((item: {
                           name: string
                         }) => {
-                          if(item.name == actividad.name) exist = true
+                          if(item.name === actividad.name) exist = true
                         })
 
                         return <MenuItem onClick={ () => this.onClickActividad(actividad.number) } key={actividad.number} value={actividad.name}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import clsx from 'clsx'
+
 
 import {  Grid,TextField, Paper, Divider, FormControl, Box, Typography, CssBaseline,  Avatar,   Button} from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
@@ -251,7 +251,7 @@ class Detail extends React.Component <{
     if(
       empresa_perteneciente !== undefined &&
       empresa_perteneciente._id !== undefined &&
-      empresa_perteneciente._id == msj[index].empresa_id
+      empresa_perteneciente._id === msj[index].empresa_id
     ) {
       empresa = empresa_perteneciente
     }
@@ -259,7 +259,7 @@ class Detail extends React.Component <{
     if(
       empresa_demandante !== undefined &&
       empresa_demandante._id !== undefined &&
-      empresa_demandante._id == msj[index].empresa_id
+      empresa_demandante._id === msj[index].empresa_id
     ) {
       empresa = empresa_demandante
     }
@@ -306,7 +306,7 @@ class Detail extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+    
 
     let msj: any[] = []
 

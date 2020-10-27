@@ -168,7 +168,7 @@ class Editar extends React.Component<{
     debugger;
     let state = store.getState();
     this.setState({ nombre:nombre })
-    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
     {
       this.setState({formValid:true});
     }
@@ -178,7 +178,7 @@ class Editar extends React.Component<{
   getPrecio(precio: string) {
     let state = store.getState();
     this.setState({ precio: precio })
-    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
     {
       this.setState({formValid:true});
     }
@@ -194,7 +194,7 @@ class Editar extends React.Component<{
     let state = store.getState();
     this.setState({ idMagnitud: idMagnitud })
     this.setState({unidadSeleccionada:true});
-    if(state.errorReducer.errors.length == 0 && this.state.unidadSeleccionada)
+    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
     {
       this.setState({formValid:true});
     }
@@ -228,7 +228,7 @@ class Editar extends React.Component<{
       
     }
 
-    if(this.state.idMagnitud == "")
+    if(this.state.idMagnitud === "")
     {
       this.setState({unidadSeleccionada:false});
       formIsValid = false;

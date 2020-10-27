@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 
 export function setError(err:any) {
     if (err == null) {

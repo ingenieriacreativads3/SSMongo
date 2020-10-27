@@ -131,7 +131,7 @@ class Presupuestar extends React.Component <{
     if(
       empresa_perteneciente !== undefined &&
       empresa_perteneciente._id !== undefined &&
-      empresa_perteneciente._id == msj[index].empresa_id
+      empresa_perteneciente._id === msj[index].empresa_id
     ) {
       empresa = empresa_perteneciente
     }
@@ -139,7 +139,7 @@ class Presupuestar extends React.Component <{
     if(
       empresa_demandante !== undefined &&
       empresa_demandante._id !== undefined &&
-      empresa_demandante._id == msj[index].empresa_id
+      empresa_demandante._id === msj[index].empresa_id
     ) {
       empresa = empresa_demandante
     }

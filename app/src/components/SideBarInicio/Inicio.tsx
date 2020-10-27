@@ -1,24 +1,19 @@
 import React from 'react';
 
-import clsx from 'clsx'
 
-import { FormControl,FormControlLabel,Checkbox, Button, InputLabel,Select, MenuItem, Grid, Typography} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { FormControl,FormControlLabel,Checkbox, Button, InputLabel,Select, MenuItem, Grid} from '@material-ui/core';
+
 
 import { connect } from 'react-redux'
 
-import ListSubheader from '@material-ui/core/ListSubheader';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import StorefrontIcon from '@material-ui/icons/Storefront';
-import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
-import LocationCityOutlinedIcon from '@material-ui/icons/LocationCityOutlined';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import RoomIcon from '@material-ui/icons/Room';
-import StarBorder from '@material-ui/icons/StarBorder';
 import Rating from '@material-ui/lab/Rating';
 
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -26,18 +21,6 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
@@ -105,7 +88,7 @@ class SideBarInicio extends React.Component <{}, {
         nombre: string,
         id: string
       }) => {
-        if(e.target.value == provincia.nombre) {
+        if(e.target.value === provincia.nombre) {
           this.props.dispatch(ubicacionActions.getMunicipios(provincia.id))
         }
       })
@@ -131,15 +114,7 @@ class SideBarInicio extends React.Component <{}, {
   render(){
 
 		const classes = this.props.classes
-		const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
-    
-    const labels: { [index: string]: string } = {
-      1: 'Muy Malo',
-      2: 'Malo',
-      3: 'Bueno',
-      4: 'Muy Bueno',
-      5: 'Excelente',
-    };
+	
 
     let provincias: any[] = [
       {

@@ -58,7 +58,7 @@ export default function dialogReducer (state = {
 		}
 
 		case 'E' : {
-			throw new Error('Este error se manejo asi!' + ' auth' + 'Reducer.js');
+			throw new Error('Este error se manejo asi! auth Reducer.js');
 		}
 			
 		default : { break; }

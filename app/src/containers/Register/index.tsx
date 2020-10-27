@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import * as registerActions from './../../store/actions/register'
 import * as dialogAction from './../../store/actions/dialog'
@@ -75,7 +74,7 @@ class Register extends React.Component<{}, {
 			fantasyName: e.target.value
     })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }
@@ -88,7 +87,7 @@ class Register extends React.Component<{}, {
 			CUIT: e.target.value
 		})
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }
@@ -100,7 +99,7 @@ class Register extends React.Component<{}, {
       user: e.target.value
     })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }
@@ -113,7 +112,7 @@ class Register extends React.Component<{}, {
       email: e.target.value
     })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }
@@ -126,7 +125,7 @@ class Register extends React.Component<{}, {
       pass: e.target.value
     })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length == 0)
+    if(state.errorReducer.errors.length === 0)
     {
       this.setState({formValid:true});
     }

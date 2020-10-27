@@ -41,7 +41,7 @@ export default function apiWorkReducer (state = {
   
     case 'E' : {
 
-      throw new Error('Este error se manejo asi!' + ' apiWork' + 'Reducer.js');
+      throw new Error('Este error se manejo asi! apiWork Reducer.js');
 
     }
         

@@ -1,19 +1,11 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
 import clsx from 'clsx'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import AddIcon from '@material-ui/icons/Add'
-import ListSubheader from '@material-ui/core/ListSubheader';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {Avatar, List,Collapse, FormControlLabel,Typography, Checkbox,  FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer, IconButton} from '@material-ui/core';
+import { List,Collapse, FormControlLabel,Typography, Checkbox,  FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer} from '@material-ui/core';
 import * as drawerAction from './../../store/actions/drawer';
-import StorefrontIcon from '@material-ui/icons/Storefront';
-import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
-import LocationCityOutlinedIcon from '@material-ui/icons/LocationCityOutlined';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import RoomIcon from '@material-ui/icons/Room';
 import Rating from '@material-ui/lab/Rating';
@@ -21,7 +13,6 @@ import  logoLetras  from './../Login/img/logoLetras.png'
 import * as ubicacionActions from './../../store/actions/ubicacion'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import Link from '@material-ui/core/Link';
 
 
 function mapStateToProps(store: {
@@ -125,13 +116,7 @@ class DrawerInicio extends React.Component<{}, {
 			this.props.dispatch(drawerAction.close())
 		};
 
-		const labels: { [index: string]: string } = {
-			1: 'Muy Malo',
-			2: 'Malo',
-			3: 'Bueno',
-			4: 'Muy Bueno',
-			5: 'Excelente',
-		  };
+		
 
 		  let provincias: any[] = [
 			{

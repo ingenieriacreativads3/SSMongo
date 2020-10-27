@@ -3,7 +3,6 @@ import clsx from 'clsx'
 
 
 import { Container,  Button, Grid, Card,  Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
 import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import  foto  from '../Login/img/photo2.png';
@@ -89,18 +88,7 @@ class Busqueda extends React.Component <{
       });
     };
 
-    const handleChange = (step: number) => {
-      this.setState({
-        activeStep: step
-      });
-    };
-
-    const a11yProps = (index: number) => {
-      return {
-        id: `scrollable-force-tab-${index}`,
-        'aria-controls': `scrollable-force-tabpanel-${index}`,
-      };
-    }
+   
 
     return(
 

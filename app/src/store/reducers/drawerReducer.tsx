@@ -62,7 +62,7 @@ export default function drawerReducer (state = {
 		}
 
 		case 'E' : {
-			throw new Error('Este error se manejo asi!' + ' drawer' + 'Reducer.js');
+			throw new Error('Este error se manejo asi!  drawer Reducer.js');
 		}
 			
 		default : { break; }

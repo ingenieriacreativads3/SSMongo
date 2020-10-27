@@ -7,10 +7,9 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import logo from './../Login/img/logo.png'
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Input from '@material-ui/core/Input'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import {IconButton, InputAdornment, FormControl, InputLabel, OutlinedInput} from '@material-ui/core'
+import {IconButton, InputAdornment, InputLabel} from '@material-ui/core'
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 

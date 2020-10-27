@@ -2,8 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { connect } from 'react-redux'
 
-import { Container, Button, Grid, Card, Box,ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
-import MaterialLink from '@material-ui/core/Link';
+import { Container, Button, Grid, Card, ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent} from '@material-ui/core';
 import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
@@ -51,68 +50,66 @@ function Icon(letter: string, props: any) {
     case "A":
       return <LocalFloristIcon {...props}/>
       break;
-      case "B":
+    case "B":
       return <FilterHdrIcon {...props}/>
       break;
-      case "C":
+    case "C":
       return <LocationCityIcon {...props}/>
       break;
-      case "D":
+    case "D":
       return <EmojiObjectsIcon {...props}/>
       break;
-      case "E":
+    case "E":
       return <OpacityIcon {...props}/>
       break;
-      case "F":
+    case "F":
       return <BuildIcon {...props}/>
       break;
-      case "G":
+    case "G":
       return <StorefrontIcon {...props}/>
       break;
-      case "H":
+    case "H":
       return <EmojiTransportationIcon {...props}/>
       break;
-      case "I":
+    case "I":
       return <HotelIcon {...props}/>
       break;
-      case "J":
+    case "J":
       return <LocalPhoneIcon {...props}/>
       break;
-      case "K":
+    case "K":
       return <MonetizationOnIcon {...props}/>
       break;
-      case "L":
+    case "L":
       return <HomeIcon {...props}/>
       break;
-      case "M":
+    case "M":
       return <BusinessCenterIcon {...props}/>
       break;
-      case "N":
+    case "N":
       return <AttachFileIcon {...props}/>
       break;
-      case "O":
+    case "O":
       return <AccountBalanceIcon {...props}/>
       break;
-      case "P":
+    case "P":
       return <MenuBookIcon {...props}/>
       break;
-      case "Q":
+    case "Q":
       return <LocalHospitalIcon {...props}/>
       break;
-      case "R":
+    case "R":
       return <BrushIcon {...props}/>
       break;
-      case "S":
+    case "S":
       return <LaptopIcon {...props}/>
       break;
-      case "T":
+    case "T":
       return <HomeWorkIcon {...props}/>
       break;
-      case "U":
+    case "U":
       return <RoomIcon {...props}/>
       break;
-
-  
     default:
       break;
   }
@@ -242,11 +239,7 @@ class Home extends React.Component <{
       });
     };
 
-    const handleChange = (step: number) => {
-      this.setState({
-        activeStep: step
-      });
-    };
+    
 
     const a11yProps = (index: number) => {
       return {

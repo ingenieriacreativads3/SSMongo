@@ -1,6 +1,6 @@
 import React from 'react';
 import FooterComponent from './Footer'
-import Cookies from 'universal-cookie';
+
 
 export function Footer(props: {
   

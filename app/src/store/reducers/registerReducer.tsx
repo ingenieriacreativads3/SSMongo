@@ -128,7 +128,7 @@ export default function RegiterReducer (state = {
     }
   
     case 'E': {
-      throw new Error('Este error se manejo asi!' + ' login' + 'Reducer.js');
+      throw new Error('Este error se manejo asi!  login Reducer.js');
     }
 
     default: { break; }

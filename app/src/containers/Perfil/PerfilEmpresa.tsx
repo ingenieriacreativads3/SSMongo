@@ -65,10 +65,10 @@ appBar() {
 }
   render(){
 
-   {
+   
     
     this.props.dispatch(registerActions.getEmpresa(this.props.match.params.id))
-    }
+    
 
   
 

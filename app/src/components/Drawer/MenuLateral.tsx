@@ -1,8 +1,7 @@
-import React, { Component }  from 'react';
+import React  from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
 import clsx from 'clsx'
-import { IconButton, Typography, Badge, Button, Collapse, List, Avatar } from '@material-ui/core';
+import {Typography,Collapse, List } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,21 +9,17 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AddIcon from '@material-ui/icons/Add'
-import ListSubheader from '@material-ui/core/ListSubheader';
 import AttachMoney from '@material-ui/icons/AttachMoney';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import PostAdd from '@material-ui/icons/PostAdd';
 import Link from '@material-ui/core/Link';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import StarIcon from '@material-ui/icons/Star';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import StarBorder from '@material-ui/icons/StarBorder';
 import * as drawerAction from './../../store/actions/drawer';
-import  logoLetras  from './../Login/img/logoLetras.png'
+
 
 function mapStateToProps(store: {
   drawerReducer: {
@@ -96,9 +91,7 @@ class MenuLateral extends React.Component<{
 
 		const classes = this.props.classes
 
-		const handleDrawerClose = () => {
-			this.props.dispatch(drawerAction.close())
-		};
+		
 
 		return(
 			

@@ -35,10 +35,7 @@ class Footer extends React.Component {
 	static defaultProps: any
 
   // eslint-disable-next-line no-useless-constructor
-  constructor(props: any) {
-    super(props);
-
-  }
+ 
 
   render(){
 

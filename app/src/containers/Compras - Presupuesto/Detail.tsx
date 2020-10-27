@@ -301,15 +301,15 @@ class Detail extends React.Component<{
 		// let importe: string = 'importe'
 		// let estado: string = 'estado'
 		// let cantidad: string = 'cantidad'
-		let item: {
-			nombre: string,
-			precio: string,
-			unidad: string
-		} = {
-			nombre: 'nombreItem',
-			precio: 'precioItem',
-			unidad: 'unidadItem'
-    }
+		// let item: {
+		// 	nombre: string,
+		// 	precio: string,
+		// 	unidad: string
+		// } = {
+		// 	nombre: 'nombreItem',
+		// 	precio: 'precioItem',
+		// 	unidad: 'unidadItem'
+    // }
     
     // if(this.props.presupuestoReducer !== undefined) {
 		// 	if(this.props.presupuestoReducer.data !== undefined) {

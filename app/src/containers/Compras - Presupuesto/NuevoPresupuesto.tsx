@@ -10,7 +10,6 @@ import * as dialogActions from './../../store/actions/dialog'
 import * as presupuestoActions from './../../store/actions/presupuesto'
 import * as empresaActions from './../../store/actions/empresa'
 import * as itemActions from './../../store/actions/item'
-import * as unidadDeMedidaActions from './../../store/actions/unidadDeMedida'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
@@ -123,7 +122,7 @@ class NuevoPresupuesto extends React.Component<{
     let state = store.getState();
     this.setState({ cantidad: e.target.value })
     this.props.dispatch(errorActions.editErrors(e.target.id))
-      if(state.errorReducer.errors.length == 0)
+      if(state.errorReducer.errors.length === 0)
       {
         this.setState({formValid:true});
       }

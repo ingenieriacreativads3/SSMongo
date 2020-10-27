@@ -7,7 +7,6 @@ import { Container, Divider,Grid, Card, Box, Typography, TextField, CssBaseline,
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
 import * as fileActions from './../../store/actions/file'
-import store from './../../store/index'
 import { connect } from 'react-redux'
 
 

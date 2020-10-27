@@ -71,7 +71,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
   }
 
   handleChange = (e:any) =>{
-    if(e.target.value == "SI"){
+    if(e.target.value === "SI"){
       this.setState({recomend: true});
     }else{
       this.setState({recomend: false});

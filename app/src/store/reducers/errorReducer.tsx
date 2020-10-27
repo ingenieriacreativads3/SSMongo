@@ -24,7 +24,7 @@ export default function ErrorReducer (state = {
         // debugger;
         Object.keys(state.errors).forEach(function(key:any) {
                       console.log(state.errors[key]);
-                      if (key.toUpperCase() == action.payload.toUpperCase()) {
+                      if (key.toUpperCase() === action.payload.toUpperCase()) {
                           delete state.errors[key]
                           state.errors.length -=1;
                       }

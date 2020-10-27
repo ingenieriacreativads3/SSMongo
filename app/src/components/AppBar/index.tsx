@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 
 import AppBar from './AppBar'
 

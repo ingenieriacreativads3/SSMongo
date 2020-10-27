@@ -266,7 +266,7 @@ export default function presupuestoReducer ( state = {
 		}
 
 		case 'E': {
-			throw new Error('Este error se manejo asi!' + ' requestReducer' + 'Reducer.js');
+			throw new Error('Este error se manejo asi!  requestReducer Reducer.js');
 		}
 
 		default: {break;}

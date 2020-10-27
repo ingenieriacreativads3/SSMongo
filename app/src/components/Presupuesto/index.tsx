@@ -10,7 +10,7 @@ import ListaVentas from './ListaVentas'
 import Presupuestacion from './Presupuestar'
 import Detalle from './DetallePresupuesto'
 import Renegociacion from './Renegociar'
-import { checkPropTypes } from 'prop-types';
+
 
 const drawerWidth = 240;
 
