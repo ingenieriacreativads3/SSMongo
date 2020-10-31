@@ -77,7 +77,6 @@ class Home extends React.Component<{
   }
 
   action(idItem: string) {
-    debugger;
     console.log(this.props.cookies.get('empresaId'))
     console.log(idItem)
     this.props.dispatch(itemActions.reintentar())
@@ -141,7 +140,8 @@ class Home extends React.Component<{
 
     if(
       !this.props.itemReducer.fetched &&
-      !this.props.itemReducer.fetching
+      !this.props.itemReducer.fetching &&
+      this.props.itemReducer.error === null
     ) {
       this.props.dispatch(itemActions.getTrendingItems(this.props.cookies.get('empresaId'), 4))
     }
@@ -154,6 +154,8 @@ class Home extends React.Component<{
       itemsTrending = this.props.itemReducer.data.trendingItems
       items = this.props.itemReducer.data.items[0]
     }
+
+    // debugger;
 
     return(
       <div>

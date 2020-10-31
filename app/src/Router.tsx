@@ -31,7 +31,7 @@ import { Chat } from './containers/Mensajes'
 
 class App extends React.Component <{}, {}> {
 
-	
+	props: any
 
 	// privateRout(props: { children: any, ...rest: any }) {
 	// 	return (

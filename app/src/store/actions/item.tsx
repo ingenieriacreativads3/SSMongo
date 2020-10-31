@@ -1,5 +1,18 @@
 import axios from 'axios';
 
+export function cargaElastic() {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.get(url + '/cargaelastic')
+	
+  return {
+		type: 'ELASTIC_LOAD',
+		payload: payload
+	}
+
+}
+
 export function getTrendingItems(
 	idEmpresa: string,
 	cantidad: number

@@ -306,7 +306,7 @@ class Home extends React.Component <{
                                   
             <AppBar position="static" color="default">
               <Tabs
-                 value={""}
+                value={1}
                  //onChange={handleChange}
                 variant="scrollable"
                 scrollButtons="on"
@@ -318,7 +318,7 @@ class Home extends React.Component <{
                     return <Link 
                       to="/home/busqueda/:id" 
                       style={{textDecoration:'none'}}>
-                        <Tab label={actividad.nombre} 
+                        <Tab label={ actividad.nombre } 
                           icon={ Icon(actividad.letra, classes.iconoCategoria) }
                           { ...a11yProps(key) } 
                           className={classes.tab}

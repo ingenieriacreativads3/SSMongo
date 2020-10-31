@@ -1,16 +1,15 @@
 import React from 'react';
+import Cookies from 'universal-cookie';
+import { connect } from 'react-redux'
+
 import * as loginAction from './../../store/actions/login'
 import * as dialogAction from './../../store/actions/dialog'
-
-//import * as ItemAction from "../../store/actions/ItemAction";
-import { connect } from 'react-redux'
+import * as errorActions from './../../store/actions/error'
+import * as itemActions from './../../store/actions/item'
 
 import { OneButton } from './../../components/Dialogs'
 import { IniciarSesion as LoginComponent } from './../../components/Login'
-import Cookies from 'universal-cookie';
 
-
-import * as errorActions from './../../store/actions/error'
 import store from './../../store/index'
 
 function mapStateToProps(store: {
@@ -37,21 +36,23 @@ class Login extends React.Component<{
 
 	props: any
 	static propTypes: any
-	static defaultProps: any
+  static defaultProps: any
+  
+  private myRef: React.RefObject<HTMLElement>;
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.login = this.login.bind(this);
-    this.getUser = this.getUser.bind(this);
-    this.getPass = this.getPass.bind(this);
-    this.aceptar = this.aceptar.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.myRef = React.createRef();
     this.state = {
       user: '',
       pass: '',
-      formValid:true,
+      formValid: true,
     };
+  }
+
+  componentWillMount() {
+    this.props.dispatch(itemActions.cargaElastic())
   }
 
   componentDidUpdate() {
@@ -72,77 +73,29 @@ class Login extends React.Component<{
 
   }
 
-  getUser(e: any) {
-    let state = store.getState();
+  getUser = (e: any) => {
     this.setState({
       user: e.target.value
     })
-    this.props.dispatch(errorActions.editErrors(e.target.id))
-      if(state.errorReducer.errors.length === 0)
-      {
-        this.setState({formValid:true});
-      }
-
   }
 
-  getPass(e: any) {
-    let state = store.getState();
+  getPass = (e: any) => {
     this.setState({
       pass: e.target.value
     })
-
-    this.props.dispatch(errorActions.editErrors(e.target.id))
-    if(state.errorReducer.errors.length === 0)
-    {
-      this.setState({formValid:true});
-    }
   }
 
-  validacion=() => {
-    let formIsValid = true;
-    let errores=[];
-    let elements:any = document.getElementById("formLogin");
+  login = () => {
 
-    for (let i = 0, element; element = elements[i++];) {
-
-       if(!element.checkValidity())
-      {
-
-        errores[element.id]=element.validationMessage;
-        errores.length = errores.length + 1;
-        formIsValid = false;
-        this.setState({formValid:formIsValid})
-      
-        
-      }
-      
-    }
-
-   
-     this.props.dispatch(errorActions.setError(errores)); 
-     return formIsValid;
-  }
-
-  login() {
-
-    if(this.validacion()){
-          this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
-
-    }
+    this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
 
   }
 
-  aceptar() {
+  aceptar = () => {
 
     this.props.dispatch(dialogAction.closeOneButton())
     this.props.dispatch(loginAction.reintentar())
 
-  }
-
-  handleKeyPress(key: string) {
-    if(key === 'Enter'){
-      this.props.dispatch(loginAction.ingresar(this.state.user, this.state.pass))
-    }
   }
 
   render(){
@@ -155,8 +108,8 @@ class Login extends React.Component<{
           getPass={ this.getPass }
           getUser={ this.getUser }
           login={ this.login }
-          handleKeyPress={ this.handleKeyPress }
-          errors={errores}
+          errors={ errores }
+          myRef={ this.myRef }
         />
         <OneButton 
           title={ 'Error de ingreso' }
