@@ -24,7 +24,6 @@ export function setEvaluacionEmpresa(
 	numeroValoracion:number | null,
 	conceptoValoracion:string,
 	opinion:string,
-	rebuy: boolean,
 ) {
 
 	let payload: any = axios.post(config.url + '/empresa/valorar',{
@@ -34,7 +33,6 @@ export function setEvaluacionEmpresa(
     numeroValoracion: numeroValoracion,
     conceptoValoracion: conceptoValoracion,
     opinion: opinion,
-	rebuy: rebuy
 	})
 
 	console.log(payload)
