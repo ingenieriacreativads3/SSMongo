@@ -75,7 +75,6 @@ class EvaluacionEmpresa extends React.Component <{}, {
             this.state.valueTime,
             "tiempoRespuesta",
             this.state.comentario,
-            this.state.rebuy,
         ))
 
         this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
@@ -84,7 +83,6 @@ class EvaluacionEmpresa extends React.Component <{}, {
             this.state.valuePrice,
             "relacionPrecioCalidad",
             this.state.comentario,
-            this.state.rebuy,
         ))
 
         this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
@@ -93,7 +91,20 @@ class EvaluacionEmpresa extends React.Component <{}, {
             this.state.valueAvailable,
             "disponibilidad",
             this.state.comentario,
-            this.state.rebuy,
+        ))
+
+        var valorationValueRebuy
+        if (this.state.rebuy){
+             valorationValueRebuy = 5
+        } else {
+            valorationValueRebuy = 1
+        }
+        this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+            this.props.cookies.get('empresaId'),
+            this.props.match.params.id,
+            valorationValueRebuy,
+            "rebuy",
+            this.state.comentario,
         ))
 
     }
