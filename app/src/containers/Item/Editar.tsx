@@ -273,7 +273,8 @@ class Editar extends React.Component<{
 
     if(
       !this.props.itemReducer.fetched &&
-      !this.props.itemReducer.fetching
+      !this.props.itemReducer.fetching && 
+      this.props.itemReducer.error !== null
     ) {
       this.props.dispatch(itemActions.getItem(this.props.match.params.id))
     }
@@ -312,6 +313,8 @@ class Editar extends React.Component<{
 				}
 			}
     }
+ 
+    
 
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
@@ -336,9 +339,7 @@ class Editar extends React.Component<{
           getFoto={ this.getFoto }
           update={ this.update }
           appBar={this.appBar()}
-          errors={errores}
-          formValido = {this.state.formValid}
-          unidadSeleccionada = {this.state.unidadSeleccionada}
+          
         />
         <OneButton 
           title={ 'Editar Item' }

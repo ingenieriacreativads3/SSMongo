@@ -391,9 +391,7 @@ export  function EditarItem(props: {
   getMostrarPrecio: any,
   getFoto: any,
   update: any,
-  errors: any[],
-  formValido:boolean,
-  unidadSeleccionada:boolean,
+  
 }) {
 
   const classes = useStyles(theme);
@@ -417,9 +415,7 @@ export  function EditarItem(props: {
     getFoto={ props.getFoto }
     update={ props.update }
     appBar={props.appBar}
-    errors={props.errors}
-    formValido={props.formValido}
-    unidadSeleccionada={props.unidadSeleccionada}
+   
   />;
 
 }

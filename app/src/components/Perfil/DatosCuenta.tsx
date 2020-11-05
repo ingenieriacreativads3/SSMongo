@@ -3,12 +3,14 @@ import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, Divider,Grid, Card, Box, Typography, TextField, CssBaseline,  IconButton, Button, CardContent, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { Container, FormHelperText, Divider,Grid, Card, Box, Typography, TextField, CssBaseline,  IconButton, Button, CardContent, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
 import * as fileActions from './../../store/actions/file'
 import { connect } from 'react-redux'
-
+import * as errorActions from './../../store/actions/error'
+import * as empresaActions from './../../store/actions/empresa'
+import * as dialogActions from './../../store/actions/dialog'
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
@@ -74,10 +76,13 @@ class DatosCuenta extends React.Component <{
 
 	props: any
 	static propTypes: any
-	static defaultProps: any
+  static defaultProps: any
+  
+  private miPerfilRef: React.RefObject<HTMLFormElement>;
  
   constructor(props: any) {
     super(props);
+    this.miPerfilRef = React.createRef();
     this.handleChangeProvincia = this.handleChangeProvincia.bind(this);
     this.handleChangeMunicipio = this.handleChangeMunicipio.bind(this);
     this.changeUsuario = this.changeUsuario.bind(this);
@@ -88,6 +93,7 @@ class DatosCuenta extends React.Component <{
     this.changeTelefono = this.changeTelefono.bind(this);
     this.getFoto = this.getFoto.bind(this);
     this.changeMostrarPerfil = this.changeMostrarPerfil.bind(this);
+    this.update = this.update.bind(this);
     this.state = {
       localidadSeleccionada:true,
       provinciaSeleccionada:true,
@@ -118,7 +124,10 @@ class DatosCuenta extends React.Component <{
 
   componentWillReceiveProps() {
 
-    this.setState({ empresa: this.props.empresa})
+    if(this.state.empresa._id === ''){
+      this.setState({ empresa: this.props.empresa})
+    }
+    
     if(
       this.props.ubicacionReducer.municipios.length === 0 &&
       !this.props.ubicacionReducer.fetching
@@ -143,33 +152,33 @@ class DatosCuenta extends React.Component <{
     debugger;
     this.setState({ empresa: { ...this.state.empresa, provincia: e.target.value } })
     this.props.dispatch(ubicacionActions.getMunicipiosByName(e.target.value))
-    // if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
-    // {
-    //   this.setState({formValid:true});
-    // }
+    
+    this.setState({provinciaSeleccionada:true});
+         
+    this.setState({formValid:true});
   }
 
   handleChangeMunicipio(e: any) {
     this.setState({ empresa: { ...this.state.empresa, localidad: e.target.value } })
-    // if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
-    // {
-    //   this.setState({formValid:true});
-    // }
+    
+    this.setState({localidadSeleccionada:true});
+         
+    this.setState({formValid:true});
   }
 
   changeUsuario(e: any) {
     debugger;
     this.setState({ empresa: { ...this.state.empresa, usuario: e.target.value } })
-     //this.props.dispatch(errorActions.editErrors(e.target.id))
-    // if(this.props.errors.length == 0 && this.props.localidadSeleccionada && this.props.provinciaSeleccionada)
-    // {
-    //   this.setState({formValid:true});
-    // }
+    if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+      this.props.dispatch(errorActions.editErrors(e.target.id))
+    }
   }
 
   changeEmail(e: any) {
     this.setState({ empresa: { ...this.state.empresa, email: e.target.value } })
-    
+    if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+      this.props.dispatch(errorActions.editErrors(e.target.id))
+    }
   }
 
   changeClave(e: any) {
@@ -215,9 +224,77 @@ class DatosCuenta extends React.Component <{
 
   }
 
-  
-  
+  validacion=() => {
+    debugger;
+    let formIsValid = true;
+    let errores=[];
+    let ref: any = this.miPerfilRef.current
+    //let elements:any = document.getElementById("miPerfilForm");
 
+    for (let i = 0, element; element = ref[i]; i++) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+        this.setState({formValid:formIsValid})
+      
+        
+      }
+      
+    }
+
+    if(this.state.empresa.localidad == '')
+    {
+      this.setState({localidadSeleccionada:false})
+      this.setState({formValid:false})
+    }
+
+    if(this.state.empresa.provincia == '')
+    {
+      this.setState({provinciaSeleccionada:false})
+      this.setState({formValid:false})
+    }
+
+    
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
+  }
+
+  update(
+    id: string,
+    nombre: string,
+    usuario: string,
+    email: string,
+    logo: string,
+    password: string,
+    telefono: string,
+    provincia: string,
+    localidad: string,
+    visible: boolean,
+    domicilio: string,
+  ) {
+     if(this.validacion()){
+       
+       this.props.dispatch(empresaActions.updateEmpresa(
+      id,
+      nombre,
+      usuario,
+      email,
+      logo,
+      password,
+      telefono,
+      provincia,
+      localidad,
+      visible,
+      domicilio
+    ))
+    this.props.dispatch(dialogActions.openOneButton())
+       }
+      }
+      
   
 
   render(){
@@ -279,7 +356,7 @@ class DatosCuenta extends React.Component <{
                       
 
                     <CardContent>
-                      <form id="miPerfilForm" className={classes.root}>
+                      <form id="miPerfilForm" ref={ this.miPerfilRef } className={classes.root}>
                         <Grid container spacing={3}>
                         
                         <Grid container spacing={3}>
@@ -322,9 +399,9 @@ class DatosCuenta extends React.Component <{
                                   notchedOutline: classes.notchedOutline,
                                 },
                               }}
-                              // required={true}
-                              // error={this.props.errors.Usuario != null ? true : false}
-                              // helperText={this.props.errors.Usuario != null ? this.props.errors.Usuario : ""}
+                               required={true}
+                               error={this.props.errorReducer.errors.Usuario != null ? true : false}
+                               helperText={this.props.errorReducer.errors.Usuario != null ? this.props.errors.Usuario : ""}
                             />
                             
                               
@@ -351,9 +428,9 @@ class DatosCuenta extends React.Component <{
                                   notchedOutline: classes.notchedOutline,
                                 },
                               }}
-                              // required={true}
-                              // error={this.props.errors.Email != null ? true : false}
-                              // helperText={this.props.errors.Email != null ? this.props.errors.Email : ""}
+                               required={true}
+                               error={this.props.errorReducer.errors.Email != null ? true : false}
+                               helperText={this.props.errorReducer.errors.Email != null ? this.props.errors.Email : ""}
                             />
                               
                             </Grid>
@@ -435,7 +512,7 @@ class DatosCuenta extends React.Component <{
                             <FormControl 
                             variant="outlined" 
                             className={classes.formControl}
-                            /* error={!this.props.provinciaSeleccionada} */>
+                             error={!this.state.provinciaSeleccionada} >
                               <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
                               <Select
                                 labelId="demo-simple-select-outlined-label"
@@ -452,14 +529,14 @@ class DatosCuenta extends React.Component <{
                                   return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
                                 })}
                               </Select>
-                             {/*  {!this.props.provinciaSeleccionada && <FormHelperText error={true} >Selecciona una Provincia</FormHelperText>} */}
+                               {!this.state.provinciaSeleccionada && <FormHelperText error={true} >Selecciona una Provincia</FormHelperText>} 
                             </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={4}>
                             <FormControl 
                             variant="outlined"  
                             className={classes.formControl}
-                            /* error={!this.props.localidadSeleccionada} */>
+                             error={!this.state.localidadSeleccionada} >
                               <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
                               <Select
                                 labelId="demo-simple-select-outlined-label"
@@ -476,7 +553,7 @@ class DatosCuenta extends React.Component <{
                                   return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
                                 })}
                               </Select>
-                              {/* {!this.props.localidadSeleccionada && <FormHelperText error={true} >Selecciona una Localidad</FormHelperText>} */}
+                               {!this.state.localidadSeleccionada && <FormHelperText error={true} >Selecciona una Localidad</FormHelperText>} 
                             </FormControl>
                            
                             </Grid>
@@ -549,8 +626,8 @@ class DatosCuenta extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
-                              // disabled={ !this.state.formValid}
-                              onClick={() => this.props.update(
+                               disabled={ !this.state.formValid && !this.state.provinciaSeleccionada && !this.state.localidadSeleccionada}
+                              onClick={() => this.update(
                                 this.state.empresa._id,
                                 this.state.empresa.nombre,
                                 this.state.empresa.usuario,

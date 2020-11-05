@@ -242,6 +242,23 @@ class DatosPerfil extends React.Component<{
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
 
+     empresa = {
+      "_id": '2',
+      "nombre": '',
+      "cuit": '',
+      "usuario": '',
+      "email": '',
+      "estado": '',
+      "updated_at": '',
+      "created_at": '',
+      "domicilioLegal": '',
+      "localidad": '',
+      "logo": '',
+      "mostrar_perfil": false,
+      "provincia": '',
+      "telefono": '',
+      "clave": ''
+    }
 
     return(
       <div>
@@ -255,13 +272,10 @@ class DatosPerfil extends React.Component<{
           appBar={this.appBar()}
           empresa={empresa}
           update={this.update}
-          errors={errores}
-          formValid={this.state.formValid}
-          localidadSeleccionada={this.state.localidadSeleccionada}
-          provinciaSeleccionada={this.state.provinciaSeleccionada}
+          
          />
          <OneButton 
-          title={ 'Editar Item' }
+          title={ 'Editar Perfil' }
           text={ this.props.empresaReducer.message }
           functionRight={ this.aceptar }
           labelButtonRight={ 'Aceptar' }

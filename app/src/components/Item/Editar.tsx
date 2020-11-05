@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Divider, Paper, Grid, Box, Typography, CssBaseline,  TextField, IconButton, Button, FormHelperText,  FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import * as errorActions from './../../store/actions/error'
+import * as itemActions from './../../store/actions/item'
+import * as dialogActions from './../../store/actions/dialog'
 
 
 //import * as ItemAction from "../../store/actions/ItemAction";
@@ -36,11 +38,17 @@ const CssTextField = withStyles({
 })(TextField);
 
 
-function mapStateToProps(store: {}) {
+function mapStateToProps(store: {
+  errorReducer:any,
+}) {
   return {
-    Item: store
+    Item: store,
+    errorReducer: store.errorReducer
   };
 }
+
+
+
 
 class Editar extends React.Component <{
   history: any,
@@ -71,6 +79,8 @@ class Editar extends React.Component <{
   getFoto: any,
   update: any,
 }, {
+  formValid:boolean,
+  unidadSeleccionada: boolean,
   item: {
     _id: string,
     nombre: string,
@@ -82,22 +92,29 @@ class Editar extends React.Component <{
     },
     foto: string[],
     mostrarPrecio: boolean
+   
   }
 }> {
 
 	props: any
 	static propTypes: any
-	static defaultProps: any
+  static defaultProps: any
+  
+  private editItemRef: React.RefObject<HTMLFormElement>;
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.editItemRef = React.createRef();
     this.changeNombre = this.changeNombre.bind(this);
     this.changePrecio = this.changePrecio.bind(this);
     this.changeDescripcion = this.changeDescripcion.bind(this);
     this.changeUnidadDeMedida = this.changeUnidadDeMedida.bind(this);
     this.changeMostrarPrecio = this.changeMostrarPrecio.bind(this);
+    this.update = this.update.bind(this);
     this.state = {
+      formValid:true,
+      unidadSeleccionada:true,
       item: {
         _id: '',
         nombre: '',
@@ -108,33 +125,48 @@ class Editar extends React.Component <{
           nombre: ''
         },
         foto: [],
-        mostrarPrecio: false
+        mostrarPrecio: false,
+        
       }
+      
     };
   }
 
   componentWillReceiveProps() {
 
-    this.setState({ item: this.props.item})
+    if(this.state.item._id === ''){
+       this.setState({ item: this.props.item})
+    }
+   
 
   }
 
   changeNombre(e: any) {
-    debugger;
+console.log(e.target.value);
     this.setState({ item: { ...this.state.item, nombre: e.target.value } })
-    this.props.dispatch(errorActions.editErrors(e.target.id))
+    
+
+    if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+      this.props.dispatch(errorActions.editErrors(e.target.id))
+    }
     //this.props.getNombre(e.target.value)
   }
 
   changePrecio(e: any) {
     this.setState({ item: { ...this.state.item, precio: e.target.value } })
-    this.props.dispatch(errorActions.editErrors(e.target.id))
+   
+    
+    if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+      this.props.dispatch(errorActions.editErrors(e.target.id))
+    }
+
     // this.props.getPrecio(e.target.value)
   }
 
   changeDescripcion(e: any) {
     this.setState({ item: { ...this.state.item, descripcion: e.target.value } })
-    // this.props.getDescripcion(e.target.value)
+    
+   
   }
 
   changeUnidadDeMedida(e: any) {
@@ -153,8 +185,14 @@ class Editar extends React.Component <{
             }
           }
         })
+         this.setState({unidadSeleccionada:true});
+         
+         this.setState({formValid:true});
         // this.props.getMagnitud(unidadDeMedida._id)
       }
+
+    
+     
     })
 
   }
@@ -168,6 +206,68 @@ class Editar extends React.Component <{
     this.setState({ item: { ...this.state.item, mostrarPrecio: mostrarPrecio } })
 
   }
+
+  validacion=() => {
+    let formIsValid = true;
+    let errores=[];
+    let ref: any = this.editItemRef.current
+    //let elements:any = document.getElementById("formEditItem");
+
+    for (let i = 0, element; element = ref[i]; i++) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+      
+        this.setState({formValid:formIsValid})
+        
+      }
+      
+    }
+
+    debugger;
+    if(this.state.item.unidad_de_medida._id === "" || this.state.item.unidad_de_medida._id === undefined)
+    {
+      this.setState({unidadSeleccionada:false});
+      formIsValid = false;
+      
+      this.setState({formValid:formIsValid})
+    }
+
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
+  }
+
+  update(
+    _id: string,
+    nombre: string,
+    precio: string,
+    idMagnitud: string,
+    descripcion: string,
+    mostrarPrecio: boolean,
+    foto: string[]
+  ) {
+
+    if(this.validacion()){
+
+   
+    this.props.dispatch(itemActions.updateItem(
+      _id,
+      nombre,
+      precio,
+      descripcion,
+      idMagnitud,
+      mostrarPrecio,
+      foto
+    ))
+
+    this.props.dispatch(dialogActions.openOneButton())
+
+    }
+ }
 
   render(){
 
@@ -197,7 +297,7 @@ class Editar extends React.Component <{
               </Typography>
 <Divider className={classes.divider} />
           <FormControl>
-          <form id="formEditItem">
+          <form id="formEditItem" ref={ this.editItemRef }>
         <Grid container spacing={3} alignContent="center">
           <Grid item xs={12} sm={6}>
           <CssTextField 
@@ -207,9 +307,10 @@ class Editar extends React.Component <{
             value={ this.state.item.nombre }
             onChange={ this.changeNombre }
             required={true}
-            error={this.props.errors.Nombre != null ? true : false}
-            helperText={this.props.errors.Nombre != null ? this.props.errors.Nombre : ""}
+            error={this.props.errorReducer.errors.Nombre != null ? true : false}
+            helperText={this.props.errorReducer.errors.Nombre != null ? this.props.errorReducer.errors.Nombre : ""}
             fullWidth
+          
           />
           </Grid>
 
@@ -222,15 +323,15 @@ class Editar extends React.Component <{
           value={ this.state.item.precio }
           onChange={ this.changePrecio }
           required={true}
-          error={this.props.errors.Precio != null ? true : false}
-          helperText={this.props.errors.Precio != null ? this.props.errors.Precio : ""}
+          error={this.props.errorReducer.errors.Precio != null ? true : false}
+          helperText={this.props.errorReducer.errors.Precio != null ? this.props.errorReducer.errors.Precio : ""}
           inputProps={{min:1}}
           fullWidth
 
         />
           </Grid>
           <Grid item xs={12} sm={4}>
-          <FormControl fullWidth className={classes.formControl} error={!this.props.unidadSeleccionada}>
+          <FormControl fullWidth className={classes.formControl}  error={!this.state.unidadSeleccionada} >
             <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Unidad</InputLabel>
               <Select
             
@@ -246,7 +347,7 @@ class Editar extends React.Component <{
                   return <MenuItem value={unidadDeMedida._id}>{unidadDeMedida.nombre}</MenuItem>
                 })}
               </Select>
-              {!this.props.unidadSeleccionada && <FormHelperText error={true} >Selecciona una unidad</FormHelperText>}
+               {!this.state.unidadSeleccionada && <FormHelperText error={true} >Selecciona una unidad</FormHelperText>} 
             </FormControl>
           </Grid>
 
@@ -278,7 +379,7 @@ class Editar extends React.Component <{
                 className={classes.margin}
                 id="Descripcion"
                 label="Descripcion"
-                onChange={ this.props.getDescripcion }
+                onChange={ this.changeDescripcion }
                 multiline
                 rows={4}
                 fullWidth
@@ -318,8 +419,8 @@ class Editar extends React.Component <{
                 size="small"
                 className={classes.button}
                 startIcon={<SaveIcon />}
-                disabled={ !this.props.formValido }
-                onClick={() => this.props.update(
+                disabled={ !this.state.formValid && !this.state.unidadSeleccionada }
+                onClick={() => this.update(
                   this.state.item._id,
                   this.state.item.nombre,
                   this.state.item.precio,
@@ -327,7 +428,7 @@ class Editar extends React.Component <{
                   this.state.item.descripcion,
                   this.state.item.mostrarPrecio,
                   this.state.item.foto
-                )}
+                )} 
               >
                 Actualizar
               </Button>
