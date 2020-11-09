@@ -212,7 +212,7 @@ console.log(e.target.value);
     let errores=[];
     let ref: any = this.editItemRef.current
     //let elements:any = document.getElementById("formEditItem");
-
+    console.log(ref);
     for (let i = 0, element; element = ref[i]; i++) {
 
        if(!element.checkValidity())

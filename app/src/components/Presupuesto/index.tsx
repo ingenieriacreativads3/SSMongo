@@ -155,6 +155,7 @@ export function NuevoPresupuesto(props:{
   appBar:any,
   errors:any,
   formValido:boolean,
+  presupuestoNuevoRef:any,
   item: {
     "_id": string,
     "foto": string[],
@@ -223,6 +224,7 @@ export function NuevoPresupuesto(props:{
     empresa={ props.empresa }
     errors={props.errors}
     formValido={props.formValido}
+    presupuestoNuevoRef={props.presupuestoNuevoRef}
 
   />;
 
@@ -253,6 +255,7 @@ export function Presupuestar(props:{
   appBar:any,
   formValid:boolean,
   errors:any,
+  presupuestarRef:any,
   presupuesto: {
     _id: string,
     estado: string,
@@ -312,6 +315,7 @@ export function Presupuestar(props:{
     appBar={props.appBar}
     formValid={props.formValid}
     errors={props.errors}
+    presupuestarRef={props.presupuestarRef}
   />;
 
 }
@@ -326,6 +330,7 @@ export function Renegociar(props:{
   appBar:any,
   formValid:boolean,
   errors:any,
+  renegociarRef:any,
   presupuesto: {
     _id: string,
     estado: string,
@@ -395,6 +400,7 @@ export function Renegociar(props:{
     company={ props.company }
     errors={props.errors}
     formValid={props.formValid}
+    renegociarRef={props.renegociarRef}
   />;
 
 }

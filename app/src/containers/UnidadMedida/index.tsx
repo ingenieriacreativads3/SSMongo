@@ -36,19 +36,8 @@ export function SolicitudDeUnidadDeMedida(props: {
 	/>;
 }
 
-export function NuevaUnidadMedida(props: {
-	history: any,
-	location: any,
-	match: any,
-	staticContext?: any,
-	cookies: Cookies
-}) {
-	return <NuevaSolicitud 
-		history={props.history}
-    location={props.location}
-    match={props.match}
-	staticContext={props.staticContext}
-	cookies={props.cookies}
+export function NuevaUnidadMedida(props: any) {
+	return <NuevaSolicitud  {...props}
 	/>;
 }
 

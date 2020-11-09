@@ -46,10 +46,11 @@ class Renegociacion extends React.Component<{
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
+  private renegociarRef: React.RefObject<HTMLFormElement>;
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.renegociarRef = React.createRef();
     this.getCantidadItem = this.getCantidadItem.bind(this);
     this.getPrecioSugerido = this.getPrecioSugerido.bind(this);
     this.getComentario = this.getComentario.bind(this);
@@ -103,9 +104,9 @@ class Renegociacion extends React.Component<{
     debugger;
     let formIsValid = true;
     let errores=[];
-    let elements:any = document.getElementById("renegociarForm");
+    let ref: any = this.renegociarRef.current
 
-    for (let i = 0, element; element = elements[i++];) {
+    for (let i = 0, element; element = ref[i]; i++) {
 
        if(!element.checkValidity())
       {
@@ -315,6 +316,7 @@ class Renegociacion extends React.Component<{
           company={ company }
           errors={errores}
           formValid={this.state.formValid}
+          renegociarRef={this.renegociarRef}
         />
         <OneButton 
           title={ 'Renegociacion' }

@@ -43,10 +43,11 @@ class NuevaSolicitud extends React.Component<{
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
+  public unidadMedidaNuevoRef: React.RefObject<HTMLFormElement>;
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.unidadMedidaNuevoRef = React.createRef();
     this.getUnidad = this.getUnidad.bind(this);
     this.getSimbolo = this.getSimbolo.bind(this);
     this.save = this.save.bind(this);
@@ -92,9 +93,12 @@ class NuevaSolicitud extends React.Component<{
   validacion=() => {
     let formIsValid = true;
     let errores=[];
-    let elements:any = document.getElementById("formUnidadMedidaNuevo");
-
-    for (let i = 0, element; element = elements[i++];) {
+    //let elements:any = document.getElementById("formUnidadMedidaNuevo");
+    
+    let ref: any = this.unidadMedidaNuevoRef.current
+    
+    if(ref!== null){
+      for (let i = 0, element; element = ref[i]; i++) {
 
        if(!element.checkValidity())
       {
@@ -108,6 +112,8 @@ class NuevaSolicitud extends React.Component<{
       }
       
     }
+    }
+    
 
    
      this.props.dispatch(errorActions.setError(errores)); 
@@ -182,6 +188,7 @@ class NuevaSolicitud extends React.Component<{
           appBar={this.appBar()}
           errors={errores}
           formValid={this.state.formValid}
+          refNuevoUnidad={this.unidadMedidaNuevoRef}
         />
         <OneButton 
           title={ 'Solicitud Unidad de Medida' }

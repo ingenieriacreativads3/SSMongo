@@ -147,7 +147,7 @@ class Nuevo extends React.Component <{
               </Typography>
               <Divider className={classes.divider} />
             <FormControl>
-            <form id="formNuevoPedido">
+            <form id="formNuevoPedido" ref={this.props.pedidoNuevoRef}>
             <Grid container spacing={3}>
               <Grid container xs={12} sm={12}>
                 <Grid item xs={12} sm={12}>

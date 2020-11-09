@@ -234,7 +234,7 @@ class Presupuestar extends React.Component <{
               </Typography>
               <Divider className={classes.divider} />
             <FormControl>
-            <form id="presupuestarForm">
+            <form id="presupuestarForm" ref={this.props.presupuestarRef}>
             <Grid container spacing={3}>
               <Grid container xs={12} sm={12}>
               <Grid item xs={12} sm={12}>

@@ -61,10 +61,11 @@ class NuevoPresupuesto extends React.Component<{
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
+  private presupuestoNuevoRef: React.RefObject<HTMLFormElement>;
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.presupuestoNuevoRef = React.createRef();
     this.getCantidadItem = this.getCantidadItem.bind(this);
     this.getComentario = this.getComentario.bind(this);
     this.save = this.save.bind(this);
@@ -135,9 +136,9 @@ class NuevoPresupuesto extends React.Component<{
   validacion=() => {
     let formIsValid = true;
     let errores=[];
-    let elements:any = document.getElementById("formNuevoPresupuesto");
-
-    for (let i = 0, element; element = elements[i++];) {
+    //let elements:any = document.getElementById("formNuevoPresupuesto");
+    let ref: any = this.presupuestoNuevoRef.current
+    for (let i = 0, element; element = ref[i]; i++) {
 
        if(!element.checkValidity())
       {
@@ -350,6 +351,7 @@ class NuevoPresupuesto extends React.Component<{
           empresa={empresa}
           errors={errores}
           formValido = {this.state.formValid}
+          presupuestoNuevoRef={this.presupuestoNuevoRef}
         />
         <OneButton 
           title={ 'Nuevo Presupuesto' }

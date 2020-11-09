@@ -49,10 +49,11 @@ class NuevoPedido extends React.Component<{
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
+  public pedidoNuevoRef: React.RefObject<HTMLFormElement>;
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.pedidoNuevoRef = React.createRef();
     this.getCantidadItem = this.getCantidadItem.bind(this);
     this.getComentario = this.getComentario.bind(this);
     this.save = this.save.bind(this);
@@ -102,9 +103,9 @@ class NuevoPedido extends React.Component<{
   validacion=() => {
     let formIsValid = true;
     let errores=[];
-    let elements:any = document.getElementById("formNuevoPedido");
-
-    for (let i = 0, element; element = elements[i++];) {
+    //let elements:any = document.getElementById("formNuevoPedido");
+    let ref: any = this.pedidoNuevoRef.current
+    for (let i = 0, element; element = ref[i]; i++) {
 
        if(!element.checkValidity())
       {
@@ -314,6 +315,7 @@ class NuevoPedido extends React.Component<{
           empresa={empresa}
           errors={errores}
           formValido = {this.state.formValid}
+          pedidoNuevoRef = {this.pedidoNuevoRef}
         />
         <OneButton 
           title={ 'Nuevo Pedido' }

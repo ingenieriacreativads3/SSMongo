@@ -234,7 +234,7 @@ class Renegociar extends React.Component <{
               </Typography>
             <Divider className={classes.divider} />
           <FormControl>
-          <form id="renegociarForm">
+          <form id="renegociarForm" ref={this.props.renegociarRef}>
             <Grid container spacing={3}>
               <Grid container xs={12} sm={12}>
                 <Grid item xs={12} sm={12}>

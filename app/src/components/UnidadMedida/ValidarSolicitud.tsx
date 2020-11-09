@@ -6,7 +6,7 @@ import * as unidadDeMedidaAction from './../../store/actions/unidadDeMedida'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-
+import * as errorActions from './../../store/actions/error'
 
 
 const CssTextField = withStyles({
@@ -33,10 +33,12 @@ const CssTextField = withStyles({
 
 
 function mapStateToProps(store: {
-  unidadDeMedidaReducer : any
+  unidadDeMedidaReducer : any,
+  errorReducer:any,
 }) {
   return {
-    unidadDeMedidaReducer : store.unidadDeMedidaReducer
+    unidadDeMedidaReducer : store.unidadDeMedidaReducer,
+    errorReducer: store.errorReducer,
   };
 }
 
@@ -45,42 +47,90 @@ class ValidarSolicitud extends React.Component <{}, {
   
     magnitud: string,
     abreviatura: string,
-  
+    formValid:boolean,
 }> {
 
 	props: any
 	static propTypes: any
 	static defaultProps: any
 
- 
+  private validarSolicitudUnidadRef: React.RefObject<HTMLFormElement>;
   constructor(props: any) {
     super(props);
+    this.validarSolicitudUnidadRef = React.createRef();
     this.state = {
-      
+      formValid:true,
         magnitud: '',
         abreviatura: '',
        
     };
   }
 
+  // componentWillReceiveProps() {
+    
+  //   if(this.state.magnitud === '' ){
+  //      this.setState({ magnitud: this.props.unidad})
+  //   }
+  //   if(this.state.abreviatura === '' ){
+  //     this.setState({ abreviatura: this.props.simbolo})
+  //  }
+
+  // }
 
 
   getUnidad = (e:any) => {
+    debugger;
     this.setState({magnitud : e.target.value});
+    // if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+    //   this.props.dispatch(errorActions.editErrors(e.target.id))
+    // }
   }
 
   getSimbolo = (e:any) => {
     this.setState({abreviatura : e.target.value});
+    // if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+    //   this.props.dispatch(errorActions.editErrors(e.target.id))
+    // }
   }
 
+
+  validacion=() => {
+    let formIsValid = true;
+    let errores=[];
+    let ref: any = this.validarSolicitudUnidadRef.current
+    for (let i = 0, element; element = ref[i]; i++) {
+
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+      
+        this.setState({formValid:formIsValid})
+        
+      }
+      
+    }
+
+  
+    
+     this.props.dispatch(errorActions.setError(errores)); 
+     return formIsValid;
+  }
+
+
   sendValidation = () => {
-    this.props.dispatch(unidadDeMedidaAction.setSolicitud(
+    // if(this.validacion()){
+      this.props.dispatch(unidadDeMedidaAction.setSolicitud(
         //this.props.match.params.id,
         this.props._id,
         this.state.magnitud,
         this.state.abreviatura,
         
     ))
+    // }
+    
 
    
   }
@@ -112,7 +162,7 @@ class ValidarSolicitud extends React.Component <{}, {
               </Typography>
               <Divider className={classes.divider} />
             <FormControl>
-            <form >
+            <form ref={this.validarSolicitudUnidadRef} >
             <Grid container spacing={3}>
               <Grid container xs={12} sm={12}>
                 <Grid item xs={12} sm={4}>
@@ -129,11 +179,28 @@ class ValidarSolicitud extends React.Component <{}, {
 
 
                 <Grid item xs={12} sm={4}>
-                <CssTextField  id="unidad" label="Unidad"  value={this.props.unidad} className={classes.input} onChange={this.getUnidad} />
+                <CssTextField  
+                id="unidad" 
+                label="Unidad"  
+                value={this.props.unidad} 
+                className={classes.input} 
+                onChange={this.getUnidad}
+                required={true}
+                error={this.props.errorReducer.errors.unidad != null ? true : false}
+                helperText={this.props.errorReducer.errors.unidad != null ? this.props.errorReducer.errors.unidad : ""}
+                 />
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                <CssTextField  id="simbolo" label="Simbolo"  value={this.props.simbolo} className={classes.input} onChange={this.getSimbolo}  />
+                <CssTextField  
+                id="simbolo" 
+                label="Simbolo"  
+                value={this.props.simbolo} 
+                className={classes.input} 
+                onChange={this.getSimbolo} 
+                required={true}
+                error={this.props.errorReducer.errors.simbolo != null ? true : false}
+                helperText={this.props.errorReducer.errors.simbolo != null ? this.props.errorReducer.errors.simbolo : ""} />
                 </Grid>
 
                 <Grid item xs={12} sm={4}>

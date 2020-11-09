@@ -110,10 +110,11 @@ class Presupuestacion extends React.Component<{
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
+  private presupuestarRef: React.RefObject<HTMLFormElement>;
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.presupuestarRef = React.createRef();
     this.getCantidadItem = this.getCantidadItem.bind(this);
     this.getImporte = this.getImporte.bind(this);
     this.getComentario = this.getComentario.bind(this);
@@ -266,9 +267,9 @@ class Presupuestacion extends React.Component<{
     debugger;
     let formIsValid = true;
     let errores=[];
-    let elements:any = document.getElementById("presupuestarForm");
+    let ref: any = this.presupuestarRef.current
 
-    for (let i = 0, element; element = elements[i++];) {
+    for (let i = 0, element; element = ref[i]; i++) {
 
        if(!element.checkValidity())
       {
@@ -439,6 +440,7 @@ class Presupuestacion extends React.Component<{
           appBar={this.appBar()}
           errors={errores}
           formValid={this.state.formValid}
+          presupuestarRef={this.presupuestarRef}
         />
         <OneButton 
           title={ 'Presupuestacion' }

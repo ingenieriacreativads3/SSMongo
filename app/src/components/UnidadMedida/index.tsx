@@ -175,29 +175,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export  function NuevaUnidadMedida(props: {
-  getUnidad: any,
-  getSimbolo: any,
-  save: any,
-  drawer:any,
-  footer:any,
-  appBar:any,
-  errors:any
-  formValid:boolean,
-}) {
+export  function NuevaUnidadMedida(props: any) {
 
 	const classes = useStyles(theme);
   return <UnidadMedidaNueva 
-    classes={ classes }
-    getUnidad={ props.getUnidad }
-    getSimbolo={ props.getSimbolo }
-    save={ props.save }
-    drawer={props.drawer}
-    footer={props.footer}
-    appBar={props.appBar}
-    errors={props.errors}
-    formValid={props.formValid}
-  />;
+    classes={ classes } {...props}
+    />;
 
 }
 
