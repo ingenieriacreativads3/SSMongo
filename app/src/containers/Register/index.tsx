@@ -35,10 +35,11 @@ class Register extends React.Component<{}, {
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
+  private registerRef: React.RefObject<HTMLFormElement>;
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.registerRef = React.createRef();
     this.getFantasyName = this.getFantasyName.bind(this);
     this.getCUIT = this.getCUIT.bind(this);
     this.getUser = this.getUser.bind(this);
@@ -135,9 +136,9 @@ class Register extends React.Component<{}, {
   validacion=() => {
     let formIsValid = true;
     let errores=[];
-    let elements:any = document.getElementById("formRegistro");
+    let ref: any = this.registerRef.current
 
-    for (let i = 0, element; element = elements[i++];) {
+    for (let i = 0, element; element = ref[i]; i++) {
 
        if(!element.checkValidity())
       {
@@ -159,7 +160,7 @@ class Register extends React.Component<{}, {
   }
 
   register() {
-
+    if(this.validacion()){
       this.props.dispatch(registerActions.registrar(
           this.state.fantasyName,
           this.state.CUIT,
@@ -167,8 +168,9 @@ class Register extends React.Component<{}, {
           this.state.email,
           this.state.pass
       ))
-      // if(this.validacion()){
-  // }
+    }
+      
+ 
    
 
   }
@@ -199,7 +201,7 @@ class Register extends React.Component<{}, {
 					getPass={ this.getPass }
           register={ this.register }
           errors={errores}
-         
+         registerRef={this.registerRef}
         />
         <OneButton 
           title={ '' }

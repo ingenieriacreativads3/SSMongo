@@ -53,10 +53,11 @@ class Nuevo extends React.Component<{
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
+  private nuevoItemRef: React.RefObject<HTMLFormElement>;
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
+    this.nuevoItemRef = React.createRef();
     this.getNombre = this.getNombre.bind(this);
     this.getPrecio = this.getPrecio.bind(this);
     this.getMagnitud = this.getMagnitud.bind(this);
@@ -166,9 +167,9 @@ class Nuevo extends React.Component<{
   validacion=() => {
     let formIsValid = true;
     let errores=[];
-    let elements:any = document.getElementById("formItem");
+    let ref: any = this.nuevoItemRef.current
 
-    for (let i = 0, element; element = elements[i++];) {
+    for (let i = 0, element; element = ref[i]; i++) {
 
        if(!element.checkValidity())
       {
@@ -306,6 +307,7 @@ class Nuevo extends React.Component<{
           errors={errores}
           formValido = {this.state.formValid}
           unidadSeleccionada = {this.state.unidadSeleccionada}
+          nuevoItemRef={this.nuevoItemRef}
         />
         <OneButton 
           title={ 'Nuevo Item' }

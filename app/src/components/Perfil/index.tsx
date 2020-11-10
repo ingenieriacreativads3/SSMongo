@@ -278,6 +278,9 @@ export  function CambiarContraseña(props: {
   drawer:any,
   appBar:any,
   update:any,
+  errores:any,
+  formValid:boolean,
+  changePasswordRef:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -293,6 +296,9 @@ export  function CambiarContraseña(props: {
       drawer={props.drawer}
       appBar={props.appBar}
       update={props.update}
+      errors={props.errores}
+      formValid={props.formValid}
+      changePasswordRef={props.changePasswordRef}
      />
   </div>;
 

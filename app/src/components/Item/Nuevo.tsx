@@ -108,7 +108,7 @@ class Nuevo extends React.Component <{
               </Typography>
 <Divider className={classes.divider} />
           <FormControl>
-          <form id="formItem">
+          <form id="formItem" ref={this.props.nuevoItemRef}>
         <Grid container spacing={3} alignContent="center">
           <Grid item xs={12} sm={6}>
           <CssTextField 

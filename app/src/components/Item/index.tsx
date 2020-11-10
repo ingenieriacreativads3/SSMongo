@@ -268,6 +268,7 @@ export  function NuevoItem(props: {
   errors: any[],
   formValido:boolean,
   unidadSeleccionada:boolean,
+  nuevoItemRef:any,
 }) {
 
 	const classes = useStyles(theme);
@@ -289,6 +290,7 @@ export  function NuevoItem(props: {
     errors={props.errors}
     formValido={props.formValido}
     unidadSeleccionada={props.unidadSeleccionada}
+    nuevoItemRef={props.nuevoItemRef}
   />;
 
 }

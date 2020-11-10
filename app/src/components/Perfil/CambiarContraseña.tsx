@@ -5,8 +5,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { Container, Grid, Card, Divider, Box, Typography, CssBaseline, CardHeader,  IconButton, Button, CardContent, Input, FormControl, InputLabel, CardActions, InputAdornment} from '@material-ui/core';
 import FormHelperText from '@material-ui/core/FormHelperText';
-
-
+import * as empresaActions from '../../store/actions/empresa'
+import * as errorActions from '../../store/actions/error'
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -15,10 +15,10 @@ import { connect } from 'react-redux'
 
 
 function mapStateToProps(store: {
-  
+  errorReducer: any,
 }) {
   return {
-  
+    errorReducer: store.errorReducer
   };
 }
 
@@ -32,6 +32,7 @@ class CambiarContraseña extends React.Component <{
   empresa: {
     "clave": string,
   },
+  formValid:boolean
   showOldPassword: boolean,
   showNewPassword: boolean,
   showNewPasswordCopy: boolean,
@@ -44,9 +45,10 @@ class CambiarContraseña extends React.Component <{
 	props: any
 	static propTypes: any
 	static defaultProps: any
- 
+  private changePasswordRef: React.RefObject<HTMLFormElement>;
   constructor(props: any) {
     super(props);
+    this.changePasswordRef = React.createRef();
     this.handleClickShowOldPassword = this.handleClickShowOldPassword.bind(this);
     this.handleClickShowNewPassword = this.handleClickShowNewPassword.bind(this);
     this.handleClickShowNewPasswordCopy = this.handleClickShowNewPasswordCopy.bind(this);
@@ -55,6 +57,7 @@ class CambiarContraseña extends React.Component <{
     this.handleChangeNewPasswordCopy = this.handleChangeNewPasswordCopy.bind(this);
     this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
     this.state = {
+      formValid:true,
       empresa: {
         "clave": '',
       },
@@ -86,10 +89,22 @@ class CambiarContraseña extends React.Component <{
 
   handleChangeOldPassword(e: any) {
     this.setState({ oldPassword: e.target.value })
+    if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+      this.props.dispatch(errorActions.editErrors(e.target.id))
+    }
+    if(this.state.newPassword !== '' && this.state.newPasswordCopy !== '' && this.state.oldPassword !== ''){
+      this.setState({formValid:true});
+    }
   }
 
   handleChangeNewPassword(e: any) {
     this.setState({ newPassword: e.target.value })
+    if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+      this.props.dispatch(errorActions.editErrors(e.target.id))
+    }
+    if(this.state.newPassword !== '' && this.state.newPasswordCopy !== '' && this.state.oldPassword !== ''){
+      this.setState({formValid:true});
+    }
   }
 
   handleChangeNewPasswordCopy(e: any) {
@@ -101,14 +116,62 @@ class CambiarContraseña extends React.Component <{
     }
 
     this.setState({ newPasswordCopy: e.target.value })
+    if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
+      this.props.dispatch(errorActions.editErrors(e.target.id))
+    }
+    if(this.state.newPassword !== '' && this.state.newPasswordCopy !== '' && this.state.oldPassword !== ''){
+      this.setState({formValid:true});
+    }
   }
 
   handleMouseDownPassword(e: any) {
     e.preventDefault();
   };
 
-  render(){
+  validacion=() => {
+    debugger;
+    let formIsValid = true;
+    let errores=[];
+    let ref: any = this.changePasswordRef.current
+    
+    console.log(ref);
+    for (let i = 0, element; element = ref[i]; i++) {
 
+       if(!element.checkValidity())
+      {
+
+        errores[element.id]=element.validationMessage;
+        errores.length = errores.length + 1;
+        formIsValid = false;
+      
+        this.setState({formValid:formIsValid})
+        
+      }
+      
+    }
+
+    
+
+     this.props.dispatch(errorActions.setError(errores)); 
+    
+     return formIsValid;
+  }
+
+  update(oldPassword: string, newPassword: string) {
+    if(this.validacion()){
+       this.props.dispatch(empresaActions.changePassword(
+      this.props.cookies.get('empresaId'),
+      oldPassword,
+      newPassword
+    ))
+    }
+   
+
+  }
+
+  render(){
+    debugger;
+console.log(this.props.errors);
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
     
@@ -142,18 +205,19 @@ class CambiarContraseña extends React.Component <{
               </Typography>
 <Divider className={classes.divider} />
                     <CardContent>
-                      <form className={classes.root} >
+                      <form className={classes.root} ref={this.changePasswordRef} >
                          <Grid container spacing={3}>
                         
                         <Grid container spacing={3}>
                         <Grid item xs={12} sm={4}> 
                               
-                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                        <FormControl error={this.props.errorReducer.errors.currentPassword} className={clsx(classes.margin, classes.textField)}>
                           <InputLabel className={classes.inputLabel} htmlFor="standard-adornment-password">Contraseña Actual</InputLabel>
                           <Input
-                            id="standard-adornment-password"
+                            id="currentPassword"
                             type={this.state.showOldPassword ? 'text' : 'password'}
                             value={this.state.oldPassword}
+                            required={true}
                             className={classes.textField}
                             onChange={this.handleChangeOldPassword}
                             endAdornment={
@@ -168,14 +232,16 @@ class CambiarContraseña extends React.Component <{
                               </InputAdornment>
                             }
                           />
+                           { this.props.errorReducer.errors.currentPassword !== null ? <FormHelperText error={true}>{this.props.errors.currentPassword}</FormHelperText> : ''}
                         </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={4}> 
-                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                        <FormControl  error={this.props.errorReducer.errors.newPassword } className={clsx(classes.margin, classes.textField)}>
                           <InputLabel className={classes.inputLabel}  htmlFor="standard-adornment-password">Nueva Contraseña</InputLabel>
                           <Input
                           className={classes.textField}
-                            id="standard-adornment-password"
+                            id="newPassword"
+                            required={true}
                             type={this.state.showNewPassword ? 'text' : 'password'}
                             value={this.state.newPassword}
                             onChange={this.handleChangeNewPassword}
@@ -186,19 +252,21 @@ class CambiarContraseña extends React.Component <{
                                   onClick={this.handleClickShowNewPassword}
                                   onMouseDown={this.handleMouseDownPassword}
                                 >
-                                  {this.state.showNewPassword ? <Visibility /> : <VisibilityOff />}
+                                  {this.props.errorReducer.showNewPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                               </InputAdornment>
                             }
                           />
+                            {this.props.errorReducer.errors.newPassword !== null ? <FormHelperText error={true}>{this.props.errors.newPassword}</FormHelperText> : ''}
                         </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={4}> 
-                        <FormControl className={clsx(classes.margin, classes.textField)}>
+                        <FormControl error={this.props.errors.newPasswordCopy  || this.state.diferentPass} className={clsx(classes.margin, classes.textField)}>
                           <InputLabel className={classes.inputLabel}   htmlFor="standard-adornment-password">Repetir Contraseña</InputLabel>
                           <Input
                             className={classes.textField}
-                            id="standard-adornment-password"
+                            required={true}
+                            id="newPasswordCopy"
                             type={this.state.showNewPasswordCopy ? 'text' : 'password'}
                             value={this.state.newPasswordCopy}
                             onChange={this.handleChangeNewPasswordCopy}
@@ -214,7 +282,8 @@ class CambiarContraseña extends React.Component <{
                               </InputAdornment>
                             }
                           />
-                          { this.state.diferentPass ? <FormHelperText id="component-error-text" children='Error' /> : <div></div> }
+                          { this.state.diferentPass ? <FormHelperText error={true} children='Las contraseñas no coinciden' /> : <div></div> }
+                          { this.props.errorReducer.errors.newPasswordCopy !== null ? <FormHelperText error={true}>{this.props.errors.newPasswordCopy}</FormHelperText> : ''}
                         </FormControl>
                             
                           </Grid>
@@ -237,8 +306,8 @@ class CambiarContraseña extends React.Component <{
                               size="small"
                               className={classes.button}
                               startIcon={<SaveIcon />}
-                              disabled={ this.state.diferentPass ? true : false }
-                              onClick={() => this.props.update(
+                              disabled={ this.state.diferentPass ? true : false || !this.state.formValid }
+                              onClick={() => this.update(
                                 this.state.oldPassword,
                                 this.state.newPasswordCopy
                               )}
