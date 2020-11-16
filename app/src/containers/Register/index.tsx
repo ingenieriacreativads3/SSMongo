@@ -11,6 +11,7 @@ import { Registrar as RegisterComponent } from './../../components/Register'
 
 import * as errorActions from './../../store/actions/error'
 import store from './../../store/index'
+import { toast } from "react-toastify"
 
 function mapStateToProps(store: {
   registerReducer: any,
@@ -62,9 +63,11 @@ class Register extends React.Component<{}, {
   componentDidUpdate() {
 
     if(this.props.register.fetched) {
-      this.props.dispatch(dialogAction.openOneButton())
+      //this.props.dispatch(dialogAction.openOneButton())
+      toast.success(this.props.register.message);
     } else {
-      this.props.dispatch(dialogAction.closeOneButton())
+      //this.props.dispatch(dialogAction.closeOneButton())
+      toast.success('Solicitud de registro enviada. Sera revisada a la brevedad');
     }
 
 	}
