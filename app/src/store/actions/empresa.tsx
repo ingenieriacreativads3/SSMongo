@@ -1,5 +1,24 @@
 import axios from 'axios';
 
+export function rubrosValidacion(
+	idEmpresa: string,
+	rubros: string[]
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/rubro/validacion', {
+		_id: idEmpresa,
+		rubros
+	})
+	
+  return {
+		type: 'RUBROS_VALIDACION',
+		payload: payload
+	}
+
+}
+
 export function changePassword(
 	idEmpresa: string,	
 	oldPassword: string,
@@ -42,6 +61,42 @@ export function getEmpresa(id: string){
         
 	return {
 		type: 'GET_EMPRESA',
+		payload: payload
+	}
+
+}
+
+export function validar(
+	_id: string,	
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.put(url + '/empresa/' + _id + '/editar', {
+		estado: 'VALIDADA'
+	})
+	
+  return {
+		type: 'VALIDAR_EMPRESA',
+		payload: payload
+	}
+
+}
+
+export function autenticar(
+	_id: string,	
+	autenticar: boolean,
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/empresa/autenticar', {
+		_id,
+		autenticar
+	})
+	
+  return {
+		type: 'AUTENTICAR_EMPRESA',
 		payload: payload
 	}
 

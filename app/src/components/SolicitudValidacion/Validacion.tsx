@@ -1,13 +1,11 @@
 import React from 'react';
 
-
 import { Grid, Divider, Paper, TextField, Box, Typography,Chip, CssBaseline,  Button,  Input, FormControl, InputLabel, Select, MenuItem, Checkbox,  ListItemText} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 
 import { connect } from 'react-redux'
 
-
-
+import { NO_VALIDADA, VALIDADA, NO_AUTENTICADA, AUTENTICADA } from './../SolicitudValidacion'
 
 function mapStateToProps(store: {
   solicitudDeValidacionReducer: {}
@@ -17,27 +15,9 @@ function mapStateToProps(store: {
   };
 }
 
-class Validacion extends React.Component <{
-  classes: any,
-  title:string,
-  _id: string,
-  nombre: string,
-  cuit: string,
-  rubros: {
-    _id: string,
-    nombreRubro: string,
-    updated_at: string,
-    created_at: string,
-  }[],
-  listaRubros: any[],
-  listaGrupos: any[],
-  listaActividades: any[],
-  getRubros: any,
-  removeRubro: any,
-  removeGrupo: any,
-  removeActividad: any,
-},  {
-  rubros: any[]
+class Validacion extends React.Component <{}, {
+  rubros: any[],
+  estado: string
 }> {
 
   props: any
@@ -48,21 +28,10 @@ class Validacion extends React.Component <{
     super(props);
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      // personName: [],
-      // solicitudDeValidacion: {
-      //   _id: '',
-      //   empresa: {
-      //     nombre: '',
-      //     cuit: ''
-      //   }
-      // }
-      rubros: []
+      rubros: [],
+      estado: NO_VALIDADA,
     };
   }
-
-  // componentWillMount() {
-  //   this.props.dispatch(SolicitudDeValidacionActions.getById(this.props.match.params.id))
-  // }
 
   handleChange(e: any) {
 
@@ -118,6 +87,29 @@ class Validacion extends React.Component <{
     this.props.removeActividad(actividad)
 
   }
+
+  update = () => {
+
+    let lista: string[] = []
+
+    this.props.actividades.map((actividad: {
+      name: string
+    }) => {
+      lista.push(actividad.name)
+    })
+
+    this.props.update(
+      this.props.empresa?._id || '',
+      lista,
+      this.state.estado
+    )
+  }
+
+  estadoGet = (e: any) => {
+    this.setState({
+      estado: e.target.value
+    })
+  }
   
   render(){
 
@@ -126,11 +118,13 @@ class Validacion extends React.Component <{
     let rubros: any[] = []
     let grupos: any[] = []
     let actividades: any = []
-
+    
     if(this.props.rubros) rubros = this.props.rubros
     if(this.props.grupos) grupos = this.props.grupos
     if(this.props.actividades) actividades = this.props.actividades
 
+
+    
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
 
@@ -233,20 +227,18 @@ class Validacion extends React.Component <{
 
               <Grid container xs={12} sm={12}>
                 <Grid item xs={12} sm={6}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel shrink id="demo-simple-select-label" className={classes.inputLabel}>Estado</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      defaultValue={1}
-                      // value={unidadDeMedida}
-                      // onChange={this.getUnidadDeMedida}
-                      
+                      defaultValue={ NO_VALIDADA }
+                      onChange={ this.estadoGet }
                     >
-                      <MenuItem value={1}>No Validada</MenuItem>
-                      <MenuItem value={2}>Validada</MenuItem>
-                      <MenuItem value={3}>Autenticada</MenuItem>
-                      <MenuItem value={4}>No Autenticada</MenuItem>
+                      <MenuItem value={ NO_VALIDADA }>{ NO_VALIDADA }</MenuItem>
+                      <MenuItem value={ VALIDADA }>{ VALIDADA }</MenuItem>
+                      <MenuItem value={ NO_AUTENTICADA }>{ NO_AUTENTICADA }</MenuItem>
+                      <MenuItem value={ AUTENTICADA }>{ AUTENTICADA }</MenuItem>
                       
                     </Select>
                   </FormControl>
@@ -254,7 +246,7 @@ class Validacion extends React.Component <{
 
                 <Grid item xs={12} sm={6}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-mutiple-chip-label"  className={classes.inputLabel}>Sección</InputLabel>
+                  <InputLabel shrink={ this.props.rubros?.length > 0 ? true : false } id="demo-mutiple-chip-label"  className={ classes.inputLabel }>Sección</InputLabel>
                     <Select
                       labelId="demo-mutiple-chip-label"
                       id="demo-mutiple-chip"
@@ -301,7 +293,7 @@ class Validacion extends React.Component <{
 
                 <Grid item xs={12} sm={6}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Grupo</InputLabel>
+                    <InputLabel shrink={ this.props.grupos?.length > 0 ? true : false } id="demo-mutiple-chip-label" className={classes.inputLabel}>Grupo</InputLabel>
                     <Select
                       labelId="demo-mutiple-chip-label"
                       id="demo-mutiple-chip"
@@ -347,7 +339,7 @@ class Validacion extends React.Component <{
 
                 <Grid item xs={12} sm={6}>
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-chip-label" className={classes.inputLabel}>Actividad</InputLabel>
+                  <InputLabel shrink={ this.props.actividades?.length > 0 ? true : false } id="demo-mutiple-chip-label" className={classes.inputLabel}>Actividad</InputLabel>
                   <Select
                     labelId="demo-mutiple-chip-label"
                     id="demo-mutiple-chip"
@@ -401,7 +393,7 @@ class Validacion extends React.Component <{
                 color="primary"
                 size="small"
                 className={classes.button}
-                // startIcon={<SaveIcon />}
+                onClick={ this.update }
               >
                 Aceptar
               </Button>

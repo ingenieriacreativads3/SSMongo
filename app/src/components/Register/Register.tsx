@@ -114,7 +114,7 @@ class Register extends React.Component<{
                  
                 }}
                 onChange={ this.props.getCUIT }
-                inputProps={{minLength:11, maxLength:11, pattern:"[0-9]"}}
+                // inputProps={{minLength:11, maxLength:11, pattern:"[0-9]"}}
                  error={this.props.errors.cuit != null ? true : false}
                  helperText={this.props.errors.cuit != null ? this.props.errors.cuit : "" }
               

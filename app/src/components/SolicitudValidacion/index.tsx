@@ -117,66 +117,23 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export function SolicitudesValidacion(props: {
-  data: any,
-  title: string,
-  columns: {}[],
-  action: any
-}) {
+export function SolicitudesValidacion(props: any) {
 
 	const classes = useStyles(theme);
-  return <Lista 
-    classes={ classes }
-    data={ props.data }
-    title={ props.title }
-    columns={ props.columns }
-    action= { props.action }
-  />;
+  return <Lista classes={ classes } { ...props } />;
 
 }
 
-export function ValidarNuevoUsuario(props: {
-  title: string,
-  _id: string,
-  nombre: string,
-  cuit:string,
-  rubros: any[],
-  grupos: any[],
-  actividades: any[],
-  listaRubros: any[],
-  listaGrupos: any[],
-  listaActividades: any[],
-  getRubros: any,
-  removeRubro: any,
-  removeGrupo: any,
-  removeActividad: any,
-  footer:any,
-  appBar:any,
-  drawer:any,
-}) {
+export function ValidarNuevoUsuario(props: any) {
 
 	const classes = useStyles(theme);
   return <div>
-    <Validacion
-      classes={ classes } 
-      title={ props.title }
-      _id={ props._id }
-      nombre={ props.nombre }
-      cuit={ props.cuit }
-      rubros={ props.rubros }
-      grupos={ props.grupos }
-      actividades={ props.actividades }
-      listaRubros={ props.listaRubros }
-      listaGrupos={ props.listaGrupos }
-      listaActividades={ props.listaActividades }
-      getRubros={ props.getRubros }
-      removeRubro={ props.removeRubro }
-      removeGrupo={ props.removeGrupo }
-      removeActividad={ props.removeActividad }
-      footer={ props.footer }
-      appBar={ props.appBar }
-      drawer={ props.drawer }
-    />
+    <Validacion classes={ classes } { ...props } />
   </div>
 }
+
+export const NO_VALIDADA: string = 'No Validada'
+export const VALIDADA: string = 'Validada'
+export const NO_AUTENTICADA: string = 'No Autenticada'
+export const AUTENTICADA: string = 'Autenticada'
 

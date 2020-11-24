@@ -41,7 +41,6 @@ class Catalog extends React.Component<{
   constructor(props: any) {
     super(props);
     this.getChecked = this.getChecked.bind(this);
-    this.layout = this.layout.bind(this);
     this.action = this.action.bind(this);
     this.drawer = this.drawer.bind(this);
     this.openDialog = this.openDialog.bind(this);
@@ -81,7 +80,7 @@ class Catalog extends React.Component<{
     />
   }
 
-  layout(isTable: boolean, items: any[]) {
+  layout = (isTable: boolean, items: any[]) => {
 
     let isCatalog: boolean = true
 

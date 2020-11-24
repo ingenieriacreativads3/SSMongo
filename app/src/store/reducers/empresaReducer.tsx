@@ -14,6 +14,84 @@ export default function empresaReducer ( state = {
 
 	switch (action.type) {
 
+		case 'AUTENTICAR_EMPRESA_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'AUTENTICAR_EMPRESA_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'AUTENTICAR_EMPRESA_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
+		case 'VALIDAR_EMPRESA_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'VALIDAR_EMPRESA_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'VALIDAR_EMPRESA_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
+		case 'RUBROS_VALIDACION_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'RUBROS_VALIDACION_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'RUBROS_VALIDACION_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
 		case 'UPDATE_EMPRESA_PENDING': {
 			return { 
 				...state, 

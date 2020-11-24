@@ -26,6 +26,22 @@ export function getById(id: string) {
 
 }
 
+export function update(id: string, estado: string) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.put(url + '/solicituddevalidacion/', {
+		id,
+		estado
+	})
+
+	return {
+		type: 'UPDATE_SOLICITUD_DE_VALIDACION',
+		payload: payload
+	}
+
+}
+
 export function resetear() {
 
 	return {

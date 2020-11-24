@@ -14,6 +14,38 @@ export default function SolicitudesDeValidacionReducer ( state = {
 
 	switch (action.type) {
 
+		case 'UPDATE_SOLICITUDES_DE_VALIDACION_PENDING': {
+
+			return { 
+				...state, 
+				fetching: true 
+			};
+
+		}
+	
+		case 'UPDATE_SOLICITUDES_DE_VALIDACION_REJECTED': {
+
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+
+		}
+	
+		case 'UPDATE_SOLICITUDES_DE_VALIDACION_FULFILLED': {
+			
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+			
+		}
+
 		case 'GET_SOLICITUDES_DE_VALIDACION_PENDING': {
 
 			return { 

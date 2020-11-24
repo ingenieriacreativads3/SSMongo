@@ -6,9 +6,11 @@ import * as solicitudesActions from './../../store/actions/solicitudDeValidacion
 import * as empresaActions from './../../store/actions/empresa'
 import * as actividadEconomicaActions from './../../store/actions/actividadEconomica'
 import { Footer } from './../Footer'
-import {AppBar} from './../AppBar'
-import {Drawer} from './../Drawer'
+import { AppBar } from './../AppBar'
+import { Drawer } from './../Drawer'
 import Cookies from 'universal-cookie';
+import Empresa from '../../components/Evaluacion/Empresa';
+import { NO_VALIDADA, VALIDADA, NO_AUTENTICADA, AUTENTICADA } from './../../components/SolicitudValidacion'
 
  
 function mapStateToProps(store: {
@@ -205,8 +207,6 @@ class Detail extends React.Component<{
       return actividadesAux;
     })
 
-    console.log(actividadesAux)
-
     this.setState({
       grupos: listAux,
       listaActividades: actividadesAux
@@ -312,6 +312,24 @@ class Detail extends React.Component<{
     />
   }
 
+  update = (idEmpresa: string, rubros: string[], estado: string) => {
+
+    if(estado ===  'Validada' ) this.props.dispatch(empresaActions.validar(idEmpresa))
+    if(estado === NO_AUTENTICADA ) this.props.dispatch(empresaActions.autenticar(idEmpresa, false))
+    if(estado === AUTENTICADA ) this.props.dispatch(empresaActions.autenticar(idEmpresa, true))
+
+    this.props.dispatch(empresaActions.rubrosValidacion(
+      idEmpresa,
+      rubros
+    ))
+
+    this.props.dispatch(solicitudesActions.update(
+      this.props.match.params.id,
+      'Resuelta'
+    ))
+
+  }
+
   render(){
 
     if(
@@ -337,6 +355,7 @@ class Detail extends React.Component<{
       ) {
         nombre = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre
         cuit = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit
+        
       }
     }
 
@@ -363,9 +382,13 @@ class Detail extends React.Component<{
       listaRubros = this.props.actividadEconomicaReducer.data.actividad
     }
 
+    let empresa = this.props?.solicitudDeValidacionReducer?.data?.solicitudesDeValidaciones?.empresa || ''
+
     return(
       <div>
         <Validacion
+          update={ this.update }
+          empresa={ empresa }
           title={ title }
           _id={ _id }
           nombre={ nombre }
