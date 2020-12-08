@@ -15,13 +15,7 @@ import  slide1  from './img/slide1.jpeg';
 import  slide2  from './img/slide2.jpeg';
 import  slide3  from './img/slide3.jpeg';
 
-
-
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-
-
-
 
 class Busqueda extends React.Component <{}, {
   valueFilter: number | null,

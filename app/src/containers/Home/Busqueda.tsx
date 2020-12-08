@@ -17,13 +17,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Busqueda extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {}> {
+class Busqueda extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -36,31 +30,15 @@ class Busqueda extends React.Component<{
   }
   
   drawer() {
-    return <InicioDrawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <InicioDrawer { ...this.props } />
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
 
@@ -71,14 +49,11 @@ class Busqueda extends React.Component<{
     return(
       <div>
         <BusquedaPage
-        history={this.props.history}
-        location={this.props.location}
-        match={this.props.match}
-        staticContext={this.props.staticContext}
-        cookies={this.props.cookies}
-        drawer={ this.drawer() }
-        footer={ this.footer() }
-        appBar={this.appBar()} />
+          drawer={ this.drawer() }
+          footer={ this.footer() }
+          appBar={ this.appBar() }
+          { ...this.props }
+        />
       </div>
     );
   }
