@@ -422,35 +422,20 @@ export  function EditarItem(props: {
 
 }
 
-export  function MostrarCatalogo(props: {
-  items: any[],
-  getChecked: any,
-  checked: boolean,
-  footer:any,
-  delete: any,
-  appBar: any
-}) {
+export  function MostrarCatalogo(props: any) {
 
   const classes = useStyles(theme);
 
-  let items: any[] = []
+  // let items: any[] = []
 
-  if(props !== undefined) {
-    if(props.items !== undefined) {
-      items = props.items
-    }
-  }
+  // if(props !== undefined) {
+  //   if(props.items !== undefined) {
+  //     items = props.items
+  //   }
+  // }
 
   return <div>
-    <Catalogo
-      classes={ classes }
-      items={ items }
-      getChecked={ props.getChecked }
-      checked={ props.checked }
-      footer={ props.footer }
-      delete={ props.delete }
-      appBar={ props.appBar }
-    />
+    <Catalogo classes={ classes } { ...props } />
   </div>;
 
 }

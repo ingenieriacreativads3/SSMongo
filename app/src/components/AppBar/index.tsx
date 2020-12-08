@@ -119,16 +119,7 @@ const useStyles = makeStyles((theme) => ({
 	
 })); 
 
-export default function PermanentDrawerLeft(props: {
-	cerrarSesion: any,
-	miPerfil: any,
-	cambiarPassword: any
-}) {
+export default function PermanentDrawerLeft(props: any) {
 	const classes = useStyles();
-	return <AppBar 
-		classes={ classes }
-		cerrarSesion={ props.cerrarSesion }
-		miPerfil={ props.miPerfil }
-		cambiarPassword={ props.cambiarPassword }
-	/>;
+	return <AppBar classes={ classes } { ...props } />;
 }

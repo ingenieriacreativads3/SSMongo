@@ -195,97 +195,21 @@ const useStyles = makeStyles((theme) => ({
  
 }));
 
-export function InitLayout(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-  drawer: any,
-  footer: any,
-  appBar:any,
-  action: any,
-  actividadesEconomicas: any[],
-  iconos: any[],
-  itemsTrending: [
-    {
-      item: {
-        "_id": string,
-        "foto": string[],
-        "nombre": string,
-        "precio": string,
-        "descrpcion": string,
-        "mostrarPrecio": boolean,
-        "unidad_de_medida_id": string,
-        "updated_at": string,
-        "created_at": string,
-        "catalogo_id": string,
-        "unidad_de_medida": {
-          "_id": string,
-          "nombre": string,
-          "abreviatura": string,
-          "updated_at": string,
-          "created_at": string,
-        }
-      },
-      "cantidad": number
-    }
-  ],
-  items: any[]
-}) {
+export function InitLayout(props: any) {
 
 	const classes = useStyles(theme);
  
   return <div>
-    <Home
-      classes={classes} 
-      theme={useTheme}
-      history={props.history}
-      location={props.location}
-      match={props.match}
-      staticContext={props.staticContext}
-      cookies={props.cookies}
-      drawer={props.drawer}
-      footer={props.footer}
-      appBar={props.appBar}
-      action={ props.action }
-      items={ props.items }
-      itemsTrending={ props.itemsTrending }
-      actividadesEconomicas={ props.actividadesEconomicas }
-      iconos={ props.iconos }
-      
-    />
+    <Home classes={ classes } theme={ useTheme } { ...props } />
   </div>;
 }
 
-export function PaginaBusqueda(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-  drawer: any,
-  footer: any,
-  appBar:any,
-
-}) {
+export function PaginaBusqueda(props: any) {
 
 	const classes = useStyles(theme);
  
   return <div>
-    <Busqueda
-  
-      classes={classes} 
-      theme={useTheme}
-      history={props.history}
-      location={props.location}
-      match={props.match}
-      staticContext={props.staticContext}
-      cookies={props.cookies}
-      drawer={props.drawer}
-      footer={props.footer}
-      appBar={props.appBar}
-    />
+    <Busqueda classes={classes} theme={useTheme} { ...props } />
   </div>;
 }
 

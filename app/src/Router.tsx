@@ -129,7 +129,7 @@ class App extends React.Component <{}, {}> {
 						<this.enEspera path='/item/nuevo'              cookies={cookies}    render={(props:any) => <ItemNuevo {...props} cookies={cookies} />} /> 
 
 
-						<Route path='/home/busqueda/:id'            render={(props) => <Busqueda {...props} cookies={cookies} />} />	
+						<Route path='/home/busqueda/:search'            render={(props) => <Busqueda {...props} cookies={cookies} />} />	
 						<Route path='/home/perfil/:id'         		 render={(props) => <EmpresaPerfil {...props} cookies={cookies}/>} />
 						<this.enEspera path='/home/miperfil/:id'      cookies={cookies}    render={(props:any) => <MiPerfil {...props} cookies={cookies} />} />
 						<this.enEspera path='/home/cambiar-password/:id'   cookies={cookies} render={(props:any) => <CambiarContraseña {...props} cookies={cookies}/>}/> 

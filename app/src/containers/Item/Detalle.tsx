@@ -177,19 +177,19 @@ class Detalle extends React.Component<{
       }
     }
 
-    if(
-      !this.props.itemReducer.fetched &&
-      !this.props.itemReducer.fetching
-    ) {
-      this.props.dispatch(itemActions.getItem(this.props.match.params.id))
-    }
+    // if(
+    //   !this.props.itemReducer.fetched &&
+    //   !this.props.itemReducer.fetching
+    // ) {
+    //   this.props.dispatch(itemActions.getItem(this.props.match.params.id))
+    // }
 
-    if(
-      this.props.itemReducer.fetched &&
-      this.props.itemReducer.data !== undefined
-    ) {
-      item = this.props.itemReducer.data.item
-    }
+    // if(
+    //   this.props.itemReducer.fetched &&
+    //   this.props.itemReducer.data !== undefined
+    // ) {
+    //   item = this.props.itemReducer.data.item
+    // }
 
     return(
       <div>
@@ -197,12 +197,8 @@ class Detalle extends React.Component<{
             drawer={ this.drawer() }
             footer={this.footer()}
             appBar={this.appBar()}
-            item={item}
+            item={ item }
             actions={ (classes: any) => this.actions(classes) }
-          // history={this.props.history}
-          // location={this.props.location}
-          // match={this.props.match}
-          // staticContext={this.props.staticContext}
          />
       </div>
     );

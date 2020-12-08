@@ -26,12 +26,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Catalogo extends React.Component <{
-  items: any[],
-  getChecked: any,
-  checked: boolean,
-  delete: any
-}, {}> {
+class Catalogo extends React.Component <{}, {}> {
 
 	props: any
 	static propTypes: any

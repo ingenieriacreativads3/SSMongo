@@ -67,18 +67,10 @@ class Home extends React.Component<{
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   action(idItem: string) {
-    console.log(this.props.cookies.get('empresaId'))
-    console.log(idItem)
     this.props.dispatch(itemActions.reintentar())
     this.props.dispatch(itemActions.agregarBusqueda(
       this.props.cookies.get('empresaId'),
@@ -116,7 +108,7 @@ class Home extends React.Component<{
     ] = [
       {
         item: {
-          "_id": '',
+          "_id": 'asd',
           "foto": [],
           "nombre": '',
           "precio": '',
@@ -155,16 +147,14 @@ class Home extends React.Component<{
       items = this.props.itemReducer.data.items[0]
     }
 
-    // debugger;
-
     return(
       <div>
         <HomeComponent
-          history={this.props.history}
-          location={this.props.location}
-          match={this.props.match}
-          staticContext={this.props.staticContext}
-          cookies={this.props.cookies}
+          history={ this.props.history }
+          location={ this.props.location }
+          match={ this.props.match }
+          staticContext={ this.props.staticContext }
+          cookies={ this.props.cookies }
           drawer={ this.drawer() }
           footer={ this.footer() }
           appBar={ this.appBar() }

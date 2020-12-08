@@ -31,14 +31,11 @@ function mapStateToProps(store: {
   };
 }
 
-class AppBare extends React.Component<{
-	cerrarSesion: any,
-	miPerfil: any,
-	cambiarPassword: any
-}, {
+class AppBare extends React.Component<{}, {
 	anchorEl: null | HTMLElement,
 	mobileMoreAnchorEl: null | HTMLElement
 	mensajes: null | HTMLElement,
+	search: string
 }> {
 
 	props: any
@@ -50,24 +47,38 @@ class AppBare extends React.Component<{
 		this.state = {
 			anchorEl: null,
 			mobileMoreAnchorEl: null,
-			mensajes:null,
+			mensajes: null,
+			search: ''
 		};
 	}
 
 	renderRow(){
 		return <ListItem>
-		<ListItemAvatar>
-		
-			<Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
-		
-		</ListItemAvatar>
-		<ListItemText
-		primary={"Este es un nuevo mensaje"}
-		secondary={"15:00 PM"}
-		/>
-	</ListItem>
+			<ListItemAvatar>
+			
+				<Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
+			
+			</ListItemAvatar>
+			<ListItemText
+			primary={"Este es un nuevo mensaje"}
+			secondary={"15:00 PM"}
+			/>
+		</ListItem>
 	}
 
+	handleKeyPress = (e: any) => {
+		if(e.key === 'Enter'){
+			if(this.props.history !== undefined) {
+				this.props.history.push("/home/busqueda/" + this.state.search);
+			}
+		}
+	}
+
+	searchGetValue = (e: any) => {
+		this.setState({
+			search: e.target.value
+		})
+	}
 
 	render(){
 
@@ -186,6 +197,8 @@ class AppBare extends React.Component<{
 								input: classes.inputInput,
 							}}
 							inputProps={{ 'aria-label': 'search' }}
+							onKeyPress={ this.handleKeyPress }
+							onChange={ this.searchGetValue }
 						/>
 					</div>
 					<div className={classes.grow} />

@@ -23,15 +23,10 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
 
-class Busqueda extends React.Component <{
-  clasess: any,
-  theme: any
-}, {
-
+class Busqueda extends React.Component <{}, {
   valueFilter: number | null,
   hoverFilter: any,
   activeStep: number
-  
 }> {
 
 	props: any
@@ -55,15 +50,12 @@ class Busqueda extends React.Component <{
     
     const tutorialSteps = [
       {
-        
         imgPath:slide1,
       },
       {
-        
         imgPath:slide2,
       },
       {
-        
         imgPath:slide3,
       },
     ];
@@ -88,29 +80,27 @@ class Busqueda extends React.Component <{
       });
     };
 
-   
-
     return(
 
       <div className={classes.root}>
         <CssBaseline />
-        {this.props.appBar}
-        {this.props.drawer}
-					<main className={classes.content}>
-          <div className={classes.rootCarousel}>
+        { this.props.appBar }
+        { this.props.drawer }
+					<main className={ classes.content } >
+          <div className={ classes.rootCarousel } >
           
           <AutoPlaySwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={this.state.activeStep}
-            onChangeIndex={handleStepChange}
+            axis={ theme.direction === 'rtl' ? 'x-reverse' : 'x' }
+            index={ this.state.activeStep }
+            onChangeIndex={ handleStepChange }
             enableMouseEvents
             
           >
-            {tutorialSteps.map((step, index) => (
+            { tutorialSteps.map((step, index) => (
               <div>
-                {Math.abs(this.state.activeStep - index) <= 2 ? (
+                { Math.abs(this.state.activeStep - index) <= 2 ? (
                   <img className={classes.img} src={step.imgPath}  />
-                ) : null}
+                ) : null }
               </div>
             ))}
           </AutoPlaySwipeableViews>

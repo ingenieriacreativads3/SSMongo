@@ -28,47 +28,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Detalle extends React.Component <{
-  clasess: any,
-  theme: any,
-  actions: any,
-  item: {
-    "_id": string,
-    "foto": string[],
-    "nombre": string,
-    "precio": string,
-    "descrpcion": string,
-    "mostrarPrecio": boolean,
-    "unidad_de_medida_id": string,
-    "updated_at": string,
-    "created_at": string,
-    "catalogo_id": string,
-    "unidad_de_medida": {
-      "_id": string,
-      "nombre": string,
-      "abreviatura": string,
-      "updated_at": string,
-      "created_at": string,
-    },
-    "catalogo": {
-      "_id": string,
-      "empresa_id": string,
-      "updated_at": string,
-      "created_at": string,
-      "empresa": {
-        "_id": string,
-        "nombre": string,
-        "cuit": string,
-        "usuario": string,
-        "clave": string,
-        "email": string,
-        "estado": string,
-        "updated_at": string,
-        "created_at": string,
-      }
-    }
-  }
-}, {
+class Detalle extends React.Component <{}, {
   activeStep: number,
   value:number,
 }>  {
@@ -95,12 +55,15 @@ class Detalle extends React.Component <{
       imgPath: string
     }[] = [];
 
-    this.props.item.foto.map((img: string) => {
-      tutorialSteps.push({
-        label: '',
-        imgPath: 'http://localhost:8000/' + img 
+    if(this.props.item.foto !== undefined) {
+      this.props.item.foto.map((img: string) => {
+        tutorialSteps.push({
+          label: '',
+          imgPath: 'http://localhost:8000/' + img 
+        })
       })
-    })
+    }
+
 
     const maxSteps = tutorialSteps.length;
 

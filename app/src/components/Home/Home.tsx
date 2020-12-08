@@ -252,7 +252,7 @@ class Home extends React.Component <{
 
       <div className={classes.root}>
         <CssBaseline />
-        {this.props.appBar}
+        { this.props.appBar }
         {/* {this.props.drawer} */}
 					<main className={classes.content}>
           <div className={classes.rootCarousel}>

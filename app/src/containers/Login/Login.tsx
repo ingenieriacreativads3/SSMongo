@@ -52,7 +52,7 @@ class Login extends React.Component<{
   }
 
   componentWillMount() {
-    this.props.dispatch(itemActions.cargaElastic())
+    // this.props.dispatch(itemActions.cargaElastic())
   }
 
   componentDidUpdate() {

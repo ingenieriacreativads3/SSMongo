@@ -58,6 +58,7 @@ class AppBar extends React.Component<{
           cerrarSesion={ this.cerrarSesion }
           miPerfil={ this.miPerfil }
           cambiarPassword={ this.cambiarPassword }
+          { ...this.props }
         />
       </div>
     );
