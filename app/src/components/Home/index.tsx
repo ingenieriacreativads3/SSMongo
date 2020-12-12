@@ -138,13 +138,15 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   Boton: {
-    margin: theme.spacing(3),
-    backgroundColor: '#d93211',
-    color : '#ffffff',
-    '&:hover': {
-      background: "#d93211",
+    color : '#ffba00',
+    marginTop: theme.spacing(2),
+  //   margin: theme.spacing(3),
+  //   backgroundColor: '#d93211',
+  //   color : '#ffffff',
+  //   '&:hover': {
+  //     background: "#d93211",
    },
-  },
+  
   rootCarousel: {
     //maxWidth: 1500,
     width:1500,
@@ -191,7 +193,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize:25,
     color:"#d93211",
    
-  }
+  },
+  avatar: {
+    // margin: theme.spacing(1),
+    //fontSize: '300px',
+    width: '450px',
+    height: '250px',
+  },
+  
  
 }));
 

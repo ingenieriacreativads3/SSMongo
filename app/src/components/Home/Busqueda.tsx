@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx'
 
 
-import { Container,  Button, Grid, Card,  Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
-import { Link} from "react-router-dom";
+import { Container, Avatar, Link,  Button, Grid, Card, ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+//import { Link} from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import  foto  from '../Login/img/photo2.png';
 import { SideBarInicio } from '../SideBarInicio'
@@ -14,6 +14,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import  slide1  from './img/slide1.jpeg';
 import  slide2  from './img/slide2.jpeg';
 import  slide3  from './img/slide3.jpeg';
+import logo from "./../Login/img/logo.png";
 
 
 
@@ -140,10 +141,53 @@ class Busqueda extends React.Component <{
            
             <Grid container spacing={3}>
            
-                <SideBarInicio></SideBarInicio>
+                {/* <SideBarInicio></SideBarInicio> */}
                
-                
-              <Grid item lg={3}>
+               <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                // style={{display: this.props.publications.length == 0 ? 'block' : 'none'}}
+                >
+
+              <ListSubheader component="div" id="nested-list-subheader">
+               <Typography  variant="h4" component="h3" gutterBottom>
+                    No hay publicaciones disponibles para esta búsqueda
+                </Typography>
+              </ListSubheader>
+              
+              <Avatar   src={logo} className={classes.avatar}  />
+
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center">
+              <Link href="/home/inicio" style={{textDecoration: 'none'}} >
+              <Button
+                  type="button"
+                  //variant="outlined"
+                  className={classes.Boton}
+                  >
+                  Ver categorías
+                  </Button>
+              </Link>
+              </Grid>
+                </Grid>
+
+
+                <Grid
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start"  spacing={6}
+                style={{display:'none'}}
+                // style={{display: this.props.publications.length > 0 ? 'block' : 'none'}}
+                >
+
+
+              <Grid item >
               
                 <Card className={fixedHeightCardCatalog}>
                   <CardActionArea>
@@ -165,69 +209,7 @@ class Busqueda extends React.Component <{
                     </CardContent>
                   </CardActionArea>
                   <CardActions >
-                  <Link to="/item/detalle/:id">
-                    <IconButton aria-label="ver" className={classes.iconButton}> 
-                      <VisibilityIcon style={{ fontSize: 40 }}  />
-                    </IconButton>
-                    </Link>
-                  
-                    
-                  </CardActions>
-                  </Card>
-                </Grid>
-                <Grid item lg={3}>
-                <Card className={fixedHeightCardCatalog}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Samsung A20"
-                      height="140"
-                      image={foto}
-                      title="Samsung A20"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        asdasd
-                      </Typography>
-                      <Typography variant="subtitle1" component="h2">
-                        $16000
-                      </Typography>
-                    
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions >
-                  <Link to="/item/detalle/:id">
-                    <IconButton aria-label="ver" className={classes.iconButton}> 
-                      <VisibilityIcon style={{ fontSize: 40 }}  />
-                    </IconButton>
-                    </Link>
-                  
-                    
-                  </CardActions>
-                  </Card>
-                </Grid>
-                <Grid item lg={3}>
-                <Card className={fixedHeightCardCatalog}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Samsung A20"
-                      height="140"
-                      image={foto}
-                      title="Samsung A20"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        asdasd
-                      </Typography>
-                      <Typography variant="subtitle1" component="h2">
-                        $16000
-                      </Typography>
-                    
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions >
-                  <Link to="/item/detalle/:id">
+                  <Link href="/item/detalle/:id">
                     <IconButton aria-label="ver" className={classes.iconButton}> 
                       <VisibilityIcon style={{ fontSize: 40 }}  />
                     </IconButton>
@@ -238,6 +220,71 @@ class Busqueda extends React.Component <{
                   </Card>
                 </Grid>
 
+                <Grid item >
+                <Card className={fixedHeightCardCatalog}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Samsung A20"
+                      height="140"
+                      image={foto}
+                      title="Samsung A20"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        asdasd
+                      </Typography>
+                      <Typography variant="subtitle1" component="h2">
+                        $16000
+                      </Typography>
+                    
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions >
+                  <Link href="/item/detalle/:id">
+                    <IconButton aria-label="ver" className={classes.iconButton}> 
+                      <VisibilityIcon style={{ fontSize: 40 }}  />
+                    </IconButton>
+                    </Link>
+                  
+                    
+                  </CardActions>
+                  </Card>
+                </Grid>
+
+                <Grid item >
+                <Card className={fixedHeightCardCatalog}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Samsung A20"
+                      height="140"
+                      image={foto}
+                      title="Samsung A20"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        asdasd
+                      </Typography>
+                      <Typography variant="subtitle1" component="h2">
+                        $16000
+                      </Typography>
+                    
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions >
+                  <Link href="/item/detalle/:id">
+                    <IconButton aria-label="ver" className={classes.iconButton}> 
+                      <VisibilityIcon style={{ fontSize: 40 }}  />
+                    </IconButton>
+                    </Link>
+                  
+                    
+                  </CardActions>
+                  </Card>
+                </Grid>
+
+              </Grid>
               </Grid>
 							
 							
