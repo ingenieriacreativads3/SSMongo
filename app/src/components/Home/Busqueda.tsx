@@ -159,21 +159,7 @@ class Busqueda extends React.Component <{
               
               <Avatar   src={logo} className={classes.avatar}  />
 
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center">
-              <Link href="/home/inicio" style={{textDecoration: 'none'}} >
-              <Button
-                  type="button"
-                  //variant="outlined"
-                  className={classes.Boton}
-                  >
-                  Ver categorías
-                  </Button>
-              </Link>
-              </Grid>
+             
                 </Grid>
 
 

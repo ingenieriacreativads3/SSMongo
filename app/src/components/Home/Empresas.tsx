@@ -157,7 +157,7 @@ class Empresas extends React.Component <{
             <div className={classes.appBarSpacer} />
             <Container maxWidth="lg" /* className={classes.container} */>
            
-            <Grid container spacing={3}>
+            <Grid container >
            
             <Breadcrumbs aria-label="breadcrumb">
                 <Link color="inherit">
@@ -172,16 +172,55 @@ class Empresas extends React.Component <{
                 </Breadcrumbs>
 
 
-               <Grid
+            {/* SI NO HAY EMPRESAS PARA ESTE RUBRO, SE MUESTRA EL SIGUIENTE MENSAJE Y SE OCULTA LA TABLA CON LAS EMPRESAS */}
+
+            <div style={{display:'none'}} /* style={{display: empresas.length == 0? 'block': 'none'}} */>
+                <Grid
                 container
                 direction="row"
                 justify="center"
                 alignItems="center">
 
-                
 
-              
-                <Paper style={{ width: "100%", marginTop: "1.5rem" }} >
+                <ListSubheader component="div" id="nested-list-subheader">
+                <Typography  variant="h4" component="h3" gutterBottom>
+                    No hay empresas para este rubro
+                </Typography>
+              </ListSubheader>
+
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center">
+
+              <Avatar   src={logo} className={classes.avatar}  />
+
+              </Grid>
+
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center">
+
+                <Link href="/home/inicio" style={{textDecoration: 'none'}} >
+                <Button
+                    type="button"
+                    //variant="outlined"
+                    className={classes.Boton}
+                    >
+                    Ver categorías
+                    </Button>
+                </Link>
+
+              </Grid>
+
+
+                </Grid>
+                </div>
+
+                <Paper style={{ width: "100%", marginTop: "1.5rem" }} /* style={{display: empresas.length == 0? 'none': 'block'}} */ >
             <List component="nav" aria-label="main mailbox folders">
                 {empresas.map((empresa)=>{
                     return <div>
@@ -204,7 +243,7 @@ class Empresas extends React.Component <{
                 })}
             </List>
             </Paper>
-            </Grid>
+           
             </Grid>
 						
             </Container>
