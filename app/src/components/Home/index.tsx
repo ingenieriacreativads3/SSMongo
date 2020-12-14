@@ -5,6 +5,7 @@ import orange from '@material-ui/core/colors/orange';
 import Cookies from 'universal-cookie';
 import Home from './Home'
 import Busqueda from './Busqueda'
+import Empresas from './Empresas'
 
 //const drawerWidth = 200;
 
@@ -55,8 +56,15 @@ const useStyles = makeStyles((theme) => ({
       background: "#d93211",
    },
   },
+
+  ButtonVerPerfil: {
+    color : '#d93211',
+    border: `1px solid #d93211 `,
+    "&:hover": {
+      border: `1px solid #d93211`
+    },
+  },
  
-  
  
   iconButton:{
     color:'#d93211',
@@ -292,6 +300,37 @@ export function PaginaBusqueda(props: {
       staticContext={props.staticContext}
       cookies={props.cookies}
       drawer={props.drawer}
+      footer={props.footer}
+      appBar={props.appBar}
+    />
+  </div>;
+}
+
+export function EmpresasPorRubro(props: {
+  history: any,
+  location: any,
+  match: any,
+  staticContext?: any,
+  cookies: Cookies
+  //drawer: any,
+  footer: any,
+  appBar:any,
+
+}) {
+
+	const classes = useStyles(theme);
+ 
+  return <div>
+    <Empresas
+  
+      classes={classes} 
+      theme={useTheme}
+      history={props.history}
+      location={props.location}
+      match={props.match}
+      staticContext={props.staticContext}
+      cookies={props.cookies}
+      //drawer={props.drawer}
       footer={props.footer}
       appBar={props.appBar}
     />
