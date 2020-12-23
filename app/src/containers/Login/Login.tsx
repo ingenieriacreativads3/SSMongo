@@ -9,8 +9,7 @@ import * as itemActions from './../../store/actions/item'
 
 import { OneButton } from './../../components/Dialogs'
 import { IniciarSesion as LoginComponent } from './../../components/Login'
-import { toast } from "react-toastify"
-import store from './../../store/index'
+
 
 function mapStateToProps(store: {
   login: any,
@@ -59,18 +58,18 @@ class Login extends React.Component<{
 
     if(this.props.login.fetched) {
       if(this.props.login.status !== 200) {
-        //this.props.dispatch(dialogAction.openOneButton())
-        toast.error(this.props.login.message);
+        this.props.dispatch(dialogAction.openOneButton())
+       
       } else {
-        toast.success('Bienvenido a Suppliers Store');
-        //this.props.dispatch(dialogAction.closeOneButton())
+       
+        this.props.dispatch(dialogAction.closeOneButton())
         this.props.dispatch(loginAction.loguear(this.props.cookies, this.props.login.data.empresa._id))
 
 
         this.props.history.push('/home/inicio');
       }
     } else {
-      // this.props.dispatch(dialogAction.closeOneButton())
+      this.props.dispatch(dialogAction.closeOneButton())
     }
 
   }

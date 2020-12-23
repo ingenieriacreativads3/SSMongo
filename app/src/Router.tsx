@@ -14,7 +14,7 @@ import { SolicitudDeValidacion } from './containers/ValidationRequest'
 import { MiPerfil } from './containers/Perfil'
 import { Presupuestacion } from './containers/Ventas - Presupuesto'
 import { Renegociacion } from './containers/Ventas - Presupuesto'
-import { Inicio, Busqueda } from './containers/Home'
+import { Inicio, Busqueda, EmpresaList } from './containers/Home'
 import { Login } from './containers/Login'
 import Register from './containers/Register'
 import { SolicitudesValidacion } from './containers/ValidationRequest'
@@ -27,7 +27,8 @@ import { EvaluacionEmpresa, EvaluacionPlataforma } from './containers/Evaluacion
 import { EmpresaPerfil, CambiarContraseña } from './containers/Perfil'
 import { SolicitudesUnidadMedida, SolicitudDeUnidadDeMedida, NuevaUnidadMedida } from './containers/UnidadMedida'
 import { NoAutenticado } from './containers/No Autenticado'
-import { Chat } from './containers/Mensajes'
+import { Chat } from './containers/Mensajes' 
+import { EmpresasPorRubro } from './components/Home';
 
 class App extends React.Component <{}, {}> {
 
@@ -137,6 +138,7 @@ class App extends React.Component <{}, {}> {
 						<this.enEspera path='/home/catalogo'             cookies={cookies} render={(props:any) => <Catalogo { ...props } cookies={cookies} />} /> 
 						<this.enEspera path='/home/reputacion'           cookies={cookies} render={(props:any) => <Reputacion {...props} cookies={cookies}/>}/>
 						<Route path='/home/inicio' 			  		           render={(props) => <Inicio { ...props } cookies={cookies} />}/>
+						<Route path='/home/empresas' 			  		           render={(props) => <EmpresaList { ...props } cookies={cookies} />}/>
 						
 						<Route path='/mensajes'     	 	 render={(props) => <Chat {...props} cookies={cookies}/>} /> 
 
