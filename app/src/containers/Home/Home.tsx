@@ -147,6 +147,8 @@ class Home extends React.Component<{
       items = this.props.itemReducer.data.items[0]
     }
 
+    console.log(this.props.itemReducer.data)
+
     return(
       <div>
         <HomeComponent
@@ -159,7 +161,7 @@ class Home extends React.Component<{
           footer={ this.footer() }
           appBar={ this.appBar() }
           action={ this.action }
-          items={ items }
+          items={ [] }
           itemsTrending={ itemsTrending }
           actividadesEconomicas={ this.props.actividadEconomicaReducer.data.actividad }
           iconos={ [] }

@@ -21,18 +21,10 @@ function mapStateToProps(store: {
   };
 }
 
-class ValoracionPlataforma extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {
-  
+class ValoracionPlataforma extends React.Component<{}, {
   numeroValoracion: number,
   conceptoValoracion: string,
   opinion : string,
-  
 }> {
 
 	props: any
@@ -48,14 +40,11 @@ class ValoracionPlataforma extends React.Component<{
     this.save = this.save.bind(this);
     this.aceptar = this.aceptar.bind(this);
     this.state = {
-    
       numeroValoracion: 0,
       conceptoValoracion: '',
       opinion: '',
     };
   }
-
- 
 
   componentDidUpdate() {
 
@@ -105,22 +94,11 @@ class ValoracionPlataforma extends React.Component<{
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   render(){
@@ -133,7 +111,7 @@ class ValoracionPlataforma extends React.Component<{
           getOpinion={ this.getOpinion }
           save={ this.save }
           footer={ this.footer() } 
-          appBar={this.appBar()}
+          appBar={ this.appBar() }
         />
         <OneButton 
           title={ 'Evaluacion' }
