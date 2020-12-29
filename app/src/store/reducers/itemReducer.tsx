@@ -222,7 +222,7 @@ export default function itemReducer ( state = {
       };
 		}
 
-		case 'REINTENTAR':{
+		case 'REINTENTAR_ITEM':{
       return {
         ...state,
         fetching: false,

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Cookies from 'universal-cookie';
 
 import { MostrarCatalogo as Catalogo} from './../../components/Item'
 import { List } from './../../components/List'
@@ -22,13 +21,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Catalog extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {
+class Catalog extends React.Component<{}, {
   checked: boolean,
   _id: string
 }> {
@@ -72,12 +65,7 @@ class Catalog extends React.Component<{
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   layout = (isTable: boolean, items: any[]) => {
@@ -123,7 +111,6 @@ class Catalog extends React.Component<{
         />  
       </div>
     }
-
   }
 
   action(row: {
@@ -153,22 +140,11 @@ class Catalog extends React.Component<{
   }
 
   drawer() {
-    return <Drawer 
-      history={ this.props.history }
-      location={ this.props.location }
-      match={ this.props.match }
-      staticContext={ this.props.staticContext }
-    />
+    return <Drawer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   aceptar() {

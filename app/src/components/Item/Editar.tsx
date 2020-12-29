@@ -9,6 +9,8 @@ import * as errorActions from './../../store/actions/error'
 import * as itemActions from './../../store/actions/item'
 import * as dialogActions from './../../store/actions/dialog'
 
+import store from './../../store/index'
+
 
 //import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
@@ -39,46 +41,16 @@ const CssTextField = withStyles({
 
 
 function mapStateToProps(store: {
-  errorReducer:any,
+  errorReducer: any,
+  itemReducer: any,
 }) {
   return {
-    Item: store,
-    errorReducer: store.errorReducer
+    errorReducer: store.errorReducer,
+    itemReducer: store.itemReducer,
   };
 }
 
-
-
-
-class Editar extends React.Component <{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any
-  drawer:any,
-  footer:any,
-  title: string,
-  item: {
-    _id: string,
-    nombre: string,
-    precio: string,
-    foto: string,
-    mostrarPrecio: boolean,
-    descripcion: string,
-    unidad_de_medida: {
-      _id: string,
-      nombre: string
-    },
-  },
-  unidadesDeMedida: any[],
-  getNombre: any,
-  getPrecio: any,
-  getDescripcion: any,
-  getMagnitud: any,
-  getMostrarPrecio: any,
-  getFoto: any,
-  update: any,
-}, {
+class Editar extends React.Component <{}, {
   formValid:boolean,
   unidadSeleccionada: boolean,
   item: {
@@ -132,17 +104,37 @@ class Editar extends React.Component <{
     };
   }
 
-  componentWillReceiveProps() {
+  componentWillMount() {
+    this.props.dispatch(itemActions.getItem(this.props.match.params.id))
+  }
 
-    if(this.state.item._id === ''){
-       this.setState({ item: this.props.item})
+  componentDidUpdate() {
+
+    console.log(this.props.itemReducer.data)
+    if(
+      this.props.itemReducer.fetched &&
+      !this.props.itemReducer.fetching &&
+      this.state.item._id === ''
+      ) {
+      console.log('entra')
+      this.setState({
+        item: this.props.itemReducer?.data?.item || {}
+      })
     }
-   
 
   }
 
+  // componentWillReceiveProps() {
+
+  //   if(this.props.item !== undefined && this.state.item._id === ''){
+  //      this.setState({ item: this.props.item})
+  //   }
+  //   console.log(this.props.item)
+
+  // }
+
   changeNombre(e: any) {
-console.log(e.target.value);
+    console.log(e.target.value);
     this.setState({ item: { ...this.state.item, nombre: e.target.value } })
     
 
@@ -228,7 +220,6 @@ console.log(e.target.value);
       
     }
 
-    debugger;
     if(this.state.item.unidad_de_medida._id === "" || this.state.item.unidad_de_medida._id === undefined)
     {
       this.setState({unidadSeleccionada:false});
@@ -271,7 +262,13 @@ console.log(e.target.value);
 
   render(){
 
-		const classes = this.props.classes
+    const classes = this.props.classes
+    
+    let url: string = ''
+
+    if (this.state?.item?.foto !== undefined) {
+      url = 'http://localhost:8000/' + this.state?.item?.foto[0] || ''
+    }
   
 
     return(
@@ -304,7 +301,7 @@ console.log(e.target.value);
             className={classes.margin}
             id="Nombre"
             label="Nombre"
-            value={ this.state.item.nombre }
+            value={ this.state?.item?.nombre || '' }
             onChange={ this.changeNombre }
             required={true}
             error={this.props.errorReducer.errors.Nombre != null ? true : false}
@@ -316,19 +313,19 @@ console.log(e.target.value);
 
           <Grid item xs={12} sm={6}>
           <CssTextField
-          className={classes.margin}
-          id="Precio"
-          label="Precio"
-          type="number"
-          value={ this.state.item.precio }
-          onChange={ this.changePrecio }
-          required={true}
-          error={this.props.errorReducer.errors.Precio != null ? true : false}
-          helperText={this.props.errorReducer.errors.Precio != null ? this.props.errorReducer.errors.Precio : ""}
-          inputProps={{min:1}}
-          fullWidth
+            className={classes.margin}
+            id="Precio"
+            label="Precio"
+            type="number"
+            value={ this.state?.item?.precio || '' }
+            onChange={ this.changePrecio }
+            required={true}
+            error={this.props.errorReducer.errors.Precio != null ? true : false}
+            helperText={this.props.errorReducer.errors.Precio != null ? this.props.errorReducer.errors.Precio : ""}
+            inputProps={{min:1}}
+            fullWidth
 
-        />
+          />
           </Grid>
           <Grid item xs={12} sm={4}>
           <FormControl fullWidth className={classes.formControl}  error={!this.state.unidadSeleccionada} >
@@ -337,8 +334,8 @@ console.log(e.target.value);
             
                 labelId="demo-simple-select-label"
                 id="Unidad"
-                value={this.state.item.unidad_de_medida._id}
-                onChange={this.changeUnidadDeMedida}
+                value={ this.state?.item?.unidad_de_medida?._id || '' }
+                onChange={ this.changeUnidadDeMedida }
               >
                 {this.props.unidadesDeMedida.map((unidadDeMedida: {
                   _id: string,
@@ -363,8 +360,8 @@ console.log(e.target.value);
           <FormControlLabel className={classes.Checkbox}
             control={
               <Checkbox
-                checked={this.state.item.mostrarPrecio}
-                onChange={this.changeMostrarPrecio}
+                checked={ this.state?.item?.mostrarPrecio || false }
+                onChange={ this.changeMostrarPrecio }
                 style ={{
                   color: "#d93211",
                 }}
@@ -385,27 +382,17 @@ console.log(e.target.value);
                 fullWidth
 
               />
-              {/* <TextareaAutosize
-                style={{borderRadius:7}}
-                aria-label="minimum height"
-                rowsMin={10}
-                className={classes.textTarea}
-                placeholder="Descripcion"
-                onChange={ this.props.getDescripcion }
-                id="Descripcion"
-              /> */}
             </Grid>
             <Grid item xs={12} sm={12}>
-            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" multiple   onChange = { this.props.getFoto } />
-          <label htmlFor="icon-button-file">
+              <input accept="image/*" className={classes.input} id="icon-button-file" type="file" multiple   onChange = { this.props.getFoto } />
+            <label htmlFor="icon-button-file">
             <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
               <PhotoCamera />
             </IconButton>
           </label>
             </Grid>
             <Grid item xs={12} sm={12}>
-              <img alt={this.state.item.foto[0]} src={'http://localhost:8000/' + this.state.item.foto[0]} className={classes.previsualizacion} ></img>
-              {/* <Avatar className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} /> */}
+              <img src={ url } className={classes.previsualizacion} ></img>
             </Grid>
            
           

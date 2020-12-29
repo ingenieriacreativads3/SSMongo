@@ -364,75 +364,17 @@ export  function VerDetalleItem(props: {
 
 }
 
-export  function EditarItem(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any
-  drawer:any,
-  footer:any,
-  appBar:any,
-  title: string,
-  item: {
-    _id: string,
-    nombre: string,
-    precio: string,
-    foto: string,
-    mostrarPrecio: boolean,
-    descripcion: string,
-    unidad_de_medida: {
-      _id: string,
-      nombre: string
-    },
-  },
-  unidadesDeMedida: any[],
-  getNombre: any,
-  getPrecio: any,
-  getDescripcion: any,
-  getMagnitud: any,
-  getMostrarPrecio: any,
-  getFoto: any,
-  update: any,
-  
-}) {
+export  function EditarItem(props: any) {
 
   const classes = useStyles(theme);
   
-  return <ItemEditar 
-    classes={ classes }
-    history={ props.history }
-    location={ props.location }
-    match={ props.match }
-    staticContext={ props.staticContext }
-    drawer={ props.drawer }
-    footer={ props.footer }
-    title={ props.title }
-    item={ props.item }
-    unidadesDeMedida={ props.unidadesDeMedida }
-    getNombre={ props.getNombre }
-    getPrecio={ props.getPrecio }
-    getDescripcion={ props.getDescripcion }
-    getMagnitud={ props.getMagnitud }
-    getMostrarPrecio={ props.getMostrarPrecio }
-    getFoto={ props.getFoto }
-    update={ props.update }
-    appBar={props.appBar}
-   
-  />;
+  return <ItemEditar classes={ classes } { ...props } />;
 
 }
 
 export  function MostrarCatalogo(props: any) {
 
   const classes = useStyles(theme);
-
-  // let items: any[] = []
-
-  // if(props !== undefined) {
-  //   if(props.items !== undefined) {
-  //     items = props.items
-  //   }
-  // }
 
   return <div>
     <Catalogo classes={ classes } { ...props } />

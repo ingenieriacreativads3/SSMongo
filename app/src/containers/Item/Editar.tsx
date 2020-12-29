@@ -30,23 +30,18 @@ function mapStateToProps(store: {
   };
 }
 
-class Editar extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {
-  _id: string,
-	nombre: string,
-	precio: string,
-	descripcion: string,
-	idMagnitud: string,
-	mostrarPrecio: boolean,
-  foto: string[],
+class Editar extends React.Component<{}, {
   formValid:boolean,
   unidadSeleccionada: boolean,
-
+  item: {
+    _id: string,
+    idMagnitud: string,
+    nombre: string,
+    precio: string,
+    descripcion: string,
+    mostrarPrecio: boolean,
+    foto: string[],
+  }
 }> {
 
 	props: any
@@ -66,74 +61,52 @@ class Editar extends React.Component<{
     this.update = this.update.bind(this);
     this.aceptar = this.aceptar.bind(this);
     this.state = {
-      _id: '',
-      nombre: '',
-      precio: '',
-      descripcion: '',
-      idMagnitud: '',
-      mostrarPrecio: false,
-      foto: [],
-      formValid:true,
-      unidadSeleccionada:true,
+      formValid: true,
+      unidadSeleccionada: true,
+      item: {
+        _id: '',
+        idMagnitud: '',
+        nombre: '',
+        precio: '',
+        descripcion: '',
+        mostrarPrecio: false,
+        foto: [],
+      }
     };
   }
 
   componentWillMount() {
-    
-    if(
-      this.props.itemReducer.fetched &&
-      !this.props.itemReducer.fetching &&
-      this.props.itemReducer.data.items !== undefined
-    ) {
-      this.props.dispatch(itemActions.reintentar())
-    }
 
-    this.props.dispatch(itemActions.reintentar())
-    if(
-      !this.props.unidadDeMedidaReducer.fetched &&
-      !this.props.unidadDeMedidaReducer.fetching
-    ) {
-      this.props.dispatch(unidadDeMedidaActions.getUnidadesDeMedida())
-    }
+    this.props.dispatch(unidadDeMedidaActions.getUnidadesDeMedida())
+    // this.props.dispatch(itemActions.reintentar())
+    // this.props.dispatch(itemActions.getItem(this.props.match.params.id))
 
   }
 
-  componentDidUpdate() {
-
-    // if(this.props.itemReducer.fetched) {
-    //   this.props.dispatch(dialogActions.openOneButton())
-    // } else {
-    //   this.props.dispatch(dialogActions.closeOneButton())
-    // }
-
-  }
+  // componentDidUpdate() {
+  //   console.log(this.props.itemReducer.data)
+  //   if(
+  //     this.props.itemReducer.fetched &&
+  //     !this.props.itemReducer.fetching &&
+  //     this.state.item._id === ''
+  //     ) {
+  //     console.log('entra')
+  //     this.setState({
+  //       item: this.props.itemReducer?.data?.item || {}
+  //     })
+  //   }
+  // }
 
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer { ...this.props } />
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
 
@@ -165,11 +138,15 @@ class Editar extends React.Component<{
     }
  }
   getNombre(nombre: any) {
-    debugger;
     let state = store.getState();
-    this.setState({ nombre:nombre })
-    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
-    {
+    this.setState({
+      item: {
+        ...this.state.item,
+        nombre
+      }
+    })
+
+    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada) {
       this.setState({formValid:true});
     }
     
@@ -177,35 +154,57 @@ class Editar extends React.Component<{
 
   getPrecio(precio: string) {
     let state = store.getState();
-    this.setState({ precio: precio })
-    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
-    {
+    this.setState({
+      item: {
+        ...this.state.item,
+        precio
+      }
+    })
+    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada) {
       this.setState({formValid:true});
     }
    
   }
 
   getDescripcion(descripcion: string) {
-    this.setState({ descripcion: descripcion })
-    
+    this.setState({
+      item: {
+        ...this.state.item,
+        descripcion
+      }
+    })
   }
 
   getMagnitud(idMagnitud: string) {
     let state = store.getState();
-    this.setState({ idMagnitud: idMagnitud })
+    this.setState({
+      item: {
+        ...this.state.item,
+        idMagnitud
+      }
+    })
     this.setState({unidadSeleccionada:true});
-    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada)
-    {
+    if(state.errorReducer.errors.length === 0 && this.state.unidadSeleccionada) {
       this.setState({formValid:true});
     }
   }
 
   getMostrarPrecio(mostrarPrecio: boolean) {
-    this.setState({ mostrarPrecio: mostrarPrecio })
+    this.setState({
+      item: {
+        ...this.state.item,
+        mostrarPrecio
+      }
+    })
   }
 
   getFoto(foto: string[]) {
-    this.setState({ foto: foto })
+    this.setState({
+      item: {
+        ...this.state.item,
+        foto
+      }
+    })
   }
 
   validacion=() => {
@@ -228,7 +227,7 @@ class Editar extends React.Component<{
       
     }
 
-    if(this.state.idMagnitud === "")
+    if(this.state.item.idMagnitud === "")
     {
       this.setState({unidadSeleccionada:false});
       formIsValid = false;
@@ -266,55 +265,10 @@ class Editar extends React.Component<{
 
     if(
       this.props.unidadDeMedidaReducer.fetched &&
-      this.props.unidadDeMedidaReducer.data !== undefined
+      this.props.unidadDeMedidaReducer.data !== undefined 
     ) {
       unidadesDeMedida = this.props.unidadDeMedidaReducer.data.unidadesDeMedida
     }
-
-    if(
-      !this.props.itemReducer.fetched &&
-      !this.props.itemReducer.fetching && 
-      this.props.itemReducer.error !== null
-    ) {
-      this.props.dispatch(itemActions.getItem(this.props.match.params.id))
-    }
-
-    let item: {
-      _id: string,
-      nombre: string,
-      precio: string,
-      foto: string,
-      mostrarPrecio: boolean,
-      descripcion: string,
-      unidadDeMedidaId: string,
-      unidad_de_medida: any
-    } = {
-      _id: '',
-      nombre: '',
-      precio: '',
-      foto: '',
-      mostrarPrecio: false,
-      descripcion: '',
-      unidadDeMedidaId: '',
-      unidad_de_medida: ''
-    }
-      
-    if(this.props.itemReducer !== undefined) {
-			if(this.props.itemReducer.data !== undefined) {
-				if(this.props.itemReducer.data.item !== undefined && this.props.itemReducer.data.item !== null) {
-          if(this.props.itemReducer.data.item._id !== undefined) item._id = this.props.itemReducer.data.item._id
-          if(this.props.itemReducer.data.item.nombre !== undefined) item.nombre = this.props.itemReducer.data.item.nombre
-          if(this.props.itemReducer.data.item.precio !== undefined) item.precio = this.props.itemReducer.data.item.precio
-          if(this.props.itemReducer.data.item.foto !== undefined) item.foto = this.props.itemReducer.data.item.foto
-          if(this.props.itemReducer.data.item.mostrarPrecio !== undefined) item.mostrarPrecio = this.props.itemReducer.data.item.mostrarPrecio
-          if(this.props.itemReducer.data.item.descrpcion !== undefined) item.descripcion = this.props.itemReducer.data.item.descrpcion
-          if(this.props.itemReducer.data.item.unidad_de_medida._id !== undefined) item.unidadDeMedidaId = this.props.itemReducer.data.item.unidad_de_medida_id
-          if(this.props.itemReducer.data.item.unidad_de_medida) item.unidad_de_medida = this.props.itemReducer.data.item.unidad_de_medida
-				}
-			}
-    }
- 
-    
 
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
@@ -329,7 +283,7 @@ class Editar extends React.Component<{
           drawer={ this.drawer() }
           footer={ this.footer() }
           title={'Editar Item'}
-          item={ item }
+          item={ this.state.item }
           unidadesDeMedida={ unidadesDeMedida }
           getNombre={ this.getNombre }
           getPrecio={ this.getPrecio }

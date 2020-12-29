@@ -79,7 +79,7 @@ export function setear() {
 export function reintentar() {
 
 	return {
-		type: 'REINTENTAR',
+		type: 'REINTENTAR_ITEM',
 		payload: {}
 	}
 
