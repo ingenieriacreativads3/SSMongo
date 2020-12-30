@@ -19,3 +19,12 @@ export function upload(file: File) {
 	}
 
 }
+
+export function setear() {
+
+	return {
+		type: 'SETEAR_FILE',
+		payload: {}
+	}
+
+}

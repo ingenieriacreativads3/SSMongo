@@ -8,6 +8,7 @@ import Link from '@material-ui/core/Link';
 import * as errorActions from './../../store/actions/error'
 import * as itemActions from './../../store/actions/item'
 import * as dialogActions from './../../store/actions/dialog'
+import * as fileActions from './../../store/actions/file'
 
 import store from './../../store/index'
 
@@ -43,10 +44,12 @@ const CssTextField = withStyles({
 function mapStateToProps(store: {
   errorReducer: any,
   itemReducer: any,
+  fileReducer: any,
 }) {
   return {
     errorReducer: store.errorReducer,
     itemReducer: store.itemReducer,
+    fileReducer: store.fileReducer,
   };
 }
 
@@ -57,15 +60,15 @@ class Editar extends React.Component <{}, {
     _id: string,
     nombre: string,
     precio: string,
-    descripcion: string,
+    descrpcion: string,
     unidad_de_medida: {
       _id: string,
       nombre: string,
     },
     foto: string[],
     mostrarPrecio: boolean
-   
-  }
+  },
+  photo: File[]
 }> {
 
 	props: any
@@ -91,15 +94,15 @@ class Editar extends React.Component <{}, {
         _id: '',
         nombre: '',
         precio: '',
-        descripcion: '',
+        descrpcion: '',
         unidad_de_medida: {
           _id: '',
           nombre: ''
         },
         foto: [],
         mostrarPrecio: false,
-        
-      }
+      },
+      photo: []
       
     };
   }
@@ -110,28 +113,31 @@ class Editar extends React.Component <{}, {
 
   componentDidUpdate() {
 
-    console.log(this.props.itemReducer.data)
     if(
       this.props.itemReducer.fetched &&
       !this.props.itemReducer.fetching &&
       this.state.item._id === ''
       ) {
-      console.log('entra')
       this.setState({
         item: this.props.itemReducer?.data?.item || {}
       })
     }
 
+    if(
+      this.props.fileReducer.fetched &&
+      !this.props.fileReducer.fetching
+    ) {
+      console.log('foto')
+      this.setState({
+        item: {
+          ...this.state.item,
+          foto: this.props.fileReducer.data.foto
+        }
+      })
+      this.props.dispatch(fileActions.setear())
+    }
+
   }
-
-  // componentWillReceiveProps() {
-
-  //   if(this.props.item !== undefined && this.state.item._id === ''){
-  //      this.setState({ item: this.props.item})
-  //   }
-  //   console.log(this.props.item)
-
-  // }
 
   changeNombre(e: any) {
     console.log(e.target.value);
@@ -156,9 +162,7 @@ class Editar extends React.Component <{}, {
   }
 
   changeDescripcion(e: any) {
-    this.setState({ item: { ...this.state.item, descripcion: e.target.value } })
-    
-   
+    this.setState({ item: { ...this.state.item, descrpcion: e.target.value } })
   }
 
   changeUnidadDeMedida(e: any) {
@@ -252,13 +256,31 @@ class Editar extends React.Component <{}, {
       descripcion,
       idMagnitud,
       mostrarPrecio,
-      foto
+      []
     ))
 
     this.props.dispatch(dialogActions.openOneButton())
 
     }
- }
+  }
+
+  getFoto = (e: any) => {
+
+    let files: File[] = []
+
+    for (var i = 0; i < e.target.files.length; i++) {
+      files.push(e.target.files[i])
+    }
+
+    files.map((file: File) => {
+      this.props.dispatch(fileActions.upload(file))
+    })
+
+    this.setState({
+      ...this.state,
+      photo: files 
+    })
+  }
 
   render(){
 
@@ -380,11 +402,12 @@ class Editar extends React.Component <{}, {
                 multiline
                 rows={4}
                 fullWidth
+                value={ this.state?.item?.descrpcion || '' }
 
               />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <input accept="image/*" className={classes.input} id="icon-button-file" type="file" multiple   onChange = { this.props.getFoto } />
+              <input accept="image/*" className={classes.input} id="icon-button-file" type="file" multiple onChange={ this.getFoto } />
             <label htmlFor="icon-button-file">
             <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
               <PhotoCamera />
@@ -407,12 +430,12 @@ class Editar extends React.Component <{}, {
                 className={classes.button}
                 startIcon={<SaveIcon />}
                 disabled={ !this.state.formValid && !this.state.unidadSeleccionada }
-                onClick={() => this.update(
+                onClick={ () => this.update(
                   this.state.item._id,
                   this.state.item.nombre,
                   this.state.item.precio,
                   this.state.item.unidad_de_medida._id,
-                  this.state.item.descripcion,
+                  this.state.item.descrpcion,
                   this.state.item.mostrarPrecio,
                   this.state.item.foto
                 )} 

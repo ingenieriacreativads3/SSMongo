@@ -56,7 +56,7 @@ class Catalogo extends React.Component <{}, {}> {
 		const classes = this.props.classes
     const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
  
-    
+    // console.log(this.props.items)
 
     return(
 
@@ -72,7 +72,7 @@ class Catalogo extends React.Component <{}, {}> {
               <Grid component="label" container alignItems="center" spacing={1}>
                 <Grid item>Tarjetas</Grid>
                 <Grid item>
-                  <AntSwitch checked={this.props.checked} onChange={this.handleChange} name="checked" className={classes.switch}  />
+                  <AntSwitch checked={ this.props.checked } onChange={this.handleChange} name="checked" className={classes.switch}  />
                 </Grid>
                 <Grid item>Tabla</Grid>
               </Grid>

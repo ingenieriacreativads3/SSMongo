@@ -52,6 +52,18 @@ export default function FileReducer (state = {
         }
       };
     }
+
+    case 'SETEAR_FILE': {
+      
+      return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: state.status,
+        message: state.message,
+        data: state.data
+      };
+    }
   
     case 'E': {
       throw new Error('Este error se manejo asi!  file Reducer.js');

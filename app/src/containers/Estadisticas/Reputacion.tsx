@@ -5,13 +5,17 @@ import Cookies from 'universal-cookie';
 import { VerReputacion as Reputacion } from './../../components/Estadisticas'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
-import {AppBar} from './../AppBar'
+import { AppBar } from './../AppBar'
+
+import * as evaluacionActions from './../../store/actions/evaluacion'
 
 function mapStateToProps(store: {
-  login: any
+  login: any,
+  evaluacionReducer: any,
 }) {
   return {
-    login: store.login
+    login: store.login,
+    evaluacionReducer: store.evaluacionReducer,
   };
 }
 
@@ -32,50 +36,47 @@ class OpinionUsuarios extends React.Component<{
 		super(props);
     this.state = {};
   }
+
+  componentWillMount() {
+    this.props.dispatch(evaluacionActions.getValoraciones(this.props.cookies.get('empresaId')))
+  }
   
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer { ...this.props } />
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
 
   render(){
 
-    // console.log(localStorage.getItem('empresaId'))
+    let valoraciones: any = {}
+
+    if(
+      this.props.evaluacionReducer.fetched &&
+      !this.props.evaluacionReducer.fetching
+    ) {
+      valoraciones = this.props.evaluacionReducer.data.kpi
+    }
 
     return(
       <div>
         <Reputacion
-        history={this.props.history}
-        location={this.props.location}
-        match={this.props.match}
-        staticContext={this.props.staticContext}
-        drawer={ this.drawer() }
-        footer={ this.footer() }
-        appBar={this.appBar()} />
+          history={this.props.history}
+          location={this.props.location}
+          match={this.props.match}
+          staticContext={this.props.staticContext}
+          drawer={ this.drawer() }
+          footer={ this.footer() }
+          appBar={ this.appBar() }
+          valoraciones={ valoraciones }
+        />
       </div>
     );
   }

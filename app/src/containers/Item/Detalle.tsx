@@ -42,6 +42,7 @@ class Detalle extends React.Component<{
 
   componentWillMount() {
     this.props.dispatch(itemActions.reintentar())
+    this.props.dispatch(itemActions.getItem(this.props.match.params.id))
   }
   
   drawer() {
@@ -168,21 +169,21 @@ class Detalle extends React.Component<{
     //   this.props.dispatch(itemActions.getItem(this.props.match.params.id))
     // }
 
-    // if(
-    //   this.props.itemReducer.fetched &&
-    //   this.props.itemReducer.data !== undefined
-    // ) {
-    //   item = this.props.itemReducer.data.item
-    // }
+    if(
+      this.props.itemReducer.fetched &&
+      this.props.itemReducer.data !== undefined
+    ) {
+      item = this.props.itemReducer.data.item
+    }
 
     return(
       <div>
         <ItemDetalle
-            drawer={ this.drawer() }
-            footer={this.footer()}
-            appBar={this.appBar()}
-            item={ item }
-            actions={ (classes: any) => this.actions(classes) }
+          drawer={ this.drawer() }
+          footer={this.footer()}
+          appBar={this.appBar()}
+          item={ item }
+          actions={ (classes: any) => this.actions(classes) }
          />
       </div>
     );

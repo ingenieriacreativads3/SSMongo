@@ -12,7 +12,33 @@ export default function evaluacionReducer ( state = {
 	payload: any
 }) {
 
-    switch (action.type) {
+	switch (action.type) {
+
+		case 'GET_VALORACION_PENDING': {
+			return { 
+					...state, 
+					fetching: true 
+			};
+	}
+	
+	case 'GET_VALORACION_REJECTED': {
+			return { 
+					...state, 
+					fetching: false, 
+					error: action.payload 
+			};
+	}
+	
+	case 'GET_VALORACION_FULFILLED': {
+		return {
+			...state,
+			fetching: false,
+			fetched: true,
+			status: action.payload.data.status,
+			message: action.payload.data.message,
+			data: action.payload.data.data
+		};
+	}
         
         case 'SET_EVALUACION_EMPRESA_PENDING': {
             return { 

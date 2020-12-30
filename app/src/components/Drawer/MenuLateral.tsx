@@ -209,7 +209,7 @@ class MenuLateral extends React.Component<{
 									<ListItemText primary="Mi resumen" />
 								</ListItem>
 							</Link>
-							<Link href="/home/reputacion" className={classes.link} style={{textDecoration: 'none'}}>
+							<Link href={ '/home/reputacion' } className={classes.link} style={{textDecoration: 'none'}}>
 								<ListItem button className={classes.nested}>
 								<ListItemIcon>
 								<StarIcon className={classes.icon}/>

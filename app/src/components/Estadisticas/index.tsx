@@ -44,48 +44,42 @@ const useStyles = makeStyles((theme) => ({
 	  },
 	  
 	  avatar:{
-		color:"#ffffff",
-		backgroundColor:'#d93211',
+			color:"#ffffff",
+			backgroundColor:'#d93211',
 	  },
-	  
 	  margin:{
-		margin:theme.spacing(2),
+			margin:theme.spacing(2),
 	  },
 	  details: {
-		display: 'flex',
-		flexDirection: 'column',
+			display: 'flex',
+			flexDirection: 'column',
 	  },
 	  content1: {
-		flex: '1 0 auto',
-		padding:theme.spacing(4),
-		
+			flex: '1 0 auto',
+			padding:theme.spacing(4),
 	  },
 	  cover: {
-		width: 80,
+			width: 80,
 	  },
-	  
-	 
 	  icon:{
 		  color:'#f48c13'
-		  
 	  },
 	  itemIcon:{
 		  padding:theme.spacing(4),
 	  },
 
 	  list: {
-		width: '100%',
-		maxWidth: '70ch',
-		backgroundColor: theme.palette.background.paper,
-		margin:theme.spacing(10),
+			width: '100%',
+			maxWidth: '70ch',
+			backgroundColor: theme.palette.background.paper,
+			margin:theme.spacing(10),
 	  },
 	  inline: {
-		display: 'inline',
+			display: 'inline',
 	  },
 	  grafico:{
-		width:'300px',
-		height:'auto',
-		
+			width:'300px',
+			height:'auto',
 	  },
 	  subtitle:{
 		  fontSize:22,
@@ -95,53 +89,16 @@ const useStyles = makeStyles((theme) => ({
 		  color:"#232323",
 		  fontFamily: 'Segoe UI Light',
 	  }
-	 
-	  
-	
-	  
 })); 
 
-export  function VerEstadisticaActividad(props: {
-	history: any,
-	location: any,
-	match: any,
-	staticContext?: any
-	drawer:any,
-	footer:any,
-	appBar:any,
-  }) {
+export  function VerEstadisticaActividad(props: any) {
 	const classes = useStyles();
-	return <EstadisticaActividad 
-	classes={ classes }
-	history={props.history}
-    location={props.location}
-    match={props.match}
-    staticContext={props.staticContext}
-    drawer={props.drawer}
-    footer={props.footer} 
-	appBar={props.appBar}
-	/>;
+	return <EstadisticaActividad classes={ classes } { ...props } />;
 }
 
-export  function VerReputacion(props: {
-	history: any,
-	location: any,
-	match: any,
-	staticContext?: any
-	drawer:any,
-	footer:any,
-	appBar:any,
-  }) {
+export  function VerReputacion(props: any) {
 	const classes = useStyles();
-	return <Reputacion 
-	classes={ classes }
-	history={props.history}
-    location={props.location}
-    match={props.match}
-    staticContext={props.staticContext}
-    drawer={props.drawer}
-    footer={props.footer} 
-	appBar={props.appBar}/>;
+	return <Reputacion classes={ classes } { ...props } />;
 }
 
 

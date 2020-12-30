@@ -14,59 +14,80 @@ import PieChart, {
     Connector
   } from 'devextreme-react/pie-chart';
 
-
-
-
-
-
-const dataSource = [{
-        rating: 'Excelente',
-        percent: 55.5
-    }, {
-        rating: 'Muy Bueno',
-        percent: 20.8
-    }, {
-        rating: 'Malo',
-        percent: 2.6
-    }, {
-        rating: 'Bueno',
-        percent: 19.1
-    },{
-        rating: 'Muy Malo',
-        percent: 2.0
-    },
+var tiempoRespuesta: any = [{
+    rating: 'Excelente',
+    percent: 55.5
+  }, {
+    rating: 'Muy Bueno',
+    percent: 20.8
+  }, {
+    rating: 'Bueno',
+    percent: 2.6
+  }, {
+    rating: 'Malo',
+    percent: 19.1
+  }, {
+    rating: 'Muy Malo',
+    percent: 2.0
+  },
 ]
 
-
-const dataSource2 = [{
-    rating: 'SI',
-    percent: 70,
+var disponibilidad: any = [{
+  rating: 'Excelente',
+  percent: 55.5
 }, {
-    rating: 'NO',
-    percent: 30
+  rating: 'Muy Bueno',
+  percent: 20.8
+}, {
+  rating: 'Bueno',
+  percent: 2.6
+}, {
+  rating: 'Malo',
+  percent: 19.1
+}, {
+  rating: 'Muy Malo',
+  percent: 2.0
 },
 ]
-//import * as ItemAction from "../../store/actions/ItemAction";
 
+var precioCalidad: any = [{
+  rating: 'Excelente',
+  percent: 55.5
+}, {
+  rating: 'Muy Bueno',
+  percent: 20.8
+}, {
+  rating: 'Bueno',
+  percent: 2.6
+}, {
+  rating: 'Malo',
+  percent: 19.1
+}, {
+  rating: 'Muy Malo',
+  percent: 2.0
+},
+]
 
-function mapStateToProps(store: {
-	Item: {},
-	login: {
-		data: {
-			empresa: {
-				_id: string
-			}
-		}
-	}
-}) {
-  return {
-    Item: store.Item,
-    // idEmpresa: store.login.data.empresa._id
-  };
+var rebuy: any = [{
+    rating: 'SI',
+    percent: 70,
+  }, {
+    rating: 'NO',
+    percent: 30
+  },
+]
+
+function mapStateToProps(store: {}) {
+  return {};
 }
 
 class Reputacion extends React.Component <{}, {
   value:number,
+  tiempoRespuesta: any,
+  disponibilidad: any,
+  precioCalidad: any,
+  rebuy: any,
+  update: boolean
 }> {
 
 	props: any
@@ -77,43 +98,225 @@ class Reputacion extends React.Component <{}, {
     super(props);
     this.state = {
       value:0,
+      tiempoRespuesta: [{
+          rating: 'Excelente',
+          percent: 55.5
+        }, {
+          rating: 'Muy Bueno',
+          percent: 20.8
+        }, {
+          rating: 'Bueno',
+          percent: 2.6
+        }, {
+          rating: 'Malo',
+          percent: 19.1
+        }, {
+          rating: 'Muy Malo',
+          percent: 2.0
+        },
+      ],
+      disponibilidad: [{
+          rating: 'Excelente',
+          percent: 55.5
+        }, {
+          rating: 'Muy Bueno',
+          percent: 20.8
+        }, {
+          rating: 'Bueno',
+          percent: 2.6
+        }, {
+          rating: 'Malo',
+          percent: 19.1
+        }, {
+          rating: 'Muy Malo',
+          percent: 2.0
+        },
+      ],
+      precioCalidad: [{
+          rating: 'Excelente',
+          percent: 55.5
+        }, {
+          rating: 'Muy Bueno',
+          percent: 20.8
+        }, {
+          rating: 'Bueno',
+          percent: 2.6
+        }, {
+          rating: 'Malo',
+          percent: 19.1
+        }, {
+          rating: 'Muy Malo',
+          percent: 2.0
+        },
+      ],
+      rebuy: [{
+          rating: 'SI',
+          percent: 70,
+        }, {
+          rating: 'NO',
+          percent: 30
+        },
+      ],
+      update: false
     };
   }
 
-  
-    customizeLabel(point:any) {
-        return `${point.argumentText }: ${ point.valueText }%`;
-      }
+  componentDidUpdate() {
 
-      renderRow(props:any) {
-        const { index, style } = props;
-      
-        return (
-          <ListItem button style={style} key={index}>
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
-              <ListItemText
-                primary="Brunch this weekend?"
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      //className={classes.inline}
-                      color="textPrimary"
-                    >
-                      Ali Connors
-                    </Typography>
-                    {" — I'll be in your neighborhood doing errands this…"}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
-          </ListItem>
-        );
-      }
+    let valoraciones: any = {}
+    let tiempoRespuesta: any = [{
+        rating: 'Excelente',
+        percent: 55.5
+      }, {
+        rating: 'Muy Bueno',
+        percent: 20.8
+      }, {
+        rating: 'Bueno',
+        percent: 2.6
+      }, {
+        rating: 'Malo',
+        percent: 19.1
+      }, {
+        rating: 'Muy Malo',
+        percent: 2.0
+      },
+    ]
+
+    let disponibilidad: any = [{
+        rating: 'Excelente',
+        percent: 55.5
+      }, {
+        rating: 'Muy Bueno',
+        percent: 20.8
+      }, {
+        rating: 'Bueno',
+        percent: 2.6
+      }, {
+        rating: 'Malo',
+        percent: 19.1
+      }, {
+        rating: 'Muy Malo',
+        percent: 2.0
+      },
+    ]
+
+    let precioCalidad: any = [{
+        rating: 'Excelente',
+        percent: 55.5
+      }, {
+        rating: 'Muy Bueno',
+        percent: 20.8
+      }, {
+        rating: 'Bueno',
+        percent: 2.6
+      }, {
+        rating: 'Malo',
+        percent: 19.1
+      }, {
+        rating: 'Muy Malo',
+        percent: 2.0
+      },
+    ]
+
+    let rebuy: any = [{
+        rating: 'SI',
+        percent: 70,
+      }, {
+        rating: 'NO',
+        percent: 30
+      },
+    ]
+
+    if(this.props.valoraciones !== undefined) {
+      valoraciones = this.props.valoraciones
+    }
+    
+    tiempoRespuesta.map((valor: {
+      rating: string,
+      percent: number
+    }) => {
+      if(valor.rating === 'Excelente') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'tiempoRespuesta') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '5') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Muy Bueno') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'tiempoRespuesta') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '4') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Bueno') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'tiempoRespuesta') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '3') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Malo') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'tiempoRespuesta') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '2') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Muy Malo') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'tiempoRespuesta') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '1') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+    })
+
+    disponibilidad.map((valor: {
+      rating: string,
+      percent: number
+    }) => {
+      if(valor.rating === 'Excelente') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'disponibilidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '5') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Muy Bueno') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'disponibilidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '4') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Bueno') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'disponibilidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '3') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Malo') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'disponibilidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '2') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Muy Malo') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'disponibilidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '1') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+    })
+
+    precioCalidad.map((valor: {
+      rating: string,
+      percent: number
+    }) => {
+      if(valor.rating === 'Excelente') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'precioCalidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '5') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Muy Bueno') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'precioCalidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '4') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Bueno') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'precioCalidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '3') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Malo') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'precioCalidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '2') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'Muy Malo') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'precioCalidad') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '1') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+    })
+
+    rebuy.map((valor: {
+      rating: string,
+      percent: number
+    }) => {
+      if(valor.rating === 'SI') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'rebuy') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '1') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+      if(valor.rating === 'NO') { if(valoraciones !== undefined && valoraciones !== null){ Object.keys(valoraciones).map((key: string) => { if(key === 'rebuy') { Object.keys(valoraciones[key]).map((keyss: string) => { if(keyss === '2') { valor.percent = (valoraciones[key][keyss] * 100) / valoraciones[key]['total'] } }) } }) } }
+    })
+
+    if(!this.state.update && Object.keys(this.props.valoraciones).length > 0) {
+      this.setState({
+        tiempoRespuesta,
+        disponibilidad,
+        precioCalidad,
+        rebuy,
+        update: true
+      })
+    }
+
+  }
+  
+  customizeLabel(point:any) {
+    return `${point.argumentText }: ${ point.valueText }%`;
+  }
+
+  renderRow(props:any) {
+    const { index, style } = props;
+  
+    return (
+      <ListItem button style={style} key={index}>
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          </ListItemAvatar>
+          <ListItemText
+            primary="Brunch this weekend?"
+            secondary={
+              <React.Fragment>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  //className={classes.inline}
+                  color="textPrimary"
+                >
+                  Ali Connors
+                </Typography>
+                {" — I'll be in your neighborhood doing errands this…"}
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+      </ListItem>
+    );
+  }
 
 
   render(){
@@ -124,7 +327,7 @@ class Reputacion extends React.Component <{}, {
     const handleChangeTabs = (event:any, value:number) => {
       this.setState({value: value});
     };
-   
+
     return(
 
       <div className={classes.root}>
@@ -163,7 +366,7 @@ class Reputacion extends React.Component <{}, {
                                 type="doughnut"
                                 title="Tiempo de respuesta a los mensajes/consultas"
                                 palette="Soft Pastel"
-                                dataSource={dataSource}
+                                dataSource={this.state.tiempoRespuesta}
                             >
                                 <Series argumentField="rating" valueField="percent">
                                 <SmallValuesGrouping mode="topN" topCount={3} />
@@ -189,7 +392,7 @@ class Reputacion extends React.Component <{}, {
                                 type="doughnut"
                                 title="Relacion precio - calidad"
                                 palette="Soft Pastel"
-                                dataSource={dataSource}
+                                dataSource={this.state.disponibilidad}
                             >
                                 <Series argumentField="rating" valueField="percent">
                                 <SmallValuesGrouping mode="topN" topCount={3} />
@@ -219,7 +422,7 @@ class Reputacion extends React.Component <{}, {
                                 type="doughnut"
                                 title="Disponibilidad de productos y/o servicios"
                                 palette="Soft Pastel"
-                                dataSource={dataSource}
+                                dataSource={this.state.precioCalidad}
                             >
                                 <Series argumentField="rating" valueField="percent">
                                 <SmallValuesGrouping mode="topN" topCount={3} />
@@ -243,7 +446,7 @@ class Reputacion extends React.Component <{}, {
                                 type="doughnut"
                                 title="Volveria a operar con esta empresa?"
                                 palette="Soft Pastel"
-                                dataSource={dataSource2}
+                                dataSource={this.state.rebuy}
                             >
                                 <Series argumentField="rating" valueField="percent">
                                 <SmallValuesGrouping mode="topN" topCount={3} />
@@ -283,20 +486,7 @@ class Reputacion extends React.Component <{}, {
                             </Grid>
                           </Box>
                       </div>
-
-                                {/* <Grid container spacing={3}>
-                                <ListSubheader  className={classes.subtitle}  >
-                                    
-                                    Comentarios
-                                </ListSubheader> 
-                                <Grid item lg={12} >
-                                <FixedSizeList style={{marginLeft:'60px'}} height={260} width={420} itemSize={100} itemCount={8}>
-                                {this.renderRow}
-                            </FixedSizeList>
-                                </Grid>
-                                </Grid> */}
-                               
-                            </Grid>
+                      </Grid>
                       
                     </CardContent>
                     <CardActions>
@@ -311,17 +501,10 @@ class Reputacion extends React.Component <{}, {
 
 
 							</Grid>
-							{/* <Box pt={4}>
-								<Copyright />
-							</Box> */}
 						</Container>
-                    {this.props.footer}
+            {this.props.footer}
 					</main>
-
-         
 		 </div>
-
-      
     );
   }
 }

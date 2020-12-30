@@ -18,6 +18,19 @@ export function reintentar() {
 
 }
 
+export function getValoraciones(empresa: string) {
+
+	let url: string = 'http://127.0.0.1:8000';
+
+	let payload: any = axios.get(url + '/kpi/empresa/' + empresa + '/valoracion')
+
+  return {
+		type: 'GET_VALORACION',
+		payload: payload
+	}
+
+}
+
 export function setEvaluacionEmpresa(
 	empresaCriticaId: string,
 	empresaCriticadaId: string,
