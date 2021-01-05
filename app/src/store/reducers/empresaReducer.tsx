@@ -137,7 +137,7 @@ export default function empresaReducer ( state = {
 			return {
         ...state,
         fetching: false,
-        fetched: true,
+        fetched: false,
         status: action.payload.data.status,
         message: action.payload.data.message,
         data: action.payload.data.data
@@ -196,7 +196,7 @@ export default function empresaReducer ( state = {
       };
 		}
 
-		case 'REINTENTAR':{
+		case 'REINTENTAR_EMPRESA':{
       return {
         ...state,
         fetching: false,
