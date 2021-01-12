@@ -5,7 +5,6 @@ import AttachMoney from '@material-ui/icons/AttachMoney';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
-
 import PieChart, {
   Series,
   Label,
@@ -14,39 +13,6 @@ import PieChart, {
   Legend,
   Export
 } from 'devextreme-react/pie-chart';
-
-
-
-const dataSource = [{
-    estado: 'En espera',
-    percent: 55.5
-  }, {
-    estado: 'Cancelado',
-    percent: 20.8
-  }, {
-    estado: 'Confirmado',
-    percent: 4.6
-  }, {
-    estado: 'Presupuestado',
-    percent: 19.1
-  },
-]
-
-const dataSource2 = [{
-  estado: 'En Espera',
-  percent: 55.5
-}, {
-  estado: 'Cancelado',
-  percent: 20.8
-}, {
-  estado: 'Finalizado',
-  percent: 4.6
-}, {
-  estado: 'Enviado',
-  percent: 19.1
-},
-]
-//import * as ItemAction from "../../store/actions/ItemAction";
 
 function mapStateToProps(store: {
 	Item: {},
@@ -75,12 +41,60 @@ class EstadisticasActividad extends React.Component <{}, {
   formatLabel(arg:any) {
     return `${arg.argumentText}: ${arg.valueText}%`;
   }
-  
- 
 
   render(){
 
-		const classes = this.props.classes
+    const classes = this.props.classes
+    
+    const dataSource = [
+      {
+        estado: 'En espera',
+        percent: 25
+      }, {
+        estado: 'Cancelado',
+        percent: 25
+      }, {
+        estado: 'Confirmado',
+        percent: 25
+      }, {
+        estado: 'Presupuestado',
+        percent: 25
+      },
+    ]
+    
+    const dataSource2 = [
+      {
+        estado: 'En Espera',
+        percent: 25
+      }, {
+        estado: 'Cancelado',
+        percent: 25
+      }, {
+        estado: 'Finalizado',
+        percent: 25
+      }, {
+        estado: 'Enviado',
+        percent: 25
+      }
+    ]
+
+    if(this.props.resumen.pedidosTotales > 0) {
+      dataSource2.map((source: {
+        estado: string,
+        percent: number
+      }) => {
+
+      })
+    }
+
+    if(this.props.resumen.presupuestosTotales) {
+      dataSource.map((source: {
+        estado: string,
+        percent: number
+      }) => {
+
+      })
+    }
  
     return(
 
@@ -185,7 +199,7 @@ class EstadisticasActividad extends React.Component <{}, {
               <Grid item xs={12} sm={6}>
               <PieChart
                 id="pie"
-                dataSource={dataSource}
+                dataSource={ dataSource }
                 palette="Bright"
                 title="Mis presupuestos"
               >
@@ -206,7 +220,7 @@ class EstadisticasActividad extends React.Component <{}, {
               <Grid item xs={12} sm={6}>
               <PieChart
                 id="pie"
-                dataSource={dataSource2}
+                dataSource={ dataSource2 }
                 palette="Bright"
                 title="Mis pedidos"
               >
@@ -229,10 +243,8 @@ class EstadisticasActividad extends React.Component <{}, {
              </FormControl>
             </Paper>
             </Grid>
-            {this.props.footer}
+            { this.props.footer }
 					</main>
-
-         
 		 </div>
 
       

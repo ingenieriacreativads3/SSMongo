@@ -18,6 +18,19 @@ export function reintentar() {
 
 }
 
+export function getResumen(empresa: string) {
+
+	let url: string = 'http://127.0.0.1:8000';
+
+	let payload: any = axios.get(url + '/resumen/' + empresa)
+
+  return {
+		type: 'GET_RESUMEN',
+		payload: payload
+	}
+
+}
+
 export function getValoraciones(empresa: string) {
 
 	let url: string = 'http://127.0.0.1:8000';

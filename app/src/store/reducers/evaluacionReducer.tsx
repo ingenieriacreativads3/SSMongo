@@ -14,58 +14,83 @@ export default function evaluacionReducer ( state = {
 
 	switch (action.type) {
 
+		case 'GET_RESUMEN_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+		
+		case 'GET_RESUMEN_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+		
+		case 'GET_RESUMEN_FULFILLED': {
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
+		}
+
 		case 'GET_VALORACION_PENDING': {
 			return { 
-					...state, 
-					fetching: true 
+				...state, 
+				fetching: true 
 			};
-	}
-	
-	case 'GET_VALORACION_REJECTED': {
+		}
+		
+		case 'GET_VALORACION_REJECTED': {
 			return { 
-					...state, 
-					fetching: false, 
-					error: action.payload 
+				...state, 
+				fetching: false, 
+				error: action.payload 
 			};
-	}
-	
-	case 'GET_VALORACION_FULFILLED': {
-		return {
-			...state,
-			fetching: false,
-			fetched: true,
-			status: action.payload.data.status,
-			message: action.payload.data.message,
-			data: action.payload.data.data
-		};
-	}
+		}
+		
+		case 'GET_VALORACION_FULFILLED': {
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
+		}
         
-        case 'SET_EVALUACION_EMPRESA_PENDING': {
-            return { 
-                ...state, 
-                fetching: true 
-            };
-        }
-        
-        case 'SET_EVALUACION_EMPRESA_REJECTED': {
-            return { 
-                ...state, 
-                fetching: false, 
-                error: action.payload 
-            };
-        }
-        
-        case 'SET_EVALUACION_EMPRESA_FULFILLED': {
-            return {
-        ...state,
-        fetching: false,
-        fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
-        };
-
-    }
+		case 'SET_EVALUACION_EMPRESA_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+		
+		case 'SET_EVALUACION_EMPRESA_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+		
+		case 'SET_EVALUACION_EMPRESA_FULFILLED': {
+				return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
+		}
 
         case 'SET_EVALUACION_PLATAFORMA_PENDING': {
             return { 
