@@ -123,16 +123,17 @@ class DatosCuenta extends React.Component <{
   }
 
   componentWillReceiveProps() {
-
-    if(this.state.empresa._id === ''){
-      this.setState({ empresa: this.props.empresa})
-    }
+    console.log(this.props.empresa);
+    // if(this.state.empresa._id === ''){
+    //   this.setState({ empresa: this.props.empresa})
+      
+    // }
     
     if(
       this.props.ubicacionReducer.municipios.length === 0 &&
       !this.props.ubicacionReducer.fetching
     ) {
-      this.props.dispatch(ubicacionActions.getMunicipiosByName(this.props.empresa.provincia))
+      //this.props.dispatch(ubicacionActions.getMunicipiosByName(this.props.empresa.provincia))
     }
 
   }
@@ -291,14 +292,19 @@ class DatosCuenta extends React.Component <{
       visible,
       domicilio
     ))
-    this.props.dispatch(dialogActions.openOneButton())
+    //this.props.dispatch(dialogActions.openOneButton())
        }
       }
       
   
 
   render(){
-       
+    
+    console.log(this.props.empresa);
+    if(this.state.empresa._id === '' && this.props.empresa._id!== ''){
+      this.setState({ empresa: this.props.empresa})
+      
+    }
 		const classes = this.props.classes
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
 

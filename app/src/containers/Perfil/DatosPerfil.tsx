@@ -69,18 +69,23 @@ class DatosPerfil extends React.Component<{
   }
 
   componentWillMount() {
-
+    this.props.dispatch(dialogActions.closeOneButton())
+   
     this.props.dispatch(empresaActions.getEmpresa(this.props.match.params.id))
 
   }
 
   componentDidUpdate() {
-
     if(this.props.empresaReducer.fetched) {
       this.props.dispatch(dialogActions.openOneButton())
     } else {
       this.props.dispatch(dialogActions.closeOneButton())
     }
+    // if(this.props.empresaReducer.fetched) {
+    //   this.props.dispatch(dialogActions.openOneButton())
+    // } else {
+    //   this.props.dispatch(dialogActions.closeOneButton())
+    // }
 
   }
 
@@ -179,7 +184,7 @@ class DatosPerfil extends React.Component<{
       domicilio
     ))
     
-   
+    
 
   }
 
@@ -239,26 +244,27 @@ class DatosPerfil extends React.Component<{
 			}
     }
     
+    console.log(empresa);
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
 
-     empresa = {
-      "_id": '2',
-      "nombre": '',
-      "cuit": '',
-      "usuario": '',
-      "email": '',
-      "estado": '',
-      "updated_at": '',
-      "created_at": '',
-      "domicilioLegal": '',
-      "localidad": '',
-      "logo": '',
-      "mostrar_perfil": false,
-      "provincia": '',
-      "telefono": '',
-      "clave": ''
-    }
+    //  empresa = {
+    //   "_id": '2',
+    //   "nombre": '',
+    //   "cuit": '',
+    //   "usuario": '',
+    //   "email": '',
+    //   "estado": '',
+    //   "updated_at": '',
+    //   "created_at": '',
+    //   "domicilioLegal": '',
+    //   "localidad": '',
+    //   "logo": '',
+    //   "mostrar_perfil": false,
+    //   "provincia": '',
+    //   "telefono": '',
+    //   "clave": ''
+    // }
 
     return(
       <div>
