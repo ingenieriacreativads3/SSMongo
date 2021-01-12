@@ -9,11 +9,13 @@ import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
   requestReducer: any,
-  login: any
+  login: any,
+  empresaReducer: any,
 }) {
   return {
     requestReducer: store.requestReducer,
-    login: store.login
+    login: store.login,
+    empresaReducer: store.empresaReducer,
   };
 }
 
@@ -22,8 +24,8 @@ class Empresas extends React.Component<{
   location: any,
   match: any,
   staticContext?: any,
-  cookies: Cookies
-}, {}> {
+  cookies: Cookies,
+}, {rubroSeleccionado: string}> {
 
 	props: any
 	static propTypes: any
@@ -32,7 +34,9 @@ class Empresas extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
 		super(props);
-    this.state = {};
+    this.state = {
+      rubroSeleccionado:'',
+    };
   }
   
   drawer() {
@@ -63,12 +67,25 @@ class Empresas extends React.Component<{
     />
   }
 
+  componentWillMount() {
+    let rubroSeleccionado: '';
+    rubroSeleccionado = { ...this.props.empresaReducer.rubroSeleccionado }
+    let rubro = [];
+   
+    rubro = Object.values(rubroSeleccionado);
+   
+    this.setState({rubroSeleccionado: rubro.join( '' )});
+}
 
   render(){
 
     // console.log(localStorage.getItem('empresaId'))
 
+  
+    console.log(this.state.rubroSeleccionado);
+
     return(
+      
       <div>
         <EmpresaList
         history={this.props.history}
@@ -78,7 +95,9 @@ class Empresas extends React.Component<{
         cookies={this.props.cookies}
         //drawer={ this.drawer() }
         footer={ this.footer() }
-        appBar={this.appBar()} />
+        appBar={this.appBar()}  
+        rubro = {this.state.rubroSeleccionado} />
+      
       </div>
     );
   }

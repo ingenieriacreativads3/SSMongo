@@ -226,7 +226,10 @@ export function PaginaBusqueda(props: any) {
 	const classes = useStyles(theme);
  
   return <div>
-    <Busqueda classes={classes} theme={useTheme} { ...props } />
+    <Busqueda 
+    classes={classes} 
+    theme={useTheme} 
+    { ...props } />
   </div>;
 }
 
@@ -239,6 +242,7 @@ export function EmpresasPorRubro(props: {
   //drawer: any,
   footer: any,
   appBar:any,
+  rubro:any,
 
 }) {
 
@@ -257,6 +261,7 @@ export function EmpresasPorRubro(props: {
       //drawer={props.drawer}
       footer={props.footer}
       appBar={props.appBar}
+      rubro={props.rubro}
     />
   </div>;
 }

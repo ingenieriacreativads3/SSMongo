@@ -2,11 +2,9 @@ import React from 'react';
 import clsx from 'clsx'
 
 
-import { Container, Avatar, Link,  Button, Grid, Card, ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+import { Container, Avatar, Link,  Button, Grid, ListSubheader, Typography, CssBaseline} from '@material-ui/core';
 //import { Link} from "react-router-dom";
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import  foto  from '../Login/img/photo2.png';
-import { SideBarInicio } from '../SideBarInicio'
+
 
 import MobileStepper from '@material-ui/core/MobileStepper';
 import SwipeableViews from 'react-swipeable-views';
@@ -17,7 +15,6 @@ import  slide3  from './img/slide3.jpeg';
 import logo from "./../Login/img/logo.png";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
@@ -51,7 +48,7 @@ class Empresas extends React.Component <{
   }
 
   render(){
-
+  
     const classes = this.props.classes
     const theme = this.props.theme
 		const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
@@ -110,6 +107,7 @@ class Empresas extends React.Component <{
 
     return(
 
+
       <div className={classes.root}>
         <CssBaseline />
         {this.props.appBar}
@@ -167,7 +165,7 @@ class Empresas extends React.Component <{
                     Rubros
                 </Link>
                 {/* ACA VA IR EL NOMBRE DEL RUBRO SELECCIONADO */}
-                <Link style={{color:'#000000'}}>Agro</Link>
+                <Link style={{color:'#000000'}}>{this.props.rubro}</Link>
                
                 </Breadcrumbs>
 

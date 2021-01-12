@@ -104,7 +104,7 @@ class ValidationRequest extends React.Component<{
             },
             
           ]}
-          data={ this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones }
+          data={ this.props.solicitudDeValidacionReducer?.data?.solicitudesDeValidaciones || {} }
           action={ this.action }
           drawer={ this.drawer() }
           footer={this.footer()}

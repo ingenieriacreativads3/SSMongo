@@ -6,6 +6,7 @@ export default function empresaReducer ( state = {
   fetching: false,
 	fetched: false,
 	error: null,
+	rubroSeleccionado:'',
 	
 }, action: {
 	type: string,
@@ -205,6 +206,39 @@ export default function empresaReducer ( state = {
         message: '',
         data: {}
       };
+		}
+
+		case 'GET_EMPRESAS_BY_RUBRO_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'GET_EMPRESAS_BY_RUBRO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'GET_EMPRESAS_BY_RUBRO_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.empresas
+      };
+		}
+
+		case 'EDIT_RUBRO_SELECCIONADO': {
+			return { 
+				...state, 
+				rubroSeleccionado:action.payload,
+			};
 		}
 		
 		case 'SETEAR':{

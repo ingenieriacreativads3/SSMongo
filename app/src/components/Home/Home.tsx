@@ -19,6 +19,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import * as drawerActions from './../../store/actions/drawer'
+import * as empresaActions from './../../store/actions/empresa'
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
@@ -200,6 +201,8 @@ class Home extends React.Component <{
       act = this.props.actividadesEconomicas
     }
 
+    console.log(act);
+
     const classes = this.props.classes
     const theme = this.props.theme
 		const fixedHeightCardCatalog = clsx(classes.CardCatalog, classes.fixedHeightCAtalog);
@@ -239,6 +242,12 @@ class Home extends React.Component <{
       });
     };
 
+    const goToEmpresasList = (rubro: string) => {
+      debugger;
+      this.props.dispatch(empresaActions.getEmpresasPorRubro('5ffdf3792f3700005b0010c2'));
+      this.props.dispatch(empresaActions.editRubroSeleccionado(rubro));
+    };
+    
     
 
     const a11yProps = (index: number) => {
@@ -316,7 +325,8 @@ class Home extends React.Component <{
                 {
                   act.map((actividad: any, key: number) => {
                     return <Link 
-                      to="/home/busqueda/:id" 
+                      onClick={() => goToEmpresasList(actividad.nombre)}
+                      to={'/home/empresas/' + actividad.nombre}
                       style={{textDecoration:'none'}}>
                         <Tab label={ actividad.nombre } 
                           icon={ Icon(actividad.letra, classes.iconoCategoria) }

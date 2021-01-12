@@ -140,6 +140,29 @@ export function updateEmpresa(
 
 }
 
+export function getEmpresasPorRubro(id: string){
+	debugger;
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.get(url + '/empresas/rubro' + id)
+        
+	return {
+		type: 'GET_EMPRESAS_BY_RUBRO',
+		payload: payload
+	}
+
+}
+
+export function editRubroSeleccionado(rubro: string){
+	debugger;
+
+	return {
+		type: 'EDIT_RUBRO_SELECCIONADO',
+		payload: rubro
+	}
+
+}
+
 export function setear() {
 
 	return {

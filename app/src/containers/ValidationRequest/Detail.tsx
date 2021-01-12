@@ -11,6 +11,8 @@ import { Drawer } from './../Drawer'
 import Cookies from 'universal-cookie';
 import Empresa from '../../components/Evaluacion/Empresa';
 import { NO_VALIDADA, VALIDADA, NO_AUTENTICADA, AUTENTICADA } from './../../components/SolicitudValidacion'
+import * as dialogActions from './../../store/actions/dialog'
+import { OneButton } from './../../components/Dialogs'
 
  
 function mapStateToProps(store: {
@@ -328,6 +330,15 @@ class Detail extends React.Component<{
       'Resuelta'
     ))
 
+    this.props.dispatch(dialogActions.openOneButton())
+  }
+
+  aceptar = ( ) => {
+
+    this.props.dispatch(dialogActions.closeOneButton())
+    this.props.history.push('/solicitud/validacion')
+    
+
   }
 
   render(){
@@ -406,6 +417,13 @@ class Detail extends React.Component<{
           footer={ this.footer() }
           appBar={ this.appBar() }
           drawer={ this.drawer() }
+        />
+
+        <OneButton 
+          title={ 'Solicitud de Validacion' }
+          text={ this.props.solicitudDeValidacionReducer.message }
+          functionRight={ this.aceptar }
+          labelButtonRight={ 'Aceptar' }
         />
       </div>
     );
