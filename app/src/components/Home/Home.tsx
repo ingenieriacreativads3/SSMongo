@@ -248,6 +248,17 @@ class Home extends React.Component <{
       };
     }
 
+    let trendingItems: any[] = []
+    let items: any[] = []
+    
+    if(this.props.itemsTrending !== undefined) {
+      trendingItems = this.props.itemsTrending
+    }
+
+    if(this.props.items !== undefined) {
+      items = this.props.items
+    }
+
     return(
 
       <div className={classes.root}>
@@ -342,7 +353,7 @@ class Home extends React.Component <{
                   {/* <SideBarInicio></SideBarInicio> */}
                 
                   {
-                    this.props.items.map((asd: any[]) => {
+                    items.map((asd: any[]) => {
 
                       // let fotos: string[] = ['']
 
@@ -400,7 +411,7 @@ class Home extends React.Component <{
                   {/* <SideBarInicio></SideBarInicio> */}
                 
                   {
-                    this.props.itemsTrending.map((asd: {
+                    trendingItems.map((asd: {
                       item: {
                         "_id": string,
                         "foto": string[],

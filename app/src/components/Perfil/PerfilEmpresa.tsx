@@ -8,10 +8,6 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import { connect } from 'react-redux'
 import SendIcon from '@material-ui/icons/Send';
 
-
-
-
-
 function mapStateToProps(store: {
   ubicacionReducer: any,
   registerReducer:{}
@@ -70,7 +66,6 @@ class PerfilEmpresa extends React.Component <{
 	props: any
 	static propTypes: any
 	static defaultProps: any
-
  
   constructor(props: any) {
     super(props);
@@ -96,16 +91,6 @@ class PerfilEmpresa extends React.Component <{
       }
     };
   }
-
- 
-
-/*   componentWillMount() {
-
-    this.props.dispatch(registerActions.getEmpresa(this.props.match.params.id))
-
-
-  } */
-
 
   render(){
 
