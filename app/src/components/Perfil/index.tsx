@@ -356,29 +356,12 @@ export  function PerfilPropio(props: {
 }
 
 
-export  function PerfilEmpresa(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  footer:any,
-  drawer:any,
-  appBar:any,
-}) {
+export function PerfilEmpresa(props: any) {
 
 	const classes = useStyles(theme);
  
   return <div>
-    <Perfil 
-    classes={classes}
-    history={props.history}
-    location={props.location}
-    match={props.match}
-    staticContext={props.staticContext}
-    footer={props.footer}
-    drawer={props.drawer}
-    appBar={props.appBar}
-     />
+    <Perfil classes={classes} { ...props } />
   </div>;
 
 }

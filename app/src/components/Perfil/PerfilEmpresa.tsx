@@ -8,13 +8,20 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import { connect } from 'react-redux'
 import SendIcon from '@material-ui/icons/Send';
 
+import * as empresaActions from './../../store/actions/empresa'
+import * as itemActions from './../../store/actions/item'
+
 function mapStateToProps(store: {
   ubicacionReducer: any,
-  registerReducer:{}
+  registerReducer: any,
+  empresaReducer: any,
+  itemReducer: any,
 }) {
   return {
-    empresa: store.registerReducer,
-    ubicacionReducer: store.ubicacionReducer
+    register: store.registerReducer,
+    ubicacionReducer: store.ubicacionReducer,
+    itemReducer: store.itemReducer,
+    empresaReducer: store.empresaReducer,
   };
 }
 
@@ -92,9 +99,25 @@ class PerfilEmpresa extends React.Component <{
     };
   }
 
+  componentWillMount = () => {
+    this.props.dispatch(empresaActions.getEmpresa(this.props.match.params.id))
+    this.props.dispatch(itemActions.getCatalogo(this.props.match.params.id))
+  }
+
   render(){
 
-		const classes = this.props.classes
+    const classes = this.props.classes
+    
+    let empresa: any = {}
+    let items: any[] = []
+
+    if(this.props.empresaReducer.perfil) {
+      empresa = this.props.empresaReducer.data.empresa
+    }
+
+    if(this.props.itemReducer.fetched) {
+      items = this.props.itemReducer?.data?.items || []
+    }
 
     return(
 
@@ -121,10 +144,10 @@ class PerfilEmpresa extends React.Component <{
           justify="space-evenly"
           alignItems="flex-start" xs={12} sm={6}>
           <Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
-              Suppliers Store
+              { empresa.nombre }
           </Typography>
            <Box>      
-            <img src={foto} className = {classes.img}></img> 
+            <img src={'http://localhost:8000/' + empresa.logo} className={classes.img}></img> 
           
               <Typography variant="h5" className={classes.item} gutterBottom>
                   <BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
@@ -134,13 +157,13 @@ class PerfilEmpresa extends React.Component <{
              
               <Typography variant="h5"  className={classes.item} gutterBottom>
                   <LocationOnIcon fontSize="large" style={{ color: '#d93211' }} />
-                  San Francisco - Cordoba
+                  { empresa.localidad } - { empresa.provincia }
               </Typography>
               
               
               <Typography variant="h5"className={classes.item}   gutterBottom>
                   <PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
-                  35644225394
+                  { empresa.telefono }
               </Typography>
            
         </Box>
@@ -225,30 +248,42 @@ class PerfilEmpresa extends React.Component <{
           
 
           <Grid item xs={12} sm={3}>
-          <Link to="/item/detalle/:id" style={{textDecoration:'none'}}>
-            <Card className={classes.cardProducto} >
-                <CardMedia
-                  component="img"
-                  alt="Samsung A20"
-                  height="140"
-                  image={foto}
-                  title="Samsung A20"
-                  //className={classes.cardMedia}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" >
-                    asdasd
-                  </Typography>
-                 
-                  <Typography gutterBottom variant="h5" component="h2">
-                    $16000  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>}
-                  
-                  </Typography>
-                   
-                </CardContent>
-            </Card>
-            </Link>
-            </Grid>
+            {
+              items.map((item: {
+                item: {
+                  _id: string,
+                  foto: string[],
+                  nombre: string,
+                  precio: string,
+                  unidad_de_medida: {
+                    nombre: string
+                  }
+                }
+              }) => {
+                return <Link to={ '/item/detalle/' + item.item._id } style={{textDecoration:'none'}}>
+                  <Card className={classes.cardProducto} >
+                      <CardMedia
+                        component="img"
+                        alt={ item.item.nombre }
+                        height="140"
+                        image={ 'http://localhost:8000/' + item.item.foto[0] }
+                        title={ item.item.nombre }
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" >
+                          { item.item.nombre }
+                        </Typography>
+                      
+                        <Typography gutterBottom variant="h5" component="h2">
+                          ${ item.item.nombre }  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x { item.item.unidad_de_medida.nombre }</Typography>}
+                        </Typography>
+                        
+                      </CardContent>
+                  </Card>
+                  </Link>
+              })
+            }
+          </Grid>
             
 
             
@@ -260,10 +295,7 @@ class PerfilEmpresa extends React.Component <{
         </Grid>
             {this.props.footer}
 					</main>
-
-         
 		 </div>
-
     );
   }
 }

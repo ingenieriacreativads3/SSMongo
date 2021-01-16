@@ -65,24 +65,13 @@ appBar() {
 }
   render(){
 
-   
-    
-    this.props.dispatch(registerActions.getEmpresa(this.props.match.params.id))
-    
-
-  
-
     return(
       <div>
-        <EmpresaPerfil 
-          history={this.props.history}
-          location={this.props.location}
-          match={this.props.match}
-          staticContext={this.props.staticContext}
+        <EmpresaPerfil
           footer={this.footer()}
           drawer={this.drawer()}
           appBar={this.appBar()}
-         
+          { ...this.props }
          />
       </div>
     );

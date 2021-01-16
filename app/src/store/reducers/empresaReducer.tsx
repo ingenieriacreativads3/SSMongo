@@ -138,7 +138,8 @@ export default function empresaReducer ( state = {
 			return {
         ...state,
         fetching: false,
-        fetched: false,
+				fetched: false,
+				perfil: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
         data: action.payload.data.data
