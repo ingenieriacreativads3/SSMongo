@@ -41,9 +41,7 @@ class InicioDrawer extends React.Component<{
 
     return(
       <div>
-        <DrawerInicio
-          //link={this.link}
-        />
+        <DrawerInicio { ...this.props } />
       </div>
     );
   }

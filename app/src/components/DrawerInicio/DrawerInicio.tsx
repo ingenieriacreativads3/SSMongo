@@ -14,16 +14,22 @@ import * as ubicacionActions from './../../store/actions/ubicacion'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import * as actividadEconomicaActions from './../../store/actions/actividadEconomica'
+import * as itemActions from './../../store/actions/item'
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
   drawerReducer: {
     open: boolean
-  }
+	},
+	actividadEconomicaReducer: any,
+	itemReducer: any
 }) {
   return {
-	open: store.drawerReducer.open,
-	ubicacionReducer: store.ubicacionReducer
+		open: store.drawerReducer.open,
+		ubicacionReducer: store.ubicacionReducer,
+		actividadEconomicaReducer: store.actividadEconomicaReducer,
+		itemReducer: store.itemReducer,
   };
 }
 
@@ -34,6 +40,7 @@ class DrawerInicio extends React.Component<{}, {
 	hoverFilter: any,
 	provincia: string,
 	municipio: string,
+	grupo: string,
 	openCategorias: boolean,  
 	openFiltros:boolean,
 }> {
@@ -55,11 +62,11 @@ class DrawerInicio extends React.Component<{}, {
 			hoverFilter: -1,
 			provincia: '',
 			municipio: '',
+			grupo: '',
 			openCategorias: false,
 			openFiltros: false,
 		};
 	}
-
 
 	componentWillMount() {
 
@@ -69,8 +76,10 @@ class DrawerInicio extends React.Component<{}, {
 		) {
 		  this.props.dispatch(ubicacionActions.getProvincias())
 		}
+
+		this.props.dispatch(actividadEconomicaActions.getActividadesEconomicas())
 	
-	  }
+	}
 
 	handleChangeProvincia(e: any) {
 		this.setState({
@@ -90,23 +99,42 @@ class DrawerInicio extends React.Component<{}, {
 		  })
 		}
 	
-	  }
+	}
 
 
-	  handleChangeMunicipio(e: any) {
+	handleChangeMunicipio(e: any) {
 		this.setState({
 		  municipio: e.target.value
 		});
-	  }
+	}
 
-	  handleClickCategorias(e: any) {
+	handleClickCategorias(e: any) {
 		this.setState({ openCategorias: !this.state.openCategorias })
-	  }
+	}
 
-	  handleClickFiltros(e: any) {
+	handleClickFiltros(e: any) {
 		this.setState({ openFiltros: !this.state.openFiltros })
-	  }
+	}
 
+	getGrupo = (e: any) => {
+		this.setState({ grupo: e.target.value });
+	}
+
+	filter = () => {
+
+		let valoracion: string = ''
+
+		if(this.state.valueFilter !== null) {
+			valoracion = this.state.valueFilter.toString()
+		}
+
+		this.props.dispatch(itemActions.search(
+			'none',
+			this.state.provincia,
+			valoracion,
+			'none'
+		))
+	}
 
 	render(){
 
@@ -116,35 +144,39 @@ class DrawerInicio extends React.Component<{}, {
 			this.props.dispatch(drawerAction.close())
 		};
 
-		
-
-		  let provincias: any[] = [
+		let provincias: any[] = [
 			{
 			  nombre: 'Seleccionar',
 			  id: '1'
 			}
-		  ]
+		]
 	  
-		  let municipios: any[] = [
+		let municipios: any[] = [
 			{
 			  nombre: 'Seleccionar',
 			  id: '1'
 			}
-		  ]
+		]
 
-		  if(
+		let grupos: any[] = []
+
+		if(
 			this.props.ubicacionReducer.fetched &&
 			this.props.ubicacionReducer.provincias !== undefined
-		  ) {
+		) {
 			provincias = this.props.ubicacionReducer.provincias
-		  }
+		}
 	  
-		  if(
+		if(
 			this.props.ubicacionReducer.fetched &&
 			this.props.ubicacionReducer.municipios !== undefined
-		  ) {
+		) {
 			municipios = this.props.ubicacionReducer.municipios
-		  }
+		}
+
+		if(this.props.actividadEconomicaReducer.fetched) {
+			grupos = this.props.actividadEconomicaReducer.data.actividad
+		}
 
 		return(
 			
@@ -165,447 +197,127 @@ class DrawerInicio extends React.Component<{}, {
 					
 					<Divider />
 
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickFiltros}>
-						<ListItemText  className={classes.subtitle} primary="Filtros" />
-						{this.state.openFiltros ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
+					<List component="div" disablePadding>
 
-					
-
-
-					
-					<Collapse in={this.state.openFiltros} timeout="auto" unmountOnExit>
-
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickCategorias}>
-						<ListItemText  className={classes.subtitle} primary="Categorias" />
-						{this.state.openCategorias ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
-					<Collapse in={this.state.openCategorias} timeout="auto" unmountOnExit>
-						<List component="div" disablePadding>
-							
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Agricultura, ganadería"
-							  /> 
-								{/* 	<ListItemText  primary="Agricultura, ganadería, caza, silvicultura y pesca"  /> */}
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Explotación de minas"
-							  /> 
-									{/* <ListItemText primary="Explotación de minas y canteras" /> */}
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Industria manufacturera"
-							  /> 
-									{/* <ListItemText primary="Industria manufacturera" /> */}
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Sum.de electricidad, gas"
-							  /> 
-									{/* <ListItemText primary="Suministro de electricidad, gas, vapor y aire acondicionado" /> */}
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Sum. de agua"
-							  /> 
-								{/* 	<ListItemText primary="Suministro de agua, cloacas, gestión de residuos y recuperación de materiales y saneamiento público" /> */}
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Construcción"
-							  /> 
-									{/* <ListItemText primary="Construcción" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Comercio"
-							  /> 
-									{/* <ListItemText primary="Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Serv. de transporte"
-							  /> 
-									{/* <ListItemText primary="Servicio de transporte y almacenamiento" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Serv. de alojamiento"
-							  /> 
-									{/* <ListItemText primary="Servicios de alojamiento y servicios de comida" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Comunicaciones"
-							  /> 
-								{/* 	<ListItemText primary="Información y comunicaciones" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Serv. de seguros"
-							  /> 
-								{/* 	<ListItemText primary="Intermediación Financiera y servicios de seguros" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Serv. inmobiliarios"
-							  /> 
-									{/* <ListItemText primary="Servicios inmobiliarios" /> */}
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Serv. profesionales"
-							  /> 
-									{/* <ListItemText primary="Servicios profesionales, científicos y técnicos" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Activ. administrativas"
-							  /> 
-									{/* <ListItemText primary="Actividades administrativas y servicios de apoyo" /> */}
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Administración Pública"
-							  /> 
-								{/* 	<ListItemText primary="Administración Pública, defensa y seguridad social obligatoria" /> */}
-								</ListItem>
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Enseñanza"
-							  /> 
-									{/* <ListItemText primary="Enseñanza" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Salud humana"
-							  /> 
-									{/* <ListItemText primary="Salud humana y servicios sociales" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Ser.culturales,deportivos"
-							  /> 
-									{/* <ListItemText primary="Servicios artísticos, culturales, deportivos y de esparcimiento" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Serv. de asociaciones"
-							  /> 
-									{/* <ListItemText primary="Servicios de asociaciones y servicios personales" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Serv. hogares privados"
-							  /> 
-									{/* <ListItemText primary="Servicios de hogares privados que contratan servicio doméstico" /> */}
-								</ListItem>
-
-
-								<ListItem button className={classes.nested}>
-								<FormControlLabel
-                                
-								control={
-								  <Checkbox
-									style ={{
-									  color: "#d93211",
-									}}
-								  />
-								}
-								label="Serv. de organizaciones"
-							  /> 
-									{/* <ListItemText primary="Servicios de organizaciones y órganos extraterritoriales" /> */}
-								</ListItem>
-
-
-							
-						</List>
-					</Collapse> 
-
-
-						<List component="div" disablePadding>
-							
 						<ListItem >
-						<ListItemIcon>
-							<RoomIcon className={classes.iconButton} />	
-						</ListItemIcon>
-						<ListItemText primary="Ubicacion" />
-                	</ListItem>
-
-					<ListItem >
-					<FormControl variant="outlined" className={classes.formControl}>
-						<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
-							<Select
-							labelId="demo-simple-select-outlined-label"
-							id="demo-simple-select-outlined"
-							className={classes.select}
-							label="Provincia"
-							value={this.state.provincia} 
-							onChange={this.handleChangeProvincia}
-							>
-							{provincias.map((provincia: {
-								nombre: string,
-								id: string
-							}) => {
-								return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
-							})}
-							</Select>
-					</FormControl>
-                    </ListItem>
-
-
-					<ListItem >
-					<FormControl variant="outlined"  className={classes.formControl}>
-                          
-						  <InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
-						  <Select
-							labelId="demo-simple-select-outlined-label"
-							id="demo-simple-select-outlined"
-							className={classes.select}
-							label="Ciudad"
-							value={this.state.municipio} 
-							onChange={this.handleChangeMunicipio}
-							defaultValue={1}
-						  >
-							{municipios.map((municipio: {
-							  nombre: string,
-							  id: string
-							}) => {
-							  return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
-							})}
-						  </Select>
-						</FormControl>
-                 	</ListItem>
-
-
-					 <ListItem>
 							<ListItemIcon>
-								<StarHalfIcon className={classes.iconButton} />
+								<RoomIcon className={classes.iconButton} />	
 							</ListItemIcon>
-							<ListItemText primary="Valoracion" />
+							<ListItemText primary="Filtros" />
 						</ListItem>
-						
+
 						<ListItem >
-							<Rating className={classes.rating}
-								name="hover-feedback-price"
-								value={this.state.valueFilter}
-								precision={1}
-								onChange={(event, newValueFilter) => {
-									this.setState({
-									valueFilter: newValueFilter
-									})
-								}}
-								onChangeActive={(event, newValueFilter) => {
-									this.setState({
-									hoverFilter: newValueFilter
-									})
-								}}
-							/>
+							<ListItemIcon>
+								<RoomIcon className={classes.iconButton} />	
+							</ListItemIcon>
+							<ListItemText primary="Categorías" />
 						</ListItem>
 
-						<Button variant="contained"  className={classes.Boton}>
-						Aplicar Filtro
-						</Button>
+						<ListItem >
+							<FormControl variant="outlined" className={classes.formControl}>
+								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Grupos</InputLabel>
+								<Select
+									labelId="demo-simple-select-outlined-label"
+									id="demo-simple-select-outlined"
+									className={classes.select}
+									label="Provincia"
+									value={ this.state.grupo }
+									onChange={ this.getGrupo }
+								>
+									{
+										grupos.map((grupo: {
+											nombre: string
+										}) => {
+											return <MenuItem value={grupo.nombre}>{grupo.nombre}</MenuItem>
+										})
+									}
+								</Select>
+							</FormControl>
+						</ListItem>
 							
-						</List>
-					</Collapse> 
-					
-					
-					
+						<ListItem >
+							<ListItemIcon>
+								<RoomIcon className={classes.iconButton} />	
+							</ListItemIcon>
+							<ListItemText primary="Ubicacion" />
+						</ListItem>
 
+						<ListItem >
+							<FormControl variant="outlined" className={classes.formControl}>
+								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
+									<Select
+									labelId="demo-simple-select-outlined-label"
+									id="demo-simple-select-outlined"
+									className={classes.select}
+									label="Provincia"
+									value={this.state.provincia} 
+									onChange={this.handleChangeProvincia}
+									>
+									{provincias.map((provincia: {
+										nombre: string,
+										id: string
+									}) => {
+										return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
+									})}
+									</Select>
+							</FormControl>
+						</ListItem>
+
+
+						<ListItem >
+							<FormControl variant="outlined"  className={classes.formControl}>
+														
+								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
+								<Select
+								labelId="demo-simple-select-outlined-label"
+								id="demo-simple-select-outlined"
+								className={classes.select}
+								label="Ciudad"
+								value={this.state.municipio} 
+								onChange={this.handleChangeMunicipio}
+								defaultValue={1}
+								>
+								{municipios.map((municipio: {
+									nombre: string,
+									id: string
+								}) => {
+									return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
+								})}
+								</Select>
+							</FormControl>
+						</ListItem>
+
+
+						<ListItem>
+								<ListItemIcon>
+									<StarHalfIcon className={classes.iconButton} />
+								</ListItemIcon>
+								<ListItemText primary="Valoracion" />
+							</ListItem>
+							
+							<ListItem >
+								<Rating className={classes.rating}
+									name="hover-feedback-price"
+									value={this.state.valueFilter}
+									precision={1}
+									onChange={(event, newValueFilter) => {
+										this.setState({
+										valueFilter: newValueFilter
+										})
+									}}
+									onChangeActive={(event, newValueFilter) => {
+										this.setState({
+										hoverFilter: newValueFilter
+										})
+									}}
+								/>
+							</ListItem>
+
+							<Button onClick={ this.filter } variant="contained" className={classes.Boton}>
+								Aplicar Filtro
+							</Button>
+								
+						</List>
 				</Drawer>
 						
 		);

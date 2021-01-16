@@ -1,5 +1,23 @@
 import axios from 'axios';
 
+export function search(
+	name: string,
+	ubicacionGeografica: string,
+	valoracion: string,
+	empresa: string
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.get(url + '/busqueda/' + name + '/' + ubicacionGeografica + '/' + valoracion + '/' + empresa)
+	
+  return {
+		type: 'SEARCH_ITEM_BY_NAME',
+		payload: payload
+	}
+
+}
+
 export function searchByName(
 	name: string
 ) {
@@ -9,7 +27,7 @@ export function searchByName(
 	let payload: any = axios.get(url + '/busqueda/' + name + '/none/none/none')
 	
   return {
-		type: 'SEARCH_ITEM',
+		type: 'SEARCH_ITEM_BY_NAME',
 		payload: payload
 	}
 

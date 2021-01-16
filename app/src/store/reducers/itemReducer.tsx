@@ -24,12 +24,38 @@ export default function itemReducer ( state = {
 		case 'SEARCH_ITEM_REJECTED': {
 			return { 
 				...state, 
+				fetching: false,
+				error: action.payload
+			};
+		}
+	
+		case 'SEARCH_ITEM_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: 200,
+        message: 'success load',
+        data: action.payload.data
+      };
+		}
+
+		case 'SEARCH_ITEM_BY_NAME_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'SEARCH_ITEM_BY_NAME_REJECTED': {
+			return { 
+				...state, 
 				fetching: false, 
 				error: action.payload 
 			};
 		}
 	
-		case 'SEARCH_ITEM_FULFILLED': {
+		case 'SEARCH_ITEM_BY_NAME_FULFILLED': {
 			return {
         ...state,
         fetching: false,

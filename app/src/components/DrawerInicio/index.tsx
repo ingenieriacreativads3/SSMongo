@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
   
 })); 
 
-export default function DrawerInicio() {
+export default function DrawerInicio(props: any) {
 	const classes = useStyles();
-	return <Drawer classes={ classes } />;
+	return <Drawer classes={ classes } { ...props } />;
 }

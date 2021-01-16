@@ -260,7 +260,7 @@ class Home extends React.Component <{
     let trendingItems: any[] = []
     let items: any[] = []
     
-    if(this.props.itemsTrending !== undefined) {
+    if(this.props.itemsTrending !== undefined && this.props.itemsTrending !== null) {
       trendingItems = this.props.itemsTrending
     }
 
