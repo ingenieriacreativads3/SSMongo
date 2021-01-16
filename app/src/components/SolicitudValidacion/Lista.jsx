@@ -77,7 +77,7 @@ class Lista extends React.Component {
 			<div className={classes.root} >
 
         <CssBaseline />
-        <AppBar />
+        <AppBar /> 
 				<MenuLateral />
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
@@ -85,10 +85,10 @@ class Lista extends React.Component {
             <Grid container spacing={3}>
               <Grid item lg={12}>
                 <MaterialTable
-                  icons={tableIcons}
-                  title={this.props.title}
-                  columns={this.props.columns}
-                  data={this.props.data}
+                  icons={ tableIcons }
+                  title={ this.props.title }
+                  columns={ this.props.columns }
+                  data={ this.props.data }
                   actions={[
                     {
                       icon: VisibilityIcon,

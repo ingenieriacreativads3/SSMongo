@@ -14,6 +14,32 @@ export default function itemReducer ( state = {
 
 	switch (action.type) {
 
+		case 'SEARCH_ITEM_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'SEARCH_ITEM_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'SEARCH_ITEM_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: 200,
+        message: 'success load',
+        data: action.payload.data
+      };
+		}
+
 		case 'ELASTIC_LOAD_PENDING': {
 			return { 
 				...state, 

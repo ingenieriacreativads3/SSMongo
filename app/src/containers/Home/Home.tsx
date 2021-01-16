@@ -149,7 +149,7 @@ class Home extends React.Component<{
       }
     }
 
-    console.log(this.props.itemReducer.data)
+    // console.log(this.props.itemReducer.data)
 
     return(
       <div>

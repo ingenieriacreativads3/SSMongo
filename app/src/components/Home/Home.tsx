@@ -201,7 +201,7 @@ class Home extends React.Component <{
       act = this.props.actividadesEconomicas
     }
 
-    console.log(act);
+    // console.log(act);
 
     const classes = this.props.classes
     const theme = this.props.theme
@@ -418,50 +418,35 @@ class Home extends React.Component <{
               </ListSubheader>
               <Grid container spacing={3}>
             
-                  {/* <SideBarInicio></SideBarInicio> */}
-                
-                  {
-                    trendingItems.map((asd: {
-                      item: {
+                {
+                  trendingItems.map((asd: {
+                    item: {
+                      "_id": string,
+                      "foto": string[],
+                      "nombre": string,
+                      "precio": string,
+                      "descrpcion": string,
+                      "mostrarPrecio": boolean,
+                      "unidad_de_medida_id": string,
+                      "updated_at": string,
+                      "created_at": string,
+                      "catalogo_id": string,
+                      "unidad_de_medida": {
                         "_id": string,
-                        "foto": string[],
                         "nombre": string,
-                        "precio": string,
-                        "descrpcion": string,
-                        "mostrarPrecio": boolean,
-                        "unidad_de_medida_id": string,
+                        "abreviatura": string,
                         "updated_at": string,
                         "created_at": string,
-                        "catalogo_id": string,
-                        "unidad_de_medida": {
-                          "_id": string,
-                          "nombre": string,
-                          "abreviatura": string,
-                          "updated_at": string,
-                          "created_at": string,
-                        }
-                      },
-                      cantidad: number
-                    }) => {
+                      }
+                    },
+                    cantidad: number
+                  }) => {
 
-                      // let fotos: string[] = ['']
-
-                      // if(item.foto !== undefined && item.foto.length > 0) {
-                      //   fotos = item.foto
-                      // }
-
-                      // let unidadDeMedidaNombre: string = ''
-
-                      
-                      // if(item.unidad_de_medida !== undefined) {
-                      //   unidadDeMedidaNombre = item.unidad_de_medida.nombre
-                      // }
-
-                      return <div>
-                        <Grid item lg={3}>
+                    return <div>
+                      <Grid item lg={3}>
                         <Link to={`/item/detalle/`+ asd.item._id} style={{textDecoration:'none'}}>
                           <Card style={{height:'90%'}} onClick={ () => this.props.action(asd.item._id)} className={fixedHeightCardCatalog}>
-                           
+                          
                               <CardMedia
                                 component="img"
                                 alt={asd.item.nombre}
@@ -478,15 +463,12 @@ class Home extends React.Component <{
                                 </Typography>
                               </CardContent>
                             
-                            {/* <CardActions >
-                              { this.action(asd.item._id, classes) }
-                            </CardActions> */}
                           </Card>
-                          </Link>
-                        </Grid>
-                      </div>
-                    })
-                  }
+                        </Link>
+                      </Grid>
+                    </div>
+                  })
+                }
               
               </Grid>
 							

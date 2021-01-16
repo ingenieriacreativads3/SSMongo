@@ -2,8 +2,8 @@ import React from 'react';
 import clsx from 'clsx'
 
 
-import { Container, Avatar, Link,  Button, Grid, Card, ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
-//import { Link} from "react-router-dom";
+import { Container, Avatar,  Button, Grid, Card, ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+import { Link } from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import  foto  from '../Login/img/photo2.png';
 import { SideBarInicio } from '../SideBarInicio'
@@ -75,6 +75,12 @@ class Busqueda extends React.Component <{}, {
       });
     };
 
+    let items: any[] = []
+
+    if(Array.isArray(this.props.items) && this.props.items.length > 0) {
+      items = this.props.items
+    }
+
     return(
 
       <div className={classes.root}>
@@ -124,152 +130,73 @@ class Busqueda extends React.Component <{}, {
 						<Container maxWidth="lg" /* className={classes.container} */>
            
             <Grid container spacing={3}>
-           
-                {/* <SideBarInicio></SideBarInicio> */}
-               
-               <Grid
+
+              <Grid
                 container
                 direction="row"
                 justify="center"
                 alignItems="center"
-                // style={{display: this.props.publications.length == 0 ? 'block' : 'none'}}
-                >
-
-              <ListSubheader component="div" id="nested-list-subheader">
-               <Typography  variant="h4" component="h3" gutterBottom>
+                style={{display: items.length === 0 ? 'block' : 'none'}}
+              >
+                <ListSubheader component="div" id="nested-list-subheader">
+                  <Typography  variant="h4" component="h3" gutterBottom>
                     No hay publicaciones disponibles para esta búsqueda
-                </Typography>
-              </ListSubheader>
-              
-              <Avatar   src={logo} className={classes.avatar}  />
+                  </Typography>
+                </ListSubheader>
+                <Avatar src={logo} className={classes.avatar}  />
+              </Grid>
 
-             
-                </Grid>
-
-
-                <Grid
+              <Grid
                 container
                 direction="row"
                 justify="flex-start"
                 alignItems="flex-start"  spacing={6}
-                style={{display:'none'}}
-                // style={{display: this.props.publications.length > 0 ? 'block' : 'none'}}
-                >
+                style={{display: items.length > 0 ? 'block' : 'none'}}
+              >
+                {
+                  items.map((item: {
+                    "_id": string,
+                    "foto": string[],
+                    "nombre": string,
+                    "precio": string,
+                  }) => {
 
-
-              <Grid item >
-              
-                <Card className={fixedHeightCardCatalog}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Samsung A20"
-                      height="140"
-                      image={foto}
-                      title="Samsung A20"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        asdasd
-                      </Typography>
-                      <Typography variant="subtitle1" component="h2">
-                        $16000
-                      </Typography>
-                    
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions >
-                  <Link href="/item/detalle/:id">
-                    <IconButton aria-label="ver" className={classes.iconButton}> 
-                      <VisibilityIcon style={{ fontSize: 40 }}  />
-                    </IconButton>
-                    </Link>
-                  
-                    
-                  </CardActions>
-                  </Card>
-                </Grid>
-
-                <Grid item >
-                <Card className={fixedHeightCardCatalog}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Samsung A20"
-                      height="140"
-                      image={foto}
-                      title="Samsung A20"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        asdasd
-                      </Typography>
-                      <Typography variant="subtitle1" component="h2">
-                        $16000
-                      </Typography>
-                    
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions >
-                  <Link href="/item/detalle/:id">
-                    <IconButton aria-label="ver" className={classes.iconButton}> 
-                      <VisibilityIcon style={{ fontSize: 40 }}  />
-                    </IconButton>
-                    </Link>
-                  
-                    
-                  </CardActions>
-                  </Card>
-                </Grid>
-
-                <Grid item >
-                <Card className={fixedHeightCardCatalog}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Samsung A20"
-                      height="140"
-                      image={foto}
-                      title="Samsung A20"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        asdasd
-                      </Typography>
-                      <Typography variant="subtitle1" component="h2">
-                        $16000
-                      </Typography>
-                    
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions >
-                  <Link href="/item/detalle/:id">
-                    <IconButton aria-label="ver" className={classes.iconButton}> 
-                      <VisibilityIcon style={{ fontSize: 40 }}  />
-                    </IconButton>
-                    </Link>
-                  
-                    
-                  </CardActions>
-                  </Card>
-                </Grid>
-
+                    return <div>
+                      <Grid item lg={3}>
+                        <Link to={`/item/detalle/`+ item._id} style={{textDecoration:'none'}}>
+                          <Card
+                            style={{height:'90%'}}
+                            onClick={ () => this.props.action(item._id)}
+                            className={fixedHeightCardCatalog}
+                          >
+                          
+                            <CardMedia
+                              component="img"
+                              alt={item.nombre}
+                              height="250"
+                              image={'http://localhost:8000/' + item.foto[0]}
+                            />
+                            <CardContent>
+                              <Typography gutterBottom variant="h6" component="h2" >
+                                {item.nombre}
+                              </Typography>
+                              <Typography  style={{color:"#d93211"}}  gutterBottom variant="h5">
+                                ${item.precio}  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>} 
+                              </Typography>
+                            </CardContent>
+                            
+                          </Card>
+                        </Link>
+                      </Grid>
+                    </div>
+                  })
+                }
               </Grid>
-              </Grid>
-							
-							
-						</Container>
-            
-            
-            {this.props.footer}
-					</main>
-
-          
-         
-		 </div>
-
-     
-
+            </Grid>
+          </Container>
+        {this.props.footer}
+      </main>
+		</div>
     );
   }
 }

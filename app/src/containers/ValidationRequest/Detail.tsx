@@ -335,9 +335,9 @@ class Detail extends React.Component<{
 
   aceptar = ( ) => {
 
+    this.props.dispatch(solicitudesActions.resetear())
     this.props.dispatch(dialogActions.closeOneButton())
     this.props.history.push('/solicitud/validacion')
-    
 
   }
 

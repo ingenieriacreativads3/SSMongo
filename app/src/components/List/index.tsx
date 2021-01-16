@@ -151,38 +151,10 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export function List(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  data: any,
-  title: string,
-  columns: {}[],
-  action: any,
-  drawer: any,
-  checked?: boolean,
-  getChecked?: any,
-  isCatalog?: boolean,
-  footer:any,
-  delete?: any
-  appBar:any,
-}) {
+export function List(props: any) {
 
-	const classes = useStyles(theme);
-  return <ListExport 
-    classes={ classes }
-    data={ props.data }
-    title={ props.title }
-    columns={ props.columns }
-    action={ props.action }
-    drawer={ props.drawer }
-    isCatalog={ props.isCatalog }
-    checked={ props.checked }
-    getChecked={ props.getChecked }
-    footer={ props.footer }
-    delete={ props.delete }
-    appBar={props.appBar}
-  />;
+  const classes = useStyles(theme);
+  
+  return <ListExport classes={ classes } { ...props } />;
 
 }

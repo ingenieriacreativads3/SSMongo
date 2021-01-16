@@ -225,12 +225,8 @@ export function PaginaBusqueda(props: any) {
 
 	const classes = useStyles(theme);
  
-  return <div>
-    <Busqueda 
-    classes={classes} 
-    theme={useTheme} 
-    { ...props } />
-  </div>;
+  return <Busqueda classes={classes} theme={ useTheme } { ...props } />;
+  
 }
 
 export function EmpresasPorRubro(props: {

@@ -110,7 +110,7 @@ export default function SolicitudesDeValidacionReducer ( state = {
 			
 		}
 
-		case 'RESETEAR': {
+		case 'RESETEAR_SOLICITUDES_DE_VALIDACION': {
 			
 			return {
         ...state,
@@ -118,7 +118,7 @@ export default function SolicitudesDeValidacionReducer ( state = {
         fetched: false,
         status: 0,
         message: {},
-        data: state.data
+        data: {}
       };
 			
 		}

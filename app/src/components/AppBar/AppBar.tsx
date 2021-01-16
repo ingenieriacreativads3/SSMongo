@@ -17,8 +17,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { FixedSizeList } from 'react-window';
 
 import * as drawerAction from './../../store/actions/drawer'
-
-
+import * as itemActions from './../../store/actions/item'
 
 function mapStateToProps(store: {
   drawerReducer: {
@@ -70,6 +69,7 @@ class AppBare extends React.Component<{}, {
 	handleKeyPress = (e: any) => {
 		if(e.key === 'Enter'){
 			if(this.props.history !== undefined) {
+				this.props.dispatch(itemActions.searchByName(this.state.search))
 				this.props.history.push("/home/busqueda/" + this.state.search);
 			}
 		}

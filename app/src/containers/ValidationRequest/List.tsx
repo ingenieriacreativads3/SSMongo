@@ -44,32 +44,16 @@ class ValidationRequest extends React.Component<{
   }
 
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer { ...this.props } />
   }
 
   
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   render(){
@@ -104,7 +88,7 @@ class ValidationRequest extends React.Component<{
             },
             
           ]}
-          data={ this.props.solicitudDeValidacionReducer?.data?.solicitudesDeValidaciones || {} }
+          data={ this.props.solicitudDeValidacionReducer?.data?.solicitudesDeValidaciones || [] }
           action={ this.action }
           drawer={ this.drawer() }
           footer={this.footer()}

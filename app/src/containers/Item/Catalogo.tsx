@@ -6,7 +6,7 @@ import { List } from './../../components/List'
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
 import { TwoButton } from './../../components/Dialogs'
-import {AppBar} from './../AppBar'
+import { AppBar } from './../AppBar'
 
 import * as itemActions from './../../store/actions/item'
 import * as dialogActions from './../../store/actions/dialog'

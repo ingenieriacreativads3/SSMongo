@@ -45,7 +45,7 @@ export function update(id: string, estado: string) {
 export function resetear() {
 
 	return {
-		type: 'RESETEAR',
+		type: 'RESETEAR_SOLICITUDES_DE_VALIDACION',
 		payload: {}
 	}
 

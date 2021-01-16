@@ -1,5 +1,20 @@
 import axios from 'axios';
 
+export function searchByName(
+	name: string
+) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.get(url + '/busqueda/' + name + '/none/none/none')
+	
+  return {
+		type: 'SEARCH_ITEM',
+		payload: payload
+	}
+
+}
+
 export function cargaElastic() {
 
 	let url: string = 'http://127.0.0.1:8000';

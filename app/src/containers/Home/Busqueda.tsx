@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Cookies from 'universal-cookie';
 
 import { PaginaBusqueda as BusquedaPage } from './../../components/Home'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
-import {AppBar} from './../AppBar'
+import { AppBar } from './../AppBar'
 
 function mapStateToProps(store: {
   requestReducer: any,
+  itemReducer: any,
   login: any
 }) {
   return {
     requestReducer: store.requestReducer,
+    itemReducer: store.itemReducer,
     login: store.login
   };
 }
@@ -44,7 +45,11 @@ class Busqueda extends React.Component<{}, {}> {
 
   render(){
 
-    // console.log(localStorage.getItem('empresaId'))
+    let items: any[] = []
+
+    if(this.props.itemReducer.fetched) {
+      items = this.props.itemReducer?.data?.data?.items || []
+    }
 
     return(
       <div>
@@ -53,6 +58,7 @@ class Busqueda extends React.Component<{}, {}> {
           footer={ this.footer() }
           appBar={ this.appBar() }
           { ...this.props }
+          items={ items }
         />
       </div>
     );
