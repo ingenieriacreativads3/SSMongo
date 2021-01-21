@@ -16,6 +16,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import * as actividadEconomicaActions from './../../store/actions/actividadEconomica'
 import * as itemActions from './../../store/actions/item'
+import AppsIcon from '@material-ui/icons/Apps';
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
@@ -199,28 +200,28 @@ class DrawerInicio extends React.Component<{}, {
 
 					<List component="div" disablePadding>
 
-						<ListItem >
+						{/* <ListItem >
 							<ListItemIcon>
 								<RoomIcon className={classes.iconButton} />	
 							</ListItemIcon>
 							<ListItemText primary="Filtros" />
-						</ListItem>
+						</ListItem> */}
 
 						<ListItem >
 							<ListItemIcon>
-								<RoomIcon className={classes.iconButton} />	
+								<AppsIcon className={classes.iconButton} />	
 							</ListItemIcon>
-							<ListItemText primary="Categorías" />
+							<ListItemText primary="Rubros" />
 						</ListItem>
 
 						<ListItem >
 							<FormControl variant="outlined" className={classes.formControl}>
-								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Grupos</InputLabel>
+								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Rubros</InputLabel>
 								<Select
 									labelId="demo-simple-select-outlined-label"
 									id="demo-simple-select-outlined"
 									className={classes.select}
-									label="Provincia"
+									label="Rubros"
 									value={ this.state.grupo }
 									onChange={ this.getGrupo }
 								>
