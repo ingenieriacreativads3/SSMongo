@@ -77,7 +77,11 @@ class Busqueda extends React.Component <{}, {
 
     let items: any[] = []
 
-    if(Array.isArray(this.props.items) && this.props.items.length > 0) {
+    if(
+      this.props.items !== undefined && 
+      Array.isArray(this.props.items) && 
+      this.props.items.length > 0
+    ) {
       items = this.props.items
     }
 

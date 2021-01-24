@@ -52,10 +52,6 @@ class DrawerInicio extends React.Component<{}, {
 
 	constructor(props: any) {
 		super(props);
-		this.handleClickCategorias = this.handleClickCategorias.bind(this);
-		this.handleClickFiltros = this.handleClickFiltros.bind(this);
-		this.handleChangeProvincia = this.handleChangeProvincia.bind(this);
-		this.handleChangeMunicipio = this.handleChangeMunicipio.bind(this);
 		this.state = {
 			anchorEl: null,
 			mobileMoreAnchorEl: null,
@@ -82,7 +78,7 @@ class DrawerInicio extends React.Component<{}, {
 	
 	}
 
-	handleChangeProvincia(e: any) {
+	handleChangeProvincia = (e: any) => {
 		this.setState({
 		  provincia: e.target.value
 		});
@@ -103,17 +99,17 @@ class DrawerInicio extends React.Component<{}, {
 	}
 
 
-	handleChangeMunicipio(e: any) {
+	handleChangeMunicipio = (e: any) => {
 		this.setState({
 		  municipio: e.target.value
 		});
 	}
 
-	handleClickCategorias(e: any) {
+	handleClickCategorias = (e: any) => {
 		this.setState({ openCategorias: !this.state.openCategorias })
 	}
 
-	handleClickFiltros(e: any) {
+	handleClickFiltros = (e: any) => {
 		this.setState({ openFiltros: !this.state.openFiltros })
 	}
 
@@ -189,23 +185,15 @@ class DrawerInicio extends React.Component<{}, {
 					}}
 					open={this.props.open}
 				>
-					 <div className={classes.toolbar} >
-					 <Typography style={{color:'#d93211', marginTop: '15px', marginLeft:'25px', fontStyle:'italic'}} variant="h5"  gutterBottom>
-						Suppliers Store
-					</Typography>
-						{/* <Avatar src={logoLetras} className={classes.avatar} ></Avatar> */}
-					</div> 
+					<div className={classes.toolbar} >
+						<Typography style={{color:'#d93211', marginTop: '15px', marginLeft:'25px', fontStyle:'italic'}} variant="h5"  gutterBottom>
+							Suppliers Store
+						</Typography>
+					</div>
 					
 					<Divider />
 
 					<List component="div" disablePadding>
-
-						{/* <ListItem >
-							<ListItemIcon>
-								<RoomIcon className={classes.iconButton} />	
-							</ListItemIcon>
-							<ListItemText primary="Filtros" />
-						</ListItem> */}
 
 						<ListItem >
 							<ListItemIcon>
