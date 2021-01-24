@@ -154,44 +154,14 @@ const useStyles = makeStyles((theme) => ({
 
 })); 
 
-export  function EvaluarEmpresa(props: {
-	 getNumeroValoracion: any,
-	getConceptoValoracion: any,
-	getOpinion: any,
-	footer:any,
-	save: any, 
-	appBar:any,
-	
-  }) {
+export  function EvaluarEmpresa(props: any) {
 	const classes = useStyles();
-	
-	return <EvaluacionEmpresa 
-	classes={ classes } 
-     getNumeroValoracion={ props.getNumeroValoracion }
-    getConceptoValoracion={ props.getConceptoValoracion }
-    getOpinion={ props.getOpinion }
-    save={ props.save }
-    footer={props.footer} 
-	appBar={props.appBar}/>;
+	return <EvaluacionEmpresa classes={ classes } { ...props } />;
 }
 
 
-export  function EvaluarPlataforma(props: {
-	getNumeroValoracion: any,
-   getConceptoValoracion: any,
-   getOpinion: any,
-   footer:any,
-   save: any, 
-   appBar:any,
- }) {
+export  function EvaluarPlataforma(props: any) {
 	const classes = useStyles();
-	return <EvaluacionSuppliersStore 
-	classes={ classes } 
-	getNumeroValoracion={ props.getNumeroValoracion }
-    getConceptoValoracion={ props.getConceptoValoracion }
-    getOpinion={ props.getOpinion }
-    save={ props.save }
-	footer={props.footer}
-	appBar={props.appBar} />;
+	return <EvaluacionSuppliersStore classes={ classes } { ...props } />;
 }
 

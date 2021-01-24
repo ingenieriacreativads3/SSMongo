@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from './config'
+
 export function setear() {
 
 	return {
@@ -20,11 +21,9 @@ export function reintentar() {
 
 export function getResumen(empresa: string) {
 
-	let url: string = 'http://127.0.0.1:8000';
+	let payload: any = axios.get(config.url + '/resumen/' + empresa)
 
-	let payload: any = axios.get(url + '/resumen/' + empresa)
-
-  return {
+	return {
 		type: 'GET_RESUMEN',
 		payload: payload
 	}
@@ -33,11 +32,9 @@ export function getResumen(empresa: string) {
 
 export function getValoraciones(empresa: string) {
 
-	let url: string = 'http://127.0.0.1:8000';
+	let payload: any = axios.get(config.url + '/kpi/empresa/' + empresa + '/valoracion')
 
-	let payload: any = axios.get(url + '/kpi/empresa/' + empresa + '/valoracion')
-
-  return {
+	return {
 		type: 'GET_VALORACION',
 		payload: payload
 	}
@@ -53,17 +50,14 @@ export function setEvaluacionEmpresa(
 ) {
 
 	let payload: any = axios.post(config.url + '/empresa/valorar',{
-
-    empresaCriticaId: empresaCriticaId,
-    empresaCriticadaId: empresaCriticadaId,
-    numeroValoracion: numeroValoracion,
-    conceptoValoracion: conceptoValoracion,
-    opinion: opinion,
+		empresaCriticaId: empresaCriticaId,
+		empresaCriticadaId: empresaCriticadaId,
+		numeroValoracion: numeroValoracion,
+		conceptoValoracion: conceptoValoracion,
+		opinion: opinion,
 	})
 
-	console.log(payload)
-
-  return {
+	return {
 		type: 'SET_EVALUACION_EMPRESA',
 		payload: payload
 	}
@@ -72,23 +66,23 @@ export function setEvaluacionEmpresa(
 
 export function setEvaluacionPlataforma(
 	navegabilidad: number | null,
-	tiempoRespuesta:number | null,
-	recomienda:boolean,
-	mensaje:string,
-
+	tiempoRespuesta: number | null,
+	actualizacion: number | null,
+	recomienda: boolean,
+	mensaje: string,
 ) {
 
-	let payload: any = axios.post(config.url + '/plataforma/valorar',{
+	
 
+	let payload: any = axios.post(config.url + '/plataforma/valorar',{
 		navegabilidad: navegabilidad,
-		tiempoRespuesta: tiempoRespuesta,
+		tiempo_respuesta: tiempoRespuesta,
+		actualizacion: actualizacion,
 		recomienda: recomienda,
 		mensaje: mensaje,
 	})
 
-	console.log(payload)
-
-  return {
+	return {
 		type: 'SET_EVALUACION_PLATAFORMA',
 		payload: payload
 	}

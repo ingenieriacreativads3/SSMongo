@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Cookies from 'universal-cookie';
-
 
 import { EvaluarPlataforma as EvaluacionPlataforma} from './../../components/Evaluacion'
 import { OneButton } from './../../components/Dialogs'
@@ -12,117 +10,74 @@ import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
 
 function mapStateToProps(store: {
-  evaluacionReducer: any,
-  itemReducer: any,
+	evaluacionReducer: any,
+	itemReducer: any,
 }) {
-  return {
-    evaluacionReducer: store.evaluacionReducer,
-    itemReducer: store.itemReducer,
-  };
+	return {
+		evaluacionReducer: store.evaluacionReducer,
+		itemReducer: store.itemReducer,
+	};
 }
 
-class ValoracionPlataforma extends React.Component<{}, {
-  numeroValoracion: number,
-  conceptoValoracion: string,
-  opinion : string,
-}> {
+class ValoracionPlataforma extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
 	static defaultProps: any
 
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: any) {
-    super(props);
-    this.getNumeroValoracion = this.getNumeroValoracion.bind(this);
-    this.getConceptoValoracion = this.getConceptoValoracion.bind(this);
-    this.getOpinion = this.getOpinion.bind(this);
-    this.save = this.save.bind(this);
-    this.aceptar = this.aceptar.bind(this);
-    this.state = {
-      numeroValoracion: 0,
-      conceptoValoracion: '',
-      opinion: '',
-    };
-  }
+	// eslint-disable-next-line no-useless-constructor
+	constructor(props: any) {
+		super(props);
+		this.state = {};
+	}
 
-  componentDidUpdate() {
+	componentDidUpdate() {
 
-    if(this.props.itemReducer.fetched) {
-      this.props.dispatch(dialogActions.openOneButton())
-    } else {
-      this.props.dispatch(dialogActions.closeOneButton())
-    }
+		if(this.props.itemReducer.fetched) {
+			this.props.dispatch(dialogActions.openOneButton())
+		} else {
+			this.props.dispatch(dialogActions.closeOneButton())
+		}
 
-  }
+	}
 
-  getNumeroValoracion(e: any) {
-    this.setState({ numeroValoracion: e.target.value })
-  }
+	aceptar = () => {
 
-  getConceptoValoracion(e: any) {
-    this.setState({ conceptoValoracion: e.target.value })
-  }
+		this.props.dispatch(dialogActions.closeOneButton())
+		if(this.props.itemReducer.status !== 200) {
+			this.props.dispatch(evaluacionActions.reintentar())
+		} else {
+			this.props.dispatch(evaluacionActions.setear())
+			this.props.history.push('/home/inicio')
+		}
 
-  getOpinion(e: any) {
-    this.setState({ opinion: e.target.value })
-  }
+	}
 
-  save() {
+	footer() {
+		return <Footer { ...this.props } />
+	}
 
-    this.props.dispatch(evaluacionActions.setEvaluacionPlataforma(
-      this.props.cookies.get('empresaId'),
-      this.state.numeroValoracion,
-     true,
-      //this.state.conceptoValoracion,
-      this.state.opinion,
-     
-    ))
+	appBar() {
+		return <AppBar { ...this.props } />
+	}
 
-  }
+	render(){
 
-  aceptar() {
-
-    this.props.dispatch(dialogActions.closeOneButton())
-    if(this.props.itemReducer.status !== 200) {
-      this.props.dispatch(evaluacionActions.reintentar())
-    } else {
-      this.props.dispatch(evaluacionActions.setear())
-      this.props.history.push('/home/inicio')
-    }
-
-  }
-
-  footer() {
-    return <Footer { ...this.props } />
-  }
-
-  appBar() {
-    return <AppBar { ...this.props } />
-  }
-
-  render(){
-
-    return(
-      <div>
-        <EvaluacionPlataforma 
-          getNumeroValoracion={ this.getNumeroValoracion }
-          getConceptoValoracion={ this.getConceptoValoracion }
-          getOpinion={ this.getOpinion }
-          save={ this.save }
-          footer={ this.footer() } 
-          appBar={ this.appBar() }
-        />
-        <OneButton 
-          title={ 'Evaluacion' }
-          text={ this.props.itemReducer.message }
-          functionRight={ this.aceptar }
-          labelButtonRight={ 'Aceptar' }
-         
-        />
-      </div>
-    );
-  }
+		return(
+			<div>
+				<EvaluacionPlataforma 
+					footer={ this.footer() } 
+					appBar={ this.appBar() }
+				/>
+				<OneButton 
+					title={ 'Evaluacion' }
+					text={ this.props.itemReducer.message }
+					functionRight={ this.aceptar }
+					labelButtonRight={ 'Aceptar' }
+				/>
+			</div>
+		);
+	}
 }
 
 export default connect(mapStateToProps)(ValoracionPlataforma)
