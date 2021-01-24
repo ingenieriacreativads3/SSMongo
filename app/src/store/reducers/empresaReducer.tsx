@@ -1,9 +1,9 @@
 export default function empresaReducer ( state = {
 
 	status: 0,
-  message: '',
-  data: {},
-  fetching: false,
+	message: '',
+	data: {},
+	fetching: false,
 	fetched: false,
 	error: null,
 	rubroSeleccionado:'',
@@ -16,7 +16,7 @@ export default function empresaReducer ( state = {
 	switch (action.type) {
 
 		case 'AUTENTICAR_EMPRESA_PENDING': {
-			return { 
+			return {
 				...state, 
 				fetching: true 
 			};
@@ -32,13 +32,13 @@ export default function empresaReducer ( state = {
 	
 		case 'AUTENTICAR_EMPRESA_FULFILLED': {
 			return {
-        ...state,
-        fetching: false,
-        fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
-      };
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
 		}
 
 		case 'VALIDAR_EMPRESA_PENDING': {
@@ -58,13 +58,13 @@ export default function empresaReducer ( state = {
 	
 		case 'VALIDAR_EMPRESA_FULFILLED': {
 			return {
-        ...state,
-        fetching: false,
-        fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
-      };
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
 		}
 
 		case 'RUBROS_VALIDACION_PENDING': {
@@ -84,13 +84,13 @@ export default function empresaReducer ( state = {
 	
 		case 'RUBROS_VALIDACION_FULFILLED': {
 			return {
-        ...state,
-        fetching: false,
-        fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
-      };
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
 		}
 
 		case 'UPDATE_EMPRESA_PENDING': {
@@ -110,13 +110,13 @@ export default function empresaReducer ( state = {
 	
 		case 'UPDATE_EMPRESA_FULFILLED': {
 			return {
-        ...state,
-        fetching: false,
-        fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
-      };
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
 		}
 
 		case 'GET_EMPRESA_PENDING': {
@@ -136,14 +136,14 @@ export default function empresaReducer ( state = {
 	
 		case 'GET_EMPRESA_FULFILLED': {
 			return {
-        ...state,
-        fetching: false,
+				...state,
+				fetching: false,
 				fetched: false,
 				perfil: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
-      };
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
 		}
 
 		case 'GET_EMPRESA_RUBROS_PENDING': {
@@ -163,13 +163,13 @@ export default function empresaReducer ( state = {
 	
 		case 'GET_EMPRESA_RUBROS_FULFILLED': {
 			return {
-        ...state,
-        fetching: false,
-        fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
-      };
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
 		}
 
 		case 'CHANGE_PASSWORD_PENDING': {
@@ -189,24 +189,24 @@ export default function empresaReducer ( state = {
 	
 		case 'CHANGE_PASSWORD_FULFILLED': {
 			return {
-        ...state,
-        fetching: false,
-        fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
-      };
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
 		}
 
 		case 'REINTENTAR_EMPRESA':{
-      return {
-        ...state,
-        fetching: false,
-        fetched: false,
-        status: 0,
-        message: '',
-        data: {}
-      };
+			return {
+				...state,
+				fetching: false,
+				fetched: false,
+				status: 0,
+				message: '',
+				data: {}
+			};
 		}
 
 		case 'GET_EMPRESAS_BY_RUBRO_PENDING': {
@@ -226,13 +226,13 @@ export default function empresaReducer ( state = {
 	
 		case 'GET_EMPRESAS_BY_RUBRO_FULFILLED': {
 			return {
-        ...state,
-        fetching: false,
-        fetched: false,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.empresas
-      };
+				...state,
+				fetching: false,
+				fetched: false,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.empresas
+			};
 		}
 
 		case 'EDIT_RUBRO_SELECCIONADO': {
@@ -243,15 +243,15 @@ export default function empresaReducer ( state = {
 		}
 		
 		case 'SETEAR':{
-      return {
-        ...state,
-        fetching: false,
-        fetched: false,
-        status: 200,
-        message: '',
-        data: state.data
-      };
-    }
+			return {
+				...state,
+				fetching: false,
+				fetched: false,
+				status: 200,
+				message: '',
+				data: state.data
+			};
+		}
 	
 		case 'E': {
 			throw new Error('Este error se manejo asi! empresaReducer Reducer.js');

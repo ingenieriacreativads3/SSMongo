@@ -170,7 +170,6 @@ class Busqueda extends React.Component <{}, {
                         <Link to={`/item/detalle/`+ item._id} style={{textDecoration:'none'}}>
                           <Card
                             style={{height:'90%'}}
-                            onClick={ () => this.props.action(item._id)}
                             className={fixedHeightCardCatalog}
                           >
                           

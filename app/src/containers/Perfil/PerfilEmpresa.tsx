@@ -1,81 +1,88 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import * as registerActions from '../../store/actions/register'
 import { PerfilEmpresa as EmpresaPerfil} from './../../components/Perfil'
 import { Footer } from './../Footer'
 import { InicioDrawer } from './../DrawerInicio'
-import {AppBar} from './../AppBar'
-import Cookies from 'universal-cookie';
+import { AppBar } from './../AppBar'
+import { OneButton } from './../../components/Dialogs'
+
+import * as dialogActions from './../../store/actions/dialog'
+import * as empresaActions from './../../store/actions/empresa'
 
 function mapStateToProps(store: {
-  
-  login: any
+	login: any
+	mensajeReducer: any,	
 }) {
-  return {
-   
-    
-    login: store.login
-  };
+	return {
+		mensajeReducer: store.mensajeReducer,
+		login: store.login
+	};
 }
 
-class Empresa extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {}> {
+class Empresa extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
 	static defaultProps: any
 
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: any) {
+	// eslint-disable-next-line no-useless-constructor
+	constructor(props: any) {
 		super(props);
-    this.state = {};
-}
+		this.state = {};
+	}
 
-footer() {
-  return <Footer 
-    history={this.props.history}
-    location={this.props.location}
-    match={this.props.match}
-    staticContext={this.props.staticContext}
-  />
-}
+	componentDidUpdate() {
+		
+		if(this.props.mensajeReducer.fetched) {
+			this.props.dispatch(dialogActions.openOneButton())
+		} else {
+			if(this.props.mensajeReducer.error !== null) {
+				this.props.dispatch(dialogActions.openOneButton())
+			} else {
+				this.props.dispatch(dialogActions.closeOneButton())
+			}
+		}
 
-drawer() {
-  return <InicioDrawer 
-    history={this.props.history}
-    location={this.props.location}
-    match={this.props.match}
-    staticContext={this.props.staticContext}
-  />
-}
+	}
 
-appBar() {
-  return <AppBar 
-    history={this.props.history}
-    location={this.props.location}
-    match={this.props.match}
-    staticContext={this.props.staticContext}
-    cookies={this.props.cookies}
-  />
-}
-  render(){
+	footer() {
+		return <Footer { ...this.props } />
+	}
 
-    return(
-      <div>
-        <EmpresaPerfil
-          footer={this.footer()}
-          drawer={this.drawer()}
-          appBar={this.appBar()}
-          { ...this.props }
-         />
-      </div>
-    );
-  }
+	drawer() {
+		return <InicioDrawer { ...this.props } />
+	}
+
+	appBar() {
+		return <AppBar { ...this.props } />
+	}
+
+	aceptar = () => {
+
+		this.props.dispatch(dialogActions.closeOneButton())
+		this.props.dispatch(empresaActions.reintentarMensaje())
+
+	}
+
+	render(){
+
+		return(
+			<div>
+				<EmpresaPerfil
+					footer={ this.footer() }
+					drawer={ this.drawer() }
+					appBar={ this.appBar() }
+					{ ...this.props }
+				 />
+				 <OneButton 
+					title={ 'Servicio de mensajería' }
+					text={ this.props?.mensajeReducer?.message || '' }
+					functionRight={ this.aceptar }
+					labelButtonRight={ 'Aceptar' }
+				/>
+			</div>
+		);
+	}
 }
 
 export default connect(mapStateToProps)(Empresa)

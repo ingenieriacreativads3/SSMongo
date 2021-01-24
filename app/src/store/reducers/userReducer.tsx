@@ -1,6 +1,4 @@
-import config from './../../config'
-
-export default function LoginReducer (state = {
+export default function UserReducer (state = {
 
   status: 0,
   message: '',
@@ -16,7 +14,7 @@ export default function LoginReducer (state = {
 
   switch (action.type) {
 
-    case 'INGRESAR_PENDING': {
+    case 'GET_USER_PENDING': {
 
       return { 
         ...state, 
@@ -25,33 +23,44 @@ export default function LoginReducer (state = {
 
     }
   
-    case 'INGRESAR_REJECTED': {
+    case 'GET_USER_REJECTED': {
+
+      let data: any = action?.payload?.response?.data || {}
+      let status: any = action?.payload?.response?.status || 500
+      let message: string = action?.payload?.response?.data?.message || ''
+
+      if(status === 500) {
+        if(message === '') {
+          message = 'Servidor deshabilitado. Reporte el problema a su proveedor de servicio.'
+        }
+      }
 
       return { 
         ...state, 
-        fetching: false, 
-        error: action.payload 
+        fetching: false,
+        status: status,
+        data: data,
+        error: action.payload,
+        message: message
       };
 
     }
   
-    case 'INGRESAR_FULFILLED':{
-
-			let userId: string = action.payload?.data?.data?.empresa?._id || null
-
-			localStorage.setItem(config.session_user, userId)
+    case 'GET_USER_FULFILLED':{
       
       return {
         ...state,
         fetching: false,
         fetched: true,
+        error: null,
         status: action.payload.data.status,
         message: action.payload.data.message,
-        data: action.payload.data.data
+        data: action.payload?.data?.data || {}
       };
+
     }
 
-    case 'REINTENTAR':{
+    case 'REINTENTAR_USER':{
       return {
         ...state,
         fetching: false,
@@ -62,7 +71,7 @@ export default function LoginReducer (state = {
       };
     }
 
-    case 'LOGUEAR':{
+    case 'SETEAR_USER':{
       return {
         ...state,
         fetching: false,
@@ -74,7 +83,7 @@ export default function LoginReducer (state = {
     }
   
     case 'E': {
-      throw new Error('Este error se manejo asi! login Reducer.js');
+      throw new Error('Este error se manejo asi!' + ' user' + 'Reducer.js');
     }
 
     default: { break; }

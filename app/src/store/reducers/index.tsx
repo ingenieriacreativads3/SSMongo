@@ -16,22 +16,26 @@ import empresaReducer from './empresaReducer'
 import actividadEconomicaReducer from './actividadEconomicaReducer'
 import errorReducer from './errorReducer'
 import evaluacionReducer from "./evaluacionReducer";
+import userReducer from "./userReducer";
+import mensajeReducer from "./mensajeReducer";
 
 export default combineReducers({
-    apiWork,
-    login,
-    dialogReducer,
-    drawerReducer,
-    registerReducer,
-    solicitudDeValidacionReducer,
-    requestReducer,
-    presupuestoReducer,
-    itemReducer,
-    unidadDeMedidaReducer,
-    ubicacionReducer,
-    fileReducer,
-    empresaReducer,
-    actividadEconomicaReducer,
-    errorReducer,
-    evaluacionReducer
+	mensajeReducer,
+	userReducer,
+	apiWork,
+	login,
+	dialogReducer,
+	drawerReducer,
+	registerReducer,
+	solicitudDeValidacionReducer,
+	requestReducer,
+	presupuestoReducer,
+	itemReducer,
+	unidadDeMedidaReducer,
+	ubicacionReducer,
+	fileReducer,
+	empresaReducer,
+	actividadEconomicaReducer,
+	errorReducer,
+	evaluacionReducer,
 })

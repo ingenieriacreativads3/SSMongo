@@ -72,8 +72,6 @@ export function setEvaluacionPlataforma(
 	mensaje: string,
 ) {
 
-	
-
 	let payload: any = axios.post(config.url + '/plataforma/valorar',{
 		navegabilidad: navegabilidad,
 		tiempo_respuesta: tiempoRespuesta,

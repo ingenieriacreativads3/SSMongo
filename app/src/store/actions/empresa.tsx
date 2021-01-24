@@ -1,13 +1,31 @@
 import axios from 'axios';
+import config from './config'
+
+export function setMensaje(
+	empresa: string,
+	empresaDestinada: string,
+	comentario: string
+) {
+
+	let payload: any = axios.post(config.url + '/mensaje', {
+		empresa,
+		empresaDestinada,
+		comentario
+	})
+	
+  return {
+		type: 'SET_MENSAJE',
+		payload: payload
+	}
+
+}
 
 export function rubrosValidacion(
 	idEmpresa: string,
 	rubros: string[]
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/rubro/validacion', {
+	let payload: any = axios.post(config.url + '/rubro/validacion', {
 		_id: idEmpresa,
 		rubros
 	})
@@ -25,9 +43,7 @@ export function changePassword(
 	newPassword: string
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.put(url + '/empresa/password', {
+	let payload: any = axios.put(config.url + '/empresa/password', {
 		idEmpresa,
 		'old-password': oldPassword,
 		'new-password': newPassword
@@ -42,9 +58,7 @@ export function changePassword(
 
 export function getEmpresaRubros(){
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.get(url + '/rubros')
+	let payload: any = axios.get(config.url + '/rubros')
         
 	return {
 		type: 'GET_EMPRESA_RUBROS',
@@ -54,10 +68,8 @@ export function getEmpresaRubros(){
 }
 
 export function getEmpresa(id: string){
-
-	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.get(url + '/empresa/' + id)
+	let payload: any = axios.get(config.url + '/empresa/' + id)
         
 	return {
 		type: 'GET_EMPRESA',
@@ -70,9 +82,7 @@ export function validar(
 	_id: string,	
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.put(url + '/empresa/' + _id + '/editar', {
+	let payload: any = axios.put(config.url + '/empresa/' + _id + '/editar', {
 		estado: 'VALIDADA'
 	})
 	
@@ -88,9 +98,7 @@ export function autenticar(
 	autenticar: boolean,
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/empresa/autenticar', {
+	let payload: any = axios.post(config.url + '/empresa/autenticar', {
 		_id,
 		autenticar
 	})
@@ -116,8 +124,6 @@ export function updateEmpresa(
 	domicilio: string,
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-
 	let empresa: any = {}
 
 	if(nombre !== undefined) empresa.nombre = nombre
@@ -131,7 +137,7 @@ export function updateEmpresa(
 	if(visible !== undefined) empresa.visible = visible
 	if(domicilio !== undefined) empresa.domicilio = domicilio
 	
-	let payload: any = axios.put(url + '/empresa/' + _id + '/editar', empresa)
+	let payload: any = axios.put(config.url + '/empresa/' + _id + '/editar', empresa)
 	
   return {
 		type: 'UPDATE_EMPRESA',
@@ -141,10 +147,8 @@ export function updateEmpresa(
 }
 
 export function getEmpresasPorRubro(id: string){
-	debugger;
-	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.get(url + '/empresas/rubro' + id)
+	let payload: any = axios.get(config.url + '/empresas/rubro' + id)
         
 	return {
 		type: 'GET_EMPRESAS_BY_RUBRO',
@@ -154,7 +158,6 @@ export function getEmpresasPorRubro(id: string){
 }
 
 export function editRubroSeleccionado(rubro: string){
-	debugger;
 
 	return {
 		type: 'EDIT_RUBRO_SELECCIONADO',
@@ -176,6 +179,15 @@ export function reintentar() {
 
 	return {
 		type: 'REINTENTAR_EMPRESA',
+		payload: {}
+	}
+
+}
+
+export function reintentarMensaje() {
+
+	return {
+		type: 'REINTENTAR_MENSAJE',
 		payload: {}
 	}
 
