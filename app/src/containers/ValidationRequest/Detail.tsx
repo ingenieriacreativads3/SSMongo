@@ -314,7 +314,7 @@ class Detail extends React.Component<{
     />
   }
 
-  update = (idEmpresa: string, rubros: string[], estado: string) => {
+  update = (idEmpresa: string, rubros: {}[], estado: string) => {
 
     if(estado ===  'Validada' ) this.props.dispatch(empresaActions.validar(idEmpresa))
     if(estado === NO_AUTENTICADA ) this.props.dispatch(empresaActions.autenticar(idEmpresa, false))

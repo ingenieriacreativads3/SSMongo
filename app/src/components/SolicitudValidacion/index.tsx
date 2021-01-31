@@ -125,7 +125,6 @@ export function SolicitudesValidacion(props: any) {
 }
 
 export function ValidarNuevoUsuario(props: any) {
-
 	const classes = useStyles(theme);
   return <div>
     <Validacion classes={ classes } { ...props } />

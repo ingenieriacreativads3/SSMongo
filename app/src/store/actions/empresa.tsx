@@ -22,12 +22,12 @@ export function setMensaje(
 
 export function rubrosValidacion(
 	idEmpresa: string,
-	rubros: string[]
+	rubros: {}[]
 ) {
 
 	let payload: any = axios.post(config.url + '/rubro/validacion', {
 		_id: idEmpresa,
-		rubros
+		rubros: rubros
 	})
 	
   return {
