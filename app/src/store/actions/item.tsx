@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios from 'axios'
+import config from './config'
 
 export function search(
-	name: string,
-	ubicacionGeografica: string,
+	itemName: string,
+	provincia: string,
+	localidad: string,
 	valoracion: string,
-	empresa: string
+	empresaName: string
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.get(url + '/busqueda/' + name + '/' + ubicacionGeografica + '/' + valoracion + '/' + empresa)
+	let payload: any = axios.get(config.url + '/busqueda/' + itemName + '/' + provincia + '/' + localidad + '/' + valoracion + '/' + empresaName)
 	
   return {
 		type: 'SEARCH_ITEM_BY_NAME',

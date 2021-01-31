@@ -80,7 +80,8 @@ class DrawerInicio extends React.Component<{}, {
 
 	handleChangeProvincia = (e: any) => {
 		this.setState({
-		  provincia: e.target.value
+			provincia: e.target.value,
+			municipio: ''
 		});
 	
 		if(
@@ -125,11 +126,20 @@ class DrawerInicio extends React.Component<{}, {
 			valoracion = this.state.valueFilter.toString()
 		}
 
+		let itemName: string = 'none'
+		let provincia: string = 'none'
+		let localidad: string = 'none'
+		let empresaName: string = 'none'
+
+		if(this.state.provincia !== '') provincia = this.state.provincia
+		if(this.state.municipio !== '') localidad = this.state.municipio
+
 		this.props.dispatch(itemActions.search(
+			itemName,
+			provincia,
+			localidad,
 			'none',
-			this.state.provincia,
-			valoracion,
-			'none'
+			empresaName
 		))
 	}
 
@@ -235,19 +245,21 @@ class DrawerInicio extends React.Component<{}, {
 							<FormControl variant="outlined" className={classes.formControl}>
 								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
 									<Select
-									labelId="demo-simple-select-outlined-label"
-									id="demo-simple-select-outlined"
-									className={classes.select}
-									label="Provincia"
-									value={this.state.provincia} 
-									onChange={this.handleChangeProvincia}
+										labelId="demo-simple-select-outlined-label"
+										id="demo-simple-select-outlined"
+										className={classes.select}
+										label="Provincia"
+										value={this.state.provincia} 
+										onChange={this.handleChangeProvincia}
 									>
-									{provincias.map((provincia: {
-										nombre: string,
-										id: string
-									}) => {
-										return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
-									})}
+										{
+											provincias.map((provincia: {
+												nombre: string,
+												id: string
+											}) => {
+												return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
+											})
+										}
 									</Select>
 							</FormControl>
 						</ListItem>
@@ -258,20 +270,22 @@ class DrawerInicio extends React.Component<{}, {
 														
 								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
 								<Select
-								labelId="demo-simple-select-outlined-label"
-								id="demo-simple-select-outlined"
-								className={classes.select}
-								label="Ciudad"
-								value={this.state.municipio} 
-								onChange={this.handleChangeMunicipio}
-								defaultValue={1}
+									labelId="demo-simple-select-outlined-label"
+									id="demo-simple-select-outlined"
+									className={classes.select}
+									label="Ciudad"
+									value={this.state.municipio} 
+									onChange={this.handleChangeMunicipio}
+									defaultValue={1}
 								>
-								{municipios.map((municipio: {
-									nombre: string,
-									id: string
-								}) => {
-									return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
-								})}
+									{
+										municipios.map((municipio: {
+											nombre: string,
+											id: string
+										}) => {
+											return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
+										})
+									}
 								</Select>
 							</FormControl>
 						</ListItem>

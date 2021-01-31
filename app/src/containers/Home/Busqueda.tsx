@@ -6,8 +6,6 @@ import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
 import { AppBar } from './../AppBar'
 
-import * as itemActions from './../../store/actions/item'
-
 function mapStateToProps(store: {
   requestReducer: any,
   itemReducer: any,
