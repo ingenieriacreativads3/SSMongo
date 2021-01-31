@@ -15,6 +15,32 @@ export default function empresaReducer ( state = {
 
 	switch (action.type) {
 
+		case 'GET_BY_GRUPO_PENDING': {
+			return {
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'GET_BY_GRUPO_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'GET_BY_GRUPO_FULFILLED': {
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
+		}
+
 		case 'AUTENTICAR_EMPRESA_PENDING': {
 			return {
 				...state, 

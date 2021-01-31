@@ -1,6 +1,18 @@
 import axios from 'axios';
 import config from './config'
 
+export function getByGrupo(
+	grupoName: string,
+) {
+
+	let payload: any = axios.get(config.url + '/empresa/grupo/' + grupoName)
+	
+  return {
+		type: 'GET_BY_GRUPO',
+		payload: payload
+	}
+}
+
 export function setMensaje(
 	empresa: string,
 	empresaDestinada: string,
@@ -17,7 +29,6 @@ export function setMensaje(
 		type: 'SET_MENSAJE',
 		payload: payload
 	}
-
 }
 
 export function rubrosValidacion(

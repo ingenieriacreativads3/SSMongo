@@ -242,14 +242,6 @@ class Home extends React.Component <{
       });
     };
 
-    const goToEmpresasList = (rubro: string) => {
-      debugger;
-      this.props.dispatch(empresaActions.getEmpresasPorRubro('5ffdf3792f3700005b0010c2'));
-      this.props.dispatch(empresaActions.editRubroSeleccionado(rubro));
-    };
-    
-    
-
     const a11yProps = (index: number) => {
       return {
         id: `scrollable-force-tab-${index}`,
@@ -335,9 +327,9 @@ class Home extends React.Component <{
               >
                 {
                   act.map((actividad: any, key: number) => {
+
                     return <Link 
-                      onClick={() => goToEmpresasList(actividad.nombre)}
-                      to={'/home/empresas/' + actividad.nombre}
+                      to={'/home/empresas/' + actividad.nombre.toLowerCase().replace(/ /g,'-')}
                       style={{textDecoration:'none'}}>
                         <Tab label={ actividad.nombre } 
                           icon={ Icon(actividad.letra, classes.iconoCategoria) }

@@ -148,18 +148,10 @@ const useStyles = makeStyles((theme) => ({
 	Boton: {
 		color : '#ffba00',
 		marginTop: theme.spacing(2),
-	//	 margin: theme.spacing(3),
-	//	 backgroundColor: '#d93211',
-	//	 color : '#ffffff',
-	//	 '&:hover': {
-	//		 background: "#d93211",
-	 },
-	
+	},
 	rootCarousel: {
-		//maxWidth: 1500,
 		width:1500,
 		flexGrow: 1,
-		
 		paddingTop:theme.spacing(7),
 	},
 	header: {
@@ -170,10 +162,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: theme.palette.background.default,
 	},
 	 img: {
-		
 		width: 1500,
-	 
-	
 	}, 
 	rootCategorias:{
 		flexGrow: 1,
@@ -186,12 +175,7 @@ const useStyles = makeStyles((theme) => ({
 	 paddingTop:theme.spacing(2),
 	 color:"#d93211",
 	 fontSize:20,
-	 
-	 
 	},
-	// title:{
-	//	 paddingTop:theme.spacing(35),
-	// },
 	tab:{
 		fontSize:13,
 		color:"#d93211",
@@ -200,22 +184,16 @@ const useStyles = makeStyles((theme) => ({
 	iconoCategoria:{
 		fontSize:25,
 		color:"#d93211",
-	 
 	},
 	avatar: {
-		// margin: theme.spacing(1),
-		//fontSize: '300px',
 		width: '450px',
 		height: '250px',
 	},
-	
- 
 }));
 
 export function InitLayout(props: any) {
 
 	const classes = useStyles(theme);
- 
 	return <div>
 		<Home classes={ classes } theme={ useTheme } { ...props } />
 	</div>;
@@ -224,7 +202,6 @@ export function InitLayout(props: any) {
 export function PaginaBusqueda(props: any) {
 
 	const classes = useStyles(theme);
- 
 	return <Busqueda classes={classes} theme={ useTheme } { ...props } />;
 	
 }
@@ -232,9 +209,8 @@ export function PaginaBusqueda(props: any) {
 export function EmpresasPorRubro(props: any) {
 
 	const classes = useStyles(theme);
- 
 	return <div>
-		<Empresas classes={ classes } theme={useTheme} { ...props } />	
+		<Empresas classes={ classes } theme={ useTheme } { ...props } />	
 	</div>;
 }
 

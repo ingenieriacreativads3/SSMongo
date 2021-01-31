@@ -1,106 +1,75 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Cookies from 'universal-cookie';
 
 import { EmpresasPorRubro as EmpresaList } from './../../components/Home'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
-import {AppBar} from './../AppBar'
+import { AppBar } from './../AppBar'
+
+import * as empresaActions from './../../store/actions/empresa'
 
 function mapStateToProps(store: {
-  requestReducer: any,
-  login: any,
-  empresaReducer: any,
+	requestReducer: any,
+	empresaReducer: any,
 }) {
-  return {
-    requestReducer: store.requestReducer,
-    login: store.login,
-    empresaReducer: store.empresaReducer,
-  };
+	return {
+		requestReducer: store.requestReducer,
+		empresaReducer: store.empresaReducer,
+	};
 }
 
-class Empresas extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies,
-}, {rubroSeleccionado: string}> {
+class Empresas extends React.Component<{}, {
+	rubroSeleccionado: string
+}> {
 
 	props: any
 	static propTypes: any
 	static defaultProps: any
 
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props: any) {
+	// eslint-disable-next-line no-useless-constructor
+	constructor(props: any) {
 		super(props);
-    this.state = {
-      rubroSeleccionado:'',
-    };
-  }
-  
-  drawer() {
-    return <InicioDrawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
-  }
+		this.state = {
+			rubroSeleccionado:'',
+		};
+	}
 
-  footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
-  }
+	componentWillMount = () => {
+		this.props.dispatch(empresaActions.getByGrupo(this.props.match.params.grupo))
+	}
+	
+	drawer() {
+		return <InicioDrawer { ...this.props } />
+	}
 
-  appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
-  }
+	footer() {
+		return <Footer { ...this.props } />
+	}
 
-  componentWillMount() {
-    let rubroSeleccionado: '';
-    rubroSeleccionado = { ...this.props.empresaReducer.rubroSeleccionado }
-    let rubro = [];
-   
-    rubro = Object.values(rubroSeleccionado);
-   
-    this.setState({rubroSeleccionado: rubro.join( '' )});
-}
+	appBar() {
+		return <AppBar { ...this.props } />
+	}
 
-  render(){
+	render(){
 
-    // console.log(localStorage.getItem('empresaId'))
+		let empresas: any[] = []
+		let data: any[] = this.props?.empresaReducer?.data?.empresas || []
 
-  
-    console.log(this.state.rubroSeleccionado);
+		if(data !== undefined && Array.isArray(data) && data.length > 0) {
+			empresas = data
+		}
 
-    return(
-      
-      <div>
-        <EmpresaList
-        history={this.props.history}
-        location={this.props.location}
-        match={this.props.match}
-        staticContext={this.props.staticContext}
-        cookies={this.props.cookies}
-        //drawer={ this.drawer() }
-        footer={ this.footer() }
-        appBar={this.appBar()}  
-        rubro = {this.state.rubroSeleccionado} />
-      
-      </div>
-    );
-  }
+		return(
+			<div>
+				<EmpresaList	
+					footer = { this.footer() }
+					appBar = { this.appBar() }
+					rubro = { this.props.match.params.grupo }
+					empresas = { empresas }
+				/>
+			</div>
+		);
+	}
 }
 
 export default connect(mapStateToProps)(Empresas)

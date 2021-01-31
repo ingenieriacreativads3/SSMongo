@@ -138,7 +138,7 @@ class App extends React.Component <{}, {}> {
 						<this.enEspera path='/home/catalogo'             cookies={cookies} render={(props:any) => <Catalogo { ...props } cookies={cookies} />} /> 
 						<this.enEspera path='/home/reputacion'           cookies={cookies} render={(props:any) => <Reputacion {...props} cookies={cookies}/>}/>
 						<Route path='/home/inicio' 			  		           render={(props) => <Inicio { ...props } cookies={cookies} />}/>
-						<Route path='/home/empresas' 			  		           render={(props) => <EmpresaList { ...props } cookies={cookies} />}/>
+						<Route path='/home/empresas/:grupo' 			  		           render={(props) => <EmpresaList { ...props } cookies={cookies} />}/>
 						
 						<Route path='/mensajes'     	 	 render={(props) => <Chat {...props} cookies={cookies}/>} /> 
 
