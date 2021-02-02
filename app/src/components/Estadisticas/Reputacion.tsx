@@ -289,28 +289,34 @@ class Reputacion extends React.Component <{}, {
 	}
 
 	renderRow = (props: any) => {
+		debugger;
+		console.log(this.props.opiniones);
 		const { index, style, data } = props;
 
-		let item: string = data[index];
+		let item = data[index];
+
+		var inicialAvatar = item.usuario.substr(0,[1]).toUpperCase();
+		
 	
 		return (
 			<ListItem button style={style} key={index}>
 				<ListItem alignItems="flex-start">
 					<ListItemAvatar>
-						<Avatar alt="Anónimo" src="/static/images/avatar/1.jpg" />
+						<Avatar>{inicialAvatar}</Avatar>
+				
 					</ListItemAvatar>
 					<ListItemText
-						primary={ 'Comentario' }
+						primary={ item.usuario }
 						secondary={
 							<React.Fragment>
-								<Typography
+								{/* <Typography
 									component="span"
 									variant="body2"
 									color="textPrimary"
 								>
 									{ 'Anónimo' }
-								</Typography>
-								{ item }
+								</Typography> */}
+								{ item.mensaje }
 							</React.Fragment>
 						}
 					/>
