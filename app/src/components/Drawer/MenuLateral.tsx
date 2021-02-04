@@ -39,6 +39,7 @@ class MenuLateral extends React.Component<{
 	openItemMenuCompras: boolean,
 	openItemMenuVentas: boolean,
 	openItemMenuEstadisticas: boolean,
+	openItemMenuEstadisticasPlataforma: boolean,
 	openItemMenuSolicitudes: boolean,
 	openItemMenuCatalogo: boolean,
 }> {
@@ -52,6 +53,7 @@ class MenuLateral extends React.Component<{
 		this.handleClickCompras = this.handleClickCompras.bind(this);
 		this.handleClickVentas = this.handleClickVentas.bind(this);
 		this.handleClickEstadisticas = this.handleClickEstadisticas.bind(this);
+		this.handleClickEstadisticasPlataforma = this.handleClickEstadisticasPlataforma.bind(this);
 		this.handleClickSolicitudes = this.handleClickSolicitudes.bind(this);
 		this.handleClickCatalogo = this.handleClickCatalogo.bind(this);
 		this.state = {
@@ -60,6 +62,7 @@ class MenuLateral extends React.Component<{
 			openItemMenuCompras:false,
 			openItemMenuVentas: false,
 			openItemMenuEstadisticas: false,
+			openItemMenuEstadisticasPlataforma: false,
 			openItemMenuSolicitudes: false,
 			openItemMenuCatalogo: false,
 		};
@@ -75,6 +78,11 @@ class MenuLateral extends React.Component<{
 
 	  handleClickEstadisticas(e: any) {
 		this.setState({ openItemMenuEstadisticas: !this.state.openItemMenuEstadisticas })
+	  }
+
+	  
+	  handleClickEstadisticasPlataforma(e: any) {
+		this.setState({ openItemMenuEstadisticasPlataforma: !this.state.openItemMenuEstadisticasPlataforma })
 	  }
 
 	  handleClickSolicitudes(e: any) {
@@ -240,6 +248,23 @@ class MenuLateral extends React.Component<{
 								<PostAdd className={classes.icon}/>
 								</ListItemIcon>
 									<ListItemText primary="Unidad de Medida" />
+								</ListItem>
+							</Link>
+						</List>
+					</Collapse> 
+
+					<ListItem  className={classes.subtitle}  button onClick={this.handleClickEstadisticasPlataforma}>
+						<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Estadisticas" />
+						{this.state.openItemMenuEstadisticasPlataforma ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+					<Collapse in={this.state.openItemMenuEstadisticasPlataforma} timeout="auto" unmountOnExit>
+						<List component="div" disablePadding>
+							<Link href={ '/home/reputacionPlataforma' } className={classes.link} style={{textDecoration: 'none'}}>
+								<ListItem button className={classes.nested}>
+								<ListItemIcon>
+								<StarIcon className={classes.icon}/>
+								</ListItemIcon>
+									<ListItemText primary="Reputacion Plataforma" />
 								</ListItem>
 							</Link>
 						</List>

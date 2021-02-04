@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import EstadisticaActividad from './EstadisticaActividad'
 import Reputacion from './Reputacion'
-
+import ReputacionPlataforma from './ReputacionSupplierStore'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -101,4 +101,8 @@ export  function VerReputacion(props: any) {
 	return <Reputacion classes={ classes } { ...props } />;
 }
 
+export  function VerReputacionPlataforma(props: any) {
+	const classes = useStyles();
+	return <ReputacionPlataforma classes={ classes } { ...props } />;
+}
 
