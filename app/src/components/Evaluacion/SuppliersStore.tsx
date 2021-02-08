@@ -38,8 +38,6 @@ function mapStateToProps(store: {
 
 
 class EvaluacionSuppliersStore extends React.Component <{}, {
-	valueTime: number | null,
-	hoverTime: any,
 	valueNavigability:	number | null,
 	hoverNavigability: any,
 	valueUpdate: number | null,
@@ -55,8 +53,6 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			valueTime: 2,
-			hoverTime: -1,
 			valueNavigability: 2,
 			hoverNavigability: -1,
 			valueUpdate: 2,
@@ -83,9 +79,10 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 	}
 
 	evaluate = () => {
+		debugger;
 		this.props.dispatch(evaluateAction.setEvaluacionPlataforma(
+			this.props.cookies.get('empresaId'),
 			this.state.valueNavigability,
-			this.state.valueTime,
 			this.state.valueUpdate,
 			this.state.recomend,
 			this.state.mensaje,
@@ -189,29 +186,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 														</Grid>
 
 														<Grid container >
-																<Grid item lg={6}>
-																	<Typography variant="subtitle1" gutterBottom className={classes.preguntaEncuesta}>
-																	Tiempo de respuesta a los mensajes/consultas
-																	</Typography>
-
-																	<Rating
-																	 className={classes.respuestaEncuesta}
-																			name="hover-feedback-time"
-																			value={this.state.valueTime}
-																			precision={1}
-																			onChange={(event, newValueTime) => {
-																				this.setState({
-																					valueTime: newValueTime
-																				})
-																			}}
-																			onChangeActive={(event, newHoverTime) => {
-																				this.setState({
-																					hoverTime: newHoverTime
-																				})
-																			}}
-																		/>
-															{ this.state.valueTime !== null && <Box	className={classes.respuestaEncuesta} ml={2}>{labels[this.state.hoverTime!== -1 ? this.state.hoverTime : this.state.valueTime]}</Box>}
-														</Grid>
+																
 
 														<Grid item lg={6}>
 																<Typography variant="subtitle1" gutterBottom	className={classes.preguntaEncuesta}>
@@ -236,8 +211,9 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 																	/>
 																</RadioGroup>
 												</Grid>
+												<TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} onChange={this.getMensaje} />
 											</Grid>
-											<TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} onChange={this.getMensaje} />
+											{/* <TextareaAutosize style={{borderRadius:7}} aria-label="minimum height" rowsMin={10} placeholder="Mensaje" className={classes.textTarea} onChange={this.getMensaje} /> */}
 										</Grid>
 									</form>
 								</CardContent>

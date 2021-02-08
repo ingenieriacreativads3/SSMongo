@@ -65,6 +65,32 @@ export default function evaluacionReducer ( state = {
 				data: action.payload.data.data
 			};
 		}
+
+		case 'GET_VALORACION_PLATAFORMA_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+		
+		case 'GET_VALORACION_PLATAFORMA_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+		
+		case 'GET_VALORACION_PLATAFORMA_FULFILLED': {
+			return {
+				...state,
+				fetching: false,
+				fetched: true,
+				status: action.payload.data.status,
+				message: action.payload.data.message,
+				data: action.payload.data.data
+			};
+		}
         
 		case 'SET_EVALUACION_EMPRESA_PENDING': {
 			return { 

@@ -31,7 +31,7 @@ class OpinionUsuariosPlataforma extends React.Component<{}, {}> {
 	}
 
 	componentWillMount() {
-		this.props.dispatch(evaluacionActions.getValoraciones(this.props.cookies.get('empresaId')))
+		this.props.dispatch(evaluacionActions.getValoracionesPlataforma());
 	}
 	
 	drawer() {

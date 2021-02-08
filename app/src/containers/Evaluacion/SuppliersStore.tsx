@@ -8,6 +8,7 @@ import * as evaluacionActions from './../../store/actions/evaluacion'
 import * as dialogActions from './../../store/actions/dialog'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
+import Cookies from 'universal-cookie';
 
 function mapStateToProps(store: {
 	evaluacionReducer: any,
@@ -19,7 +20,9 @@ function mapStateToProps(store: {
 	};
 }
 
-class ValoracionPlataforma extends React.Component<{}, {}> {
+class ValoracionPlataforma extends React.Component<{
+	cookies: Cookies
+}, {}> {
 
 	props: any
 	static propTypes: any
@@ -58,7 +61,13 @@ class ValoracionPlataforma extends React.Component<{}, {}> {
 	}
 
 	appBar() {
-		return <AppBar { ...this.props } />
+		return <AppBar 
+      history={this.props.history}
+      location={this.props.location}
+      match={this.props.match}
+      staticContext={this.props.staticContext}
+      cookies={this.props.cookies}
+    />
 	}
 
 	render(){
