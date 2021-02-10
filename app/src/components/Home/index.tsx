@@ -46,8 +46,24 @@ const useStyles = makeStyles((theme) => ({
 	},
 	
 	card: {
-		minHeight: 300
-	},
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: 275,
+        "&:hover": {
+          boxShadow: "0px 0px 14px 2px #9E9E9E",
+        },
+      },
+	cardMedia: {
+        backgroundSize: "85%",
+        backgroundPosition: "center center",
+        width: "100%",
+        height: 260,
+        position: "relative",
+      },
+	  cardContent: {
+        flexGrow: 1,
+      },
 	button: {
 		margin: theme.spacing(0.5),
 		backgroundColor: '#d93211',

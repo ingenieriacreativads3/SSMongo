@@ -205,14 +205,14 @@ class DrawerInicio extends React.Component<{}, {
 
 					<List component="div" disablePadding>
 
-						<ListItem >
+						{/* <ListItem >
 							<ListItemIcon>
 								<AppsIcon className={classes.iconButton} />	
 							</ListItemIcon>
 							<ListItemText primary="Rubros" />
-						</ListItem>
+						</ListItem> */}
 
-						<ListItem >
+						{/* <ListItem >
 							<FormControl variant="outlined" className={classes.formControl}>
 								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Rubros</InputLabel>
 								<Select
@@ -233,7 +233,7 @@ class DrawerInicio extends React.Component<{}, {
 								</Select>
 							</FormControl>
 						</ListItem>
-							
+							 */}
 						<ListItem >
 							<ListItemIcon>
 								<RoomIcon className={classes.iconButton} />	

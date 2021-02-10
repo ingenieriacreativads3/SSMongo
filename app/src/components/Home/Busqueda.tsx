@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx'
 
 
-import { Container, Avatar,  Button, Grid, Card, ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
+import { Container, Avatar,FormControl,  Button, Grid, Card, ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent, CardActions} from '@material-ui/core';
 import { Link } from "react-router-dom";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import  foto  from '../Login/img/photo2.png';
@@ -85,14 +85,13 @@ class Busqueda extends React.Component <{}, {
       items = this.props.items
     }
 
-    return(
-
-      <div className={classes.root}>
-        <CssBaseline />
-        { this.props.appBar }
-        { this.props.drawer }
-					<main className={ classes.content } >
-          <div className={ classes.rootCarousel } >
+    return( 
+      <div className={ classes.root } >
+				<CssBaseline />
+				{ this.props.appBar }
+				{ this.props.drawer }
+				<main className={ classes.content } >
+        <div className={ classes.rootCarousel } >
           
           <AutoPlaySwipeableViews
             axis={ theme.direction === 'rtl' ? 'x-reverse' : 'x' }
@@ -130,56 +129,41 @@ class Busqueda extends React.Component <{}, {
             }
           />
           </div>
-						<div className={classes.appBarSpacer} />
-						<Container maxWidth="lg" /* className={classes.container} */>
-           
-            <Grid container spacing={3}>
-
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                style={{display: items.length === 0 ? 'block' : 'none'}}
-              >
-                <ListSubheader component="div" id="nested-list-subheader">
-                  <Typography  variant="h4" component="h3" gutterBottom>
-                    No hay publicaciones disponibles para esta búsqueda
-                  </Typography>
-                </ListSubheader>
-                <Avatar src={logo} className={classes.avatar}  />
-              </Grid>
-
-              <Grid
-                container
-                direction="row"
-                justify="flex-start"
-                alignItems="flex-start"  spacing={6}
-                style={{display: items.length > 0 ? 'block' : 'none'}}
-              >
-                {
+				
+				<div className={ classes.appBarSpacer } />
+					<Grid
+					container
+          direction="row"
+          alignItems="center"
+          justify="center"
+          spacing={3}
+          xs={12} sm={12}
+         
+				>
+					
+                  {
                   items.map((item: {
                     "_id": string,
                     "foto": string[],
                     "nombre": string,
                     "precio": string,
                   }) => {
-
-                    return <div>
-                      <Grid item lg={3}>
+                   return <Grid item xs={12} sm={6} md={3} style={{display: items.length > 0 ? 'block' : 'none'}}>
                         <Link to={`/item/detalle/`+ item._id} style={{textDecoration:'none'}}>
                           <Card
                             style={{height:'90%'}}
-                            className={fixedHeightCardCatalog}
+                            className={classes.card}
                           >
                           
                             <CardMedia
+                              className={classes.cardMedia}
                               component="img"
                               alt={item.nombre}
                               height="250"
                               image={'http://localhost:8000/' + item.foto[0]}
+                            
                             />
-                            <CardContent>
+                            <CardContent className={classes.cardContent}>
                               <Typography gutterBottom variant="h6" component="h2" >
                                 {item.nombre}
                               </Typography>
@@ -191,15 +175,38 @@ class Busqueda extends React.Component <{}, {
                           </Card>
                         </Link>
                       </Grid>
-                    </div>
                   })
                 }
-              </Grid>
-            </Grid>
-          </Container>
-        {this.props.footer}
-      </main>
-		</div>
+
+                <Grid item xs={12}
+                  style={{display: items.length === 0 ? 'block' : 'none'}}>
+                    	<Grid
+                      container
+                      direction="row"
+                      alignItems="center"
+                      justify="center"
+                      spacing={3}
+                      xs={12} sm={12}>
+                <ListSubheader component="div" id="nested-list-subheader">
+                  <Typography  variant="h4" component="h3" gutterBottom>
+                    No hay publicaciones disponibles para esta búsqueda
+                  </Typography>
+                </ListSubheader>
+                <Grid
+                  container
+                  direction="row"
+                  alignItems="center"
+                  justify="center"
+                  spacing={3}
+                  xs={12} sm={12}>
+                <Avatar src={logo} className={classes.avatar}  />
+                </Grid>
+                </Grid>
+						</Grid>
+				 	</Grid>
+				{ this.props.footer }
+				</main>
+		  </div>
     );
   }
 }

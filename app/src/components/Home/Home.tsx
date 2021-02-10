@@ -373,16 +373,16 @@ class Home extends React.Component <{
                       return <div>
                         <Grid item lg={3}>
                         <Link to={`/item/detalle/`+ asd[0]._id} style={{textDecoration:'none'}}>
-                          <Card style={{height:'90%'}} onClick={ () => this.props.action(asd[0]._id)} className={fixedHeightCardCatalog}>
-                            <CardActionArea>
+                          <Card style={{height:'90%'}} className={classes.card} onClick={ () => this.props.action(asd[0]._id)} /* className={fixedHeightCardCatalog} */>
                               <CardMedia
+                                className={classes.cardMedia}
                                 component="img"
                                 alt={asd[0].nombre}
                                 height="250"
-                                image={'http://localhost:8000/' + asd[0].foto[0]}
+                                //image={'http://localhost:8000/' + asd[0].foto[0]}
                                 //title={asd[0].nombre}
                               />
-                              <CardContent>
+                              <CardContent className={classes.cardContent}>
                                 <Typography gutterBottom variant="h6" component="h2"  >
                                   {asd[0].nombre}
                                 </Typography>
@@ -390,10 +390,7 @@ class Home extends React.Component <{
                                   ${asd[0].precio} {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad (MIRAR ISSUE)</Typography>}
                                 </Typography>
                               </CardContent>
-                            </CardActionArea>
-                            {/* <CardActions >
-                              { this.action(asd[0]._id, classes) }
-                            </CardActions> */}
+                           
                           </Card>
                           </Link>
                         </Grid>
