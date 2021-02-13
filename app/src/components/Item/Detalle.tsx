@@ -1,5 +1,5 @@
 import React from 'react'
-import {Box, Grid, Paper, FormControl,Typography,CssBaseline, Tab, Tabs,	Button} from '@material-ui/core';
+import {Box, Grid, Paper, FormControl,Typography,CssBaseline, Tab, Tabs, ListSubheader,	Button} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import { connect } from 'react-redux'
 import MobileStepper from '@material-ui/core/MobileStepper';
@@ -114,19 +114,40 @@ class Detalle extends React.Component <{}, {
 								justify="flex-start"
 								alignItems="center" xs={12} sm={6} >
 
-									<Grid	style={{marginLeft:'20px'}}>
+									<Grid	container
+									direction="row"
+									justify="flex-start"
+									alignItems="center">
 										
+										<Grid container
+									direction="row"
+									justify="flex-start"
+									alignItems="center" xs={12} sm={12}>
 											<Typography gutterBottom variant="h4"	style={{marginTop:'20px'}}>
 												{ this.props?.item?.nombre || '' }
 											</Typography>
-											<Typography gutterBottom variant="h5"	style={{marginTop:'20px'}}>
-												${ this.props?.item?.precio || '' } x { this.props?.item?.unidad_de_medida?.nombre || '' }
+											</Grid>
+											<Grid container
+									direction="row"
+									justify="flex-start"
+									alignItems="center" xs={12} sm={12}>
+											<Typography gutterBottom variant="h5"	style={{marginTop:'20px', color: '#d93211'}}>
+												{this.props?.item?.mostrarPrecio ? "$" + this.props?.item?.precio : "Consultar precio" } {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x { this.props?.item?.unidad_de_medida?.nombre }</Typography>} 
 											</Typography>
+											</Grid>
+											<Grid container
+									direction="row"
+									justify="flex-start"
+									alignItems="center" xs={12} sm={12}>
 											<Typography style={{marginTop:'20px'}}>
 												<Link href={ '/home/perfil/' + this.props?.item?.catalogo?.empresa?._id || ''} variant="h5" className={classes.Link}>
-													{ 'Vendedor:' + this.props?.item?.catalogo?.empresa?.nombre || '' }
+												<ListSubheader style={{fontSize:'25px'}}	>
+												{ 'Vendedor: ' +  " " + this.props?.item?.catalogo?.empresa?.nombre || '' }
+												</ListSubheader> 
+													
 												</Link>
 											</Typography>
+											</Grid>
 												 
 												<div >
 													<Box	>
@@ -187,9 +208,15 @@ class Detalle extends React.Component <{}, {
                         }
                       />
                     </div>
+					<Grid container
+									direction="row"
+									justify="center"
+									alignItems="center" xs={12} sm={12}
+                >
 								    <Box display="flex" flexDirection="row-reverse" p={1} m={1} >
 			      					{ this.props.actions(classes) }
 	    							</Box>
+									</Grid>
   								</Grid>
 							  </Grid>
 					    </Grid>

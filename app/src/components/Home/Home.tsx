@@ -345,7 +345,7 @@ class Home extends React.Component <{
           </Container>
 
 						<Container maxWidth="lg"  className={classes.container} >
-              <ListSubheader component="div" id="nested-list-subheader">
+              <ListSubheader component="div" id="nested-list-subheader" style={{display: items.length>0 ? "block": "none"}}>
                 <Typography  variant="h4" component="h3" gutterBottom>
                   Basado en tus busquedas
                 </Typography>
@@ -387,7 +387,7 @@ class Home extends React.Component <{
                                   {asd[0].nombre}
                                 </Typography>
                                 <Typography style={{color:"#d93211"}}  gutterBottom variant="h5">
-                                  ${asd[0].precio} {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad (MIRAR ISSUE)</Typography>}
+                                  {asd[0].mostrarPrecio ? "$" + asd[0].precio : 'Consultar precio'} {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad (MIRAR ISSUE)</Typography>}
                                 </Typography>
                               </CardContent>
                            
@@ -402,7 +402,7 @@ class Home extends React.Component <{
 
               <ListSubheader component="div" id="nested-list-subheader">
                 <Typography style={{paddingTop:'30px'}} variant="h4" component="h3" gutterBottom>
-                  Los más buscados
+                  Lo más buscado
                 </Typography>
               </ListSubheader>
               <Grid container spacing={3}>
@@ -448,7 +448,7 @@ class Home extends React.Component <{
                                   {asd.item.nombre}
                                 </Typography>
                                 <Typography  style={{color:"#d93211"}}  gutterBottom variant="h5">
-                                  ${asd.item.precio}  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>} 
+                                  {asd.item.mostrarPrecio ? "$" + asd.item.precio : "Consultar precio"}  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>} 
                                 </Typography>
                               </CardContent>
                             

@@ -101,9 +101,18 @@ class PerfilEmpresa extends React.Component <{}, {
                 <Grid container xs={12} sm={12}>
 
 				<Grid item xs={12} sm={6}>
+				<Grid container
+  					direction="row"
+  					justify="center"
+  					alignItems="flex-start" xs={12} sm={12}>
 				<Typography className = {classes.nombreEmpresa} variant="h2" component="h3" gutterBottom>
 					{ empresa?.nombre || '' }
 				</Typography>
+				</Grid>
+				<Grid container
+  					direction="row"
+  					justify="center"
+  					alignItems="flex-start" xs={12} sm={12}>
 				<Box>			
 					<img src={'http://localhost:8000/' + empresa.logo} className={classes.img} />
 					<Typography variant="h5" className={classes.item} gutterBottom>
@@ -120,12 +129,17 @@ class PerfilEmpresa extends React.Component <{}, {
 					</Typography>
 				</Box>
 				</Grid>
+				</Grid>
 
-				<Grid item xs={12} sm={6}>
-				<Box className={classes.formularioContacto}	border={2} borderRadius={16} borderColor="#7f7f7f">
+				<Grid container
+  					direction="row"
+  					justify="center"
+  					alignItems="flex-start" xs={12} sm={6}>
+				<Box	border={2} borderRadius={16} borderColor="#7f7f7f">
 				<Typography className={classes.titulo}	variant="h4" component="h3" gutterBottom>
 					Contactanos
 				</Typography> 
+				<Grid item xs={12} sm={12}>
 				<TextField
 					className={classes.datoContacto}
 					variant="outlined"
@@ -148,7 +162,8 @@ class PerfilEmpresa extends React.Component <{}, {
 						},
 					}}
 				/>			 
-
+				</Grid>
+				<Grid item xs={12} sm={12}>
 				<TextField
 					className={classes.datoContacto}
 					variant="outlined"
@@ -172,7 +187,7 @@ class PerfilEmpresa extends React.Component <{}, {
 						},
 					}}
 				/>
-
+				</Grid>
 				<TextareaAutosize	
 					style={{ borderRadius:7 }}
 					aria-label="minimum height"
@@ -182,7 +197,12 @@ class PerfilEmpresa extends React.Component <{}, {
 					onChange={ this.get }
 					name='mensaje'
 				/>
-
+			<Grid
+			container
+			direction="row"
+			justify="flex-end"
+			alignItems="flex-end"
+			>
 			<Button
 				variant="contained"
 				color='primary'
@@ -193,6 +213,7 @@ class PerfilEmpresa extends React.Component <{}, {
 			>
 				Enviar
 			</Button>
+			</Grid>
 		</Box>
 				</Grid>
 
@@ -227,6 +248,7 @@ class PerfilEmpresa extends React.Component <{}, {
 						foto: string[],
 						nombre: string,
 						precio: string,
+						mostrarPrecio:boolean,
 						unidad_de_medida: {
 							nombre: string
 						}
@@ -248,8 +270,8 @@ class PerfilEmpresa extends React.Component <{}, {
 										{ item.item.nombre }
 									</Typography>
 								
-									<Typography gutterBottom variant="h5" component="h2">
-										${ item.item.precio }	{<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x { item.item.unidad_de_medida.nombre }</Typography>}
+									<Typography style={{color:"#d93211"}}  gutterBottom variant="h5" component="h2">
+										{ item.item.mostrarPrecio ? "$" + item.item.precio : 'Consultar precio' }	{<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x { item.item.unidad_de_medida.nombre }</Typography>}
 									</Typography>
 									
 								</CardContent>

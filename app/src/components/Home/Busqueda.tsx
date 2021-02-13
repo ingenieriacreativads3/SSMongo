@@ -147,6 +147,7 @@ class Busqueda extends React.Component <{}, {
                     "foto": string[],
                     "nombre": string,
                     "precio": string,
+                    "mostrarPrecio":boolean
                   }) => {
                    return <Grid item xs={12} sm={6} md={3} style={{display: items.length > 0 ? 'block' : 'none'}}>
                         <Link to={`/item/detalle/`+ item._id} style={{textDecoration:'none'}}>
@@ -168,7 +169,7 @@ class Busqueda extends React.Component <{}, {
                                 {item.nombre}
                               </Typography>
                               <Typography  style={{color:"#d93211"}}  gutterBottom variant="h5">
-                                ${item.precio}  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>} 
+                                {item.mostrarPrecio ? "$" + item.precio : 'Consultar precio'}  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>} 
                               </Typography>
                             </CardContent>
                             

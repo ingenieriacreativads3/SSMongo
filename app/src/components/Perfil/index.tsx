@@ -239,15 +239,15 @@ const useStyles = makeStyles((theme) => ({
 	formularioContacto:{
 		//marginTop:theme.spacing(10),
 		//marginLeft:theme.spacing(7),
-		width:'500px',
+		width:'300px',
 	},
 	titulo:{
 		marginTop:theme.spacing(2),
 		marginLeft:theme.spacing(5),
 	},
 	buttonEnviar: {
-		marginTop: theme.spacing(2),
-		marginLeft:theme.spacing(47),
+		//marginTop: theme.spacing(2),
+		marginRight:theme.spacing(2),
 		marginBottom:theme.spacing(2),
 		backgroundColor: '#d93211',
 		color : '#ffffff',

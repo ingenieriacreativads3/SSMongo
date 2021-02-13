@@ -217,26 +217,12 @@ class Nuevo extends React.Component <{
               <PhotoCamera />
             </IconButton>
           </label>
-              {/* <label htmlFor="raised-button-file">
-                <Button variant="contained" component="label" className={classes.botonIcono}>
-                  Imagen
-                  <IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-                    <PhotoCamera />
-                    <Input
-                      inputProps={{ multiple: true }} 
-                      className={classes.input}
-                      style={{ display: 'none' }}
-                      id="Imagen"
-                      type="file"
-                      onChange = { this.props.getFoto }
-                    />
-                  </IconButton>
-                </Button>
-              </label>  */}
+              
             </Grid>
             <Grid item xs={12} sm={12}>
-              <img className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} ></img>
-              {/* <Avatar className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} /> */}
+            
+               <img style={{display:this.props.pathImage !== ""? "block": "none"}} className={classes.previsualizacion} alt={this.props.pathImage}  src={this.props.pathImage} ></img>
+            
             </Grid>
            
           

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Container, Grid,ListItem, ListItemIcon, ListItemText, Paper, List, Divider, TextField, CssBaseline, Avatar} from '@material-ui/core';
+import { Container, Grid,ListItem, ListSubheader, ListItemIcon, ListItemText, Paper, List, Divider, TextField, CssBaseline, Avatar} from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
 import { FixedSizeList } from 'react-window';
@@ -115,7 +115,10 @@ class ChatRoom extends React.Component <{
             <Grid item xs={3} className={classes.borderRight500}>
                
                 <Grid item xs={12} style={{padding: '10px'}}>
-                    <TextField 
+                <ListSubheader	style={{fontSize:'25px', color:'#ff6c00'}}>
+                  Mis chats
+              </ListSubheader> 
+                 {/*    <TextField 
                     id="outlined-basic-email" 
                     label="Buscar" 
                     variant="outlined" 
@@ -132,7 +135,7 @@ class ChatRoom extends React.Component <{
                         focused: classes.cssFocused,
                         notchedOutline: classes.notchedOutline,
                       },
-                    }} />
+                    }} /> */}
                 </Grid>
                 <Divider />
                 <FixedSizeList height={525} width={310} itemSize={50} itemCount={20}>

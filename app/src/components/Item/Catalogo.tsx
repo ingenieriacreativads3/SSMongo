@@ -104,27 +104,27 @@ class Catalogo extends React.Component <{}, {}> {
                 }
               }) => {
                 return <Grid item lg={3} md={4} sm={6}>
-                  <Card className={fixedHeightCardCatalog}>
-                    <CardActionArea>
+                  <Card className={classes.cardProductio}>
                       <CardMedia
                         component="img"
                         alt={itemAux.item.nombre}
                         height="150"
                         image={'http://localhost:8000/' + itemAux.item.foto[0]}
                         title={itemAux.item.nombre}
+                        className={classes.cardMedia}
                       />
-                      <CardContent>
+                      <CardContent  className={classes.cardContent}>
                         <Typography gutterBottom variant="h5" component="h2">
                           {itemAux.item.nombre}
                         </Typography>
-                        <Typography variant="subtitle1" component="h2">
-                          {itemAux.item.precio} x {itemAux.item.unidad_de_medida.nombre}
+                        <Typography style={{color:"#d93211"}} gutterBottom variant="h5" component="h2">
+                          {itemAux.item.mostrarPrecio? "$" + itemAux.item.precio: "Consultar precio"} {<Typography variant="subtitle1" color="textSecondary"> x {itemAux.item.unidad_de_medida.nombre}</Typography> }
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
+                       {/*  <Typography variant="body2" color="textSecondary" component="p">
                           {itemAux.item.descrpcion}
-                        </Typography>
+                        </Typography> */}
                       </CardContent>
-                    </CardActionArea>
+                    
                     <CardActions disableSpacing>
                       <Link to={'/item/editar/' + itemAux.item._id}>
                         <IconButton aria-label="editar"className={classes.iconButton}>
