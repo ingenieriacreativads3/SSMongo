@@ -38,8 +38,6 @@ class Detail extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.aceptar = this.aceptar.bind(this);
-    this.finalizar = this.finalizar.bind(this);
     this.state = {};
 	}
 	
@@ -50,31 +48,15 @@ class Detail extends React.Component<{
 	}
 
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
 	}
 	
   actions(classes: any) {
@@ -91,19 +73,21 @@ class Detail extends React.Component<{
     </div>
   }
 
-  aceptar() {
+  aceptar = (idCompany: string) => {
 
     this.props.dispatch(dialogActions.closeOneButton())
-    if(this.props.requestReducer.status !== 200) {
-      this.props.dispatch(requestActions.reintentar())
-    } else {
-      this.props.dispatch(requestActions.setear())
-      this.props.history.push('/compras/pedidos/lista')
+    if(idCompany !== '') {
+      if(this.props.requestReducer.status !== 200) {
+        this.props.dispatch(requestActions.reintentar())
+      } else {
+        this.props.dispatch(requestActions.setear())
+        this.props.history.push('/evaluacion/empresa/' + idCompany)
+      }
     }
 
   }
 
-  finalizar() {
+  finalizar = () => {
 
     this.props.dispatch(requestActions.finalizarPedido(
       this.props.match.params.id,
@@ -372,7 +356,7 @@ class Detail extends React.Component<{
         <OneButton 
           title={ 'Pedido' }
           text={ this.props.requestReducer.message }
-          functionRight={ this.aceptar }
+          functionRight={ () => this.aceptar(company._id) }
           labelButtonRight={ 'Aceptar' }
         />
       </div>

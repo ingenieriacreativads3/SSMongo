@@ -22,7 +22,7 @@ export default function requestReducer ( state = {
 			};
 		}
 
-		case 'REINTENTAR':{
+		case 'REINTENTAR_PEDIDOS':{
 			return {
 			  ...state,
 			  fetching: false,

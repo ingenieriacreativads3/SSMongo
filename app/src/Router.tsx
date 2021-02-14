@@ -65,8 +65,6 @@ class App extends React.Component <{}, {}> {
 
 		let isAuth: boolean = false
 
-		console.log(props.cookies.get('empresaId'))
-
 		if(props.cookies.get('empresaId') !== undefined) {
 			isAuth = true
 		}

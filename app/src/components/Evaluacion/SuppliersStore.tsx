@@ -79,7 +79,6 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 	}
 
 	evaluate = () => {
-		debugger;
 		this.props.dispatch(evaluateAction.setEvaluacionPlataforma(
 			this.props.cookies.get('empresaId'),
 			this.state.valueNavigability,

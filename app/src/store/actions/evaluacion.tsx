@@ -55,17 +55,24 @@ export function getValoracionesPlataforma() {
 export function setEvaluacionEmpresa(
 	empresaCriticaId: string,
 	empresaCriticadaId: string,
-	numeroValoracion:number | null,
+	numeroValoracion: number | boolean,
 	conceptoValoracion:string,
 	opinion:string,
 ) {
 
+	console.log(empresaCriticaId);
+	console.log(empresaCriticadaId);
+	console.log(numeroValoracion);
+	console.log(conceptoValoracion);
+	console.log(opinion);
+	
+
 	let payload: any = axios.post(config.url + '/empresa/valorar',{
-		empresaCriticaId: empresaCriticaId,
-		empresaCriticadaId: empresaCriticadaId,
-		numeroValoracion: numeroValoracion,
-		conceptoValoracion: conceptoValoracion,
-		opinion: opinion,
+		empresaCriticaId,
+		empresaCriticadaId,
+		numeroValoracion,
+		conceptoValoracion,
+		opinion,
 	})
 
 	return {

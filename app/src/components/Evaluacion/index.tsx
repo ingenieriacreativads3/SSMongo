@@ -159,7 +159,6 @@ export  function EvaluarEmpresa(props: any) {
 	return <EvaluacionEmpresa classes={ classes } { ...props } />;
 }
 
-
 export  function EvaluarPlataforma(props: any) {
 	const classes = useStyles();
 	return <EvaluacionSuppliersStore classes={ classes } { ...props } />;

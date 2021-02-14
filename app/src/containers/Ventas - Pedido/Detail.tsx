@@ -22,13 +22,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Detail extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies,
-}, {}> {
+class Detail extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any

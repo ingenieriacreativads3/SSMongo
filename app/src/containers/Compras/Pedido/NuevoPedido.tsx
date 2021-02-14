@@ -16,6 +16,7 @@ import {AppBar} from './../../AppBar'
 
 import * as errorActions from './../../../store/actions/error'
 import store from './../../../store/index'
+import requestReducer from '../../../store/reducers/requestReducer';
 
 function mapStateToProps(store: {
   itemReducer:any,
@@ -73,6 +74,7 @@ class NuevoPedido extends React.Component<{
 
     this.props.dispatch(itemActions.getItem(this.props.match.params.id))
     this.props.dispatch(empresaActions.getEmpresa(this.props.cookies.get('empresaId')))
+    this.props.dispatch(pedidoActions.reintentar())
 
   }
 
@@ -135,8 +137,8 @@ class NuevoPedido extends React.Component<{
       this.state.comentario
     ))
 
+    }
   }
-}
   aceptar() {
 
     this.props.dispatch(dialogActions.closeOneButton())
@@ -147,32 +149,17 @@ class NuevoPedido extends React.Component<{
       this.props.history.push('/compras/pedidos/lista')
     }
   }
+
   drawer() {
-    return <InicioDrawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <InicioDrawer { ...this.props } />
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   render(){

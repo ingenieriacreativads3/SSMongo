@@ -7,22 +7,17 @@ import { OneButton } from './../../components/Dialogs'
 import * as evaluacionActions from './../../store/actions/evaluacion'
 import * as dialogActions from './../../store/actions/dialog'
 import { Footer } from './../Footer'
-import {AppBar} from './../AppBar'
-import Cookies from 'universal-cookie';
+import { AppBar } from './../AppBar'
 
 function mapStateToProps(store: {
 	evaluacionReducer: any,
-	itemReducer: any,
 }) {
 	return {
 		evaluacionReducer: store.evaluacionReducer,
-		itemReducer: store.itemReducer,
 	};
 }
 
-class ValoracionPlataforma extends React.Component<{
-	cookies: Cookies
-}, {}> {
+class ValoracionPlataforma extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -36,7 +31,7 @@ class ValoracionPlataforma extends React.Component<{
 
 	componentDidUpdate() {
 
-		if(this.props.itemReducer.fetched) {
+		if(this.props.evaluacionReducer.fetched) {
 			this.props.dispatch(dialogActions.openOneButton())
 		} else {
 			this.props.dispatch(dialogActions.closeOneButton())
@@ -47,7 +42,7 @@ class ValoracionPlataforma extends React.Component<{
 	aceptar = () => {
 
 		this.props.dispatch(dialogActions.closeOneButton())
-		if(this.props.itemReducer.status !== 200) {
+		if(this.props.evaluacionReducer.status !== 200) {
 			this.props.dispatch(evaluacionActions.reintentar())
 		} else {
 			this.props.dispatch(evaluacionActions.setear())
@@ -61,26 +56,21 @@ class ValoracionPlataforma extends React.Component<{
 	}
 
 	appBar() {
-		return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+		return <AppBar { ...this.props } />
 	}
 
 	render(){
 
 		return(
 			<div>
-				<EvaluacionPlataforma 
+				<EvaluacionPlataforma
+					{ ...this.props }
 					footer={ this.footer() } 
 					appBar={ this.appBar() }
 				/>
 				<OneButton 
 					title={ 'Evaluacion' }
-					text={ this.props.itemReducer.message }
+					text={ this.props.evaluacionReducer.message }
 					functionRight={ this.aceptar }
 					labelButtonRight={ 'Aceptar' }
 				/>
