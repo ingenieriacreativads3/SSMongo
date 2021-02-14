@@ -141,15 +141,14 @@ class Home extends React.Component<{
     if(
       this.props.itemReducer.fetched &&
       this.props.itemReducer.data !== undefined &&
-      this.props.itemReducer.data.items !== undefined
+      this.props.itemReducer.data.items !== undefined &&
+      this.props.itemReducer.data.items !== null
     ) {
       itemsTrending = this.props.itemReducer.data.trendingItems
-      if(this.props.itemReducer.data.items !== null) {
-        items = this.props.itemReducer.data.items[0]
-      }
+      items = this.props.itemReducer.data.items[0]
     }
 
-    // console.log(this.props.itemReducer.data)
+    console.log(this.props.itemReducer.data)
 
     return(
       <div>

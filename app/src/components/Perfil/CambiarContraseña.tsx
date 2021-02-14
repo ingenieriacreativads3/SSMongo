@@ -232,7 +232,7 @@ console.log(this.props.errors);
                               </InputAdornment>
                             }
                           />
-                           { this.props.errorReducer.errors.currentPassword !== null ? <FormHelperText error={true}>{this.props.errors.currentPassword}</FormHelperText> : ''}
+                           { (this.props.errorReducer !== undefined && this.props.errorReducer.errors !== undefined && this.props.errorReducer.errors.currentPassword !== null) ? <FormHelperText error={true}>{this.props?.errors?.currentPassword || ''}</FormHelperText> : null}
                         </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={4}> 
@@ -257,11 +257,11 @@ console.log(this.props.errors);
                               </InputAdornment>
                             }
                           />
-                            {this.props.errorReducer.errors.newPassword !== null ? <FormHelperText error={true}>{this.props.errors.newPassword}</FormHelperText> : ''}
+                            {this.props.errorReducer.errors.newPassword !== null ? <FormHelperText error={true}>{this.props?.errors?.newPassword || ''}</FormHelperText> : ''}
                         </FormControl>
                         </Grid>
                         <Grid item xs={12} sm={4}> 
-                        <FormControl error={this.props.errors.newPasswordCopy  || this.state.diferentPass} className={clsx(classes.margin, classes.textField)}>
+                        <FormControl error={(this.props?.errors?.newPasswordCopy || '') || this.state.diferentPass} className={clsx(classes.margin, classes.textField)}>
                           <InputLabel className={classes.inputLabel}   htmlFor="standard-adornment-password">Repetir Contraseña</InputLabel>
                           <Input
                             className={classes.textField}
@@ -283,7 +283,7 @@ console.log(this.props.errors);
                             }
                           />
                           { this.state.diferentPass ? <FormHelperText error={true} children='Las contraseñas no coinciden' /> : <div></div> }
-                          { this.props.errorReducer.errors.newPasswordCopy !== null ? <FormHelperText error={true}>{this.props.errors.newPasswordCopy}</FormHelperText> : ''}
+                          { this.props.errorReducer.errors.newPasswordCopy !== null ? <FormHelperText error={true}>{this.props?.errors?.newPasswordCopy || ''}</FormHelperText> : ''}
                         </FormControl>
                             
                           </Grid>
