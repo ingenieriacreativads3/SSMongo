@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
-import { IconButton, Badge, ListItem, ListItemAvatar, Avatar,ListItemText, Divider, Typography, Box } from '@material-ui/core';
+import { IconButton, Badge, Button, ListItem, ListItemAvatar, Avatar,ListItemText, Divider, Typography, Box } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -15,6 +15,7 @@ import InputBase from '@material-ui/core/InputBase';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { FixedSizeList } from 'react-window';
+import logo from './../Login/img/logo.png';
 
 import * as drawerAction from './../../store/actions/drawer'
 import * as itemActions from './../../store/actions/item'
@@ -156,6 +157,10 @@ class AppBare extends React.Component<{}, {
 			this.props.cambiarPassword()
 		};
 
+		const volverInicio = () => {
+			this.props.history.push("/home/inicio");
+		}
+
 		const menuId = 'primary-search-account-menu';
 	
 		const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -201,6 +206,11 @@ class AppBare extends React.Component<{}, {
 							onKeyPress={ this.handleKeyPress }
 							onChange={ this.searchGetValue }
 						/>
+					</div>
+					<div>
+					<Button onClick={volverInicio} size="large" style={{color:'#d93211', fontWeight:'bold', fontStyle:'italic'}} >
+					Suppliers Store
+					</Button>
 					</div>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
