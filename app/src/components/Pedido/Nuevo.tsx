@@ -122,7 +122,6 @@ class Nuevo extends React.Component <{
   render(){
 
 		const classes = this.props.classes
-    console.log(this.props.errors.CantidadPedido);
 
     return(
 

@@ -126,7 +126,6 @@ class NuevoPedido extends React.Component<{
   }
 
   save(idItem: string, idEmpresaPerteneciente: string) {
-    debugger;
     if(this.validacion()) {
       this.props.dispatch(pedidoActions.setRequest(
       idItem,
@@ -291,16 +290,12 @@ class NuevoPedido extends React.Component<{
       "clave": ''
     }
 
-    if(
-      this.props.empresaReducer.fetched &&
-      this.props.empresaReducer.data !== undefined
-    ) {
+    if(this.props.empresaReducer.perfil) {
       empresa = this.props.empresaReducer.data.empresa
     }
 
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
-
 
     return(
       <div>
