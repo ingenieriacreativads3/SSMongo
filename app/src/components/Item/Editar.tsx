@@ -5,18 +5,13 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { Divider, Paper, Grid, Box, Typography, CssBaseline,  TextField, IconButton, Button, FormHelperText,  FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox} from '@material-ui/core';
 import Link from '@material-ui/core/Link';
+
 import * as errorActions from './../../store/actions/error'
 import * as itemActions from './../../store/actions/item'
 import * as dialogActions from './../../store/actions/dialog'
 import * as fileActions from './../../store/actions/file'
 
-import store from './../../store/index'
-
-
-//import * as ItemAction from "../../store/actions/ItemAction";
 import { connect } from 'react-redux'
-
-
 
 const CssTextField = withStyles({
   root: {
@@ -124,10 +119,13 @@ class Editar extends React.Component <{}, {
     }
 
     if(
-      this.props.fileReducer.fetched &&
-      !this.props.fileReducer.fetching
+      this.props?.fileReducer?.fetched &&
+      this.props?.fileReducer?.data !== undefined &&
+      this.props?.fileReducer?.data?.foto !== undefined &&
+      this.props?.fileReducer?.data?.foto !== null &&
+      Array.isArray(this.props.fileReducer.data.foto) &&
+      this.props?.fileReducer?.data?.foto.length > 0
     ) {
-      console.log('foto')
       this.setState({
         item: {
           ...this.state.item,
@@ -247,7 +245,6 @@ class Editar extends React.Component <{}, {
   ) {
 
     if(this.validacion()){
-
    
     this.props.dispatch(itemActions.updateItem(
       _id,
@@ -256,7 +253,7 @@ class Editar extends React.Component <{}, {
       descripcion,
       idMagnitud,
       mostrarPrecio,
-      []
+      foto
     ))
 
     this.props.dispatch(dialogActions.openOneButton())
@@ -291,7 +288,6 @@ class Editar extends React.Component <{}, {
     if (this.state?.item?.foto !== undefined) {
       url = 'http://localhost:8000/' + this.state?.item?.foto[0] || ''
     }
-  
 
     return(
 
