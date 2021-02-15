@@ -10,7 +10,7 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import logo from './img/logo.png';
-import {IconButton, InputAdornment} from '@material-ui/core'
+import {IconButton, InputAdornment, ListSubheader, ListItem, ListItemAvatar, ListItemText} from '@material-ui/core'
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
@@ -25,7 +25,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Login extends React.Component<{}, {
+class ResetPassword extends React.Component<{}, {
   showPassword: boolean,
   formValid: boolean
 }> {
@@ -34,12 +34,12 @@ class Login extends React.Component<{}, {
 	static propTypes: any
   static defaultProps: any
 
-  private loginRef: React.RefObject<HTMLFormElement>;
+  private resetRef: React.RefObject<HTMLFormElement>;
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.loginRef = React.createRef();
+    this.resetRef = React.createRef();
     this.state = {
       showPassword: false,
       formValid: true
@@ -48,7 +48,7 @@ class Login extends React.Component<{}, {
 
   handleKeyPress = (e: any) => {
     if(e.key === 'Enter'){
-      this.login()
+      this.reset()
     }
   }
 
@@ -60,9 +60,9 @@ class Login extends React.Component<{}, {
     e.preventDefault();
   };
 
-  login = () => {
+  reset = () => {
     if(this.validacion()) {
-      this.props.login()
+      this.props.reset()
     }
   }
 
@@ -75,22 +75,20 @@ class Login extends React.Component<{}, {
     }
   }
 
-  getUser = (e: any) => {
+  getToken = (e: any) => {
 
-    this.props.getUser(e)
+    this.props.getToken(e)
     
     if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
       this.props.dispatch(errorActions.editErrors(e.target.id))
     }
   }
 
- 
-
   validacion = () => {
 
     let formIsValid: boolean = true
     let errores: any[] =[]
-    let ref: any = this.loginRef.current
+    let ref: any = this.resetRef.current
 
     for (let i = 0, element; element = ref[i]; i++) {
 
@@ -119,16 +117,22 @@ class Login extends React.Component<{}, {
         <CssBaseline />
         <div className={ classes.paper }>
           <Avatar src={ logo } className={ classes.avatar }  />
-          <form id='formLogin' ref={ this.loginRef } className={ classes.form } noValidate >
+          <ListItem>
+        <ListItemText  secondary="Ingrese el token de Seguridad que ha sido enviado a su correo electronico." />
+      </ListItem>
+          {/* <ListSubheader>
+            Ingrese el token de Seguridad que ha sido enviado a su correo electronico
+        </ListSubheader>  */}
+          <form id='formLogin' ref={ this.resetRef } className={ classes.form } noValidate >
             <TextField
               variant='outlined'
               margin='normal'
               required={ true }
               fullWidth
-              id='usuario'
-              label='Usuario'
-              name='usuario'
-              autoComplete='usuario'
+              id='token'
+              label='Token de seguridad'
+              name='token'
+              autoComplete='token'
               autoFocus
               InputLabelProps={{
                 classes: {
@@ -143,10 +147,10 @@ class Login extends React.Component<{}, {
                   notchedOutline: classes.notchedOutline,
                 },
               }}
-              onChange={ this.getUser }
+              onChange={ this.getToken }
               onKeyPress={ this.handleKeyPress }
-              error={ this.props.errorReducer.errors.usuario != null ? true : false }
-              helperText={ this.props.errorReducer.errors.usuario != null ? this.props.errorReducer.errors.usuario : '' }
+              error={ this.props.errorReducer.errors.token != null ? true : false }
+              helperText={ this.props.errorReducer.errors.token != null ? this.props.errorReducer.errors.token : '' }
             />
             <TextField
               variant='outlined'
@@ -154,7 +158,7 @@ class Login extends React.Component<{}, {
               required={true}
               fullWidth
               name='password'
-              label='Contraseña'
+              label='Nueva Contraseña'
               type={ this.state.showPassword ? 'text' : 'password' }
               id='password'
               autoComplete='current-password'
@@ -190,33 +194,17 @@ class Login extends React.Component<{}, {
               error={ this.props.errorReducer.errors.password !== null ? true : false }
               helperText={ this.props.errorReducer.errors.password !== null ? this.props.errorReducer.errors.password : '' }
             /> 
-            {/* <FormControlLabel
-              control={<Checkbox value='remember' style ={{
-                  color: '#d93211',
-                }} />}
-              label='Recordarme'
-            /> */}
+            
             <Button
               type='button'
               fullWidth
               variant='contained'
               className={ classes.submit }
-              onClick={ this.login }
+              onClick={ this.reset }
             >
-              Ingresar
+              Cambiar contraseña
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href='/recoverPassword' variant='body2'className={classes.Link}>
-                  Olvidé mi contraseña
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href='/registrar' variant='body2' className={classes.Link}>
-                  {'No soy miembro. Registrarme'}
-                </Link>
-              </Grid>
-            </Grid>
+           
           </form>
         </div>    
       </Container>
@@ -224,4 +212,4 @@ class Login extends React.Component<{}, {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(ResetPassword)

@@ -4,6 +4,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import Login from './Login'
+import ResetPass from './resetPassword'
+import RecoverPass from './recoverPassword'
 
 const theme = createMuiTheme({
 	palette: {
@@ -74,6 +76,27 @@ export function IniciarSesion(props: any) {
   
   return <div>
     <Login classes={ classes } { ...props } />
+  </div>;
+
+}
+
+export function ResetPassword(props: any) {
+
+  const classes = useStyles(theme);
+  
+  return <div>
+    <ResetPass classes={ classes } { ...props } />
+  </div>;
+
+}
+
+
+export function RecoverPassword(props: any) {
+
+  const classes = useStyles(theme);
+  
+  return <div>
+    <RecoverPass classes={ classes } { ...props } />
   </div>;
 
 }
