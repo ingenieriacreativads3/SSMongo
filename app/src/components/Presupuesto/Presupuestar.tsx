@@ -3,8 +3,6 @@ import {TextField, ListItem, Box,Paper, FormControl, Divider,ListItemAvatar, Lis
 import { withStyles } from '@material-ui/core/styles';
 import { FixedSizeList } from 'react-window';
 
-//import * as ItemAction from "../../store/actions/ItemAction";
-
 const CssTextField = withStyles({
 	root: {
 		'& label.Mui-focused': {
@@ -27,8 +25,6 @@ const CssTextField = withStyles({
 	},
 })(TextField);
 
-
-
 class Presupuestar extends React.Component <{}, {}> {
 
 	props: any
@@ -42,66 +38,8 @@ class Presupuestar extends React.Component <{}, {}> {
 		this.state = {};
 	}
 
-	renderRow(props: any, mensajes: any[], empresa_demandante: any, empresa_perteneciente: any) {
+	renderRow(props: any, mensajes: any[]) {
 		const { index, style } = props;
-
-		let msj: any[] = []
-
-		// if(this.props.presupuesto !== null) {
-		// 	if(
-		// 		this.props.presupuesto !== undefined &&
-		// 		this.props.presupuesto.mensajes !== undefined &&
-		// 		this.props.presupuesto.mensajes.length
-		// 	) {
-		// 		this.props.presupuesto.mensajes.map((mensaje: any) => {
-		// 			msj.push(mensaje)
-		// 		})
-		// 		empresa_perteneciente = this.props.presupuesto.empresa_perteneciente
-		// 		empresa_demandante = this.props.presupuesto.empresa_demandante
-		// 	}
-		// }
-
-		// if(this.props?.pedido !== null) {
-		// 	if(
-		// 		this.props?.pedido?.presupuesto !== undefined &&
-		// 		this.props?.pedido?.presupuesto?.mensajes !== undefined &&
-		// 		this.props?.pedido?.presupuesto?.mensajes?.length
-		// 	) {
-		// 		this.props?.pedido?.mensajes.map((mensaje: any) => {
-		// 			msj.push(mensaje)
-		// 		})
-		// 		empresa_perteneciente = this.props.pedido.empresa_perteneciente
-		// 		empresa_demandante = this.props.pedido.empresa_demandante
-		// 	}
-		// }
-	
-		let empresa: any = {}
-
-		if(
-			 empresa_perteneciente !== undefined &&
-			 empresa_perteneciente._id !== undefined &&
-			 empresa_perteneciente._id === mensajes[index].empresa_id
-		) {
-			 empresa = empresa_perteneciente
-		}
-
-		if(
-			 empresa_demandante !== undefined &&
-			 empresa_demandante._id !== undefined &&
-			 empresa_demandante._id === mensajes[index].empresa_id
-		) {
-			 empresa = empresa_demandante
-		}
-
-		let src: string = 'http://localhost:8000/'
-		let nombre: string = ''
-
-		if(
-			empresa !== undefined
-		) {
-			if(empresa.logo !== undefined) src = src + empresa.logo
-			if(empresa.nombre !== undefined) nombre = empresa.nombre
-		}
 
 		mensajes.reverse()
 	
@@ -109,7 +47,10 @@ class Presupuestar extends React.Component <{}, {}> {
 			<ListItem button style={style} key={index}>
 				<ListItem alignItems="flex-start">
 					<ListItemAvatar>
-						<Avatar alt={nombre} src={src} />
+						<Avatar 
+							alt={ mensajes?.[index].empresa?.nombre || '' }
+							src={ 'http://localhost:8000/' + mensajes?.[index].empresa?.logo || '' }
+						/>
 					</ListItemAvatar>
 					<ListItemText
 						secondary={
@@ -117,13 +58,11 @@ class Presupuestar extends React.Component <{}, {}> {
 								<Typography
 									component="span"
 									variant="body2"
-									//className={classes.inline}
 									color="textPrimary"
 								>
-									{nombre}
+									{ mensajes?.[index].empresa?.nombre || '' }
 								</Typography>
-								{/* {" — " + msj[index].comentario} */}
-								asd
+								{" — " + mensajes?.[index].comentario || ''}
 							</React.Fragment>
 						}
 					/>
@@ -190,7 +129,10 @@ class Presupuestar extends React.Component <{}, {}> {
 		let mensajes: {
 			comentario: string,
 			leido: boolean,
-			empresa_id: string
+			empresa: {
+				nombre: string,
+				logo: string
+			}
 		}[] = []
 
 		if(
@@ -220,10 +162,11 @@ class Presupuestar extends React.Component <{}, {}> {
 		}
 
 		if(
-			this.props.presupuesto !== undefined &&
-			this.props.presupuesto.mensajes !== undefined
+			this.props?.messageList !== undefined &&
+			Array.isArray(this.props.messageList) &&
+			this.props.messageList.length > 0
 		) {
-			mensajes = this.props.presupuesto.mensajes
+			mensajes = this.props.messageList
 		}
 
 		const classes = this.props.classes
@@ -242,11 +185,7 @@ class Presupuestar extends React.Component <{}, {}> {
 			})	
 		}
 
-		console.log(this.props.presupuesto);
-		console.log(mensajes);
-		
 		return(
-
 			<div className={classes.root}>
 				<CssBaseline />
 			 {this.props.appBar}
@@ -316,8 +255,8 @@ class Presupuestar extends React.Component <{}, {}> {
 								</Grid>
 								<Grid item xs={12} sm={4}>
 								
-								<FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
-									{ (props) => this.renderRow(props, mensajes, empresa_demandante, empresa_perteneciente) }
+								<FixedSizeList height={200} width={370} itemSize={100} itemCount={mensajes.length} >
+									{ (props) => this.renderRow(props, mensajes) }
 								</FixedSizeList>
 									{/* <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}	/> */}
 								</Grid>
@@ -382,8 +321,7 @@ class Presupuestar extends React.Component <{}, {}> {
 								color='primary'
 								size="small"
 								className={classes.button}
-								//startIcon={<SendIcon />}
-								onClick={this.props.save}
+								onClick={ () => this.props.save(this.props?.presupuesto?.items?.[0]?.item?._id || '') }
 								disabled={ !this.props.formValid}
 							>
 								Aceptar

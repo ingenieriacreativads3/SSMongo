@@ -22,7 +22,7 @@ export default function presupuestoReducer ( state = {
 			};
 		}
 
-		case 'REINTENTAR':{
+		case 'REINTENTAR_PRESUPUESTOS':{
 			return {
 			  ...state,
 			  fetching: false,

@@ -17,7 +17,7 @@ import actividadEconomicaReducer from './actividadEconomicaReducer'
 import errorReducer from './errorReducer'
 import evaluacionReducer from "./evaluacionReducer";
 import userReducer from "./userReducer";
-import mensajeReducer from "./mensajeReducer";
+import mensajeReducer from "./menssageReducer";
 
 export default combineReducers({
 	mensajeReducer,

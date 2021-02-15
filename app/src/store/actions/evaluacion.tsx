@@ -60,13 +60,6 @@ export function setEvaluacionEmpresa(
 	opinion:string,
 ) {
 
-	console.log(empresaCriticaId);
-	console.log(empresaCriticadaId);
-	console.log(numeroValoracion);
-	console.log(conceptoValoracion);
-	console.log(opinion);
-	
-
 	let payload: any = axios.post(config.url + '/empresa/valorar',{
 		empresaCriticaId,
 		empresaCriticadaId,

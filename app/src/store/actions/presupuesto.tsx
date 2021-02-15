@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from './config'
 
 export function confirmarPresupuesto(
 	_id: string,
@@ -117,23 +118,19 @@ export function presupuestar(
 	idItem: string,	
 	cantidad: string,
 	importe: string,
-	comentario: string
 ) {
-
-	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.post(url + '/presupuesto/presupuestar', {
-		presupuesto: {
-			_id: idPresupuesto,
-			items: [
+	let payload: any = axios.post(config.url + '/presupuesto/presupuestar', {
+		presupuesto : {
+			_id : idPresupuesto,
+			items : [
 				{
-					_id: idItem,
-					cantidad: cantidad,
+					_id : idItem,
+					cantidad : parseInt(cantidad, 10)
 				}
 			]
 		},
-		importe,
-		comentario,
+		importe : parseInt(importe, 10)
 	})
 
   return {
@@ -191,7 +188,7 @@ export function setear() {
 export function reintentar() {
 
 	return {
-		type: 'REINTENTAR',
+		type: 'REINTENTAR_PRESUPUESTOS',
 		payload: {}
 	}
 

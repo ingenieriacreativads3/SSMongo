@@ -36,18 +36,6 @@ export function DetailPurchasePresupuesto(props: {
 	/>;
 }
 
-export function PresupuestoNuevo(props: {
-	history: any,
-	location: any,
-	match: any,
-	staticContext?: any,
-	cookies: Cookies
-}) {
-	return <NuevoPresupuesto
-		history={props.history}
-		location={props.location}
-		match={props.match}
-		staticContext={props.staticContext}
-		cookies={props.cookies}
-	/>;
+export function PresupuestoNuevo(props: any) {
+	return <NuevoPresupuesto { ...props } />;
 }

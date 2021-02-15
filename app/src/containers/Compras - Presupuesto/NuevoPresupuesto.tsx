@@ -95,6 +95,7 @@ class NuevoPresupuesto extends React.Component<{
 
   componentWillMount() {
 
+    this.props.dispatch(presupuestoActions.reintentar())
     this.props.dispatch(itemActions.getItem(this.props.match.params.id))
     this.props.dispatch(empresaActions.getEmpresa(this.props.cookies.get('empresaId')))
 
@@ -211,6 +212,9 @@ class NuevoPresupuesto extends React.Component<{
       cookies={this.props.cookies}
     />
   }
+
+  // 602adc0fb9481716c719eb23
+  // 602adc0fb9481716c719eb23
   
   render(){
 
@@ -286,13 +290,6 @@ class NuevoPresupuesto extends React.Component<{
       }
     }
 
-    if(
-      this.props.itemReducer.fetched &&
-      this.props.itemReducer.data !== undefined
-    ) {
-      item = this.props.itemReducer.data.item
-    }
-
     let empresa: {
       "_id": string,
       "nombre": string,
@@ -328,15 +325,18 @@ class NuevoPresupuesto extends React.Component<{
     }
 
     if(
-      this.props.empresaReducer.fetched &&
-      this.props.empresaReducer.data !== undefined
+      this.props.itemReducer.fetched &&
+      this.props.itemReducer.data !== undefined
     ) {
+      item = this.props.itemReducer.data.item
+    }
+
+    if(this.props.empresaReducer.perfil) {
       empresa = this.props.empresaReducer.data.empresa
     }
 
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
-
 
     return(
       <div>

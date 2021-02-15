@@ -9,12 +9,7 @@ import MenuLateral from '../Drawer'
 
 import { AntSwitch } from './index'
 
-
-
-
 import { connect } from 'react-redux'
-
-
 
 function mapStateToProps(store: {
   dialogReducer: {

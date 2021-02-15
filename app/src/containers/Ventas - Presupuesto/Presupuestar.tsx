@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { OneButton } from './../../components/Dialogs'
 import { Presupuestar as PresupuestarExport} from './../../components/Presupuesto'
 import * as dialogActions from './../../store/actions/dialog'
+import * as messageActions from './../../store/actions/message'
 
 import * as presupuestoActions from './../../store/actions/presupuesto'
 import { Drawer } from './../Drawer'
@@ -16,12 +17,14 @@ import store from './../../store/index'
 function mapStateToProps(store: {
   itemReducer:any,
   presupuestoReducer: any,
-  errorReducer:any,
+  errorReducer: any,
+  mensajeReducer: any,
 }) {
   return {
-    itemReducer:store.itemReducer,
-    presupuestoReducer: store.presupuestoReducer,
+    mensajeReducer: store.mensajeReducer,
     errorReducer: store.errorReducer,
+    itemReducer: store.itemReducer,
+    presupuestoReducer: store.presupuestoReducer,
   };
 }
 
@@ -193,6 +196,7 @@ class Presupuestacion extends React.Component<{}, {
 
   componentWillMount() {
     this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
+    this.props.dispatch(messageActions.getMensajesByPresupuesto(this.props.match.params.id))
   }
 
   componentWillUpdate() {
@@ -234,15 +238,21 @@ class Presupuestacion extends React.Component<{}, {
     this.setState({ comentario: e.target.value })
   }
   
-  save() {
+  save(idItem: string) {
     if(this.validacion()){
       this.props.dispatch(presupuestoActions.presupuestar(
-        this.state.presupuesto._id,
-        this.state.item._id,
+        this.props.match.params.id,
+        idItem,
         this.state.cantidad,
-        this.state.importe,
-        this.state.comentario,
+        this.state.importe
       ))
+      if(this.state.comentario !== '') {
+        this.props.dispatch(messageActions.setMensajePresupuesto(
+          this.props.match.params.id,
+          this.props.cookies.get('empresaId'),
+          this.state.comentario
+        ))
+      }
       this.props.dispatch(dialogActions.openOneButton())
     }
   }
@@ -252,7 +262,6 @@ class Presupuestacion extends React.Component<{}, {
   }
 
   validacion=() => {
-    debugger;
     let formIsValid = true;
     let errores=[];
     let ref: any = this.presupuestarRef.current
@@ -296,6 +305,7 @@ class Presupuestacion extends React.Component<{}, {
   render(){
 
     let presupuesto: any = undefined
+    let messageList: any[] = []
 
     if(
       this.props.presupuestoReducer.fetched &&
@@ -304,12 +314,17 @@ class Presupuestacion extends React.Component<{}, {
       presupuesto = this.props.presupuestoReducer.data.presupuesto
     }
 
+    if(this.props?.mensajeReducer?.fetched) {
+      messageList = this.props.mensajeReducer.data.mensajes
+    }
+
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
 
     return(
       <div>
-        <PresupuestarExport 
+        <PresupuestarExport
+          { ...this.props }
           getCantidadItem={ this.getCantidadItem }
           getComentario={ this.getComentario }
           getImporte = {this.getImporte}
@@ -322,6 +337,7 @@ class Presupuestacion extends React.Component<{}, {
           errors={errores}
           formValid={ this.state.formValid }
           presupuestarRef={ this.presupuestarRef }
+          messageList={ messageList }
         />
         <OneButton 
           title={ 'Presupuestacion' }
