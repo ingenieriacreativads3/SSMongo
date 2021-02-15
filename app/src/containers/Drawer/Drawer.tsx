@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-// import { Detail as DetailExport } from './../../../components/Detail'
-// import * as requestActions from './../../../store/actions/request'
 import DrawerComponent from './../../components/Drawer'
 
 function mapStateToProps(store: {
@@ -14,6 +12,12 @@ function mapStateToProps(store: {
     login: store.login
   };
 }
+
+// 602ad181b9481716c719eb19
+// 6029384fae08ed54b849e5f2
+
+// 602ad181b9481716c719eb19
+// 6029384fae08ed54b849e5f2
 
 class Drawer extends React.Component<{
   history: any,

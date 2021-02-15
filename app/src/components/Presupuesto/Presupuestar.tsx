@@ -41,8 +41,6 @@ class Presupuestar extends React.Component <{}, {}> {
 	renderRow(props: any, mensajes: any[]) {
 		const { index, style } = props;
 
-		mensajes.reverse()
-	
 		return (
 			<ListItem button style={style} key={index}>
 				<ListItem alignItems="flex-start">

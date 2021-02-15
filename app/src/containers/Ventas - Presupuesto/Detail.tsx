@@ -50,12 +50,7 @@ class Detail extends React.Component<{
   }
 
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer {...this.props} />
   }
 
   appBar() {

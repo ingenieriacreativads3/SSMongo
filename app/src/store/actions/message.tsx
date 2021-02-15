@@ -7,7 +7,7 @@ export function setMensajePresupuesto(
 	comentario: string
 ) {
 
-	let payload: any = axios.post(config.url + '/mensaje', {
+	let payload: any = axios.post(config.url + '/presupuesto/mensaje', {
 		presupuesto : {
 			_id : idPresupuesto
 		},
