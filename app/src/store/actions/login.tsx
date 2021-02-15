@@ -37,6 +37,39 @@ export function ingresar(user: string, pass: string) {
 
 }
 
+export function recoverPass(email: string) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/recover/password', {
+		address: email,
+		
+	})
+
+	return {
+		type: 'RECOVER_PASSWORD',
+		payload: payload
+	}
+
+}
+
+export function resetPass(pass: string, token: string) {
+
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/recover/reset', {
+		token: token,
+		password:pass
+		
+	})
+
+	return {
+		type: 'RESET_PASSWORD',
+		payload: payload
+	}
+
+}
+
 export async function register(empresa: {
 	empresa: {
 		nombre: string,

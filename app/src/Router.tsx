@@ -15,7 +15,7 @@ import { MiPerfil } from './containers/Perfil'
 import { Presupuestacion } from './containers/Ventas - Presupuesto'
 import { Renegociacion } from './containers/Ventas - Presupuesto'
 import { Inicio, Busqueda, EmpresaList } from './containers/Home'
-import { Login } from './containers/Login'
+import { Login, Reset, Recover } from './containers/Login'
 import Register from './containers/Register'
 import { SolicitudesValidacion } from './containers/ValidationRequest'
 import { PurchaseRequests, DetailPurchaseRequest }	from './containers/Compras/Pedido'
@@ -141,6 +141,8 @@ class App extends React.Component <{}, {}> {
 						<Route path='/mensajes' render={(props) => <Chat {...props} cookies={cookies}/>} /> 
 
 						<Route path='/Unauthorized' render={(props) => <NoAutenticado {...props} />} />
+						<Route path='/resetPassword' component={ Reset } />
+						<Route path='/recoverPassword' component={ Recover } />
 						<Route path='/registrar' component={ Register } />
 						<this.login path='/' cookies={cookies} render={(props: any) => <Login { ...props } cookies={cookies} />}/>
 					
