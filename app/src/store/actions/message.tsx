@@ -27,6 +27,9 @@ export function getMensajesByPresupuesto(
 	idPresupuesto: string,
 ) {
 
+	console.log(idPresupuesto);
+	
+
 	let payload: any = axios.get(config.url + '/presupuesto/' + idPresupuesto + '/mensajes')
 	
   return {

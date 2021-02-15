@@ -6,8 +6,9 @@ import { OneButton } from './../../components/Dialogs'
 
 import { Renegociar as RenegociarExport} from './../../components/Presupuesto'
 import * as dialogActions from './../../store/actions/dialog'
-
 import * as presupuestoActions from './../../store/actions/presupuesto'
+import * as messageActions from './../../store/actions/message'
+
 import { Drawer } from './../Drawer'
 import { Footer } from './../Footer'
 import {AppBar} from './../AppBar'
@@ -18,28 +19,23 @@ function mapStateToProps(store: {
   itemReducer:any,
   presupuestoReducer: any,
   errorReducer:any,
+  mensajeReducer:any,
 }) {
   return {
+    mensajeReducer: store.mensajeReducer,
+    errorReducer: store.errorReducer,
     itemReducer: store.itemReducer,
     presupuestoReducer: store.presupuestoReducer,
-    errorReducer: store.errorReducer,
-   
   };
 }
 
-class Renegociacion extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {
-    idPresupuesto: string,
-    idEmpresaReoferente:string,
-    idItem: string,
-    cantidad:string,
-    precioSugerido:string,
-    formValid:boolean,
+class Renegociacion extends React.Component<{}, {
+  idPresupuesto: string,
+  idEmpresaReoferente:string,
+  idItem: string,
+  cantidad:string,
+  precioSugerido:string,
+  formValid:boolean,
 	comentario : string,
 }> {
 
@@ -70,6 +66,7 @@ class Renegociacion extends React.Component<{
   componentWillMount() {
 
     this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
+    this.props.dispatch(messageActions.getMensajesByPresupuesto(this.props.match.params.id))
     this.setState({
       idPresupuesto: this.props.match.params.id
     })
@@ -101,7 +98,6 @@ class Renegociacion extends React.Component<{
   }
 
   validacion=() => {
-    debugger;
     let formIsValid = true;
     let errores=[];
     let ref: any = this.renegociarRef.current
@@ -127,11 +123,11 @@ class Renegociacion extends React.Component<{
   }
 
 
-  save() {
+  save(idItem: string) {
     if(this.validacion()){
       this.props.dispatch(presupuestoActions.renegociar(
       this.props.match.params.id,
-      '5f0f155d3eff762f0335072b',
+      idItem,
       this.state.cantidad,
       this.props.cookies.get('empresaId'),
       this.state.precioSugerido,
@@ -184,6 +180,7 @@ class Renegociacion extends React.Component<{
 
   render(){
 
+    let messageList: any[] = []
     let presupuesto: {
       _id: string,
       estado: string,
@@ -299,6 +296,10 @@ class Renegociacion extends React.Component<{
 			}
     }
 
+    if(this.props?.mensajeReducer?.fetched) {
+      messageList = this.props.mensajeReducer.data.mensajes
+    }
+
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
 
@@ -316,7 +317,8 @@ class Renegociacion extends React.Component<{
           company={ company }
           errors={errores}
           formValid={this.state.formValid}
-          renegociarRef={this.renegociarRef}
+          renegociarRef={ this.renegociarRef }
+          messageList={ messageList }
         />
         <OneButton 
           title={ 'Renegociacion' }

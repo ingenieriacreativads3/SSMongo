@@ -1,3 +1,4 @@
+import { parse } from '@babel/core';
 import axios from 'axios';
 import config from './config'
 
@@ -149,24 +150,21 @@ export function renegociar(
 	comentario:string
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/renegociar',{
-	
-		presupuesto: {
-			_id: idPresupuesto,
-			items: [
+	let payload: any = axios.post(config.url + '/renegociar', {
+		presupuesto : {
+			_id : idPresupuesto,
+			items : [
 				{
-					_id: idItem,
-					cantidad: cantidad,
+					_id : idItem,
+					cantidad : parseInt(cantidad, 10)
 				}
-			],
+			]
 		},
-		empresaReoferente: {
-			_id: idEmpresaOferente,
+		empresaReoferente : {
+			_id : idEmpresaOferente
 		},
-		precioSugerido: precioSugerido,
-		comentario: comentario,
+		precioSugerido : parseInt(precioSugerido, 10),
+		comentario : comentario
 	})
 	
   return {

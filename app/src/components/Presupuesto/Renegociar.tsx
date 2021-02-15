@@ -30,66 +30,7 @@ const CssTextField = withStyles({
 
 
 
-class Renegociar extends React.Component <{
-  classes: any,
-  getCantidadItem: any,
-  getComentario: any,
-  getPrecioSugerido:any,
-  save: any,
-  presupuesto: {
-    _id: string,
-    estado: string,
-    updated_at: string,
-    created_at: string,
-    importe: string,
-    importe_anterior: string,
-    empresa_demandante: {
-      _id: string,
-      nombre: string,
-      cuit: string,
-      usuario: string,
-      email: string,
-      estado: string,
-      updated_at: string,
-      created_at: string,
-    },
-    empresa_perteneciente: {
-      _id: string,
-      nombre: string,
-      cuit: string,
-      usuario: string,
-      email: string,
-      estado: string,
-      updated_at: string,
-      created_at: string
-    },
-    mensajes: [],
-    items: [
-      {
-        _id: string,
-        foto: string[],
-        nombre: string,
-        precio: string,
-        descrpcion: string,
-        mostrarPrecio: boolean,
-        unidad_de_medida_id: string,
-        updated_at: string,
-        created_at: string,
-        catalogo_id: string,
-      }
-    ]
-  },
-  company: {
-    _id: string,
-    nombre: string,
-    cuit: string,
-    usuario: string,
-    email: string,
-    estado: string,
-    updated_at: string,
-    created_at: string,
-  }
-}, {}> {
+class Renegociar extends React.Component <{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -102,102 +43,83 @@ class Renegociar extends React.Component <{
     this.state = {};
   }
 
-  renderRow(props:any) {
+  renderRow(props: any, mensajes: any[]) {
     const { index, style } = props;
 
-    let msj: any[] = []
-    let empresa_demandante: any = {}
-    let empresa_perteneciente: any = {}
-
-    if(this.props.presupuesto !== null) {
-      if(
-        this.props.presupuesto !== undefined &&
-        this.props.presupuesto.mensajes !== undefined &&
-        this.props.presupuesto.mensajes.length
-      ) {
-        this.props.presupuesto.mensajes.map((mensaje: any) => {
-          msj.push(mensaje)
-        })
-        empresa_perteneciente = this.props.presupuesto.empresa_perteneciente
-        empresa_demandante = this.props.presupuesto.empresa_demandante
-      }
-    }
-
-    if(this.props.pedido !== null) {
-      if(
-        this.props.pedido.presupuesto !== undefined &&
-        this.props.pedido.presupuesto.mensajes !== undefined &&
-        this.props.pedido.presupuesto.mensajes.length
-      ) {
-        this.props.pedido.mensajes.map((mensaje: any) => {
-          msj.push(mensaje)
-        })
-        empresa_perteneciente = this.props.pedido.empresa_perteneciente
-        empresa_demandante = this.props.pedido.empresa_demandante
-      }
-    }
-  
-    let empresa: any = {}
-
-    if(
-      empresa_perteneciente !== undefined &&
-      empresa_perteneciente._id !== undefined &&
-      empresa_perteneciente._id === msj[index].empresa_id
-    ) {
-      empresa = empresa_perteneciente
-    }
-
-    if(
-      empresa_demandante !== undefined &&
-      empresa_demandante._id !== undefined &&
-      empresa_demandante._id === msj[index].empresa_id
-    ) {
-      empresa = empresa_demandante
-    }
-
-    let src: string = 'http://localhost:8000/'
-    let nombre: string = ''
-
-    if(
-      empresa !== undefined
-    ) {
-      if(empresa.logo !== undefined) src = src + empresa.logo
-      if(empresa.nombre !== undefined) nombre = empresa.nombre
-    }
-
-    msj.reverse()
-
-  
     return (
-      <ListItem button style={style} key={index}>
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt={nombre} src={src} />
-          </ListItemAvatar>
-          <ListItemText
-            secondary={
-              <React.Fragment>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  //className={classes.inline}
-                  color="textPrimary"
-                >
-                  {nombre}
-                </Typography>
-                {" — " + msj[index].comentario}
-              </React.Fragment>
-            }
-          />
-        </ListItem>
-      </ListItem>
-    );
+			<ListItem button style={style} key={index}>
+				<ListItem alignItems="flex-start">
+					<ListItemAvatar>
+						<Avatar 
+							alt={ mensajes?.[index].empresa?.nombre || '' }
+							src={ 'http://localhost:8000/' + mensajes?.[index].empresa?.logo || '' }
+						/>
+					</ListItemAvatar>
+					<ListItemText
+						secondary={
+							<React.Fragment>
+								<Typography
+									component="span"
+									variant="body2"
+									color="textPrimary"
+								>
+									{ mensajes?.[index].empresa?.nombre || '' }
+								</Typography>
+								{" — " + mensajes?.[index].comentario || ''}
+							</React.Fragment>
+						}
+					/>
+				</ListItem>
+			</ListItem>
+		);
   }
 
   render(){
 
 		const classes = this.props.classes
     let msj: string = ''
+    let foto: string = ''
+
+    let itemPresupuesto: {
+			cantidad: number,
+			item: {
+				nombre: string,
+				precio: string,
+				foto: string[]
+			},
+			unidadDeMedida: {
+				nombre: string
+			}
+		} = {
+			cantidad: 0,
+			item: {
+				nombre: '',
+				precio: '0',
+				foto: []
+			},
+			unidadDeMedida: {
+				nombre: ''
+			}
+		}
+
+    let empresa_perteneciente: {
+			_id: string,
+			email: string,
+			nombre: string
+		} = {
+			_id: '',
+			email: '',
+			nombre: ''
+		}
+
+    let mensajes: {
+			comentario: string,
+			leido: boolean,
+			empresa: {
+				nombre: string,
+				logo: string
+			}
+		}[] = []
 
     if(
       this.props.presupuesto !== undefined &&
@@ -210,6 +132,40 @@ class Renegociar extends React.Component <{
         msj = msj + mensaje.comentario
       })  
     }
+
+    if(
+			this.props.presupuesto !== undefined &&
+			this.props.presupuesto.empresa_perteneciente !== undefined
+		) {
+			empresa_perteneciente = this.props.presupuesto.empresa_perteneciente
+		}
+
+    if(
+			this.props.presupuesto !== undefined &&
+			this.props.presupuesto.items !== undefined &&
+			Array.isArray(this.props.presupuesto.items) &&
+			this.props.presupuesto.items.length > 0
+		) {
+			itemPresupuesto = this.props.presupuesto.items[0]
+		}
+
+    if(
+			this.props?.messageList !== undefined &&
+			Array.isArray(this.props.messageList) &&
+			this.props.messageList.length > 0
+		) {
+			mensajes = this.props.messageList
+		}
+
+    if(
+			itemPresupuesto !== undefined &&
+			itemPresupuesto.item !== undefined &&
+			itemPresupuesto.item.foto !== undefined &&
+			Array.isArray(itemPresupuesto.item.foto) &&
+			itemPresupuesto.item.foto.length > 0
+		) {
+			foto = 'http://localhost:8000/' + itemPresupuesto.item.foto[0]
+		}
 
     return(
 
@@ -243,22 +199,22 @@ class Renegociar extends React.Component <{
                 </Typography>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Empresa" label="Empresa demandada" value={this.props.presupuesto.empresa_perteneciente.nombre} className={classes.input}  />
+                <TextField disabled id="Empresa" label="Empresa demandada" value={ empresa_perteneciente?.nombre } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Email" label="Email" value={this.props.presupuesto.empresa_perteneciente.email} className={classes.input}  />
+                <TextField disabled id="Email" label="Email" value={ empresa_perteneciente.email } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Telefono" label="Telefono" value="35764236987" className={classes.input}  />
+                <TextField disabled id="Telefono" label="Telefono" value={ 'poner el telefono aqui' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Provincia" label="Provincia" value="Cordoba" className={classes.input}  />
+                <TextField disabled id="Provincia" label="Provincia" value={ 'poner la provincia aqui' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Ciudad" label="Ciudad" value="San Francisco" className={classes.input}  />
+                <TextField disabled id="Ciudad" label="Ciudad" value={ 'poner la ciudad aqui' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="CP" label="CP" value="2400" className={classes.input}  />
+                <TextField disabled id="CP" label="CP" value={ 'poner el cp aqui' } className={classes.input}  />
                 </Grid>
               </Grid>
 
@@ -269,25 +225,25 @@ class Renegociar extends React.Component <{
                 </Typography>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="ProductoSolicitado" label="Producto" value={this.props.presupuesto.items[0].nombre} className={classes.input}  />
+                <TextField disabled id="ProductoSolicitado" label="Producto" value={ itemPresupuesto?.item?.nombre || '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="CantidadSolicitada" label="Cantidad" value="cantidad" className={classes.input}  />
+                <TextField disabled id="CantidadSolicitada" label="Cantidad" value={ itemPresupuesto?.cantidad || '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="UnidadSolicitada" label="Unidad" value="unidadDeMedida" className={classes.input}  />
+                <TextField disabled id="UnidadSolicitada" label="Unidad" value={ itemPresupuesto?.unidadDeMedida?.nombre || '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="PrecioSolicitado" label="Precio" value={this.props.presupuesto.items[0].precio} className={classes.input}  />
+                <TextField disabled id="PrecioSolicitado" label="Precio" value={ itemPresupuesto?.item?.precio || '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
-                  {this.renderRow}
+                <FixedSizeList height={200} width={370} itemSize={100} itemCount={ mensajes.length } >
+                { (props) => this.renderRow(props, mensajes) }
                 </FixedSizeList>
                 {/* <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  /> */}
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <img className={classes.fotoItem} alt={this.props.pathImage}  src={this.props.pathImage} />
+                  <img className={classes.fotoItem} alt={ foto }	src={ foto } /> 
                 </Grid>
                 
               </Grid>
@@ -341,7 +297,7 @@ class Renegociar extends React.Component <{
                 size="small"
                 className={classes.button}
                 startIcon={<SendIcon />}
-                onClick={ this.props.save }
+                onClick={ () => this.props.save(this.props?.presupuesto?.items?.[0]?.item._id || '') }
                 disabled={ !this.props.formValid}
               >
                 Enviar
