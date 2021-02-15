@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Cookies from 'universal-cookie';
 
 import { OneButton } from './../../components/Dialogs'
 import { Presupuestar as PresupuestarExport} from './../../components/Presupuesto'
@@ -26,13 +25,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Presupuestacion extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {
+class Presupuestacion extends React.Component<{}, {
   presupuesto: {
     _id: string,
     estado: string,
@@ -111,6 +104,7 @@ class Presupuestacion extends React.Component<{
 	static propTypes: any
 	static defaultProps: any
   private presupuestarRef: React.RefObject<HTMLFormElement>;
+
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
@@ -198,9 +192,7 @@ class Presupuestacion extends React.Component<{
   }
 
   componentWillMount() {
-
     this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
-
   }
 
   componentWillUpdate() {
@@ -245,22 +237,18 @@ class Presupuestacion extends React.Component<{
   save() {
     if(this.validacion()){
       this.props.dispatch(presupuestoActions.presupuestar(
-      this.state.presupuesto._id,
-      this.state.item._id,
-      this.state.cantidad,
-      this.state.importe,
-      this.state.comentario,
-    ))
-    this.props.dispatch(dialogActions.openOneButton())
+        this.state.presupuesto._id,
+        this.state.item._id,
+        this.state.cantidad,
+        this.state.importe,
+        this.state.comentario,
+      ))
+      this.props.dispatch(dialogActions.openOneButton())
     }
-    
-
   }
 
   cancelar() {
-
     this.props.history.push('/ventas/presupuesto/' + this.props.match.params.id)
-
   }
 
   validacion=() => {
@@ -271,22 +259,16 @@ class Presupuestacion extends React.Component<{
 
     for (let i = 0, element; element = ref[i]; i++) {
 
-       if(!element.checkValidity())
-      {
-
+      if(!element.checkValidity()) {
         errores[element.id]=element.validationMessage;
         errores.length = errores.length + 1;
         formIsValid = false;
         this.setState({formValid:formIsValid})
-      
-        
       }
-      
     }
 
-    
-     this.props.dispatch(errorActions.setError(errores)); 
-     return formIsValid;
+    this.props.dispatch(errorActions.setError(errores)); 
+    return formIsValid;
   }
 
   aceptar() {
@@ -297,124 +279,23 @@ class Presupuestacion extends React.Component<{
       this.props.dispatch(presupuestoActions.setear())
       this.props.history.push('/ventas/presupuestos/lista')
     }
-    
-    
-
   }
 
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer { ...this.props } />
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   render(){
 
-    let presupuesto: {
-      _id: string,
-      estado: string,
-      updated_at: string,
-      created_at: string,
-      importe: string,
-      empresa_demandante: {
-        _id: string,
-        nombre: string,
-        cuit: string,
-        usuario: string,
-        email: string,
-        estado: string,
-        updated_at: string,
-        created_at: string,
-      },
-      empresa_perteneciente: {
-        _id: string,
-        nombre: string,
-        cuit: string,
-        usuario: string,
-        email: string,
-        estado: string,
-        updated_at: string,
-        created_at: string
-      },
-      mensajes: [],
-      items: [
-        {
-          _id: string,
-          foto: [],
-          nombre: string,
-          precio: string,
-          descrpcion: string,
-          mostrarPrecio: false,
-          unidad_de_medida_id: string,
-          updated_at: string,
-          created_at: string,
-          catalogo_id: string,
-        }
-      ]
-    } = {
-      _id: '',
-      estado: '',
-      updated_at: '',
-      created_at: '',
-      importe: '',
-      empresa_demandante: {
-        _id: '',
-        nombre: '',
-        cuit: '',
-        usuario: '',
-        email: '',
-        estado: '',
-        updated_at: '',
-        created_at: '',
-      },
-      empresa_perteneciente: {
-        _id: '',
-        nombre: '',
-        cuit: '',
-        usuario: '',
-        email: '',
-        estado: '',
-        updated_at: '',
-        created_at: ''
-      },
-      mensajes: [],
-      items: [
-        {
-          _id: '',
-          foto: [],
-          nombre: '',
-          precio: '',
-          descrpcion: '',
-          mostrarPrecio: false,
-          unidad_de_medida_id: '',
-          updated_at: '',
-          created_at: '',
-          catalogo_id: '',
-        }
-      ]
-    }
+    let presupuesto: any = undefined
 
     if(
       this.props.presupuestoReducer.fetched &&
@@ -439,8 +320,8 @@ class Presupuestacion extends React.Component<{
           presupuesto={ presupuesto }
           appBar={this.appBar()}
           errors={errores}
-          formValid={this.state.formValid}
-          presupuestarRef={this.presupuestarRef}
+          formValid={ this.state.formValid }
+          presupuestarRef={ this.presupuestarRef }
         />
         <OneButton 
           title={ 'Presupuestacion' }

@@ -289,7 +289,6 @@ class Reputacion extends React.Component <{}, {
 	}
 
 	renderRow = (props: any) => {
-		debugger;
 		console.log(this.props.opiniones);
 		const { index, style, data } = props;
 

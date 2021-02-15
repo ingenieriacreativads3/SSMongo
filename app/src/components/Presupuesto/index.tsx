@@ -144,89 +144,10 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-
-export function NuevoPresupuesto(props:{
-  getCantidadItem: any,
-  getComentario:any,
-  save:any,
-  drawer:any,
-  footer:any,
-  appBar:any,
-  errors:any,
-  formValido:boolean,
-  presupuestoNuevoRef:any,
-  item: {
-    "_id": string,
-    "foto": string[],
-    "nombre": string,
-    "precio": string,
-    "descrpcion": string,
-    "mostrarPrecio": boolean,
-    "unidad_de_medida_id": string,
-    "updated_at": string,
-    "created_at": string,
-    "catalogo_id": string,
-    "unidad_de_medida": {
-      "_id": string,
-      "nombre": string,
-      "abreviatura": string,
-      "updated_at": string,
-      "created_at": string,
-    },
-    "catalogo": {
-      "_id": string,
-      "empresa_id": string,
-      "updated_at": string,
-      "created_at": string,
-      "empresa": {
-        "_id": string,
-        "nombre": string,
-        "cuit": string,
-        "usuario": string,
-        "clave": string,
-        "email": string,
-        "estado": string,
-        "updated_at": string,
-        "created_at": string,
-      }
-    }
-  },
-  empresa: {
-    "_id": string,
-    "nombre": string,
-    "cuit": string,
-    "usuario": string,
-    "email": string,
-    "estado": string,
-    "updated_at": string,
-    "created_at": string,
-    "domicilioLegal": string,
-    "localidad": string,
-    "logo": string,
-    "mostrar_perfil": boolean,
-    "provincia": string,
-    "telefono": string,
-    "clave": string,
-  }
-}) {
+export function NuevoPresupuesto(props: any) {
 
 	const classes = useStyles(theme);
-  return <PresupuestoNuevo 
-    classes={classes}
-    getCantidadItem={props.getCantidadItem}
-    getComentario={props.getComentario}
-    save={props.save} 
-    drawer={props.drawer}
-    footer={props.footer}
-    appBar={props.appBar}
-    item={ props.item }
-    empresa={ props.empresa }
-    errors={props.errors}
-    formValido={props.formValido}
-    presupuestoNuevoRef={props.presupuestoNuevoRef}
-
-  />;
+  return <PresupuestoNuevo classes={classes} { ...props } />;
 
 }
 
@@ -244,175 +165,23 @@ export function VentasPresupuestos() {
 
 }
 
-export function Presupuestar(props:{
-  getCantidadItem: any,
-  getComentario:any,
-  getImporte:any,
-  save:any,
-  cancelar: any
-  drawer:any,
-  footer:any,
-  appBar:any,
-  formValid:boolean,
-  errors:any,
-  presupuestarRef:any,
-  presupuesto: {
-    _id: string,
-    estado: string,
-    updated_at: string,
-    created_at: string,
-    importe: string,
-    empresa_demandante: {
-      _id: string,
-      nombre: string,
-      cuit: string,
-      usuario: string,
-      email: string,
-      estado: string,
-      updated_at: string,
-      created_at: string,
-    },
-    empresa_perteneciente: {
-      _id: string,
-      nombre: string,
-      cuit: string,
-      usuario: string,
-      email: string,
-      estado: string,
-      updated_at: string,
-      created_at: string
-    },
-    mensajes: [],
-    items: [
-      {
-        _id: string,
-        foto: string[],
-        nombre: string,
-        precio: string,
-        descrpcion: string,
-        mostrarPrecio: false,
-        unidad_de_medida_id: string,
-        updated_at: string,
-        created_at: string,
-        catalogo_id: string,
-      }
-    ]
-  }
-}) {
+export function Presupuestar(props: any) {
 
   const classes = useStyles(theme);
-  
-  return <Presupuestacion 
-    classes={ classes }
-    getCantidadItem={ props.getCantidadItem }
-    getComentario={ props.getComentario }
-    getImporte={ props.getImporte }
-    save={ props.save }
-    cancelar={ props.cancelar }
-    drawer={ props.drawer }
-    footer={ props.footer }
-    presupuesto={ props.presupuesto }
-    appBar={props.appBar}
-    formValid={props.formValid}
-    errors={props.errors}
-    presupuestarRef={props.presupuestarRef}
-  />;
+  return <Presupuestacion classes={ classes } { ...props } />;
 
 }
 
-export function Renegociar(props:{
-  getCantidadItem: any,
-  getComentario:any,
-  getPrecioSugerido:any,
-  save:any,
-  drawer:any,
-  footer:any,
-  appBar:any,
-  formValid:boolean,
-  errors:any,
-  renegociarRef:any,
-  presupuesto: {
-    _id: string,
-    estado: string,
-    updated_at: string,
-    created_at: string,
-    importe: string,
-    importe_anterior: string,
-    empresa_demandante: {
-      _id: string,
-      nombre: string,
-      cuit: string,
-      usuario: string,
-      email: string,
-      estado: string,
-      updated_at: string,
-      created_at: string,
-    },
-    empresa_perteneciente: {
-      _id: string,
-      nombre: string,
-      cuit: string,
-      usuario: string,
-      email: string,
-      estado: string,
-      updated_at: string,
-      created_at: string
-    },
-    mensajes: [],
-    items: [
-      {
-        _id: string,
-        foto: string[],
-        nombre: string,
-        precio: string,
-        descrpcion: string,
-        mostrarPrecio: boolean,
-        unidad_de_medida_id: string,
-        updated_at: string,
-        created_at: string,
-        catalogo_id: string,
-      }
-    ]
-  },
-  company: {
-    _id: string,
-    nombre: string,
-    cuit: string,
-    usuario: string,
-    email: string,
-    estado: string,
-    updated_at: string,
-    created_at: string,
-  }
-}) {
+export function Renegociar(props: any) {
 
 	const classes = useStyles(theme);
-  return <Renegociacion 
-    classes={ classes } 
-    getCantidadItem={ props.getCantidadItem }
-    getComentario={ props.getComentario }
-    getPrecioSugerido={ props.getPrecioSugerido }
-    save={ props.save }
-    drawer={ props.drawer }
-    footer={ props.footer }
-    appBar={ props.appBar }
-    presupuesto={ props.presupuesto }
-    company={ props.company }
-    errors={props.errors}
-    formValid={props.formValid}
-    renegociarRef={props.renegociarRef}
-  />;
+  return <Renegociacion classes={ classes } { ...props } />;
 
 }
 
-export function VerDetallePresupuesto(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any
-}) {
+export function VerDetallePresupuesto(props: any) {
 
 	const classes = useStyles(theme);
-	return <Detalle classes={classes} history={props.history} location={props.location} match={props.match} staticContext={props.staticContext} />;
+	return <Detalle classes={classes} { ...props } />;
 
 }
