@@ -1,6 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { connect } from 'react-redux'
+import slug from 'slug'
 
 import { Container, Button, Grid, Card, ListSubheader, Typography, CssBaseline, CardActionArea, CardMedia, IconButton, CardContent} from '@material-ui/core';
 import { Link} from "react-router-dom";
@@ -328,8 +329,12 @@ class Home extends React.Component <{
                 {
                   act.map((actividad: any, key: number) => {
 
+                    // 6029384fae08ed54b849e5f2
+                    // 602be1cfb9481716c719eb58
+                    // actividad.nombre.toLowerCase().replace(/ /g,'-').replace(/,/g,'')
+
                     return <Link 
-                      to={'/home/empresas/' + actividad.nombre.toLowerCase().replace(/ /g,'-')}
+                      to={'/home/empresas/' + slug(actividad.nombre)}
                       style={{textDecoration:'none'}}>
                         <Tab label={ actividad.nombre } 
                           icon={ Icon(actividad.letra, classes.iconoCategoria) }

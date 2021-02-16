@@ -61,7 +61,8 @@ class Empresas extends React.Component<{}, {
 
 		return(
 			<div>
-				<EmpresaList	
+				<EmpresaList
+					{ ...this.props }
 					footer = { this.footer() }
 					appBar = { this.appBar() }
 					rubro = { this.props.match.params.grupo }

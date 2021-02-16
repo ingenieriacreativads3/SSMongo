@@ -95,8 +95,8 @@ class Empresas extends React.Component <{
 			});
 		};
 
-		const viewProfile = () =>{
-			this.props.history.push('/home/perfil/:id');
+		const viewProfile = (idEmpresa: string) =>{
+			this.props.history.push('/home/perfil/' + idEmpresa);
 		}
 
 		return(
@@ -191,7 +191,10 @@ class Empresas extends React.Component <{
 							<Paper style={{ width: "100%", marginTop: "1.5rem", display: empresas.length === 0? 'none': 'block' }} >
 								<List component="nav" aria-label="main mailbox folders">
 									{
-										empresas.map((empresa)=>{
+										empresas.map((empresa: {
+											_id: string,
+											nombre: string
+										})=>{
 											return <div>
 												<ListItem button>
 													<ListItemText primary={empresa.nombre} />
@@ -199,7 +202,7 @@ class Empresas extends React.Component <{
 														<Button
 															variant="outlined"
 															className={classes.ButtonVerPerfil}
-															onClick={viewProfile}
+															onClick={() => viewProfile(empresa._id)}
 															>
 															Ver Perfil
 														</Button>

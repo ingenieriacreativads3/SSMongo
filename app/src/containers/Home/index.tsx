@@ -1,6 +1,5 @@
 import React from 'react';
 import HomeExport from './Home'
-import Cookies from 'universal-cookie';
 import BusquedaPage from './Busqueda';
 import Empresas from './Empresas';
 

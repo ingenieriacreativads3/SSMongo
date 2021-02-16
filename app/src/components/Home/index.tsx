@@ -208,26 +208,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function InitLayout(props: any) {
-
 	const classes = useStyles(theme);
-	return <div>
-		<Home classes={ classes } theme={ useTheme } { ...props } />
-	</div>;
+	return <Home classes={ classes } theme={ useTheme } { ...props } />
 }
 
 export function PaginaBusqueda(props: any) {
-
 	const classes = useStyles(theme);
 	return <Busqueda classes={classes} theme={ useTheme } { ...props } />;
-	
 }
 
 export function EmpresasPorRubro(props: any) {
-
 	const classes = useStyles(theme);
-	return <div>
-		<Empresas classes={ classes } theme={ useTheme } { ...props } />	
-	</div>;
+	return <Empresas classes={ classes } theme={ useTheme } { ...props } />
 }
 
 
