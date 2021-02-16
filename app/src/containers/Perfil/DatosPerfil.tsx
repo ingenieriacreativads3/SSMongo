@@ -33,6 +33,7 @@ class DatosPerfil extends React.Component<{}, {
 	provincia: string,
 	localidad: string,
 	telefono: string
+	loadingProvincias:boolean,
 	photo: File[],
 	formValid:boolean,
 	localidadSeleccionada:boolean,
@@ -58,6 +59,7 @@ class DatosPerfil extends React.Component<{}, {
 			photo: [],
 			localidadSeleccionada:true,
 			provinciaSeleccionada:true,
+			loadingProvincias:false,
 			formValid:true,
 		};
 	}
@@ -66,6 +68,10 @@ class DatosPerfil extends React.Component<{}, {
 		this.props.dispatch(dialogActions.closeOneButton())
 	 
 		this.props.dispatch(empresaActions.getEmpresa(this.props.match.params.id))
+
+
+		this.setState({ loadingProvincias: true });
+    setTimeout(() => this.setState({ loadingProvincias: false }), 5000);
 
 	}
 
@@ -227,6 +233,7 @@ class DatosPerfil extends React.Component<{}, {
 					drawer={ this.drawer() }
 					appBar={ this.appBar() }
 					empresa={ empresa }
+					loadingProvincias = {this.state.loadingProvincias}
 				/>
 				<OneButton 
 					title={ 'Editar Perfil' }
