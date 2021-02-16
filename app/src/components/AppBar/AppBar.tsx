@@ -16,6 +16,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { FixedSizeList } from 'react-window';
 import logo from './../Login/img/logo.png';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import PersonIcon from '@material-ui/icons/Person'
 
 import * as drawerAction from './../../store/actions/drawer'
 import * as itemActions from './../../store/actions/item'
@@ -268,7 +270,15 @@ class AppBare extends React.Component<{}, {
 								<NotificationsIcon className={classes.menuButton}/>
 							</Badge>
 						</IconButton>
-						<IconButton
+						<Button
+						className={classes.menuButton}
+						startIcon={<PersonIcon />}
+						endIcon={<ArrowDropDownIcon />}
+						onClick={handleProfileMenuOpen}
+						>
+						{'Nombre Usuario'}
+						</Button>
+						{/* <IconButton
 							edge="end"
 							aria-label="account of current user"
 							aria-controls={menuId}
@@ -277,7 +287,7 @@ class AppBare extends React.Component<{}, {
 							color="inherit"
 						>
 							<AccountCircle className={classes.menuButton} />
-						</IconButton>
+						</IconButton> */}
 					</div>
 					<div className={classes.sectionMobile}>
 						<IconButton
@@ -317,6 +327,7 @@ class AppBare extends React.Component<{}, {
 							<p className={classes.subtitle} >Notificaciones</p>
 						</MenuItem>
 						<MenuItem onClick={handleProfileMenuOpen}>
+							
 							<IconButton
 								aria-label="account of current user"
 								aria-controls="primary-search-account-menu"
@@ -326,7 +337,7 @@ class AppBare extends React.Component<{}, {
 								<AccountCircle />
 							</IconButton>
 							
-							<p className={classes.subtitle} >Mi Perfil</p>
+							<p className={classes.subtitle} >Nombre Usuario</p>
 					
 						</MenuItem>
 					</Menu>

@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { Container, FormHelperText, Divider,Grid, Card, Box, Typography, TextField, CssBaseline,	IconButton, Button, CardContent, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
+import { Container, FormHelperText, Divider,Grid, CircularProgress, Card, Box, Typography, TextField, CssBaseline,	IconButton, Button, CardContent, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox, CardActions} from '@material-ui/core';
 
 import * as ubicacionActions from './../../store/actions/ubicacion'
 import * as fileActions from './../../store/actions/file'
@@ -49,6 +49,7 @@ class DatosCuenta extends React.Component <{
 	}
 }, {
 	formValid:boolean,
+	loadingMunicipios:boolean,
 	localidadSeleccionada:boolean,
 	provinciaSeleccionada:boolean,
 	provincia: string,
@@ -97,6 +98,7 @@ class DatosCuenta extends React.Component <{
 		this.state = {
 			localidadSeleccionada:true,
 			provinciaSeleccionada:true,
+			loadingMunicipios:false,
 			formValid:true,
 			errors:[],
 			provincia: '',
@@ -127,6 +129,9 @@ class DatosCuenta extends React.Component <{
 		this.props.dispatch(ubicacionActions.getMunicipiosByName(e.target.value))
 		
 		this.setState({provinciaSeleccionada:true});
+
+		this.setState({ loadingMunicipios: true });
+    setTimeout(() => this.setState({ loadingMunicipios: false }), 5000);
 				 
 		this.setState({formValid:true});
 	}
@@ -482,6 +487,7 @@ class DatosCuenta extends React.Component <{
 														/>
 														</Grid>
 														<Grid item xs={12} sm={4}>
+														{this.props.loadingProvincias && <CircularProgress />}
 														<FormControl 
 														variant="outlined" 
 														className={classes.formControl}
@@ -494,6 +500,7 @@ class DatosCuenta extends React.Component <{
 																label="Provincia"
 																value={this.state.empresa.provincia} 
 																onChange={this.handleChangeProvincia}
+																disabled={this.props.loadingProvincias }
 															>
 																{provincias.map((provincia: {
 																	nombre: string,
@@ -506,6 +513,7 @@ class DatosCuenta extends React.Component <{
 														</FormControl>
 														</Grid>
 														<Grid item xs={12} sm={4}>
+														{this.state.loadingMunicipios && <CircularProgress />}
 														<FormControl 
 														variant="outlined"	
 														className={classes.formControl}
@@ -518,6 +526,7 @@ class DatosCuenta extends React.Component <{
 																label="Ciudad"
 																value={this.state.empresa.localidad} 
 																onChange={this.handleChangeMunicipio}
+																disabled={this.state.loadingMunicipios}
 															>
 																{municipios.map((municipio: {
 																	nombre: string,

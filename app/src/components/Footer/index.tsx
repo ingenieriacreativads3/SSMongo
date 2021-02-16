@@ -16,6 +16,18 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+  },
+  container: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    display: 'flex',
+  },
+  
+  
+ 
   
   footer: {
     marginTop: theme.spacing(60),
@@ -24,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
       
   },
   avatar: {
-    // marginLeft: theme.spacing(15),
-    // marginRight: theme.spacing(15),
-    width:'320px',
-    height:'200px',
+     marginLeft: theme.spacing(15),
+     marginRight: theme.spacing(15),
+    width:'160px',
+    height:'100px',
     
 	
 	},

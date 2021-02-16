@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Container, Grid,Box, Card, Tabs, Tab, Avatar, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,	CardContent} from '@material-ui/core';
+import { Container, Grid,Box, Card, Tabs, Tab, Avatar, ListSubheader, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,	CardContent} from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
 
 
@@ -276,6 +276,8 @@ class ReputacionSupplierStore extends React.Component <{}, {
 			this.setState({value: value});
 		};
 
+		console.log(this.state.navegabilidad);
+
 		return(
 			<div className={classes.root}>
 				<CssBaseline />
@@ -295,7 +297,17 @@ class ReputacionSupplierStore extends React.Component <{}, {
 									</Typography>
 									<Divider className={classes.divider} />
 									<CardContent>
-										<Grid container spacing={3}>
+									<Grid container
+										direction="row"
+										justify="center"
+										alignItems="center" 
+										style={{display: this.state.navegabilidad.length == 0 ? "block": "none"}}>
+										<ListSubheader style={{fontSize:"25px"}}	>
+											Aún no hay suficientes datos para calcular la reputación de la plataforma
+										</ListSubheader> 
+										</Grid>
+
+										<Grid container spacing={3} style={{display: this.state.navegabilidad.length  > 0 ? "block": "none"}}>
 											<Grid container spacing={3}>
 												<Grid item xs={12} sm={6}>
 													<PieChart

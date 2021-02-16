@@ -6,7 +6,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 
-import {Grid, Typography, Avatar} from '@material-ui/core';
+import {Grid, Typography, Avatar, Container, Link,  TextField} from '@material-ui/core';
 
 
 import { connect } from 'react-redux'
@@ -96,7 +96,8 @@ class Footer extends React.Component {
           </Grid>
           </Grid>
     </footer>
-     
+
+   
 
     );
   }
