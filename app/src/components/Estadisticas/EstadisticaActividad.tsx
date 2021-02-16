@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Grid, Card, Divider, Paper, FormControl, Box, ListItemIcon, Typography, CssBaseline,	CardContent, CardMedia} from '@material-ui/core';
+import { Grid, Card, Divider, Paper, FormControl, Box, ListSubheader, ListItemIcon, Typography, CssBaseline,	CardContent, CardMedia} from '@material-ui/core';
 import AttachMoney from '@material-ui/icons/AttachMoney';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -99,10 +99,9 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 			})
 		}
 
-		console.log(presupuestos);
+		debugger;
 		console.log(pedidos);
-		
-
+		console.log(pedidos.length);
 		return(
 			<div className={classes.root}>
 				<CssBaseline />
@@ -117,7 +116,7 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 						alignItems="center"
 						justify="center"
 					>
-						<Paper style={{ padding: 20, margin:50}}>
+						<Paper style={{padding: 20, margin:30}}>
 							<Typography component="div" >
 								<Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"	fontStyle='italic'	fontWeight="fontWeightBold" fontSize={22}>
 									{'Mi Resumen'}
@@ -125,16 +124,29 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 							</Typography>
 							<Divider style={{marginBottom:'20px'}} />
 							<FormControl>
-								<Grid container xs={12} sm={12} spacing={3}>
-									<Grid item xs={12} sm={4}>
+							<Grid container xs={12} sm={12} spacing={3}>
+								<ListSubheader >
+									Compras
+								</ListSubheader> 
+								<Grid
+								container
+								direction="row"
+								justify="center"
+								alignItems="center"
+								spacing={3}
+								>
+								<Grid item xs={12} sm={6}>
 										<Card className={classes.root}>
 											<div className={classes.details}>
 												<CardContent className={classes.content1}>
 													<Typography component="h5" variant="h5">
 														Pedidos
 													</Typography>
-													<Typography	color="textSecondary" variant="h5" component="h2">
-														{ this.props?.resumen?.pedidosTotales || 0 }
+													<Typography	color="textSecondary" variant="h5" component="h2" style={{display:  this.props?.resumen?.pedidosTotales !== 0 ? "block":"none" }}>
+														{ this.props?.resumen?.pedidosTotales || "" }
+													</Typography>
+													<Typography	color="textSecondary" variant="h6" style={{display:  this.props?.resumen?.pedidosTotales == 0 ? "block":"none" }} >
+														{ "Aún no tienes compras" }
 													</Typography>
 												</CardContent>
 											</div>
@@ -146,15 +158,18 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 											</ListItemIcon>
 										</Card>
 									</Grid>
-									<Grid item xs={12} sm={4}>
+									<Grid item xs={12} sm={6}>
 										<Card className={classes.root}>
 											<div className={classes.details}>
 												<CardContent className={classes.content1}>
 													<Typography component="h5" variant="h5">
 														Presupuestos
 													</Typography>
-													<Typography	color="textSecondary" variant="h5" component="h2">
-														{ this.props?.resumen?.presupuestosTotales || 0 }
+													<Typography	color="textSecondary" variant="h5" component="h2" style={{display: this.props?.resumen?.presupuestosTotales !== 0 ? "block":"none" }} >
+														{ this.props?.resumen?.presupuestosTotales || "" }
+													</Typography>
+													<Typography color="textSecondary" variant="h6"  style={{display: this.props?.resumen?.presupuestosTotales == 0 ? "block":"none" }}> 
+														{"No solicitaste presupuestos"}
 													</Typography>
 												</CardContent>
 											</div>
@@ -166,33 +181,78 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 											</ListItemIcon>
 										</Card>
 									</Grid>
-									<Grid item xs={12} sm={4}>
+									</Grid>
+								</Grid>
+								<Grid container xs={12} sm={12} spacing={3}>
+								<ListSubheader style={{marginTop:"30px"}}>
+									Ventas
+								</ListSubheader> 
+									<Grid
+									container
+									direction="row"
+									justify="center"
+									alignItems="center"
+									spacing={3}
+									>
+									<Grid item xs={12} sm={6}>
 										<Card className={classes.root}>
 											<div className={classes.details}>
 												<CardContent className={classes.content1}>
 													<Typography component="h5" variant="h5">
-														Visitas 
+														Pedidos
 													</Typography>
-													<Typography	color="textSecondary" variant="h5" component="h2">
-														110
+													<Typography	color="textSecondary" variant="h5" component="h2" style={{display: this.props?.resumen?.pedidosTotales !== 0 ? "block":"none" }}>
+														{ this.props?.resumen?.pedidosTotales || "" }
+													</Typography>
+													<Typography color="textSecondary" variant="h6" style={{display: this.props?.resumen?.pedidosTotales == 0 ? "block":"none" }} >
+														{"Aún no tienes ventas"}
 													</Typography>
 												</CardContent>
 											</div>
-											<CardMedia className={classes.cover} />
+											<CardMedia
+												className={classes.cover}
+											/>
 											<ListItemIcon className={classes.itemIcon}>
-												<VisibilityIcon style={{ fontSize: 60 }} className={classes.icon} />
+												<ShoppingCart style={{ fontSize: 60 }} className={classes.icon} />
 											</ListItemIcon>
 										</Card>
 									</Grid>
+									<Grid item xs={12} sm={6}>
+										<Card className={classes.root}>
+											<div className={classes.details}>
+												<CardContent className={classes.content1}>
+													<Typography component="h5" variant="h5">
+														Presupuestos
+													</Typography>
+													<Typography	color="textSecondary" variant="h5"  component="h2" style={{display: this.props?.resumen?.presupuestosTotales !== 0 ? "block":"none" }}>
+														{ this.props?.resumen?.presupuestosTotales || "" }
+													</Typography>
+													<Typography color="textSecondary" variant="h6" style={{display: this.props?.resumen?.presupuestosTotales == 0 ? "block":"none" }} >
+														{"Aún no tienes presupuestos"}
+													</Typography>
+												</CardContent>
+											</div>
+											<CardMedia
+												className={classes.cover}
+											/>
+											<ListItemIcon className={classes.itemIcon}>
+												<AttachMoney style={{ fontSize: 60 }} className={classes.icon} />
+											</ListItemIcon>
+										</Card>
+									</Grid>
+									</Grid>
+									
 								</Grid>
+								
 								<Divider style={{marginTop:'20px', marginBottom:'20px'}} />
 								<Grid container xs={12} sm={12} spacing={4}>
-									<Grid item xs={12} sm={6}>
+									
+									<Grid item xs={12} sm={6}  style={{display: this.props?.resumen?.pedidosTotales !== 0 ? "block":"none" }} >
 										<PieChart
 											id="pie"
-											dataSource={ presupuestos }
+											dataSource={ pedidos }
 											palette="Bright"
-											title="Mis presupuestos"
+											title="Mis pedidos"
 										>
 											<Series
 												argumentField="estado"
@@ -207,12 +267,13 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 											<Export enabled={true} />
 										</PieChart>
 									</Grid>
-									<Grid item xs={12} sm={6}>
+
+									<Grid item xs={12} sm={6} style={{display: this.props?.resumen?.presupuestosTotales !== 0 ? "block":"none" }} >
 										<PieChart
 											id="pie"
-											dataSource={ pedidos }
+											dataSource={ presupuestos }
 											palette="Bright"
-											title="Mis pedidos"
+											title="Mis presupuestos"
 										>
 											<Series
 												argumentField="estado"

@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import { Container, Grid,Box, Card, Tabs, Tab, Avatar, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,	CardContent} from '@material-ui/core';
+import { Container, Grid,Box, Card, Tabs, Tab, Avatar,ListSubheader, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,	CardContent} from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
 
 
@@ -296,7 +296,7 @@ class Reputacion extends React.Component <{}, {
 
 		var inicialAvatar = item.usuario.substr(0,[1]).toUpperCase();
 		
-	
+		console.log(this.props.valoraciones)
 		return (
 			<ListItem button style={style} key={index}>
 				<ListItem alignItems="flex-start">
@@ -358,12 +358,21 @@ class Reputacion extends React.Component <{}, {
 																/>
  <Typography component="div" >
 								<Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"	fontStyle='italic'	fontWeight="fontWeightBold" fontSize={22}>
-								{"Mi Reputacion"}</Box>
+								{"Mi Reputación"}</Box>
 							</Typography>
 <Divider className={classes.divider} />
-																<CardContent>
-											
-												<Grid container spacing={3}>
+																<CardContent >
+												<Grid container
+												direction="row"
+												justify="center"
+												alignItems="center" 
+												style={{display: this.props.valoraciones.total == 0 ? "block": "none"}}>
+												<ListSubheader style={{fontSize:"25px"}}	>
+													Aún no tienes ventas para calcular tu reputación
+												</ListSubheader> 
+												</Grid>
+
+												<Grid container spacing={3} style={{display: this.props.valoraciones.total > 0 ? "block": "none"}}>
 													<Grid container spacing={3}>
 														
 														<Grid item xs={12} sm={6}>
