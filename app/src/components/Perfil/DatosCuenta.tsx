@@ -207,41 +207,35 @@ class DatosCuenta extends React.Component <{
 
 	}
 
-	validacion=() => {
+	validacion = () => {
 		let formIsValid = true;
 		let errores=[];
 		let ref: any = this.miPerfilRef.current
 
 		for (let i = 0, element; element = ref[i]; i++) {
 
-			 if(!element.checkValidity())
-			{
+			if(!element.checkValidity()){
 
 				errores[element.id]=element.validationMessage;
 				errores.length = errores.length + 1;
 				formIsValid = false;
 				this.setState({formValid:formIsValid})
-			
-				
 			}
 			
 		}
 
-		if(this.state.empresa.localidad == '')
-		{
+		if(this.state.empresa.localidad == ''){
 			this.setState({localidadSeleccionada:false})
 			this.setState({formValid:false})
 		}
 
-		if(this.state.empresa.provincia == '')
-		{
+		if(this.state.empresa.provincia == ''){
 			this.setState({provinciaSeleccionada:false})
 			this.setState({formValid:false})
 		}
 
-		
-		 this.props.dispatch(errorActions.setError(errores)); 
-		 return formIsValid;
+		this.props.dispatch(errorActions.setError(errores)); 
+		return formIsValid;
 	}
 
 	update(
@@ -277,13 +271,21 @@ class DatosCuenta extends React.Component <{
 	}
 			
 	render(){
-		
-		if(this.state.empresa._id === '' && this.props.empresa._id!== ''){
-			this.setState({ empresa: this.props.empresa})
-		}
 
 		const classes = this.props.classes
 		const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);
+		let apiUrl: string = 'http://localhost:8000/'
+		let logo: string = this.state.empresa.logo
+		let foto: string = apiUrl + logo
+		let upload: string = ''
+
+		if(this.props.fileReducer.fetched) {
+			upload = this.props?.fileReducer?.data?.foto?.[0] || ''
+		}
+
+		if(upload !== '') {
+			foto = apiUrl + upload
+		}
 
 		let provincias: any[] = [
 			{
@@ -298,6 +300,10 @@ class DatosCuenta extends React.Component <{
 				id: '1'
 			}
 		]
+
+		if(this.state.empresa._id === '' && this.props.empresa._id!== ''){
+			this.setState({ empresa: this.props.empresa})
+		}
 
 		if(
 			this.props.ubicacionReducer.fetched &&
@@ -566,26 +572,9 @@ class DatosCuenta extends React.Component <{
 																<PhotoCamera />
 															</IconButton>
 														</label>
-															{/* <label htmlFor="raised-button-file">
-																<Button variant="contained" component="label" className={classes.botonIcono}>
-																	Logo
-																	<IconButton color="primary" aria-label="upload picture" component="span" className={classes.iconButton}>
-																		<PhotoCamera />
-																		<Input
-																			inputProps={{ multiple: true }} 
-																			className={classes.input}
-																			style={{ display: 'none' }}
-																			id="raised-button-file"
-																			type="file"
-																			onChange = { this.getFoto }
-																		/>
-																	</IconButton>
-																</Button>
-															</label>	*/}
 														</Grid>
 														<Grid item xs={12} sm={4}>
-														<img className={classes.fotoLogo}	 src={'http://localhost:8000/' + this.state.empresa.logo} ></img>
-															{/* <Avatar className={classes.fotoLogo} alt={'http://localhost:8000/' + this.state.empresa.logo}	src={'http://localhost:8000/' + this.state.empresa.logo} /> */}
+															<img className={classes.fotoLogo}	 src={ foto } ></img>
 														</Grid>
 													</Grid>
 												 
@@ -610,7 +599,7 @@ class DatosCuenta extends React.Component <{
 														this.state.empresa.nombre,
 														this.state.empresa.usuario,
 														this.state.empresa.email,
-														this.props.fileReducer.data.foto[0],
+														upload !== '' ? upload : logo,
 														this.state.empresa.clave,
 														this.state.empresa.telefono,
 														this.state.empresa.provincia,

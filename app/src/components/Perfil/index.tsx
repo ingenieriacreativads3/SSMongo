@@ -279,29 +279,19 @@ const useStyles = makeStyles((theme) => ({
 	  cardContent: {
         flexGrow: 1,
       },
-
-	
 }));
 
 export	function CambiarContraseña(props: any) {
-
 	const classes = useStyles(theme);
- 
 	return <CambiarContraseñaExport classes={classes} { ...props } />
-
 }
 
 export	function PerfilPropio(props: any) {
-
 	const classes = useStyles(theme);
- 
 	return <DatosCuenta classes={classes} { ...props } />
 }
 
 export function PerfilEmpresa(props: any) {
-
 	const classes = useStyles(theme);
- 
 	return <Perfil classes={classes} { ...props } />
-
 }

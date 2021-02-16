@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
+
 import * as empresaActions from '../../store/actions/empresa'
 import * as dialogActions from './../../store/actions/dialog'
+
 import { PerfilPropio as Perfil} from './../../components/Perfil'
 import { OneButton } from './../../components/Dialogs'
 import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
 import { AppBar } from './../AppBar'
-import Cookies from 'universal-cookie';
-
 
 function mapStateToProps(store: {
 	empresaReducer: any,
@@ -79,31 +79,15 @@ class DatosPerfil extends React.Component<{}, {
 	}
 
 	footer() {
-		return <Footer 
-			history={this.props.history}
-			location={this.props.location}
-			match={this.props.match}
-			staticContext={this.props.staticContext}
-		/>
+		return <Footer { ...this.props } />
 	}
 
 	drawer() {
-		return <Drawer 
-			history={this.props.history}
-			location={this.props.location}
-			match={this.props.match}
-			staticContext={this.props.staticContext}
-		/>
+		return <Drawer { ...this.props } />
 	}
 
 	appBar() {
-		return <AppBar 
-			history={this.props.history}
-			location={this.props.location}
-			match={this.props.match}
-			staticContext={this.props.staticContext}
-			cookies={this.props.cookies}
-		/>
+		return <AppBar { ...this.props } />
 	}
 
 	// validacion=() => {
@@ -159,7 +143,7 @@ class DatosPerfil extends React.Component<{}, {
 		domicilio: string,
 	) {
 		// if(this.validacion())
-			 this.props.dispatch(empresaActions.updateEmpresa(
+		this.props.dispatch(empresaActions.updateEmpresa(
 			id,
 			nombre,
 			usuario,
@@ -172,9 +156,6 @@ class DatosPerfil extends React.Component<{}, {
 			visible,
 			domicilio
 		))
-		
-		
-
 	}
 
 	aceptar = () => {
@@ -186,7 +167,6 @@ class DatosPerfil extends React.Component<{}, {
 			this.props.dispatch(empresaActions.setear())
 			this.props.history.push('/home/inicio')
 		}
-
 	}
 
 	render(){
