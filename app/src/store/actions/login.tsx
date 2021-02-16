@@ -10,9 +10,10 @@ export function reintentar() {
 
 }
 
-export function loguear( cookies: Cookies, empresaId: string ) {
+export function loguear( cookies: Cookies, empresaId: string, name: string ) {
 
 	cookies.set('empresaId', empresaId, { path: '/' });
+	cookies.set('empresaName', name, { path: '/' });
 
 	return {
 		type: 'LOGUEAR',

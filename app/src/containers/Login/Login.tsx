@@ -61,7 +61,7 @@ class Login extends React.Component<{
       } else {
        
         this.props.dispatch(dialogAction.closeOneButton())
-        this.props.dispatch(loginAction.loguear(this.props.cookies, this.props.login.data.empresa._id))
+        this.props.dispatch(loginAction.loguear(this.props.cookies, this.props.login.data.empresa._id, this.props.login.data.empresa.nombre))
 
 
         this.props.history.push('/home/inicio');

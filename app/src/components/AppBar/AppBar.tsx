@@ -276,7 +276,7 @@ class AppBare extends React.Component<{}, {
 						endIcon={<ArrowDropDownIcon />}
 						onClick={handleProfileMenuOpen}
 						>
-						{'Nombre Usuario'}
+						{ this.props.nombre }
 						</Button>
 						{/* <IconButton
 							edge="end"
@@ -337,7 +337,7 @@ class AppBare extends React.Component<{}, {
 								<AccountCircle />
 							</IconButton>
 							
-							<p className={classes.subtitle} >Nombre Usuario</p>
+							<p className={classes.subtitle}>{ this.props.nombre.toUpperCase() }</p>
 					
 						</MenuItem>
 					</Menu>

@@ -64,6 +64,7 @@ class AppBar extends React.Component<{}, {}> {
           cambiarPassword={ this.cambiarPassword }
           mensajes={ this.mensajes }
           mensajesLista={ mensajesLista }
+          nombre={ this.props.cookies.get('empresaName') }
           { ...this.props }
         />
       </div>
