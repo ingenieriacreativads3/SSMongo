@@ -1,28 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Cookies from 'universal-cookie';
 
-// import { Detail as DetailExport } from './../../../components/Detail'
-// import * as requestActions from './../../../store/actions/request'
+import * as messageActions from './../../store/actions/message'
+
 import PermanetDrawerLeft from './../../components/AppBar'
 
 function mapStateToProps(store: {
   requestReducer: any,
-  login: any
+  mensajeReducer: any,
 }) {
   return {
+    mensajeReducer: store.mensajeReducer,
     requestReducer: store.requestReducer,
-    login: store.login
   };
 }
 
-class AppBar extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {}> {
+class AppBar extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -33,6 +26,10 @@ class AppBar extends React.Component<{
 		super(props);
     this.state = {};
 	}
+
+  componentWillMount = () => {
+    this.props.dispatch(messageActions.getMensajesSinLeer(this.props.cookies.get('empresaId')))
+  }
 	
 	cerrarSesion = () => {
     this.props.cookies.remove('empresaId')
@@ -53,6 +50,12 @@ class AppBar extends React.Component<{
 
   render(){
 
+    let mensajesLista: any[] = []
+
+    if(this.props.mensajeReducer.fetched) {
+      mensajesLista = this.props.mensajeReducer.data.mensajes
+    }
+
     return(
       <div>
         <PermanetDrawerLeft
@@ -60,6 +63,7 @@ class AppBar extends React.Component<{
           miPerfil={ this.miPerfil }
           cambiarPassword={ this.cambiarPassword }
           mensajes={ this.mensajes }
+          mensajesLista={ mensajesLista }
           { ...this.props }
         />
       </div>

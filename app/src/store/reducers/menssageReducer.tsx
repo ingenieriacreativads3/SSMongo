@@ -14,6 +14,32 @@ export default function mensajeReducer ( state = {
 
 	switch (action.type) {
 
+		case 'GET_MENSAJES_SIN_LEER_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'GET_MENSAJES_SIN_LEER_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'GET_MENSAJES_SIN_LEER_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+				fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
 		case 'GET_MENSAJES_BY_EMPRESA_PENDING': {
 			return { 
 				...state, 

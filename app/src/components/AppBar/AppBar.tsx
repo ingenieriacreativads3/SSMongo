@@ -53,16 +53,56 @@ class AppBare extends React.Component<{}, {
 		};
 	}
 
-	renderRow(){
+	renderRow = (props: any) => {
+
+		const { index } = props
+		let mensajesLista: {
+			comentario: string,
+			created_at: string,
+			empresa: {
+				nombre: string,
+				logo: string
+			}
+		}[] = []
+
+		let apiUrl: string = 'http://localhost:8000/'
+		let foto: string = ''
+		let mensaje: string = ''
+		let hora: string = ''
+		let nombre: string = ''
+		let logo: string = ''
+
+		if(
+			this.props.mensajesLista !== undefined &&
+			Array.isArray(this.props.mensajesLista) &&
+			this.props.mensajesLista.length > 0
+		) {
+			mensajesLista = this.props.mensajesLista
+		}
+
+		console.log(mensajesLista[index]);
+
+		if(mensajesLista[index] !== undefined) {
+			if(mensajesLista[index].comentario !== undefined) mensaje = mensajesLista[index].comentario
+			if(mensajesLista[index].created_at !== undefined) hora = mensajesLista[index].created_at
+			if(mensajesLista[index].empresa !== undefined) {
+				if(mensajesLista[index].empresa.nombre !== undefined) nombre = mensajesLista[index].empresa.nombre
+				if(mensajesLista[index].empresa.logo !== undefined) {
+					logo = mensajesLista[index].empresa.logo
+					foto = apiUrl + logo
+				}
+			}
+		}
+
 		return <ListItem>
 			<ListItemAvatar>
 			
-				<Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
+				<Avatar alt={ nombre } src={ foto } />
 			
 			</ListItemAvatar>
 			<ListItemText
-			primary={"Este es un nuevo mensaje"}
-			secondary={"15:00 PM"}
+				primary={ nombre }
+				secondary={ mensaje + ' - ' + hora}
 			/>
 		</ListItem>
 	}
@@ -214,7 +254,7 @@ class AppBare extends React.Component<{}, {
 					</div>
 					<div>
 					<Button onClick={volverInicio} size="large" style={{color:'#d93211', fontWeight:'bold', fontStyle:'italic'}} >
-					Suppliers Store
+						Suppliers Store
 					</Button>
 					</div>
 					<div className={classes.grow} />
@@ -306,7 +346,7 @@ class AppBare extends React.Component<{}, {
 						<MenuItem onClick={ cambiarPassword } className={classes.subtitle}>Cambiar contraseña</MenuItem>
 					</Menu>
 
-					  <Menu
+					<Menu
 						anchorEl={this.state.mensajes}
 						anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 						id={menuId}
@@ -323,7 +363,7 @@ class AppBare extends React.Component<{}, {
 						</Box>
 						<Divider className={classes.divider} />
 						<FixedSizeList height={200} width={370} itemSize={10} itemCount={3}>
-							{this.renderRow} 
+							{ this.renderRow }
 						</FixedSizeList>
 					</Menu>  
 				</Toolbar>
