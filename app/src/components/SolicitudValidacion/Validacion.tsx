@@ -17,7 +17,7 @@ function mapStateToProps(store: {
 
 class Validacion extends React.Component <{}, {
 	rubros: any[],
-	estado: string
+	estado: string,
 }> {
 
 	props: any
@@ -71,7 +71,7 @@ class Validacion extends React.Component <{}, {
 	};
 
 	onClickRubro = (rubro: string) => {
-
+		
 		this.props.removeRubro(rubro)
 
 	}
@@ -82,7 +82,10 @@ class Validacion extends React.Component <{}, {
 
 	}
 
-	onClickActividad = (actividad: string) => {
+	onClickActividad = (actividad: string, asd: any) => {
+
+		console.log(asd);
+		
 
 		this.props.removeActividad(actividad)
 
@@ -93,12 +96,14 @@ class Validacion extends React.Component <{}, {
 		let lista: {}[] = []
 
 		this.props.actividades.map((actividad: {
-			name: string
+			name: string,
+			seccion: string,
+			grupo: string
 		}) => {
 			lista.push({
 				actividad: actividad.name,
-				seccion: 'seccion',
-				grupo: 'Grupo Nombre',
+				seccion: actividad.seccion,
+				grupo: actividad.grupo,
 			})
 		})
 
@@ -129,11 +134,9 @@ class Validacion extends React.Component <{}, {
 		let grupos: any[] = []
 		let actividades: any = []
 		
-		if(this.props.rubros) rubros = this.props.rubros
-		if(this.props.grupos) grupos = this.props.grupos
-		if(this.props.actividades) actividades = this.props.actividades
-
-
+		if(this.props.rubros !== undefined) rubros = this.props.rubros
+		if(this.props.grupos !== undefined) grupos = this.props.grupos
+		if(this.props.actividades !== undefined) actividades = this.props.actividades
 		
 		const ITEM_HEIGHT = 48;
 		const ITEM_PADDING_TOP = 8;
@@ -146,30 +149,6 @@ class Validacion extends React.Component <{}, {
 				},
 			},
 		};
-
-		// let solicitudDeValidacion = {
-		//	 _id: '',
-		//	 empresa: {
-		//		 nombre: '',
-		//		 cuit: ''
-		//	 }
-		// }
-
-		// let _id: string = ''
-		// let empresaNombre: string = ''
-		// let empresaCuit: string = ''
-
-		// if(
-		//	 this.props.solicitudDeValidacionReducer &&
-		//	 this.props.solicitudDeValidacionReducer.data &&
-		//	 this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones
-		// ) {
-		//	 if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones._id) _id = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones._id
-		//	 if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa) {
-		//		 if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre) empresaNombre = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre
-		//		 if(this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit) empresaCuit = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit
-		//	 }
-		// }
 
 		return(
 
@@ -395,7 +374,9 @@ class Validacion extends React.Component <{}, {
 																		if(item.name === actividad.name) exist = true
 																	})
 
-																	return <MenuItem onClick={ () => this.onClickActividad(actividad.number) } key={actividad.number} value={actividad.name}>
+																	
+
+																	return <MenuItem onClick={ () => this.onClickActividad(actividad.number, actividad) } key={actividad.number} value={actividad.name}>
 																		<Checkbox checked={exist} />
 																		<ListItemText primary={actividad.name} />
 																	</MenuItem>

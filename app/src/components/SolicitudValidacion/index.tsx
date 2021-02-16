@@ -126,9 +126,7 @@ export function SolicitudesValidacion(props: any) {
 
 export function ValidarNuevoUsuario(props: any) {
 	const classes = useStyles(theme);
-  return <div>
-    <Validacion classes={ classes } { ...props } />
-  </div>
+  return <Validacion classes={ classes } { ...props } />
 }
 
 export const NO_VALIDADA: string = 'No Validada'

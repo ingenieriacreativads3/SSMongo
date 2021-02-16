@@ -230,6 +230,11 @@ class Detail extends React.Component<{
     let listGroupsAux: any[] = []
 
     listaRubros.map((item: any) => {
+      item.items.map((itemSeccion: {
+        seccion: string
+      }) => {
+        itemSeccion.seccion = item.nombre
+      })
       this.state.rubros.map((itemAux: any) => {
         if(item.letra === itemAux.letra) {
           listGroupsAux = listGroupsAux.concat(item.items)
@@ -242,6 +247,13 @@ class Detail extends React.Component<{
     let listActividadesAux: any[] = []
 
     listGroupsAux.map((item: any) => {
+      item.items.map((itemGrupo: {
+        grupo: string,
+        seccion: string
+      }) => {
+        itemGrupo.grupo = item.nombre
+        itemGrupo.seccion = item.seccion
+      })
       this.state.grupos.map((itemAux: any) => {
         if(item.number === itemAux.number) {
           listActividadesAux = listActividadesAux.concat(item.items)
@@ -278,7 +290,6 @@ class Detail extends React.Component<{
       })
     }
 
-
     this.setState({
       actividades: listAux
     })
@@ -286,37 +297,20 @@ class Detail extends React.Component<{
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer { ...this.props } />
   }
 
-
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   update = (idEmpresa: string, rubros: {}[], estado: string) => {
 
-    if(estado ===  'Validada' ) this.props.dispatch(empresaActions.validar(idEmpresa))
+    if(estado ===  VALIDADA ) this.props.dispatch(empresaActions.validar(idEmpresa))
     if(estado === NO_AUTENTICADA ) this.props.dispatch(empresaActions.autenticar(idEmpresa, false))
     if(estado === AUTENTICADA ) this.props.dispatch(empresaActions.autenticar(idEmpresa, true))
 
