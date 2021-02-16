@@ -19,6 +19,7 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import * as drawerAction from './../../store/actions/drawer';
+import logo from './../Login/img/logoSoloLetras.png';
 
 
 function mapStateToProps(store: {
@@ -68,6 +69,11 @@ class MenuLateral extends React.Component<{
 		};
 	}
 
+	 volverInicio = () => {
+		this.props.history.push("/home/inicio");
+	}
+
+
 	handleClickCompras(e: any) {
 		this.setState({ openItemMenuCompras: !this.state.openItemMenuCompras })
 	  }
@@ -112,9 +118,7 @@ class MenuLateral extends React.Component<{
 					open={this.props.open}
 				>
 					 <div className={classes.toolbar} >
-					 <Typography style={{color:'#d93211', marginTop: '15px', marginLeft:'25px', fontStyle:'italic'}} variant="h5"  gutterBottom>
-						Suppliers Store
-					</Typography>
+					 <img onClick={this.volverInicio} style={{width:"250px", height: "30px", marginTop:"20px"}} src={logo}></img> 
 						{/* <Avatar src={logoLetras} className={classes.avatar} ></Avatar> */}
 					</div> 
 					{/* <div className={classes.toolbarIcon}>

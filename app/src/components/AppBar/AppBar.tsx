@@ -15,7 +15,7 @@ import InputBase from '@material-ui/core/InputBase';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { FixedSizeList } from 'react-window';
-import logo from './../Login/img/logo.png';
+import logo from './../Login/img/logoSoloLetras.png';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import PersonIcon from '@material-ui/icons/Person'
 
@@ -253,9 +253,8 @@ class AppBare extends React.Component<{}, {
 						/>
 					</div>
 					<div>
-					<Button onClick={volverInicio} size="large" style={{color:'#d93211', fontWeight:'bold', fontStyle:'italic'}} >
-						Suppliers Store
-					</Button>
+					
+					 <img onClick={volverInicio} style={{width:"260px", height: "35px"}} src={logo}></img> 
 					</div>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
