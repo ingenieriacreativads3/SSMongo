@@ -6,6 +6,9 @@ export default function mensajeReducer ( state = {
   fetching: false,
 	fetched: false,
 	error: null,
+	mensajesSinLeer: [],
+	empresas: [],
+	mensajes: []
 	
 }, action: {
 	type: string,
@@ -13,6 +16,32 @@ export default function mensajeReducer ( state = {
 }) {
 
 	switch (action.type) {
+
+		case 'GET_MENSAJES_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'GET_MENSAJES_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'GET_MENSAJES_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+				fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        mensajes: action.payload.data.data
+      };
+		}
 
 		case 'GET_MENSAJES_SIN_LEER_PENDING': {
 			return { 
@@ -36,7 +65,7 @@ export default function mensajeReducer ( state = {
 				fetched: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
-        data: action.payload.data.data
+        mensajesSinLeer: action.payload.data.data
       };
 		}
 
@@ -62,7 +91,7 @@ export default function mensajeReducer ( state = {
 				fetched: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
-        data: action.payload.data.data
+        empresas: action.payload.data.data
       };
 		}
 

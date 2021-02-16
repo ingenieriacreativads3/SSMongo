@@ -53,7 +53,7 @@ class AppBar extends React.Component<{}, {}> {
     let mensajesLista: any[] = []
 
     if(this.props.mensajeReducer.fetched) {
-      mensajesLista = this.props.mensajeReducer.data.mensajes
+      mensajesLista = this.props.mensajeReducer.mensajesSinLeer.mensajes
     }
 
     return(

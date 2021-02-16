@@ -26,8 +26,6 @@ class Mensajes extends React.Component<{}, {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.getMessage = this.getMessage.bind(this);
-    this.sendMessage = this.sendMessage.bind(this);
     this.state={
       nuevoMensaje: '',
     };
@@ -37,11 +35,15 @@ class Mensajes extends React.Component<{}, {
     this.props.dispatch(messageAction.getMensajesByEmpresa(this.props.match.params.id))
   }
 
-  getMessage(e: any) {
+  getMessages = (idOtraEmpresa: string) => {
+    this.props.dispatch(messageAction.getMensajes(this.props.match.params.id, idOtraEmpresa))
+  }
+
+  getMessage = (e: any) => {
     this.setState({ nuevoMensaje: e.target.value})
   }
 
-  sendMessage() {
+  sendMessage = () => {
     // this.props.dispatch(messageAction.)
   }
 
@@ -60,9 +62,11 @@ class Mensajes extends React.Component<{}, {
   render(){
 
     let mensajes: any[] = []
+    let empresas: any[] = []
 
     if(this.props.mensajeReducer.fetched) {
-      mensajes = this.props?.mensajeReducer?.data?.mensajes || []
+      if(this.props?.mensajeReducer?.mensajes?.chat !== undefined) mensajes = this.props?.mensajeReducer?.mensajes?.chat || []
+      if(this.props?.mensajeReducer?.empresas?.listado !== undefined) empresas = this.props?.mensajeReducer?.empresas?.listado || []
     }
 
     return(
@@ -73,8 +77,10 @@ class Mensajes extends React.Component<{}, {
           drawer={this.drawer()}
           appBar={this.appBar()}
           mensajes = { mensajes }
+          empresas = { empresas }
           getMessage={ this.getMessage }
-          sendMessage={this.sendMessage}
+          sendMessage={ this.sendMessage }
+          getMessages={ this.getMessages }
           nuevoMensaje={this.state.nuevoMensaje}
          />
       </div>

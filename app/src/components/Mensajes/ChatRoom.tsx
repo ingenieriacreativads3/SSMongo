@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 import { Container, Grid,ListItem, ListSubheader, ListItemIcon, ListItemText, Paper, List, Divider, TextField, CssBaseline, Avatar} from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
@@ -45,14 +46,60 @@ class ChatRoom extends React.Component <{}, {}>	{
 		};
 	}
 
-	renderRow(props:any) {
+	getMessages = (idOtraEmpresa: string) => {
+		this.props.getMessages(idOtraEmpresa)
+	}
+
+	renderRow(props: any, empresas: any[]) {
+
+		const { index } = props
+
+		let empresa: {
+			_id: string
+			nombre: string,
+			logo: string,
+			email: string
+		} = {
+			_id: '',
+			nombre: '',
+			logo: '',
+			email: ''
+		}
+
+		let apiUrl: string = 'http://localhost:8000/'
+		let foto: string = ''
+		let nombre: string = ''
+		let logo: string = ''
+		let _id: string = ''
+		let email: string = ''
+
+		if(
+			empresas !== undefined &&
+			Array.isArray(empresas) &&
+			empresas.length > 0
+		) {
+			empresa = empresas[index]
+		}
+
+		if(empresa !== undefined) {
+			if(empresa.nombre !== undefined) nombre = empresa.nombre
+			if(empresa._id !== undefined) _id = empresa._id
+			if(empresa.email !== undefined) email = empresa.email
+			if(empresa.logo !== undefined) {
+				logo = empresa.logo
+				foto = apiUrl + logo
+			}
+		}
+
 		return (
-			<ListItem button key="Alice">
-				<ListItemIcon>
-						<Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
-				</ListItemIcon>
-				<ListItemText primary="Alice">Alice</ListItemText>
-		</ListItem>
+			<div onClick={ () => this.getMessages(_id) }>
+				<ListItem button key={ _id }>
+					<ListItemIcon>
+							<Avatar alt={ nombre } src={ foto } />
+					</ListItemIcon>
+					<ListItemText primary={ nombre } secondary={ email } />
+				</ListItem>
+			</div>
 		);
 	}
 
@@ -60,6 +107,8 @@ class ChatRoom extends React.Component <{}, {}>	{
 
 		const classes = this.props.classes
 		let mensajes: any = []
+		let empresas: any[] = []
+		let empresasLargo: number = 0
 
 		if(
 			this.props.mensajes !== undefined &&
@@ -69,7 +118,15 @@ class ChatRoom extends React.Component <{}, {}>	{
 			mensajes = this.props.mensajes
 		}
 
-		console.log(mensajes);
+		if(
+			this.props !== undefined &&
+			this.props.empresas !== undefined &&
+			Array.isArray(this.props.empresas) &&
+			this.props.empresas.length > 0
+		) {
+			empresas = this.props.empresas
+			empresasLargo = empresas.length
+		}
 
 		return(
 
@@ -88,8 +145,8 @@ class ChatRoom extends React.Component <{}, {}>	{
 									</ListSubheader> 
 								</Grid>
 								<Divider />
-								<FixedSizeList height={525} width={310} itemSize={50} itemCount={20}>
-									{this.renderRow}
+								<FixedSizeList height={525} width={310} itemSize={50} itemCount={ empresasLargo }>
+									{ (props: any) => this.renderRow(props, empresas) }
 								</FixedSizeList>
 							</Grid>
 							<Grid item xs={9}>

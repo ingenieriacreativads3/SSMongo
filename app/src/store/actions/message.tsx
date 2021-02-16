@@ -1,6 +1,20 @@
 import axios from 'axios'
 import config from './config'
 
+export function getMensajes(
+	idEmpresa: string,
+	idOtraEmpresa: string,
+) {
+
+	let payload: any = axios.get(config.url + '/empresa/' + idEmpresa + '/mensaje/' + idOtraEmpresa)
+	
+  return {
+		type: 'GET_MENSAJES',
+		payload: payload
+	}
+
+}
+
 export function getMensajesSinLeer(
 	idEmpresa: string,
 ) {
@@ -18,7 +32,7 @@ export function getMensajesByEmpresa(
 	idEmpresa: string,
 ) {
 
-	let payload: any = axios.get(config.url + '/empresa/' + idEmpresa + '/mensajes')
+	let payload: any = axios.get(config.url + '/empresa/' + idEmpresa + '/listado-mensajes')
 	
   return {
 		type: 'GET_MENSAJES_BY_EMPRESA',

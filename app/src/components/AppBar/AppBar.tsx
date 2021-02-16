@@ -80,8 +80,6 @@ class AppBare extends React.Component<{}, {
 			mensajesLista = this.props.mensajesLista
 		}
 
-		console.log(mensajesLista[index]);
-
 		if(mensajesLista[index] !== undefined) {
 			if(mensajesLista[index].comentario !== undefined) mensaje = mensajesLista[index].comentario
 			if(mensajesLista[index].created_at !== undefined) hora = mensajesLista[index].created_at
