@@ -105,11 +105,19 @@ class Renegociar extends React.Component <{}, {}> {
     let empresa_perteneciente: {
 			_id: string,
 			email: string,
-			nombre: string
+			nombre: string,
+      telefono: string,
+      domicilioLegal: string,
+      localidad: string,
+      provincia: string
 		} = {
 			_id: '',
 			email: '',
-			nombre: ''
+			nombre: '',
+      telefono: '',
+      domicilioLegal: '',
+      localidad: '',
+      provincia: ''
 		}
 
     let mensajes: {
@@ -199,22 +207,22 @@ class Renegociar extends React.Component <{}, {}> {
                 </Typography>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Empresa" label="Empresa demandada" value={ empresa_perteneciente?.nombre } className={classes.input}  />
+                <TextField disabled id="Empresa" label="Empresa demandada" value={ (empresa_perteneciente?.nombre !== undefined) ? empresa_perteneciente?.nombre : '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Email" label="Email" value={ empresa_perteneciente.email } className={classes.input}  />
+                <TextField disabled id="Email" label="Email" value={ (empresa_perteneciente?.email !== undefined) ? empresa_perteneciente?.email : ''} className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Telefono" label="Telefono" value={ 'poner el telefono aqui' } className={classes.input}  />
+                <TextField disabled id="Telefono" label="Telefono" value={ (empresa_perteneciente?.telefono !== undefined) ? empresa_perteneciente?.telefono : '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Provincia" label="Provincia" value={ 'poner la provincia aqui' } className={classes.input}  />
+                <TextField disabled id="Provincia" label="Provincia" value={ (empresa_perteneciente?.provincia !== undefined) ? empresa_perteneciente?.provincia : '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="Ciudad" label="Ciudad" value={ 'poner la ciudad aqui' } className={classes.input}  />
+                <TextField disabled id="Ciudad" label="Ciudad" value={ (empresa_perteneciente?.localidad !== undefined) ? empresa_perteneciente?.localidad : '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="CP" label="CP" value={ 'poner el cp aqui' } className={classes.input}  />
+                <TextField disabled id="Domicilio" label="Domicilio" value={ (empresa_perteneciente?.domicilioLegal !== undefined) ? empresa_perteneciente?.domicilioLegal : '' } className={classes.input}  />
                 </Grid>
               </Grid>
 
