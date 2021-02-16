@@ -10,12 +10,10 @@ import * as dialogActions from './../../store/actions/dialog'
 import * as empresaActions from './../../store/actions/empresa'
 
 function mapStateToProps(store: {
-	login: any
 	mensajeReducer: any,	
 }) {
 	return {
 		mensajeReducer: store.mensajeReducer,
-		login: store.login
 	};
 }
 
@@ -42,7 +40,6 @@ class Empresa extends React.Component<{}, {}> {
 				this.props.dispatch(dialogActions.closeOneButton())
 			}
 		}
-
 	}
 
 	footer() {
@@ -58,10 +55,8 @@ class Empresa extends React.Component<{}, {}> {
 	}
 
 	aceptar = () => {
-
 		this.props.dispatch(dialogActions.closeOneButton())
 		this.props.dispatch(empresaActions.reintentarMensaje())
-
 	}
 
 	render(){
@@ -69,12 +64,12 @@ class Empresa extends React.Component<{}, {}> {
 		return(
 			<div>
 				<EmpresaPerfil
+					{ ...this.props }
 					footer={ this.footer() }
 					drawer={ this.drawer() }
 					appBar={ this.appBar() }
-					{ ...this.props }
-				 />
-				 <OneButton 
+				/>
+				<OneButton 
 					title={ 'Servicio de mensajería' }
 					text={ this.props?.mensajeReducer?.message || '' }
 					functionRight={ this.aceptar }

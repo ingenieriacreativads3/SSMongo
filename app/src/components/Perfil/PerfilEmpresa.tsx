@@ -72,6 +72,7 @@ class PerfilEmpresa extends React.Component <{}, {
 		let empresa: any = {}
 		let items: any[] = []
 		let user: any = {}
+		let rubros: any[] = []
 
 		if(this.props.empresaReducer.perfil && this.props.empresaReducer.data.empresa !== undefined) {
 			empresa = this.props.empresaReducer.data.empresa
@@ -83,6 +84,10 @@ class PerfilEmpresa extends React.Component <{}, {
 
 		if(this.props.userReducer.fetched) {
 			user = this.props.userReducer?.data?.empresa || {}
+		}
+
+		if(empresa.rubros !== undefined) {
+			rubros = empresa.rubros
 		}
 
 		return(
@@ -115,17 +120,24 @@ class PerfilEmpresa extends React.Component <{}, {
   					alignItems="flex-start" xs={12} sm={12}>
 				<Box>			
 					<img src={'http://localhost:8000/' + empresa.logo} className={classes.img} />
-					<Typography variant="h5" className={classes.item} gutterBottom>
-						<BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
-						Construccion (traer el rubro aca)
-					</Typography>
+					{
+						rubros.map((rubro: {
+							nombreRubro: string,
+							grupo: string
+						}) => {
+							return <Typography variant="h5" className={classes.item} gutterBottom>
+								<BuildOutlinedIcon fontSize="large" style={{ color: '#d93211' }} />
+								{' ' + rubro.grupo } - { rubro.nombreRubro }
+							</Typography>
+						})
+					}
 					<Typography variant="h5"	className={classes.item} gutterBottom>
 						<LocationOnIcon fontSize="large" style={{ color: '#d93211' }} />
-						{ empresa.localidad } - { empresa.provincia }
+						{' ' +  empresa.localidad } - { empresa.provincia }
 					</Typography>
 					<Typography variant="h5"className={classes.item}	 gutterBottom>
 						<PhoneIcon fontSize="large" style={{ color: '#d93211' }} />
-						{ empresa.telefono }
+						{' ' +  empresa.telefono }
 					</Typography>
 				</Box>
 				</Grid>
@@ -280,13 +292,12 @@ class PerfilEmpresa extends React.Component <{}, {
 					</Grid>
 				})
 			}
-
-		  </Grid>
-			</FormControl>
-			</Paper>
-		</Grid>
-		</main>
-		</div>
+		  					</Grid>
+							</FormControl>
+						</Paper>
+					</Grid>
+				</main>
+			</div>
 		);
 	}
 }
