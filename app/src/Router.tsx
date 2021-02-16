@@ -138,7 +138,7 @@ class App extends React.Component <{}, {}> {
 						<Route path='/home/inicio' render={(props) => <Inicio { ...props } cookies={cookies} />}/>
 						<Route path='/home/empresas' render={(props) => <EmpresaList { ...props } cookies={cookies} />}/>
 						
-						<Route path='/mensajes' render={(props) => <Chat {...props} cookies={cookies}/>} /> 
+						<Route path='/mensajes/:id' render={(props) => <Chat {...props} cookies={cookies}/>} /> 
 
 						<Route path='/Unauthorized' render={(props) => <NoAutenticado {...props} />} />
 						<Route path='/resetPassword' component={ Reset } />

@@ -3,29 +3,20 @@ import { connect } from 'react-redux'
 import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
 import { AppBar } from './../AppBar'
-import Cookies from 'universal-cookie';
 import { ChatRoom as Chat} from './../../components/Mensajes'
 
+import * as messageAction from './../../store/actions/message'
+
 function mapStateToProps(store: {
-  empresaReducer: any,
-  login: any
+  mensajeReducer: any,
 }) {
   return {
-    empresaReducer: store.empresaReducer,
-    login: store.login
+    mensajeReducer: store.mensajeReducer,
   };
 }
-
  
-class Mensajes extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {
-  mensajes: any [],
-  nuevoMensaje:string,
+class Mensajes extends React.Component<{}, {
+  nuevoMensaje: string,
 }> {
 
 	props: any
@@ -38,87 +29,54 @@ class Mensajes extends React.Component<{
     this.getMessage = this.getMessage.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.state={
-      mensajes:["mensaje1", "mensaje2"],
       nuevoMensaje: '',
     };
   }
 
+  componentWillMount = () => {
+    this.props.dispatch(messageAction.getMensajesByEmpresa(this.props.match.params.id))
+  }
 
   getMessage(e: any) {
-
     this.setState({ nuevoMensaje: e.target.value})
   }
 
   sendMessage() {
-
-    let mensaje = this.state.mensajes;
-
-    mensaje.push(this.state.nuevoMensaje);
-
-     this.setState({
-         mensajes:mensaje,
-         nuevoMensaje:''
-        })
-
-
-  
-  
-        
-      }
-
-  
-
+    // this.props.dispatch(messageAction.)
+  }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
-
-  
-
-  
 
   render(){
 
+    let mensajes: any[] = []
+
+    if(this.props.mensajeReducer.fetched) {
+      mensajes = this.props?.mensajeReducer?.data?.mensajes || []
+    }
+
     return(
       <div>
-        <Chat 
-          history={this.props.history}
-          location={this.props.location}
-          match={this.props.match}
-          staticContext={this.props.staticContext}
+        <Chat
+          { ...this.props }
           footer={this.footer()}
           drawer={this.drawer()}
           appBar={this.appBar()}
-          mensajes = {this.state.mensajes}
+          mensajes = { mensajes }
           getMessage={ this.getMessage }
           sendMessage={this.sendMessage}
           nuevoMensaje={this.state.nuevoMensaje}
          />
-        
       </div>
     );
   }

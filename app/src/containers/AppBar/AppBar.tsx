@@ -31,23 +31,24 @@ class AppBar extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
 		super(props);
-		this.cerrarSesion = this.cerrarSesion.bind(this)
-		this.miPerfil = this.miPerfil.bind(this)
-		this.cambiarPassword = this.cambiarPassword.bind(this)
     this.state = {};
 	}
 	
-	cerrarSesion() {
+	cerrarSesion = () => {
     this.props.cookies.remove('empresaId')
 		this.props.history.push('/')
   }
   
-  miPerfil() {
+  miPerfil = () => {
 		this.props.history.push('/home/miperfil/' + this.props.cookies.get('empresaId'))
   }
   
-  cambiarPassword() {
+  cambiarPassword = () => {
 		this.props.history.push('/home/cambiar-password/' + this.props.cookies.get('empresaId'))
+	}
+
+  mensajes = () => {
+		this.props.history.push('/mensajes/' + this.props.cookies.get('empresaId'))
 	}
 
   render(){
@@ -58,6 +59,7 @@ class AppBar extends React.Component<{
           cerrarSesion={ this.cerrarSesion }
           miPerfil={ this.miPerfil }
           cambiarPassword={ this.cambiarPassword }
+          mensajes={ this.mensajes }
           { ...this.props }
         />
       </div>

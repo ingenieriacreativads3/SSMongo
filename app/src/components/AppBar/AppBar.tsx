@@ -157,6 +157,11 @@ class AppBare extends React.Component<{}, {
 			this.props.cambiarPassword()
 		};
 
+		const mensajes = () => {
+			handleMenuClose()
+			this.props.mensajes()
+		};
+
 		const volverInicio = () => {
 			this.props.history.push("/home/inicio");
 		}
@@ -296,9 +301,9 @@ class AppBare extends React.Component<{}, {
 						open={isMenuOpen}
 						onClose={handleMenuClose}
 					>
-						<MenuItem onClick={miPerfil} className={classes.subtitle}>Mi perfil</MenuItem>
-						<MenuItem onClick={cerrarSesion} className={classes.subtitle}>Cerrar Sesión</MenuItem>
-						<MenuItem onClick={cambiarPassword} className={classes.subtitle}>Cambiar contraseña</MenuItem>
+						<MenuItem onClick={ miPerfil } className={classes.subtitle}>Mi perfil</MenuItem>
+						<MenuItem onClick={ cerrarSesion } className={classes.subtitle}>Cerrar Sesión</MenuItem>
+						<MenuItem onClick={ cambiarPassword } className={classes.subtitle}>Cambiar contraseña</MenuItem>
 					</Menu>
 
 					  <Menu
@@ -313,25 +318,16 @@ class AppBare extends React.Component<{}, {
 						
 						<Box pt={1} pl={2} pb={1} pr={1}>
 							<Typography >
-								<Link href={'/mensajes'} variant="subtitle1" className={classes.link}>
-								{ 'Ver mensajes ' }
-								</Link>
+								<MenuItem onClick={ mensajes } className={classes.subtitle}>Ver Mensajes</MenuItem>
 							</Typography>
-							
-							</Box>
-							<Divider className={classes.divider} />
-							
+						</Box>
+						<Divider className={classes.divider} />
 						<FixedSizeList height={200} width={370} itemSize={10} itemCount={3}>
-						
-							 {this.renderRow} 
+							{this.renderRow} 
 						</FixedSizeList>
-
 					</Menu>  
-					 
-					
 				</Toolbar>
 			</AppBar>
-			
 		);
 	}
 }

@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 
 import * as loginAction from './../../store/actions/login'
 import * as dialogAction from './../../store/actions/dialog'
-import * as errorActions from './../../store/actions/error'
-import * as itemActions from './../../store/actions/item'
 
 import { OneButton } from './../../components/Dialogs'
 import { IniciarSesion as LoginComponent } from './../../components/Login'

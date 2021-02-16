@@ -1,6 +1,19 @@
 import axios from 'axios'
 import config from './config'
 
+export function getMensajesByEmpresa(
+	idEmpresa: string,
+) {
+
+	let payload: any = axios.get(config.url + '/empresa/' + idEmpresa + '/mensajes')
+	
+  return {
+		type: 'GET_MENSAJES_BY_EMPRESA',
+		payload: payload
+	}
+
+}
+
 export function setMensajePresupuesto(
 	idPresupuesto: string,
 	idEmpresa: string,
@@ -26,9 +39,6 @@ export function setMensajePresupuesto(
 export function getMensajesByPresupuesto(
 	idPresupuesto: string,
 ) {
-
-	console.log(idPresupuesto);
-	
 
 	let payload: any = axios.get(config.url + '/presupuesto/' + idPresupuesto + '/mensajes')
 	

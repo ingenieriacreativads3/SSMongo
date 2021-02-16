@@ -202,39 +202,9 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-export  function ChatRoom(props: {
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  footer:any,
-  drawer:any,
-  appBar:any,
-  mensajes:any[],
-  getMessage: any,
-  sendMessage:any,
-  nuevoMensaje:string,
-}) {
-
+export  function ChatRoom(props: any) {
 	const classes = useStyles(theme);
- 
-  return <div>
-    <Chat
-      classes={classes}
-      history={props.history}
-      location={props.location}
-      match={props.match}
-      staticContext={props.staticContext}
-      footer={props.footer}
-      drawer={props.drawer}
-      appBar={props.appBar}
-      mensajes={props.mensajes}
-      getMessage={props.getMessage}
-      sendMessage={props.sendMessage}
-      nuevoMensaje={props.nuevoMensaje}
-     />
-  </div>;
-
+  return <Chat classes={classes} { ...props } />
 }
 
 
