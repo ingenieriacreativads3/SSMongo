@@ -7,7 +7,6 @@ import { OneButton } from './../../components/Dialogs'
 import { Footer } from './../Footer'
 import { Drawer } from './../Drawer'
 import { AppBar } from './../AppBar'
-import Cookies from 'universal-cookie';
 import { CambiarContraseña as ChangePassword} from './../../components/Perfil'
 
 function mapStateToProps(store: {
@@ -54,31 +53,15 @@ class CambiarContraseña extends React.Component<{}, {
 	}
 
 	footer() {
-		return <Footer 
-			history={this.props.history}
-			location={this.props.location}
-			match={this.props.match}
-			staticContext={this.props.staticContext}
-		/>
+		return <Footer { ...this.props } />
 	}
 
 	drawer() {
-		return <Drawer 
-			history={this.props.history}
-			location={this.props.location}
-			match={this.props.match}
-			staticContext={this.props.staticContext}
-		/>
+		return <Drawer { ...this.props } />
 	}
 
 	appBar() {
-		return <AppBar 
-			history={this.props.history}
-			location={this.props.location}
-			match={this.props.match}
-			staticContext={this.props.staticContext}
-			cookies={this.props.cookies}
-		/>
+		return <AppBar { ...this.props } />
 	}
 
 	validacion=() => {
@@ -97,15 +80,11 @@ class CambiarContraseña extends React.Component<{}, {
 				formIsValid = false;
 			
 				this.setState({formValid:formIsValid})
-				
 			}
-			
 		}
 
-		
-
-		 this.props.dispatch(errorActions.setError(errores)); 
-		 return formIsValid;
+		this.props.dispatch(errorActions.setError(errores)); 
+		return formIsValid;
 	}
 
 	update(oldPassword: string, newPassword: string) {
@@ -116,8 +95,6 @@ class CambiarContraseña extends React.Component<{}, {
 			newPassword
 		))
 		}
-	 
-
 	}
 
 	aceptar() {
@@ -129,7 +106,6 @@ class CambiarContraseña extends React.Component<{}, {
 			this.props.dispatch(empresaActions.setear())
 			this.props.history.push('/home/inicio')
 		}
-
 	}
 
 	render(){
@@ -137,11 +113,8 @@ class CambiarContraseña extends React.Component<{}, {
 		errores = this.props.errorReducer.errors;
 		return(
 			<div>
-				<ChangePassword 
-					history={this.props.history}
-					location={this.props.location}
-					match={this.props.match}
-					staticContext={this.props.staticContext}
+				<ChangePassword
+					{ ...this.props }
 					footer={this.footer()}
 					drawer={this.drawer()}
 					appBar={this.appBar()}

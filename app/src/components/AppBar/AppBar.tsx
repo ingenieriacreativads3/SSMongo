@@ -260,7 +260,7 @@ class AppBare extends React.Component<{}, {
 					<div className={classes.sectionDesktop}>
 						<IconButton aria-label="show 4 new mails" color="inherit"
 						onClick={handleMessageMenuOpen} >
-							<Badge badgeContent={4}  color="secondary">
+							<Badge badgeContent={ (this.props.total !== 0) ? this.props.total : null }  color="secondary">
 								<MailIcon className={classes.menuButton}/>
 							</Badge>
 						</IconButton>

@@ -51,9 +51,11 @@ class AppBar extends React.Component<{}, {}> {
   render(){
 
     let mensajesLista: any[] = []
+    let total: number = 0
 
     if(this.props.mensajeReducer.fetchedMensajesSinLeer) {
       mensajesLista = this.props.mensajeReducer.mensajesSinLeer.mensajes
+      total = mensajesLista.length
     }
 
     return(
@@ -64,6 +66,7 @@ class AppBar extends React.Component<{}, {}> {
           cambiarPassword={ this.cambiarPassword }
           mensajes={ this.mensajes }
           mensajesLista={ mensajesLista }
+          total={ total }
           nombre={ this.props.cookies.get('empresaName') }
           { ...this.props }
         />
