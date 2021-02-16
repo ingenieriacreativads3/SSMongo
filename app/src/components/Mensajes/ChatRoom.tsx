@@ -157,8 +157,9 @@ class ChatRoom extends React.Component <{}, {}>	{
 											leido: boolean,
 											comentario: string,
 											presupuesto_id: string,
-											empresa_id: string,
-											empresa_destinada_id: string,
+											empresa: {
+												nombre: string
+											}
 										}) => {
 											if(mensaje.presupuesto_id === undefined) {
 												return <div>
@@ -168,7 +169,7 @@ class ChatRoom extends React.Component <{}, {}>	{
 																<ListItemText	primary={ mensaje.comentario }></ListItemText>
 															</Grid>
 															<Grid item xs={12}>
-																<ListItemText	secondary={ 'poner el nombre de la empresa aqui' }></ListItemText>
+																<ListItemText	secondary={ mensaje.empresa.nombre }></ListItemText>
 															</Grid>
 														</Grid>
 													</ListItem>		
