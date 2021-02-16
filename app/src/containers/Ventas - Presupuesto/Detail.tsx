@@ -1,34 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Cookies from 'universal-cookie';
 
 import { Button  } from '@material-ui/core';
 
+import * as dialogActions from './../../store/actions/dialog'
+import * as presupuestoActions from './../../store/actions/presupuesto'
+
 import { OneButton } from './../../components/Dialogs'
 import { Detail as DetailExport } from './../../components/Detail'
-import * as presupuestoActions from './../../store/actions/presupuesto'
-import * as dialogActions from './../../store/actions/dialog'
 import { Drawer } from './../Drawer'
 import { AppBar } from './../AppBar'
 import { Footer } from './../Footer'
 
 function mapStateToProps(store: {
   presupuestoReducer: any,
-  login: any
 }) {
   return {
     presupuestoReducer: store.presupuestoReducer,
-    login: store.login
   };
 }
 
-class Detail extends React.Component<{ 
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {}> {
+class Detail extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -37,16 +29,11 @@ class Detail extends React.Component<{
   // eslint-disable-next-line no-useless-constructor
   constructor(props: any) {
     super(props);
-    this.aceptar = this.aceptar.bind(this);
-    this.cancelar = this.cancelar.bind(this);
-    this.presupuestar = this.presupuestar.bind(this);
     this.state = {};
   }
 
   componentWillMount() {
-
     this.props.dispatch(presupuestoActions.getPresupuesto(this.props.match.params.id))
-
   }
 
   drawer() {
@@ -54,22 +41,11 @@ class Detail extends React.Component<{
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar {...this.props} />
   }
 
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer {...this.props} />
   }
 
   actions(classes: any) {
@@ -95,7 +71,7 @@ class Detail extends React.Component<{
     </div>
   }
 
-  aceptar() {
+  aceptar = () => {
 
     this.props.dispatch(dialogActions.closeOneButton())
     if(this.props.presupuestoReducer.status !== 200) {
@@ -107,7 +83,7 @@ class Detail extends React.Component<{
 
   }
 
-  cancelar() {
+  cancelar = () => {
 
     this.props.dispatch(presupuestoActions.cancelarPresupuesto(
       this.props.match.params.id,
@@ -117,10 +93,8 @@ class Detail extends React.Component<{
 
   }
 
-  presupuestar() {
-
+  presupuestar = () => {
     this.props.history.push('/presupuestacion/' + this.props.match.params.id)
-
   }
 
   render(){
@@ -275,16 +249,6 @@ class Detail extends React.Component<{
     let empresa: string = 'nombreEmpresa'
 		let importe: string = 'importe'
 		let estado: string = 'estado'
-		// let cantidad: string = 'cantidad'
-		// let item: {
-		// 	nombre: string,
-		// 	precio: string,
-		// 	unidad: string
-		// } = {
-		// 	nombre: 'nombreItem',
-		// 	precio: 'precioItem',
-		// 	unidad: 'unidadItem'
-    // }
 
     if(this.props.presupuestoReducer !== undefined) {
 			if(this.props.presupuestoReducer.data !== undefined) {

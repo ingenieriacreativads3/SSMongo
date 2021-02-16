@@ -134,7 +134,6 @@ class DatosCuenta extends React.Component <{
 	}
 
 	handleChangeProvincia(e: any) {
-		debugger;
 		this.setState({ empresa: { ...this.state.empresa, provincia: e.target.value } })
 		this.props.dispatch(ubicacionActions.getMunicipiosByName(e.target.value))
 		
@@ -152,7 +151,6 @@ class DatosCuenta extends React.Component <{
 	}
 
 	changeUsuario(e: any) {
-		debugger;
 		this.setState({ empresa: { ...this.state.empresa, usuario: e.target.value } })
 		if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
 			this.props.dispatch(errorActions.editErrors(e.target.id))
@@ -210,11 +208,9 @@ class DatosCuenta extends React.Component <{
 	}
 
 	validacion=() => {
-		debugger;
 		let formIsValid = true;
 		let errores=[];
 		let ref: any = this.miPerfilRef.current
-		//let elements:any = document.getElementById("miPerfilForm");
 
 		for (let i = 0, element; element = ref[i]; i++) {
 

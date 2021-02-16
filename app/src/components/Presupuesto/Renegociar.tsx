@@ -225,22 +225,21 @@ class Renegociar extends React.Component <{}, {}> {
                 </Typography>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="ProductoSolicitado" label="Producto" value={ itemPresupuesto?.item?.nombre || '' } className={classes.input}  />
+                  <TextField disabled id="ProductoSolicitado" label="Producto" value={ itemPresupuesto?.item?.nombre || '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="CantidadSolicitada" label="Cantidad" value={ itemPresupuesto?.cantidad || '' } className={classes.input}  />
+                  <TextField disabled id="CantidadSolicitada" label="Cantidad" value={ itemPresupuesto?.cantidad || '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="UnidadSolicitada" label="Unidad" value={ itemPresupuesto?.unidadDeMedida?.nombre || '' } className={classes.input}  />
+                  <TextField disabled id="UnidadSolicitada" label="Unidad" value={ itemPresupuesto?.unidadDeMedida?.nombre || '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <TextField disabled id="PrecioSolicitado" label="Precio" value={ itemPresupuesto?.item?.precio || '' } className={classes.input}  />
+                  <TextField disabled id="PrecioSolicitado" label="Precio" value={ itemPresupuesto?.item?.precio || '' } className={classes.input}  />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <FixedSizeList height={200} width={370} itemSize={100} itemCount={ mensajes.length } >
-                { (props) => this.renderRow(props, mensajes) }
-                </FixedSizeList>
-                {/* <TextareaAutosize style={{borderRadius:7}} disabled aria-label="minimum height" rowsMin={8} className={classes.textTarea} value={msj}  /> */}
+                  <FixedSizeList height={200} width={370} itemSize={100} itemCount={ mensajes.length } >
+                    { (props) => this.renderRow(props, mensajes) }
+                  </FixedSizeList>
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <img className={classes.fotoItem} alt={ foto }	src={ foto } /> 
@@ -252,7 +251,7 @@ class Renegociar extends React.Component <{}, {}> {
               <Grid container xs={12} sm={12}>
               <Grid item xs={12} sm={12}>
                 <Typography style={{marginTop:'20px', marginLeft:'15px'}} variant="h5" component="h2">
-                Renegociación
+                  Renegociación
                 </Typography>
                 </Grid>
               </Grid>

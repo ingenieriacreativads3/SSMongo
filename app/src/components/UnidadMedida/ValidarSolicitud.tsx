@@ -79,7 +79,6 @@ class ValidarSolicitud extends React.Component <{}, {
 
 
   getUnidad = (e:any) => {
-    debugger;
     this.setState({magnitud : e.target.value});
     // if(!(e.target.value === undefined && e.target.value === null && e.target.value === '')) {
     //   this.props.dispatch(errorActions.editErrors(e.target.id))

@@ -43,7 +43,7 @@ export function getValoraciones(empresa: string) {
 
 export function getValoracionesPlataforma() {
 
-	let payload: any = axios.get(config.url + '/plataforma/valoraciones/')
+	let payload: any = axios.get(config.url + '/plataforma/valoraciones')
 
 	return {
 		type: 'GET_VALORACION_PLATAFORMA',

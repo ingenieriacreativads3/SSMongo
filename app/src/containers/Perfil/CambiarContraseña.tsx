@@ -82,7 +82,6 @@ class CambiarContraseña extends React.Component<{}, {
 	}
 
 	validacion=() => {
-		debugger;
 		let formIsValid = true;
 		let errores=[];
 		let ref: any = this.changePasswordRef.current

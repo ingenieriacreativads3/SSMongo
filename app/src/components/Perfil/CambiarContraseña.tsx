@@ -129,7 +129,6 @@ class CambiarContraseña extends React.Component <{
   };
 
   validacion=() => {
-    debugger;
     let formIsValid = true;
     let errores=[];
     let ref: any = this.changePasswordRef.current
@@ -170,7 +169,6 @@ class CambiarContraseña extends React.Component <{
   }
 
   render(){
-    debugger;
 console.log(this.props.errors);
 		const classes = this.props.classes
     const fixedHeightCard = clsx(classes.Card, classes.fixedHeight);

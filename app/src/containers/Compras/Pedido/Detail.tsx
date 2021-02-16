@@ -22,14 +22,7 @@ function mapStateToProps(store: {
   };
 }
 
-class Detail extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies:Cookies
-  
-}, {}> {
+class Detail extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -42,9 +35,7 @@ class Detail extends React.Component<{
 	}
 	
 	componentWillMount() {
-
 		this.props.dispatch(requestActions.getRequest(this.props.match.params.id))
-
 	}
 
   drawer() {
@@ -79,6 +70,7 @@ class Detail extends React.Component<{
     if(idCompany !== '') {
       if(this.props.requestReducer.status !== 200) {
         this.props.dispatch(requestActions.reintentar())
+        this.props.dispatch(requestActions.getRequest(this.props.match.params.id))
       } else {
         this.props.dispatch(requestActions.setear())
         this.props.history.push('/evaluacion/empresa/' + idCompany)

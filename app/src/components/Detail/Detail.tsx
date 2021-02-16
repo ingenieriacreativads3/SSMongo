@@ -207,11 +207,10 @@ class Detail extends React.Component <{
 	
 	constructor(props: any) {
 		super(props);
-		this.renderRow = this.renderRow.bind(this)
 		this.state = {};
 	}
 
-	renderRow(props:any) {
+	renderRow = (props:any) => {
 		const { index, style } = props;
 
 		let msj: any[] = []
@@ -274,9 +273,6 @@ class Detail extends React.Component <{
 			if(empresa.nombre !== undefined) nombre = empresa.nombre
 		}
 
-		msj.reverse()
-
-	
 		return (
 			<ListItem button style={style} key={index}>
 				<ListItem alignItems="flex-start">
@@ -379,7 +375,7 @@ class Detail extends React.Component <{
 						<Paper style={{ padding: 20, margin:50}}>
 							<Typography component="div" >
 								<Box pt={1} pb={1} paddingLeft='10px' color="#ffba00"	fontStyle='italic'	fontWeight="fontWeightBold" fontSize={22}>
-									{this.props.title}
+									{ this.props.title }
 								</Box>
 							</Typography>
 							<Divider className={classes.divider} />
@@ -401,7 +397,7 @@ class Detail extends React.Component <{
 											</Grid>
 											<Grid item xs={12} sm={4}>
 												<FixedSizeList height={200} width={370} itemSize={100} itemCount={msj.length} >
-													{this.renderRow}
+													{ this.renderRow }
 												</FixedSizeList>
 											</Grid>
 										</Grid>

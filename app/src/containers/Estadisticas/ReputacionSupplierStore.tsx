@@ -56,7 +56,7 @@ class OpinionUsuariosPlataforma extends React.Component<{}, {}> {
 			this.props.evaluacionReducer.fetched &&
 			!this.props.evaluacionReducer.fetching
 		) {
-			valoraciones = this.props?.evaluacionReducer?.data?.kpi || {}
+			valoraciones = this.props?.evaluacionReducer?.data?.valoraciones || {}
 			opiniones = this.props?.evaluacionReducer?.data?.opiniones || []
 		}
 
