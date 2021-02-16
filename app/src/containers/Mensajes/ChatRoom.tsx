@@ -62,12 +62,25 @@ class Mensajes extends React.Component<{}, {
   render(){
 
     let mensajes: any[] = []
-    let empresas: any[] = []
+    let empresas: any
+    let empresasList: any[] = []
 
     if(this.props.mensajeReducer.fetched) {
       if(this.props?.mensajeReducer?.mensajes?.chat !== undefined) mensajes = this.props?.mensajeReducer?.mensajes?.chat || []
       if(this.props?.mensajeReducer?.empresas?.listado !== undefined) empresas = this.props?.mensajeReducer?.empresas?.listado || []
     }
+
+    if(
+      empresas !== undefined &&
+      empresas !== null &&
+      !Array.isArray(empresas)
+    ) {
+      Object.keys(empresas).map((key: string) => {
+        empresasList.push(empresas[key])
+      })
+    }
+
+    empresas = empresasList
 
     return(
       <div>

@@ -8,7 +8,8 @@ export default function mensajeReducer ( state = {
 	error: null,
 	mensajesSinLeer: [],
 	empresas: [],
-	mensajes: []
+	mensajes: [],
+	fetchedMensajesSinLeer: false
 	
 }, action: {
 	type: string,
@@ -62,7 +63,7 @@ export default function mensajeReducer ( state = {
 			return {
         ...state,
         fetching: false,
-				fetched: true,
+				fetchedMensajesSinLeer: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
         mensajesSinLeer: action.payload.data.data
