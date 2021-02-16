@@ -122,17 +122,6 @@ class DatosCuenta extends React.Component <{
 		};
 	}
 
-	componentWillMount() {
-
-		if(
-			!this.props.ubicacionReducer.fetched &&
-			!this.props.ubicacionReducer.fetching
-		) {
-			this.props.dispatch(ubicacionActions.getProvincias())
-		}
-
-	}
-
 	handleChangeProvincia(e: any) {
 		this.setState({ empresa: { ...this.state.empresa, provincia: e.target.value } })
 		this.props.dispatch(ubicacionActions.getMunicipiosByName(e.target.value))

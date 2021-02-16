@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import * as empresaActions from '../../store/actions/empresa'
 import * as dialogActions from './../../store/actions/dialog'
+import * as ubicacionActions from './../../store/actions/ubicacion'
 
 import { PerfilPropio as Perfil} from './../../components/Perfil'
 import { OneButton } from './../../components/Dialogs'
@@ -209,6 +210,8 @@ class DatosPerfil extends React.Component<{}, {
 			if(this.props.empresaReducer.data !== undefined) {
 				if(this.props.empresaReducer.data.empresa !== undefined) {
 					empresa = { ...this.props.empresaReducer.data.empresa }
+					this.props.dispatch(ubicacionActions.getProvincias())
+					this.props.dispatch(ubicacionActions.getMunicipiosByName(empresa.provincia))	
 				}
 			}
 		}
