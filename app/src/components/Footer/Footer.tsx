@@ -97,60 +97,7 @@ class Footer extends React.Component {
           </Grid>
     </footer>
 
-    //   <Typography component="footer" className={classes.root}>
-    //   <Container className={classes.container}>
-    //     <Grid container spacing={5}>
-    //       <Grid item xs={12} sm={6} md={12}>
-    //         <Grid
-    //           container
-    //           direction="column"
-    //           justify="flex-end"
-    //           spacing={2}
-    //         >
-    //           <Grid item >
-    //           <Typography variant="h5" align='left' gutterBottom>
-    //             Sobre Nosotros
-    //             </Typography>
-
-    //               <Typography variant="h6" align='left' gutterBottom>
-    //                 En esta plataforma podras encontrar de manera rápida y sencilla a tus proveedores. 
-    //               Registrate, Ingresá y comenzá a hacer tus pedidos. 
-    //               </Typography>
-    //           </Grid>
-    //           <Grid item>
-    //           <Avatar  src={logo} className={classes.avatar} ></Avatar>
-    //           </Grid>
-    //         </Grid>
-    //       </Grid>
-          
-    //       <Grid item xs={12} sm={6} md={12}>
-    //         <Typography variant="h6"  gutterBottom>
-    //         <Typography variant="h5" align='left' gutterBottom>
-    //                 ¿Por qué elegirnos?
-    //               </Typography>
-
-    //                 <Typography variant="h6" align='left'  gutterBottom>
-    //                   <VerifiedUserIcon fontSize="large" style={{ color: '#d93211' }} />
-    //                   Todas las empresas de esta plataforma, son legalmente verificadas
-    //                 </Typography>
-
-    //                 <Typography variant="h6" align='left' gutterBottom>
-    //                   <ShoppingCartIcon fontSize="large" style={{ color: '#d93211' }} />
-    //                   Amplia oferta de productos y servicios
-    //                 </Typography>
-
-    //                 <Typography variant="h6" align='left' gutterBottom>
-    //                 <EqualizerIcon fontSize="large" style={{ color: '#d93211' }} />
-    //                 Perfil personalizado, con estadísticas acerca de tus negocios en la plataforma
-    //                 </Typography>
-    //         </Typography>
-           
-    //       </Grid>
-          
-    //     </Grid>
-    //   </Container>
-    // </Typography>
-     
+   
 
     );
   }
