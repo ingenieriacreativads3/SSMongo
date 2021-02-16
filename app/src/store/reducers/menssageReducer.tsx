@@ -92,7 +92,7 @@ export default function mensajeReducer ( state = {
 				fetched: true,
         status: action.payload.data.status,
         message: action.payload.data.message,
-        empresas: action.payload.data.data
+        empresas: action.payload.data.data.listado
       };
 		}
 

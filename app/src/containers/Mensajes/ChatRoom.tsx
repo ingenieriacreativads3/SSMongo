@@ -67,21 +67,22 @@ class Mensajes extends React.Component<{}, {
 
     if(this.props.mensajeReducer.fetched) {
       if(this.props?.mensajeReducer?.mensajes?.chat !== undefined) mensajes = this.props?.mensajeReducer?.mensajes?.chat || []
-      if(this.props?.mensajeReducer?.empresas?.listado !== undefined) empresas = this.props?.mensajeReducer?.empresas?.listado || []
+      if(
+        this.props !== undefined &&
+        this.props.mensajeReducer !== undefined &&
+        this.props.mensajeReducer.empresas !== undefined
+      ) {
+        if(Array.isArray(this.props.mensajeReducer.empresas)) {
+          empresas = this.props.mensajeReducer.empresas
+        } else {
+          Object.keys(this.props.mensajeReducer.empresas).map((key: string) => {
+            empresasList.push(this.props.mensajeReducer.empresas[key])
+          })
+          empresas = empresasList
+        }
+      }
     }
-
-    if(
-      empresas !== undefined &&
-      empresas !== null &&
-      !Array.isArray(empresas)
-    ) {
-      Object.keys(empresas).map((key: string) => {
-        empresasList.push(empresas[key])
-      })
-    }
-
-    empresas = empresasList
-
+    
     return(
       <div>
         <Chat
