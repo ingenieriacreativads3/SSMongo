@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import config from './config'
 
 export function reintentar() {
 
@@ -10,7 +11,11 @@ export function reintentar() {
 
 }
 
-export function loguear( cookies: Cookies, empresaId: string, name: string ) {
+export function loguear(
+	cookies: Cookies,
+	empresaId: string,
+	name: string
+) {
 
 	cookies.set('empresaId', empresaId, { path: '/' });
 	cookies.set('empresaName', name, { path: '/' });
@@ -22,11 +27,12 @@ export function loguear( cookies: Cookies, empresaId: string, name: string ) {
 
 }
 
-export function ingresar(user: string, pass: string) {
+export function ingresar(
+	user: string,
+	pass: string
+) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/login', {
+	let payload: any = axios.post(config.url + '/login', {
 		user: user,
 		password: pass
 	})
@@ -38,13 +44,12 @@ export function ingresar(user: string, pass: string) {
 
 }
 
-export function recoverPass(email: string) {
+export function recoverPass(
+	email: string
+) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/recover/password', {
-		address: email,
-		
+	let payload: any = axios.post(config.url + '/recover/account', {
+		address: email
 	})
 
 	return {
@@ -54,54 +59,19 @@ export function recoverPass(email: string) {
 
 }
 
-export function resetPass(pass: string, token: string) {
+export function resetPass(
+	pass: string,
+	token: string
+) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/recover/reset', {
+	let payload: any = axios.post(config.url + '/recover/reset', {
 		token: token,
-		password:pass
-		
+		password: pass
 	})
 
 	return {
 		type: 'RESET_PASSWORD',
 		payload: payload
-	}
-
-}
-
-export async function register(empresa: {
-	empresa: {
-		nombre: string,
-		cuit: string,
-		usuario: string,
-		clave: string,
-		email: string,
-		rubros: [
-				null
-		]
-	}
-}) {
-
-	let url: string = 'http://127.0.0.1:8000';
-	let payload: any
-
-	await axios.post(url + '/registro', empresa)
-	.then((response) => {
-		console.log(response);
-		payload = response
-	})
-	.catch((err) => {
-		console.log(err);
-		payload = err
-	});
-
-	console.log('estoy en apiWork, y su payload es:' + payload);
-
-	return {
-			type: 'API_WORK',
-			payload: 'payload'
 	}
 
 }

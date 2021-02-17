@@ -16,6 +16,68 @@ export default function LoginReducer (state = {
 
   switch (action.type) {
 
+    case 'RESET_PASSWORD_PENDING': {
+
+      return { 
+        ...state, 
+        fetching: true 
+      };
+
+    }
+  
+    case 'RESET_PASSWORD_REJECTED': {
+
+      return { 
+        ...state, 
+        fetching: false, 
+        error: action.payload 
+      };
+
+    }
+  
+    case 'RESET_PASSWORD_FULFILLED':{
+
+      return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+    }
+
+    case 'RECOVER_PASSWORD_PENDING': {
+
+      return { 
+        ...state, 
+        fetching: true 
+      };
+
+    }
+  
+    case 'RECOVER_PASSWORD_REJECTED': {
+
+      return { 
+        ...state, 
+        fetching: false, 
+        error: action.payload 
+      };
+
+    }
+  
+    case 'RECOVER_PASSWORD_FULFILLED':{
+
+      return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+    }
+
     case 'INGRESAR_PENDING': {
 
       return { 

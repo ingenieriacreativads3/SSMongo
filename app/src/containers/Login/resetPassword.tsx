@@ -1,15 +1,11 @@
 import React from 'react';
-import Cookies from 'universal-cookie';
 import { connect } from 'react-redux'
 
 import * as loginAction from './../../store/actions/login'
 import * as dialogAction from './../../store/actions/dialog'
-import * as errorActions from './../../store/actions/error'
-import * as itemActions from './../../store/actions/item'
 
 import { OneButton } from './../../components/Dialogs'
 import { ResetPassword as ResetComponent } from './../../components/Login'
-
 
 function mapStateToProps(store: {
   login: any,
@@ -21,13 +17,7 @@ function mapStateToProps(store: {
   };
 }
 
-class ResetPassword extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-  staticContext?: any,
-  cookies: Cookies
-}, {
+class ResetPassword extends React.Component<{}, {
   token: string,
   pass: string,
   formValid:boolean,
@@ -49,26 +39,18 @@ class ResetPassword extends React.Component<{
       formValid: true,
     };
   }
-
  
   componentDidUpdate() {
 
     if(this.props.login.fetched) {
       if(this.props.login.status !== 200) {
         this.props.dispatch(dialogAction.openOneButton())
-       
       } else {
-       
         this.props.dispatch(dialogAction.closeOneButton())
-        
-
-
-        this.props.history.push('/Login');
       }
     } else {
       this.props.dispatch(dialogAction.closeOneButton())
     }
-
   }
 
   getToken = (e: any) => {
@@ -84,29 +66,22 @@ class ResetPassword extends React.Component<{
   }
 
   reset = () => {
-
-   //this.props.dispatch(loginAction.resetPass(this.state.pass, this.state.token))
-    this.props.history.push('/ingresar');
-
-  }
-
-  recoverPass = () =>{
-   // this.props.dispatch(loginAction.recoverPass(this.state.pass))
+    this.props.dispatch(loginAction.resetPass(this.state.pass, this.state.token))
   }
 
   aceptar = () => {
 
     this.props.dispatch(dialogAction.closeOneButton())
     this.props.dispatch(loginAction.reintentar())
+    this.props.history.push('/ingresar');
 
   }
-
-
 
   render(){
 
     let errores: any[] = []
     errores = this.props.errorReducer.errors;
+
     return(
       <div>
         <ResetComponent 
