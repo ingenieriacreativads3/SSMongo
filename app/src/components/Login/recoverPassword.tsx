@@ -149,7 +149,18 @@ class RecoverPassword extends React.Component<{}, {
             >
               Aceptar
             </Button>
-           
+            <Grid container>
+              <Grid item xs>
+                <Link href='/Login' variant='body2'className={classes.Link}>
+                  Iniciar sesion
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href='/registrar' variant='body2' className={classes.Link}>
+                  {'No soy miembro. Registrarme'}
+                </Link>
+              </Grid>
+            </Grid>
           </form>
         </div>    
       </Container>
