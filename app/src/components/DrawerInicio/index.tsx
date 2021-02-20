@@ -110,6 +110,17 @@ const useStyles = makeStyles((theme) => ({
       borderColor: '#d93211 !important',
     }
   },
+  textField:{
+		"&:after": {
+			// changes the bottom textbox border when clicked/focused.	thought it would be the same with input label
+			borderColor: '#d93211 !important',
+		},
+		"&.Mui-focused": {
+			color: '#d93211',
+			
+		},
+		width: '15ch',
+	},
   Boton: {
 	
 	margin:theme.spacing(3),
@@ -119,6 +130,19 @@ const useStyles = makeStyles((theme) => ({
       background: "#d93211",
    },
   },
+
+  Boton2: {
+	
+    marginLeft:theme.spacing(3),
+    marginRight:theme.spacing(3),
+      backgroundColor: '#d93211',
+      color : '#ffffff',
+      '&:hover': {
+        background: "#d93211",
+     },
+    },
+
+
   iconButton:{
 	color:'#d93211',
   },
@@ -133,6 +157,9 @@ const useStyles = makeStyles((theme) => ({
   rating:{
 	paddingLeft:theme.spacing(3),
   },
+
+
+
   
 })); 
 

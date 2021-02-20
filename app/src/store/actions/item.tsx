@@ -6,10 +6,12 @@ export function search(
 	provincia: string,
 	localidad: string,
 	valoracion: string,
-	empresaName: string
+	empresaName: string,
+	precioMinimo: string, 
+	precioMaximo: string,
 ) {
 
-	let payload: any = axios.get(config.url + '/busqueda/' + itemName + '/' + provincia + '/' + localidad + '/' + valoracion + '/' + empresaName)
+	let payload: any = axios.get(config.url + '/busqueda/' + itemName + '/' + provincia + '/' + localidad + '/' + valoracion + '/' + empresaName +  '/' + precioMinimo +  '/' + precioMaximo)
 	
   return {
 		type: 'SEARCH_ITEM_BY_NAME',
