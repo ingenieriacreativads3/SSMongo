@@ -158,7 +158,8 @@ class ChatRoom extends React.Component <{}, {}>	{
 											comentario: string,
 											presupuesto_id: string,
 											empresa: {
-												nombre: string
+												nombre: string,
+												logo: string,
 											}
 										}) => {
 
@@ -169,6 +170,9 @@ class ChatRoom extends React.Component <{}, {}>	{
 												console.log(mensaje);
 												return <div>
 													<ListItem key={ mensaje._id }>
+													<ListItemIcon>
+															<Avatar  src={'http://localhost:8000/' + mensaje.empresa.logo} />
+													</ListItemIcon>
 														<Grid container>
 															<Grid item xs={12}>
 																<ListItemText	primary={ mensaje.comentario }></ListItemText>

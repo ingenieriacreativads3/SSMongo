@@ -232,8 +232,21 @@ class Validacion extends React.Component <{}, {
 										</Select>
 									</FormControl>
 								</Grid>
-
 								<Grid item xs={12} sm={6}>
+								<Link style={{textDecoration: 'none'}} target="_blank" >
+									<Button
+									type="button"
+									
+									variant="outlined"
+									className={classes.Boton}
+									
+									>
+									Ver Documentacion
+									</Button>
+								</Link>
+								</Grid>
+
+								<Grid item xs={12} sm={4}>
 								<FormControl className={classes.formControl}>
 									<InputLabel shrink={ this.props.rubros?.length > 0 ? true : false } id="demo-mutiple-chip-label"	className={ classes.inputLabel }>Sección</InputLabel>
 										<Select
@@ -280,7 +293,7 @@ class Validacion extends React.Component <{}, {
 									</FormControl>
 								</Grid>
 
-												<Grid item xs={12} sm={6}>
+												<Grid item xs={12} sm={4}>
 													<FormControl className={classes.formControl}>
 														<InputLabel
 															shrink={ this.props.grupos?.length > 0 ? true : false }
@@ -332,7 +345,7 @@ class Validacion extends React.Component <{}, {
 													</FormControl>
 												</Grid>
 
-												<Grid item xs={12} sm={6}>
+												<Grid item xs={12} sm={4}>
 													<FormControl className={classes.formControl}>
 														<InputLabel
 															shrink={ this.props.actividades?.length > 0 ? true : false }

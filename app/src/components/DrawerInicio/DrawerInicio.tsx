@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { List,Collapse, FormControlLabel,Typography, Checkbox,  FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer} from '@material-ui/core';
+import { List,Collapse, FormControlLabel,Typography, TextField, Checkbox, Grid, OutlinedInput, InputAdornment,  FormControl, Button, InputLabel,Select, MenuItem, Divider,Drawer} from '@material-ui/core';
 import * as drawerAction from './../../store/actions/drawer';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import RoomIcon from '@material-ui/icons/Room';
@@ -17,6 +17,30 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import * as actividadEconomicaActions from './../../store/actions/actividadEconomica'
 import * as itemActions from './../../store/actions/item'
 import AppsIcon from '@material-ui/icons/Apps';
+import { withStyles } from '@material-ui/core/styles';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+
+const CssTextField = withStyles({
+	root: {
+	  '& label.Mui-focused': {
+		color: '#d93211',
+	  },
+	  '& .MuiInput-underline:after': {
+		borderBottomColor: '#d93211',
+	  },
+	  '& .MuiOutlinedInput-root': {
+		'& fieldset': {
+		  borderColor: '#d93211',
+		},
+		'&:hover fieldset': {
+		  borderColor: '#d93211',
+		},
+		'&.Mui-focused fieldset': {
+		  borderColor: '#d93211',
+		},
+	  },
+	},
+  })(TextField);
 
 function mapStateToProps(store: {
   ubicacionReducer: any,
@@ -44,6 +68,9 @@ class DrawerInicio extends React.Component<{}, {
 	grupo: string,
 	openCategorias: boolean,  
 	openFiltros:boolean,
+	precioMinimo: string,
+	precioMaximo: string,
+
 }> {
 
 	props: any
@@ -55,13 +82,15 @@ class DrawerInicio extends React.Component<{}, {
 		this.state = {
 			anchorEl: null,
 			mobileMoreAnchorEl: null,
-			valueFilter: 2,
+			valueFilter: 0,
 			hoverFilter: -1,
 			provincia: '',
 			municipio: '',
 			grupo: '',
 			openCategorias: false,
 			openFiltros: false,
+			precioMinimo:'',
+			precioMaximo:''
 		};
 	}
 
@@ -130,6 +159,8 @@ class DrawerInicio extends React.Component<{}, {
 		let provincia: string = 'none'
 		let localidad: string = 'none'
 		let empresaName: string = 'none'
+		let precioMinimo: string = 'none'
+		let precioMaximo: string = 'none'
 
 		if(this.state.provincia !== '') provincia = this.state.provincia
 		if(this.state.municipio !== '') localidad = this.state.municipio
@@ -139,7 +170,44 @@ class DrawerInicio extends React.Component<{}, {
 			provincia,
 			localidad,
 			'none',
-			empresaName
+			empresaName,
+			precioMinimo,
+			precioMaximo,
+		))
+	}
+
+	clearFilter = () => {
+
+		debugger;
+		let valoracion: string = ''
+
+		if(this.state.valueFilter !== null) {
+			valoracion = this.state.valueFilter.toString()
+		}
+
+		let itemName: string = 'none'
+		let provincia: string = 'none'
+		let localidad: string = 'none'
+		let empresaName: string = 'none'
+		let precioMinimo: string = 'none'
+		let precioMaximo: string = 'none'
+
+		this.setState({provincia:''});
+		this.setState({municipio:''});
+		this.setState({valueFilter:0});
+		this.setState({precioMinimo:''});
+		this.setState({precioMaximo:''});
+
+	
+
+		this.props.dispatch(itemActions.search(
+			itemName,
+			provincia,
+			localidad,
+			'none',
+			empresaName,
+			precioMinimo,
+			precioMaximo,
 		))
 	}
 
@@ -316,10 +384,85 @@ class DrawerInicio extends React.Component<{}, {
 								/>
 							</ListItem>
 
+							<ListItem>
+								<ListItemIcon>
+									<AttachMoneyIcon className={classes.iconButton} />
+								</ListItemIcon>
+								<ListItemText primary="Precio" />
+							</ListItem>
+							<Grid container spacing={3}>
+							<ListItem >
+								
+								<Grid item xs={12} sm={6}>
+								<TextField
+								className={classes.textField}
+								variant="outlined"
+								label="Minimo"
+								type="number"
+								value={this.state.precioMinimo}
+								inputProps={{min:1}}
+								onChange={(event) => {
+									this.setState({
+									precioMinimo: event.target.value,
+									})
+								}}
+								InputLabelProps={{
+									classes: {
+										root: classes.cssLabel,
+										focused: classes.cssFocused,
+									},
+								}}
+								InputProps={{
+									classes: {
+										root: classes.cssOutlinedInput,
+										focused: classes.cssFocused,
+										notchedOutline: classes.notchedOutline,
+									},
+								}}
+							/>
+								</Grid>
+								<Grid item xs={12} sm={6}>
+								<TextField
+								className={classes.textField}
+								variant="outlined"
+								label="Maximo"
+								value={this.state.precioMaximo}
+								type="number"
+								inputProps={{min:1}}
+								onChange={(event) => {
+									this.setState({
+									precioMaximo: event.target.value,
+									})
+								}}
+								InputLabelProps={{
+									classes: {
+										root: classes.cssLabel,
+										focused: classes.cssFocused,
+									},
+								}}
+								InputProps={{
+									classes: {
+										root: classes.cssOutlinedInput,
+										focused: classes.cssFocused,
+										notchedOutline: classes.notchedOutline,
+									},
+								}}
+							/>
+								</Grid>
+								
+							</ListItem>
+</Grid>
+							
+							<Grid>
 							<Button onClick={ this.filter } variant="contained" className={classes.Boton}>
 								Aplicar Filtro
 							</Button>
-								
+							</Grid>
+							<Grid>
+							<Button onClick={ this.clearFilter } variant="contained" className={classes.Boton2}>
+								Eliminar Filtro
+							</Button>
+							</Grid>
 						</List>
 				</Drawer>
 						
