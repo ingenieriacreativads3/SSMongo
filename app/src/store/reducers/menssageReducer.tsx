@@ -18,6 +18,28 @@ export default function mensajeReducer ( state = {
 
 	switch (action.type) {
 
+		case 'MARCAR_LEIDO_PENDING': {
+			return { 
+				...state
+			};
+		}
+	
+		case 'MARCAR_LEIDO_REJECTED': {
+			return { 
+				...state,
+				error: action.payload 
+			};
+		}
+	
+		case 'MARCAR_LEIDO_FULFILLED': {
+			return {
+        ...state,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        mensajes: action.payload.data.data
+      };
+		}
+
 		case 'GET_MENSAJES_PENDING': {
 			return { 
 				...state, 

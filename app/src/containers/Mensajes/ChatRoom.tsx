@@ -59,6 +59,10 @@ class Mensajes extends React.Component<{}, {
     return <AppBar { ...this.props } />
   }
 
+  leido = (idMensaje: string) => {
+    this.props.dispatch(messageAction.leido(idMensaje))
+  }
+
   render(){
 
     let mensajes: any[] = []
@@ -83,6 +87,18 @@ class Mensajes extends React.Component<{}, {
       }
     }
     
+    mensajes.map((mensaje: {
+      _id: string
+      leido: boolean,
+      presupuesto_id: string
+    }) => {
+      if(mensaje.presupuesto_id === undefined) {
+        if(!mensaje.leido) {
+          this.leido(mensaje._id)
+        }
+      }
+    })
+
     return(
       <div>
         <Chat

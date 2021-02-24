@@ -1,6 +1,18 @@
 import axios from 'axios'
 import config from './config'
 
+export function leido(
+	idMensaje: string,
+) {
+
+	let payload: any = axios.put(config.url + '/mensaje/' + idMensaje + '/mark_as_read')
+	
+  return {
+		type: 'MARCAR_LEIDO',
+		payload: payload
+	}
+}
+
 export function getMensajes(
 	idEmpresa: string,
 	idOtraEmpresa: string,

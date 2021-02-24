@@ -161,7 +161,12 @@ class ChatRoom extends React.Component <{}, {}>	{
 												nombre: string
 											}
 										}) => {
+
+											// 602c529fb9481716c719eb6a
+											// 602c341ab9481716c719eb66
+											
 											if(mensaje.presupuesto_id === undefined) {
+												console.log(mensaje);
 												return <div>
 													<ListItem key={ mensaje._id }>
 														<Grid container>
