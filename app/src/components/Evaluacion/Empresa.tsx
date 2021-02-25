@@ -119,13 +119,13 @@ class EvaluacionEmpresa extends React.Component <{}, {
 				this.state.comentario,
 			))
 	
-			// this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
-			// 	this.props.cookies.get('empresaId'),
-			// 	this.props.match.params.id,
-			// 	(this.state.rebuy) ? 1 : 0,
-			// 	'rebuy',
-			// 	this.state.comentario,
-			// ))
+			this.props.dispatch(evaluateAction.setEvaluacionEmpresa(
+				this.props.cookies.get('empresaId'),
+				this.props.match.params.id,
+				(this.state.rebuy) ? 1 : 2,
+				'rebuy',
+				this.state.comentario,
+			))
 		} else {
 			this.setState({
 				disabled: true
