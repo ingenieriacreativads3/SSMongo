@@ -75,27 +75,51 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 			}
 		]
 
-		if((this.props?.resumen?.pedidosTotales || 0) > 0) {
+		if((this.props?.resumenVentas?.pedidosTotales || 0) > 0) {
 			pedidos.map((source: {
 				estado: string,
 				percent: number
 			}) => {
-				if(source.estado === 'En espera') source.percent = (this.props?.resumen?.cantidadEstadosPedidos?.['En espera'] || 0) * (100/(this.props?.resumen?.pedidosTotales || 0))
-				if(source.estado === 'Cancelado') source.percent = (this.props?.resumen?.cantidadEstadosPedidos?.['Cancelado'] || 0) * (100/(this.props?.resumen?.pedidosTotales || 0))
-				if(source.estado === 'Finalizado') source.percent = (this.props?.resumen?.cantidadEstadosPedidos?.['Finalizado'] || 0) * (100/(this.props?.resumen?.pedidosTotales || 0))
-				if(source.estado === 'Enviado') source.percent = (this.props?.resumen?.cantidadEstadosPedidos?.['Enviado'] || 0) * (100/(this.props?.resumen?.pedidosTotales || 0))
+				if(source.estado === 'En espera') source.percent = (this.props?.resumenVentas?.cantidadEstadosPedidos?.['En espera'] || 0) * (100/(this.props?.resumenVentas?.pedidosTotales || 0))
+				if(source.estado === 'Cancelado') source.percent = (this.props?.resumenVentas?.cantidadEstadosPedidos?.['Cancelado'] || 0) * (100/(this.props?.resumenVentas?.pedidosTotales || 0))
+				if(source.estado === 'Finalizado') source.percent = (this.props?.resumenVentas?.cantidadEstadosPedidos?.['Finalizado'] || 0) * (100/(this.props?.resumenVentas?.pedidosTotales || 0))
+				if(source.estado === 'Enviado') source.percent = (this.props?.resumenVentas?.cantidadEstadosPedidos?.['Enviado'] || 0) * (100/(this.props?.resumenVentas?.pedidosTotales || 0))
 			})
 		}
 
-		if((this.props?.resumen?.presupuestosTotales || 0) > 0) {
+		if((this.props?.resumenVentas?.presupuestosTotales || 0) > 0) {
 			presupuestos.map((source: {
 				estado: string,
 				percent: number
 			}) => {
-				if(source.estado === 'En espera') source.percent = (this.props?.resumen?.cantidadEstadosPresupuestos?.['En espera'] || 0) * (100/(this.props?.resumen?.presupuestosTotales || 0))
-				if(source.estado === 'Cancelado') source.percent = (this.props?.resumen?.cantidadEstadosPresupuestos?.['Cancelado'] || 0) * (100/(this.props?.resumen?.presupuestosTotales || 0))
-				if(source.estado === 'Confirmado') source.percent = (this.props?.resumen?.cantidadEstadosPresupuestos?.['Confirmado'] || 0) * (100/(this.props?.resumen?.presupuestosTotales || 0))
-				if(source.estado === 'Presupuestado') source.percent = (this.props?.resumen?.cantidadEstadosPresupuestos?.['Presupuestado'] || 0) * (100/(this.props?.resumen?.presupuestosTotales || 0))
+				if(source.estado === 'En espera') source.percent = (this.props?.resumenVentas?.cantidadEstadosPresupuestos?.['En espera'] || 0) * (100/(this.props?.resumenVentas?.presupuestosTotales || 0))
+				if(source.estado === 'Cancelado') source.percent = (this.props?.resumenVentas?.cantidadEstadosPresupuestos?.['Cancelado'] || 0) * (100/(this.props?.resumenVentas?.presupuestosTotales || 0))
+				if(source.estado === 'Confirmado') source.percent = (this.props?.resumenVentas?.cantidadEstadosPresupuestos?.['Confirmado'] || 0) * (100/(this.props?.resumenVentas?.presupuestosTotales || 0))
+				if(source.estado === 'Presupuestado') source.percent = (this.props?.resumenVentas?.cantidadEstadosPresupuestos?.['Presupuestado'] || 0) * (100/(this.props?.resumenVentas?.presupuestosTotales || 0))
+			})
+		}
+
+		if((this.props?.resumenCompras?.pedidosTotales || 0) > 0) {
+			pedidos.map((source: {
+				estado: string,
+				percent: number
+			}) => {
+				if(source.estado === 'En espera') source.percent = (this.props?.resumenCompras?.cantidadEstadosPedidos?.['En espera'] || 0) * (100/(this.props?.resumenCompras?.pedidosTotales || 0))
+				if(source.estado === 'Cancelado') source.percent = (this.props?.resumenCompras?.cantidadEstadosPedidos?.['Cancelado'] || 0) * (100/(this.props?.resumenCompras?.pedidosTotales || 0))
+				if(source.estado === 'Finalizado') source.percent = (this.props?.resumenCompras?.cantidadEstadosPedidos?.['Finalizado'] || 0) * (100/(this.props?.resumenCompras?.pedidosTotales || 0))
+				if(source.estado === 'Enviado') source.percent = (this.props?.resumenCompras?.cantidadEstadosPedidos?.['Enviado'] || 0) * (100/(this.props?.resumenCompras?.pedidosTotales || 0))
+			})
+		}
+
+		if((this.props?.resumenCompras?.presupuestosTotales || 0) > 0) {
+			presupuestos.map((source: {
+				estado: string,
+				percent: number
+			}) => {
+				if(source.estado === 'En espera') source.percent = (this.props?.resumenCompras?.cantidadEstadosPresupuestos?.['En espera'] || 0) * (100/(this.props?.resumenCompras?.presupuestosTotales || 0))
+				if(source.estado === 'Cancelado') source.percent = (this.props?.resumenCompras?.cantidadEstadosPresupuestos?.['Cancelado'] || 0) * (100/(this.props?.resumenCompras?.presupuestosTotales || 0))
+				if(source.estado === 'Confirmado') source.percent = (this.props?.resumenCompras?.cantidadEstadosPresupuestos?.['Confirmado'] || 0) * (100/(this.props?.resumenCompras?.presupuestosTotales || 0))
+				if(source.estado === 'Presupuestado') source.percent = (this.props?.resumenCompras?.cantidadEstadosPresupuestos?.['Presupuestado'] || 0) * (100/(this.props?.resumenCompras?.presupuestosTotales || 0))
 			})
 		}
 
@@ -142,10 +166,10 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 													<Typography component="h5" variant="h5">
 														Pedidos
 													</Typography>
-													<Typography	color="textSecondary" variant="h5" component="h2" style={{display:  this.props?.resumen?.pedidosTotales !== 0 ? "block":"none" }}>
-														{ this.props?.resumen?.pedidosTotales || "" }
+													<Typography	color="textSecondary" variant="h5" component="h2" style={{display:  this.props?.resumenCompras?.pedidosTotales !== 0 ? "block":"none" }}>
+														{ this.props?.resumenCompras?.pedidosTotales || "" }
 													</Typography>
-													<Typography	color="textSecondary" variant="h6" style={{display:  this.props?.resumen?.pedidosTotales == 0 ? "block":"none" }} >
+													<Typography	color="textSecondary" variant="h6" style={{display:  this.props?.resumenCompras?.pedidosTotales == 0 ? "block":"none" }} >
 														{ "Aún no tienes compras" }
 													</Typography>
 												</CardContent>
@@ -165,10 +189,10 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 													<Typography component="h5" variant="h5">
 														Presupuestos
 													</Typography>
-													<Typography	color="textSecondary" variant="h5" component="h2" style={{display: this.props?.resumen?.presupuestosTotales !== 0 ? "block":"none" }} >
-														{ this.props?.resumen?.presupuestosTotales || "" }
+													<Typography	color="textSecondary" variant="h5" component="h2" style={{display: this.props?.resumenCompras?.presupuestosTotales !== 0 ? "block":"none" }} >
+														{ this.props?.resumenCompras?.presupuestosTotales || "" }
 													</Typography>
-													<Typography color="textSecondary" variant="h6"  style={{display: this.props?.resumen?.presupuestosTotales == 0 ? "block":"none" }}> 
+													<Typography color="textSecondary" variant="h6"  style={{display: this.props?.resumenCompras?.presupuestosTotales == 0 ? "block":"none" }}> 
 														{"No solicitaste presupuestos"}
 													</Typography>
 												</CardContent>
@@ -201,10 +225,10 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 													<Typography component="h5" variant="h5">
 														Pedidos
 													</Typography>
-													<Typography	color="textSecondary" variant="h5" component="h2" style={{display: this.props?.resumen?.pedidosTotales !== 0 ? "block":"none" }}>
-														{ this.props?.resumen?.pedidosTotales || "" }
+													<Typography	color="textSecondary" variant="h5" component="h2" style={{display: this.props?.resumenVentas?.pedidosTotales !== 0 ? "block":"none" }}>
+														{ this.props?.resumenVentas?.pedidosTotales || "" }
 													</Typography>
-													<Typography color="textSecondary" variant="h6" style={{display: this.props?.resumen?.pedidosTotales == 0 ? "block":"none" }} >
+													<Typography color="textSecondary" variant="h6" style={{display: this.props?.resumenVentas?.pedidosTotales == 0 ? "block":"none" }} >
 														{"Aún no tienes ventas"}
 													</Typography>
 												</CardContent>
@@ -224,10 +248,10 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 													<Typography component="h5" variant="h5">
 														Presupuestos
 													</Typography>
-													<Typography	color="textSecondary" variant="h5"  component="h2" style={{display: this.props?.resumen?.presupuestosTotales !== 0 ? "block":"none" }}>
-														{ this.props?.resumen?.presupuestosTotales || "" }
+													<Typography	color="textSecondary" variant="h5"  component="h2" style={{display: this.props?.resumenVentas?.presupuestosTotales !== 0 ? "block":"none" }}>
+														{ this.props?.resumenVentas?.presupuestosTotales || "" }
 													</Typography>
-													<Typography color="textSecondary" variant="h6" style={{display: this.props?.resumen?.presupuestosTotales == 0 ? "block":"none" }} >
+													<Typography color="textSecondary" variant="h6" style={{display: this.props?.resumenVentas?.presupuestosTotales == 0 ? "block":"none" }} >
 														{"Aún no tienes presupuestos"}
 													</Typography>
 												</CardContent>
@@ -247,7 +271,7 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 								<Divider style={{marginTop:'20px', marginBottom:'20px'}} />
 								<Grid container xs={12} sm={12} spacing={4}>
 									
-									<Grid item xs={12} sm={6}  style={{display: this.props?.resumen?.pedidosTotales !== 0 ? "block":"none" }} >
+									<Grid item xs={12} sm={6}  style={{display: this.props?.resumenVentas?.pedidosTotales !== 0 ? "block":"none" }} >
 										<PieChart
 											id="pie"
 											dataSource={ pedidos }
@@ -268,7 +292,7 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 										</PieChart>
 									</Grid>
 
-									<Grid item xs={12} sm={6} style={{display: this.props?.resumen?.presupuestosTotales !== 0 ? "block":"none" }} >
+									<Grid item xs={12} sm={6} style={{display: this.props?.resumenVentas?.presupuestosTotales !== 0 ? "block":"none" }} >
 										<PieChart
 											id="pie"
 											dataSource={ presupuestos }

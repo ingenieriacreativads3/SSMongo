@@ -252,7 +252,7 @@ class Detail extends React.Component<{}, {}> {
 
     if(this.props.presupuestoReducer !== undefined) {
 			if(this.props.presupuestoReducer.data !== undefined) {
-				if(this.props.presupuestoReducer.data.pedido !== undefined) {
+				if(this.props.presupuestoReducer.data.pedido !== undefined && this.props.presupuestoReducer.data.pedido !== null) {
 					if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente !== undefined) {
 						if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre !== undefined) {
 							empresa = this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre

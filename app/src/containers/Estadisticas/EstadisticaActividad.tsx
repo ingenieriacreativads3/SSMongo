@@ -52,7 +52,24 @@ class EstadisticaActividad extends React.Component<{}, {}> {
 
   render(){
 
-    let resumen: any = {
+    let resumenVentas: any = {
+      'cantidadEstadosPedidos': {
+        'Cancelado': 0,
+        'En espera': 0,
+        'Enviado': 0,
+        'Finalizado': 0,
+      },
+      'cantidadEstadosPresupuestos': {
+        'Cancelado': 0,
+        'Confirmado': 0,
+        'En espera': 0,
+        'Presupuestado': 0,
+      },
+      'pedidosTotales': 0,
+      'presupuestosTotales': 0,
+    }
+
+    let resumenCompras: any = {
       'cantidadEstadosPedidos': {
         'Cancelado': 0,
         'En espera': 0,
@@ -70,7 +87,8 @@ class EstadisticaActividad extends React.Component<{}, {}> {
     }
 
     if(this.props.evaluacionReducer.fetched) {
-      resumen = this.props.evaluacionReducer.data
+      resumenVentas = this.props.evaluacionReducer.data.perteneciente;
+      resumenCompras = this.props.evaluacionReducer.data.demandante
     }
 
     return(
@@ -80,7 +98,8 @@ class EstadisticaActividad extends React.Component<{}, {}> {
           drawer={ this.drawer() }
           footer={ this.footer() } 
           appBar={ this.appBar() }
-          resumen={ resumen }
+          resumenVentas={ resumenVentas }
+          resumenCompras={ resumenCompras }
         />
       </div>
     );

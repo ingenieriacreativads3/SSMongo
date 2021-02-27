@@ -18,6 +18,7 @@ import errorReducer from './errorReducer'
 import evaluacionReducer from "./evaluacionReducer";
 import userReducer from "./userReducer";
 import mensajeReducer from "./menssageReducer";
+import notificacionesReducer from "./notificacionesReducer"
 
 export default combineReducers({
 	mensajeReducer,
@@ -38,4 +39,5 @@ export default combineReducers({
 	actividadEconomicaReducer,
 	errorReducer,
 	evaluacionReducer,
+	notificacionesReducer,
 })
