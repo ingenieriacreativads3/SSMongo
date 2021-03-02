@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
-import { IconButton, Badge, Button, ListItem, ListItemAvatar, Avatar,ListItemText, Divider, Typography, Box } from '@material-ui/core';
+import { IconButton, Badge, Button, ListItem, Grid, ListItemAvatar, Avatar,ListItemText, Divider, Typography, Box } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -38,6 +38,7 @@ class AppBare extends React.Component<{}, {
 	anchorEl: null | HTMLElement,
 	mobileMoreAnchorEl: null | HTMLElement
 	mensajes: null | HTMLElement,
+	notificaciones: null | HTMLElement,
 	search: string
 }> {
 
@@ -51,6 +52,7 @@ class AppBare extends React.Component<{}, {
 			anchorEl: null,
 			mobileMoreAnchorEl: null,
 			mensajes: null,
+			notificaciones: null,
 			search: ''
 		};
 	}
@@ -107,6 +109,62 @@ class AppBare extends React.Component<{}, {
 		</ListItem>
 	}
 
+	renderRowNotificaciones = (props: any) => {
+
+		const { index } = props
+
+		let notificacionesLista: {
+			comentario: string,
+			presupuesto_id:string,
+			pedido_id:string,
+			created_at:string,
+		}[] = []
+
+		let estado: string = '';
+		let idPresupuesto: string = '';
+		let idPedido: string = '';
+		let hora: string = '';
+
+		if(
+			this.props.notiLista !== undefined &&
+			Array.isArray(this.props.notiLista) &&
+			this.props.notiLista.length > 0
+		) {
+			notificacionesLista = this.props.notiLista
+		}
+
+		if(notificacionesLista[index] !== undefined){
+			if(notificacionesLista[index].comentario !== undefined) estado = notificacionesLista[index].comentario
+			if(notificacionesLista[index].presupuesto_id !== undefined) idPresupuesto = notificacionesLista[index].presupuesto_id
+			if(notificacionesLista[index].pedido_id !== undefined) idPedido = notificacionesLista[index].pedido_id
+			if(notificacionesLista[index].created_at !== undefined) hora = notificacionesLista[index].created_at
+		}
+		
+		let id = idPresupuesto == undefined ? idPedido : idPresupuesto;
+
+		debugger;
+	
+			return <div>
+			<Grid
+			container
+			direction="row"
+			justify="flex-start"
+			alignItems="center"
+			style={{paddingLeft:'10px'}}
+		  >
+			<Typography gutterBottom variant="subtitle1" style={{fontWeight:'bold'}}>
+                  {id}
+                </Typography>
+			<ListItemText
+				primary={estado }
+				secondary={hora}
+			/>
+		</Grid>
+		</div>
+
+		
+	}
+
 	handleKeyPress = (e: any) => {
 		if(e.key === 'Enter'){
 			if(this.props.history !== undefined) {
@@ -129,6 +187,7 @@ class AppBare extends React.Component<{}, {
 		const isMenuOpen = Boolean(this.state.anchorEl);
 		const isMobileMenuOpen = Boolean(this.state.mobileMoreAnchorEl);
 		const isMessageOpen = Boolean(this.state.mensajes);
+		const isNotificationOpen = Boolean(this.state.notificaciones);
 
 		const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
 			this.setState({
@@ -139,6 +198,13 @@ class AppBare extends React.Component<{}, {
 		const handleMessageMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
 			this.setState({
 				mensajes: event.currentTarget
+			})
+		};
+
+		
+		const handleNotificationMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+			this.setState({
+				notificaciones: event.currentTarget
 			})
 		};
 
@@ -159,6 +225,15 @@ class AppBare extends React.Component<{}, {
 		const handleMessageMenuClose = () => {
 			this.setState({
 				mensajes: null
+			})
+			//handleMobileMenuClose();
+			
+		};
+
+		
+		const handleNotificationMenuClose = () => {
+			this.setState({
+				notificaciones: null
 			})
 			//handleMobileMenuClose();
 			
@@ -201,6 +276,11 @@ class AppBare extends React.Component<{}, {
 			handleMenuClose()
 			this.props.mensajes()
 		};
+		
+		const notificaciones = () => {
+			handleNotificationMenuClose()
+			//this.props.mensajes()
+		};
 
 		const volverInicio = () => {
 			this.props.history.push("/home/inicio");
@@ -221,6 +301,8 @@ class AppBare extends React.Component<{}, {
 	
 			return visible
 		}
+
+		//console.log(this.props.notiLista);
 
 		return(
 			
@@ -264,8 +346,8 @@ class AppBare extends React.Component<{}, {
 								<MailIcon className={classes.menuButton}/>
 							</Badge>
 						</IconButton>
-						<IconButton aria-label="show 17 new notifications" color="inherit">
-							<Badge badgeContent={17} color="secondary">
+						<IconButton aria-label="show 17 new notifications" color="inherit" onClick={handleNotificationMenuOpen}>
+							<Badge badgeContent={this.props.totalNoti !== 0 ? this.props.totalNoti : null} color="secondary">
 								<NotificationsIcon className={classes.menuButton}/>
 							</Badge>
 						</IconButton>
@@ -317,7 +399,7 @@ class AppBare extends React.Component<{}, {
 							</IconButton>
 							<p className={classes.subtitle} >Mensajes </p>
 						</MenuItem>
-						<MenuItem>
+						<MenuItem onClick={handleNotificationMenuOpen}>
 							<IconButton aria-label="show 11 new notifications" color="inherit">
 								<Badge badgeContent={11} color="secondary">
 									<NotificationsIcon />
@@ -372,6 +454,26 @@ class AppBare extends React.Component<{}, {
 						<Divider className={classes.divider} />
 						<FixedSizeList height={200} width={370} itemSize={10} itemCount={3}>
 							{ this.renderRow }
+						</FixedSizeList>
+					</Menu> 
+					<Menu
+						anchorEl={this.state.notificaciones}
+						anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+						id={menuId}
+						keepMounted
+						transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+						open={isNotificationOpen}
+						onClose={handleNotificationMenuClose}
+					>
+						
+						<Box pt={1} pl={2} pb={1} pr={1}>
+							 <Typography >
+								<MenuItem className={classes.subtitle}>Notificaciones</MenuItem>
+							</Typography> 
+						</Box>
+						{/* <Divider className={classes.divider} /> */}
+						<FixedSizeList height={200} width={370} itemSize={10} itemCount={3}>
+							{ this.renderRowNotificaciones }
 						</FixedSizeList>
 					</Menu>  
 				</Toolbar>

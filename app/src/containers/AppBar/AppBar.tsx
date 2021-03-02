@@ -2,16 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import * as messageActions from './../../store/actions/message'
+import * as notificacionesActions from './../../store/actions/notifications'
 
 import PermanetDrawerLeft from './../../components/AppBar'
 
 function mapStateToProps(store: {
   requestReducer: any,
   mensajeReducer: any,
+  notificacionesReducer: any,
 }) {
   return {
     mensajeReducer: store.mensajeReducer,
     requestReducer: store.requestReducer,
+    notificacionesReducer: store.notificacionesReducer
   };
 }
 
@@ -29,6 +32,9 @@ class AppBar extends React.Component<{}, {}> {
 
   componentWillMount = () => {
     this.props.dispatch(messageActions.getMensajesSinLeer(this.props.cookies.get('empresaId')))
+
+    this.props.dispatch(notificacionesActions.getNotificacionesByEmpresa(this.props.cookies.get('empresaId')))
+
   }
 	
 	cerrarSesion = () => {
@@ -48,15 +54,27 @@ class AppBar extends React.Component<{}, {}> {
 		this.props.history.push('/mensajes/' + this.props.cookies.get('empresaId'))
 	}
 
+ 
+
   render(){
 
     let mensajesLista: any[] = []
     let total: number = 0
 
+    let notiLista: any[] = []
+    let totalNoti: number = 0
+
     if(this.props.mensajeReducer.fetchedMensajesSinLeer) {
       mensajesLista = this.props.mensajeReducer.mensajesSinLeer.mensajes
       total = mensajesLista.length
     }
+
+    if(this.props.notificacionesReducer.fetched) {
+      notiLista = this.props.notificacionesReducer.data.notificaciones
+      totalNoti = notiLista.length
+    }
+
+
 
     return(
       <div>
@@ -67,6 +85,8 @@ class AppBar extends React.Component<{}, {}> {
           mensajes={ this.mensajes }
           mensajesLista={ mensajesLista }
           total={ total }
+          notiLista = {notiLista}
+          totalNoti = {totalNoti}
           nombre={ this.props.cookies.get('empresaName') }
           { ...this.props }
         />
