@@ -92,6 +92,7 @@ class Detail extends React.Component <{
 		"updated_at": string,
 		"created_at": string,
 		"mensajes": [],
+		"importeTotal": string,
 		"items": [
 			{
 				"item": {
@@ -153,6 +154,7 @@ class Detail extends React.Component <{
 			"updated_at": string,
 			"created_at": string,
 			"importe": string,
+			"importeTotal": string,
 			"items": [
 				{
 					"item": {
@@ -340,7 +342,7 @@ class Detail extends React.Component <{
 		
 		if(this.props.pedido !== null) {
 			estado = this.props.pedido.estado
-			importe = this.props.pedido.importe
+			importe = this.props.pedido.importeTotal
 			itemNombre = this.props.pedido.items[0].item.nombre
 			itemPrecio = this.props.pedido.items[0].item.precio
 			unidad = this.props.pedido.items[0].unidadDeMedida.nombre
@@ -350,7 +352,7 @@ class Detail extends React.Component <{
 
 		if(this.props.presupuesto !== null) {
 			estado = this.props.presupuesto.estado
-			importe = this.props.presupuesto.importe
+			importe = this.props.presupuesto.importeTotal
 			itemNombre = this.props.presupuesto.items[0].item.nombre
 			itemPrecio = this.props.presupuesto.items[0].item.precio
 			unidad = this.props.presupuesto.items[0].unidadDeMedida.nombre
@@ -358,6 +360,9 @@ class Detail extends React.Component <{
 			imagen = 'http://localhost:8000/' + this.props.presupuesto.items[0].item.foto[0]
 		}
 		
+
+		console.log(this.props.pedido);
+
 		return(
 			<div className={classes.root}>
 				<CssBaseline />

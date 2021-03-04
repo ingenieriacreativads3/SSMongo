@@ -178,7 +178,7 @@ class DrawerInicio extends React.Component<{}, {
 
 	clearFilter = () => {
 
-		debugger;
+	
 		let valoracion: string = ''
 
 		if(this.state.valueFilter !== null) {

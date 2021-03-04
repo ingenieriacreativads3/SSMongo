@@ -123,7 +123,7 @@ class EstadisticasActividad extends React.Component <{}, {}> {
 			})
 		}
 
-		debugger;
+		
 		console.log(pedidos);
 		console.log(pedidos.length);
 		return(

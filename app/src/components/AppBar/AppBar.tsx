@@ -142,7 +142,7 @@ class AppBare extends React.Component<{}, {
 		
 		let id = idPresupuesto == undefined ? idPedido : idPresupuesto;
 
-		debugger;
+		
 	
 			return <div>
 			<Grid
@@ -152,14 +152,17 @@ class AppBare extends React.Component<{}, {
 			alignItems="center"
 			style={{paddingLeft:'10px'}}
 		  >
-			<Typography gutterBottom variant="subtitle1" style={{fontWeight:'bold'}}>
-                  {id}
-                </Typography>
+			<ListItemText
+				primary={id }
+				
+			/>
 			<ListItemText
 				primary={estado }
 				secondary={hora}
 			/>
+		<Divider/>	
 		</Grid>
+		
 		</div>
 
 		
@@ -392,16 +395,16 @@ class AppBare extends React.Component<{}, {
 						onClose={handleMobileMenuClose}
 					>
 						<MenuItem onClick={handleMessageMenuOpen}>
-							<IconButton aria-label="show 4 new mails" color="inherit">
-								<Badge badgeContent={4} color="secondary">
+							<IconButton  color="inherit">
+								<Badge badgeContent={ (this.props.total !== 0) ? this.props.total : null }  color="secondary">
 									<MailIcon />
 								</Badge>
 							</IconButton>
 							<p className={classes.subtitle} >Mensajes </p>
 						</MenuItem>
 						<MenuItem onClick={handleNotificationMenuOpen}>
-							<IconButton aria-label="show 11 new notifications" color="inherit">
-								<Badge badgeContent={11} color="secondary">
+							<IconButton  color="inherit">
+								<Badge badgeContent={this.props.totalNoti !== 0 ? this.props.totalNoti : null}  color="secondary">
 									<NotificationsIcon />
 								</Badge>
 							</IconButton>

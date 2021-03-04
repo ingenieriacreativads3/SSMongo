@@ -91,8 +91,9 @@ class PresupuestosCompras extends React.Component<{
           staticContext= { this.props.staticContext }
           title={'Mis compras - Presupuestos'}
           columns={[
+            { title: 'ID', field: 'presupuesto._id', type: 'string' },
             { title: 'Vendedor', field: 'presupuesto.empresa_perteneciente.nombre', type: 'string' },
-            { title: 'Importe', field: 'presupuesto.importe', type: 'numeric' },
+            /* { title: 'Importe', field: 'presupuesto.importe', type: 'numeric' }, */
             { title: 'Fecha Creación', field: 'presupuesto.created_at', type: 'date' },
             { title: 'Fecha Actualización', field: 'presupuesto.updated_at', type: 'date' },
 

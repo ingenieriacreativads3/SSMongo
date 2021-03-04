@@ -102,8 +102,9 @@ class PedidosVentas extends React.Component<{
           staticContext= { this.props.staticContext }
           title={'Mis ventas - Pedidos'}
           columns={[
+            { title: 'ID', field: 'pedido._id', type: 'string' },
             { title: 'Comprador', field: 'pedido.empresa_demandante.nombre', type: 'string' },
-            { title: 'Importe', field: 'pedido.importe', type: 'numeric' },
+            // { title: 'Importe', field: 'pedido.importe', type: 'numeric' },
             { title: 'Fecha', field: 'pedido.created_at', type: 'date' },
             { title: 'Producto', field: 'pedido.items[0].item.nombre', type: 'string' },
             { title: 'Cantidad', field: 'pedido.items[0].cantidad', type: 'numeric' },
