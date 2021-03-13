@@ -350,6 +350,7 @@ class Detail extends React.Component<{
     let _id: string = ''
     let nombre: string = ''
     let cuit: string = ''
+    let contratoSocial: string = ''
     
     if(
       this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones !== undefined
@@ -360,7 +361,7 @@ class Detail extends React.Component<{
       ) {
         nombre = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.nombre
         cuit = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.empresa.cuit
-        
+        contratoSocial = this.props.solicitudDeValidacionReducer.data.solicitudesDeValidaciones.contrato_social
       }
     }
 
@@ -393,6 +394,7 @@ class Detail extends React.Component<{
       <div>
         <Validacion
           update={ this.update }
+          contratoSocial={ contratoSocial }
           empresa={ empresa }
           title={ title }
           _id={ _id }

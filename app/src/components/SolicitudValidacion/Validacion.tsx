@@ -233,7 +233,7 @@ class Validacion extends React.Component <{}, {
 									</FormControl>
 								</Grid>
 								<Grid item xs={12} sm={6}>
-								<Link style={{textDecoration: 'none'}} target="_blank" >
+								<Link href={ 'http://127.0.0.1:8000/' + this.props.contratoSocial } style={{textDecoration: 'none'}} target="_blank" >
 									<Button
 									type="button"
 									
