@@ -20,7 +20,6 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import PersonIcon from '@material-ui/icons/Person'
 
 import * as drawerAction from './../../store/actions/drawer'
-import * as itemActions from './../../store/actions/item'
 
 function mapStateToProps(store: {
   drawerReducer: {
@@ -171,7 +170,7 @@ class AppBare extends React.Component<{}, {
 	handleKeyPress = (e: any) => {
 		if(e.key === 'Enter'){
 			if(this.props.history !== undefined) {
-				this.props.dispatch(itemActions.searchByName(this.state.search))
+				// this.props.dispatch(itemActions.searchByName(this.state.search))
 				this.props.history.push("/home/busqueda/" + this.state.search)
 			}
 		}

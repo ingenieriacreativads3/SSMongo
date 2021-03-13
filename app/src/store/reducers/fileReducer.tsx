@@ -16,6 +16,37 @@ export default function FileReducer (state = {
 
   switch (action.type) {
 
+    case 'UPLOAD_CONTRATO_SOCIAL_PENDING': {
+
+      return { 
+        ...state, 
+        fetching: true
+      };
+
+    }
+  
+    case 'UPLOAD_CONTRATO_SOCIAL_REJECTED': {
+
+      return { 
+        ...state, 
+        fetching: false, 
+        error: action.payload 
+      };
+
+    }
+  
+    case 'UPLOAD_CONTRATO_SOCIAL_FULFILLED': {
+
+      return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data.foto
+      };
+    }
+
     case 'UPLOAD_PENDING': {
 
       return { 

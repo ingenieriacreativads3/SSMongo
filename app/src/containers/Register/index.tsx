@@ -9,15 +9,18 @@ import { OneButton } from './../../components/Dialogs'
 import { Registrar as RegisterComponent } from './../../components/Register'
 
 import * as errorActions from './../../store/actions/error'
+import * as fileActions from './../../store/actions/file'
 import store from './../../store/index'
 
 function mapStateToProps(store: {
 	registerReducer: any,
 	errorReducer:any,
+	fileReducer:any,
 }) {
 	return {
+		fileReducer: store.fileReducer,
+		errorReducer: store.errorReducer,
 		register: store.registerReducer,
-		errorReducer: store.errorReducer
 	};
 }
 
@@ -27,7 +30,8 @@ class Register extends React.Component<{}, {
 	user: string,
 	email: string,
 	pass: string,
-	formValid:boolean,
+	formValid: boolean,
+	file: File | null
 }> {
 
 	props: any
@@ -44,7 +48,8 @@ class Register extends React.Component<{}, {
 			user: '',
 			email: '',
 			pass: '',
-			formValid:true,
+			formValid: true,
+			file: null
 		};
 	}
 
@@ -132,13 +137,21 @@ class Register extends React.Component<{}, {
 	}
 
 	register = () => {
+
+		let contratoSocial: string = ''
+
+		if(this.props.fileReducer.fetched) {
+			contratoSocial = this.props.fileReducer.data
+		}
+
 		if(this.validacion()){
 			this.props.dispatch(registerActions.registrar(
-					this.state.fantasyName,
-					this.state.CUIT,
-					this.state.user,
-					this.state.email,
-					this.state.pass
+				this.state.fantasyName,
+				this.state.CUIT,
+				this.state.user,
+				this.state.email,
+				this.state.pass,
+				contratoSocial
 			))
 		}
 	}
@@ -147,8 +160,17 @@ class Register extends React.Component<{}, {
 
 		this.props.dispatch(dialogAction.closeOneButton())
 		this.props.dispatch(registerActions.reintentar())
-		this.props.history.push('/')
+		if(
+			this.props.register.fetched &&
+			this.props.register.status === 200
+		) {
+			this.props.history.push('/')
+		} 
 
+	}
+
+	getFile = (e: any) => {
+		this.props.dispatch(fileActions.uploadContratoSocial(e.target.files[0]))
 	}
 
 	render(){
@@ -164,8 +186,9 @@ class Register extends React.Component<{}, {
 					getEmail={ this.getEmail }
 					getPass={ this.getPass }
 					register={ this.register }
-					errors={errores}
-				 registerRef={this.registerRef}
+					getFile={ this.getFile }
+					errors={ errores }
+					registerRef={ this.registerRef }
 				/>
 				<OneButton 
 					title={ '' }

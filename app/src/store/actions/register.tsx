@@ -15,18 +15,18 @@ export function registrar(
 	user: string,
 	email: string,
 	pass: string,
+	contratoSocial: string
 ) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
 	let payload: any = axios.post(url + '/registro', {
-		empresa: {
-			nombre: fantasyName,
-			cuit: CUIT,
-			usuario: user,
-			clave: pass,
-			email: email
-		}
+		nombre: fantasyName,
+		cuit: CUIT,
+		usuario: user,
+		clave: pass,
+		email: email,
+		contratoSocial
 	})
 
 	return {

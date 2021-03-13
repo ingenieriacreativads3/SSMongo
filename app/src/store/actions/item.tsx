@@ -26,7 +26,7 @@ export function searchByName(
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.get(url + '/busqueda/' + name + '/none/none/none/none')
+	let payload: any = axios.get(url + '/busqueda/' + name + '/none/none/none/none/0/9999')
 	
   return {
 		type: 'SEARCH_ITEM_BY_NAME',

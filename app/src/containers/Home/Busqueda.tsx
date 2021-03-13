@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import * as itemActions from './../../store/actions/item'
+
 import { PaginaBusqueda as BusquedaPage } from './../../components/Home'
 import { InicioDrawer } from './../DrawerInicio'
 import { Footer } from './../Footer'
@@ -28,6 +30,10 @@ class Busqueda extends React.Component<{}, {}> {
   constructor(props: any) {
 		super(props);
     this.state = {};
+  }
+
+  componentWillMount = () => {
+    this.props.dispatch(itemActions.searchByName(this.props.match.params.search))
   }
   
   drawer() {

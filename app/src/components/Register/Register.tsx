@@ -13,15 +13,7 @@ import {IconButton, InputAdornment, InputLabel} from '@material-ui/core'
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-class Register extends React.Component<{
-  classes: any,
-  getFantasyName: any,
-  getCUIT: any,
-  getUser: any,
-  getEmail: any,
-  getPass: any,
-  register: any
-}, {
+class Register extends React.Component<{}, {
   showPassword: boolean
 }> {
 
@@ -44,7 +36,7 @@ class Register extends React.Component<{
     this.setState({ showPassword: !this.state.showPassword})
   }
 
-  handleMouseDownPassword(e: any) {
+  handleMouseDownPassword = (e: any) => {
     e.preventDefault();
   };
 
@@ -84,8 +76,8 @@ class Register extends React.Component<{
                   },
                 }}
                 onChange={ this.props.getFantasyName }
-                 error={this.props.errors.empresa != null ? true : false}
-               helperText={this.props.errors.empresa != null ? this.props.errors.empresa : ""}
+                error={this.props.errors.empresa != null ? true : false}
+                helperText={this.props.errors.empresa != null ? this.props.errors.empresa : ""}
               />
             </Grid>
             
@@ -234,6 +226,7 @@ class Register extends React.Component<{
               <Input
                 type="file"
                 style={{ display: "none" }}
+                onChange={ this.props.getFile }
               />
               CONTRATO SOCIAL
             </Button>
@@ -253,7 +246,7 @@ class Register extends React.Component<{
             </div>
             <Grid container >
               <Grid item xs>
-                <Link href="/ingresar" variant="body2"className={classes.Link}>
+                <Link href="/ingresar" variant="body2" className={classes.Link}>
                   Ya soy miembro. Iniciar sesion
                 </Link>
               </Grid>

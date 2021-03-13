@@ -76,31 +76,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
      
-export  function Registrar(props: {
-  getFantasyName: any,
-  getCUIT: any,
-  getUser: any,
-  getEmail: any,
-  getPass: any,
-  register: any,
-  errors:any,
-  registerRef:any,
-}) {
+export  function Registrar(props: any) {
 
   const classes = useStyles(theme);
-  
-  return <div>
-    <Register 
-      classes={ classes }
-      getFantasyName={ props.getFantasyName }
-      getCUIT={ props.getCUIT }
-      getUser={ props.getUser }
-      getEmail={ props.getEmail }
-      getPass={ props.getPass }
-      register={ props.register }
-      errors={props.errors}
-    registerRef={props.registerRef}
-    />
-  </div>;
-  
+  return <Register classes={ classes } { ...props } />
 }
