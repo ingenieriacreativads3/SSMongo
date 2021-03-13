@@ -48,26 +48,35 @@ class Detail extends React.Component<{}, {}> {
     return <Footer {...this.props} />
   }
 
-  actions(classes: any) {
+  actions(classes: any, presupuesto: any) {
+
+    let esEnEspera: boolean = false
+
+    if(presupuesto.estado === 'En espera') esEnEspera = true
+    
     return <div>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        onClick={this.cancelar}
-      >
-        Cancelar Presupuesto
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        onClick={this.presupuestar}
-      >
-        Presupuestar
-      </Button>
+      {
+        esEnEspera ? <div>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            className={classes.button}
+            onClick={this.cancelar}
+          >
+            Cancelar Presupuesto
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            className={classes.button}
+            onClick={this.presupuestar}
+          >
+            Presupuestar
+          </Button>
+        </div> : null
+      }
     </div>
   }
 
@@ -281,7 +290,7 @@ class Detail extends React.Component<{}, {}> {
           pedido={ null }
           labelCompany={ 'Empresa demandante' }
           company={ company }
-          actions={ (classes: any) => this.actions(classes) }
+          actions={ (classes: any) => this.actions(classes, presupuesto) }
         />
         <OneButton 
           title={ 'Presupuesto' }

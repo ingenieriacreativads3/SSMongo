@@ -71,26 +71,35 @@ class Detail extends React.Component<{}, {}> {
     />
   }
 
-  actions(classes: any) {
+  actions(classes: any, pedido: any) {
+
+    let esEnEspera: boolean = false
+
+    if(pedido.estado === 'En espera') esEnEspera = true
+
     return <div>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        onClick={this.cancelar}
-      >
-        Cancelar Pedido
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        onClick={this.enviar}
-      >
-        Enviar Pedido
-      </Button>
+      {
+        esEnEspera ? <div>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            className={classes.button}
+            onClick={this.cancelar}
+          >
+            Cancelar Pedido
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            className={classes.button}
+            onClick={this.enviar}
+          >
+            Enviar Pedido
+          </Button>
+        </div> : null
+      }
     </div>
   }
 
@@ -380,7 +389,7 @@ class Detail extends React.Component<{}, {}> {
           pedido={ pedido }
           labelCompany={ 'Empresa demandante' }
           company={ company }
-          actions={ (classes: any) => this.actions(classes) }
+          actions={ (classes: any) => this.actions(classes, pedido) }
         />
         <OneButton 
           title={ 'Pedido' }

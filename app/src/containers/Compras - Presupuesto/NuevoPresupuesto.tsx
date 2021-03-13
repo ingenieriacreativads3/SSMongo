@@ -346,7 +346,7 @@ class NuevoPresupuesto extends React.Component<{
           save={ this.save }
           drawer={ this.drawer() }
           footer={ this.footer() }
-          appBar={this.appBar()}
+          appBar={ this.appBar() }
           item={item}
           empresa={empresa}
           errors={errores}

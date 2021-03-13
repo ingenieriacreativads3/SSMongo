@@ -50,17 +50,24 @@ class Detail extends React.Component<{}, {}> {
     return <Footer { ...this.props } />
 	}
 	
-  actions(classes: any) {
+  actions(classes: any, pedido: any) {
+
+    let esEnviado: boolean = false
+
+    if(pedido.estado === 'Enviado') esEnviado = true
+
     return <div>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        onClick={this.finalizar}
-      >
-        Finalizar Pedido
-      </Button>
+      {
+        esEnviado ? <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          className={classes.button}
+          onClick={this.finalizar}
+        >
+          Finalizar Pedido
+        </Button> : null
+      }
     </div>
   }
 
@@ -343,7 +350,7 @@ class Detail extends React.Component<{}, {}> {
           pedido={ pedido }
 					labelCompany={ 'Empresa demandada' }
 					company={ company }
-					actions={ (classes: any) => this.actions(classes) }
+					actions={ (classes: any) => this.actions(classes, pedido) }
         />
         <OneButton 
           title={ 'Pedido' }

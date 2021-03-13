@@ -359,9 +359,6 @@ class Detail extends React.Component <{
 			cantidad = this.props.presupuesto.items[0].cantidad
 			imagen = 'http://localhost:8000/' + this.props.presupuesto.items[0].item.foto[0]
 		}
-		
-
-		console.log(this.props.pedido);
 
 		return(
 			<div className={classes.root}>

@@ -116,35 +116,56 @@ class Detail extends React.Component<{
 
   }
 
-  actions(classes: any) {
+  cancelarPresupuestoButton = (classes: any) => {
+    return <Button
+      variant="contained"
+      color="primary"
+      size="small"
+      className={classes.button}
+      onClick={this.cancelar}
+    >
+      Cancelar Presupuesto
+    </Button> 
+  }
+
+  renegociarPresupuestoButton = (classes: any) => {
+    return <Button
+      variant="contained"
+      color="primary"
+      size="small"
+      className={classes.button}
+      onClick={this.renegociar}
+    >
+      Renegociar presupuesto
+    </Button>
+  }
+
+  confirmarPresupuestoButton = (classes: any) => {
+    return <Button
+      variant="contained"
+      color="primary"
+      size="small"
+      className={classes.button}
+      onClick={this.confirmar}
+    >
+      Confirmar presupuesto
+    </Button>
+  }
+
+  actions(classes: any, presupuesto: any) {
+
+    let esPresupuestado: boolean = false
+
+    if(presupuesto.estado === 'Presupuestado') esPresupuestado = true
+
     return <div>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        onClick={this.cancelar}
-      >
-        Cancelar Presupuesto
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        onClick={this.renegociar}
-      >
-        Renegociar presupuesto
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        onClick={this.confirmar}
-      >
-        Confirmar presupuesto
-      </Button>
+      {
+        esPresupuestado ? <div>
+          { this.cancelarPresupuestoButton(classes) }
+          { this.renegociarPresupuestoButton(classes) }
+          { this.confirmarPresupuestoButton(classes) }
+        </div> : null
+      }
     </div>
   }
  
@@ -297,39 +318,6 @@ class Detail extends React.Component<{
 			}
 		}
     
-    // let empresa: string = 'nombreEmpresa'
-		// let importe: string = 'importe'
-		// let estado: string = 'estado'
-		// let cantidad: string = 'cantidad'
-		// let item: {
-		// 	nombre: string,
-		// 	precio: string,
-		// 	unidad: string
-		// } = {
-		// 	nombre: 'nombreItem',
-		// 	precio: 'precioItem',
-		// 	unidad: 'unidadItem'
-    // }
-    
-    // if(this.props.presupuestoReducer !== undefined) {
-		// 	if(this.props.presupuestoReducer.data !== undefined) {
-		// 		if(this.props.presupuestoReducer.data.pedido !== undefined) {
-		// 			if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente !== undefined) {
-		// 				if(this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre !== undefined) {
-		// 					empresa = this.props.presupuestoReducer.data.pedido.empresa_perteneciente.nombre
-		// 				}
-		// 			}
-		// 			if(this.props.presupuestoReducer.data.pedido.importe) {
-		// 				importe = this.props.presupuestoReducer.data.pedido.importe
-		// 			}
-		// 			if(this.props.presupuestoReducer.data.pedido.estado) {
-		// 				estado = this.props.presupuestoReducer.data.pedido.estado
-		// 			}
-
-		// 		}
-		// 	}
-    // }
-
     return(
       <div>
         <DetailExport
@@ -343,7 +331,7 @@ class Detail extends React.Component<{
           pedido={ null }
           labelCompany={ 'Empresa demandada' }
           company={ company }
-          actions={ (classes: any) => this.actions(classes) }
+          actions={ (classes: any) => this.actions(classes, presupuesto) }
         />
         <OneButton 
           title={ 'Presupuestacion' }
