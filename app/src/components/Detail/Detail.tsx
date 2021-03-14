@@ -342,7 +342,7 @@ class Detail extends React.Component <{
 		
 		if(this.props.pedido !== null) {
 			estado = this.props.pedido.estado
-			importe = this.props.pedido.importeTotal
+			importe = this.props.pedido.importeTotal !== 0 ? this.props.pedido.importeTotal : 'Sin cotizacion'
 			itemNombre = this.props.pedido.items[0].item.nombre
 			itemPrecio = this.props.pedido.items[0].item.precio
 			unidad = this.props.pedido.items[0].unidadDeMedida.nombre
@@ -352,7 +352,7 @@ class Detail extends React.Component <{
 
 		if(this.props.presupuesto !== null) {
 			estado = this.props.presupuesto.estado
-			importe = this.props.presupuesto.importeTotal
+			importe = this.props.presupuesto.importeTotal !== 0 ? this.props.presupuesto.importeTotal : 'Sin cotizacion'
 			itemNombre = this.props.presupuesto.items[0].item.nombre
 			itemPrecio = this.props.presupuesto.items[0].item.precio
 			unidad = this.props.presupuesto.items[0].unidadDeMedida.nombre
