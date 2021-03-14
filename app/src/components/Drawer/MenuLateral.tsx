@@ -1,7 +1,7 @@
 import React  from 'react';
 import { connect } from 'react-redux'
 import clsx from 'clsx'
-import {Typography,Collapse, List } from '@material-ui/core';
+import {Collapse, List } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -21,14 +21,15 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import * as drawerAction from './../../store/actions/drawer';
 import logo from './../Login/img/logoSoloLetras.png';
 
-
 function mapStateToProps(store: {
   drawerReducer: {
     open: boolean
-  }
+  },
+	login: any,
 }) {
   return {
-    open: store.drawerReducer.open
+    open: store.drawerReducer.open,
+		loginReducer: store.login,
   };
 }
 
@@ -69,213 +70,234 @@ class MenuLateral extends React.Component<{
 		};
 	}
 
-	 volverInicio = () => {
+	volverInicio = () => {
 		this.props.history.push("/home/inicio");
 	}
 
 
 	handleClickCompras(e: any) {
 		this.setState({ openItemMenuCompras: !this.state.openItemMenuCompras })
-	  }
+	}
 
-	  handleClickVentas(e: any) {
+	handleClickVentas(e: any) {
 		this.setState({ openItemMenuVentas: !this.state.openItemMenuVentas })
-	  }
+	}
 
-	  handleClickEstadisticas(e: any) {
+	handleClickEstadisticas(e: any) {
 		this.setState({ openItemMenuEstadisticas: !this.state.openItemMenuEstadisticas })
-	  }
+	}
 
 	  
-	  handleClickEstadisticasPlataforma(e: any) {
+	handleClickEstadisticasPlataforma(e: any) {
 		this.setState({ openItemMenuEstadisticasPlataforma: !this.state.openItemMenuEstadisticasPlataforma })
-	  }
+	}
 
-	  handleClickSolicitudes(e: any) {
+	handleClickSolicitudes(e: any) {
 		this.setState({ openItemMenuSolicitudes: !this.state.openItemMenuSolicitudes })
-	  }
+	}
 
-	  handleClickCatalogo(e: any) {
+	handleClickCatalogo(e: any) {
 		this.setState({ openItemMenuCatalogo: !this.state.openItemMenuCatalogo })
-	  }
+	}
 
+	miCatalogo = (classes: any) => {
+		return <div>
+			<ListItem  className={classes.subtitle}  button onClick={this.handleClickCatalogo}>
+				<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Mi Catalogo" />
+				{this.state.openItemMenuCatalogo ? <ExpandLess /> : <ExpandMore />}
+			</ListItem>
+			<Collapse in={this.state.openItemMenuCatalogo} timeout="auto" unmountOnExit>
+				<List component="div" disablePadding>
+					<Link href="/home/catalogo" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+						<DashboardIcon className={classes.icon}/>
+						</ListItemIcon>
+							<ListItemText primary="Mi Catalogo" />
+						</ListItem>
+					</Link>
+					<Link href="/item/nuevo" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+						<AddIcon className={classes.icon}/>
+						</ListItemIcon>
+							<ListItemText primary="Agregar Item" />
+						</ListItem>
+					</Link>
+				</List>
+			</Collapse> 
+		</div>
+	}
+
+	misCompras = (classes: any) => {
+		return <div>
+			<ListItem  className={classes.subtitle}  button onClick={this.handleClickCompras}>
+				<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Mis compras" />
+				{this.state.openItemMenuCompras ? <ExpandLess /> : <ExpandMore />}
+			</ListItem>
+			<Collapse in={this.state.openItemMenuCompras} timeout="auto" unmountOnExit>
+				<List component="div" disablePadding>
+					<Link href="/compras/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+							<AttachMoney className={classes.icon}/>
+						</ListItemIcon>
+							<ListItemText primary="Presupuestos" />
+						</ListItem>
+					</Link>
+					<Link href="/compras/pedidos/lista" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+							<ShoppingCart className={classes.icon} />
+						</ListItemIcon>
+							<ListItemText primary="Pedidos" />
+						</ListItem>
+					</Link>
+				</List>
+			</Collapse> 
+		</div>
+	}
+
+	misVentas = (classes: any) => {
+		return <div>
+			<ListItem  className={classes.subtitle}  button onClick={this.handleClickVentas}>
+				<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Mis ventas" />
+				{this.state.openItemMenuVentas ? <ExpandLess /> : <ExpandMore />}
+			</ListItem>
+			<Collapse in={this.state.openItemMenuVentas} timeout="auto" unmountOnExit>
+				<List component="div" disablePadding>
+					<Link href="/ventas/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+							<AttachMoney className={classes.icon}/>
+						</ListItemIcon>
+							<ListItemText primary="Presupuestos" />
+						</ListItem>
+					</Link>
+					<Link href="/ventas/pedidos/lista" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+							<ShoppingCart className={classes.icon} />
+						</ListItemIcon>
+							<ListItemText primary="Pedidos" />
+						</ListItem>
+					</Link>
+				</List>
+			</Collapse>
+		</div>
+	}
+
+	misEstadisticas = (classes: any) => {
+		return <div>
+			<ListItem  className={classes.subtitle}  button onClick={this.handleClickEstadisticas}>
+				<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Estadisticas" />
+				{this.state.openItemMenuEstadisticas ? <ExpandLess /> : <ExpandMore />}
+			</ListItem>
+			<Collapse in={this.state.openItemMenuEstadisticas} timeout="auto" unmountOnExit>
+				<List component="div" disablePadding>
+					<Link href="/home/resumen" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+						<BarChartIcon className={classes.icon} />
+						</ListItemIcon>
+							<ListItemText primary="Mi resumen" />
+						</ListItem>
+					</Link>
+					<Link href={ '/home/reputacion' } className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+						<StarIcon className={classes.icon}/>
+						</ListItemIcon>
+							<ListItemText primary="Reputacion" />
+						</ListItem>
+					</Link>
+				</List>
+			</Collapse>
+		</div>
+	}
+
+	solicitudes = (classes: any) => {
+		return <div>
+			<ListItem  className={classes.subtitle}  button onClick={this.handleClickSolicitudes}>
+				<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Solicitudes" />
+				{this.state.openItemMenuSolicitudes ? <ExpandLess /> : <ExpandMore />}
+			</ListItem>
+			<Collapse in={this.state.openItemMenuSolicitudes} timeout="auto" unmountOnExit>
+				<List component="div" disablePadding>
+					<Link href="/solicitud/validacion" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+						<PersonAdd className={classes.icon} />
+						</ListItemIcon>
+							<ListItemText primary="Validacion" />
+						</ListItem>
+					</Link>
+					<Link href="/solicitud/unidadMedida" className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+						<PostAdd className={classes.icon}/>
+						</ListItemIcon>
+							<ListItemText primary="Unidad de Medida" />
+						</ListItem>
+					</Link>
+				</List>
+			</Collapse>
+		</div>
+	}
 	
+	estadisticas = (classes: any) => {
+		return <div>
+			<ListItem  className={classes.subtitle}  button onClick={this.handleClickEstadisticasPlataforma}>
+				<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Estadisticas" />
+				{this.state.openItemMenuEstadisticasPlataforma ? <ExpandLess /> : <ExpandMore />}
+			</ListItem>
+			<Collapse in={this.state.openItemMenuEstadisticasPlataforma} timeout="auto" unmountOnExit>
+				<List component="div" disablePadding>
+					<Link href={ '/home/reputacionPlataforma' } className={classes.link} style={{textDecoration: 'none'}}>
+						<ListItem button className={classes.nested}>
+						<ListItemIcon>
+						<StarIcon className={classes.icon}/>
+						</ListItemIcon>
+							<ListItemText primary="Reputacion Plataforma" />
+						</ListItem>
+					</Link>
+				</List>
+			</Collapse>
+		</div>
+	}
 
-	render(){
+	render() {
 
 		const classes = this.props.classes
+		let isAdmin: boolean = false
 
-		
+		if(this.props.loginReducer.data.logged !== undefined) {
+			isAdmin = this.props.loginReducer.data.logged
+		}
 
 		return(
-			
-				
-				<Drawer
-					variant="permanent"
-					classes={{
-						paper: clsx(classes.drawerPaper, !this.props.open && classes.drawerPaperClose),
-					}}
-					open={this.props.open}
-				>
-					 <div className={classes.toolbar} >
-					 <img onClick={this.volverInicio} style={{width:"250px", height: "30px", marginTop:"20px"}} src={logo}></img> 
-						{/* <Avatar src={logoLetras} className={classes.avatar} ></Avatar> */}
-					</div> 
-					{/* <div className={classes.toolbarIcon}>
-						<IconButton onClick={handleDrawerClose}>
-							<ChevronLeftIcon />
-						</IconButton>
-					</div> */}
-					<Divider />
+			<Drawer
+				variant="permanent"
+				classes={{
+					paper: clsx(classes.drawerPaper, !this.props.open && classes.drawerPaperClose),
+				}}
+				open={this.props.open}
+			>
+				<div className={classes.toolbar} >
+					<Link href={ isAdmin ? '/' : '/home/inicio' }>
+						<img style={{width:"250px", height: "30px", marginTop:"20px"}} src={logo}></img> 
+					</Link>
+				</div> 
+				<Divider />
 
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickCatalogo}>
-						<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Mi Catalogo" />
-						{this.state.openItemMenuCatalogo ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
-					<Collapse in={this.state.openItemMenuCatalogo} timeout="auto" unmountOnExit>
-						<List component="div" disablePadding>
-							<Link href="/home/catalogo" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<DashboardIcon className={classes.icon}/>
-								</ListItemIcon>
-									<ListItemText primary="Mi Catalogo" />
-								</ListItem>
-							</Link>
-							<Link href="/item/nuevo" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<AddIcon className={classes.icon}/>
-								</ListItemIcon>
-									<ListItemText primary="Agregar Item" />
-								</ListItem>
-							</Link>
-						</List>
-					</Collapse> 
+				{ !isAdmin ? this.miCatalogo(classes) : null }
+				{ !isAdmin ? this.misCompras(classes) : null }
+				{ !isAdmin ? this.misVentas(classes) : null }
+				{ !isAdmin ? this.misEstadisticas(classes) : null }
+				{ isAdmin ? this.solicitudes(classes) : null }
+				{ isAdmin ? this.estadisticas(classes) : null }
 
-					
-
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickCompras}>
-						<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Mis compras" />
-						{this.state.openItemMenuCompras ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
-					<Collapse in={this.state.openItemMenuCompras} timeout="auto" unmountOnExit>
-						<List component="div" disablePadding>
-							<Link href="/compras/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-									<AttachMoney className={classes.icon}/>
-								</ListItemIcon>
-									<ListItemText primary="Presupuestos" />
-								</ListItem>
-							</Link>
-							<Link href="/compras/pedidos/lista" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-									<ShoppingCart className={classes.icon} />
-								</ListItemIcon>
-									<ListItemText primary="Pedidos" />
-								</ListItem>
-							</Link>
-						</List>
-					</Collapse> 
-
-
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickVentas}>
-						<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Mis ventas" />
-						{this.state.openItemMenuVentas ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
-					<Collapse in={this.state.openItemMenuVentas} timeout="auto" unmountOnExit>
-						<List component="div" disablePadding>
-							<Link href="/ventas/presupuestos/lista" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-									<AttachMoney className={classes.icon}/>
-								</ListItemIcon>
-									<ListItemText primary="Presupuestos" />
-								</ListItem>
-							</Link>
-							<Link href="/ventas/pedidos/lista" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-									<ShoppingCart className={classes.icon} />
-								</ListItemIcon>
-									<ListItemText primary="Pedidos" />
-								</ListItem>
-							</Link>
-						</List>
-					</Collapse> 
-
-					
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickEstadisticas}>
-						<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Estadisticas" />
-						{this.state.openItemMenuEstadisticas ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
-					<Collapse in={this.state.openItemMenuEstadisticas} timeout="auto" unmountOnExit>
-						<List component="div" disablePadding>
-							<Link href="/home/resumen" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<BarChartIcon className={classes.icon} />
-								</ListItemIcon>
-									<ListItemText primary="Mi resumen" />
-								</ListItem>
-							</Link>
-							<Link href={ '/home/reputacion' } className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<StarIcon className={classes.icon}/>
-								</ListItemIcon>
-									<ListItemText primary="Reputacion" />
-								</ListItem>
-							</Link>
-						</List>
-					</Collapse> 
-
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickSolicitudes}>
-						<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Solicitudes" />
-						{this.state.openItemMenuSolicitudes ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
-					<Collapse in={this.state.openItemMenuSolicitudes} timeout="auto" unmountOnExit>
-						<List component="div" disablePadding>
-							<Link href="/solicitud/validacion" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<PersonAdd className={classes.icon} />
-								</ListItemIcon>
-									<ListItemText primary="Validacion" />
-								</ListItem>
-							</Link>
-							<Link href="/solicitud/unidadMedida" className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<PostAdd className={classes.icon}/>
-								</ListItemIcon>
-									<ListItemText primary="Unidad de Medida" />
-								</ListItem>
-							</Link>
-						</List>
-					</Collapse> 
-
-					<ListItem  className={classes.subtitle}  button onClick={this.handleClickEstadisticasPlataforma}>
-						<ListItemText style={{paddingLeft:'60px'}} className={classes.subtitle} primary="Estadisticas" />
-						{this.state.openItemMenuEstadisticasPlataforma ? <ExpandLess /> : <ExpandMore />}
-					</ListItem>
-					<Collapse in={this.state.openItemMenuEstadisticasPlataforma} timeout="auto" unmountOnExit>
-						<List component="div" disablePadding>
-							<Link href={ '/home/reputacionPlataforma' } className={classes.link} style={{textDecoration: 'none'}}>
-								<ListItem button className={classes.nested}>
-								<ListItemIcon>
-								<StarIcon className={classes.icon}/>
-								</ListItemIcon>
-									<ListItemText primary="Reputacion Plataforma" />
-								</ListItem>
-							</Link>
-						</List>
-					</Collapse> 
-
-				</Drawer>
-						
+			</Drawer>
 		);
 	}
 }

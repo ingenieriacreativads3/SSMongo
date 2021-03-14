@@ -15,7 +15,7 @@ import { MiPerfil } from './containers/Perfil'
 import { Presupuestacion } from './containers/Ventas - Presupuesto'
 import { Renegociacion } from './containers/Ventas - Presupuesto'
 import { Inicio, Busqueda, EmpresaList } from './containers/Home'
-import { Login, Reset, Recover } from './containers/Login'
+import { Login, Reset, Recover, LoginAdmin } from './containers/Login'
 import Register from './containers/Register'
 import { SolicitudesValidacion } from './containers/ValidationRequest'
 import { PurchaseRequests, DetailPurchaseRequest }	from './containers/Compras/Pedido'
@@ -134,7 +134,7 @@ class App extends React.Component <{}, {}> {
 						<this.enEspera path='/home/resumen' cookies={cookies} render={(props:any) => <ResumenActividad {...props} cookies={cookies}/>}/>
 						<this.enEspera path='/home/catalogo' cookies={cookies} render={(props:any) => <Catalogo { ...props } cookies={cookies} />} /> 
 						<this.enEspera path='/home/reputacion' cookies={cookies} render={(props:any) => <Reputacion {...props} cookies={cookies}/>}/>
-						<this.enEspera path='/home/reputacionPlataforma' cookies={cookies} render={(props:any) => <ReputacionPlataforma {...props} cookies={cookies}/>}/>
+						<Route path='/home/reputacionPlataforma' cookies={cookies} render={(props:any) => <ReputacionPlataforma {...props} cookies={cookies}/>} />
 						<Route path='/home/inicio' render={(props) => <Inicio { ...props } cookies={cookies} />}/>
 						<Route path='/home/empresas/:grupo' render={(props) => <EmpresaList { ...props } cookies={cookies} />}/>
 						
@@ -144,6 +144,7 @@ class App extends React.Component <{}, {}> {
 						<Route path='/resetPassword' component={ Reset } />
 						<Route path='/recoverPassword' component={ Recover } />
 						<Route path='/registrar' component={ Register } />
+						<Route path='/admin' cookies={cookies} render={(props: any) => <LoginAdmin { ...props } cookies={cookies} />}/>
 						<this.login path='/' cookies={cookies} render={(props: any) => <Login { ...props } cookies={cookies} />}/>
 					
 					</Switch>

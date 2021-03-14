@@ -15,6 +15,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import * as errorActions from './../../store/actions/error'
+import * as loginActions from './../../store/actions/login'
 import store from './../../store/index'
 
 function mapStateToProps(store: {
@@ -44,6 +45,10 @@ class Login extends React.Component<{}, {
       showPassword: false,
       formValid: true
      };
+  }
+
+  componentWillMount = () => {
+    this.props.dispatch(loginActions.reintentar())
   }
 
   handleKeyPress = (e: any) => {

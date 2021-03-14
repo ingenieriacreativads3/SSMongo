@@ -11,6 +11,20 @@ export function reintentar() {
 
 }
 
+export function loguearAdmin(
+	cookies: Cookies,
+	name: string
+) {
+
+	cookies.set('empresaName', name, { path: '/' });
+
+	return {
+		type: 'LOGUEAR_ADMIN',
+		payload: {}
+	}
+
+}
+
 export function loguear(
 	cookies: Cookies,
 	empresaId: string,
@@ -23,6 +37,23 @@ export function loguear(
 	return {
 		type: 'LOGUEAR',
 		payload: {}
+	}
+
+}
+
+export function ingresarAdmin(
+	user: string,
+	pass: string
+) {
+
+	let payload: any = axios.post(config.url + '/admin/login', {
+		userName: user,
+		password: pass
+	})
+
+	return {
+		type: 'INGRESAR_ADMIN',
+		payload: payload
 	}
 
 }

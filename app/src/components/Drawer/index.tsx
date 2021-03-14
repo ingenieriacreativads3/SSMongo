@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {  makeStyles } from '@material-ui/core/styles';
 
 import Menu from './MenuLateral'
 
@@ -83,10 +83,10 @@ const useStyles = makeStyles((theme) => ({
 	
 })); 
 
-export default function MenuLateral(props?: {
-	link?: any
-}) {
+export default function MenuLateral(props?: any) {
+
 	const classes = useStyles();
+
 	let propsReturn: {
 		link: any
 	} = {

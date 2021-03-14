@@ -73,32 +73,20 @@ const useStyles = makeStyles((theme) => ({
 export function IniciarSesion(props: any) {
 
   const classes = useStyles(theme);
-  
-  return <div>
-    <Login classes={ classes } { ...props } />
-  </div>;
-
+  return <Login classes={ classes } { ...props } />
 }
 
 export function ResetPassword(props: any) {
 
   const classes = useStyles(theme);
-  
-  return <div>
-    <ResetPass classes={ classes } { ...props } />
-  </div>;
-
+  return <ResetPass classes={ classes } { ...props } />
 }
 
 
 export function RecoverPassword(props: any) {
 
   const classes = useStyles(theme);
-  
-  return <div>
-    <RecoverPass classes={ classes } { ...props } />
-  </div>;
-
+  return <RecoverPass classes={ classes } { ...props } />
 }
 
 

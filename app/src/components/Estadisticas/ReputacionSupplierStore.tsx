@@ -4,16 +4,14 @@ import { connect } from 'react-redux';
 import { Container, Grid,Box, Card, Tabs, Tab, Avatar, ListSubheader, ListItemAvatar,ListItemText,Divider, CardActions, CardHeader, ListItem, Typography, CssBaseline,	CardContent} from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
 
-
 import PieChart, {
-		Legend,
-		Series,
-		Export,
-		Label,
-		SmallValuesGrouping,
-		Connector
-	} from 'devextreme-react/pie-chart';
-
+	Legend,
+	Series,
+	Export,
+	Label,
+	SmallValuesGrouping,
+	Connector
+} from 'devextreme-react/pie-chart';
 
 var navegabilidad: any = [{
 	rating: 'Excelente',
@@ -238,7 +236,6 @@ class ReputacionSupplierStore extends React.Component <{}, {
 		let item = data[index];
 
 		var inicialAvatar = item.usuario.substr(0,[1]).toUpperCase();
-		
 	
 		return (
 			<ListItem button style={style} key={index}>
@@ -276,13 +273,11 @@ class ReputacionSupplierStore extends React.Component <{}, {
 			this.setState({value: value});
 		};
 
-		console.log(this.state.navegabilidad);
-
 		return(
 			<div className={classes.root}>
 				<CssBaseline />
-				{this.props.appBar}
-				{this.props.drawer}
+				{ this.props.appBar }
+				{ this.props.drawer }
 				<main className={classes.content}>
 					<div className={classes.appBarSpacer} />
 					<Container maxWidth="lg" className={classes.container}>

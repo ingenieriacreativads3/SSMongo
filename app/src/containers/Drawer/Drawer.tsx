@@ -3,28 +3,11 @@ import { connect } from 'react-redux'
 
 import DrawerComponent from './../../components/Drawer'
 
-function mapStateToProps(store: {
-  requestReducer: any,
-  login: any
-}) {
-  return {
-    requestReducer: store.requestReducer,
-    login: store.login
-  };
+function mapStateToProps(store: {}) {
+  return {};
 }
 
-// 602ad181b9481716c719eb19
-// 6029384fae08ed54b849e5f2
-
-// 602ad181b9481716c719eb19
-// 6029384fae08ed54b849e5f2
-
-class Drawer extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-	staticContext?: any,
-}, {}> {
+class Drawer extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
@@ -45,9 +28,7 @@ class Drawer extends React.Component<{
 
     return(
       <div>
-        <DrawerComponent
-          link={this.link}
-        />
+        <DrawerComponent link={ this.link } />
       </div>
     );
   }

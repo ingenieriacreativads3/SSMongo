@@ -78,6 +78,39 @@ export default function LoginReducer (state = {
       };
     }
 
+    case 'INGRESAR_ADMIN_PENDING': {
+
+      return { 
+        ...state, 
+        fetching: true 
+      };
+
+    }
+  
+    case 'INGRESAR_ADMIN_REJECTED': {
+
+      return { 
+        ...state, 
+        fetching: false, 
+        error: action.payload 
+      };
+
+    }
+  
+    case 'INGRESAR_ADMIN_FULFILLED':{
+
+      localStorage.removeItem(config.session_user)
+
+      return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+    }
+
     case 'INGRESAR_PENDING': {
 
       return { 
@@ -125,6 +158,17 @@ export default function LoginReducer (state = {
     }
 
     case 'LOGUEAR':{
+      return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        status: 0,
+        message: '',
+        data: state.data
+      };
+    }
+
+    case 'LOGUEAR_ADMIN':{
       return {
         ...state,
         fetching: false,

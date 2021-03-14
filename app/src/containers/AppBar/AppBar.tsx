@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import * as messageActions from './../../store/actions/message'
 import * as notificacionesActions from './../../store/actions/notifications'
+import * as loginActions from './../../store/actions/login'
 
 import PermanetDrawerLeft from './../../components/AppBar'
 
@@ -39,6 +40,7 @@ class AppBar extends React.Component<{}, {}> {
 	
 	cerrarSesion = () => {
     this.props.cookies.remove('empresaId')
+    this.props.dispatch(loginActions.reintentar())
 		this.props.history.push('/')
   }
   

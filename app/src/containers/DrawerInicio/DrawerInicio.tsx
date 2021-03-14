@@ -3,22 +3,11 @@ import { connect } from 'react-redux'
 
 import DrawerInicio from './../../components/DrawerInicio'
 
-function mapStateToProps(store: {
-  requestReducer: any,
-  login: any
-}) {
-  return {
-    requestReducer: store.requestReducer,
-    login: store.login
-  };
+function mapStateToProps(store: {}) {
+  return {};
 }
 
-class InicioDrawer extends React.Component<{
-  history: any,
-  location: any,
-  match: any,
-	staticContext?: any,
-}, {}> {
+class InicioDrawer extends React.Component<{}, {}> {
 
 	props: any
 	static propTypes: any
