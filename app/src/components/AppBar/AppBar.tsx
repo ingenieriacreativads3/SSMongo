@@ -170,7 +170,6 @@ class AppBare extends React.Component<{}, {
 	handleKeyPress = (e: any) => {
 		if(e.key === 'Enter'){
 			if(this.props.history !== undefined) {
-				// this.props.dispatch(itemActions.searchByName(this.state.search))
 				this.props.history.push("/home/busqueda/" + this.state.search)
 			}
 		}

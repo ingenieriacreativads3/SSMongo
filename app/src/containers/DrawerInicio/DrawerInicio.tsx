@@ -18,10 +18,6 @@ class InicioDrawer extends React.Component<{}, {}> {
 		super(props);
     this.state = {};
 	}
-	
-	link = () => {
-		this.props.history.push('/home/catalogo')
-	}
 
   render(){
 

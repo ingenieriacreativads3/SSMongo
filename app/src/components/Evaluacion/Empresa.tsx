@@ -69,7 +69,7 @@ class EvaluacionEmpresa extends React.Component <{}, {
 	}
 
   componentWillMount() {
-		this.props.dispatch(drawerActions.invisibleDrawer())
+		// this.props.dispatch(drawerActions.invisibleDrawer())
 		this.props.dispatch(empresaAction.getEmpresa(this.props.match.params.id))
   }
 

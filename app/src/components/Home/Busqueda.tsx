@@ -141,7 +141,7 @@ class Busqueda extends React.Component <{}, {
          
 				>
 					
-                  {
+                {
                   items.map((item: {
                     _id: {
                       $oid: string
@@ -152,7 +152,7 @@ class Busqueda extends React.Component <{}, {
                     mostrarPrecio:boolean
                   }) => {
                    return <Grid item xs={12} sm={6} md={3} style={{display: items.length > 0 ? 'block' : 'none'}}>
-                        <Link to={`/item/detalle/`+ item._id.$oid} style={{textDecoration:'none'}}>
+                        <Link onClick={ () => this.props.action(item._id.$oid) } to={`/item/detalle/`+ item._id.$oid} style={{textDecoration:'none'}}>
                           <Card
                             style={{height:'90%'}}
                             className={classes.card}

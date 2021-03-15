@@ -191,7 +191,7 @@ class Home extends React.Component <{
   }
 
   componentWillMount() {
-    this.props.dispatch(drawerActions.invisibleDrawer())
+    // this.props.dispatch(drawerActions.invisibleDrawer())
   }
 
   render(){
@@ -257,7 +257,12 @@ class Home extends React.Component <{
       trendingItems = this.props.itemsTrending
     }
 
-    if(this.props.items !== undefined) {
+    if(
+      this.props.items !== undefined &&
+      this.props.items !== null &&
+      Array.isArray(this.props.items) &&
+      this.props.items.length > 0
+    ) {
       items = this.props.items
     }
 
@@ -357,51 +362,43 @@ class Home extends React.Component <{
               </ListSubheader>
               <Grid container spacing={3}>
             
-                  {/* <SideBarInicio></SideBarInicio> */}
-                
-                  {
-                    items.map((asd: any[]) => {
+                {/* <SideBarInicio></SideBarInicio> */}
+              
+                {
+                  items.map((asd: any) => {
 
-                      // let fotos: string[] = ['']
-
-                      // if(item.foto !== undefined && item.foto.length > 0) {
-                      //   fotos = item.foto
-                      // }
-
-                      // let unidadDeMedidaNombre: string = ''
-
-                      
-                      // if(item.unidad_de_medida !== undefined) {
-                      //   unidadDeMedidaNombre = item.unidad_de_medida.nombre
-                      // }
-
-                      return <div>
-                        <Grid item lg={3}>
-                        <Link to={`/item/detalle/`+ asd[0]._id} style={{textDecoration:'none'}}>
-                          <Card style={{height:'90%'}} className={classes.card} onClick={ () => this.props.action(asd[0]._id)} /* className={fixedHeightCardCatalog} */>
+                    return <div>
+                      <Grid item lg={3}>
+                        <Link to={`/item/detalle/`+ asd._id} style={{textDecoration:'none'}}>
+                          <Card style={{height:'90%'}} onClick={ () => this.props.action(asd._id)} className={fixedHeightCardCatalog}>
+                          
                               <CardMedia
-                                className={classes.cardMedia}
                                 component="img"
-                                alt={asd[0].nombre}
+                                alt={asd.nombre}
                                 height="250"
-                                //image={'http://localhost:8000/' + asd[0].foto[0]}
-                                //title={asd[0].nombre}
+                                image={'http://localhost:8000/' + asd.foto[0]}
+                                //title={asd.nombre}
                               />
-                              <CardContent className={classes.cardContent}>
-                                <Typography gutterBottom variant="h6" component="h2"  >
-                                  {asd[0].nombre}
+                              <CardContent>
+                                <Typography gutterBottom variant="h6" component="h2" >
+                                  {asd.nombre}
                                 </Typography>
-                                <Typography style={{color:"#d93211"}}  gutterBottom variant="h5">
-                                  {asd[0].mostrarPrecio ? "$" + asd[0].precio : 'Consultar precio'} {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad (MIRAR ISSUE)</Typography>}
+                                <Typography  style={{color:"#d93211"}}  gutterBottom variant="h5">
+                                  { asd.mostrarPrecio ? "$" + asd.precio + ' ' : "Consultar precio " }
+                                  {
+                                    <Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary">
+                                      { ' ' + asd?.unidad_de_medida?.nombre || '' }
+                                    </Typography>
+                                  } 
                                 </Typography>
                               </CardContent>
-                           
+                            
                           </Card>
-                          </Link>
-                        </Grid>
-                      </div>
-                    })
-                  }
+                        </Link>
+                      </Grid>
+                    </div>
+                  })
+                }
               
               </Grid>
 
@@ -413,28 +410,7 @@ class Home extends React.Component <{
               <Grid container spacing={3}>
             
                 {
-                  trendingItems.map((asd: {
-                    item: {
-                      "_id": string,
-                      "foto": string[],
-                      "nombre": string,
-                      "precio": string,
-                      "descrpcion": string,
-                      "mostrarPrecio": boolean,
-                      "unidad_de_medida_id": string,
-                      "updated_at": string,
-                      "created_at": string,
-                      "catalogo_id": string,
-                      "unidad_de_medida": {
-                        "_id": string,
-                        "nombre": string,
-                        "abreviatura": string,
-                        "updated_at": string,
-                        "created_at": string,
-                      }
-                    },
-                    cantidad: number
-                  }) => {
+                  trendingItems.map((asd: any) => {
 
                     return <div>
                       <Grid item lg={3}>
@@ -453,7 +429,12 @@ class Home extends React.Component <{
                                   {asd.item.nombre}
                                 </Typography>
                                 <Typography  style={{color:"#d93211"}}  gutterBottom variant="h5">
-                                  {asd.item.mostrarPrecio ? "$" + asd.item.precio : "Consultar precio"}  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>} 
+                                  { asd.item.mostrarPrecio ? "$" + asd.item.precio + ' ' : "Consultar precio" }
+                                  { 
+                                    <Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary">
+                                      { ' ' + asd?.item?.unidad_de_medida?.nombre || '' }
+                                    </Typography>
+                                  }
                                 </Typography>
                               </CardContent>
                             

@@ -36,17 +36,24 @@ class Busqueda extends React.Component<{}, {}> {
     this.props.dispatch(itemActions.searchByName(this.props.match.params.search))
   }
   
-  drawer() {
+  drawer = () => {
     return <InicioDrawer { ...this.props } />
   }
 
-  footer() {
+  footer = () => {
     return <Footer { ...this.props } />
   }
 
-  appBar() {
+  appBar = () => {
     return <AppBar { ...this.props } />
   }
+
+  action = (idItem: string) => {
+		this.props.dispatch(itemActions.agregarBusqueda(
+			this.props.cookies.get('empresaId'),
+			idItem
+		))
+	}
 
   render(){
 
@@ -62,6 +69,7 @@ class Busqueda extends React.Component<{}, {}> {
           drawer={ this.drawer() }
           footer={ this.footer() }
           appBar={ this.appBar() }
+          action={ this.action }
           { ...this.props }
           items={ items }
         />

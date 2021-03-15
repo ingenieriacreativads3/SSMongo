@@ -24,9 +24,7 @@ export function searchByName(
 	name: string
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.get(url + '/busqueda/' + name + '/none/none/none/none/0/9999')
+	let payload: any = axios.get(config.url + '/busqueda/' + name + '/none/none/none/none/0/9999')
 	
   return {
 		type: 'SEARCH_ITEM_BY_NAME',
@@ -37,9 +35,7 @@ export function searchByName(
 
 export function cargaElastic() {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.get(url + '/cargaelastic')
+	let payload: any = axios.get(config.url + '/cargaelastic')
 	
   return {
 		type: 'ELASTIC_LOAD',
@@ -53,9 +49,7 @@ export function getTrendingItems(
 	cantidad: number
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.get(url + '/busquedapersonalizada/' + idEmpresa + '/cantidad/' + cantidad)
+	let payload: any = axios.get(config.url + '/busquedapersonalizada/' + idEmpresa + '/cantidad/' + cantidad)
 	
   return {
 		type: 'GET_TRENDING_ITEMS',
@@ -69,9 +63,7 @@ export function agregarBusqueda(
 	idItem: string,
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/agregarbusqueda', {
+	let payload: any = axios.post(config.url + '/agregarbusqueda', {
 		empresa: {
 			_id: idEmpresa
 		},
@@ -91,9 +83,7 @@ export function deleteItem(
 	id:string
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.delete(url + '/item/' + id)
+	let payload: any = axios.delete(config.url + '/item/' + id)
 	
   return {
 		type: 'DELETE_ITEM',
@@ -130,9 +120,7 @@ export function setItem(
 	imagen: string,
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.post(url + '/item', {
+	let payload: any = axios.post(config.url + '/item', {
 		idEmpresa,
 		nombre,
 		precio,
@@ -159,11 +147,7 @@ export function updateItem(
 	foto: string[],
 ) {
 
-	let url: string = 'http://127.0.0.1:8000';
-
-
-	
-	let payload: any = axios.put(url + '/item', {
+	let payload: any = axios.put(config.url + '/item', {
 		_id,
 		nombre,
 		precio,
@@ -182,9 +166,7 @@ export function updateItem(
 
 export function getItem(id: string){
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.get(url + '/item/' + id)
+	let payload: any = axios.get(config.url + '/item/' + id)
         
 	return {
 		type: 'GET_ITEM',
@@ -195,9 +177,7 @@ export function getItem(id: string){
 
 export function getCatalogo(id: string){
 
-	let url: string = 'http://127.0.0.1:8000';
-	
-	let payload: any = axios.get(url + '/empresa/' + id + '/catalogo/items')
+	let payload: any = axios.get(config.url + '/empresa/' + id + '/catalogo/items')
         
 	return {
 		type: 'GET_CATALOGO',

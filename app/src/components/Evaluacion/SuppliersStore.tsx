@@ -63,7 +63,7 @@ class EvaluacionSuppliersStore extends React.Component <{}, {
 	}
 
 	componentWillMount() {
-		this.props.dispatch(drawerActions.invisibleDrawer())
+		// this.props.dispatch(drawerActions.invisibleDrawer())
 	}
 
 	handleChange = (e:any) =>{

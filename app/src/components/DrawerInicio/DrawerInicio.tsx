@@ -61,7 +61,7 @@ function mapStateToProps(store: {
 class DrawerInicio extends React.Component<{}, {
 	anchorEl: null | HTMLElement,
 	mobileMoreAnchorEl: null | HTMLElement
-	valueFilter: number | null,
+	valueFilter: number ,
 	hoverFilter: any,
 	provincia: string,
 	municipio: string,
@@ -159,11 +159,24 @@ class DrawerInicio extends React.Component<{}, {
 		let provincia: string = 'none'
 		let localidad: string = 'none'
 		let empresaName: string = 'none'
+		let valueFilter: string = 'none'
 		let precioMinimo: string = 'none'
 		let precioMaximo: string = 'none'
 
 		if(this.state.provincia !== '') provincia = this.state.provincia
 		if(this.state.municipio !== '') localidad = this.state.municipio
+		if(this.state.precioMinimo !== '') precioMinimo = this.state.precioMinimo
+		if(this.state.precioMaximo !== '') precioMaximo = this.state.precioMaximo
+		if(
+			this.props.match.params.search !== undefined &&
+			this.props.match.params.search !== null
+		) itemName = this.props.match.params.search
+
+		if(this.state.valueFilter === 0) {
+			valueFilter = 'none'
+		} else {
+			valueFilter = this.state.valueFilter.toString()
+		}
 
 		this.props.dispatch(itemActions.search(
 			itemName,
@@ -188,23 +201,29 @@ class DrawerInicio extends React.Component<{}, {
 		let itemName: string = 'none'
 		let provincia: string = 'none'
 		let localidad: string = 'none'
+		let valueFilter: string = 'none'
 		let empresaName: string = 'none'
 		let precioMinimo: string = 'none'
 		let precioMaximo: string = 'none'
 
-		this.setState({provincia:''});
-		this.setState({municipio:''});
-		this.setState({valueFilter:0});
-		this.setState({precioMinimo:''});
-		this.setState({precioMaximo:''});
+		if(
+			this.props.match.params.search !== undefined &&
+			this.props.match.params.search !== null
+		) itemName = this.props.match.params.search
 
-	
+		this.setState({
+			provincia,
+			municipio: localidad,
+			valueFilter: 0,
+			precioMinimo: precioMinimo,
+			precioMaximo: precioMaximo
+		})
 
 		this.props.dispatch(itemActions.search(
 			itemName,
 			provincia,
 			localidad,
-			'none',
+			valueFilter,
 			empresaName,
 			precioMinimo,
 			precioMaximo,
@@ -254,218 +273,171 @@ class DrawerInicio extends React.Component<{}, {
 		}
 
 		return(
-			
-				
-				<Drawer
-					variant="permanent"
-					classes={{
-						paper: clsx(classes.drawerPaper, !this.props.open && classes.drawerPaperClose),
-					}}
-					open={this.props.open}
-				>
-					<div className={classes.toolbar} >
-						<Typography style={{color:'#d93211', marginTop: '15px', marginLeft:'25px', fontStyle:'italic'}} variant="h5"  gutterBottom>
-							Suppliers Store
-						</Typography>
-					</div>
-					
-					<Divider />
+			<Drawer
+				variant="permanent"
+				classes={{
+					paper: clsx(classes.drawerPaper, !this.props.open && classes.drawerPaperClose),
+				}}
+				open={this.props.open}
+			>
+				<div className={classes.toolbar} >
+					<Typography style={{color:'#d93211', marginTop: '15px', marginLeft:'25px', fontStyle:'italic'}} variant="h5"  gutterBottom>
+						Suppliers Store
+					</Typography>
+				</div>
+				<Divider />
+				<List component="div" disablePadding>
+					<ListItem >
+						<ListItemIcon>
+							<RoomIcon className={classes.iconButton} />	
+						</ListItemIcon>
+						<ListItemText primary="Ubicacion" />
+					</ListItem>
 
-					<List component="div" disablePadding>
-
-						{/* <ListItem >
-							<ListItemIcon>
-								<AppsIcon className={classes.iconButton} />	
-							</ListItemIcon>
-							<ListItemText primary="Rubros" />
-						</ListItem> */}
-
-						{/* <ListItem >
-							<FormControl variant="outlined" className={classes.formControl}>
-								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Rubros</InputLabel>
+					<ListItem>
+						<FormControl variant="outlined" className={classes.formControl}>
+							<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
 								<Select
 									labelId="demo-simple-select-outlined-label"
 									id="demo-simple-select-outlined"
 									className={classes.select}
-									label="Rubros"
-									value={ this.state.grupo }
-									onChange={ this.getGrupo }
+									label="Provincia"
+									value={this.state.provincia} 
+									onChange={this.handleChangeProvincia}
 								>
 									{
-										grupos.map((grupo: {
-											nombre: string
-										}) => {
-											return <MenuItem value={grupo.nombre}>{grupo.nombre}</MenuItem>
-										})
-									}
-								</Select>
-							</FormControl>
-						</ListItem>
-							 */}
-						<ListItem >
-							<ListItemIcon>
-								<RoomIcon className={classes.iconButton} />	
-							</ListItemIcon>
-							<ListItemText primary="Ubicacion" />
-						</ListItem>
-
-						<ListItem >
-							<FormControl variant="outlined" className={classes.formControl}>
-								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Provincia</InputLabel>
-									<Select
-										labelId="demo-simple-select-outlined-label"
-										id="demo-simple-select-outlined"
-										className={classes.select}
-										label="Provincia"
-										value={this.state.provincia} 
-										onChange={this.handleChangeProvincia}
-									>
-										{
-											provincias.map((provincia: {
-												nombre: string,
-												id: string
-											}) => {
-												return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
-											})
-										}
-									</Select>
-							</FormControl>
-						</ListItem>
-
-
-						<ListItem >
-							<FormControl variant="outlined"  className={classes.formControl}>
-														
-								<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
-								<Select
-									labelId="demo-simple-select-outlined-label"
-									id="demo-simple-select-outlined"
-									className={classes.select}
-									label="Ciudad"
-									value={this.state.municipio} 
-									onChange={this.handleChangeMunicipio}
-									defaultValue={1}
-								>
-									{
-										municipios.map((municipio: {
+										provincias.map((provincia: {
 											nombre: string,
 											id: string
 										}) => {
-											return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
+											return <MenuItem value={provincia.nombre}>{provincia.nombre}</MenuItem>
 										})
 									}
 								</Select>
-							</FormControl>
-						</ListItem>
+						</FormControl>
+					</ListItem>
 
 
+					<ListItem>
+						<FormControl variant="outlined"  className={classes.formControl}>
+							<InputLabel id="demo-simple-select-outlined-label" className={classes.inputLabel}>Ciudad</InputLabel>
+							<Select
+								labelId="demo-simple-select-outlined-label"
+								id="demo-simple-select-outlined"
+								className={classes.select}
+								label="Ciudad"
+								value={this.state.municipio} 
+								onChange={this.handleChangeMunicipio}
+								defaultValue={1}
+							>
+								{
+									municipios.map((municipio: {
+										nombre: string,
+										id: string
+									}) => {
+										return <MenuItem value={municipio.nombre}>{municipio.nombre}</MenuItem>
+									})
+								}
+							</Select>
+						</FormControl>
+					</ListItem>
+
+					<ListItem>
+						<ListItemIcon>
+							<StarHalfIcon className={classes.iconButton} />
+						</ListItemIcon>
+						<ListItemText primary="Valoracion" />
+					</ListItem>
+					
+					<ListItem >
+						<Rating className={classes.rating}
+							name="hover-feedback-price"
+							value={this.state.valueFilter}
+							precision={1}
+							onChange={(event, newValueFilter) => {
+								if(newValueFilter !== null) this.setState({ valueFilter: newValueFilter })
+							}}
+							onChangeActive={(event, newValueFilter) => {
+								this.setState({ hoverFilter: newValueFilter })
+							}}
+						/>
+					</ListItem>
+
+					<ListItem>
+						<ListItemIcon>
+							<AttachMoneyIcon className={classes.iconButton} />
+						</ListItemIcon>
+						<ListItemText primary="Precio" />
+					</ListItem>
+
+					<Grid container spacing={3}>
 						<ListItem>
-								<ListItemIcon>
-									<StarHalfIcon className={classes.iconButton} />
-								</ListItemIcon>
-								<ListItemText primary="Valoracion" />
-							</ListItem>
-							
-							<ListItem >
-								<Rating className={classes.rating}
-									name="hover-feedback-price"
-									value={this.state.valueFilter}
-									precision={1}
-									onChange={(event, newValueFilter) => {
-										this.setState({
-										valueFilter: newValueFilter
-										})
+							<Grid item xs={12} sm={6}>
+								<TextField
+									className={classes.textField}
+									variant="outlined"
+									label="Minimo"
+									type="number"
+									value={this.state.precioMinimo}
+									inputProps={{min:1}}
+									onChange={(event) => {
+										this.setState({ precioMinimo: event.target.value })
 									}}
-									onChangeActive={(event, newValueFilter) => {
-										this.setState({
-										hoverFilter: newValueFilter
-										})
+									InputLabelProps={{
+										classes: {
+											root: classes.cssLabel,
+											focused: classes.cssFocused,
+										},
+									}}
+									InputProps={{
+										classes: {
+											root: classes.cssOutlinedInput,
+											focused: classes.cssFocused,
+											notchedOutline: classes.notchedOutline,
+										},
 									}}
 								/>
-							</ListItem>
-
-							<ListItem>
-								<ListItemIcon>
-									<AttachMoneyIcon className={classes.iconButton} />
-								</ListItemIcon>
-								<ListItemText primary="Precio" />
-							</ListItem>
-							<Grid container spacing={3}>
-							<ListItem >
-								
-								<Grid item xs={12} sm={6}>
-								<TextField
-								className={classes.textField}
-								variant="outlined"
-								label="Minimo"
-								type="number"
-								value={this.state.precioMinimo}
-								inputProps={{min:1}}
-								onChange={(event) => {
-									this.setState({
-									precioMinimo: event.target.value,
-									})
-								}}
-								InputLabelProps={{
-									classes: {
-										root: classes.cssLabel,
-										focused: classes.cssFocused,
-									},
-								}}
-								InputProps={{
-									classes: {
-										root: classes.cssOutlinedInput,
-										focused: classes.cssFocused,
-										notchedOutline: classes.notchedOutline,
-									},
-								}}
-							/>
-								</Grid>
-								<Grid item xs={12} sm={6}>
-								<TextField
-								className={classes.textField}
-								variant="outlined"
-								label="Maximo"
-								value={this.state.precioMaximo}
-								type="number"
-								inputProps={{min:1}}
-								onChange={(event) => {
-									this.setState({
-									precioMaximo: event.target.value,
-									})
-								}}
-								InputLabelProps={{
-									classes: {
-										root: classes.cssLabel,
-										focused: classes.cssFocused,
-									},
-								}}
-								InputProps={{
-									classes: {
-										root: classes.cssOutlinedInput,
-										focused: classes.cssFocused,
-										notchedOutline: classes.notchedOutline,
-									},
-								}}
-							/>
-								</Grid>
-								
-							</ListItem>
-</Grid>
-							
-							<Grid>
-							<Button onClick={ this.filter } variant="contained" className={classes.Boton}>
-								Aplicar Filtro
-							</Button>
 							</Grid>
-							<Grid>
-							<Button onClick={ this.clearFilter } variant="contained" className={classes.Boton2}>
-								Eliminar Filtro
-							</Button>
+							<Grid item xs={12} sm={6}>
+								<TextField
+									className={classes.textField}
+									variant="outlined"
+									label="Maximo"
+									value={this.state.precioMaximo}
+									type="number"
+									inputProps={{min:1}}
+									onChange={(event) => {
+										this.setState({ precioMaximo: event.target.value })
+									}}
+									InputLabelProps={{
+										classes: {
+											root: classes.cssLabel,
+											focused: classes.cssFocused,
+										},
+									}}
+									InputProps={{
+										classes: {
+											root: classes.cssOutlinedInput,
+											focused: classes.cssFocused,
+											notchedOutline: classes.notchedOutline,
+										},
+									}}
+								/>
 							</Grid>
-						</List>
-				</Drawer>
-						
+						</ListItem>
+					</Grid>
+					<Grid>
+						<Button onClick={ this.filter } variant="contained" className={classes.Boton}>
+							Aplicar Filtro
+						</Button>
+					</Grid>
+					<Grid>
+						<Button onClick={ this.clearFilter } variant="contained" className={classes.Boton2}>
+							Eliminar Filtro
+						</Button>
+					</Grid>
+				</List>
+			</Drawer>
 		);
 	}
 }

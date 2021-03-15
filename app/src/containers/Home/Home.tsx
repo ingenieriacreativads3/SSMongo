@@ -135,7 +135,7 @@ class Home extends React.Component<{
 			this.props.itemReducer.data.items !== null
 		) {
 			itemsTrending = this.props.itemReducer.data.trendingItems
-			items = this.props.itemReducer.data.items[0]
+			items = this.props.itemReducer.data.items
 		}
 
 		return(
@@ -146,7 +146,7 @@ class Home extends React.Component<{
 					footer={ this.footer() }
 					appBar={ this.appBar() }
 					action={ this.action }
-					items={ [] }
+					items={ items }
 					itemsTrending={ itemsTrending }
 					actividadesEconomicas={ this.props.actividadEconomicaReducer.data.actividad }
 					iconos={ [] }
