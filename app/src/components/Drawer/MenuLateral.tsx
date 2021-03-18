@@ -271,8 +271,11 @@ class MenuLateral extends React.Component<{
 		const classes = this.props.classes
 		let isAdmin: boolean = false
 
-		if(this.props.loginReducer.data.logged !== undefined) {
-			isAdmin = this.props.loginReducer.data.logged
+		if(
+			localStorage.getItem('admin') !== undefined &&
+			localStorage.getItem('admin') !== null
+		) {
+			isAdmin = true
 		}
 
 		return(

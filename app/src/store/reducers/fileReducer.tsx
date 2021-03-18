@@ -70,7 +70,12 @@ export default function FileReducer (state = {
 
       let fotosAux: string[] = state.data.foto
 
-      fotosAux.push(action.payload.data.data.foto)
+      if(fotosAux !== undefined) {
+        fotosAux.push(action.payload.data.data.foto)
+      } else {
+        fotosAux = []
+        fotosAux.push(action.payload.data.data.foto)
+      }
       
       return {
         ...state,

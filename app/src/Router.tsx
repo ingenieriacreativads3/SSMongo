@@ -100,10 +100,10 @@ class App extends React.Component <{}, {}> {
 						<Route	path='/evaluacion/empresa/:id' render={(props) => <EvaluacionEmpresa {...props} cookies={cookies} />} />
 						
 						
-						<this.enEspera path='/solicitud/unidadMedida/:id' cookies={cookies}	render={(props:any) => <SolicitudDeUnidadDeMedida {...props} cookies={cookies} />}	/>
-						<this.enEspera path='/solicitud/unidadMedida' cookies={cookies}		render={(props:any) => <SolicitudesUnidadMedida {...props} cookies={cookies} />}	/>
-						<this.enEspera path='/solicitud/nuevoUsuario/:id' cookies={cookies}	 render={(props:any) => <SolicitudDeValidacion {...props} cookies={cookies}/>}/>
-						<this.enEspera path='/solicitud/validacion' cookies={cookies}	 render={(props:any) => <SolicitudesValidacion {...props} cookies={cookies}/>} />
+						<Route path='/solicitud/unidadMedida/:id' cookies={cookies}	render={(props:any) => <SolicitudDeUnidadDeMedida {...props} cookies={cookies} />}	/>
+						<Route path='/solicitud/unidadMedida' cookies={cookies}		render={(props:any) => <SolicitudesUnidadMedida {...props} cookies={cookies} />}	/>
+						<Route path='/solicitud/nuevoUsuario/:id' cookies={cookies}	 render={(props:any) => <SolicitudDeValidacion {...props} cookies={cookies}/>}/>
+						<Route path='/solicitud/validacion' cookies={cookies}	 render={(props:any) => <SolicitudesValidacion {...props} cookies={cookies}/>} />
 
 
 						<this.enEspera path='/renegociacion/:id' cookies={cookies} render={(props:any) => <Renegociacion {...props} cookies={cookies}/>} /> 

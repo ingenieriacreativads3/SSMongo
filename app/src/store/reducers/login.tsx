@@ -100,6 +100,7 @@ export default function LoginReducer (state = {
     case 'INGRESAR_ADMIN_FULFILLED':{
 
       localStorage.removeItem(config.session_user)
+      localStorage.setItem('admin', 'true')
 
       return {
         ...state,

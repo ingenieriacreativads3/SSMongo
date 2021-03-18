@@ -419,7 +419,7 @@ class AppBare extends React.Component<{}, {
 								<AccountCircle />
 							</IconButton>
 							
-							<p className={classes.subtitle}>{ this.props.nombre.toUpperCase() }</p>
+							<p className={classes.subtitle}>{ this.props?.nombre?.toUpperCase() }</p>
 					
 						</MenuItem>
 					</Menu>

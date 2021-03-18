@@ -36,17 +36,20 @@ class ValidationRequest extends React.Component<{
     this.state = {};
   }
 
+  componentWillMount = () => {
+    this.props.dispatch(solicitudDeValidacionActions.get())
+  }
+
   action(item: {
     _id: string
   }) {
-    this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
     this.props.dispatch(solicitudDeValidacionActions.resetear())
+    this.props.history.push("/solicitud/nuevoUsuario/" + item._id);
   }
 
   drawer() {
     return <Drawer { ...this.props } />
   }
-
   
   footer() {
     return <Footer { ...this.props } />
@@ -57,15 +60,6 @@ class ValidationRequest extends React.Component<{
   }
 
   render(){
-
-    if(
-      !this.props.solicitudDeValidacionReducer.fetched &&
-      !this.props.solicitudDeValidacionReducer.fetching
-    ) {
-
-			this.props.dispatch(solicitudDeValidacionActions.get())
-
-		}
 
     return(
       <div>
