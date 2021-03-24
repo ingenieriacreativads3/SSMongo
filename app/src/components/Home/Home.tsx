@@ -271,7 +271,7 @@ class Home extends React.Component <{
       <div className={classes.root}>
         <CssBaseline />
         { this.props.appBar }
-        {/* {this.props.drawer} */}
+         {this.props.drawer}
 					<main className={classes.content}>
           <div className={classes.rootCarousel}>
           
@@ -370,18 +370,19 @@ class Home extends React.Component <{
                     return <div>
                       <Grid item lg={3}>
                         <Link to={`/item/detalle/`+ asd._id} style={{textDecoration:'none'}}>
-                          <Card style={{height:'90%'}} onClick={ () => this.props.action(asd._id)} className={fixedHeightCardCatalog}>
+                          <Card style={{height:'90%'}} onClick={ () => this.props.action(asd._id)} className={classes.card}>
                           
                               <CardMedia
                                 component="img"
                                 alt={asd.nombre}
                                 height="250"
+                                className={classes.cardMedia}
                                 image={'http://localhost:8000/' + asd.foto[0]}
                                 //title={asd.nombre}
                               />
-                              <CardContent>
-                                <Typography gutterBottom variant="h6" component="h2" >
-                                  {asd.nombre}
+                              <CardContent className={classes.cardContent}>
+                                <Typography gutterBottom variant="h6" component="h2" className={classes.cardName} >
+                                {asd.nombre.length > 49 ? asd.nombre.slice(0, 45) + "..." : asd.nombre}
                                 </Typography>
                                 <Typography  style={{color:"#d93211"}}  gutterBottom variant="h5">
                                   { asd.mostrarPrecio ? "$" + asd.precio + ' ' : "Consultar precio " }

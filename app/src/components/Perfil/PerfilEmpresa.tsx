@@ -278,11 +278,11 @@ class PerfilEmpresa extends React.Component <{}, {
 									className={classes.cardMedia}
 								/>
 								<CardContent className={classes.cardContent}>
-									<Typography gutterBottom variant="h5" >
-										{ item.item.nombre }
+									<Typography gutterBottom variant="h5" className={classes.cardName} >
+										{ item.item.nombre.length > 42 ?  item.item.nombre.slice(0, 39) + "..." : item.item.nombre }
 									</Typography>
 								
-									<Typography style={{color:"#d93211"}}  gutterBottom variant="h5" component="h2">
+									<Typography style={{color:"#d93211"}}  gutterBottom variant="h5" component="h2" >
 										{ item.item.mostrarPrecio ? "$" + item.item.precio : 'Consultar precio' }	{<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x { item.item.unidad_de_medida.nombre }</Typography>}
 									</Typography>
 									

@@ -272,13 +272,19 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: "85%",
         backgroundPosition: "center center",
         width: "100%",
-        height: 260,
+        height: 200,
         position: "relative",
       },
 
 	  cardContent: {
         flexGrow: 1,
       },
+	  cardName:{
+		width: "100%",
+		height: 70,
+		position: "relative",
+	  },
+	  
 }));
 
 export	function CambiarContraseña(props: any) {

@@ -167,8 +167,8 @@ class Busqueda extends React.Component <{}, {
                             
                             />
                             <CardContent className={classes.cardContent}>
-                              <Typography gutterBottom variant="h6" component="h2" >
-                                {item.nombre}
+                              <Typography gutterBottom variant="h6" component="h2" className={classes.cardName} >
+                                {item.nombre.length > 49 ? item.nombre.slice(0, 45) + "..." : item.nombre}
                               </Typography>
                               <Typography  style={{color:"#d93211"}}  gutterBottom variant="h5">
                                 {item.mostrarPrecio ? "$" + item.precio : 'Consultar precio'}  {<Typography style={{display:'inline-block'}} variant="subtitle1" color="textSecondary"> x Unidad</Typography>} 
