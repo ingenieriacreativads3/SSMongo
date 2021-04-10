@@ -37,6 +37,7 @@ class ListaSolicitudes extends React.Component<{
   }
 
   componentWillMount = () => {
+    this.props.dispatch(unidadDeMedidaActions.reintentar())
     this.props.dispatch(unidadDeMedidaActions.getSolicitudes())
   }
 

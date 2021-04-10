@@ -30,13 +30,16 @@ export default function unidadDeMedidaReducer ( state = {
 		}
 	
 		case 'SET_RESOLVER_SOLICITUD_FULFILLED': {
+
+			console.log(action.payload.data)
+
 			return {
         ...state,
-        fetching: false,
-        fetched: true,
-        status: action.payload.data.status,
-        message: action.payload.data.message,
-        data: action.payload.data.data
+        // fetching: false,
+        // // fetched: true,
+        // status: action.payload.data.status,
+        // message: action.payload.data.message,
+        // data: action.payload.data.data
       };
 		}
 
@@ -144,7 +147,7 @@ export default function unidadDeMedidaReducer ( state = {
       };
 		}
 
-		case 'REINTENTAR':{
+		case 'REINTENTAR_SOLICITUDES_UNIDAD_DE_MEDIDA':{
       return {
         ...state,
         fetching: false,

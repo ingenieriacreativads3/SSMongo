@@ -49,7 +49,6 @@ export function resolverSolicitud(
 
 ) {
 
-	debugger;
 	let url: string = 'http://127.0.0.1:8000';
 	
 	let payload: any = axios.post(url + '/solicitud_unidad/resolver' , {
@@ -99,7 +98,7 @@ export function setear() {
 export function reintentar() {
 
 	return {
-		type: 'REINTENTAR',
+		type: 'REINTENTAR_SOLICITUDES_UNIDAD_DE_MEDIDA',
 		payload: {}
 	}
 

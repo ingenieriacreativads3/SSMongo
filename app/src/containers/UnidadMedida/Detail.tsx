@@ -39,6 +39,7 @@ class Detail extends React.Component<{
   }
 
   componentWillMount = () => {
+    this.props.dispatch(unidadDeMedidaActions.reintentar())
     this.props.dispatch(unidadDeMedidaActions.getById(this.props.match.params.id))
   }
 
@@ -54,7 +55,7 @@ class Detail extends React.Component<{
     return <AppBar { ...this.props } />
   }
 
-  aceptar () {
+  aceptar = () => {
     this.props.history.push('/solicitud/unidadMedida')
   }
 
@@ -69,7 +70,7 @@ class Detail extends React.Component<{
 
     if(this.props.unidadDeMedidaReducer.fetched) {
       _id = this.props.unidadDeMedidaReducer?.data?.SolicitudesDeUnidadDeMedida?._id || ''
-      usuario = this.props.unidadDeMedidaReducer?.data?.SolicitudesDeUnidadDeMedida?.empresa.nombre || ''
+      usuario = this.props.unidadDeMedidaReducer?.data?.SolicitudesDeUnidadDeMedida?.empresa?.nombre || ''
       fecha = this.props.unidadDeMedidaReducer?.data?.SolicitudesDeUnidadDeMedida?.created_at || ''
       unidad = this.props.unidadDeMedidaReducer?.data?.SolicitudesDeUnidadDeMedida?.magnitud || ''
       simbolo = this.props.unidadDeMedidaReducer?.data?.SolicitudesDeUnidadDeMedida?.abreviatura || ''
@@ -84,7 +85,7 @@ class Detail extends React.Component<{
           fecha={fecha}
           unidad={unidad}
           simbolo={simbolo}
-          aceptar={this.aceptar()}
+          aceptar={this.aceptar}
           footer={this.footer()}
           drawer={this.drawer()}
           appBar={this.appBar()}
