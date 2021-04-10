@@ -14,14 +14,14 @@ export default function unidadDeMedidaReducer ( state = {
 
 	switch (action.type) {
 
-		case 'RESOLVER_SOLICITUD_UNIDAD_PENDING': {
+		case 'SET_RESOLVER_SOLICITUD_PENDING': {
 			return { 
 				...state, 
 				fetching: true 
 			};
 		}
 	
-		case 'RESOLVER_SOLICITUD_UNIDAD_REJECTED': {
+		case 'SET_RESOLVER_SOLICITUD_REJECTED': {
 			return { 
 				...state, 
 				fetching: false, 
@@ -29,7 +29,7 @@ export default function unidadDeMedidaReducer ( state = {
 			};
 		}
 	
-		case 'RESOLVER_SOLICITUD_UNIDAD_FULFILLED': {
+		case 'SET_RESOLVER_SOLICITUD_FULFILLED': {
 			return {
         ...state,
         fetching: false,

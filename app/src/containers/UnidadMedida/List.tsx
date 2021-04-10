@@ -59,8 +59,6 @@ class ListaSolicitudes extends React.Component<{
 
   render(){
 
-    let data: any[] = []
-
     return(
       <div>
         <List
@@ -70,7 +68,7 @@ class ListaSolicitudes extends React.Component<{
           staticContext= { this.props.staticContext }
           title={'Solicitudes Unidad de Medida'}
           columns={[
-            { title: 'Empresa', field: '', type: 'string' },
+            { title: 'Empresa', field: 'empresa.nombre', type: 'string' },
             { title: 'Magnitud', field: 'magnitud', type: 'string' },
             { title: 'Abreviatura', field: 'abreviatura', type: 'string' },
             {

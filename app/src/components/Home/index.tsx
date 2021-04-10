@@ -64,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
 	  cardContent: {
         flexGrow: 1,
       },
+	  cardName:{
+		width: "100%",
+		height: 70,
+		position: "relative",
+	  },
 	button: {
 		margin: theme.spacing(0.5),
 		backgroundColor: '#d93211',

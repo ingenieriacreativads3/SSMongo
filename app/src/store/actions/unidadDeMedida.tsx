@@ -27,6 +27,8 @@ export function getSolicitudes() {
 
 }
 
+
+
 export function getById(id: string) {
 
 	let url: string = 'http://127.0.0.1:8000';
@@ -40,23 +42,23 @@ export function getById(id: string) {
 
 }
 
+
 export function resolverSolicitud(
-	
-	unidad: string,
-	simbolo: string,
+	id: string,	
+	aprob: boolean,
+
 ) {
 
+	debugger;
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.post(url + '/solicitud_unidad', {
-		unidadDeMedida: {
-			nombre : "Unidad",
-			abreviatura : "u"
-		}
+	let payload: any = axios.post(url + '/solicitud_unidad/resolver' , {
+		SolicitudDeUnidadDeMedidaId: id,
+		aprobado:aprob,
 	})
 
 	return {
-		type: 'RESOLVER_SOLICITUD_UNIDAD',
+		type: 'SET_RESOLVER_SOLICITUD',
 		payload: payload
 	}
 }

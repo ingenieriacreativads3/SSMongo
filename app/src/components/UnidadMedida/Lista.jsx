@@ -21,6 +21,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 
 
@@ -59,27 +60,28 @@ class Lista extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-			columns: [
-				{ title: 'Nº', field: 'nro' , type: 'numeric'},
-				{ title: 'Fecha', field: 'fecha', type: 'date' },
-				{ title: 'Empresa', field: 'empresa' },
-				{ title: 'Unidad', field: 'unidad' },
-				{
-					title: 'Estado',
-					field: 'estado',
-					lookup: { 1: 'No resuelta', 2: 'Resuelta' },
-				},
-			],
-			data: [
-				{ nro: '1', fecha: '02/03/2020', empresa: 'Symsa',  unidad:'Metro cuadrado', estado: 1 },
-				{ nro: '2', fecha: '07/04/2020', empresa: 'CorpuSoft',unidad:'Metro cubico', estado: 2},
-			],
+			// columns: [
+			// 	{ title: 'Nº', field: 'nro' , type: 'numeric'},
+			// 	{ title: 'Fecha', field: 'fecha', type: 'date' },
+			// 	{ title: 'Empresa', field: 'empresa' },
+			// 	{ title: 'Unidad', field: 'unidad' },
+			// 	{
+			// 		title: 'Estado',
+			// 		field: 'estado',
+			// 		lookup: { 1: 'No resuelta', 2: 'Resuelta' },
+			// 	},
+			// ],
+			// data: [
+			// 	{ nro: '1', fecha: '02/03/2020', empresa: 'Symsa',  unidad:'Metro cuadrado', estado: 1 },
+			// 	{ nro: '2', fecha: '07/04/2020', empresa: 'CorpuSoft',unidad:'Metro cubico', estado: 2},
+			// ],
     };
   }
 
   render(){
 
 		const classes = this.props.classes
+		
 
     return(
 			<div className={classes.root}>
@@ -92,7 +94,20 @@ class Lista extends React.Component {
 		<Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
               <Grid item lg={12}>
-				<MaterialTable
+				  <MaterialTable
+					icons={ tableIcons }
+					title={ this.props.title }
+					columns={ this.props.columns }
+					data={ this.props.data }
+					actions={[
+					{
+						icon: VisibilityIcon,
+						tooltip: 'Ver más',
+						onClick: (event, rowData) => this.props.action(rowData)
+					}
+					]}
+				  />
+				{/* <MaterialTable
 					icons={tableIcons}
 					title="Solicitudes Unidad de Medida"
 					columns={this.state.columns}
@@ -134,7 +149,7 @@ class Lista extends React.Component {
 								}, 600);
 							}),
 					}}
-				/>
+				/> */}
 				</Grid>
             </Grid>
            {/*  <Box pt={4}>

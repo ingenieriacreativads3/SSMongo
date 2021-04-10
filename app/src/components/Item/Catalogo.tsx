@@ -99,7 +99,7 @@ class Catalogo extends React.Component <{}, {}> {
                 }
               }) => {
                 return <Grid item lg={3} md={4} sm={6}>
-                  <Card className={classes.cardProductio}>
+                  <Card className={classes.cardProducto}>
                       <CardMedia
                         component="img"
                         alt={itemAux.item.nombre}
@@ -109,8 +109,8 @@ class Catalogo extends React.Component <{}, {}> {
                         className={classes.cardMedia}
                       />
                       <CardContent  className={classes.cardContent}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {itemAux.item.nombre}
+                        <Typography gutterBottom variant="h5" component="h2"  className={classes.cardName}>
+                          {itemAux.item.nombre.length > 42 ? itemAux.item.nombre.slice(0, 39) + "..." : itemAux.item.nombre}
                         </Typography>
                         <Typography style={{color:"#d93211"}} gutterBottom variant="h5" component="h2">
                           {itemAux.item.mostrarPrecio? "$" + itemAux.item.precio: "Consultar precio"} {<Typography variant="subtitle1" color="textSecondary"> x {itemAux.item.unidad_de_medida.nombre}</Typography> }

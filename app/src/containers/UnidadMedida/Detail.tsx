@@ -54,6 +54,10 @@ class Detail extends React.Component<{
     return <AppBar { ...this.props } />
   }
 
+  aceptar () {
+    this.props.history.push('/solicitud/unidadMedida')
+  }
+
   render(){
 
     let title: string = 'Solicitud Unidad de Medida'
@@ -80,6 +84,7 @@ class Detail extends React.Component<{
           fecha={fecha}
           unidad={unidad}
           simbolo={simbolo}
+          aceptar={this.aceptar()}
           footer={this.footer()}
           drawer={this.drawer()}
           appBar={this.appBar()}
