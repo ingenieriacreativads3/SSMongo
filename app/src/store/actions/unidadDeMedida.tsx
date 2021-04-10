@@ -27,11 +27,13 @@ export function getSolicitudes() {
 
 }
 
+
+
 export function getById(id: string) {
 
 	let url: string = 'http://127.0.0.1:8000';
 	
-	let payload: any = axios.get(url + '/unidaddemedida/' + id)
+	let payload: any = axios.get(url + '/solicitud-unidad-de-medida/' + id)
 
 	return {
 		type: 'GET_SOLICITUD_DE_UNIDAD_DE_MEDIDA',
@@ -39,6 +41,30 @@ export function getById(id: string) {
 	}
 
 }
+
+
+export function resolverSolicitud(
+	id: string,	
+	aprob: boolean,
+
+) {
+
+	debugger;
+	let url: string = 'http://127.0.0.1:8000';
+	
+	let payload: any = axios.post(url + '/solicitud_unidad/resolver' , {
+		SolicitudDeUnidadDeMedidaId: id,
+		aprobado:aprob,
+	})
+
+	return {
+		type: 'SET_RESOLVER_SOLICITUD',
+		payload: payload
+	}
+}
+
+
+
 
 export function setSolicitud(
 	idEmpresa: string,	

@@ -66,6 +66,10 @@ class Detail extends React.Component<{
     />
   }
 
+  aceptar () {
+    this.props.history.push('/solicitud/unidadMedida')
+  }
+
   render(){
 
   
@@ -75,8 +79,9 @@ class Detail extends React.Component<{
       !this.props.unidadDeMedidaReducer.fetching
     ) {
 
-      this.props.dispatch(unidadDeMedidaActions.getById(this.props.match.params.id))
-
+      
+      //this.props.dispatch(unidadDeMedidaActions.getById(this.props.match.params.id))
+      this.props.dispatch(unidadDeMedidaActions.getById('6071d73a145c000070000bf3'))
     }
 
     let title: string = 'Solicitud Unidad de Medida'
@@ -86,9 +91,22 @@ class Detail extends React.Component<{
     let unidad: string = ''
     let simbolo: string = ''
   
-    
+    if(
+      this.props.unidadDeMedidaReducer.data.SolicitudesDeUnidadDeMedida !== undefined
+    ) {
+      _id = this.props.unidadDeMedidaReducer.data.SolicitudesDeUnidadDeMedida._id
+      fecha = this.props.unidadDeMedidaReducer.data.SolicitudesDeUnidadDeMedida.created_at
+      unidad = this.props.unidadDeMedidaReducer.data.SolicitudesDeUnidadDeMedida.magnitud
+      simbolo = this.props.unidadDeMedidaReducer.data.SolicitudesDeUnidadDeMedida.abreviatura
+      if(
+        this.props.unidadDeMedidaReducer.data.SolicitudesDeUnidadDeMedida.empresa !== undefined
+      ) {
+        usuario = this.props.unidadDeMedidaReducer.data.SolicitudesDeUnidadDeMedida.empresa.nombre
+        
+      }
+    }
    
-
+    
 
 
     return(
@@ -100,6 +118,7 @@ class Detail extends React.Component<{
           fecha={fecha}
           unidad={unidad}
           simbolo={simbolo}
+          aceptar={this.aceptar()}
           footer={this.footer()}
           drawer={this.drawer()}
           appBar={this.appBar()}

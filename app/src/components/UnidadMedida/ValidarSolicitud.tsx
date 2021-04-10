@@ -48,6 +48,7 @@ class ValidarSolicitud extends React.Component <{}, {
     magnitud: string,
     abreviatura: string,
     formValid:boolean,
+    estado:string,
 }> {
 
 	props: any
@@ -62,6 +63,7 @@ class ValidarSolicitud extends React.Component <{}, {
       formValid:true,
         magnitud: '',
         abreviatura: '',
+        estado:'',
        
     };
   }
@@ -92,6 +94,16 @@ class ValidarSolicitud extends React.Component <{}, {
     // }
   }
 
+  handleEstadoSolicitud = (e:any) => {
+    debugger;
+    if(e.target.value == 1 ){
+      this.setState({estado: 'NO RESUELTA'});
+    }else{
+      this.setState({estado: 'RESUELTA'});
+    }
+
+  }
+
 
   validacion=() => {
     let formIsValid = true;
@@ -112,6 +124,7 @@ class ValidarSolicitud extends React.Component <{}, {
       
     }
 
+
   
     
      this.props.dispatch(errorActions.setError(errores)); 
@@ -121,22 +134,22 @@ class ValidarSolicitud extends React.Component <{}, {
 
   sendValidation = () => {
     // if(this.validacion()){
-      this.props.dispatch(unidadDeMedidaAction.setSolicitud(
-        //this.props.match.params.id,
-        this.props._id,
-        this.state.magnitud,
-        this.state.abreviatura,
-        
-    ))
-    // }
-    
 
-   
+    
+    debugger;
+    this.props.dispatch(unidadDeMedidaAction.resolverSolicitud(
+      this.props._id,
+      this.state.estado == 'RESUELTA' ? true : false,
+    ))
+
+    this.props.aceptar();
   }
 
   render(){
 
 		const classes = this.props.classes
+
+    
 
     return(
 
@@ -209,6 +222,7 @@ class ValidarSolicitud extends React.Component <{}, {
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       defaultValue={1}
+                      onChange={this.handleEstadoSolicitud}
                     >
                       <MenuItem value={1}>No resuelta</MenuItem>
                       <MenuItem value={2}>Resuelta</MenuItem>

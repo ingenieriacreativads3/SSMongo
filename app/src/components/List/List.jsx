@@ -108,12 +108,13 @@ class List extends React.Component {
 
     const classes = this.props.classes
 
-    // console.log(this.props.data)
+    debugger;
+     console.log(this.props.data)
 
     return(
       <div>
         <div className={classes.root} >
-
+        
           <CssBaseline />
          {this.props.appBar}
           {this.props.drawer}

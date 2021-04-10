@@ -183,6 +183,15 @@ class AppBare extends React.Component<{}, {
 
 	render(){
 
+		let isAdmin: boolean = false
+
+		if(
+			localStorage.getItem('admin') !== undefined &&
+			localStorage.getItem('admin') !== null
+		) {
+			isAdmin = true
+		}
+
 		const classes = this.props.classes
 		
 		const isMenuOpen = Boolean(this.state.anchorEl);
@@ -303,7 +312,7 @@ class AppBare extends React.Component<{}, {
 			return visible
 		}
 
-		//console.log(this.props.notiLista);
+
 
 		return(
 			
@@ -320,7 +329,7 @@ class AppBare extends React.Component<{}, {
 							<MenuIcon />
 						</IconButton>
 					</div>
-					<div className={classes.search}>
+					<div className={classes.search} style={{display: !isAdmin ? 'block' : 'none'}}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
@@ -342,12 +351,12 @@ class AppBare extends React.Component<{}, {
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 						<IconButton aria-label="show 4 new mails" color="inherit"
-						onClick={handleMessageMenuOpen} >
+						onClick={handleMessageMenuOpen} style={{display: !isAdmin ? 'block' : 'none'}} >
 							<Badge badgeContent={ (this.props.total !== 0) ? this.props.total : null }  color="secondary">
 								<MailIcon className={classes.menuButton}/>
 							</Badge>
 						</IconButton>
-						<IconButton aria-label="show 17 new notifications" color="inherit" onClick={handleNotificationMenuOpen}>
+						<IconButton style={{display: !isAdmin ? 'block' : 'none'}} aria-label="show 17 new notifications" color="inherit" onClick={handleNotificationMenuOpen}>
 							<Badge badgeContent={this.props.totalNoti !== 0 ? this.props.totalNoti : null} color="secondary">
 								<NotificationsIcon className={classes.menuButton}/>
 							</Badge>
@@ -358,7 +367,7 @@ class AppBare extends React.Component<{}, {
 						endIcon={<ArrowDropDownIcon />}
 						onClick={handleProfileMenuOpen}
 						>
-						{ this.props.nombre }
+						{!isAdmin ? this.props.nombre : 'ADMINISTRADOR'}
 						</Button>
 						{/* <IconButton
 							edge="end"
@@ -392,7 +401,7 @@ class AppBare extends React.Component<{}, {
 						open={isMobileMenuOpen}
 						onClose={handleMobileMenuClose}
 					>
-						<MenuItem onClick={handleMessageMenuOpen}>
+						<MenuItem onClick={handleMessageMenuOpen} style={{display: !isAdmin ? 'block' : 'none'}}>
 							<IconButton  color="inherit">
 								<Badge badgeContent={ (this.props.total !== 0) ? this.props.total : null }  color="secondary">
 									<MailIcon />
@@ -400,7 +409,7 @@ class AppBare extends React.Component<{}, {
 							</IconButton>
 							<p className={classes.subtitle} >Mensajes </p>
 						</MenuItem>
-						<MenuItem onClick={handleNotificationMenuOpen}>
+						<MenuItem onClick={handleNotificationMenuOpen} style={{display: !isAdmin ? 'block' : 'none'}}>
 							<IconButton  color="inherit">
 								<Badge badgeContent={this.props.totalNoti !== 0 ? this.props.totalNoti : null}  color="secondary">
 									<NotificationsIcon />
@@ -419,7 +428,7 @@ class AppBare extends React.Component<{}, {
 								<AccountCircle />
 							</IconButton>
 							
-							<p className={classes.subtitle}>{ this.props?.nombre?.toUpperCase() }</p>
+							<p className={classes.subtitle}>{!isAdmin ? this.props?.nombre?.toUpperCase() : 'ADMINISTRADOR'}</p>
 					
 						</MenuItem>
 					</Menu>
@@ -432,9 +441,9 @@ class AppBare extends React.Component<{}, {
 						open={isMenuOpen}
 						onClose={handleMenuClose}
 					>
-						<MenuItem onClick={ miPerfil } className={classes.subtitle}>Mi perfil</MenuItem>
+						<MenuItem onClick={ miPerfil } style={{display: !isAdmin ? 'block' : 'none'}} className={classes.subtitle}>Mi perfil</MenuItem>
 						<MenuItem onClick={ cerrarSesion } className={classes.subtitle}>Cerrar Sesión</MenuItem>
-						<MenuItem onClick={ cambiarPassword } className={classes.subtitle}>Cambiar contraseña</MenuItem>
+						<MenuItem onClick={ cambiarPassword } style={{display: !isAdmin ? 'block' : 'none'}} className={classes.subtitle}>Cambiar contraseña</MenuItem>
 					</Menu>
 
 					<Menu

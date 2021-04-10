@@ -36,9 +36,14 @@ class ListaSolicitudes extends React.Component<{
     this.state = {};
   }
 
+  componentWillMount = () => {
+    this.props.dispatch(unidadDeMedidaActions.getSolicitudes())
+  }
+
   action(item: {_id: string }) {
-    this.props.history.push("/solicitud/unidadMedida/" + item._id);
     this.props.dispatch(unidadDeMedidaActions.resetear())
+    this.props.history.push("/solicitud/unidadMedida/" + item._id);
+  
   }
 
   drawer() {
@@ -71,14 +76,16 @@ class ListaSolicitudes extends React.Component<{
 
   render(){
 
-     if(
-       !this.props.unidadDeMedidaReducer.fetched &&
-       !this.props.unidadDeMedidaReducer.fetching
-     ) {
+    //  if(
+    //    !this.props.unidadDeMedidaReducer.fetched &&
+    //    !this.props.unidadDeMedidaReducer.fetching
+    //  ) {
 
-		   this.props.dispatch(unidadDeMedidaActions.getSolicitudes())
+		//    this.props.dispatch(unidadDeMedidaActions.getSolicitudes())
 
-		 }
+		//  }
+
+     
 
     return(
       <div>
@@ -89,7 +96,7 @@ class ListaSolicitudes extends React.Component<{
           staticContext= { this.props.staticContext }
           title={'Solicitudes Unidad de Medida'}
           columns={[
-            { title: 'Empresa', field: '', type: 'string' },
+            { title: 'Empresa', field: 'empresa.nombre', type: 'string' },
             { title: 'Magnitud', field: 'magnitud', type: 'string' },
             { title: 'Abreviatura', field: 'abreviatura', type: 'string' },
             {
