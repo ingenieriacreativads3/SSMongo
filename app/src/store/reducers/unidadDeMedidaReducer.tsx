@@ -14,6 +14,32 @@ export default function unidadDeMedidaReducer ( state = {
 
 	switch (action.type) {
 
+		case 'RESOLVER_SOLICITUD_UNIDAD_PENDING': {
+			return { 
+				...state, 
+				fetching: true 
+			};
+		}
+	
+		case 'RESOLVER_SOLICITUD_UNIDAD_REJECTED': {
+			return { 
+				...state, 
+				fetching: false, 
+				error: action.payload 
+			};
+		}
+	
+		case 'RESOLVER_SOLICITUD_UNIDAD_FULFILLED': {
+			return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        status: action.payload.data.status,
+        message: action.payload.data.message,
+        data: action.payload.data.data
+      };
+		}
+
 		case 'GET_UNIDADES_DE_MEDIDA_PENDING': {
 			return { 
 				...state, 

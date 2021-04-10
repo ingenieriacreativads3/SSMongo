@@ -120,18 +120,14 @@ class ValidarSolicitud extends React.Component <{}, {
 
 
   sendValidation = () => {
-    // if(this.validacion()){
-      this.props.dispatch(unidadDeMedidaAction.setSolicitud(
-        //this.props.match.params.id,
-        this.props._id,
-        this.state.magnitud,
-        this.state.abreviatura,
-        
-    ))
-    // }
-    
+    // this.props.dispatch(unidadDeMedidaAction.resolverSolicitud(
 
-   
+    // ))
+    // this.props.dispatch(unidadDeMedidaAction.setSolicitud(
+    //   this.props.match.params.id,
+    //   this.state.magnitud,
+    //   this.state.abreviatura,
+    // ))
   }
 
   render(){
@@ -228,7 +224,7 @@ class ValidarSolicitud extends React.Component <{}, {
                 size="small"
                 className={classes.button}
                 // endIcon={<SendIcon></SendIcon>}
-                onClick={() => this.sendValidation()}
+                onClick={ this.sendValidation }
               >
                 Aceptar
               </Button>
@@ -239,8 +235,6 @@ class ValidarSolicitud extends React.Component <{}, {
             </Grid>
             {this.props.footer}
 					</main>
-
-
 		 </div>
 
     );

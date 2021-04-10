@@ -169,51 +169,23 @@ const useStyles = makeStyles((theme) => ({
       background: "#d93211",
    },
   }
-
-  
-  
-
 }));
 
 export  function NuevaUnidadMedida(props: any) {
 
 	const classes = useStyles(theme);
-  return <UnidadMedidaNueva 
-    classes={ classes } {...props}
-    />;
+  return <UnidadMedidaNueva classes={ classes } {...props }/>;
 
 }
 
-export  function ValidarSolicitud(props: {
-  title: string,
-  _id: string,
-  usuario: string,
-  fecha:string,
-  unidad:string,
-  simbolo:string,
-  drawer:any,
-  footer:any,
-  appBar:any,
-}) {
+export  function ValidarSolicitud(props: any) {
 
 	const classes = useStyles(theme);
-  return <SolicitudAValidar 
-  classes={ classes }
-  title= {props.title}
-  _id= {props._id}
-  usuario= {props.usuario}
-  fecha={props.fecha}
-  unidad={props.unidad}
-  simbolo={props.simbolo}
-  drawer={props.drawer}
-  footer={props.footer}
-  appBar={props.appBar}
-   />;
+  return <SolicitudAValidar classes={ classes } { ...props } />;
 
 }
 
-
-export  function SolicitudesUnidadMedida() {
+export function SolicitudesUnidadMedida() {
 
 	const classes = useStyles(theme);
   return <Lista classes={ classes } />;

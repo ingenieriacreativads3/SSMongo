@@ -135,6 +135,7 @@ export default function LoginReducer (state = {
 
 			let userId: string = action.payload?.data?.data?.empresa?._id || null
 
+      localStorage.removeItem('admin')
 			localStorage.setItem(config.session_user, userId)
       
       return {

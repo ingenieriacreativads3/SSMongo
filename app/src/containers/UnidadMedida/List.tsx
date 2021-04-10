@@ -36,49 +36,30 @@ class ListaSolicitudes extends React.Component<{
     this.state = {};
   }
 
+  componentWillMount = () => {
+    this.props.dispatch(unidadDeMedidaActions.getSolicitudes())
+  }
+
   action(item: {_id: string }) {
-    this.props.history.push("/solicitud/unidadMedida/" + item._id);
     this.props.dispatch(unidadDeMedidaActions.resetear())
+    this.props.history.push("/solicitud/unidadMedida/" + item._id);
   }
 
   drawer() {
-    return <Drawer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Drawer { ...this.props } />
   }
   
   footer() {
-    return <Footer 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-    />
+    return <Footer { ...this.props } />
   }
 
   appBar() {
-    return <AppBar 
-      history={this.props.history}
-      location={this.props.location}
-      match={this.props.match}
-      staticContext={this.props.staticContext}
-      cookies={this.props.cookies}
-    />
+    return <AppBar { ...this.props } />
   }
 
   render(){
 
-     if(
-       !this.props.unidadDeMedidaReducer.fetched &&
-       !this.props.unidadDeMedidaReducer.fetching
-     ) {
-
-		   this.props.dispatch(unidadDeMedidaActions.getSolicitudes())
-
-		 }
+    let data: any[] = []
 
     return(
       <div>

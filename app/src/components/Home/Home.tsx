@@ -376,7 +376,7 @@ class Home extends React.Component <{
                                 component="img"
                                 alt={asd.nombre}
                                 height="250"
-                                image={'http://localhost:8000/' + asd.foto[0]}
+                                image={'http://localhost:8000/' + asd?.foto?.[0] || ''}
                                 //title={asd.nombre}
                               />
                               <CardContent>

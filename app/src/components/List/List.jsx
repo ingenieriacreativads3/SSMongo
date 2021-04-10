@@ -44,17 +44,13 @@ const tableIcons = {
   VisibilityIcon: forwardRef((props, ref) => <VisibilityIcon {...props} ref={ref} />),
 };
 
-
 class List extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
     this.getIcons = this.getIcons.bind(this);
     this.layout = this.layout.bind(this);
-    this.state = {
-		};
-
+    this.state = {};
   }
 
   handleChange = (event) => {
@@ -108,8 +104,6 @@ class List extends React.Component {
 
     const classes = this.props.classes
 
-    // console.log(this.props.data)
-
     return(
       <div>
         <div className={classes.root} >
@@ -129,7 +123,7 @@ class List extends React.Component {
                     icons={tableIcons}
                     title={this.props.title}
                     columns={this.props.columns}
-                    data={this.props.data}
+                    data={ this.props.data }
                     actions={this.getIcons()}
                   />
                 </Grid>

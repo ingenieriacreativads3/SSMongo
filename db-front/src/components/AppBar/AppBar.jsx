@@ -16,7 +16,7 @@ import AttachMoney from '@material-ui/icons/AttachMoney';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import PostAdd from '@material-ui/icons/PostAdd';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 
 
 import '../../containers/Home/shop/css/linearicons.css';

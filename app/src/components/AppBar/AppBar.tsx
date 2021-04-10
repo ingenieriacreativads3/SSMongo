@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import { IconButton, Badge, Button, ListItem, Grid, ListItemAvatar, Avatar,ListItemText, Divider, Typography, Box } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuIcon from '@material-ui/icons/Menu';
